@@ -1,0 +1,157 @@
+{
+  "numbering": "Original physical CD numbers are preserved: track02.wav is CD track 2, not first-audio-track index zero.",
+  "audio_track_count": 19,
+  "total_seconds": 1450.2,
+  "scripted_tracks": [
+    4,
+    6,
+    7,
+    9,
+    11,
+    13,
+    17,
+    18,
+    19,
+    20
+  ],
+  "scripted_cd_requests": [
+    {
+      "script": "FANMMENU",
+      "entry_label": "dificil",
+      "source_file": "anims.dlg",
+      "source_line": 25,
+      "physical_track": 7,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track07.wav"
+    },
+    {
+      "script": "FANMMENU",
+      "entry_label": "facil",
+      "source_file": "anims.dlg",
+      "source_line": 47,
+      "physical_track": 7,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track07.wav"
+    },
+    {
+      "script": "FANCAMAROTE",
+      "entry_label": "ent7",
+      "source_file": "anims.dlg",
+      "source_line": 310,
+      "physical_track": 9,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track09.wav"
+    },
+    {
+      "script": "FANLUCHDICK",
+      "entry_label": "main",
+      "source_file": "anims.dlg",
+      "source_line": 620,
+      "physical_track": 9,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track09.wav"
+    },
+    {
+      "script": "FANLUCHDICK",
+      "entry_label": "main",
+      "source_file": "anims.dlg",
+      "source_line": 654,
+      "physical_track": 17,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track17.wav"
+    },
+    {
+      "script": "FFINAL",
+      "entry_label": "main",
+      "source_file": "anims.dlg",
+      "source_line": 692,
+      "physical_track": 7,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track07.wav"
+    },
+    {
+      "script": "FFINAL",
+      "entry_label": "main",
+      "source_file": "anims.dlg",
+      "source_line": 700,
+      "physical_track": 13,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track13.wav"
+    },
+    {
+      "script": "FFINAL",
+      "entry_label": "main",
+      "source_file": "anims.dlg",
+      "source_line": 716,
+      "physical_track": 11,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track11.wav"
+    },
+    {
+      "script": "FFINAL",
+      "entry_label": "main",
+      "source_file": "anims.dlg",
+      "source_line": 739,
+      "physical_track": 18,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track18.wav"
+    },
+    {
+      "script": "FFINAL",
+      "entry_label": "main",
+      "source_file": "anims.dlg",
+      "source_line": 781,
+      "physical_track": 19,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track19.wav"
+    },
+    {
+      "script": "FDICKTABER",
+      "entry_label": "hablar",
+      "source_file": "objetos.dlg",
+      "source_line": 405,
+      "physical_track": 6,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track06.wav"
+    },
+    {
+      "script": "FDICKTABER",
+      "entry_label": "hablar",
+      "source_file": "objetos.dlg",
+      "source_line": 411,
+      "physical_track": 4,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track04.wav"
+    },
+    {
+      "script": "FDICKTABER",
+      "entry_label": "ent1",
+      "source_file": "objetos.dlg",
+      "source_line": 418,
+      "physical_track": 4,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track04.wav"
+    },
+    {
+      "script": "FDICKTABER",
+      "entry_label": "ent2",
+      "source_file": "objetos.dlg",
+      "source_line": 424,
+      "physical_track": 4,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track04.wav"
+    },
+    {
+      "script": "FDICKTABER",
+      "entry_label": "ent3",
+      "source_file": "objetos.dlg",
+      "source_line": 437,
+      "physical_track": 4,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track04.wav"
+    },
+    {
+      "script": "FORZOGUEI",
+      "entry_label": "habcur1",
+      "source_file": "objetos.dlg",
+      "source_line": 1278,
+      "physical_track": 20,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track20.wav"
+    },
+    {
+      "script": "FSALPANTA",
+      "entry_label": "main",
+      "source_file": "objetos.dlg",
+      "source_line": 1573,
+      "physical_track": 9,
+      "wav": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/track09.wav"
+    }
+  ],
+  "native_code_track_requests": "Not exhaustively inventoried in this map.",
+  "manifest": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/manifest.json"
+}

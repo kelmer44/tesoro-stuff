@@ -1,0 +1,617 @@
+    C++      backends/platform/sdl/sdl.o
+    C++      backends/platform/sdl/sdl-window.o
+    C++      engines/tesoro/detection.o
+    C++      backends/platform/sdl/posix/posix-main.o
+    C++      backends/platform/sdl/macosx/macosx-main.o
+    C++      backends/platform/sdl/macosx/macosx.o
+    C++      backends/platform/sdl/macosx/macosx-touchbar.o
+    C++      backends/platform/sdl/posix/posix.o
+    C++      backends/platform/sdl/macosx/macosx-window.o
+    C++      backends/platform/sdl/macosx/macosx_wrapper.o
+    C++      backends/platform/sdl/macosx/macosx_osys_misc.o
+    C++      backends/platform/sdl/macosx/appmenu_osx.o
+    C++      base/test_new_standards.o
+    C++      base/main.o
+    C++      base/commandLine.o
+    C++      base/plugins.o
+    C++      engines/tesoro/resources.o
+    C++      engines/tesoro/script.o
+    C++      engines/tesoro/tesoro.o
+    C++      engines/tesoro/metaengine.o
+engines/tesoro/tesoro.cpp:55:23: error: cannot initialize a variable of type 'Audio::AudioStream *' with an rvalue of type 'SeekableAudioStream *'
+   55 |                 Audio::AudioStream *audio=Audio::makeWAVStream(_archive.stream(r.textId+".WAV"),DisposeAfterUse::YES);
+      |                                     ^     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./audio/decoders/wave.h:63:7: note: 'Audio::SeekableAudioStream' is not defined, but forward declared here; conversion would be valid if it was derived from 'Audio::AudioStream'
+   63 | class SeekableAudioStream;
+      |       ^
+    C++      engines/achievements.o
+1 error generated.
+    C++      engines/advancedDetector.o
+make: *** [engines/tesoro/tesoro.o] Error 1
+make: *** Waiting for unfinished jobs....
+    C++      engines/dialogs.o
+    C++      engines/engine.o
+    C++      engines/tesoro/tesoro.o
+    C++      engines/metaengine.o
+    C++      engines/game.o
+    C++      gui/about.o
+    C++      engines/savestate.o
+    C++      engines/obsolete.o
+    C++      gui/browser.o
+    C++      gui/chooser.o
+    C++      gui/console.o
+    C++      gui/debugger.o
+    C++      gui/dialog.o
+    C++      gui/dump-all-dialogs.o
+    C++      gui/editgamedialog.o
+    C++      gui/error.o
+    C++      gui/EventRecorder.o
+    C++      gui/filebrowser-dialog.o
+    C++      gui/gui-manager.o
+    C++      gui/helpdialog.o
+    C++      gui/imagealbum-dialog.o
+    C++      gui/launcher.o
+    C++      gui/massadd.o
+    C++      gui/message.o
+    C++      gui/MetadataParser.o
+    C++      gui/object.o
+    C++      gui/options.o
+    C++      gui/predictivedialog.o
+    C++      gui/printing-dialog.o
+    C++      gui/saveload.o
+    C++      gui/saveload-dialog.o
+    C++      gui/shaderbrowser-dialog.o
+    C++      gui/textviewer.o
+    C++      gui/themebrowser.o
+    C++      gui/ThemeEngine.o
+    C++      gui/ThemeEval.o
+    C++      gui/ThemeLayout.o
+    C++      gui/ThemeParser.o
+    C++      gui/Tooltip.o
+    C++      gui/unknown-game-dialog.o
+    C++      gui/widget.o
+    C++      gui/animation/Animation.o
+    C++      gui/animation/RepeatAnimationWrapper.o
+    C++      gui/animation/SequenceAnimationComposite.o
+    C++      gui/widgets/editable.o
+    C++      gui/widgets/edittext.o
+    C++      gui/widgets/grid.o
+    C++      gui/widgets/groupedlist.o
+    C++      gui/widgets/list.o
+    C++      gui/widgets/popup.o
+    C++      gui/widgets/richtext.o
+    C++      gui/widgets/scrollbar.o
+    C++      gui/widgets/scrollcontainer.o
+    C++      gui/widgets/tab.o
+    C++      backends/base-backend.o
+    C++      backends/modular-backend.o
+    C++      backends/audiocd/audiocd-stream.o
+    C++      backends/audiocd/default/default-audiocd.o
+    C++      backends/events/default/default-events.o
+    C++      backends/fs/abstract-fs.o
+    C++      backends/fs/stdiostream.o
+    C++      backends/keymapper/action.o
+    C++      backends/keymapper/hardware-input.o
+    C++      backends/keymapper/input-watcher.o
+    C++      backends/keymapper/keymap.o
+    C++      backends/keymapper/keymapper.o
+    C++      backends/keymapper/remap-widget.o
+    C++      backends/keymapper/standard-actions.o
+    C++      backends/keymapper/virtual-mouse.o
+    C++      backends/log/log.o
+    C++      backends/midi/alsa.o
+    C++      backends/midi/dmedia.o
+    C++      backends/midi/seq.o
+    C++      backends/midi/sndio.o
+    C++      backends/midi/stmidi.o
+    C++      backends/midi/timidity.o
+    C++      backends/saves/savefile.o
+    C++      backends/saves/default/default-saves.o
+    C++      backends/timer/default/default-timer.o
+    C++      backends/graphics/opengl/framebuffer.o
+    C++      backends/graphics/opengl/opengl-graphics.o
+    C++      backends/graphics/opengl/renderer3d.o
+    C++      backends/graphics/opengl/shader.o
+    C++      backends/graphics/opengl/texture.o
+    C++      backends/graphics/opengl/pipelines/fixed.o
+    C++      backends/graphics/opengl/pipelines/clut8.o
+    C++      backends/graphics/opengl/pipelines/pipeline.o
+    C++      backends/graphics/opengl/pipelines/libretro.o
+    C++      backends/graphics/opengl/pipelines/libretro/parser.o
+    C++      backends/graphics/opengl/pipelines/shader.o
+    C++      backends/events/sdl/sdl-common-events.o
+    C++      backends/graphics/sdl/sdl-graphics.o
+    C++      backends/mixer/sdl/sdl-mixer.o
+    C++      backends/graphics/surfacesdl/surfacesdl-graphics.o
+    C++      backends/mixer/null/null-mixer.o
+    C++      backends/mutex/sdl/sdl-mutex.o
+    C++      backends/timer/sdl/sdl-timer.o
+    C++      backends/events/sdl/sdl2-events.o
+    C++      backends/plugins/sdl/sdl-provider.o
+    C++      backends/graphics/openglsdl/openglsdl-graphics.o
+    C++      backends/fs/posix/posix-fs.o
+    C++      backends/fs/posix/posix-fs-factory.o
+    C++      backends/fs/posix/posix-iostream.o
+    C++      backends/fs/posix-drives/posix-drives-fs.o
+    C++      backends/fs/posix-drives/posix-drives-fs-factory.o
+    C++      backends/fs/chroot/chroot-fs-factory.o
+    C++      backends/fs/chroot/chroot-fs.o
+    C++      backends/plugins/posix/posix-provider.o
+    C++      backends/saves/posix/posix-saves.o
+    C++      backends/taskbar/unity/unity-taskbar.o
+    C++      backends/dialogs/gtk/gtk-dialogs.o
+    C++      backends/dialogs/macosx/macosx-dialogs.o
+    C++      backends/audiocd/macosx/macosx-audiocd.o
+    C++      backends/midi/coreaudio.o
+    C++      backends/midi/coremidi.o
+    C++      backends/updates/macosx/macosx-updates.o
+    C++      backends/taskbar/macosx/macosx-taskbar.o
+    C++      backends/text-to-speech/avfaudio/avfaudio-text-to-speech.o
+    C++      backends/plugins/sdl/macosx/macosx-provider.o
+    C++      video/3do_decoder.o
+    C++      video/4xm_decoder.o
+    C++      video/4xm_utils.o
+    C++      video/avi_decoder.o
+    C++      video/coktel_decoder.o
+    C++      video/dxa_decoder.o
+    C++      video/flic_decoder.o
+    C++      video/mpegps_decoder.o
+    C++      video/mve_decoder.o
+    C++      video/paco_decoder.o
+    C++      video/psx_decoder.o
+    C++      video/qt_decoder.o
+    C++      video/qtvr_decoder.o
+    C++      video/smk_decoder.o
+    C++      video/subtitles.o
+    C++      video/video_decoder.o
+    C++      video/bink_decoder.o
+    C++      image/ani.o
+    C++      image/bmp.o
+    C++      image/cel_3do.o
+    C++      image/cicn.o
+    C++      image/icocur.o
+    C++      image/iff.o
+    C++      image/jpeg.o
+    C++      image/neo.o
+    C++      image/pcx.o
+    C++      image/pict.o
+    C++      image/png.o
+    C++      image/scr.o
+    C++      image/tga.o
+    C++      image/xbm.o
+    C++      image/codecs/bmp_raw.o
+    C++      image/codecs/cinepak.o
+    C++      image/codecs/codec.o
+    C++      image/codecs/dither.o
+    C++      image/codecs/hlz.o
+    C++      image/codecs/msrle.o
+    C++      image/codecs/msrle4.o
+    C++      image/codecs/msvideo1.o
+    C++      image/codecs/qtrle.o
+    C++      image/codecs/smc.o
+    C++      image/codecs/rpza.o
+    C++      image/codecs/mjpeg.o
+    C++      graphics/big5.o
+    C++      graphics/blit/blit.o
+    C++      graphics/blit/blit-alpha.o
+    C++      graphics/blit/blit-fast.o
+    C++      graphics/blit/blit-generic.o
+    C++      graphics/blit/blit-scale.o
+    C++      graphics/color_quantizer.o
+    C++      graphics/cursorman.o
+    C++      graphics/font.o
+    C++      graphics/fontman.o
+    C++      graphics/fonts/bdf.o
+    C++      graphics/fonts/amigafont.o
+    C++      graphics/fonts/bgifont.o
+    C++      graphics/fonts/consolefont.o
+    C++      graphics/fonts/dosfont.o
+    C++      graphics/fonts/freetype.o
+    C++      graphics/fonts/macfont.o
+    C++      graphics/fonts/newfont_big.o
+    C++      graphics/fonts/newfont.o
+    C++      graphics/fonts/ttf.o
+    C++      graphics/fonts/winfont.o
+    C++      graphics/framelimiter.o
+    C++      graphics/korfont.o
+    C++      graphics/image-archive.o
+    C++      graphics/larryScale.o
+    C++      graphics/maccursor.o
+    C++      graphics/macgui/datafiles.o
+    C++      graphics/macgui/macbutton.o
+    C++      graphics/macgui/macdialog.o
+    C++      graphics/macgui/macfontmanager.o
+    C++      graphics/macgui/macpopupmenu.o
+    C++      graphics/macgui/macmenu.o
+    C++      graphics/macgui/mactext.o
+    C++      graphics/macgui/mactext-canvas.o
+    C++      graphics/macgui/mactext-md.o
+    C++      graphics/macgui/mactextwindow.o
+    C++      graphics/macgui/macwidget.o
+    C++      graphics/macgui/macwindow.o
+    C++      graphics/macgui/macwindowborder.o
+    C++      graphics/macgui/macwindowmanager.o
+    C++      graphics/managed_surface.o
+    C++      graphics/nine_patch.o
+    C++      graphics/opengl/context.o
+    C++      graphics/opengl/debug.o
+    C++      graphics/opengl/shader.o
+    C++      graphics/opengl/texture.o
+    C++      graphics/palette.o
+    C++      graphics/pixelformat.o
+In file included from graphics/opengl/context.cpp:38:
+In file included from ./graphics/opengl/system_headers.h:59:
+./graphics/opengl/glad.h:12554:97: warning: cast from 'PFNGLATTACHSHADERPROC' (aka 'void (*)(unsigned int, unsigned int)') to 'PFNGLATTACHOBJECTARBPROC' (aka 'void (*)(void *, void *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12554 |     if (glad_glAttachObjectARB == NULL && glad_glAttachShader != NULL) glad_glAttachObjectARB = (PFNGLATTACHOBJECTARBPROC)glad_glAttachShader;
+       |                                                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12555:94: warning: cast from 'PFNGLATTACHOBJECTARBPROC' (aka 'void (*)(void *, void *)') to 'PFNGLATTACHSHADERPROC' (aka 'void (*)(unsigned int, unsigned int)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12555 |     if (glad_glAttachShader == NULL && glad_glAttachObjectARB != NULL) glad_glAttachShader = (PFNGLATTACHSHADERPROC)glad_glAttachObjectARB;
+       |                                                                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12566:112: warning: cast from 'PFNGLBINDATTRIBLOCATIONARBPROC' (aka 'void (*)(void *, unsigned int, const char *)') to 'PFNGLBINDATTRIBLOCATIONPROC' (aka 'void (*)(unsigned int, unsigned int, const char *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12566 |     if (glad_glBindAttribLocation == NULL && glad_glBindAttribLocationARB != NULL) glad_glBindAttribLocation = (PFNGLBINDATTRIBLOCATIONPROC)glad_glBindAttribLocationARB;
+       |                                                                                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12567:115: warning: cast from 'PFNGLBINDATTRIBLOCATIONPROC' (aka 'void (*)(unsigned int, unsigned int, const char *)') to 'PFNGLBINDATTRIBLOCATIONARBPROC' (aka 'void (*)(void *, unsigned int, const char *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12567 |     if (glad_glBindAttribLocationARB == NULL && glad_glBindAttribLocation != NULL) glad_glBindAttribLocationARB = (PFNGLBINDATTRIBLOCATIONARBPROC)glad_glBindAttribLocation;
+       |                                                                                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12638:97: warning: cast from 'PFNGLCOMPILESHADERARBPROC' (aka 'void (*)(void *)') to 'PFNGLCOMPILESHADERPROC' (aka 'void (*)(unsigned int)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12638 |     if (glad_glCompileShader == NULL && glad_glCompileShaderARB != NULL) glad_glCompileShader = (PFNGLCOMPILESHADERPROC)glad_glCompileShaderARB;
+       |                                                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12639:100: warning: cast from 'PFNGLCOMPILESHADERPROC' (aka 'void (*)(unsigned int)') to 'PFNGLCOMPILESHADERARBPROC' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12639 |     if (glad_glCompileShaderARB == NULL && glad_glCompileShader != NULL) glad_glCompileShaderARB = (PFNGLCOMPILESHADERARBPROC)glad_glCompileShader;
+       |                                                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12684:103: warning: cast from 'PFNGLCREATEPROGRAMOBJECTARBPROC' (aka 'void *(*)()') to 'PFNGLCREATEPROGRAMPROC' (aka 'unsigned int (*)()') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12684 |     if (glad_glCreateProgram == NULL && glad_glCreateProgramObjectARB != NULL) glad_glCreateProgram = (PFNGLCREATEPROGRAMPROC)glad_glCreateProgramObjectARB;
+       |                                                                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12685:112: warning: cast from 'PFNGLCREATEPROGRAMPROC' (aka 'unsigned int (*)()') to 'PFNGLCREATEPROGRAMOBJECTARBPROC' (aka 'void *(*)()') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12685 |     if (glad_glCreateProgramObjectARB == NULL && glad_glCreateProgram != NULL) glad_glCreateProgramObjectARB = (PFNGLCREATEPROGRAMOBJECTARBPROC)glad_glCreateProgram;
+       |                                                                                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12686:100: warning: cast from 'PFNGLCREATESHADEROBJECTARBPROC' (aka 'void *(*)(unsigned int)') to 'PFNGLCREATESHADERPROC' (aka 'unsigned int (*)(unsigned int)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12686 |     if (glad_glCreateShader == NULL && glad_glCreateShaderObjectARB != NULL) glad_glCreateShader = (PFNGLCREATESHADERPROC)glad_glCreateShaderObjectARB;
+       |                                                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12687:109: warning: cast from 'PFNGLCREATESHADERPROC' (aka 'unsigned int (*)(unsigned int)') to 'PFNGLCREATESHADEROBJECTARBPROC' (aka 'void *(*)(unsigned int)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12687 |     if (glad_glCreateShaderObjectARB == NULL && glad_glCreateShader != NULL) glad_glCreateShaderObjectARB = (PFNGLCREATESHADEROBJECTARBPROC)glad_glCreateShader;
+       |                                                                                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12726:97: warning: cast from 'PFNGLDETACHSHADERPROC' (aka 'void (*)(unsigned int, unsigned int)') to 'PFNGLDETACHOBJECTARBPROC' (aka 'void (*)(void *, void *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12726 |     if (glad_glDetachObjectARB == NULL && glad_glDetachShader != NULL) glad_glDetachObjectARB = (PFNGLDETACHOBJECTARBPROC)glad_glDetachShader;
+       |                                                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12727:94: warning: cast from 'PFNGLDETACHOBJECTARBPROC' (aka 'void (*)(void *, void *)') to 'PFNGLDETACHSHADERPROC' (aka 'void (*)(unsigned int, unsigned int)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12727 |     if (glad_glDetachShader == NULL && glad_glDetachObjectARB != NULL) glad_glDetachShader = (PFNGLDETACHSHADERPROC)glad_glDetachObjectARB;
+       |                                                                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12864:103: warning: cast from 'PFNGLGETACTIVEATTRIBARBPROC' (aka 'void (*)(void *, unsigned int, int, int *, int *, unsigned int *, char *)') to 'PFNGLGETACTIVEATTRIBPROC' (aka 'void (*)(unsigned int, unsigned int, int, int *, int *, unsigned int *, char *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12864 |     if (glad_glGetActiveAttrib == NULL && glad_glGetActiveAttribARB != NULL) glad_glGetActiveAttrib = (PFNGLGETACTIVEATTRIBPROC)glad_glGetActiveAttribARB;
+       |                                                                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12865:106: warning: cast from 'PFNGLGETACTIVEATTRIBPROC' (aka 'void (*)(unsigned int, unsigned int, int, int *, int *, unsigned int *, char *)') to 'PFNGLGETACTIVEATTRIBARBPROC' (aka 'void (*)(void *, unsigned int, int, int *, int *, unsigned int *, char *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12865 |     if (glad_glGetActiveAttribARB == NULL && glad_glGetActiveAttrib != NULL) glad_glGetActiveAttribARB = (PFNGLGETACTIVEATTRIBARBPROC)glad_glGetActiveAttrib;
+       |                                                                                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12866:106: warning: cast from 'PFNGLGETACTIVEUNIFORMARBPROC' (aka 'void (*)(void *, unsigned int, int, int *, int *, unsigned int *, char *)') to 'PFNGLGETACTIVEUNIFORMPROC' (aka 'void (*)(unsigned int, unsigned int, int, int *, int *, unsigned int *, char *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12866 |     if (glad_glGetActiveUniform == NULL && glad_glGetActiveUniformARB != NULL) glad_glGetActiveUniform = (PFNGLGETACTIVEUNIFORMPROC)glad_glGetActiveUniformARB;
+       |                                                                                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12867:109: warning: cast from 'PFNGLGETACTIVEUNIFORMPROC' (aka 'void (*)(unsigned int, unsigned int, int, int *, int *, unsigned int *, char *)') to 'PFNGLGETACTIVEUNIFORMARBPROC' (aka 'void (*)(void *, unsigned int, int, int *, int *, unsigned int *, char *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12867 |     if (glad_glGetActiveUniformARB == NULL && glad_glGetActiveUniform != NULL)     C++      graphics/pm5544.o
+glad_glGetActiveUniformARB = (PFNGLGETACTIVEUNIFORMARBPROC)glad_glGetActiveUniform;
+       |                                                                                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12868:109: warning: cast from 'PFNGLGETATTRIBLOCATIONARBPROC' (aka 'int (*)(void *, const char *)') to 'PFNGLGETATTRIBLOCATIONPROC' (aka 'int (*)(unsigned int, const char *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12868 |     if (glad_glGetAttribLocation == NULL && glad_glGetAttribLocationARB != NULL) glad_glGetAttribLocation = (PFNGLGETATTRIBLOCATIONPROC)glad_glGetAttribLocationARB;
+       |                                                                                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12869:112: warning: cast from 'PFNGLGETATTRIBLOCATIONPROC' (aka 'int (*)(unsigned int, const char *)') to 'PFNGLGETATTRIBLOCATIONARBPROC' (aka 'int (*)(void *, const char *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12869 |     if (glad_glGetAttribLocationARB == NULL && glad_glGetAttribLocation != NULL) glad_glGetAttribLocationARB = (PFNGLGETATTRIBLOCATIONARBPROC)glad_glGetAttribLocation;
+       |                                                                                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12938:103: warning: cast from 'PFNGLGETSHADERSOURCEARBPROC' (aka 'void (*)(void *, int, int *, char *)') to 'PFNGLGETSHADERSOURCEPROC' (aka 'void (*)(unsigned int, int, int *, char *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12938 |     if (glad_glGetShaderSource == NULL && glad_glGetShaderSourceARB != NULL) glad_glGetShaderSource = (PFNGLGETSHADERSOURCEPROC)glad_glGetShaderSourceARB;
+       |                                                                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12939:106: warning: cast from 'PFNGLGETSHADERSOURCEPROC' (aka 'void (*)(unsigned int, int, int *, char *)') to 'PFNGLGETSHADERSOURCEARBPROC' (aka 'void (*)(void *, int, int *, char *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12939 |     if (glad_glGetShaderSourceARB == NULL && glad_glGetShaderSource != NULL) glad_glGetShaderSourceARB = (PFNGLGETSHADERSOURCEARBPROC)glad_glGetShaderSource;
+       |                                                                                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12948:94: warning: cast from 'PFNGLGETUNIFORMFVARBPROC' (aka 'void (*)(void *, int, float *)') to 'PFNGLGETUNIFORMFVPROC' (aka 'void (*)(unsigned int, int, float *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12948 |     if (glad_glGetUniformfv == NULL && glad_glGetUniformfvARB != NULL) glad_glGetUniformfv = (PFNGLGETUNIFORMFVPROC)glad_glGetUniformfvARB;
+       |                                                                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12949:97: warning: cast from 'PFNGLGETUNIFORMFVPROC' (aka 'void (*)(unsigned int, int, float *)') to 'PFNGLGETUNIFORMFVARBPROC' (aka 'void (*)(void *, int, float *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12949 |     if (glad_glGetUniformfvARB == NULL && glad_glGetUniformfv != NULL) glad_glGetUniformfvARB = (PFNGLGETUNIFORMFVARBPROC)glad_glGetUniformfv;
+       |                                                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12950:94: warning: cast from 'PFNGLGETUNIFORMIVARBPROC' (aka 'void (*)(void *, int, int *)') to 'PFNGLGETUNIFORMIVPROC' (aka 'void (*)(unsigned int, int, int *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12950 |     if (glad_glGetUniformiv == NULL && glad_glGetUniformivARB != NULL) glad_glGetUniformiv = (PFNGLGETUNIFORMIVPROC)glad_glGetUniformivARB;
+       |                                                                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12951:97: warning: cast from 'PFNGLGETUNIFORMIVPROC' (aka 'void (*)(unsigned int, int, int *)') to 'PFNGLGETUNIFORMIVARBPROC' (aka 'void (*)(void *, int, int *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12951 |     if (glad_glGetUniformivARB == NULL && glad_glGetUniformiv != NULL) glad_glGetUniformivARB = (PFNGLGETUNIFORMIVARBPROC)glad_glGetUniformiv;
+       |                                                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12952:112: warning: cast from 'PFNGLGETUNIFORMLOCATIONARBPROC' (aka 'int (*)(void *, const char *)') to 'PFNGLGETUNIFORMLOCATIONPROC' (aka 'int (*)(unsigned int, const char *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12952 |     if (glad_glGetUniformLocation == NULL && glad_glGetUniformLocationARB != NULL) glad_glGetUniformLocation = (PFNGLGETUNIFORMLOCATIONPROC)glad_glGetUniformLocationARB;
+       |                                                                                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:12953:115: warning: cast from 'PFNGLGETUNIFORMLOCATIONPROC' (aka 'int (*)(unsigned int, const char *)') to 'PFNGLGETUNIFORMLOCATIONARBPROC' (aka 'int (*)(void *, const char *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 12953 |     if (glad_glGetUniformLocationARB == NULL && glad_glGetUniformLocation != NULL) glad_glGetUniformLocationARB = (PFNGLGETUNIFORMLOCATIONARBPROC)glad_glGetUniformLocation;
+       |                                                                                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:13006:91: warning: cast from 'PFNGLLINKPROGRAMARBPROC' (aka 'void (*)(void *)') to 'PFNGLLINKPROGRAMPROC' (aka 'void (*)(unsigned int)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 13006 |     if (glad_glLinkProgram == NULL && glad_glLinkProgramARB != NULL) glad_glLinkProgram = (PFNGLLINKPROGRAMPROC)glad_glL    C++      graphics/primitives.o
+inkProgramARB;
+       |                                                                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:13007:94: warning: cast from 'PFNGLLINKPROGRAMPROC' (aka 'void (*)(unsigned int)') to 'PFNGLLINKPROGRAMARBPROC' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 13007 |     if (glad_glLinkProgramARB == NULL && glad_glLinkProgram != NULL) glad_glLinkProgramARB = (PFNGLLINKPROGRAMARBPROC)glad_glLinkProgram;
+       |                                                                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:13194:94: warning: cast from 'PFNGLSHADERSOURCEARBPROC' (aka 'void (*)(void *, int, const char **, const int *)') to 'PFNGLSHADERSOURCEPROC' (aka 'void (*)(unsigned int, int, const char *const *, const int *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 13194 |     if (glad_glShaderSource == NULL && glad_glShaderSourceARB != NULL) glad_glShaderSource = (PFNGLSHADERSOURCEPROC)glad_glShaderSourceARB;
+       |                                                                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:13195:97: warning: cast from 'PFNGLSHADERSOURCEPROC' (aka 'void (*)(unsigned int, int, const char *const *, const int *)') to 'PFNGLSHADERSOURCEARBPROC' (aka 'void (*)(void *, int, const char **, const int *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 13195 |     if (glad_glShaderSourceARB == NULL && glad_glShaderSource != NULL) glad_glShaderSourceARB = (PFNGLSHADERSOURCEARBPROC)glad_glShaderSource;
+       |                                                                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:13294:94: warning: cast from 'PFNGLUSEPROGRAMOBJECTARBPROC' (aka 'void (*)(void *)') to 'PFNGLUSEPROGRAMPROC' (aka 'void (*)(unsigned int)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 13294 |     if (glad_glUseProgram == NULL && glad_glUseProgramObjectARB != NULL) glad_glUseProgram = (PFNGLUSEPROGRAMPROC)glad_glUseProgramObjectARB;
+       |                                                                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:13295:103: warning: cast from 'PFNGLUSEPROGRAMPROC' (aka 'void (*)(unsigned int)') to 'PFNGLUSEPROGRAMOBJECTARBPROC' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 13295 |     if (glad_glUseProgramObjectARB == NULL && glad_glUseProgram != NULL) glad_glUseProgramObjectARB = (PFNGLUSEPROGRAMOBJECTARBPROC)glad_glUseProgram;
+       |                                                                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:13296:103: warning: cast from 'PFNGLVALIDATEPROGRAMARBPROC' (aka 'void (*)(void *)') to 'PFNGLVALIDATEPROGRAMPROC' (aka 'void (*)(unsigned int)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 13296 |     if (glad_glValidateProgram == NULL && glad_glValidateProgramARB != NULL) glad_glValidateProgram = (PFNGLVALIDATEPROGRAMPROC)glad_glValidateProgramARB;
+       |                                                                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./graphics/opengl/glad.h:13297:106: warning: cast from 'PFNGLVALIDATEPROGRAMPROC' (aka 'void (*)(unsigned int)') to 'PFNGLVALIDATEPROGRAMARBPROC' (aka 'void (*)(void *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+ 13297 |     if (glad_glValidateProgramARB == NULL && glad_glValidateProgram != NULL) glad_glValidateProgramARB = (PFNGLVALIDATEPROGRAMARBPROC)glad_glValidateProgram;
+       |                                                                                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    C++      graphics/riscoscursor.o
+34 warnings generated.
+    C++      graphics/renderer.o
+    C++      graphics/scalerplugin.o
+    C++      graphics/scaler/downscaler.o
+    C++      graphics/scaler/thumbnail_intern.o
+    C++      graphics/screen.o
+    C++      graphics/scaler/normal.o
+    C++      graphics/sjis.o
+    C++      graphics/surface.o
+    C++      graphics/svg.o
+    C++      graphics/transform_tools.o
+    C++      graphics/transform_struct.o
+    C++      graphics/thumbnail.o
+    C++      graphics/VectorRenderer.o
+    C++      graphics/VectorRendererSpec.o
+    C++      graphics/wincursor.o
+    C++      graphics/yuv_to_rgb.o
+    C++      graphics/scaler/aspect.o
+    C++      graphics/scaler/dotmatrix.o
+    C++      graphics/scaler/sai.o
+    C++      graphics/scaler/pm.o
+    C++      graphics/scaler/scale2x.o
+    C++      graphics/scaler/scale3x.o
+    C++      graphics/scaler/scalebit.o
+    C++      graphics/scaler/tv.o
+    C++      graphics/scaler/hq.o
+    C++      graphics/scaler/edge.o
+    C++      graphics/blit/blit-neon.o
+    C++      audio/adlib.o
+    C++      audio/adlib_ctmidi.o
+    C++      audio/adlib_hmisos.o
+    C++      audio/adlib_ms.o
+    C++      audio/audiostream.o
+    C++      audio/casio.o
+    C++      audio/cms.o
+    C++      audio/chip.o
+    C++      audio/fmopl.o
+    C++      audio/mac_plugin.o
+    C++      audio/mididrv.o
+    C++      audio/mididrv_ms.o
+    C++      audio/midiparser_hmp.o
+    C++      audio/midiparser_qt.o
+    C++      audio/midiparser_smf.o
+    C++      audio/midiparser_xmidi.o
+    C++      audio/midiplayer.o
+    C++      audio/midiparser.o
+    C++      audio/miles_adlib.o
+    C++      audio/miles_midi.o
+    C++      audio/mixer.o
+    C++      audio/mpu401.o
+    C++      audio/mt32gm.o
+    C++      audio/musicplugin.o
+    C++      audio/null.o
+    C++      audio/rate.o
+    C++      audio/sid.o
+    C++      audio/ym2149.o
+    C++      audio/timestamp.o
+    C++      audio/decoders/3do.o
+    C++      audio/decoders/aac.o
+    C++      audio/decoders/adpcm.o
+    C++      audio/decoders/aiff.o
+    C++      audio/decoders/apc.o
+    C++      audio/decoders/asf.o
+    C++      audio/decoders/flac.o
+    C++      audio/decoders/g711.o
+    C++      audio/decoders/iff_sound.o
+    C++      audio/decoders/mac_snd.o
+    C++      audio/decoders/mp3.o
+    C++      audio/decoders/qdm2.o
+    C++      audio/decoders/quicktime.o
+    C++      audio/decoders/raw.o
+    C++      audio/decoders/voc.o
+    C++      audio/decoders/vorbis.o
+    C++      audio/decoders/wave.o
+    C++      audio/decoders/wma.o
+    C++      audio/decoders/xa.o
+    C++      audio/decoders/xan_dpcm.o
+    C++      audio/mods/universaltracker.o
+    C++      audio/mods/infogrames.o
+    C++      audio/mods/maxtrax.o
+    C++      audio/mods/mod_xm_s3m.o
+    C++      audio/mods/module.o
+    C++      audio/mods/module_mod_xm_s3m.o
+    C++      audio/mods/protracker.o
+    C++      audio/mods/paula.o
+    C++      audio/mods/rjp1.o
+    C++      audio/mods/soundfx.o
+    C++      audio/mods/tfmx.o
+    C++      audio/softsynth/cms.o
+    C++      audio/mods/desktoptracker.o
+    C++      audio/softsynth/opl/dbopl.o
+    C++      audio/softsynth/opl/dosbox.o
+    C++      audio/softsynth/opl/mame.o
+    C++      audio/softsynth/appleiigs.o
+    C++      audio/softsynth/fluidsynth.o
+    C++      audio/softsynth/eas.o
+    C++      audio/softsynth/pcspk.o
+    C++      audio/softsynth/ay8912.o
+    C++      audio/softsynth/ym2149.o
+    C++      audio/softsynth/opl/nuked.o
+    C++      audio/decoders/ac3.o
+    C++      audio/rwopl3.o
+    C++      math/aabb.o
+    C++      math/angle.o
+    C++      math/cosinetables.o
+    C++      math/dct.o
+    C++      math/fft.o
+    C++      math/frustum.o
+    C++      math/glmath.o
+    C++      math/line2d.o
+    C++      math/line3d.o
+    C++      math/matrix3.o
+    C++      math/matrix4.o
+    C++      math/mdct.o
+    C++      math/plane.o
+    C++      math/quat.o
+    C++      math/ray.o
+    C++      math/rdft.o
+    C++      math/rect2d.o
+    C++      math/sinetables.o
+    C++      math/sinewindows.o
+    C++      math/vector2d.o
+    C++      math/vector3d.o
+    C++      math/vector4d.o
+    C++      common/archive.o
+    C++      common/base64.o
+    C++      common/btea.o
+    C++      common/concatstream.o
+    C++      common/config-manager.o
+    C++      common/coroutines.o
+    C++      common/dbcs-str.o
+    C++      common/debug.o
+    C++      common/engine_data.o
+    C++      common/error.o
+    C++      common/events.o
+    C++      common/file.o
+    C++      common/fs.o
+    C++      common/gui_options.o
+    C++      common/hashmap.o
+    C++      common/language.o
+    C++      common/localization.o
+    C++      common/macresman.o
+    C++      common/memory.o
+    C++      common/memorypool.o
+    C++      common/md5.o
+    C++      common/mutex.o
+    C++      common/osd_message_queue.o
+    C++      common/path.o
+    C++      common/platform.o
+    C++      common/printman.o
+    C++      common/punycode.o
+    C++      common/random.o
+    C++      common/rational.o
+    C++      common/rendermode.o
+    C++      common/rotationmode.o
+    C++      common/str.o
+    C++      common/stream.o
+    C++      common/str-base.o
+    C++      common/streamdebug.o
+    C++      common/str-enc.o
+    C++      common/encodings/singlebyte.o
+    C++      common/system.o
+    C++      common/textconsole.o
+    C++      common/text-to-speech.o
+    C++      common/tokenizer.o
+    C++      common/translation.o
+    C++      common/unicode-bidi.o
+    C++      common/ustr.o
+    C++      common/util.o
+    C++      common/xpfloat.o
+    C++      common/zip-set.o
+    C++      common/std/std.o
+    C++      common/compression/clickteam.o
+    C++      common/compression/dcl.o
+    C++      common/compression/gentee_installer.o
+    C++      common/compression/gzio.o
+    C++      common/compression/installshield_cab.o
+    C++      common/compression/installshieldv3_archive.o
+    C++      common/compression/powerpacker.o
+    C++      common/compression/rnc_deco.o
+    C++      common/compression/stuffit.o
+    C++      common/compression/unarj.o
+    C++      common/compression/unzip.o
+    C++      common/compression/vise.o
+    C++      common/compression/zlib.o
+    C++      common/formats/cue.o
+    C++      common/formats/disk_image.o
+    C++      common/formats/formatinfo.o
+    C++      common/formats/iff_container.o
+    C++      common/formats/ini-file.o
+    C++      common/formats/json.o
+    C++      common/formats/markdown.o
+    C++      common/formats/po_parser.o
+    C++      common/formats/prodos.o
+    C++      common/formats/quicktime.o
+    C++      common/formats/winexe.o
+    C++      common/formats/winexe_ne.o
+    C++      common/formats/winexe_pe.o
+    C++      common/formats/xmlparser.o
+    PANDOC   README.html
+    PANDOC   NEWS.html
+    PANDOC   CONTRIBUTING.html
+    PANDOC   doc/de/NEUES.html
+    AR       engines/tesoro/libtesoro.a
+    AR       engines/libengines.a
+    RANLIB   engines/tesoro/libtesoro.a
+    AR       gui/libgui.a
+    AR       backends/libbackends.a
+    AR       video/libvideo.a
+    RANLIB   engines/libengines.a
+    AR       image/libimage.a
+    RANLIB   video/libvideo.a
+    RANLIB   backends/libbackends.a
+    RANLIB   gui/libgui.a
+    RANLIB   image/libimage.a
+    AR       graphics/libgraphics.a
+    AR       audio/libaudio.a
+    AR       math/libmath.a
+    AR       common/libcommon.a
+    RANLIB   math/libmath.a
+    AR       common/compression/libcompression.a
+    RANLIB   common/libcommon.a
+    AR       common/formats/libformats.a
+    RANLIB   audio/libaudio.a
+    RANLIB   graphics/libgraphics.a
+    RANLIB   common/compression/libcompression.a
+    RANLIB   common/formats/libformats.a
+    C++      base/version.o
+    AR       base/libbase.a
+    RANLIB   base/libbase.a
+    LINK     scummvm
+    C++      engines/tesoro/tesoro.o
+    C++      engines/tesoro/metaengine.o
+    AR       engines/tesoro/libtesoro.a
+    RANLIB   engines/tesoro/libtesoro.a
+    C++      base/version.o
+    AR       base/libbase.a
+    RANLIB   base/libbase.a
+    LINK     scummvm
+    C++      engines/tesoro/metaengine.o
+    C++      engines/tesoro/tesoro.o
+    AR       engines/tesoro/libtesoro.a
+    RANLIB   engines/tesoro/libtesoro.a
+    C++      base/version.o
+    AR       base/libbase.a
+    RANLIB   base/libbase.a
+    LINK     scummvm
+    C++      engines/tesoro/detection.o
+    C++      engines/tesoro/metaengine.o
+    C++      engines/tesoro/tesoro.o
+    C++      engines/tesoro/script.o
+    C++      engines/tesoro/resources.o
+    AR       engines/tesoro/libtesoro.a
+    RANLIB   engines/tesoro/libtesoro.a
+    C++      base/version.o
+    AR       base/libbase.a
+    RANLIB   base/libbase.a
+    LINK     scummvm
+    C++      engines/tesoro/detection.o
+    C++      engines/tesoro/tesoro.o
+    C++      engines/tesoro/metaengine.o
+    C++      engines/tesoro/script.o
+    C++      engines/tesoro/resources.o
+    AR       engines/tesoro/libtesoro.a
+    RANLIB   engines/tesoro/libtesoro.a
+    C++      base/version.o
+    AR       base/libbase.a
+    RANLIB   base/libbase.a
+    LINK     scummvm

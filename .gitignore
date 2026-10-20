@@ -1,0 +1,27 @@
+# Original game/media stay local.
+local-media/
+*.[bB][iI][nN]
+*.[cC][uU][eE]
+*.[iI][sS][oO]
+*.[eE][xX][eE]
+*.[dD][aA][tT]
+*.[tT][rR][eE]
+*.[wW][aA][vV]
+*.[aA][vV][iI]
+*.flac
+*.mp3
+*.ogg
+
+# Engine source and binaries live in the separate ScummVM checkout.
+/scummvm/
+prototype/*.app/
+prototype/*.patch
+prototype/*.ini
+prototype/saves/
+
+# Keep reproducible text exports and PNG previews; omit local databases/caches.
+analysis/ghidra-project/
+analysis/*.bmp
+__pycache__/
+*.py[cod]
+.DS_Store

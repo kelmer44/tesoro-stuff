@@ -1,0 +1,16 @@
+[scummvm]
+gfx_mode=surfacesdl
+fullscreen=false
+aspect_ratio=false
+confirm_exit=false
+speech_volume=200
+subtitles=true
+enable_unsupported_game_warning=false
+
+[tesoro-prototype]
+engineid=tesoro
+gameid=tesoro
+description=El Tesoro de Isla Alcachofa - office prototype
+path=/path/to/TESORO
+language=es
+platform=windows

@@ -1,0 +1,527 @@
+{
+  "script": "FBOLI",
+  "label": "coger",
+  "initial_variables": {
+    "0": 0
+  },
+  "variable_context_owner": "CAPITAN in the office",
+  "variables": {
+    "0": 1
+  },
+  "status": "needs_native_door_transition",
+  "event_count": 47,
+  "sleep_requested_ms": 6150,
+  "object_requests": {
+    "INVENTARIO:IBOLI": {
+      "activate": true
+    },
+    "CURRENT_SCENE:BOLI": {
+      "activate": false
+    },
+    "CURRENT_SCENE:JIMNOTA": {
+      "show": false
+    },
+    "CURRENT_SCENE:CAPITAN": {
+      "activate": true
+    }
+  },
+  "limitation": "Requests only; no original speech/movement timing, graphics or native transition executed.",
+  "events": [
+    {
+      "kind": "condition",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 97,
+      "variable": 0,
+      "actual": 0,
+      "expected": 0,
+      "taken": true,
+      "target": "primera"
+    },
+    {
+      "kind": "set_variable",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 100,
+      "variable": 0,
+      "value": 1
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 101,
+      "scope": "INVENTARIO",
+      "target": "IBOLI",
+      "message": "activate on"
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 102,
+      "text_id": "OBJ001T05",
+      "text": "Algo me darán por esto.",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t05.wav",
+      "extra": null
+    },
+    {
+      "kind": "sleep_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 103,
+      "milliseconds": 750
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 104,
+      "scope": "CURRENT_SCENE",
+      "target": "JIM",
+      "message": "mirar IZQUIERDA"
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 105,
+      "text_id": "OBJ001T07",
+      "text": "Un momento. ¿Qué es esto?",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t07.wav",
+      "extra": null
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 106,
+      "scope": "CURRENT_SCENE",
+      "target": "BOLI",
+      "message": "activate off"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 107,
+      "scope": "CURRENT_SCENE",
+      "target": "JIM",
+      "message": "mirar IZQUIERDA"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 108,
+      "scope": "CURRENT_SCENE",
+      "target": "JIMNOTA",
+      "message": "show on"
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 109,
+      "text_id": "OBJ001T09",
+      "text": "Al coger el bolígrafo me fijé en la carta que había debajo.",
+      "participant": 0,
+      "actor": null,
+      "wav": "obj001t09.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 110,
+      "text_id": "OBJ001T11",
+      "text": "Estimado Hacendado:",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t11.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 111,
+      "text_id": "OBJ001T12",
+      "text": "Por fin he conseguido el barco. Se lo compré de segunda mano a un tipo muy raro de Londres, pero creo que aguantará bien el viaje.",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t12.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 112,
+      "text_id": "OBJ001T13",
+      "text": "Los preparativos y el reclutamiento de hombres van bien, a pesar de que aún nos faltan algunos puestos por cubrir, y es que como estamos en temporada baja, la mayoría de los marineros que me recomendasteis se han ido al norte, a pescar bonito.",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t13.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 113,
+      "text_id": "OBJ001T14",
+      "text": "De todas formas creo que no habrá problemas y todo estará listo a su tiempo.",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t14.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 114,
+      "text_id": "OBJ001T15",
+      "text": "Creen que vamos a descubrir un continente nuevo, en vez de a la busca del más legendario tesoro de los últimos veinte años: el tesoro del pirata Frink.",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t15.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 115,
+      "text_id": "OBJ001T16",
+      "text": "¡No quiero ni pensar en lo que me haría esa pandilla de pordioseros traidores si se enteraran de que los pienso dejar abandonados en Isla Alcachofa mientras me llevo todo el oro yo solito!",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t16.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 116,
+      "text_id": "OBJ001T17",
+      "text": "En  fin, me despido ya. Volveré a escribiros a mi regreso, y si todo sale bien será para deciros que puedo devolveros con creces vuestro préstamo.",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t17.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 117,
+      "text_id": "OBJ001T18",
+      "text": "Afectuosamente... Está sin firmar.",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t18.wav",
+      "extra": null
+    },
+    {
+      "kind": "sleep_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 118,
+      "milliseconds": 600
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 119,
+      "scope": "CURRENT_SCENE",
+      "target": "JIMNOTA",
+      "message": "show off"
+    },
+    {
+      "kind": "sleep_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 120,
+      "milliseconds": 600
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 121,
+      "text_id": "OBJ001T20",
+      "text": "O sea, que lo del viaje entonces es para buscar un tesoro. Tengo que hacerme con un puesto en esa tripulación como sea.",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t20.wav",
+      "extra": null
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 122,
+      "scope": "CURRENT_SCENE",
+      "target": "CAPITAN",
+      "message": "activate on"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 123,
+      "scope": "CURRENT_SCENE",
+      "target": "CAPITAN",
+      "message": "play 1 0 play"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 124,
+      "scope": "CURRENT_SCENE",
+      "target": "JIM",
+      "message": "ira 550 100"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 125,
+      "scope": "CURRENT_SCENE",
+      "target": "JIM",
+      "message": "mirar IZQUIERDA"
+    },
+    {
+      "kind": "sleep_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 126,
+      "milliseconds": 4200
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 127,
+      "text_id": "OBJ001T22",
+      "text": "¡Ah, ya está usté aquí...!",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t22.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 128,
+      "text_id": "OBJ001T23",
+      "text": "¡Y dale! ¡VOS! ¡Se dice vos! ¡Ya estais vos aquí!",
+      "participant": 2,
+      "actor": "CAPITAN",
+      "wav": "obj001t23.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 129,
+      "text_id": "OBJ001T24",
+      "text": "Pero si yo llevo aquí todo el rato. Es usted el que se ha ido. Además, a mí no me llame de vos que no tengo estudios...",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t24.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 130,
+      "text_id": "OBJ001T25",
+      "text": "Bueno, mira. Vamos a dejar el tema. Toma, aquí tienes tu cuerda.",
+      "participant": 2,
+      "actor": "CAPITAN",
+      "wav": "obj001t25.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 131,
+      "text_id": "OBJ001T26",
+      "text": "¿Mi qué?",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t26.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 132,
+      "text_id": "OBJ001T27",
+      "text": "¿No dijiste que que no tenías ni la soga para ahorcarte? Pues toma una, para que no la tengas que pedir prestada.",
+      "participant": 2,
+      "actor": "CAPITAN",
+      "wav": "obj001t27.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 133,
+      "text_id": "OBJ001T28",
+      "text": "¡Ja, qué gracia! ¡Es usted más salo que el Mar Muerto!",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t28.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 134,
+      "text_id": "OBJ001T29",
+      "text": "Oye, a mí no me hagas chistes malos que te breo, ¿eh? ¡Y llámame de vos!",
+      "participant": 2,
+      "actor": "CAPITAN",
+      "wav": "obj001t29.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 135,
+      "text_id": "OBJ001T30",
+      "text": "Que sí, que ya... si es que no tenemos costumbre, nos...",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t30.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 136,
+      "text_id": "OBJ001T31",
+      "text": "¡Desde luego...! ¿A ver si va a ser verdad eso que dicen y que estoy purgando pecados de vidas anteriores? Bueno, ¿quieres la cuerda o no?",
+      "participant": 2,
+      "actor": "CAPITAN",
+      "wav": "obj001t31.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 137,
+      "text_id": "OBJ001T32",
+      "text": "Es que la feria de cuerdas de South Hampton no es hasta junio...",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t32.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 138,
+      "text_id": "OBJ001T33",
+      "text": "Pues peor para ti. Ya vendrás suplicando que te dé la dichosa soga.",
+      "participant": 2,
+      "actor": "CAPITAN",
+      "wav": "obj001t33.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 139,
+      "text_id": "OBJ001T34",
+      "text": "No lo creo.",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t34.wav",
+      "extra": null
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 140,
+      "scope": "CURRENT_SCENE",
+      "target": "CAPITAN",
+      "message": "play 6 0 stop"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 141,
+      "scope": "CURRENT_SCENE",
+      "target": "SUELO",
+      "message": "play 0 1 stop"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 142,
+      "scope": "CURRENT_SCENE",
+      "target": "PATH",
+      "message": "play 0 1 stop"
+    },
+    {
+      "kind": "tail_script_transfer",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 143,
+      "destination": "FCAPITAN",
+      "label": "salir",
+      "shares_variable_context": true,
+      "note": "Analysis-only tail traversal; original scheduler is not reproduced."
+    },
+    {
+      "kind": "object_request",
+      "script": "FCAPITAN",
+      "file": "objetos.dlg",
+      "line": 301,
+      "scope": "CURRENT_SCENE",
+      "target": "JIM",
+      "message": "ira 561 95"
+    },
+    {
+      "kind": "native_callback",
+      "script": "FCAPITAN",
+      "file": "objetos.dlg",
+      "line": 302,
+      "native_type": 21,
+      "ordinal": 0,
+      "annotation": "salir",
+      "handler": "0x00416b50",
+      "lookup_scene_global": "0x00442130",
+      "target": "PUERTA1",
+      "virtual_method_offset": "0x50"
+    }
+  ]
+}

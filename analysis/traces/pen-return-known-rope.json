@@ -1,0 +1,240 @@
+{
+  "script": "FIBOLI",
+  "label": "capitan",
+  "initial_variables": {
+    "0": 1,
+    "1": 1
+  },
+  "variable_context_owner": "explicit caller-supplied context; ownership not inferred here",
+  "variables": {
+    "0": 2,
+    "1": 1
+  },
+  "status": "returned",
+  "event_count": 20,
+  "sleep_requested_ms": 0,
+  "object_requests": {
+    "CURRENT_SCENE:BOLI": {
+      "activate": true
+    },
+    "CURRENT_SCENE:CAPITAN": {
+      "activate": false
+    },
+    "INVENTARIO:IBOLI": {
+      "activate": false
+    }
+  },
+  "limitation": "Requests only; no original speech/movement timing, graphics or native transition executed.",
+  "events": [
+    {
+      "kind": "condition",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 9,
+      "variable": 0,
+      "actual": 1,
+      "expected": 1,
+      "taken": true,
+      "target": "primera"
+    },
+    {
+      "kind": "set_variable",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 12,
+      "variable": 0,
+      "value": 2
+    },
+    {
+      "kind": "speech_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 13,
+      "text_id": "ICON01T007",
+      "text": "Ejem... Hola otra vez...",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "icon01t007.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 14,
+      "text_id": "ICON01T008",
+      "text": "Lárgate, estoy ocupado. ¿Dónde habré metido el dichoso bolígrafo?",
+      "participant": 2,
+      "actor": "CAPITAN",
+      "wav": "icon01t008.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 15,
+      "text_id": "ICON01T009",
+      "text": "¿Qué bolígrafo? ¿Éste?",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "icon01t009.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 16,
+      "text_id": "ICON01T010",
+      "text": "¡Es mi bolígrafo! ¿Dónde estaba?",
+      "participant": 2,
+      "actor": "CAPITAN",
+      "wav": "icon01t010.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 17,
+      "text_id": "ICON01T011",
+      "text": "Ahí fuera. Debes haberle pegado una  patada...",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "icon01t011.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 18,
+      "text_id": "ICON01T012",
+      "text": "Bien, muchas gracias. Ahora, fuera de aquí, que tengo muchas cosas que hacer.",
+      "participant": 2,
+      "actor": "CAPITAN",
+      "wav": "icon01t012.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 19,
+      "text_id": "ICON01T013",
+      "text": "¿Pero es que no hay recompensa?",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "icon01t013.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 20,
+      "text_id": "ICON01T014",
+      "text": "¿Recompensa? ¿Por un maldito bolígrafo? Toma la soga si quieres...",
+      "participant": 2,
+      "actor": "CAPITAN",
+      "wav": "icon01t014.wav",
+      "extra": null
+    },
+    {
+      "kind": "condition",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 21,
+      "variable": 1,
+      "actual": 1,
+      "expected": 1,
+      "taken": true,
+      "target": "sabescuerda"
+    },
+    {
+      "kind": "speech_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 28,
+      "text_id": "ICON01T019",
+      "text": "Pues me la voy a llevar.",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "icon01t019.wav",
+      "extra": null
+    },
+    {
+      "kind": "speech_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 29,
+      "text_id": "ICON01T020",
+      "text": "Vale, pero no te ahorques delante de mi puerta, que luego entra el olor, y los de la basura no pasan hasta el martes",
+      "participant": 2,
+      "actor": "CAPITAN",
+      "wav": "icon01t020.wav",
+      "extra": null
+    },
+    {
+      "kind": "object_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 30,
+      "scope": "CURRENT_SCENE",
+      "target": "BOLI",
+      "message": "activate on"
+    },
+    {
+      "kind": "object_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 31,
+      "scope": "CURRENT_SCENE",
+      "target": "CAPITAN",
+      "message": "play 2 0 wait"
+    },
+    {
+      "kind": "object_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 32,
+      "scope": "CURRENT_SCENE",
+      "target": "CAPITAN",
+      "message": "activate off"
+    },
+    {
+      "kind": "object_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 33,
+      "scope": "CURRENT_SCENE",
+      "target": "SUELO",
+      "message": "play 0 0 stop"
+    },
+    {
+      "kind": "object_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 34,
+      "scope": "CURRENT_SCENE",
+      "target": "PATH",
+      "message": "play 0 0 stop"
+    },
+    {
+      "kind": "object_request",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 35,
+      "scope": "INVENTARIO",
+      "target": "IBOLI",
+      "message": "activate off"
+    },
+    {
+      "kind": "return",
+      "script": "FIBOLI",
+      "file": "Icons.dlg",
+      "line": 36
+    }
+  ]
+}

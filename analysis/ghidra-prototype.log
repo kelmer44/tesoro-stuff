@@ -1,0 +1,56 @@
+2026-10-20 13:00:17 INFO  (LoggingInitialization) Using log config file: jar:file:/opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml  
+2026-10-20 13:00:17 INFO  (LoggingInitialization) Using log file: /Users/gabriel/Desktop/source/tesoro/analysis/ghidra-prototype.log  
+2026-10-20 13:00:17 INFO  (Preferences) Loading user preferences: /private/tmp/tesoro-ghidra-runtime/Library/ghidra/ghidra_11.4.2_PUBLIC/preferences  
+2026-10-20 13:00:17 INFO  (ClassSearcher) Searching for classes...  
+2026-10-20 13:00:18 INFO  (ClassSearcher) Class search complete (788 ms)  
+2026-10-20 13:00:18 INFO  (SSLContextInitializer) Initializing SSL Context  
+2026-10-20 13:00:18 INFO  (SecureRandomFactory) Initializing Random Number Generator...  
+2026-10-20 13:00:18 INFO  (SecureRandomFactory) Random Number Generator initialization complete: NativePRNGNonBlocking  
+2026-10-20 13:00:18 INFO  (ApplicationTrustManagerFactory) Trust manager disabled, cacerts have not been set  
+2026-10-20 13:00:18 INFO  (FileCacheMaintenanceDaemon) Starting cache cleanup: /var/tmp/gabriel-ghidra/fscache2  
+2026-10-20 13:00:18 INFO  (FileCacheMaintenanceDaemon) Finished cache cleanup, estimated storage used: 0  
+2026-10-20 13:00:18 ERROR (FileCacheMaintenanceDaemon) Unable to write file cache maintenance file: /var/tmp/gabriel-ghidra/fscache2/.lastmaint java.io.FileNotFoundException: /var/tmp/gabriel-ghidra/fscache2/.lastmaint (Operation not permitted)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:295)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:237)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:185)
+	at java.base/java.io.FileWriter.<init>(FileWriter.java:98)
+	at utilities.util.FileUtilities.writeStringToFile(FileUtilities.java:821)
+	at ghidra.formats.gfilesystem.FileCache$FileCacheMaintenanceDaemon.run(FileCache.java:342)
+ 
+2026-10-20 13:00:18 INFO  (AnalyzeHeadless) Headless startup complete (2394 ms)  
+2026-10-20 13:00:18 INFO  (ClassSearcher) Class searcher loaded 58 extension points (18 false positives)  
+2026-10-20 13:00:18 INFO  (HeadlessAnalyzer) HEADLESS Script Paths:
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Processors/8051/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /Users/gabriel/Desktop/source/tesoro/ghidra
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts
+    /opt/homebrew/Caskroom/ghidra/11.4.2-20250826/ghidra_11.4.2_PUBLIC/Ghidra/Features/Jython/ghidra_scripts  
+2026-10-20 13:00:18 INFO  (HeadlessAnalyzer) HEADLESS: execution starts  
+2026-10-20 13:00:18 INFO  (HeadlessAnalyzer) Opening existing project: /Users/gabriel/Desktop/source/tesoro/analysis/ghidra-project/TesoroAnalysis  
+2026-10-20 13:00:18 DEBUG (DefaultProjectManager) No tools found; Installing default tools  
+2026-10-20 13:00:18 DEBUG (DefaultProjectManager) 	no recent project directories found  
+2026-10-20 13:00:18 INFO  (HeadlessProject) Opening project: /Users/gabriel/Desktop/source/tesoro/analysis/ghidra-project/TesoroAnalysis  
+2026-10-20 13:00:19 INFO  (HeadlessAnalyzer) REPORT: Processing project file: /TESORO.EXE  
+2026-10-20 13:00:21 INFO  (HeadlessAnalyzer) SCRIPT: /Users/gabriel/Desktop/source/tesoro/ghidra/RecoverTesoro.java  
+2026-10-20 13:00:22 INFO  (GhidraScript) RecoverTesoro.java> TESORO_TARGETS_DECOMPILED=48/48  
+2026-10-20 13:00:22 INFO  (HeadlessAnalyzer) REPORT: Save succeeded for processed file: /TESORO.EXE  

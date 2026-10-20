@@ -1,0 +1,88 @@
+script,line,block,type,ordinal,exe_handler,annotation,status
+anims.dlg,7,FANMTRONO,20,0,0x00419f10,ir,target located; behavior needs mapping
+anims.dlg,10,FANMTRONO,20,1,0x00419f10,volver,target located; behavior needs mapping
+anims.dlg,24,FANMMENU,17,0,0x00417c80,fade,target located; behavior needs mapping
+anims.dlg,37,FANMMENU,17,1,0x00417c80,fade,target located; behavior needs mapping
+anims.dlg,46,FANMMENU,17,2,0x00417c80,fade,target located; behavior needs mapping
+anims.dlg,58,FANMMENU,17,3,0x00417c80,fade,target located; behavior needs mapping
+anims.dlg,72,FANPRESENT,1,0,0x004197a0,PANTALLA EN NEGRO,target located; behavior needs mapping
+anims.dlg,73,FANPRESENT,1,1,0x004197a0,PRESENTACIÓN Y CRÉDITOS,target located; behavior needs mapping
+anims.dlg,79,FANPRESENT,1,2,0x004197a0,fondo del puerto sin barco y sin gente,target located; behavior needs mapping
+anims.dlg,82,FANPRESENT,1,3,0x004197a0,barco,target located; behavior needs mapping
+anims.dlg,92,FANPRESENT,1,4,0x004197a0,Show Jim,target located; behavior needs mapping
+anims.dlg,102,FANPRESENT,1,5,0x004197a0,Capitán escribe y llaman a la puerta,target located; behavior needs mapping
+anims.dlg,104,FANPRESENT,1,6,0x004197a0,El capitán va abrir y entra Jim,target located; behavior needs mapping
+anims.dlg,164,FANEMBARKE,3,0,0x004198d0,Fade off // sendmessage 'FONDONEGRO' activate on,target located; behavior needs mapping
+anims.dlg,166,FANEMBARKE,3,1,0x004198d0,Embarque,target located; behavior needs mapping
+anims.dlg,175,FANEMBARKE,3,2,0x004198d0,La fase dos empieza con Jim saliendo del camarote del capitán,target located; behavior needs mapping
+anims.dlg,242,FANCAMAROTE,2,0,0x00416300,Salir,target located; behavior needs mapping
+anims.dlg,250,FANCAMAROTE,2,1,0x00416300,Salir,target located; behavior needs mapping
+anims.dlg,257,FANCAMAROTE,2,2,0x00416300,Salir,target located; behavior needs mapping
+anims.dlg,266,FANCAMAROTE,2,3,0x00416300,Salir,target located; behavior needs mapping
+anims.dlg,274,FANCAMAROTE,2,4,0x00416300,Salir,target located; behavior needs mapping
+anims.dlg,282,FANCAMAROTE,2,5,0x00416300,Salir,target located; behavior needs mapping
+anims.dlg,292,FANCAMAROTE,2,6,0x00416300,cambiar Z,target located; behavior needs mapping
+anims.dlg,297,FANCAMAROTE,2,7,0x00416300,Fase del motín:,target located; behavior needs mapping
+anims.dlg,313,FANCAMAROTE,2,8,0x00416300,entra Jim,target located; behavior needs mapping
+anims.dlg,340,FANCAMAROTE,2,9,0x00416300,Jim desaparece,target located; behavior needs mapping
+anims.dlg,367,FANMOTIN,4,0,0x004169a0,vas al almacen,target located; behavior needs mapping
+anims.dlg,403,FANMOTIN,4,1,0x004169a0,vas al camarote,target located; behavior needs mapping
+anims.dlg,428,FANMOTIN,4,2,0x004169a0,vas al camarote,target located; behavior needs mapping
+anims.dlg,436,FANMLGISLA,5,0,0x004199a0,llegas a la isla,target located; behavior needs mapping
+anims.dlg,445,FANMLGISLA,5,1,0x004199a0,"dick a lo lejos: ANM12DICK0, pitido que dura un montón. Se ven a algunos piratas cayendo por la borda",target located; behavior needs mapping
+anims.dlg,463,FANPLAYA,6,0,0x00419a10,"Hay fundido desde la playa, mientras Jim se queja. Parece que Jim está metido en el caldero. Paleta en negro",target located; behavior needs mapping
+anims.dlg,500,FEXPLOSION,7,0,0x00419ac0,en el poblado,target located; behavior needs mapping
+anims.dlg,533,FEXPLOSION,7,1,0x00419ac0,hace el scroll,target located; behavior needs mapping
+anims.dlg,584,FANINLAB,0,0,0x00401d20,"ANM19JIM0, 1",default no-op (ret 4)
+anims.dlg,585,FANINLAB,0,1,0x00401d20,"ANM19JIM1, 1",default no-op (ret 4)
+anims.dlg,586,FANINLAB,0,2,0x00401d20,"ANM19JIM2, 1",default no-op (ret 4)
+anims.dlg,587,FANINLAB,0,3,0x00401d20,"ANM19JIM3, 1",default no-op (ret 4)
+anims.dlg,588,FANINLAB,0,4,0x00401d20,"ANM19JIM4, 1",default no-op (ret 4)
+anims.dlg,589,FANINLAB,0,5,0x00401d20,"ANM19JIM5, 1",default no-op (ret 4)
+anims.dlg,591,FANINLAB,0,6,0x00401d20,"ANM19JIM6, 1",default no-op (ret 4)
+anims.dlg,621,FANLUCHDICK,18,0,0x00416b80,"Fade out, aparecemos en el risco",target located; behavior needs mapping
+anims.dlg,663,FANLUCHDICK,18,1,0x00416b80,cambio de nivel,target located; behavior needs mapping
+anims.dlg,691,FFINAL,19,0,0x00416c80,aparecemos en el risco,target located; behavior needs mapping
+anims.dlg,715,FFINAL,19,1,0x00416c80,Fundido al negro y del negro al poblado. Allí los negros les esperan en plan festorro u Orzogüei espera sonriente con una vasija en sus manos.,target located; behavior needs mapping
+anims.dlg,758,FFINAL,19,2,0x00416c80,Fundido al negro,target located; behavior needs mapping
+anims.dlg,787,FFINAL,19,3,0x00416c80,fade,target located; behavior needs mapping
+anims.dlg,789,FFINAL,19,4,0x00416c80,salir,target located; behavior needs mapping
+Convers.dlg,132,CNVRECLUTA,0,0,0x00401d20,"Le das el medio dobl""n",default no-op (ret 4)
+Convers.dlg,816,CONV22,0,0,0x00401d20,PUBLICIDAD EN CUBIERTA parpadeando,default no-op (ret 4)
+Convers.dlg,1031,CONV30,0,0,0x00401d20,pitido,default no-op (ret 4)
+Convers.dlg,1033,CONV30,0,1,0x00401d20,pitido,default no-op (ret 4)
+Convers.dlg,1035,CONV30,0,2,0x00401d20,pitido,default no-op (ret 4)
+Convers.dlg,1044,CONV30,0,3,0x00401d20,pitido,default no-op (ret 4)
+Convers.dlg,1050,CONV30,0,4,0x00401d20,pitido,default no-op (ret 4)
+Convers.dlg,1109,CONV31,10,0,0x00419d90,Aparecen en la playa,target located; behavior needs mapping
+Convers.dlg,1114,CONV31,10,1,0x00419d90,Fundido 1,target located; behavior needs mapping
+Convers.dlg,1122,CONV31,10,2,0x00419d90,Fundido 2,target located; behavior needs mapping
+Convers.dlg,1141,CONV31,10,3,0x00419d90,Poblado 3,target located; behavior needs mapping
+Convers.dlg,1330,CONV33,8,0,0x00419530,JUGAR,target located; behavior needs mapping
+Convers.dlg,1332,CONV33,8,1,0x00419530,desactivar cursor,target located; behavior needs mapping
+Convers.dlg,1364,FCONECTA,14,0,0x004193b0,tirar,target located; behavior needs mapping
+Convers.dlg,1367,FCONECTA,14,1,0x004193b0,volver,target located; behavior needs mapping
+Convers.dlg,1440,CONV35,12,0,0x00419b90,Aparecen en la playa,target located; behavior needs mapping
+Convers.dlg,1446,CONV35,12,1,0x00419b90,Fundido y a poblado,target located; behavior needs mapping
+Icons.dlg,117,FIHLFDBLN,0,0,0x00401d20,"Le das el medio dobl""n",default no-op (ret 4)
+Icons.dlg,628,FIPIEDRAA,0,0,0x00401d20,sonido de romper,default no-op (ret 4)
+Icons.dlg,640,FIMAPA,0,0,0x00401d20,se ve el mapa,default no-op (ret 4)
+Icons.dlg,646,FIMAPA,0,1,0x00401d20,se ve el mapa,default no-op (ret 4)
+Icons.dlg,651,FIMAPA,0,2,0x00401d20,"frame de mechero, sale mapa entero",default no-op (ret 4)
+Icons.dlg,665,FICUB0MAR,0,0,0x00401d20,se lo pone encima,default no-op (ret 4)
+Icons.dlg,743,FIMECHERO,0,0,0x00401d20,"frame de mechero, sale mapa entero",default no-op (ret 4)
+Icons.dlg,755,FIXCUERDA,15,0,0x00419cf0,entramos en la cueva,target located; behavior needs mapping
+Icons.dlg,845,FIESPADA,0,0,0x00401d20,animación de capitán cayendo,default no-op (ret 4)
+objetos.dlg,302,FCAPITAN,21,0,0x00416b50,salir,target located; behavior needs mapping
+objetos.dlg,954,FLIBROS,0,0,0x00401d20,"//OBJ065T03, 1",default no-op (ret 4)
+objetos.dlg,1138,FBARCO,16,0,0x00419d40,ir hasta el barco,target located; behavior needs mapping
+objetos.dlg,1361,FORZOGUEI,0,0,0x00401d20,Fundido rápido y aparece Jim ahora sí metido en el caldero,default no-op (ret 4)
+objetos.dlg,1365,FORZOGUEI,0,1,0x00401d20,Fundido y aparecen sin caldero,default no-op (ret 4)
+objetos.dlg,1483,FJUSTINO,0,0,0x00401d20,//if v1 == 1 jmp hashab,default no-op (ret 4)
+objetos.dlg,1484,FJUSTINO,0,1,0x00401d20,//run 'CONV45' main,default no-op (ret 4)
+objetos.dlg,1485,FJUSTINO,0,2,0x00401d20,//return,default no-op (ret 4)
+objetos.dlg,1486,FJUSTINO,0,3,0x00401d20,//_hashab,default no-op (ret 4)
+objetos.dlg,1487,FJUSTINO,0,4,0x00401d20,//run 'CONV46' main,default no-op (ret 4)
+objetos.dlg,1582,FSALPANTA,9,0,0x00419b30,animación de leche a Jim y fundido al negro,target located; behavior needs mapping
+objetos.dlg,1583,FSALPANTA,9,1,0x00419b30,cambio de nivel,target located; behavior needs mapping
+objetos.dlg,1619,FCAMPMAPA,0,0,0x00401d20,explosión,default no-op (ret 4)

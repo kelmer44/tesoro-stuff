@@ -1,0 +1,8 @@
+00401d80  MOV AL,byte ptr [ESP + 0x4]
+00401d84  MOV EDX,dword ptr [ECX + 0x68]
+00401d87  AND EAX,0x1
+00401d8a  AND EDX,0xfffffffb
+00401d8d  SHL EAX,0x2
+00401d90  OR EAX,EDX
+00401d92  MOV dword ptr [ECX + 0x68],EAX
+00401d95  RET 0x4

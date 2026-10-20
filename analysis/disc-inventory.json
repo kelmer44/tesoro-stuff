@@ -1,0 +1,401 @@
+{
+  "mount": "/Volumes/TESORO",
+  "checked_date": "2026-10-20",
+  "resources": [
+    {
+      "file": "/Volumes/TESORO/Install/tesoro.dat",
+      "size": 263612966,
+      "sha256": "be8641cfcc02d41e4f12cbdbe9d71e01656cfdb44ad8b791864378ae297901d7",
+      "matches_analyzed_copy": true
+    },
+    {
+      "file": "/Volumes/TESORO/Install/tesoro.tre",
+      "size": 67788,
+      "sha256": "29b116616137f1f33ce75157c9d902aed4a7021b426e7fd4e7cde5b9c2887296",
+      "matches_analyzed_copy": true
+    }
+  ],
+  "movies": [
+    {
+      "file": "/Volumes/TESORO/Install/bin/data00.bin",
+      "size": 5305650,
+      "sha256": "5fff72efc054096cafab50c8250fa41712b347501a3e590528c9406834263fba",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "1199/50"
+          },
+          {
+            "codec_name": "pcm_s16le",
+            "codec_type": "audio",
+            "sample_rate": "22050",
+            "channels": 2,
+            "r_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "16.555463"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    },
+    {
+      "file": "/Volumes/TESORO/Install/bin/data01.bin",
+      "size": 563910,
+      "sha256": "ace28f999a5af3e3871ab2e3ddd68f86721c5800ba821f2172d8e14a65d20af9",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "5.333333"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    },
+    {
+      "file": "/Volumes/TESORO/Install/bin/data02.bin",
+      "size": 62140354,
+      "sha256": "5a0a6051a7b7faee185142520d4990bdc5d4221a916578efd23c7235079ea346",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "12/1"
+          },
+          {
+            "codec_name": "pcm_s16le",
+            "codec_type": "audio",
+            "sample_rate": "22050",
+            "channels": 2,
+            "r_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "146.750000"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    },
+    {
+      "file": "/Volumes/TESORO/Install/bin/data03.bin",
+      "size": 902142,
+      "sha256": "68a300fb1a8899c740b9591367a4910d2150b7ab43200fcf763d5a55e9a98e47",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "12/1"
+          },
+          {
+            "codec_name": "pcm_u8",
+            "codec_type": "audio",
+            "sample_rate": "22050",
+            "channels": 1,
+            "r_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "2.250000"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    },
+    {
+      "file": "/Volumes/TESORO/Install/bin/data04.bin",
+      "size": 10826762,
+      "sha256": "8961c35c826c2eedec87598e244eed8ab0a948822f0018b3ad5c608946be83b7",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "12/1"
+          },
+          {
+            "codec_name": "pcm_u8",
+            "codec_type": "audio",
+            "sample_rate": "22050",
+            "channels": 2,
+            "r_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "33.000000"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    },
+    {
+      "file": "/Volumes/TESORO/Install/bin/data05.bin",
+      "size": 1572018,
+      "sha256": "cf9fd66885f4089122441b0cb0594f8225e7e64d7a58b5e724fabb93fac7f279",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "1199/50"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "1.042535"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    },
+    {
+      "file": "/Volumes/TESORO/Install/bin/data06.bin",
+      "size": 1788678,
+      "sha256": "ac9bb7c17482293013410d271c7028e7b5eb9fce9134dd792d0f8c7bbe5b9a0f",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "1199/50"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "2.835696"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    },
+    {
+      "file": "/Volumes/TESORO/Install/bin/data07.bin",
+      "size": 551710,
+      "sha256": "e5bd7965eee00a7645b4c91af21c7c98b5deb2f53dc9ca26e51c6b9649040bb6",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "2.250000"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    },
+    {
+      "file": "/Volumes/TESORO/Install/bin/data08.bin",
+      "size": 2612974,
+      "sha256": "c41057e17dcc7cb873137c4ea40cdbd7154542e4b2080302f125e71dc0594bdc",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "1199/50"
+          },
+          {
+            "codec_name": "pcm_s16le",
+            "codec_type": "audio",
+            "sample_rate": "22050",
+            "channels": 2,
+            "r_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "4.920767"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    },
+    {
+      "file": "/Volumes/TESORO/Install/bin/data09.bin",
+      "size": 393510,
+      "sha256": "b1e95d0b2616fb2cfefd89ac563f0b73225788172c808a159e85b43bb691e726",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "2.083333"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    },
+    {
+      "file": "/Volumes/TESORO/Install/bin/data10.bin",
+      "size": 6057398,
+      "sha256": "c58949323938f8cfda519bf9b0d753bcc756edb84ff970a3530385ad49cabeae",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "6.000000"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    },
+    {
+      "file": "/Volumes/TESORO/Install/bin/data11.bin",
+      "size": 817190,
+      "sha256": "30bcf55baad7ccc8c057375acb96fcc9c9bb641638ba47e665d35590d523b53c",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "3.583333"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    },
+    {
+      "file": "/Volumes/TESORO/Install/bin/data12.bin",
+      "size": 1649778,
+      "sha256": "5378bb490e85cf4d275b2630b626f6be7344dbd2747ff401772d2477a7db6b42",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "indeo5",
+            "codec_type": "video",
+            "width": 640,
+            "height": 480,
+            "r_frame_rate": "12/1"
+          },
+          {
+            "codec_name": "pcm_s16le",
+            "codec_type": "audio",
+            "sample_rate": "22050",
+            "channels": 1,
+            "r_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "format_name": "avi",
+          "duration": "13.000000"
+        }
+      },
+      "first_frame_decoded_with_ffmpeg": true,
+      "decode_error": ""
+    }
+  ],
+  "music_status": "Resolved: user supplied the full single-BIN CUE; 19 audio tracks (2\u201320) extracted to WAV with PCM hashes verified against the BIN.",
+  "original_executable": {
+    "file": "/Volumes/TESORO/Install/TESORO2.DAT",
+    "size": 200196,
+    "sha256": "50db46a2477365a64b0b45faf821eb768f43e2c8a79bdbbd60e0d8973ea863e1",
+    "prefix": "DATA",
+    "payload_sha256": "cd8a4a1b2c3a8cfb7f2c6ff15d9009d03fd267d8fcce2738d4d5fcbe68559df7",
+    "payload_matches_analyzed_exe": false,
+    "note": "DATA marker followed by MZ executable. This differs from the analyzed EXE; established code addresses must not be applied to it without new analysis."
+  },
+  "manual_pages": [
+    "/Volumes/TESORO/Install/Manual/index.html",
+    "/Volumes/TESORO/Install/Manual/page10.html",
+    "/Volumes/TESORO/Install/Manual/page11.html",
+    "/Volumes/TESORO/Install/Manual/page12.html",
+    "/Volumes/TESORO/Install/Manual/page2.html",
+    "/Volumes/TESORO/Install/Manual/page3.html",
+    "/Volumes/TESORO/Install/Manual/page4.html",
+    "/Volumes/TESORO/Install/Manual/page5.html",
+    "/Volumes/TESORO/Install/Manual/page6.html",
+    "/Volumes/TESORO/Install/Manual/page7.html",
+    "/Volumes/TESORO/Install/Manual/page8.html",
+    "/Volumes/TESORO/Install/Manual/page9.html"
+  ],
+  "scummvm_decoder_source": "/Users/gabriel/Desktop/source/scummvm/image/codecs/indeo5.cpp",
+  "scummvm_playback_tested": false,
+  "cd_audio_manifest": "/Users/gabriel/Desktop/source/tesoro/local-media/cd-audio/manifest.json"
+}

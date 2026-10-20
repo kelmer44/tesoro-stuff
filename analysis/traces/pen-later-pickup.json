@@ -1,0 +1,210 @@
+{
+  "script": "FBOLI",
+  "label": "coger",
+  "initial_variables": {
+    "0": 2
+  },
+  "variable_context_owner": "CAPITAN in the office",
+  "variables": {
+    "0": 3
+  },
+  "status": "needs_native_door_transition",
+  "event_count": 19,
+  "sleep_requested_ms": 4200,
+  "object_requests": {
+    "INVENTARIO:IBOLI": {
+      "activate": true
+    },
+    "CURRENT_SCENE:BOLI": {
+      "activate": false
+    },
+    "CURRENT_SCENE:CAPITAN": {
+      "activate": true
+    },
+    "INVENTARIO:ICUERDA": {
+      "activate": true
+    }
+  },
+  "limitation": "Requests only; no original speech/movement timing, graphics or native transition executed.",
+  "events": [
+    {
+      "kind": "condition",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 97,
+      "variable": 0,
+      "actual": 2,
+      "expected": 0,
+      "taken": false,
+      "target": "primera"
+    },
+    {
+      "kind": "jump",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 98,
+      "target": "segunda"
+    },
+    {
+      "kind": "set_variable",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 146,
+      "variable": 0,
+      "value": 3
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 147,
+      "scope": "INVENTARIO",
+      "target": "IBOLI",
+      "message": "activate on"
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 148,
+      "text_id": "OBJ001T36",
+      "text": "Seguro que me dan una pasta por esto en el mercado de bolis de plata de Wessex.",
+      "participant": 1,
+      "actor": "JIM",
+      "wav": "obj001t36.wav",
+      "extra": null
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 149,
+      "scope": "CURRENT_SCENE",
+      "target": "BOLI",
+      "message": "activate off"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 150,
+      "scope": "CURRENT_SCENE",
+      "target": "CAPITAN",
+      "message": "activate on"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 151,
+      "scope": "CURRENT_SCENE",
+      "target": "CAPITAN",
+      "message": "play 1 0 play"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 152,
+      "scope": "CURRENT_SCENE",
+      "target": "JIM",
+      "message": "ira 550 100"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 153,
+      "scope": "CURRENT_SCENE",
+      "target": "JIM",
+      "message": "mirar IZQUIERDA"
+    },
+    {
+      "kind": "sleep_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 154,
+      "milliseconds": 4200
+    },
+    {
+      "kind": "speech_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 155,
+      "text_id": "OBJ020T27",
+      "text": "Vale, toma, pero no te ahorques delante de mi puerta, que luego entra el olor, y los de la basura no pasan hasta el martes.",
+      "participant": 2,
+      "actor": "CAPITAN",
+      "wav": "obj020t27.wav",
+      "extra": null
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 156,
+      "scope": "CURRENT_SCENE",
+      "target": "CAPITAN",
+      "message": "play 6 0 stop"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 157,
+      "scope": "INVENTARIO",
+      "target": "ICUERDA",
+      "message": "activate on"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 158,
+      "scope": "CURRENT_SCENE",
+      "target": "SUELO",
+      "message": "play 0 1 stop"
+    },
+    {
+      "kind": "object_request",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 159,
+      "scope": "CURRENT_SCENE",
+      "target": "PATH",
+      "message": "play 0 1 stop"
+    },
+    {
+      "kind": "tail_script_transfer",
+      "script": "FBOLI",
+      "file": "objetos.dlg",
+      "line": 160,
+      "destination": "FCAPITAN",
+      "label": "salir",
+      "shares_variable_context": true,
+      "note": "Analysis-only tail traversal; original scheduler is not reproduced."
+    },
+    {
+      "kind": "object_request",
+      "script": "FCAPITAN",
+      "file": "objetos.dlg",
+      "line": 301,
+      "scope": "CURRENT_SCENE",
+      "target": "JIM",
+      "message": "ira 561 95"
+    },
+    {
+      "kind": "native_callback",
+      "script": "FCAPITAN",
+      "file": "objetos.dlg",
+      "line": 302,
+      "native_type": 21,
+      "ordinal": 0,
+      "annotation": "salir",
+      "handler": "0x00416b50",
+      "lookup_scene_global": "0x00442130",
+      "target": "PUERTA1",
+      "virtual_method_offset": "0x50"
+    }
+  ]
+}
