@@ -49,7 +49,7 @@ of being skipped. Only tail-position script transfers are supported.
 
 ## Source and build
 
-Engine code lives in the separate [ScummVM fork](https://github.com/kelmer44/scummvm).
+Engine code lives in the separate [ScummVM fork, branch `tesoro`](https://github.com/kelmer44/scummvm/tree/tesoro/engines/tesoro).
 Locally, use the sibling checkout `../scummvm-tesoro`; this notes repository
 contains no engine checkout. Set `TESORO_SCUMMVM_DIR` to use a different source
 location.

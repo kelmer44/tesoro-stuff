@@ -2,8 +2,7 @@
 
 Aim: use AI-assisted reverse engineering to build ScummVM support for **El Tesoro de Isla Alcachofa**. Original game files are kept in `/Users/gabriel/Desktop/ags/TESORO` and are read without modification.
 
-The engine code lives in [kelmer44/scummvm](https://github.com/kelmer44/scummvm),
-currently on the dedicated Tesoro development branch. This repository contains
+The engine code lives in [kelmer44/scummvm — tesoro branch](https://github.com/kelmer44/scummvm/tree/tesoro/engines/tesoro). This repository contains
 notes, Ghidra analysis exports, format inventories, script traces, screenshots,
 tests and supporting tools. Original game assets, extracted media, the local
 Ghidra database and generated app binaries are excluded.
