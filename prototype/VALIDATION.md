@@ -1,5 +1,10 @@
 # Prototype validation — 20 October 2026
 
+These results describe the preserved working prototype, now archived under
+`prototype/source`. They do not describe the generated starter on the active
+`tesoro` branch. The starter generation/build check is recorded separately in
+`analysis/create-engine-check.json` and `analysis/create-engine-build.log`.
+
 Built against local ScummVM commit `eb4ab9a8f8933d3d37158cfd461aab3673901093`.
 Engine files are in the separate `../scummvm-tesoro/engines/tesoro` checkout; the pre-existing checkout at
 `/Users/gabriel/Desktop/source/scummvm` was not edited.

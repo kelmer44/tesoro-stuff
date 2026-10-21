@@ -1,0 +1,2 @@
+# Experimental engine: only the office pen sequence is implemented.
+add_engine tesoro "El Tesoro de Isla Alcachofa (prototype)" no "" "" "highres"

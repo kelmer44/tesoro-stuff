@@ -4,8 +4,14 @@ Aim: use AI-assisted reverse engineering to build ScummVM support for **El Tesor
 
 The engine code lives in [kelmer44/scummvm — tesoro branch](https://github.com/kelmer44/scummvm/tree/tesoro/engines/tesoro). This repository contains
 notes, Ghidra analysis exports, format inventories, script traces, screenshots,
-tests and supporting tools. Original game assets, extracted media, the local
+tests, supporting tools and the preserved prototype source. Original game assets, extracted media, the local
 Ghidra database and generated app binaries are excluded.
+
+**21 October 2026:** the active `tesoro` engine branch now starts from the
+unmodified `create_engine tesoro` output. The previous working implementation
+is preserved in [prototype/source](prototype/source/README.md) so its components
+can be copied into the starter gradually. The results below describe that
+preserved prototype, not the newly generated starter.
 
 **Current milestone: pick up the pen in the office and leave through the door.**
 

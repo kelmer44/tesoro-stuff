@@ -1,0 +1,47 @@
+{
+  "description": "Preserved working pen-sequence prototype before resetting the tesoro branch to create_engine output",
+  "source_commit": "56e25ababf42611c91fa35ba1c716f3a6e703b74",
+  "source_parent": "0b87092bc08a9f4f9d5cfb6637d0c10448774c1f",
+  "files": {
+    "engines/tesoro/configure.engine": {
+      "size": 147,
+      "sha256": "7d0ce0cdc1fd254e35ee21d30bb1874e3df086856fe79c3ef9f795dee3c00614"
+    },
+    "engines/tesoro/detection.cpp": {
+      "size": 1908,
+      "sha256": "a988f921e9e98a2aed239b5a10c696b927bea55d6dad49b9945ec3b7ab99301d"
+    },
+    "engines/tesoro/metaengine.cpp": {
+      "size": 1489,
+      "sha256": "ad5966d856c5c318f43ebb88a9a7de3b1bd361f29e8a4e2aa30b8acaa72c478a"
+    },
+    "engines/tesoro/module.mk": {
+      "size": 204,
+      "sha256": "02dbb090e63da8df63f4c9871c14732d54af94cff97d286231d8f8352cbbe362"
+    },
+    "engines/tesoro/resources.cpp": {
+      "size": 7268,
+      "sha256": "058c6ddd61f1a9c6d5ea5f459d0c0a0f8194a782d11b51de6336fff26173e29a"
+    },
+    "engines/tesoro/resources.h": {
+      "size": 2285,
+      "sha256": "610aa83569d14c4a24e390ca7b8a5647a243108d4eadd628ee9afcd2676f1f46"
+    },
+    "engines/tesoro/script.cpp": {
+      "size": 7181,
+      "sha256": "a3655a4ac8b8730b520d790de2e2644dbaa83cf2968b4ae91f960f73b263a50e"
+    },
+    "engines/tesoro/script.h": {
+      "size": 2589,
+      "sha256": "1e2eb3dbd3a338e3bf4fc8c622114c9b0524c2f37d61ce9185800b354ce84897"
+    },
+    "engines/tesoro/tesoro.cpp": {
+      "size": 22413,
+      "sha256": "7a77ea6d6d185d4f15c8a76cfa77f6b6ed5eefb68008a713dd9ced8ee03e6aea"
+    },
+    "engines/tesoro/tesoro.h": {
+      "size": 2539,
+      "sha256": "ebb8e0b1141cf3b2cb2286c53a703eecc1e5273f0caff65db04496d7a7b6eff2"
+    }
+  }
+}

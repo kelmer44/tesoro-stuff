@@ -1,12 +1,17 @@
 # Office prototype
 
+**21 October 2026:** this describes the preserved prototype. Its source is in
+[source/engines/tesoro](source/engines/tesoro), with a [copying guide](source/README.md).
+The active ScummVM `tesoro` branch has been reset to a generated starter.
+
 This is a working first slice of a ScummVM engine, using the supplied original
 TESORO.TRE and TESORO.DAT. It starts in the office after the introduction.
 It does not run TESORO.EXE.
 
 ## Play
 
-Double-click `Tesoro Prototype.app` in this folder, or run `run.command` from Terminal:
+The existing local `Tesoro Prototype.app` keeps the playable prototype binary.
+Double-click it, or run `run.command` from Terminal:
 
 ```sh
 /Users/gabriel/Desktop/source/tesoro/prototype/run.command
@@ -49,32 +54,31 @@ of being skipped. Only tail-position script transfers are supported.
 
 ## Source and build
 
-Engine code lives in the separate [ScummVM fork, branch `tesoro`](https://github.com/kelmer44/scummvm/tree/tesoro/engines/tesoro).
-Locally, use the sibling checkout `../scummvm-tesoro`; this notes repository
-contains no engine checkout. Set `TESORO_SCUMMVM_DIR` to use a different source
-location.
+The active [ScummVM `tesoro` branch](https://github.com/kelmer44/scummvm/tree/tesoro/engines/tesoro)
+contains only the generated starter. Its local checkout is a linked worktree at
+`../scummvm-tesoro`, sharing Git metadata with `../scummvm-fork` and the Igor and
+Darkseed 2 worktrees. The notes repository contains the preserved source at
+[source/engines/tesoro](source/engines/tesoro), not a full ScummVM checkout.
 
-To rebuild and package the local app, from this repository:
+Use [the copying guide](source/README.md) to port selected components into the
+starter. `source/manifest.json` identifies the exact saved files. The local
+`archive/tesoro-prototype` branch retains the old working commit as well.
 
-```sh
-make -C ../scummvm-tesoro -j8
-python3 tools/package_prototype.py --scummvm ../scummvm-tesoro
-```
+`prototype/run.command` now runs the existing preserved app binary, independently
+of the starter build. `tools/package_prototype.py` can still package a specified
+build, but do not use the starter build to overwrite the preserved app unless
+that is what you intend.
 
-The configuration used for the first build is saved in `build-command.txt`.
-For a new clone, create `prototype/tesoro.ini` from `prototype/tesoro.ini.example`
-and set the game path. The local generated app is not committed; package it
-with the command above. On this machine, `prototype/run.command` and the
-packaged app remain available.
-
-The initial engine was built on commit `eb4ab9a8f8933d3d37158cfd461aab3673901093`.
-The code was then committed separately on the fork's `master` base as
-`56e25ababf42611c91fa35ba1c716f3a6e703b74`. The original game files and the
-pre-existing ScummVM checkout were not changed.
+The configuration used for the first prototype build is saved in
+`build-command.txt`. The original working engine commit is
+`56e25ababf42611c91fa35ba1c716f3a6e703b74`, based on
+`0b87092bc08a9f4f9d5cfb6637d0c10448774c1f`.
 
 ## Validation
 
-The engine has a controlled-host self-test and a full real-time autoplay test.
+The preserved prototype has a controlled-host self-test and a full real-time autoplay test.
+These commands require a build of that prototype, not the generated starter.
+For the local packaged binary, use:
 Both use the real resource archive; neither modifies it. Automated runs use SDL's
 dummy display/audio outputs, so voices are decoded and mixed without playing
 through speakers. These checks do not establish perfect fidelity to the original
@@ -83,9 +87,9 @@ Windows game.
 ```sh
 cd /Users/gabriel/Desktop/source/tesoro
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy SDL_RENDER_DRIVER=software \
-  ../scummvm-tesoro/scummvm --config=prototype/selftest.ini tesoro-prototype
+  'prototype/Tesoro Prototype.app/Contents/MacOS/tesoro' --config=prototype/selftest.ini tesoro-prototype
 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy SDL_RENDER_DRIVER=software \
-  ../scummvm-tesoro/scummvm --config=prototype/autoplay.ini tesoro-prototype
+  'prototype/Tesoro Prototype.app/Contents/MacOS/tesoro' --config=prototype/autoplay.ini tesoro-prototype
 python3 tests/test_pen_trace.py --game /Users/gabriel/Desktop/ags/TESORO
 ```
 
