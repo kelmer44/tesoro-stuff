@@ -308,8 +308,10 @@ The source/build part of M0 is complete; see [M0_BASELINE.md](M0_BASELINE.md).
 The original reference is pending explicit environment/path authorization. Recover
 world/animation/scheduler fields needed by M2 using the
 [introduction contract](INTRODUCTION_CONTRACT.md). The animation core is now
-implemented and compared against isolated original routines; scene integration
-is still pending (see [ANIMATION_FINDINGS.md](ANIMATION_FINDINGS.md)). Next recover
-harbour entry and scene/object lifecycle. The first visible gameplay increment after the baseline is
+implemented and compared against isolated original routines. Scene reading,
+harbour entry and the scenery-to-sprite-queue path are now implemented and checked
+(see [SCENE_LIFECYCLE.md](SCENE_LIFECYCLE.md)); the main gameplay loop is not yet
+connected. Next implement Jim/character lifecycle and resumable script execution.
+The first visible gameplay increment after the baseline is
 the real adventure button starting the authentic introduction. Full-game scope
 remains the destination throughout those small increments.

@@ -80,11 +80,12 @@ all of these scheduling semantics.
 
 ## Remaining implementation dependencies
 
-1. Recover room-controller initial coordinates and actor/object lifecycle during
-   scene changes. Preserve per-scene objects and Jim's identity.
-2. Decode shared animation-helper start/end/repeat/wait and frame timing/event
-   semantics, including BARCO and CAPITAN's exit. Do not implement ignored DO
-   annotations as invented animations.
+1. Room-controller entry and binding/transfer paths are recovered in
+   [SCENE_LIFECYCLE.md](SCENE_LIFECYCLE.md). Scenery ownership and sprite queues
+   are implemented; actor transfer and other object kinds remain to be ported.
+2. Playback start/end/repeat, frame advancement and scenery dispatch are now
+   implemented. Script waiting/completion and character-specific behaviour,
+   including CAPITAN's exit, remain. Preserve ignored DO annotations as no-ops.
 3. Implement the script subset with source locations, media/sound requests,
    offscreen narration, actor speech, waits and object messages in the paced
    loop. Keep scene context and lazy participant lookup explicit.

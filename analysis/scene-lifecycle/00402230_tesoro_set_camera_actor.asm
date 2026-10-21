@@ -1,0 +1,3 @@
+00402230  MOV EAX,dword ptr [ESP + 0x4]
+00402234  MOV dword ptr [ECX],EAX
+00402236  RET 0x4

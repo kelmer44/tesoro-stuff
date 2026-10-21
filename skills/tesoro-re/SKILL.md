@@ -49,6 +49,12 @@ Keep addresses and provenance in research notes rather than engine comments.
   For isolated original-instruction comparisons with production C++, read
   [references/native-comparison.md](references/native-comparison.md). This method
   has verified setup, advancement and pause/resume without a Windows guest.
+- For scene entry, binding, group order or scenery, read `SCENE_LIFECYCLE.md` and
+  `analysis/scene-lifecycle/`. Default new-game entry uses the named floor's
+  coordinates; room transitions can supply explicit positions. The scene
+  comparison captures original group insertion and sprite submissions with
+  simultaneously live objects. It does not validate the pixel compositor or
+  actor scheduler. Its invocation is in the native comparison reference.
 
 ## Follow the actual executable dispatch
 

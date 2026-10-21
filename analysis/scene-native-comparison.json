@@ -1,0 +1,716 @@
+{
+  "exe_sha256": "0fcd56b306b857283347e705dcce41a4b44dd4d9ef7c9226694114bba80792ef",
+  "driver_sha256": "1b46ac25e077c1e684dc967e6dff758082688413901c24265aa0a44127dfb5f8",
+  "comparison_tool_sha256": "ad45e2fb8ba06d806e05a483f997f52de38eacd3f85b0458d3268971e49b87d4",
+  "matched": {
+    "scenes": 50,
+    "banks": 360,
+    "objects": 747,
+    "scenery_objects": 217,
+    "scenery_states": 1302,
+    "bank_selections": 495,
+    "camera_cases": 260,
+    "name_keys": 747,
+    "scenery_queue_frames": 150,
+    "queued_sprites": 519
+  },
+  "room_entries": {
+    "1.lvl": {
+      "position": [
+        -15,
+        -156
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "10.lvl": {
+      "position": [
+        47,
+        -155
+      ],
+      "camera": [
+        40,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "11.lvl": {
+      "position": [
+        -53,
+        -140
+      ],
+      "camera": [
+        -53,
+        0
+      ],
+      "bounds": [
+        -417,
+        240,
+        457,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "12.lvl": {
+      "position": [
+        47,
+        -155
+      ],
+      "camera": [
+        40,
+        0
+      ],
+      "bounds": [
+        -319,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "13.lvl": {
+      "position": [
+        -15,
+        -156
+      ],
+      "camera": [
+        1,
+        0
+      ],
+      "bounds": [
+        -319,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "14.lvl": {
+      "position": [
+        47,
+        -155
+      ],
+      "camera": [
+        40,
+        0
+      ],
+      "bounds": [
+        -319,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "15.lvl": {
+      "position": [
+        47,
+        -155
+      ],
+      "camera": [
+        40,
+        0
+      ],
+      "bounds": [
+        -319,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "16.lvl": {
+      "position": [
+        47,
+        -155
+      ],
+      "camera": [
+        40,
+        0
+      ],
+      "bounds": [
+        -319,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "17.lvl": {
+      "position": [
+        47,
+        -155
+      ],
+      "camera": [
+        40,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "18.lvl": {
+      "position": [
+        -15,
+        -156
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "19.lvl": {
+      "position": [
+        -15,
+        -156
+      ],
+      "camera": [
+        1,
+        0
+      ],
+      "bounds": [
+        -319,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "2.lvl": {
+      "position": [
+        -15,
+        -156
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "20.lvl": {
+      "position": [
+        -15,
+        -156
+      ],
+      "camera": [
+        1,
+        0
+      ],
+      "bounds": [
+        -319,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 16
+    },
+    "3.lvl": {
+      "position": [
+        47,
+        -155
+      ],
+      "camera": [
+        40,
+        0
+      ],
+      "bounds": [
+        -319,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "4.lvl": {
+      "position": [
+        47,
+        -155
+      ],
+      "camera": [
+        40,
+        0
+      ],
+      "bounds": [
+        -319,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "5.lvl": {
+      "position": [
+        -15,
+        -156
+      ],
+      "camera": [
+        1,
+        0
+      ],
+      "bounds": [
+        -319,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "6.lvl": {
+      "position": [
+        -15,
+        -156
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "7.lvl": {
+      "position": [
+        47,
+        -155
+      ],
+      "camera": [
+        40,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "8.lvl": {
+      "position": [
+        -15,
+        -156
+      ],
+      "camera": [
+        1,
+        0
+      ],
+      "bounds": [
+        -319,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "9.lvl": {
+      "position": [
+        -15,
+        -156
+      ],
+      "camera": [
+        1,
+        0
+      ],
+      "bounds": [
+        -319,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "Almacen.lvl": {
+      "position": [
+        333,
+        23
+      ],
+      "camera": [
+        338,
+        261
+      ],
+      "bounds": [
+        18,
+        501,
+        688,
+        21
+      ],
+      "floor": "SUELO",
+      "music_cue": 5
+    },
+    "Almacen2.lvl": {
+      "position": [
+        333,
+        23
+      ],
+      "camera": [
+        338,
+        261
+      ],
+      "bounds": [
+        18,
+        501,
+        688,
+        21
+      ],
+      "floor": "SUELO",
+      "music_cue": 5
+    },
+    "Camarote.lvl": {
+      "position": [
+        -216,
+        107
+      ],
+      "camera": [
+        -10,
+        239
+      ],
+      "bounds": [
+        -330,
+        479,
+        330,
+        -1
+      ],
+      "floor": "SUELO",
+      "music_cue": 2
+    },
+    "Camarote2.lvl": {
+      "position": [
+        -216,
+        107
+      ],
+      "camera": [
+        -10,
+        239
+      ],
+      "bounds": [
+        -330,
+        479,
+        330,
+        -1
+      ],
+      "floor": "SUELO",
+      "music_cue": 2
+    },
+    "Campamento.lvl": {
+      "position": [
+        -254,
+        106
+      ],
+      "camera": [
+        -107,
+        239
+      ],
+      "bounds": [
+        -427,
+        479,
+        428,
+        -1
+      ],
+      "floor": "SUELO",
+      "music_cue": 12
+    },
+    "Cubierta.lvl": {
+      "position": [
+        -240,
+        76
+      ],
+      "camera": [
+        -240,
+        239
+      ],
+      "bounds": [
+        -692,
+        479,
+        693,
+        -1
+      ],
+      "floor": "SUELO",
+      "music_cue": 8
+    },
+    "Cubierta2.lvl": {
+      "position": [
+        -231,
+        73
+      ],
+      "camera": [
+        -231,
+        239
+      ],
+      "bounds": [
+        -692,
+        479,
+        693,
+        -1
+      ],
+      "floor": "SUELO",
+      "music_cue": 8
+    },
+    "Despacho.lvl": {
+      "position": [
+        387,
+        97
+      ],
+      "camera": [
+        362,
+        240
+      ],
+      "bounds": [
+        42,
+        480,
+        682,
+        0
+      ],
+      "floor": "SUELO",
+      "music_cue": 2
+    },
+    "Entrada.lvl": {
+      "position": [
+        47,
+        -155
+      ],
+      "camera": [
+        40,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        360,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 15
+    },
+    "Pantano.lvl": {
+      "position": [
+        -193,
+        -67
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        470,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 12
+    },
+    "Playa.lvl": {
+      "position": [
+        26,
+        -143
+      ],
+      "camera": [
+        26,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        357,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 10
+    },
+    "Poblado.lvl": {
+      "position": [
+        118,
+        -97
+      ],
+      "camera": [
+        118,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        587,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 11
+    },
+    "Puerto.lvl": {
+      "position": [
+        213,
+        104
+      ],
+      "camera": [
+        320,
+        239
+      ],
+      "bounds": [
+        0,
+        479,
+        657,
+        -1
+      ],
+      "floor": "SUELO",
+      "music_cue": 3
+    },
+    "Risco.lvl": {
+      "position": [
+        22,
+        -230
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        320,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 14
+    },
+    "RiscoFinal.lvl": {
+      "position": [
+        -67,
+        -78
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        320,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 0
+    },
+    "Taberna.lvl": {
+      "position": [
+        315,
+        92
+      ],
+      "camera": [
+        320,
+        240
+      ],
+      "bounds": [
+        0,
+        480,
+        640,
+        0
+      ],
+      "floor": "SUELO",
+      "music_cue": 4
+    },
+    "Tierra.lvl": {
+      "position": [
+        42,
+        -183
+      ],
+      "camera": [
+        42,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        380,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 13
+    },
+    "Volcan.lvl": {
+      "position": [
+        159,
+        -165
+      ],
+      "camera": [
+        39,
+        0
+      ],
+      "bounds": [
+        -320,
+        240,
+        359,
+        -240
+      ],
+      "floor": "SUELO",
+      "music_cue": 13
+    }
+  },
+  "limitation": "Isolated routines, injected clock and queue capture; no full scene, actor, scheduler or pixel comparison.",
+  "source_sha256": {
+    "scene.cpp": "a54694f34312ee078fdf97e6ae7898721f9f7eaedcbca6fc6179804b150d643d",
+    "scene.h": "7566d6870e559b139995e42b78b2dcfbae22256590347555968a30f80a361dde",
+    "resources.cpp": "e6d5943c07bee885a2e85376280fb27d6d3feb1c7873f11037cf59ba8d45be04",
+    "resources.h": "e36c29b931e3fd2a9795749b11e64a4e572aa045062b7823f477fdf799d56919",
+    "animation.cpp": "652fceeeff1dd06d5118489bacab656d5549e64b9e5d82db28e9eb64295e8d6c",
+    "animation.h": "827b69b1ed4485d3b012bf0f06f716fdc92f9a34a16f10722ac9b85976fbc07c"
+  },
+  "resource_sha256": {
+    "TESORO.TRE": "29b116616137f1f33ce75157c9d902aed4a7021b426e7fd4e7cde5b9c2887296",
+    "TESORO.DAT": "be8641cfcc02d41e4f12cbdbe9d71e01656cfdb44ad8b791864378ae297901d7"
+  }
+}

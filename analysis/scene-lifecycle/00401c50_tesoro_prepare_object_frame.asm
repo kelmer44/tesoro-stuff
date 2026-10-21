@@ -1,0 +1,70 @@
+00401c50  PUSH EBX
+00401c51  PUSH ESI
+00401c52  MOV ESI,ECX
+00401c54  PUSH EDI
+00401c55  MOV EAX,dword ptr [ESI + 0x38]
+00401c58  MOV EBX,dword ptr [ESI + 0x50]
+00401c5b  MOV CX,word ptr [EAX + 0x30]
+00401c5f  MOV word ptr [ESI + 0x30],CX
+00401c63  MOV ECX,dword ptr [ESI + 0x4c]
+00401c66  MOVSX EDX,word ptr [EAX + 0x28]
+00401c6a  ADD EDX,ECX
+00401c6c  MOV ECX,ESI
+00401c6e  MOV dword ptr [ESI + 0x20],EDX
+00401c71  MOV EDX,dword ptr [ESI]
+00401c73  MOVSX EAX,word ptr [EAX + 0x2a]
+00401c77  ADD EAX,EBX
+00401c79  MOV dword ptr [ESI + 0x24],EAX
+00401c7c  CALL dword ptr [EDX + 0x8]
+00401c7f  MOV EAX,dword ptr [ESI + 0x38]
+00401c82  MOV EDX,dword ptr [ESI + 0x4c]
+00401c85  MOV EDI,dword ptr [ESI + 0x50]
+00401c88  MOVSX ECX,word ptr [EAX + 0x28]
+00401c8c  ADD ECX,EDX
+00401c8e  MOV EBX,EDI
+00401c90  MOV dword ptr [ESI + 0x28],ECX
+00401c93  MOVSX ECX,word ptr [EAX + 0x2a]
+00401c97  ADD EBX,ECX
+00401c99  MOV ECX,dword ptr [ESI + 0x54]
+00401c9c  CMP ECX,EDX
+00401c9e  MOV dword ptr [ESI + 0x2c],EBX
+00401ca1  JNZ 0x00401ca8
+00401ca3  CMP dword ptr [ESI + 0x58],EDI
+00401ca6  JZ 0x00401cbd
+00401ca8  MOVSX EDX,word ptr [EAX + 0x28]
+00401cac  ADD ECX,EDX
+00401cae  MOV EDX,dword ptr [ESI + 0x58]
+00401cb1  MOV dword ptr [ESI + 0x28],ECX
+00401cb4  MOVSX ECX,word ptr [EAX + 0x2a]
+00401cb8  ADD EDX,ECX
+00401cba  MOV dword ptr [ESI + 0x2c],EDX
+00401cbd  MOV EDX,dword ptr [EAX + 0x1c]
+00401cc0  XOR ECX,ECX
+00401cc2  MOV CX,word ptr [EAX + 0x30]
+00401cc6  LEA ECX,[ECX + ECX*0x8]
+00401cc9  MOVSX EDX,word ptr [EDX + ECX*0x4 + 0xc]
+00401cce  XOR ECX,ECX
+00401cd0  MOV dword ptr [ESI + 0x10],EDX
+00401cd3  MOV CX,word ptr [EAX + 0x30]
+00401cd7  MOV EDI,dword ptr [EAX + 0x1c]
+00401cda  LEA ECX,[ECX + ECX*0x8]
+00401cdd  MOVSX ECX,word ptr [EDI + ECX*0x4 + 0x10]
+00401ce2  ADD ECX,EDX
+00401ce4  POP EDI
+00401ce5  MOV dword ptr [ESI + 0x18],ECX
+00401ce8  XOR ECX,ECX
+00401cea  MOV CX,word ptr [EAX + 0x30]
+00401cee  LEA EDX,[ECX + ECX*0x8]
+00401cf1  MOV ECX,dword ptr [EAX + 0x1c]
+00401cf4  MOVSX ECX,word ptr [ECX + EDX*0x4 + 0xe]
+00401cf9  XOR EDX,EDX
+00401cfb  MOV dword ptr [ESI + 0x14],ECX
+00401cfe  MOV DX,word ptr [EAX + 0x30]
+00401d02  MOV EAX,dword ptr [EAX + 0x1c]
+00401d05  LEA EDX,[EDX + EDX*0x8]
+00401d08  MOVSX EDX,word ptr [EAX + EDX*0x4 + 0x12]
+00401d0d  SUB ECX,EDX
+00401d0f  MOV dword ptr [ESI + 0x1c],ECX
+00401d12  POP ESI
+00401d13  POP EBX
+00401d14  RET

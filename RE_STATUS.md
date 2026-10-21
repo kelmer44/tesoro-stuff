@@ -22,11 +22,12 @@ ignored local storage; previous startup reports refer to that instrumented build
 | Original resources | Existing readers account for all 50 LVLs/747 records, 23 observed kinds, 145 script blocks; all 87 DO sites indexed. | Kind/subtype methods, field semantics, reachability and complete behaviour. |
 | Executable | 48 general + 11 startup exports report completed decompilation; assembly/xrefs retained. | Full object/vtable map, walking, animation, scheduler, UI, save and special-system code. |
 | Prototype | Preserved office pen implementation and documented prior host checks. | General gameplay systems and original comparison; do not treat approximations as recovered rules. |
-| Active engine | `../scummvm-tesoro`, `tesoro`, HEAD `33316cacbf8` plus uncommitted baseline changes. Gabriel's menu fixes retained; paced loop, pause, stream ownership and unavailable saves corrected. | Review the current diff, then add recovered general gameplay systems. |
+| Active engine | `../scummvm-tesoro`, `tesoro`, HEAD `1f1b4ddf867` plus current scene/scenery changes. Build passes. Gabriel's menu/save scaffold is preserved; `syncGame` still returns an unsupported-state error. | Add actor, script and renderer integration without replacing the user's changes. |
 | Startup evidence | Four runs of the earlier instrumented baseline pass; 12 snapshots match the independent decoder. Reports identify that source/binary. The harness has since been removed from engine code. | Validate subsequent implementation externally; original-runtime comparison remains open. |
 | Media | Complete-disc movie and PCM inventories exist; movies are locally present in the game `bin/` directory. | Complete playback, cue/loop/skip/pause and original timing comparison. |
-| Introduction | Seven native markers mapped; executable bytes confirm no-effect ordinals 1, 2 and 6. Native object strings and all speech/sound references resolved. | Animation helper, room entry, object lifecycle, actor movement and general resumable execution. |
-| Animation | Eight native routines exported. C++ normalizes movement and implements playback, loop/interpolation and pause/resume. 1,200 isolated native comparison scenarios match across 17,942 states. See [findings](ANIMATION_FINDINGS.md). | Scene/object integration, actual clock/scheduling and original visual comparison. |
+| Introduction | Seven native markers mapped; no-effect ordinals 1, 2 and 6 confirmed. Harbour floor entry is `(213,104)`; Jim is reused across scenes. See [scene findings](SCENE_LIFECYCLE.md). | Actor transfer/movement, native messages and general resumable execution. |
+| Animation | Eight native routines exported. Playback/loop/interpolation/pause core matches 1,200 isolated scenarios across 17,942 states. It now feeds scenery objects and their sprite queue. | Actor integration, actual game clock/scheduling and original visual comparison. |
+| Scenes/scenery | 33 lifecycle exports. Production reader covers 50 LVLs/747 records. 217 scenery objects match 1,302 native states; 150 integrated queue samples match 519 sprites. | Other object kinds, master registry and transfer, actor-follow camera, gameplay rasterizer and gameplay-loop connection. |
 | Original runtime | No verified original-game reference session. | Explicitly authorized environment/paths, working installation, captures and checkpoints. |
 
 The [full structural catalogue](analysis/full-game-catalogue.json) is reproducible:
@@ -42,10 +43,10 @@ correct the game data or assume this spelling has ordinary `menuitem0` semantics
 
 ## Next work queue
 
-1. The animation core builds and matches the isolated native routines; see
-   [ANIMATION_FINDINGS.md](ANIMATION_FINDINGS.md). Recover harbour room entry
-   coordinates and scene/actor lifecycle, then integrate playback using
-   [INTRODUCTION_CONTRACT.md](INTRODUCTION_CONTRACT.md).
+1. Scene reading, harbour entry and scenery playback/queue are implemented and
+   compared in [SCENE_LIFECYCLE.md](SCENE_LIFECYCLE.md). Recover and implement
+   Jim/character initialization and transfer, then the registry and scheduling
+   needed by [INTRODUCTION_CONTRACT.md](INTRODUCTION_CONTRACT.md).
 2. Port the required resumable script and scene/object behaviour in reviewable
    increments, preserving native no-ops and lazy participant lookup.
 3. Connect the real-adventure button to the authentic introduction when these
@@ -73,6 +74,10 @@ correct the game data or assume this spelling has ordinary `menuitem0` semantics
 - Current animation runtime builds without engine test hooks. External native
   comparison matches 1,200 scenarios; eight invalid synthetic scenarios are
   rejected and documented separately. No original scene/visual comparison yet.
+- Scene/scenery runtime builds. Independent parsing covers all 50 LVLs, and
+  isolated native comparisons cover name keys, room bounds, scenery state/bank
+  selection, camera projection and ordered sprite submissions. Exact counts,
+  source hashes and remaining gaps are in [SCENE_LIFECYCLE.md](SCENE_LIFECYCLE.md).
 
 ## Known approximation ledger
 

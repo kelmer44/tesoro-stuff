@@ -41,6 +41,54 @@ Unicorn 2.1.4 lives in ignored `local-media/animation-venv/`. No global install.
    sandbox. Use the tool approval mechanism when needed; do not change security
    settings or interpret that trap as an original-game instruction fault.
 
+## Scene, room and scenery comparison
+
+Use `tools/compare_scene_native.py` for production LVL parsing and selected
+constructor, room/camera, frame-preparation, bank-selection and sprite routines.
+It extends the animation emulator with bounded allocation and queue capture.
+All 50 LVLs have passed; exact counts and limits are in `SCENE_LIFECYCLE.md`.
+
+Build the ignored scene driver against current production sources:
+
+```sh
+c++ -std=c++11 -DHAVE_CONFIG_H \
+  -I/Users/gabriel/Desktop/source/scummvm-tesoro \
+  -I/Users/gabriel/Desktop/source/scummvm-tesoro/engines \
+  local-media/scene-implementation/driver.cpp \
+  /Users/gabriel/Desktop/source/scummvm-tesoro/engines/tesoro/scene.cpp \
+  /Users/gabriel/Desktop/source/scummvm-tesoro/engines/tesoro/resources.cpp \
+  /Users/gabriel/Desktop/source/scummvm-tesoro/engines/tesoro/animation.cpp \
+  /Users/gabriel/Desktop/source/scummvm-tesoro/common/libcommon.a \
+  /Users/gabriel/Desktop/source/scummvm-tesoro/common/formats/libformats.a \
+  -lz -o local-media/scene-implementation/driver
+
+local-media/animation-venv/bin/python tools/compare_scene_native.py \
+  --game /Users/gabriel/Desktop/ags/TESORO \
+  --driver local-media/scene-implementation/driver \
+  --engine /Users/gabriel/Desktop/source/scummvm-tesoro \
+  --output analysis/scene-native-comparison.json
+```
+
+The same JIT permission constraint applies. Keep the driver local and ignored;
+there are no engine test classes, flags or hooks. If reconstructing the thin
+driver, the Python tool's `row`/`equal` calls define its textual result protocol:
+input is a series of uint32 little-endian length-prefixed raw LVLs; output rows
+are S/B/G/O for resources, E for room entry, D/F/P for scenery and flags/banks,
+C for cameras, then Q/J for integrated queue samples. Use production APIs only.
+
+Preserve bank frame sharing while allocating separate mutable playback states
+for each live object. Fixed-frame scenery constructors can zero shared movement
+data, so sequential independent fresh-bank experiments can miss real behaviour.
+For ordered queues, execute the original group-insertion routine on native list
+skeletons, keeping objects and clones live simultaneously, then traverse that
+list. Capture image identity as well as coordinates/depth and order.
+
+The floor lookup and allocator are supplied to isolated native routines. Sprite
+submission is captured before the renderer consumes pixels. This validates those
+routine boundaries, not the whole original collection, residency, actor update,
+scene transition or compositor. The report hashes production sources, the
+driver, tool and game resources; rebuild the driver after source edits.
+
 ## Extend the method safely
 
 - Verify the exact EXE SHA-256 before using addresses. Map PE sections at their
