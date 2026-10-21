@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Run the active ScummVM startup loop against local original game data.
+"""Historical startup driver for a locally instrumented ScummVM build.
 
-No game assets are changed. Uses SDL dummy display/audio and a temporary config.
+The submitted engine deliberately excludes its C++ test class and runtime hook.
+No game assets are changed. Uses SDL dummy output and project-local scratch.
 """
 import argparse
+import hashlib
+import json
 import os
 from pathlib import Path
 import subprocess
@@ -47,15 +50,32 @@ def main():
     parser.add_argument('--scummvm', type=Path, required=True)
     parser.add_argument('--game', type=Path, required=True)
     parser.add_argument('--movies', type=Path)
+    parser.add_argument('--broken-movies', action='store_true',
+                        help='Exercise invalid AVI headers and decoder-owned parse failure')
     parser.add_argument('--skip-movie', action='store_true')
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
+    if args.movies and args.broken_movies:
+        parser.error('--movies and --broken-movies are mutually exclusive')
     binary, game, output = (p.resolve() for p in (args.scummvm, args.game, args.output))
+    if not (binary.parent / 'engines' / 'tesoro' / 'startup_test.cpp').is_file():
+        parser.error('This historical driver requires local startup instrumentation; '
+                     'the production engine deliberately excludes it.')
     output.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix='tesoro-startup-') as temp:
+    with tempfile.TemporaryDirectory(prefix='.startup-', dir=output) as temp:
         config = Path(temp) / 'scummvm.ini'
+        # Isolate the no-movie case from any movies installed under game/bin.
+        data_path = Path(temp) / 'game'
+        data_path.mkdir()
+        for name in ('TESORO.EXE', 'TESORO.TRE', 'TESORO.DAT'):
+            (data_path / name).symlink_to(game / name)
+        if args.broken_movies:
+            # Header accepted, then no supported video track: the decoder takes
+            # ownership and frees the stream on failure. Also cover pre-validation.
+            (data_path / 'data00.bin').write_bytes(b'RIFF' + struct.pack('<I', 4) + b'AVI ')
+            (data_path / 'data01.bin').write_bytes(b'not an AVI')
         values = {
-            'engineid': 'tesoro', 'gameid': 'tesoro', 'path': str(game),
+            'engineid': 'tesoro', 'gameid': 'tesoro', 'path': str(data_path),
             'platform': 'windows', 'language': 'es',
             'tesoro_startup_test': 'true',
             'tesoro_test_snapshot_path': str(output),
@@ -87,7 +107,21 @@ def main():
             if not (output / name).is_file():
                 raise SystemExit(f'Missing snapshot: {name}')
         validate_snapshots(game, output)
-        print(next(line for line in transcript.splitlines() if 'TESORO_STARTUP_TEST_PASS' in line))
+        summary = next(line for line in transcript.splitlines() if 'TESORO_STARTUP_TEST_PASS' in line)
+        sources = binary.parent / 'engines' / 'tesoro'
+        identity = {
+            'binary': str(binary),
+            'binary_sha256': hashlib.sha256(binary.read_bytes()).hexdigest(),
+            'source_sha256': {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
+                              for p in sorted(sources.iterdir())
+                              if p.suffix in ('.cpp', '.h') or p.name in ('module.mk', 'configure.engine')},
+            'movies': str(args.movies.resolve()) if args.movies else ('malformed fixtures' if args.broken_movies else 'absent'),
+            'skip_movie': args.skip_movie,
+            'result': summary,
+            'limitation': 'Host integration and resource pixels; not a comparison with the running Windows original.',
+        }
+        (output / 'verification.json').write_text(json.dumps(identity, indent=2) + '\n')
+        print(summary)
 
 
 if __name__ == '__main__':

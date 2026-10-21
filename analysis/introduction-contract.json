@@ -1,0 +1,239 @@
+{
+  "limitation": "Static evidence only; no original runtime, animation, movement or scheduler simulation.",
+  "exe_sha256": "0fcd56b306b857283347e705dcce41a4b44dd4d9ef7c9226694114bba80792ef",
+  "image_base": "0x00400000",
+  "block": "FANPRESENT",
+  "entry_label": "main",
+  "native_type": 1,
+  "participants": [
+    "JIM",
+    "CAPITAN"
+  ],
+  "native_handler": "0x004197a0",
+  "jump_table_address": "0x004198b8",
+  "jump_table": [
+    "0x004197b7",
+    "0x004198b4",
+    "0x004198b4",
+    "0x004197ec",
+    "0x0041983e",
+    "0x0041984f"
+  ],
+  "native_calls": [
+    {
+      "line": 72,
+      "ordinal": 0,
+      "target": "0x004197b7",
+      "no_effect": false,
+      "dispatch": "jump_table"
+    },
+    {
+      "line": 73,
+      "ordinal": 1,
+      "target": "0x004198b4",
+      "no_effect": true,
+      "dispatch": "jump_table"
+    },
+    {
+      "line": 79,
+      "ordinal": 2,
+      "target": "0x004198b4",
+      "no_effect": true,
+      "dispatch": "jump_table"
+    },
+    {
+      "line": 82,
+      "ordinal": 3,
+      "target": "0x004197ec",
+      "no_effect": false,
+      "dispatch": "jump_table"
+    },
+    {
+      "line": 92,
+      "ordinal": 4,
+      "target": "0x0041983e",
+      "no_effect": false,
+      "dispatch": "jump_table"
+    },
+    {
+      "line": 102,
+      "ordinal": 5,
+      "target": "0x0041984f",
+      "no_effect": false,
+      "dispatch": "jump_table"
+    },
+    {
+      "line": 104,
+      "ordinal": 6,
+      "target": "0x004198b4",
+      "no_effect": true,
+      "dispatch": "range_guard"
+    }
+  ],
+  "resolved_native_object_names": {
+    "0x0042e91c": "BARCO",
+    "0x0042da50": "PUERTA1"
+  },
+  "speech": [
+    {
+      "line": 75,
+      "text_id": "ANM1OFF1",
+      "participant": 0,
+      "audio": "anm1off1.wav"
+    },
+    {
+      "line": 81,
+      "text_id": "ANM1OFF3",
+      "participant": 0,
+      "audio": "anm1off3.wav"
+    },
+    {
+      "line": 84,
+      "text_id": "ANM1OFF4",
+      "participant": 0,
+      "audio": "anm1off4.wav"
+    },
+    {
+      "line": 88,
+      "text_id": "ANM1OFF5",
+      "participant": 0,
+      "audio": "anm1off5.wav"
+    },
+    {
+      "line": 93,
+      "text_id": "ANM1OFF6",
+      "participant": 0,
+      "audio": "anm1off6.wav"
+    },
+    {
+      "line": 105,
+      "text_id": "ANM1BJIM0",
+      "participant": 1,
+      "audio": "anm1bjim0.wav"
+    },
+    {
+      "line": 106,
+      "text_id": "ANM1BCAP1",
+      "participant": 2,
+      "audio": "anm1bcap1.wav"
+    },
+    {
+      "line": 107,
+      "text_id": "ANM1BJIM1",
+      "participant": 1,
+      "audio": "anm1bjim1.wav"
+    },
+    {
+      "line": 108,
+      "text_id": "ANM1BCAP2",
+      "participant": 2,
+      "audio": "anm1bcap2.wav"
+    },
+    {
+      "line": 109,
+      "text_id": "ANM1BJIM2",
+      "participant": 1,
+      "audio": "anm1bjim2.wav"
+    },
+    {
+      "line": 110,
+      "text_id": "ANM1BCAP3",
+      "participant": 2,
+      "audio": "anm1bcap3.wav"
+    },
+    {
+      "line": 111,
+      "text_id": "ANM1BJIM3",
+      "participant": 1,
+      "audio": "anm1bjim3.wav"
+    },
+    {
+      "line": 112,
+      "text_id": "ANM1BOFF0",
+      "participant": 0,
+      "audio": "anm1boff0.wav"
+    },
+    {
+      "line": 114,
+      "text_id": "ANM1BJIM4",
+      "participant": 1,
+      "audio": "anm1bjim4.wav"
+    },
+    {
+      "line": 115,
+      "text_id": "ANM1BCAP4",
+      "participant": 2,
+      "audio": "anm1bcap4.wav"
+    },
+    {
+      "line": 116,
+      "text_id": "ANM1BJIM5",
+      "participant": 1,
+      "audio": "anm1bjim5.wav"
+    },
+    {
+      "line": 117,
+      "text_id": "ANM1BCAP5",
+      "participant": 2,
+      "audio": "anm1bcap5.wav"
+    },
+    {
+      "line": 119,
+      "text_id": "ANM1BOFF1",
+      "participant": 0,
+      "audio": "anm1boff1.wav"
+    }
+  ],
+  "movies": [
+    {
+      "line": 74,
+      "number": 2
+    },
+    {
+      "line": 96,
+      "number": 3
+    }
+  ],
+  "sounds": [
+    {
+      "line": 98,
+      "name": "ANM1BCAP0",
+      "audio": "anm1bcap0.wav"
+    }
+  ],
+  "waits": [
+    {
+      "line": 80,
+      "milliseconds": 1000
+    },
+    {
+      "line": 83,
+      "milliseconds": 2000
+    },
+    {
+      "line": 87,
+      "milliseconds": 3000
+    },
+    {
+      "line": 91,
+      "milliseconds": 2000
+    },
+    {
+      "line": 97,
+      "milliseconds": 2000
+    },
+    {
+      "line": 99,
+      "milliseconds": 5000
+    },
+    {
+      "line": 101,
+      "milliseconds": 1000
+    },
+    {
+      "line": 113,
+      "milliseconds": 500
+    }
+  ],
+  "explicit_wait_total_ms": 16500
+}

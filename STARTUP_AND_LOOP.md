@@ -1,11 +1,11 @@
 # Original startup and first engine loop
 
-**Source-state caveat, 21 October 2026:** implementation and test results in this
-report describe the earlier startup build. The active branch has subsequent
-commits and local edits; the inspected source no longer contains the same test
-hook/pacing and has unfinished edits. See [RE_STATUS.md](RE_STATUS.md) for the
-current baseline and [MASTER_PLAN.md](MASTER_PLAN.md) for the governing plan.
-The recovered executable findings remain research evidence for that edition.
+**Historical-build note, 21 October 2026:** implementation and results below
+describe the earlier startup build. The active branch subsequently changed; the
+current source/build baseline has now been reconciled and tested separately in
+[M0_BASELINE.md](M0_BASELINE.md). See [RE_STATUS.md](RE_STATUS.md) for current
+next actions and [MASTER_PLAN.md](MASTER_PLAN.md) for the governing plan.
+Recovered executable findings remain evidence for the verified edition.
 
 21 October 2026. Recovered from the verified `TESORO.EXE` and original LVL/DLG data.
 The active implementation is in `../scummvm-tesoro/engines/tesoro`; the preserved

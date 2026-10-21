@@ -15,6 +15,15 @@ Codex will implement it together; Codex leads the reverse engineering.
   branch `tesoro`; verify its actual state before editing. `scummvm-fork` is the
   shared repository's other checkout and may be on unrelated work. Preserve
   uncommitted changes. `prototype/source` is an immutable reference snapshot.
+- Keep task-file inspection within the named Tesoro project folders. Do not
+  inventory personal folders, installed applications or VM configurations.
+  Ask before accessing any additional location. Original-game reference setup
+  is on hold until Gabriel explicitly authorizes its environment and paths.
+- Do not add test classes, test configuration flags or harness hooks to the
+  submitted ScummVM engine. Keep verification external; experimental C++
+  instrumentation, if needed, stays local and ignored rather than in engine code.
+- Keep executable addresses and reverse-engineering provenance in research notes,
+  not in engine source comments. Source comments should explain useful behaviour.
 - Read [skills/tesoro-re/SKILL.md](skills/tesoro-re/SKILL.md) for Tesoro research.
   Capture newly successful reusable research techniques there or in its linked
   references, with commands, evidence and limitations. Untried ideas belong in

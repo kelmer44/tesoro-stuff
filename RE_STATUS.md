@@ -4,10 +4,16 @@ Updated 21 October 2026. Governing direction: [MASTER_PLAN.md](MASTER_PLAN.md).
 
 ## Current target
 
-**M0: establish a reproducible current engine build and a working original-game
-reference.** Next implementation target: real adventure button → `FANPRESENT`
-harbour introduction → office. Reference runtime setup is required work: Gabriel
-confirmed that no working original session exists yet.
+**M0 source/build baseline is verified.** See [the baseline report](M0_BASELINE.md).
+The original-game reference part remains open and on hold until Gabriel explicitly
+authorizes its environment and paths. Continue with M1 static recovery needed for
+the real-adventure button → `FANPRESENT` harbour introduction → office.
+
+Keep task-file inspection inside the named Tesoro project folders. Do not inspect
+personal directories, installed applications or VM configurations.
+Keep test classes and instrumentation out of the submitted ScummVM engine.
+The startup harness has been removed from engine source and retained only in
+ignored local storage; previous startup reports refer to that instrumented build.
 
 ## Evidence at this checkpoint
 
@@ -16,10 +22,12 @@ confirmed that no working original session exists yet.
 | Original resources | Existing readers account for all 50 LVLs/747 records, 23 observed kinds, 145 script blocks; all 87 DO sites indexed. | Kind/subtype methods, field semantics, reachability and complete behaviour. |
 | Executable | 48 general + 11 startup exports report completed decompilation; assembly/xrefs retained. | Full object/vtable map, walking, animation, scheduler, UI, save and special-system code. |
 | Prototype | Preserved office pen implementation and documented prior host checks. | General gameplay systems and original comparison; do not treat approximations as recovered rules. |
-| Active engine | `../scummvm-tesoro`, `tesoro`, inspected HEAD `33316cacbf8`; local edits to `tesoro.cpp/.h` changed during inspection. The latest draw conditional is corrected. | Reconcile source/build/harness. Dummy saves are advertised; current loop lacks the earlier documented pacing. |
-| Startup evidence | Historical logs/snapshots demonstrate earlier startup work. | The current source lacks the harness hook used by `tests/test_startup.py`; old pass logs are not current-build verification. |
+| Active engine | `../scummvm-tesoro`, `tesoro`, HEAD `33316cacbf8` plus uncommitted baseline changes. Gabriel's menu fixes retained; paced loop, pause, stream ownership and unavailable saves corrected. | Review the current diff, then add recovered general gameplay systems. |
+| Startup evidence | Four runs of the earlier instrumented baseline pass; 12 snapshots match the independent decoder. Reports identify that source/binary. The harness has since been removed from engine code. | Validate subsequent implementation externally; original-runtime comparison remains open. |
 | Media | Complete-disc movie and PCM inventories exist; movies are locally present in the game `bin/` directory. | Complete playback, cue/loop/skip/pause and original timing comparison. |
-| Original runtime | Wine, 86Box, UTM, OBS and ImHex installed; Ghidra/JDK present. | Working game installation, captures, checkpoints and debugger selection. |
+| Introduction | Seven native markers mapped; executable bytes confirm no-effect ordinals 1, 2 and 6. Native object strings and all speech/sound references resolved. | Animation helper, room entry, object lifecycle, actor movement and general resumable execution. |
+| Animation | Eight native routines exported. C++ normalizes movement and implements playback, loop/interpolation and pause/resume. 1,200 isolated native comparison scenarios match across 17,942 states. See [findings](ANIMATION_FINDINGS.md). | Scene/object integration, actual clock/scheduling and original visual comparison. |
+| Original runtime | No verified original-game reference session. | Explicitly authorized environment/paths, working installation, captures and checkpoints. |
 
 The [full structural catalogue](analysis/full-game-catalogue.json) is reproducible:
 
@@ -34,17 +42,16 @@ correct the game data or assume this spelling has ordinary `menuitem0` semantics
 
 ## Next work queue
 
-1. Inspect the active engine's local diff with Gabriel's current coding work in
-   mind; retain the intended edits and establish a buildable baseline. Resolve
-   real save feature declarations and movie ownership/pause/pacing while porting
-   the useful startup harness to the current architecture.
-2. Launch a separate installed copy in an isolated Wine prefix; document results.
-   If unsuitable, inventory available guest setups and use 86Box/UTM with the
-   needed Windows media. Do not change the original evidence copy.
-3. Capture startup → real adventure → office; record repeatable inputs, original
-   saves/checkpoints and audio/video limitations of the reference environment.
-4. Recover scene-object/ANM fields and scheduler dependencies used by
-   `FANPRESENT/main`; implement its new-game path in small C++ increments.
+1. The animation core builds and matches the isolated native routines; see
+   [ANIMATION_FINDINGS.md](ANIMATION_FINDINGS.md). Recover harbour room entry
+   coordinates and scene/actor lifecycle, then integrate playback using
+   [INTRODUCTION_CONTRACT.md](INTRODUCTION_CONTRACT.md).
+2. Port the required resumable script and scene/object behaviour in reviewable
+   increments, preserving native no-ops and lazy participant lookup.
+3. Connect the real-adventure button to the authentic introduction when these
+   dependencies are ready; do not substitute an office teleport or guessed walk.
+4. Resume original reference setup only after explicit environment/path approval;
+   then capture startup → office and record repeatable inputs and checkpoints.
 5. Replace provisional pen mechanics with general walking/UI/object dispatch,
    then compare first/later pickup and both pen-return paths.
 
@@ -57,9 +64,15 @@ correct the game data or assume this spelling has ordinary `menuitem0` semantics
   invocation is preserved in the research skill.
 - The full catalogue was regenerated from the original TRE/DAT and identity
   hashes; counts are structural evidence, not runtime coverage.
-- Current C++ was inspected, not modified or built during planning. Local edits
-  changed during inspection; current source/harness differences prevent adopting
-  earlier startup passes. Recheck current source before starting M0 work.
+- The source/build part of M0 is now complete: current C++ builds; full, skipped,
+  absent and malformed movie scenarios pass against the same source/binary.
+  Full details and reproducible commands are in [M0_BASELINE.md](M0_BASELINE.md).
+- Introduction jump-table/range-guard bytes and native object strings were read
+  directly from the verified EXE. The [generated report](analysis/introduction-contract.json)
+  also confirms all 18 speech lines and the sound effect have matching resources.
+- Current animation runtime builds without engine test hooks. External native
+  comparison matches 1,200 scenarios; eight invalid synthetic scenarios are
+  rejected and documented separately. No original scene/visual comparison yet.
 
 ## Known approximation ledger
 
@@ -67,8 +80,8 @@ correct the game data or assume this spelling has ordinary `menuitem0` semantics
 | --- | --- | --- |
 | Preserved prototype | Straight walking, temporary harbour scale, limited hotspots and toolbar, unverified talk/shadow timing. | M3 general movement/UI/composition; preserve snapshot as historical evidence. |
 | Preserved script VM/tracer | Tail-only `run` handling; incomplete command forms. | M2/M4 scheduler/parser recovery. |
-| Active startup | Temporary cursor, fixed censorship sequence, unavailable adventure/joke branches, no actual gameplay saves. | M0/M2 baseline and scripts; M3 original UI; M4 persistence. |
-| Historical startup notes | Source state differs from current branch and local changes. | M0 matching build and current evidence; retain old captures as history. |
+| Active startup | Temporary cursor, fixed censorship sequence, unavailable adventure/joke branches, no actual gameplay saves. Unfinished saves are now disabled. | M2 scripts; M3 original UI; M4 persistence. |
+| Historical startup notes | Old results apply to their old source state. | Closed for the current startup baseline by the four matching-build checks; retain historical captures separately. |
 
 Add rows for new approximations with precise implementation location and reason.
 Close a row only with replacement evidence. Store future original captures with

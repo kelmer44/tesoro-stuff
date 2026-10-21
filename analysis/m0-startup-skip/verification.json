@@ -1,0 +1,25 @@
+{
+  "binary": "/Users/gabriel/Desktop/source/scummvm-tesoro/scummvm",
+  "binary_sha256": "1860716cd373c7c07d0c075a576224f4446fa005b0e272729c0448b4cbafe3fb",
+  "source_sha256": {
+    "configure.engine": "b1ec7ca4fefb652d54fbdab66b26a6c6aadeb440e23738d7b58efd0865b02d82",
+    "console.cpp": "33dff9452de8c5f8a62aa2961c7107037378c0738eda278ee50b5f2059e9c95d",
+    "console.h": "5478682dc2ccc8b1d1c6518fe85ddc083510b3acd5236ead2bb84425726a3a5f",
+    "detection.cpp": "701558347293c68340ec3d07dc3af5926608092ea1bad8fbb986fc39b8bbbdbb",
+    "detection.h": "f13d8d3bb64b7df55b93374c14a7ee31f53aba57befe1823b1a9cdbd471c7bd6",
+    "detection_tables.h": "f9163c77bab447c18d29866f2763cfeba442c6ea703c4cf721666ebb9ba4775c",
+    "metaengine.cpp": "3c0ad65f254fd3a53ba41f8db069fe8f98d97e89be37ed7b46b7d5b86d8413a7",
+    "metaengine.h": "afa314d1f7b63e5ee1ee6d2f8680e2cfeaf0f740e24806ee51e454008693174d",
+    "module.mk": "00fed7b962c59d6b628254c8610bb8b791475e3227e7746e56ebee097df2fd65",
+    "resources.cpp": "1dbe9fa8b0f9656abe51e8e2fe6cff1fdc6df5b0d496abad21d63101c7350de0",
+    "resources.h": "df6a0a89ea8133552850119aac1cdbda6375ee28742119fba099b8ee6291a965",
+    "startup_test.cpp": "ea9fdf9084f9bfb234ea9e6a9fb57724f511d15070d46afa1d53f5af1c3f5d79",
+    "startup_test.h": "6e50d35175c058f849b505de6a8eb17b38d239da95e56c86f1b963b84e07ea35",
+    "tesoro.cpp": "8ecd39455c763cd9834dd554b2a28370cde86d561f1489e7af683fef0c954f22",
+    "tesoro.h": "0e9d8eaed3d5da93e5ce0100498bddb76432d385f87dc6279f298262576ee5c6"
+  },
+  "movies": "/Users/gabriel/Desktop/ags/TESORO/bin",
+  "skip_movie": true,
+  "result": "WARNING: TESORO_STARTUP_TEST_PASS decoded_frames=65 elapsed_ms=11021 movie_pause_checked=1!",
+  "limitation": "Host integration and resource pixels; not a comparison with the running Windows original."
+}

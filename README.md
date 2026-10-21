@@ -9,10 +9,10 @@ separate recovered behaviour, implementation and original-game comparison.
 [the research skill](skills/tesoro-re/SKILL.md) captures proven reusable methods.
 The plan includes establishing a working original Windows reference environment.
 
-**Current-source caveat, 21 October:** startup test results below describe an
-earlier source state. The active worktree has subsequent commits/local edits;
-its current build and harness must be reconciled before reusing those results.
-See [the live checkpoint](RE_STATUS.md).
+**Current baseline, 21 October:** [the source/build checkpoint](M0_BASELINE.md)
+now passes four startup scenarios with source/binary identities and 12 matching
+menu/card snapshots. Original-runtime comparison remains open. Reference setup
+is on hold pending explicit environment/path authorization.
 
 The engine code lives in [kelmer44/scummvm — tesoro branch](https://github.com/kelmer44/scummvm/tree/tesoro/engines/tesoro). This repository contains
 notes, Ghidra analysis exports, format inventories, script traces, screenshots,
@@ -26,8 +26,9 @@ The harbour introduction and adventure gameplay are not yet ported into that
 branch. The previous playable implementation remains preserved in
 [prototype/source](prototype/source/README.md); results below describe it.
 
-**Current milestone: establish the source/reference baseline, then implement
-the original harbour introduction through the office.** The pen path remains
+**Current milestone: recover the shared animation/script/scene behaviour for
+the original harbour introduction through the office.** See the
+[introduction contract](INTRODUCTION_CONTRACT.md). The pen path remains
 the first interaction regression scenario.
 
 - [Current findings and first-puzzle trace](FIRST_PUZZLE_TRACE.md)

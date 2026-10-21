@@ -101,12 +101,12 @@ and compare the C++ implementation over boundaries and unusual inputs. Validate
 ABI, memory inputs and dependencies first; a whole-game emulator is not required.
 Record experiments that disprove a theory as well as successful ones.
 
-**Tools already present.** Ghidra 11.4.2, a Java 23 JDK, ImHex, Wine, 86Box, UTM
-and OBS are installed. Ghidra needs no new installation. Use the existing
-headless workflow; add GUI use for types/vtables when it improves understanding.
-Wine/86Box/UTM installation alone does not prove game compatibility or a guest OS.
-Choose a debugger after the working reference environment is known. Add a tool
-only for a named unanswered question; avoid a speculative installation list.
+**Tools and access boundaries.** The documented Ghidra 11.4.2/Java 23 workflow
+has been verified. Use authorized tools for named unanswered questions. Do not
+inventory installed applications, personal folders or VM configurations. Gabriel
+must explicitly authorize the original reference environment and any additional
+paths before that setup proceeds. Choose a debugger after the reference
+environment is known; avoid a speculative installation list.
 
 Proven reusable procedures belong in [the research skill](skills/tesoro-re/SKILL.md).
 Keep untested methods here as candidate experiments. Ghidra's official
@@ -123,11 +123,12 @@ revision plus local diff and matching build. Audit which historical tests still
 apply; port the useful startup harness to current architecture before running it.
 Never overwrite the preserved prototype or claim an old binary tests new code.
 
-**Original reference:** try a separate Wine prefix with a writable installed copy
+**Original reference:** first obtain Gabriel's explicit choice of environment and
+paths; this part of M0 is currently on hold. Then try a separate Wine prefix with a writable installed copy
 and the complete disc available. Record startup errors and missing dependencies;
 do not patch the evidence files. If graphics, codecs, CD audio or input remain
-unreliable, move to an isolated Windows guest in an existing emulator/VM. Confirm
-which guest/Windows media is actually available; Gabriel supplies any missing OS
+unreliable, use an isolated Windows guest in an explicitly authorized emulator/VM.
+Gabriel identifies the guest/Windows media and supplies any missing OS
 installation/licensing material. Prefer a working historically appropriate x86
 environment over spending indefinitely on compatibility workarounds.
 
@@ -303,8 +304,12 @@ or calendar promise. At each checkpoint report what we learned, what changed,
 what was compared and what remains uncertain. Reorder tasks when new evidence
 reveals a dependency; record the reason without discarding prior evidence.
 
-Start with M0: reconcile the active source, establish a matching build/test, and
-set up the original reference. Meanwhile recover world/animation/scheduler fields
-needed by M2. The first visible implementation increment after the baseline is
+The source/build part of M0 is complete; see [M0_BASELINE.md](M0_BASELINE.md).
+The original reference is pending explicit environment/path authorization. Recover
+world/animation/scheduler fields needed by M2 using the
+[introduction contract](INTRODUCTION_CONTRACT.md). The animation core is now
+implemented and compared against isolated original routines; scene integration
+is still pending (see [ANIMATION_FINDINGS.md](ANIMATION_FINDINGS.md)). Next recover
+harbour entry and scene/object lifecycle. The first visible gameplay increment after the baseline is
 the real adventure button starting the authentic introduction. Full-game scope
 remains the destination throughout those small increments.

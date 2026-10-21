@@ -1,0 +1,9 @@
+address	name	completed	error
+00401580	tesoro_clone_animation_bank	true	
+00401a50	tesoro_pause_animation	true	
+00401860	tesoro_advance_animation	true	
+00401740	tesoro_set_animation_playback	true	
+00401a70	tesoro_resume_animation	true	
+00401aa0	tesoro_initialize_base_object	true	
+00401dc0	tesoro_restore_object_animation	true	
+00401de0	tesoro_play_object_animation	true	

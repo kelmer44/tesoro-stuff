@@ -11,6 +11,14 @@ update the checkpoint when evidence or implementation changes. The skill may
 be installed as a symlink; resolve project files against the research root,
 not the installation directory.
 
+Keep task-file inspection inside the named Tesoro project folders. Do not
+inventory personal folders, installed applications or VM configurations. Ask
+before accessing additional locations; reference setup needs explicit approval
+of its environment and paths. Use project-local scratch directories when possible.
+Keep test classes and test-only hooks out of the submitted ScummVM engine.
+Use external research tools or local ignored instrumentation for verification.
+Keep addresses and provenance in research notes rather than engine comments.
+
 ## Locate the correct evidence
 
 - Originals: `/Users/gabriel/Desktop/ags/TESORO`; preserve unchanged. Identity
@@ -29,6 +37,18 @@ not the installation directory.
   door evidence: `FIRST_PUZZLE_TRACE.md`. Startup: `STARTUP_AND_LOOP.md`.
   Historical notes/test logs can describe a different source state; verify
   against current code before reusing their claims.
+- Current startup integration evidence: `M0_BASELINE.md`. Introduction dispatch
+  evidence: `INTRODUCTION_CONTRACT.md`; regenerate it with
+  `tools/inspect_introduction.py`. This demonstrates hash-guarded PE virtual
+  address mapping to native jump-table bytes and object-name strings, which can
+  distinguish ignored annotations and different same-named scene objects.
+- For animation, read `ANIMATION_FINDINGS.md` and `analysis/animation/`. Native
+  loader normalization and elapsed-time advancement differ from naive frame
+  iteration. Missing-image frames can delimit sequences. Do not infer playback
+  rate from host redraw rate, and verify research labels against function bodies.
+  For isolated original-instruction comparisons with production C++, read
+  [references/native-comparison.md](references/native-comparison.md). This method
+  has verified setup, advancement and pause/resume without a Windows guest.
 
 ## Follow the actual executable dispatch
 

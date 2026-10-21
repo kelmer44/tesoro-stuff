@@ -1,0 +1,146 @@
+{
+  "notice": "Original-data observations; normalization semantics come from 0x401160 assembly/decompilation, not from runtime comparison.",
+  "banks": 371,
+  "frames": 3175,
+  "banks_with_nonzero_movement_origin": 3,
+  "samples": [
+    {
+      "resource": "FUENTES.anm",
+      "bank": "\u00b7\u00a0\u000f",
+      "origin": [
+        6,
+        -15
+      ],
+      "first_frames": [
+        {
+          "frame": 0,
+          "raw_movement": [
+            6,
+            -15
+          ],
+          "duration_ms": 42,
+          "image": 0
+        },
+        {
+          "frame": 1,
+          "raw_movement": [
+            6,
+            -15
+          ],
+          "duration_ms": 42,
+          "image": 1
+        },
+        {
+          "frame": 2,
+          "raw_movement": [
+            6,
+            -15
+          ],
+          "duration_ms": 42,
+          "image": 2
+        }
+      ],
+      "note": "Font metrics are kept raw in the C++ reader; animation normalization is not applied."
+    },
+    {
+      "resource": "JIMCOGER.anm",
+      "bank": "",
+      "origin": [
+        222,
+        -318
+      ],
+      "first_frames": [
+        {
+          "frame": 0,
+          "raw_movement": [
+            222,
+            -318
+          ],
+          "duration_ms": 42,
+          "image": 0,
+          "normalized_movement": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "raw_movement": [
+            222,
+            -318
+          ],
+          "duration_ms": 42,
+          "image": 1,
+          "normalized_movement": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "raw_movement": [
+            222,
+            -318
+          ],
+          "duration_ms": 42,
+          "image": 2,
+          "normalized_movement": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "resource": "JIMQUIETO.anm",
+      "bank": "",
+      "origin": [
+        1,
+        11
+      ],
+      "first_frames": [
+        {
+          "frame": 0,
+          "raw_movement": [
+            1,
+            11
+          ],
+          "duration_ms": 42,
+          "image": 0,
+          "normalized_movement": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "raw_movement": [
+            1,
+            11
+          ],
+          "duration_ms": 42,
+          "image": 1,
+          "normalized_movement": [
+            0,
+            0
+          ]
+        },
+        {
+          "frame": 2,
+          "raw_movement": [
+            1,
+            11
+          ],
+          "duration_ms": 42,
+          "image": 2,
+          "normalized_movement": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "nonfont_banks_with_nonzero_movement_origin": 2,
+  "font_metrics_are_not_normalized": true
+}

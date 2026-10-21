@@ -1,0 +1,99 @@
+{
+  "exe_sha256": "0fcd56b306b857283347e705dcce41a4b44dd4d9ef7c9226694114bba80792ef",
+  "corpus_banks": 289,
+  "scenarios": 1208,
+  "driver_sha256": "169658691a4c17c733634f470e80959a5107067e3afb6fd6cb22f02dec9a9d08",
+  "comparison_tool_sha256": "3b567cc54aad72e5afe250077d68fc1ab0ca47fa259bfe30cba3b1cd7f13250b",
+  "passed_scenarios": 1200,
+  "compared_states": 17942,
+  "rejected_play_requests": 16,
+  "rejected_cases": [
+    {
+      "case": "zero-duration-interpolation/loop=False/cache=False",
+      "native_failure": {
+        "operation": [
+          "u",
+          100
+        ],
+        "reason": "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+      }
+    },
+    {
+      "case": "zero-duration-interpolation/loop=False/cache=True",
+      "native_failure": {
+        "operation": [
+          "u",
+          100
+        ],
+        "reason": "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+      }
+    },
+    {
+      "case": "zero-duration-interpolation/loop=True/cache=False",
+      "native_failure": {
+        "operation": [
+          "u",
+          100
+        ],
+        "reason": "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+      }
+    },
+    {
+      "case": "zero-duration-interpolation/loop=True/cache=True",
+      "native_failure": {
+        "operation": [
+          "u",
+          100
+        ],
+        "reason": "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+      }
+    },
+    {
+      "case": "zero-duration-interpolation/clock-wrap",
+      "native_failure": {
+        "operation": [
+          "u",
+          4294967040
+        ],
+        "reason": "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+      }
+    },
+    {
+      "case": "zero-duration-interpolation/explicit-last",
+      "native_failure": {
+        "operation": [
+          "u",
+          100
+        ],
+        "reason": "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+      }
+    },
+    {
+      "case": "zero-time-loop/loop=True/cache=False",
+      "native_failure": {
+        "operation": [
+          "u",
+          101
+        ],
+        "reason": "Original routine exceeded the instruction bound"
+      }
+    },
+    {
+      "case": "zero-time-loop/loop=True/cache=True",
+      "native_failure": {
+        "operation": [
+          "u",
+          101
+        ],
+        "reason": "Original routine exceeded the instruction bound"
+      }
+    }
+  ],
+  "routines": [
+    "0x00401740",
+    "0x00401860",
+    "0x00401a50",
+    "0x00401a70"
+  ],
+  "limitation": "Isolated original routines; no whole-game scene or visual fidelity claim."
+}
