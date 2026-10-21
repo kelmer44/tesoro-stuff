@@ -1,0 +1,12 @@
+address	name	completed	error
+00413e60	tesoro_initialize_game	true	
+00415960	tesoro_win_main	true	
+00414420	tesoro_main_loop_step	true	
+00417ad0	tesoro_initialize_menu_button	true	
+00417b40	tesoro_menu_button_click	true	
+00414560	tesoro_start_new_game	true	
+00413a50	tesoro_begin_frame_time	true	
+00413ab0	tesoro_end_frame_time	true	
+0040fc20	tesoro_update_objects	true	
+0040fd20	tesoro_render_objects	true	
+0040fe40	tesoro_object_list_empty	true	

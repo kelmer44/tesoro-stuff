@@ -1,0 +1,41 @@
+0040fe40  MOV EAX,dword ptr [ECX]
+0040fe42  PUSH ESI
+0040fe43  LEA EDX,[EAX + 0x4]
+0040fe46  MOV byte ptr [EAX + 0x18],0x1
+0040fe4a  MOV dword ptr [EAX + 0x10],EDX
+0040fe4d  MOV EAX,dword ptr [ECX]
+0040fe4f  MOV ECX,dword ptr [EAX + 0x10]
+0040fe52  MOV EDX,dword ptr [ECX]
+0040fe54  TEST EDX,EDX
+0040fe56  JZ 0x0040fe91
+0040fe58  LEA ESI,[EAX + 0x4]
+0040fe5b  CMP ECX,ESI
+0040fe5d  JNZ 0x0040fe6c
+0040fe5f  MOV CL,byte ptr [EAX + 0x18]
+0040fe62  TEST CL,CL
+0040fe64  JZ 0x0040fe6c
+0040fe66  MOV byte ptr [EAX + 0x18],0x0
+0040fe6a  JMP 0x0040fe6f
+0040fe6c  MOV dword ptr [EAX + 0x10],EDX
+0040fe6f  MOV ECX,dword ptr [EAX + 0x10]
+0040fe72  MOV ECX,dword ptr [ECX]
+0040fe74  TEST ECX,ECX
+0040fe76  JZ 0x0040fe91
+0040fe78  MOV EDX,dword ptr [ECX + 0x4]
+0040fe7b  MOV dword ptr [EAX + 0x1c],EDX
+0040fe7e  MOV ECX,dword ptr [ECX + 0x8]
+0040fe81  MOV dword ptr [EAX + 0x20],ECX
+0040fe84  MOV AL,0x1
+0040fe86  XOR EDX,EDX
+0040fe88  TEST AL,AL
+0040fe8a  SETZ DL
+0040fe8d  MOV AL,DL
+0040fe8f  POP ESI
+0040fe90  RET
+0040fe91  XOR AL,AL
+0040fe93  XOR EDX,EDX
+0040fe95  TEST AL,AL
+0040fe97  SETZ DL
+0040fe9a  MOV AL,DL
+0040fe9c  POP ESI
+0040fe9d  RET

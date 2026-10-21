@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tesoro Reverse Engineering"
+  short_description: "Recover original Tesoro behaviour for ScummVM"
+  default_prompt: "Use $tesoro-re to investigate the next fidelity gap in the Tesoro master plan."

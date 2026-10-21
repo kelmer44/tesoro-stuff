@@ -1,0 +1,30 @@
+# Tesoro project direction
+
+The user's goal is a complete ScummVM implementation of **El Tesoro de Isla
+Alcachofa**, with the greatest practical fidelity to the original. The user and
+Codex will implement it together; Codex leads the reverse engineering.
+
+- Read [MASTER_PLAN.md](MASTER_PLAN.md) at the start of project work. It is the
+  main implementation guideline. Use [RE_STATUS.md](RE_STATUS.md) for the current
+  milestone, evidence, uncertainties and next actions. Update these when findings
+  change the plan. Earlier feasibility/prototype notes are supporting history.
+- Original files in `/Users/gabriel/Desktop/ags/TESORO` and original disc media
+  are evidence and remain unchanged. Extracted media, VM disks, save captures
+  and Ghidra databases stay local. Keep reusable analysis tools and findings.
+- The active engine worktree is `/Users/gabriel/Desktop/source/scummvm-tesoro`,
+  branch `tesoro`; verify its actual state before editing. `scummvm-fork` is the
+  shared repository's other checkout and may be on unrelated work. Preserve
+  uncommitted changes. `prototype/source` is an immutable reference snapshot.
+- Read [skills/tesoro-re/SKILL.md](skills/tesoro-re/SKILL.md) for Tesoro research.
+  Capture newly successful reusable research techniques there or in its linked
+  references, with commands, evidence and limitations. Untried ideas belong in
+  the plan until demonstrated.
+- Separate recovered semantics, original-runtime observations, implementation
+  status and approximation. A decoded asset, completed decompilation, passing
+  host test or playable shortcut does not establish original-game fidelity.
+- Preserve original script block types, DO ordinals, variable ownership,
+  integer widths and yielding behaviour. Recover native object methods as well
+  as script callbacks. Make unsupported reachable behaviour visible.
+- Prioritize the earliest unresolved dependency in the master plan. Work in
+  reviewable increments; do not replace the active engine with the old prototype
+  wholesale or introduce puzzle shortcuts to claim completion.

@@ -1,0 +1,12 @@
+address	name	status
+00413e60	tesoro_initialize_game	ready
+00415960	tesoro_win_main	ready
+00414420	tesoro_main_loop_step	ready
+00417ad0	tesoro_initialize_menu_button	ready
+00417b40	tesoro_menu_button_click	ready
+00414560	tesoro_start_new_game	ready
+00413a50	tesoro_begin_frame_time	ready
+00413ab0	tesoro_end_frame_time	ready
+0040fc20	tesoro_update_objects	ready
+0040fd20	tesoro_render_objects	ready
+0040fe40	tesoro_object_list_empty	ready

@@ -1,0 +1,2273 @@
+{
+  "notice": "Structural catalogue only. Counts do not imply implemented or original-runtime-verified behavior.",
+  "source": "TESORO.TRE/DAT via existing structural readers; lexical command classification",
+  "hashes": {
+    "TESORO.EXE": "0fcd56b306b857283347e705dcce41a4b44dd4d9ef7c9226694114bba80792ef",
+    "TESORO.TRE": "29b116616137f1f33ce75157c9d902aed4a7021b426e7fd4e7cde5b9c2887296",
+    "TESORO.DAT": "be8641cfcc02d41e4f12cbdbe9d71e01656cfdb44ad8b791864378ae297901d7"
+  },
+  "scene_count": 50,
+  "object_count": 747,
+  "object_kinds": {
+    "0": 1,
+    "1": 50,
+    "2": 2,
+    "3": 217,
+    "5": 27,
+    "6": 75,
+    "7": 38,
+    "8": 39,
+    "9": 124,
+    "10": 1,
+    "11": 1,
+    "12": 12,
+    "13": 46,
+    "15": 1,
+    "16": 3,
+    "17": 30,
+    "19": 7,
+    "20": 44,
+    "21": 7,
+    "22": 7,
+    "23": 3,
+    "24": 7,
+    "25": 5
+  },
+  "scenes": [
+    {
+      "name": "1.lvl",
+      "objects": 7,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 3,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "10.lvl",
+      "objects": 6,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 2,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "11.lvl",
+      "objects": 6,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "24": 1
+      }
+    },
+    {
+      "name": "12.lvl",
+      "objects": 7,
+      "kinds": {
+        "1": 1,
+        "3": 2,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "24": 1
+      }
+    },
+    {
+      "name": "13.lvl",
+      "objects": 7,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 3,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "14.lvl",
+      "objects": 7,
+      "kinds": {
+        "1": 1,
+        "3": 2,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "24": 1
+      }
+    },
+    {
+      "name": "15.lvl",
+      "objects": 7,
+      "kinds": {
+        "1": 1,
+        "3": 2,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "24": 1
+      }
+    },
+    {
+      "name": "16.lvl",
+      "objects": 8,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 4,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "17.lvl",
+      "objects": 6,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 2,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "18.lvl",
+      "objects": 6,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 2,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "19.lvl",
+      "objects": 11,
+      "kinds": {
+        "1": 1,
+        "3": 2,
+        "6": 5,
+        "7": 1,
+        "8": 1,
+        "24": 1
+      }
+    },
+    {
+      "name": "2.lvl",
+      "objects": 7,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 3,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "20.lvl",
+      "objects": 5,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "3.lvl",
+      "objects": 6,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 2,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "4.lvl",
+      "objects": 7,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 3,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "5.lvl",
+      "objects": 6,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 2,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "6.lvl",
+      "objects": 7,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 3,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "7.lvl",
+      "objects": 8,
+      "kinds": {
+        "1": 1,
+        "3": 2,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "24": 1
+      }
+    },
+    {
+      "name": "8.lvl",
+      "objects": 5,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "9.lvl",
+      "objects": 8,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 4,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "Almacen.lvl",
+      "objects": 34,
+      "kinds": {
+        "1": 1,
+        "3": 3,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 22,
+        "17": 4
+      }
+    },
+    {
+      "name": "Almacen2.lvl",
+      "objects": 33,
+      "kinds": {
+        "1": 1,
+        "3": 3,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 22,
+        "17": 3
+      }
+    },
+    {
+      "name": "Armario.lvl",
+      "objects": 20,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "9": 2,
+        "20": 16
+      }
+    },
+    {
+      "name": "Camarote.lvl",
+      "objects": 25,
+      "kinds": {
+        "1": 1,
+        "3": 5,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 4,
+        "17": 11
+      }
+    },
+    {
+      "name": "Camarote2.lvl",
+      "objects": 27,
+      "kinds": {
+        "1": 1,
+        "3": 8,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 5,
+        "17": 6,
+        "20": 3
+      }
+    },
+    {
+      "name": "Campamento.lvl",
+      "objects": 20,
+      "kinds": {
+        "1": 1,
+        "3": 5,
+        "7": 1,
+        "8": 1,
+        "9": 9,
+        "20": 3
+      }
+    },
+    {
+      "name": "Cocina.lvl",
+      "objects": 14,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "5": 2,
+        "6": 1,
+        "9": 6,
+        "17": 3
+      }
+    },
+    {
+      "name": "Cocina2.lvl",
+      "objects": 10,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 1,
+        "9": 6,
+        "17": 1
+      }
+    },
+    {
+      "name": "Creditos.lvl",
+      "objects": 8,
+      "kinds": {
+        "1": 1,
+        "3": 7
+      }
+    },
+    {
+      "name": "Cubierta.lvl",
+      "objects": 22,
+      "kinds": {
+        "1": 1,
+        "3": 9,
+        "5": 5,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "17": 1
+      }
+    },
+    {
+      "name": "Cubierta2.lvl",
+      "objects": 16,
+      "kinds": {
+        "1": 1,
+        "3": 5,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "17": 1,
+        "20": 3
+      }
+    },
+    {
+      "name": "Despacho.lvl",
+      "objects": 27,
+      "kinds": {
+        "1": 1,
+        "3": 3,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 10,
+        "12": 9
+      }
+    },
+    {
+      "name": "Entrada.lvl",
+      "objects": 8,
+      "kinds": {
+        "1": 1,
+        "3": 2,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "24": 1
+      }
+    },
+    {
+      "name": "Final.lvl",
+      "objects": 9,
+      "kinds": {
+        "1": 1,
+        "3": 5,
+        "5": 3
+      }
+    },
+    {
+      "name": "INTERFACE.lvl",
+      "objects": 71,
+      "kinds": {
+        "0": 1,
+        "1": 1,
+        "2": 2,
+        "3": 8,
+        "10": 1,
+        "11": 1,
+        "13": 46,
+        "15": 1,
+        "22": 7,
+        "23": 3
+      }
+    },
+    {
+      "name": "Lucha.lvl",
+      "objects": 9,
+      "kinds": {
+        "1": 1,
+        "3": 5,
+        "9": 2,
+        "20": 1
+      }
+    },
+    {
+      "name": "Mapa.lvl",
+      "objects": 10,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 1,
+        "19": 7
+      }
+    },
+    {
+      "name": "Nuevo.lvl",
+      "objects": 16,
+      "kinds": {
+        "1": 1,
+        "3": 12,
+        "25": 3
+      }
+    },
+    {
+      "name": "Pantano.lvl",
+      "objects": 13,
+      "kinds": {
+        "1": 1,
+        "3": 2,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "20": 4
+      }
+    },
+    {
+      "name": "Playa.lvl",
+      "objects": 23,
+      "kinds": {
+        "1": 1,
+        "3": 9,
+        "5": 1,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "20": 7
+      }
+    },
+    {
+      "name": "Poblado.lvl",
+      "objects": 25,
+      "kinds": {
+        "1": 1,
+        "3": 9,
+        "5": 3,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 5,
+        "20": 4
+      }
+    },
+    {
+      "name": "Principal.lvl",
+      "objects": 4,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "25": 2
+      }
+    },
+    {
+      "name": "Puerto.lvl",
+      "objects": 25,
+      "kinds": {
+        "1": 1,
+        "3": 14,
+        "5": 1,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 5
+      }
+    },
+    {
+      "name": "Risco.lvl",
+      "objects": 18,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 11,
+        "20": 1
+      }
+    },
+    {
+      "name": "RiscoFinal.lvl",
+      "objects": 13,
+      "kinds": {
+        "1": 1,
+        "3": 8,
+        "5": 2,
+        "7": 1,
+        "8": 1
+      }
+    },
+    {
+      "name": "Taberna.lvl",
+      "objects": 24,
+      "kinds": {
+        "1": 1,
+        "3": 7,
+        "5": 3,
+        "6": 1,
+        "7": 1,
+        "8": 2,
+        "9": 3,
+        "12": 3,
+        "16": 3
+      }
+    },
+    {
+      "name": "Tablero.lvl",
+      "objects": 59,
+      "kinds": {
+        "1": 1,
+        "3": 51,
+        "21": 7
+      }
+    },
+    {
+      "name": "Tierra.lvl",
+      "objects": 13,
+      "kinds": {
+        "1": 1,
+        "3": 3,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 4,
+        "20": 1
+      }
+    },
+    {
+      "name": "Trono.lvl",
+      "objects": 6,
+      "kinds": {
+        "1": 1,
+        "3": 2,
+        "5": 2,
+        "6": 1
+      }
+    },
+    {
+      "name": "Volcan.lvl",
+      "objects": 8,
+      "kinds": {
+        "1": 1,
+        "3": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "20": 1
+      }
+    }
+  ],
+  "script_blocks": 145,
+  "text_entries": 2687,
+  "audio_entries": 2346,
+  "command_forms": {
+    "DO": 87,
+    "break": 76,
+    "if": 253,
+    "jmp": 15,
+    "menu": 36,
+    "menuitem0": 42,
+    "menuitem1": 45,
+    "menuitem2": 38,
+    "menuitem3": 25,
+    "menuitem4": 2,
+    "menutiem0": 1,
+    "play": 35,
+    "return": 398,
+    "run": 74,
+    "sendmessage": 517,
+    "sleep": 122,
+    "speech": 2224,
+    "variable_assignment": 139
+  },
+  "message_forms": {
+    "activate": 149,
+    "ira": 45,
+    "mirar": 87,
+    "play": 127,
+    "show": 109
+  },
+  "blocks": [
+    {
+      "name": "FANMTRONO",
+      "file": "anims.dlg",
+      "native_type": 20,
+      "labels": [
+        "ir",
+        "volver"
+      ],
+      "do_count": 2
+    },
+    {
+      "name": "FANMMENU",
+      "file": "anims.dlg",
+      "native_type": 17,
+      "labels": [
+        "nuevo",
+        "dificil",
+        "facil"
+      ],
+      "do_count": 4
+    },
+    {
+      "name": "FANPRESENT",
+      "file": "anims.dlg",
+      "native_type": 1,
+      "labels": [
+        "main"
+      ],
+      "do_count": 7
+    },
+    {
+      "name": "FANTABERNA",
+      "file": "anims.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FANEMBARKE",
+      "file": "anims.dlg",
+      "native_type": 3,
+      "labels": [
+        "main"
+      ],
+      "do_count": 3
+    },
+    {
+      "name": "FANPATATAS",
+      "file": "anims.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FANCAMAROTE",
+      "file": "anims.dlg",
+      "native_type": 2,
+      "labels": [
+        "main",
+        "ent1",
+        "ent2",
+        "ent3",
+        "ent4",
+        "ent5",
+        "ent6",
+        "ent7"
+      ],
+      "do_count": 10
+    },
+    {
+      "name": "FANMOTIN",
+      "file": "anims.dlg",
+      "native_type": 4,
+      "labels": [
+        "main",
+        "ent1",
+        "ent2",
+        "ent3"
+      ],
+      "do_count": 3
+    },
+    {
+      "name": "FANMLGISLA",
+      "file": "anims.dlg",
+      "native_type": 5,
+      "labels": [
+        "main"
+      ],
+      "do_count": 2
+    },
+    {
+      "name": "FANPLAYA",
+      "file": "anims.dlg",
+      "native_type": 6,
+      "labels": [
+        "main"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "FEXPLOSION",
+      "file": "anims.dlg",
+      "native_type": 7,
+      "labels": [
+        "main",
+        "ent2",
+        "ent3"
+      ],
+      "do_count": 2
+    },
+    {
+      "name": "FANBARCO",
+      "file": "anims.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FANENTLAB",
+      "file": "anims.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FANINLAB",
+      "file": "anims.dlg",
+      "native_type": 0,
+      "labels": [
+        "main",
+        "ent1"
+      ],
+      "do_count": 7
+    },
+    {
+      "name": "FANMLGTES",
+      "file": "anims.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FANLUCHDICK",
+      "file": "anims.dlg",
+      "native_type": 18,
+      "labels": [
+        "main"
+      ],
+      "do_count": 2
+    },
+    {
+      "name": "FANLUCHAFRS",
+      "file": "anims.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FFINAL",
+      "file": "anims.dlg",
+      "native_type": 19,
+      "labels": [
+        "main"
+      ],
+      "do_count": 5
+    },
+    {
+      "name": "CONV1",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main",
+        "conti"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CNVRECLUTA",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main",
+        "funcion1",
+        "nodoblon",
+        "sidoblon",
+        "yadado"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "CONV5",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV6",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV9",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV10",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main",
+        "ent1",
+        "ent2",
+        "ent1b",
+        "ent2b"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV12",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main",
+        "nonudo1",
+        "ent2",
+        "funcion",
+        "noron",
+        "ron",
+        "ent7",
+        "ent8",
+        "yanudo"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV15",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main",
+        "ent0",
+        "ent1",
+        "ent3",
+        "ent4"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV16",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV18",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV19",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV20",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV21",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV22",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "CONV24",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV25",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV26",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV27",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV28",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV29",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV30",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 5
+    },
+    {
+      "name": "CONV31",
+      "file": "Convers.dlg",
+      "native_type": 10,
+      "labels": [
+        "primero",
+        "main",
+        "cont"
+      ],
+      "do_count": 4
+    },
+    {
+      "name": "CONV33",
+      "file": "Convers.dlg",
+      "native_type": 8,
+      "labels": [
+        "main",
+        "ent1",
+        "ent2",
+        "ent3"
+      ],
+      "do_count": 2
+    },
+    {
+      "name": "FCONECTA",
+      "file": "Convers.dlg",
+      "native_type": 14,
+      "labels": [
+        "main"
+      ],
+      "do_count": 2
+    },
+    {
+      "name": "CONV34",
+      "file": "Convers.dlg",
+      "native_type": 11,
+      "labels": [
+        "main",
+        "nounguent",
+        "unguent"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV35",
+      "file": "Convers.dlg",
+      "native_type": 12,
+      "labels": [
+        "main"
+      ],
+      "do_count": 2
+    },
+    {
+      "name": "CONV36",
+      "file": "Convers.dlg",
+      "native_type": 13,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV37",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main",
+        "primera",
+        "segunda",
+        "nocurado",
+        "curado"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV39",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV40",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV41",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV42",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV43",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "CONV44",
+      "file": "Convers.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIBOLI",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "capitan",
+        "primera",
+        "nosabescuerda",
+        "sabescuerda",
+        "segunda",
+        "reclutador",
+        "dick",
+        "nudero"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIHLFDBLN",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "jim",
+        "reclutador",
+        "nosabes",
+        "sabes",
+        "dick"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "FIJARRA",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "dick",
+        "dinero",
+        "nodinero",
+        "segunda"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIJARRALLENA",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "nudero",
+        "ent1",
+        "ent2",
+        "tonto",
+        "ent4",
+        "ent5"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIDOBLON",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "nudero",
+        "dick",
+        "tonto",
+        "ent3",
+        "ent4"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FICUERDA",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "nudero",
+        "ent1",
+        "ent2"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FICNUDO",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "reclutador",
+        "dick"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FICOFRE",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "abrir",
+        "ent1",
+        "ent2"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FICIRUELA",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "abrir",
+        "ent1",
+        "ent2"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIPIMIENTO",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "pescador"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIREVITALIZA",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "loro",
+        "primera",
+        "demas"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FICIRABR",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "iplato",
+        "ent1",
+        "ent2"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIPLATO",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "ent1",
+        "ent2",
+        "ent3",
+        "pimientos",
+        "revitalizante",
+        "polvora",
+        "ciruela",
+        "ciruelaabierta"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIGUSANO",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "pescador",
+        "ent1",
+        "ent2",
+        "loro",
+        "primera",
+        "segunda"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIRECET",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIPESCAO",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "iplato",
+        "pucherito"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FILLAVE",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "cerradura"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FICOCO",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "rocas"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FICANTO",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "rocas",
+        "obtusu",
+        "primera",
+        "demas"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIPIEDRAA",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "obtusu",
+        "cocotero",
+        "primera",
+        "demas",
+        "rocas",
+        "ent5",
+        "ent6"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "FIMAPA",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "nomechero",
+        "yamechero",
+        "mechero"
+      ],
+      "do_count": 3
+    },
+    {
+      "name": "FICUB0MAR",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "jim",
+        "ent1",
+        "ent2"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "FIPOMEZ",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "geiser"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIMECHERO",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "orzoguei",
+        "mapa"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "FIXCUERDA",
+      "file": "Icons.dlg",
+      "native_type": 15,
+      "labels": [
+        "diente"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "FIPROBERV",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "ent1",
+        "ent2",
+        "ent3",
+        "ent4",
+        "ent5",
+        "ent6",
+        "ent7",
+        "ent8",
+        "ent9",
+        "ent10",
+        "ent11",
+        "ent12",
+        "ent13"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIBOLSO",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "abrir"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FIESPADA",
+      "file": "Icons.dlg",
+      "native_type": 0,
+      "labels": [
+        "cuerda"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "FPUERTARARA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "ir1",
+        "ir2"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FDEFAULT",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "coger",
+        "hablar",
+        "abrir",
+        "default1",
+        "default2",
+        "boli"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FJIM",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "puerto",
+        "barco",
+        "isla",
+        "armario",
+        "final",
+        "coger",
+        "abrir",
+        "mover",
+        "hablar"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FNOCOGER",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "coger"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FBOLI",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "coger",
+        "primera",
+        "segunda",
+        "abrir"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FCARTA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "primera",
+        "segunda"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FTABURETE",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "coger",
+        "ent1",
+        "ent2",
+        "mover",
+        "ent4",
+        "ent5"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FPEZESP",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FCAJON",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "abrir",
+        "ent1",
+        "ent2"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FPLACA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "ent1",
+        "ent2"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FCAPITAN",
+      "file": "objetos.dlg",
+      "native_type": 21,
+      "labels": [
+        "hablar",
+        "busca1",
+        "dadoboli1",
+        "nosabescuerda",
+        "sabescuerda",
+        "dadoboli2",
+        "salir"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "FRECLUTADOR",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "hablar",
+        "desactivar",
+        "continuar",
+        "ent1",
+        "ent2",
+        "ent3",
+        "ent4",
+        "nodoblon1",
+        "nodoblonx",
+        "sidoblon1",
+        "sidoblonx",
+        "final1",
+        "finalx"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FDICKTABER",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "hablar",
+        "ent1",
+        "ent2",
+        "ent3"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FLORO",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "hablar"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FNUDERO",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "hablar",
+        "ent0",
+        "ent1",
+        "ent2",
+        "ron",
+        "ent3"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FJOE",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "hablar"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FSALTABERNA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "main",
+        "jallena"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FTONTO",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "sabes",
+        "hablar",
+        "sabes1",
+        "sabesx"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FPESCADOR",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "hablar",
+        "ent0",
+        "ent1",
+        "ent2",
+        "ent3",
+        "ent4"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FLUDOPATA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "main",
+        "ent1",
+        "ent2"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FCIRUELAS",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "coger",
+        "ent1",
+        "ent2"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FCOFRE",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "ent1",
+        "ent2",
+        "coger",
+        "ent4",
+        "ent5",
+        "abrir",
+        "ent7",
+        "ent8"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FCUERDA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "coger",
+        "ent1",
+        "ent2"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FSALMACEN",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "ir",
+        "ent1"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FPATATAS",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "coger",
+        "ent1",
+        "ent2"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FPUCHERO",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "hablar"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FCUBO",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "coger"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FDICKCOCINA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "hablar",
+        "ent0",
+        "ent1",
+        "noseusa",
+        "ent3"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FLOROCOCINA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "hablar",
+        "ent1",
+        "ent2",
+        "ent3",
+        "mirar",
+        "curado"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FLIBROS",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "lib0",
+        "lib1",
+        "lib2",
+        "lib3",
+        "lib4"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "FBANDERA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FLIBRO",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "mnoleido",
+        "mleido",
+        "coger",
+        "cnoleido",
+        "cleido"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FPAPELES",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "coger",
+        "cogmirar",
+        "cogpap"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FALFOMBRA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "coger",
+        "nollave",
+        "llave"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FMESA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "nopap",
+        "pap1",
+        "papx"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FSALCAMAROTE",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "ira",
+        "noterminado",
+        "mapa"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FBAULOPEN",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "mirar1",
+        "mirar2",
+        "mirarx"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FBAUL",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "main",
+        "main2"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FVENTOPEN",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "notienmapa",
+        "tienmapa"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FBARCO",
+      "file": "objetos.dlg",
+      "native_type": 16,
+      "labels": [
+        "ir",
+        "noir"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "FCOCOTERO",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mover",
+        "hablar",
+        "primera",
+        "segunda",
+        "demas"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FCHOZA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "mir",
+        "ir",
+        "seguir",
+        "cococerr",
+        "cocoabrt"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FORZOGUEI",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "nocurado",
+        "curado1",
+        "curadox",
+        "hablar",
+        "habnocur",
+        "habcur1",
+        "habcurx",
+        "nojustino1",
+        "nojustinox",
+        "segnojust",
+        "nohacernada",
+        "justino1",
+        "justinox",
+        "segjust",
+        "nohacernada2",
+        "pruebas",
+        "enganado"
+      ],
+      "do_count": 2
+    },
+    {
+      "name": "FOBTUSU",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "mnohab",
+        "myahab",
+        "hablar",
+        "nohab",
+        "yahab",
+        "pruebas"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FTABLERO",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "sabes",
+        "nosabes"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FENTVOLCAN",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "ir",
+        "justino",
+        "nojustino"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FJUSTINO",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "hablar",
+        "primera",
+        "segunda",
+        "demas",
+        "nounguent",
+        "unguent",
+        "hipnotiz"
+      ],
+      "do_count": 5
+    },
+    {
+      "name": "FFERNAN",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "hablar",
+        "coger"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FSALPANTA",
+      "file": "objetos.dlg",
+      "native_type": 9,
+      "labels": [
+        "main"
+      ],
+      "do_count": 2
+    },
+    {
+      "name": "FCERRADURA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FPIRATAS",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FCAMPMAPA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "coger"
+      ],
+      "do_count": 1
+    },
+    {
+      "name": "FENTCUEVA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "ir"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FSOUVENIR",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "coger",
+        "nomechero",
+        "mechero"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FTIENDA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "hablar",
+        "hipnotiz",
+        "nohipnot",
+        "hab2nomech",
+        "hab1mech",
+        "habxmech"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FCAPIMUERTO",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "demas"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FCORTAR",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FESPADA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "coger"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FNOTARIP",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FSUICIDA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "notaleida"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FMAPA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "tsagrada"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FNOUSAROBJ",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "main"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FPUERTALAB",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "drascula",
+        "entrada"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FNOTALAB",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "mirar",
+        "n0",
+        "n1",
+        "n2",
+        "n3",
+        "n4",
+        "n5",
+        "n6"
+      ],
+      "do_count": 0
+    },
+    {
+      "name": "FCUERDALUCHA",
+      "file": "objetos.dlg",
+      "native_type": 0,
+      "labels": [
+        "default1",
+        "default2",
+        "espada"
+      ],
+      "do_count": 0
+    }
+  ]
+}

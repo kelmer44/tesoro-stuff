@@ -11,6 +11,9 @@ local-media/
 *.flac
 *.mp3
 *.ogg
+*.mp4
+*.mov
+*.mkv
 
 # Active engine checkout and generated app binaries stay separate.
 /scummvm/
@@ -18,10 +21,28 @@ prototype/*.app/
 prototype/*.patch
 prototype/*.ini
 prototype/saves/
+*.o
+*.a
+*.dylib
+*.so
+*.dSYM/
 
-# Keep reproducible text exports and PNG previews; omit local databases/caches.
+# Keep research exports/catalogues and selected PNG evidence; omit run output.
+*.log
 analysis/ghidra-project/
-analysis/*.bmp
+analysis/**/*.bmp
+*.gpr
+*.rep/
+*.gpr.lock
+*.rep.lock
+
+# Local environments, caches and temporary files.
+.venv/
+venv/
+.pytest_cache/
 __pycache__/
 *.py[cod]
+*.tmp
+*.swp
+*.swo
 .DS_Store

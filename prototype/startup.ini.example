@@ -1,0 +1,12 @@
+[scummvm]
+gfx_mode=surfacesdl
+fullscreen=false
+autosave_period=0
+
+[tesoro-startup]
+engineid=tesoro
+gameid=tesoro
+platform=windows
+language=es
+path=/Users/gabriel/Desktop/ags/TESORO
+tesoro_movie_path=/Volumes/TESORO/Install/bin

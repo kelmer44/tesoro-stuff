@@ -55,7 +55,9 @@ of being skipped. Only tail-position script transfers are supported.
 ## Source and build
 
 The active [ScummVM `tesoro` branch](https://github.com/kelmer44/scummvm/tree/tesoro/engines/tesoro)
-contains only the generated starter. Its local checkout is a linked worktree at
+now contains an incremental startup implementation: opening movies and original
+menu navigation in a paced loop. See [startup notes](../STARTUP_AND_LOOP.md).
+Adventure gameplay is still preserved in this prototype. The active checkout is a linked worktree at
 `../scummvm-tesoro`, sharing Git metadata with `../scummvm-fork` and the Igor and
 Darkseed 2 worktrees. The notes repository contains the preserved source at
 [source/engines/tesoro](source/engines/tesoro), not a full ScummVM checkout.

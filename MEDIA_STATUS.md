@@ -1,5 +1,9 @@
 # Original-disc inspection
 
+**21 October update:** movies 0 and 1 now play through ScummVM's Indeo decoder in
+the active startup implementation; the full startup test decodes 461 frames.
+See [startup validation](STARTUP_AND_LOOP.md). Other movies still need runtime checks.
+
 20 October 2026. The Tesoro disc is already mounted at `/Volumes/TESORO`.
 
 ## Verified

@@ -1,5 +1,11 @@
 # El Tesoro de Isla Alcachofa: ScummVM feasibility and plan
 
+**21 October 2026: historical assessment.** The governing implementation plan is
+now [MASTER_PLAN.md](MASTER_PLAN.md), with a live checkpoint in
+[RE_STATUS.md](RE_STATUS.md). Its full-game fidelity requirements and milestone
+order supersede the provisional plan below. Preserve this report as evidence of
+the initial investigation; several initial gaps have since been resolved.
+
 **Update, 20 October 2026:** the first C++ ScummVM prototype is now runnable. It completes the office pen sequence and exits to the harbour with original dialogue and assets. [Run it and see current limitations](prototype/README.md).
 
 Investigated 19 October 2026, using the copy in `/Users/gabriel/Desktop/ags/TESORO`.
