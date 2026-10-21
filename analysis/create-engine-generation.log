@@ -1,0 +1,16 @@
+Creating directory ./engines/tesoro...done
+Creating file ./engines/tesoro/configure.engine...done
+Creating file ./engines/tesoro/console.cpp...done
+Creating file ./engines/tesoro/console.h...done
+Creating file ./engines/tesoro/credits.pl...done
+Creating file ./engines/tesoro/detection.cpp...done
+Creating file ./engines/tesoro/detection.h...done
+Creating file ./engines/tesoro/detection_tables.h...done
+Creating file ./engines/tesoro/metaengine.cpp...done
+Creating file ./engines/tesoro/metaengine.h...done
+Creating file ./engines/tesoro/module.mk...done
+Creating file ./engines/tesoro/tesoro.cpp...done
+Creating file ./engines/tesoro/tesoro.h...done
+Creating file ./engines/tesoro/POTFILES...done
+Creating file ./dists/msvc/tesoro.bat...done
+Engine generation complete.

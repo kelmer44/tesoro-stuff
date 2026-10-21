@@ -12,7 +12,7 @@ local-media/
 *.mp3
 *.ogg
 
-# Engine source and binaries live in the separate ScummVM checkout.
+# Active engine checkout and generated app binaries stay separate.
 /scummvm/
 prototype/*.app/
 prototype/*.patch

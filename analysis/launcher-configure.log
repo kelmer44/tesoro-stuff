@@ -1,0 +1,279 @@
+Running ScummVM configure...
+Looking for C++ compiler... g++
+Checking if compiler supports C++11... yes
+Checking for compiler version... clang 21.0.0, ok
+Checking if C++11 initializer_list is available... yes
+Checking if C++11 std::nullptr_t is available... yes
+Checking if C++11 alignas and alignof keywords are available... yes
+Checking best debug mode... -g
+Using LLD linker... no
+Using Mold linker... no
+Using Gold linker... no
+Checking for whether C++ compiler accepts -Wglobal-constructors... yes
+Checking for whether C++ compiler accepts -Wframe-larger-than=307200... yes
+Checking for whether C++ compiler accepts -Wno-undefined-var-template... yes
+Checking for whether C++ compiler accepts -Wno-pragma-pack... yes
+Checking for whether C++ compiler accepts -Wno-address-of-packed-member... yes
+Checking for whether C++ compiler accepts -Werror=newline-eof... yes
+Checking endianness... little
+Alignment required... yes
+Checking host CPU architecture... aarch64
+Checking hosttype... darwin25.6.0
+You seem to be running Homebrew version 7.0.9...adding /opt/homebrew to paths
+Set staticlib-prefix to /opt/homebrew
+Set xcodetools-path to /Applications/Xcode.app/Contents/Developer/Tools
+Checking for macOS deployment target... 26.0
+Checking for unused components...
+   Feature CDTOONS is disabled as unused by enabled engines
+   Feature FM-TOWNS/PC98 audio is disabled as unused by enabled engines
+   Feature GIF is disabled as unused by enabled engines
+   Feature HNM is disabled as unused by enabled engines
+   Feature Dear ImGui based debugger is disabled as unused by enabled engines
+   Feature Indeo 3 is disabled as unused by enabled engines
+   Feature Indeo 4&5 is disabled as unused by enabled engines
+   Feature JYV1 is disabled as unused by enabled engines
+   Feature Lua is disabled as unused by enabled engines
+   Feature MFC is disabled as unused by enabled engines
+   Feature MIDI synthesis is disabled as unused by enabled engines
+   Feature MPC is disabled as unused by enabled engines
+   Feature mpeg2 is disabled as unused by enabled engines
+   Feature QDM2 is disabled as unused by enabled engines
+   Feature SID audio is disabled as unused by enabled engines
+   Feature Sorenson Video 1 is disabled as unused by enabled engines
+   Feature TinyGL is disabled as unused by enabled engines
+   Feature TrueMotion 1 is disabled as unused by enabled engines
+   Feature External Tracker Libraries is disabled as unused by enabled engines
+   Feature VGMTrans Soundfont audio is disabled as unused by enabled engines
+   Feature XAN is disabled as unused by enabled engines
+   Disabling mt32emu, fluidsynth, fluidlite, timidity and sonivox because MIDI is unused by enabled engines
+   Disabling MikMod and OpenMPT because Universal Tracker playback is unused by enabled engines
+...check complete
+Checking for pkg-config... yes
+Looking for sdl-config... /opt/homebrew/bin/sdl2-config
+Checking for SDL... yes
+Checking if host is POSIX compliant... yes
+Checking if posix_spawn is required and supported... no
+Checking if fseeko with 64-bit off_t is supported... yes
+Checking whether to have a verbose build... no
+Checking whether building plugins was requested... no
+Checking if detection features building statically... yes
+Checking if building detection features for all engines... no
+Checking for Ogg... yes
+Checking for TTS libraries... yes
+Checking for Vorbis... yes
+Checking for Tremor... no (Vorbis/Tremor support is mutually exclusive)
+Checking for OPL2LPT... no
+Checking for RetroWave OPL3... yes
+Checking for FLAC >= 1.1.3... yes
+Checking for MAD... no
+Checking for ALSA >= 0.9... no
+Checking for libjpeg >= v6b... yes
+Checking for PNG >= 1.2.8... yes
+Checking for GIF >= 5.0.0... no
+Checking for libtheoradec >= 1.0... no
+Checking for libvpx >= 1.6... no
+Checking for libfaad... no
+Checking for SEQ MIDI... no
+Checking for sndio... no
+Checking for TiMidity... no
+Checking for zlib... yes
+Checking for libmpeg2 >= 0.4.0... no
+Checking for liba52... yes
+Checking for Sparkle >= 2.0... no
+Checking for libcurl... no
+Checking for Network client... no
+Checking for libopenmpt... no
+Checking for libmikmod... no (OpenMPT/MikMod support is mutually exclusive)
+Checking for libmpcdec... no
+Checking for DockTilePlugin... no
+Checking for FluidSynth... no
+Checking for FluidLite... no
+Checking for Sonivox >= 3.6.12... no
+Checking for readline... skipping (text console disabled)
+Checking for libunity... no
+Checking for gtk... no
+Checking for FreeType2... yes
+Checking for OpenGL... yes (OpenGL)
+Checking for OpenGL for game... yes (shaders enabled)
+Checking for pandoc... yes
+Checking for curl... yes
+Checking for FriBidi... no
+Test C++11 compatibility during compilation... no
+Checking for Discord RPC... no
+Checking for ImGui... no
+Building translation support... yes (with runtime language detection)
+Building taskbar integration support... osx
+Building system printing support... no
+Building system dialogs support... osx
+Building text-to-speech support... osx (AVSpeechSynthesizer)
+Building TinyGL support... no
+Building any 3D game... yes
+Building Bink video support... yes
+Building updates support... no
+Building cloud integration... no
+Building local web server... no
+Enabling Address Sanitizer... no
+Enabling Thread Sanitizer... no
+Enabling Undefined Behavior Sanitizer... no
+Enabling x86/amd64 SSE2... no
+Enabling x86/amd64 AVX2... no
+Enabling ARM NEON... yes
+Backend... sdl (2.32.10), 16bit color, high resolution, savegame timestamp, HQ and Edge scalers, aspect ratio correction, Nuked OPL emulator
+
+Engines (builtin):
+    Tesoro 
+
+Engines Skipped:
+    SCUMM 
+    Access 
+    ADL 
+    AGDS (Black Mirror and NiBiRu) 
+    AGI 
+    AGOS 
+    Adventure Game Studio 
+    Alcachofa 
+    American Laser Games 
+    Sanitarium 
+    Lord Avalot d'Argent 
+    Another World 
+    BAGEL 
+    Beavis and Butthead in Virtual Stupidity 
+    Blade Runner 
+    The Journeyman Project 2: Buried in Time 
+    CGE 
+    CGE2 
+    Chamber 
+    Chewy: Esc from F5 
+    Cinematique evo 1 
+    Magic Composer 
+    CRAB 
+    Cinematique evo 2 
+    Lost Eden 
+    Cryo Omni3D games 
+    Darkseed 
+    Dynamix Game Development System 
+    Macromedia Director 
+    Dungeon Master 
+    Dragon History 
+    Blazing Dragons 
+    Drascula: The Vampire Strikes Back 
+    Dreamweb 
+    Escape From Hell 
+    Freescape 
+    Gamos 
+    Glk Interactive Fiction games 
+    UFOs 
+    Gobli*ns 
+    Got 
+    The Griffon Legend 
+    Grim 
+    Groovie 
+    Hades Challenge 
+    Hyperspace Delivery Boy! 
+    Hopkins FBI 
+    Hpl1 
+    Hugo Trilogy 
+    Hypnotix Inc. 
+    In Cold Blood 
+    Illusions Engine 
+    The Immortal 
+    Kingdom: The Far Reaches 
+    Kyra 
+    Labyrinth of Time 
+    The Last Express 
+    Lilliput 
+    Lure of the Temptress 
+    M4 
+    MacVenture 
+    MADE 
+    MADS 
+    Media Station 
+    Might and Magic 
+    Mohawk 
+    Mortevielle 
+    mTropolis 
+    Mutation of JB 
+    Myst 3 
+    Nancy Drew 
+    Neverhood 
+    Nikita Game Interface 
+    Parallaction 
+    The Journeyman Project: Pegasus Prime 
+    Red Comrades 
+    Phoenix VR 
+    Pink Panther 
+    Playground 3D: the testing and playground environment for 3d renderers 
+    Plumbers Don't Wear Ties 
+    The Prince and The Coward 
+    Private Eye 
+    QD Engine 
+    Flight of the Amazon Queen 
+    SAGA 
+    SAGA2 
+    SCI 
+    The Lost Files of Sherlock Holmes 
+    Beneath a Steel Sky 
+    Sludge 
+    The Longest Journey 
+    Star Trek 25th Anniversary/Judgment Rites 
+    Mission Supernova 
+    Broken Sword 
+    Broken Sword II 
+    Broken Sword 2.5 
+    Teen Agent 
+    TestBed: the Testing framework 
+    Tetraedge 
+    Tinsel 
+    Starship Titanic 
+    3 Skulls of the Toltecs 
+    Tony Tough and the Night of Roasted Moths 
+    Toonstruck 
+    Tot 
+    Touche: The Adventures of the Fifth Musketeer 
+    Trecision Adventure Module 
+    TsAGE 
+    Bud Tucker in Double Trouble 
+    Little Big Adventure 
+    Thimbleweed Park 
+    Ultima 
+    V-Cruise 
+    Voyeur 
+    WAGE 
+    The Watchmaker 
+    Wintermute 
+    Z-Vision 
+
+WARNING: This ScummVM build contains the following UNSTABLE engines:
+    Tesoro 
+
+Components Disabled: 
+    CDTOONS
+    ENet
+    FM-TOWNS/PC98 audio
+    GIF
+    HNM
+    Dear ImGui based debugger
+    Indeo 3
+    Indeo 4&5
+    JYV1
+    Lua
+    MFC
+    libvpx
+    libtheoradec
+    MIDI synthesis
+    MPC
+    mpeg2
+    QDM2
+    SID audio
+    Sorenson Video 1
+    TinyGL
+    TrueMotion 1
+    External Tracker Libraries
+    VGMTrans Soundfont audio
+    XAN
+
+Creating engines/engines.mk
+Creating engines/detection_table.h
+Creating engines/plugins_table.h
+Creating config.h
+Creating config.mk

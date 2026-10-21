@@ -1,0 +1,2 @@
+./configure --disable-all-engines --enable-engine=tesoro --disable-detection-full --with-sdl-prefix=/opt/homebrew --disable-sparkle --disable-osx-dock-plugin --disable-libcurl --disable-sdlnet --disable-enet --disable-discord --disable-mad --disable-fluidsynth --disable-fluidlite --disable-theoradec --disable-vpx --disable-faad --disable-readline --disable-fribidi --enable-freetype2
+make -j8

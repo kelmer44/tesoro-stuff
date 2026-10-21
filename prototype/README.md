@@ -78,11 +78,10 @@ The configuration used for the first prototype build is saved in
 
 The preserved prototype has a controlled-host self-test and a full real-time autoplay test.
 These commands require a build of that prototype, not the generated starter.
-For the local packaged binary, use:
 Both use the real resource archive; neither modifies it. Automated runs use SDL's
 dummy display/audio outputs, so voices are decoded and mixed without playing
 through speakers. These checks do not establish perfect fidelity to the original
-Windows game.
+Windows game. For the local packaged binary, use:
 
 ```sh
 cd /Users/gabriel/Desktop/source/tesoro
@@ -104,3 +103,21 @@ Next useful milestone: compare this path with the running Windows original,
 then recover the floor/path code and general object hotspots before adding more
 puzzles. This will improve the foundation instead of accumulating guessed
 behaviour.
+
+## Launcher appearance
+
+The initial minimal build disabled FreeType, so the launcher could fall back to
+bitmap fonts. The corrected local build enables it; the exact configure command
+is in `launcher-build-command.txt`. This changes only ignored local build
+configuration, not the generated engine source.
+
+Run ScummVM from its source root so it can find its theme/font resources, or pass
+the paths explicitly:
+
+```sh
+cd ../scummvm-tesoro
+./scummvm --themepath=gui/themes --extrapath=dists/engine-data
+```
+
+Restart an already running launcher to use the rebuilt binary. The separately
+preserved prototype app still contains its original binary.

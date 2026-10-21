@@ -1,0 +1,47 @@
+[2026-10-21 07:11:02] ScummVM 2026.1.1git2474-gcd6decf664f (Oct 21 2026 07:09:57)
+[2026-10-21 07:11:02] TAINTED Vorbis FLAC RGB zLib A/52 FreeType2 JPEG PNG taskbar TTS SDL2 OpenGL (with shaders) OpenGL desktop only RetroWave 
+[2026-10-21 07:11:02] --- Log opened.
+[2026-10-21 07:11:02] Using SDL Video Driver "dummy"
+[2026-10-21 07:11:02] SDL Video Detecting OpenGL Features...
+[2026-10-21 07:11:02] SDL Video Detecting Anti-aliasing Support...
+[2026-10-21 07:11:02] Checking SDL Antialiasing Support With 2 Samples... No Window
+[2026-10-21 07:11:02] Checking SDL Antialiasing Support With 4 Samples... No Window
+[2026-10-21 07:11:02] Checking SDL Antialiasing Support With 8 Samples... No Window
+[2026-10-21 07:11:02] Checking SDL Antialiasing Support With 16 Samples... No Window
+[2026-10-21 07:11:02] Checking SDL Antialiasing Support With 32 Samples... No Window
+[2026-10-21 07:11:02] SDL Video OpenGL Feature Detection Complete
+[2026-10-21 07:11:02] Invalid joystick: 0
+[2026-10-21 07:11:02] creating SurfaceSDL graphics manager
+[2026-10-21 07:11:02] creating OpenGL graphics manager
+[2026-10-21 07:11:02] creating SurfaceSDL graphics manager
+[2026-10-21 07:11:02] Using SDL Audio Driver "dummy"
+[2026-10-21 07:11:02] Output sample rate: 44100 Hz
+[2026-10-21 07:11:02] Output buffer size: 1024 samples
+[2026-10-21 07:11:02] Output channels: 2
+[2026-10-21 07:11:02] HardwareInput with ID 'JOY_START' not known
+[2026-10-21 07:11:02] HardwareInput with ID 'JOY_LEFT_STICK_Y-' not known
+[2026-10-21 07:11:02] HardwareInput with ID 'JOY_LEFT_STICK_Y+' not known
+[2026-10-21 07:11:02] HardwareInput with ID 'JOY_LEFT_STICK_X-' not known
+[2026-10-21 07:11:02] HardwareInput with ID 'JOY_LEFT_STICK_X+' not known
+[2026-10-21 07:11:02] HardwareInput with ID 'JOY_RIGHT_SHOULDER' not known
+[2026-10-21 07:11:02] CPU extensions:
+[2026-10-21 07:11:02] SSE2(not supported) AVX2(not supported) NEON(enabled)
+[2026-10-21 07:11:02] Setting 640 x 480 -> 640 x 480 -- 1
+[2026-10-21 07:11:02] generateZipSet: Loaded pack file: gui-icons.dat
+[2026-10-21 07:11:02] Loading theme /Users/gabriel/Desktop/source/scummvm-tesoro/gui/themes/scummremastered.zip
+[2026-10-21 07:11:02] FSDirectory::createReadStreamForMember('fonts.dat') -> '/Users/gabriel/Desktop/source/scummvm-tesoro/dists/engine-data/fonts.dat'
+[2026-10-21 07:11:02] FSDirectory::createReadStreamForMember('fonts.dat') -> '/Users/gabriel/Desktop/source/scummvm-tesoro/dists/engine-data/fonts.dat'
+[2026-10-21 07:11:02] FSDirectory::createReadStreamForMember('fonts.dat') -> '/Users/gabriel/Desktop/source/scummvm-tesoro/dists/engine-data/fonts.dat'
+[2026-10-21 07:11:02] FSDirectory::createReadStreamForMember('fonts.dat') -> '/Users/gabriel/Desktop/source/scummvm-tesoro/dists/engine-data/fonts.dat'
+[2026-10-21 07:11:02] Finished loading theme /Users/gabriel/Desktop/source/scummvm-tesoro/gui/themes/scummremastered.zip
+[2026-10-21 07:11:02] WARNING: initWithU32String: Fribidi not available, will use input strings as fallback.!
+[2026-10-21 07:11:02] HardwareInput with ID 'JOY_A' not known
+[2026-10-21 07:11:02] HardwareInput with ID 'JOY_Y' not known
+[2026-10-21 07:11:02] HardwareInput with ID 'JOY_UP' not known
+[2026-10-21 07:11:02] HardwareInput with ID 'JOY_DOWN' not known
+[2026-10-21 07:11:02] HardwareInput with ID 'JOY_LEFT' not known
+[2026-10-21 07:11:02] HardwareInput with ID 'JOY_RIGHT' not known
+[2026-10-21 07:11:02] Setting 640 x 480 -> 640 x 480 -- 1
+[2026-10-21 07:11:02] Loading theme /Users/gabriel/Desktop/source/scummvm-tesoro/gui/themes/scummremastered.zip
+[2026-10-21 07:11:02] Finished loading theme /Users/gabriel/Desktop/source/scummvm-tesoro/gui/themes/scummremastered.zip
+[2026-10-21 07:11:06] --- Log closed successfully.

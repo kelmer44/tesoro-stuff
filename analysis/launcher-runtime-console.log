@@ -1,0 +1,45 @@
+Using configuration file: /private/tmp/tesoro-launcher-check-uo4ue8f0/scummvm.ini
+Debuglevel (from command line): 6
+Using SDL Video Driver "dummy"
+SDL Video Detecting OpenGL Features...
+SDL Video Detecting Anti-aliasing Support...
+Checking SDL Antialiasing Support With 2 Samples... No Window
+Checking SDL Antialiasing Support With 4 Samples... No Window
+Checking SDL Antialiasing Support With 8 Samples... No Window
+Checking SDL Antialiasing Support With 16 Samples... No Window
+Checking SDL Antialiasing Support With 32 Samples... No Window
+SDL Video OpenGL Feature Detection Complete
+Invalid joystick: 0
+creating SurfaceSDL graphics manager
+creating OpenGL graphics manager
+creating SurfaceSDL graphics manager
+Using SDL Audio Driver "dummy"
+Output sample rate: 44100 Hz
+Output buffer size: 1024 samples
+Output channels: 2
+HardwareInput with ID 'JOY_START' not known
+HardwareInput with ID 'JOY_LEFT_STICK_Y-' not known
+HardwareInput with ID 'JOY_LEFT_STICK_Y+' not known
+HardwareInput with ID 'JOY_LEFT_STICK_X-' not known
+HardwareInput with ID 'JOY_LEFT_STICK_X+' not known
+HardwareInput with ID 'JOY_RIGHT_SHOULDER' not known
+CPU extensions:
+SSE2(not supported) AVX2(not supported) NEON(enabled)
+Setting 640 x 480 -> 640 x 480 -- 1
+generateZipSet: Loaded pack file: gui-icons.dat
+Loading theme /Users/gabriel/Desktop/source/scummvm-tesoro/gui/themes/scummremastered.zip
+FSDirectory::createReadStreamForMember('fonts.dat') -> '/Users/gabriel/Desktop/source/scummvm-tesoro/dists/engine-data/fonts.dat'
+FSDirectory::createReadStreamForMember('fonts.dat') -> '/Users/gabriel/Desktop/source/scummvm-tesoro/dists/engine-data/fonts.dat'
+FSDirectory::createReadStreamForMember('fonts.dat') -> '/Users/gabriel/Desktop/source/scummvm-tesoro/dists/engine-data/fonts.dat'
+FSDirectory::createReadStreamForMember('fonts.dat') -> '/Users/gabriel/Desktop/source/scummvm-tesoro/dists/engine-data/fonts.dat'
+Finished loading theme /Users/gabriel/Desktop/source/scummvm-tesoro/gui/themes/scummremastered.zip
+WARNING: initWithU32String: Fribidi not available, will use input strings as fallback.!
+HardwareInput with ID 'JOY_A' not known
+HardwareInput with ID 'JOY_Y' not known
+HardwareInput with ID 'JOY_UP' not known
+HardwareInput with ID 'JOY_DOWN' not known
+HardwareInput with ID 'JOY_LEFT' not known
+HardwareInput with ID 'JOY_RIGHT' not known
+Setting 640 x 480 -> 640 x 480 -- 1
+Loading theme /Users/gabriel/Desktop/source/scummvm-tesoro/gui/themes/scummremastered.zip
+Finished loading theme /Users/gabriel/Desktop/source/scummvm-tesoro/gui/themes/scummremastered.zip

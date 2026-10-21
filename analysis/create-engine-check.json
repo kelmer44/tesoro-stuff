@@ -1,0 +1,33 @@
+{
+  "generator": "devtools/create_engine/create_engine.cpp",
+  "arguments": [
+    "tesoro"
+  ],
+  "working_directory": "ScummVM source root",
+  "verified_files": {
+    "engines/tesoro/POTFILES": "bc5c7002d6ce1e3f50963cc7d52b1429890a1af3efaeb38770615b60b70e9362",
+    "engines/tesoro/configure.engine": "cb57cab0c258ce1e78532ed8fb53c1cfbc93268d4110d7750d55cec4d768f025",
+    "engines/tesoro/console.cpp": "33dff9452de8c5f8a62aa2961c7107037378c0738eda278ee50b5f2059e9c95d",
+    "engines/tesoro/console.h": "5478682dc2ccc8b1d1c6518fe85ddc083510b3acd5236ead2bb84425726a3a5f",
+    "engines/tesoro/credits.pl": "9c1bc76681e37d3376adc6d7ffb0b1ba286ff8e7b9779605648c3181eea0e139",
+    "engines/tesoro/detection.cpp": "701558347293c68340ec3d07dc3af5926608092ea1bad8fbb986fc39b8bbbdbb",
+    "engines/tesoro/detection.h": "f13d8d3bb64b7df55b93374c14a7ee31f53aba57befe1823b1a9cdbd471c7bd6",
+    "engines/tesoro/detection_tables.h": "6b12e1e29c4f52d1f7f325dab4c2d337a0491acd595c80b7ea24e52f0cb3779d",
+    "engines/tesoro/metaengine.cpp": "e8b1a38355f23b5252ac6e4bee33bfc5b20250dd9a9daed9c92ab13e62431890",
+    "engines/tesoro/metaengine.h": "afa314d1f7b63e5ee1ee6d2f8680e2cfeaf0f740e24806ee51e454008693174d",
+    "engines/tesoro/module.mk": "225b0334c2a3ec55bc3daf39361de830cfbd62b3e91dcb20816c37d0bceb4d9e",
+    "engines/tesoro/tesoro.cpp": "51ddb8b398f420c6804086a927df459b14536d495f72a3632b572915d5f14d98",
+    "engines/tesoro/tesoro.h": "ef35726bcbb83b67f4fedae126f1cf4e7171748a93068ed55de9d95088a8fdc0",
+    "dists/msvc/tesoro.bat": "4790dee878ee05a52f0aea174f99effb46ef2acb79e9412c79946370f3d68df7"
+  },
+  "matches_independent_generator_run": true,
+  "prototype_archive": "prototype/source/engines/tesoro",
+  "prototype_commit": "56e25ababf42611c91fa35ba1c716f3a6e703b74",
+  "skeleton_commit": "cd6decf664f1ecbf59217cc8990cab0eaa4ffc65",
+  "skeleton_parent": "0b87092bc08a9f4f9d5cfb6637d0c10448774c1f",
+  "engine_commit_count": 1,
+  "old_prototype_in_tesoro_history": false,
+  "build_passed": true,
+  "working_files_byte_identical_to_generator": true,
+  "committed_files_match_with_repository_line_endings": true
+}
