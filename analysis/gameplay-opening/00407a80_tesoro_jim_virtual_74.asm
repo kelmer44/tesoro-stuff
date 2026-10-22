@@ -1,0 +1,6 @@
+00407a80  MOV EAX,dword ptr [ESP + 0x4]
+00407a84  MOV byte ptr [ECX + 0xd5],0x0
+00407a8b  PUSH EAX
+00407a8c  MOV dword ptr [ECX + 0x10c],EAX
+00407a92  CALL 0x004103d0
+00407a97  RET 0x4

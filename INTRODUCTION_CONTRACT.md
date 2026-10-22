@@ -1,15 +1,15 @@
-# Harbour introduction: contract before implementation
+# Harbour introduction: recovered contract
 
 21 October 2026. Static evidence for the verified executable edition; no
-original runtime comparison is claimed. This is the next implementation target
-after the [source baseline](M0_BASELINE.md).
+original runtime comparison is claimed. The first visible harbour prefix is now
+implemented; current live-build evidence and limits are in [LIVE_OPENING.md](LIVE_OPENING.md).
 
 ## Entry and data scope
 
 The difficulty menu's action 3 calls `0x414560`. That routine places Jim in
 the harbour using the room controller's entry coordinates and starts
-`FANPRESENT/main` with native type 1. The entry coordinates still require mapping;
-do not substitute the preserved prototype's office starting position.
+`FANPRESENT/main` with native type 1. The recovered harbour entry is `(213,104)`,
+with camera center `(320,239)`; see [SCENE_LIFECYCLE.md](SCENE_LIFECYCLE.md).
 
 The script declares participants `JIM` and `CAPITAN`, requests movies 2 and 3,
 18 speech lines with matching audio, one `ANM1BCAP0` sound effect, and eight
@@ -86,13 +86,15 @@ all of these scheduling semantics.
 2. Playback start/end/repeat, frame advancement and scenery dispatch are now
    implemented. Script waiting/completion and character-specific behaviour,
    including CAPITAN's exit, remain. Preserve ignored DO annotations as no-ops.
-3. Implement the script subset with source locations, media/sound requests,
-   offscreen narration, actor speech, waits and object messages in the paced
-   loop. Keep scene context and lazy participant lookup explicit.
+3. The script subset now supplies source locations, movies/sound, offscreen
+   narration, sleeps and activation/show/play messages in the main loop.
+   Actor speech, general scheduling, scene context and lazy participant lookup
+   remain incomplete.
 4. Implement the harbour/office layers, original coordinate transforms, camera,
    scale, shadows and the walk-to-door path using recovered rules.
-5. Connect action 3 once those dependencies support the authentic path. Compare
-   the reference run when its environment has been explicitly authorized.
+5. Action 3 is connected through the harbour reveals and pauses at ordinal 4.
+   Continue that normal path through Jim, the office and captain. Compare the
+   reference run when its environment has been explicitly authorized.
 
 The original runtime remains an open fidelity check. Until then, label this
 work as recovered static behaviour and host validation.

@@ -96,7 +96,7 @@ class NativeScene(NativeAnimation):
     def find_floor(self, uc, address, size, data):
         self.ret(self.floor, arguments=8)
 
-    def invoke(self, target, this=0, args=(), now=100):
+    def invoke(self, target, this=0, args=(), now=100, instruction_limit=1000000):
         self.now = now
         for reg in (UC_X86_REG_EAX, UC_X86_REG_EBX, UC_X86_REG_ECX, UC_X86_REG_EDX,
                     UC_X86_REG_ESI, UC_X86_REG_EDI, UC_X86_REG_EBP):
@@ -106,7 +106,7 @@ class NativeScene(NativeAnimation):
         values = [self.return_address] + [v & 0xffffffff for v in args]
         self.uc.mem_write(self.stack_top, struct.pack('<' + 'I' * len(values), *values))
         self.uc.reg_write(UC_X86_REG_ESP, self.stack_top)
-        self.uc.emu_start(target, self.return_address, count=1000000)
+        self.uc.emu_start(target, self.return_address, count=instruction_limit)
         if self.uc.reg_read(UC_X86_REG_EIP) != self.return_address:
             raise ValueError(f'Native call {target:#x} exceeded the instruction bound')
         return self.uc.reg_read(UC_X86_REG_EAX)

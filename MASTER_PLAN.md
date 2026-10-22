@@ -305,13 +305,14 @@ what was compared and what remains uncertain. Reorder tasks when new evidence
 reveals a dependency; record the reason without discarding prior evidence.
 
 The source/build part of M0 is complete; see [M0_BASELINE.md](M0_BASELINE.md).
-The original reference is pending explicit environment/path authorization. Recover
-world/animation/scheduler fields needed by M2 using the
-[introduction contract](INTRODUCTION_CONTRACT.md). The animation core is now
-implemented and compared against isolated original routines. Scene reading,
-harbour entry and the scenery-to-sprite-queue path are now implemented and checked
-(see [SCENE_LIFECYCLE.md](SCENE_LIFECYCLE.md)); the main gameplay loop is not yet
-connected. Next implement Jim/character lifecycle and resumable script execution.
-The first visible gameplay increment after the baseline is
-the real adventure button starting the authentic introduction. Full-game scope
-remains the destination throughout those small increments.
+The original reference is pending explicit environment/path authorization.
+The real adventure button now starts `FANPRESENT/main` and reaches the visible,
+animated harbour in the normal executable. Script/media waits, offscreen
+narration, drawable objects and the unscaled depth compositor are connected.
+Five harbour stages and 18 narration layouts match isolated original drawing
+routines; this is not a Windows reference comparison. See
+[LIVE_OPENING.md](LIVE_OPENING.md) for current source/build evidence and limits.
+The script currently stops at Show Jim (`ANIMS.DLG:92`, type 1 ordinal 4).
+Next recover and implement Jim's initialization, scale/depth and walking, then
+continue the same UI path to office transfer and the captain scene. Full M2,
+the general scheduler and complete-game scope remain open.

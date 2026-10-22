@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-21",
+  "engine": "/Users/gabriel/Desktop/source/scummvm-tesoro",
+  "branch": "tesoro",
+  "head": "d98a6b45d3a7ec4007ddbbb3ce17c7850dda2660",
+  "working_tree_status": [
+    " M engines/tesoro/animation.h",
+    " M engines/tesoro/module.mk",
+    " M engines/tesoro/resources.cpp",
+    " M engines/tesoro/scene.cpp",
+    " M engines/tesoro/scene.h",
+    " M engines/tesoro/tesoro.cpp",
+    " M engines/tesoro/tesoro.h",
+    "?? engines/tesoro/renderer.cpp",
+    "?? engines/tesoro/renderer.h",
+    "?? engines/tesoro/script.cpp",
+    "?? engines/tesoro/script.h"
+  ],
+  "source_sha256": {
+    "engines/tesoro/animation.cpp": "652fceeeff1dd06d5118489bacab656d5549e64b9e5d82db28e9eb64295e8d6c",
+    "engines/tesoro/animation.h": "e93e2f2f07993b598fb97cf5ccadea27cd3073896bee55bb9ae90a6708a3ca0a",
+    "engines/tesoro/console.cpp": "33dff9452de8c5f8a62aa2961c7107037378c0738eda278ee50b5f2059e9c95d",
+    "engines/tesoro/console.h": "5478682dc2ccc8b1d1c6518fe85ddc083510b3acd5236ead2bb84425726a3a5f",
+    "engines/tesoro/detection.cpp": "701558347293c68340ec3d07dc3af5926608092ea1bad8fbb986fc39b8bbbdbb",
+    "engines/tesoro/detection.h": "f13d8d3bb64b7df55b93374c14a7ee31f53aba57befe1823b1a9cdbd471c7bd6",
+    "engines/tesoro/detection_tables.h": "f9163c77bab447c18d29866f2763cfeba442c6ea703c4cf721666ebb9ba4775c",
+    "engines/tesoro/metaengine.cpp": "e8b1a38355f23b5252ac6e4bee33bfc5b20250dd9a9daed9c92ab13e62431890",
+    "engines/tesoro/metaengine.h": "afa314d1f7b63e5ee1ee6d2f8680e2cfeaf0f740e24806ee51e454008693174d",
+    "engines/tesoro/module.mk": "b172fde768253ba591c2c652b639c1032c21f929b0c57dbcfb7a86473aa44dce",
+    "engines/tesoro/renderer.cpp": "7613289cc97a83d17bb36540077b501a9520d7a8d7176d109cadeeb20dd33205",
+    "engines/tesoro/renderer.h": "e8d59cb5fee619e6401f3bf62d47be8e93d15d2f6c860a7f5787b2f20516967d",
+    "engines/tesoro/resources.cpp": "5bd419ffdbe6822880650d973bc140aa8efebb7e2a7fa168abc5c8bbbb9f5d90",
+    "engines/tesoro/resources.h": "e36c29b931e3fd2a9795749b11e64a4e572aa045062b7823f477fdf799d56919",
+    "engines/tesoro/scene.cpp": "2bbf58ac1ca774ac1c440b07ecee8ee8ab3a8e2a7fdc9a976bd6af9646a9eef1",
+    "engines/tesoro/scene.h": "feb2d6cb258d62f46174433cc1e9b977ae1edeb35bb5dae785c96dbf1b8d51c2",
+    "engines/tesoro/script.cpp": "6cfc2f00f9b3706e74c9a57728993dc71bbf53cca7beea3816058dbf8e8f9cdf",
+    "engines/tesoro/script.h": "f50fc5047437ffa207dfdb05295350a3e4dbd4fba1e838d4fc34a307494696c0",
+    "engines/tesoro/tesoro.cpp": "fc201b1d796c902e270354e29bdd33ccccd8729fccce02916acbd5a4801507cc",
+    "engines/tesoro/tesoro.h": "3bcdb0a85d60697c6fd502f3c75f5ec2a2ab073507702a3ae14ae0f184f33e0a"
+  },
+  "binary": {
+    "path": "/Users/gabriel/Desktop/source/scummvm-tesoro/scummvm",
+    "sha256": "54b67e8d2f4fda4b584ab28ae30e64359106022981955f1a1ab04ccbaa83ce4c",
+    "gui_copy_sha256": "54b67e8d2f4fda4b584ab28ae30e64359106022981955f1a1ab04ccbaa83ce4c"
+  },
+  "verification": {
+    "build": "make succeeded; existing duplicate -lz linker warning",
+    "normal_ui_route": [
+      "Escape movie 0",
+      "Nueva partida",
+      "Escape movie 1",
+      "wait censorship card",
+      "Modo Regular",
+      "Escape movie 2",
+      "offscreen narration and harbour reveals",
+      "Dismiss unsupported Show Jim dialog; capture harbour"
+    ],
+    "observed": "Actual normal executable showed harbour, ship, animated scenery and recruiter",
+    "stopping_point": {
+      "file": "ANIMS.DLG",
+      "line": 92,
+      "block": "FANPRESENT",
+      "native_type": 1,
+      "ordinal": 4,
+      "action": "Show Jim",
+      "implemented": false
+    },
+    "screenshot": {
+      "path": "/Users/gabriel/Desktop/source/tesoro/local-media/opening-implementation/harbour-window.png",
+      "sha256": "b881f57e9c3d9bc1d4ba885556c607f434119c74039b81fad149723dca057267"
+    },
+    "runtime_log": {
+      "path": "/Users/gabriel/Desktop/source/tesoro/local-media/opening-implementation/ui-runtime.log",
+      "sha256": "f9779f27e3186402a51de6f2ac7096b5ad0d20df96d8ad2cbc0515552d0a4393"
+    },
+    "pixel_comparison": {
+      "path": "analysis/opening-pixel-comparison.json",
+      "sha256": "cf74c176bb30f718acbdb8199f47ad7ac60ef08d7f7e2934a40e636abb897fab"
+    },
+    "original_windows_run": false,
+    "full_movie_playback_checked": false,
+    "audible_output_checked": false,
+    "limits": [
+      "Only the introduction prefix through recruiter reveal is connected; Jim, movement, office and captain remain pending.",
+      "Pixel comparison uses same submitted sprites; it does not validate actor logic, shadows or scaling.",
+      "No test hooks or test classes in engine. No commit or push performed."
+    ]
+  }
+}

@@ -89,6 +89,56 @@ routine boundaries, not the whole original collection, residency, actor update,
 scene transition or compositor. The report hashes production sources, the
 driver, tool and game resources; rebuild the driver after source edits.
 
+## Pixel composition, font layout and normal executable checks
+
+Demonstrated by `tools/compare_opening_pixels.py`; see `LIVE_OPENING.md` and
+`analysis/opening-pixel-comparison.json`. Build ignored
+`local-media/opening-implementation/pixels.cpp` against production renderer,
+scene, resources and animation sources plus graphics/common/formats libraries
+and zlib. Keep this thin driver external; no engine classes, flags or hooks for QA.
+The tool defines the binary protocol: length-prefixed Puerto LVL and font ANM,
+text count and length-prefixed strings; output staged sprite lists/pixel buffers,
+then text/pixel buffers. Frame pixels are 640x480 little-endian ARGB32.
+
+```sh
+local-media/animation-venv/bin/python tools/compare_opening_pixels.py \
+  --game /Users/gabriel/Desktop/ags/TESORO \
+  --driver local-media/opening-implementation/pixels \
+  --engine /Users/gabriel/Desktop/source/scummvm-tesoro \
+  --output analysis/opening-pixel-comparison.json
+```
+
+Independently relocate original RLE row span pointers; kind-1 span data also
+needs literal-pixel pointer relocation. Do not replace original span processing
+with a second reconstructed renderer. Execute `0x411f80` to queue sprites and
+`0x412e10` to compose. Renderer `+0x670/+0x674/+0x678` point to private row,
+shadow-row and output buffers; byte `+0x66a=1` bypasses DirectDraw acquisition.
+The base scene emulator intercepts sprite submission: override that callback
+without changing registers/stack so the actual queue routine runs for pixels.
+
+Font layout `0x411c80` reads native frame stride 36, not disk stride 24; each
+frame `+24` points to an image wrapper. Font bank is renderer `+0x20`; pending
+text count is `+0x13a0`; records start at `+0x680`, stride `0x70`. Execute
+`0x412c50` for each record. Draw over an RGB565-exact nonblack background to
+verify black outlines. The demonstrated narrator color is `0x001f`. These
+addresses are edition-specific and guarded by the EXE hash.
+
+Five scene stages and all 18 introduction texts matched exactly after the same
+RGB565 expansion. Same submitted sprite lists isolate the compositor; they do
+not independently validate newly added character logic, scheduling, shadows,
+scaling or whole-game behavior. The original Windows session remains separate.
+
+Also verify the actual executable through normal UI. On macOS, a project-local
+ignored `.app` with a unique bundle identifier can launch a copy of the current
+binary and a local config. Match binary hashes before capturing; select the
+exact app by bundle ID or path. A generic `ScummVM` selection can choose a
+different installed version. Open no application inventories. The observed
+recipe is Nueva partida, movie/card, Modo Regular, movie 2, narration and
+harbour reveals. Escape can skip movies. Logs identify script source lines;
+they alone do not establish visible or audible output. Save actual window
+captures separately from driver-generated pixels, with hashes and the action
+recipe. No special start-at-scene config is needed.
+
 ## Extend the method safely
 
 - Verify the exact EXE SHA-256 before using addresses. Map PE sections at their

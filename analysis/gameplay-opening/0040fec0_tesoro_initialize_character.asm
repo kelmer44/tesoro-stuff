@@ -1,0 +1,71 @@
+0040fec0  MOV EAX,dword ptr [ESP + 0x14]
+0040fec4  MOV EDX,dword ptr [ESP + 0xc]
+0040fec8  PUSH EBX
+0040fec9  PUSH ESI
+0040feca  PUSH EDI
+0040fecb  MOV EDI,dword ptr [ESP + 0x1c]
+0040fecf  MOV ESI,ECX
+0040fed1  PUSH EAX
+0040fed2  MOV EAX,dword ptr [ESP + 0x18]
+0040fed6  LEA ECX,[EDI + 0x4]
+0040fed9  PUSH ECX
+0040feda  MOV ECX,dword ptr [ESP + 0x18]
+0040fede  PUSH EDX
+0040fedf  PUSH EAX
+0040fee0  PUSH ECX
+0040fee1  MOV ECX,ESI
+0040fee3  CALL 0x0040ed10
+0040fee8  MOV dword ptr [ESI],0x42bb48
+0040feee  MOV DX,word ptr [EDI]
+0040fef1  MOV word ptr [ESI + 0xd0],DX
+0040fef8  MOV AX,word ptr [EDI + 0x2]
+0040fefc  MOV word ptr [ESI + 0xd2],AX
+0040ff03  MOV AL,byte ptr [ESI + 0x33]
+0040ff06  XOR EBX,EBX
+0040ff08  XOR EDI,EDI
+0040ff0a  CMP AL,BL
+0040ff0c  MOV dword ptr [ESI + 0xac],EBX
+0040ff12  MOV dword ptr [ESI + 0xc0],EBX
+0040ff18  JBE 0x0040ff80
+0040ff1a  MOV ECX,dword ptr [ESI + 0x34]
+0040ff1d  PUSH 0x3
+0040ff1f  PUSH 0x42d650
+0040ff24  MOV EDX,dword ptr [ECX + EDI*0x4]
+0040ff27  ADD EDX,0x32
+0040ff2a  PUSH EDX
+0040ff2b  CALL 0x0041be80
+0040ff30  ADD ESP,0xc
+0040ff33  TEST EAX,EAX
+0040ff35  JNZ 0x0040ff3f
+0040ff37  MOV dword ptr [ESI + 0xac],EDI
+0040ff3d  JMP 0x0040ff76
+0040ff3f  MOV EAX,dword ptr [ESI + 0x34]
+0040ff42  PUSH 0x3
+0040ff44  PUSH 0x42d64c
+0040ff49  MOV ECX,dword ptr [EAX + EDI*0x4]
+0040ff4c  ADD ECX,0x32
+0040ff4f  PUSH ECX
+0040ff50  CALL 0x0041be80
+0040ff55  ADD ESP,0xc
+0040ff58  TEST EAX,EAX
+0040ff5a  JNZ 0x0040ff76
+0040ff5c  MOV EDX,dword ptr [ESI + 0xc0]
+0040ff62  MOV dword ptr [ESI + EDX*0x4 + 0xb0],EDI
+0040ff69  MOV EAX,dword ptr [ESI + 0xc0]
+0040ff6f  INC EAX
+0040ff70  MOV dword ptr [ESI + 0xc0],EAX
+0040ff76  XOR EAX,EAX
+0040ff78  INC EDI
+0040ff79  MOV AL,byte ptr [ESI + 0x33]
+0040ff7c  CMP EDI,EAX
+0040ff7e  JL 0x0040ff1a
+0040ff80  MOV EAX,dword ptr [ESI + 0x68]
+0040ff83  MOV byte ptr [ESI + 0xd4],BL
+0040ff89  OR AL,0x4
+0040ff8b  MOV byte ptr [ESI + 0xd5],BL
+0040ff91  MOV dword ptr [ESI + 0x68],EAX
+0040ff94  MOV EAX,ESI
+0040ff96  POP EDI
+0040ff97  POP ESI
+0040ff98  POP EBX
+0040ff99  RET 0x14

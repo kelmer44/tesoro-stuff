@@ -1,0 +1,115 @@
+{
+  "scene_frames": 5,
+  "subtitle_frames": 18,
+  "pixels_compared": 7065600,
+  "executable_sha256": "0fcd56b306b857283347e705dcce41a4b44dd4d9ef7c9226694114bba80792ef",
+  "resource_sha256": {
+    "PUERTO.LVL": "c378c6f280fa699ba7fa67f3d1d008bdf9454da1d1de83b0bf816f1cbbcd3a38",
+    "FUENTES.ANM": "1d9a504a5d252c08d765fcffe2da30c4ff1a3c9ab497b0d23c55301952e124ef"
+  },
+  "matched": [
+    {
+      "name": "black",
+      "sha256": "10f4d37bc929077c1d41b064466013afdccb783a7fb766897ecf6f85d84b63f0"
+    },
+    {
+      "name": "harbour",
+      "sha256": "c3ecc8deeba7c92a689e861f8d8907865266e563020a4b91f5b1cc5459992d30"
+    },
+    {
+      "name": "ship",
+      "sha256": "0bbbd5de38b9263babdd355a7e9e4ccfbdf8a974993b722587fde9a6957ee583"
+    },
+    {
+      "name": "gull",
+      "sha256": "e9c5ee2a7f815373245c015eb55034ee2e76eba6036484811fce0f4c139e9118"
+    },
+    {
+      "name": "recruiter",
+      "sha256": "29b1eddf578b48ffe01c86adbbf3c99b6ea287c1ebfce0b8fd4d2a27c69bbc52"
+    },
+    {
+      "name": "ANM1OFF1",
+      "sha256": "356378cfa17256956810871ac9ad8abda285c5b6e8b4ee5dac7f31d2c40e81f6"
+    },
+    {
+      "name": "ANM1OFF3",
+      "sha256": "ba62b12d321cd5a15ccd95259fa285cc8de52da372f66ab0840566f0262c64a4"
+    },
+    {
+      "name": "ANM1OFF4",
+      "sha256": "952859dbd73adc58885fd6c80a8e56c5a46de2dad719fc3f5b55228d51dbfad4"
+    },
+    {
+      "name": "ANM1OFF5",
+      "sha256": "aafa1b708282cddacf50355cdbdb679a847fbfe1dccbe2d6f1db0125af70cd05"
+    },
+    {
+      "name": "ANM1OFF6",
+      "sha256": "a103695b26ff9d670b3f32ca07a3426f141ef7501700d580112e4e086546c94a"
+    },
+    {
+      "name": "ANM1BJIM0",
+      "sha256": "f2779888cd10bd9ba855c95107f8185612fad98309755a3d37322b7cfff3a7bf"
+    },
+    {
+      "name": "ANM1BCAP1",
+      "sha256": "ffa607035c90d05386902f661f196c09f513119a190fdb08bba0dd2d27ed74a3"
+    },
+    {
+      "name": "ANM1BJIM1",
+      "sha256": "22e430431678cafb2ca2d0410864403a4ea36a75b1f221162515d5401e4f2c06"
+    },
+    {
+      "name": "ANM1BCAP2",
+      "sha256": "74bffd2a6f36153e37b5ca17cc645dada1b0593c88d7b36c969f35c0ac0667fc"
+    },
+    {
+      "name": "ANM1BJIM2",
+      "sha256": "4a9c70eb4b659099b9fdcf761a0200f9ed8674db6cbb86c1fdb5237f2e99edc1"
+    },
+    {
+      "name": "ANM1BCAP3",
+      "sha256": "1132932b615802e1cf853053c6bc4f06019017f5fe5f971b11863574d0d45fe0"
+    },
+    {
+      "name": "ANM1BJIM3",
+      "sha256": "2389846cec6831b42afbba1e26ba28cd19d8ec189b656e4f79470995ee101a4e"
+    },
+    {
+      "name": "ANM1BOFF0",
+      "sha256": "d5e173027375b7e0390b410c4e1e911120b10afac9eff766a407c7d62abf1b54"
+    },
+    {
+      "name": "ANM1BJIM4",
+      "sha256": "bdce5362e73d619774368665a7daa68b493a69f8136f44d9284c1397bbb46af8"
+    },
+    {
+      "name": "ANM1BCAP4",
+      "sha256": "ed371d068c3919cbd232d35646d6c83d568ec983671d64d92a00a01192895b7f"
+    },
+    {
+      "name": "ANM1BJIM5",
+      "sha256": "05041dbe4d484ad56e5aef7e180f29e8285496debbf2ebcf56387a8f0648db86"
+    },
+    {
+      "name": "ANM1BCAP5",
+      "sha256": "08687e2cbfa75581e818848b6a93fe13f6159a1bba5d81ea040412400062c6af"
+    },
+    {
+      "name": "ANM1BOFF1",
+      "sha256": "6ae539033d4a5dbf2e55f45deae6e4e7d5f9608210ba6a6e5e13dce1ab5d6efd"
+    }
+  ],
+  "driver_sha256": "e9098f7f23b7940994512f3fedbc0992efbe23098485d6200177c1935c20ac89",
+  "limitation": "Same submitted sprites, original unscaled RLE composition and font routines; no actor logic, shadows, scaling, Windows or audible-output comparison.",
+  "source_sha256": {
+    "renderer.cpp": "7613289cc97a83d17bb36540077b501a9520d7a8d7176d109cadeeb20dd33205",
+    "renderer.h": "e8d59cb5fee619e6401f3bf62d47be8e93d15d2f6c860a7f5787b2f20516967d",
+    "scene.cpp": "2bbf58ac1ca774ac1c440b07ecee8ee8ab3a8e2a7fdc9a976bd6af9646a9eef1",
+    "scene.h": "feb2d6cb258d62f46174433cc1e9b977ae1edeb35bb5dae785c96dbf1b8d51c2",
+    "resources.cpp": "5bd419ffdbe6822880650d973bc140aa8efebb7e2a7fa168abc5c8bbbb9f5d90",
+    "animation.h": "e93e2f2f07993b598fb97cf5ccadea27cd3073896bee55bb9ae90a6708a3ca0a"
+  },
+  "tool_sha256": "2f5fc5545c412bfb27f39e516a9f399505e56aaed1d2907471cd44ab6edcd0a3"
+}

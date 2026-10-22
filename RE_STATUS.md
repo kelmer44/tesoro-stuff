@@ -6,8 +6,10 @@ Updated 21 October 2026. Governing direction: [MASTER_PLAN.md](MASTER_PLAN.md).
 
 **M0 source/build baseline is verified.** See [the baseline report](M0_BASELINE.md).
 The original-game reference part remains open and on hold until Gabriel explicitly
-authorizes its environment and paths. Continue with M1 static recovery needed for
-the real-adventure button → `FANPRESENT` harbour introduction → office.
+authorizes its environment and paths. The normal New Game path now reaches the
+animated harbour through `FANPRESENT`; it stops at Show Jim, `ANIMS.DLG:92`.
+Continue with Jim initialization, scaled rendering and walking, then office
+transfer. Current evidence is in [LIVE_OPENING.md](LIVE_OPENING.md).
 
 Keep task-file inspection inside the named Tesoro project folders. Do not inspect
 personal directories, installed applications or VM configurations.
@@ -22,12 +24,13 @@ ignored local storage; previous startup reports refer to that instrumented build
 | Original resources | Existing readers account for all 50 LVLs/747 records, 23 observed kinds, 145 script blocks; all 87 DO sites indexed. | Kind/subtype methods, field semantics, reachability and complete behaviour. |
 | Executable | 48 general + 11 startup exports report completed decompilation; assembly/xrefs retained. | Full object/vtable map, walking, animation, scheduler, UI, save and special-system code. |
 | Prototype | Preserved office pen implementation and documented prior host checks. | General gameplay systems and original comparison; do not treat approximations as recovered rules. |
-| Active engine | `../scummvm-tesoro`, `tesoro`, HEAD `1f1b4ddf867` plus current scene/scenery changes. Build passes. Gabriel's menu/save scaffold is preserved; `syncGame` still returns an unsupported-state error. | Add actor, script and renderer integration without replacing the user's changes. |
+| Active engine | `../scummvm-tesoro`, `tesoro`, HEAD `d98a6b45d3a` plus opening integration. Build passes and normal UI reaches the harbour. Gabriel's menu/save scaffold is preserved; `syncGame` still returns an unsupported-state error. | Jim, office/captain, general scheduler and remaining game systems. |
 | Startup evidence | Four runs of the earlier instrumented baseline pass; 12 snapshots match the independent decoder. Reports identify that source/binary. The harness has since been removed from engine code. | Validate subsequent implementation externally; original-runtime comparison remains open. |
 | Media | Complete-disc movie and PCM inventories exist; movies are locally present in the game `bin/` directory. | Complete playback, cue/loop/skip/pause and original timing comparison. |
-| Introduction | Seven native markers mapped; no-effect ordinals 1, 2 and 6 confirmed. Harbour floor entry is `(213,104)`; Jim is reused across scenes. See [scene findings](SCENE_LIFECYCLE.md). | Actor transfer/movement, native messages and general resumable execution. |
-| Animation | Eight native routines exported. Playback/loop/interpolation/pause core matches 1,200 isolated scenarios across 17,942 states. It now feeds scenery objects and their sprite queue. | Actor integration, actual game clock/scheduling and original visual comparison. |
-| Scenes/scenery | 33 lifecycle exports. Production reader covers 50 LVLs/747 records. 217 scenery objects match 1,302 native states; 150 integrated queue samples match 519 sprites. | Other object kinds, master registry and transfer, actor-follow camera, gameplay rasterizer and gameplay-loop connection. |
+| Introduction | Action 3 starts the original script, movie 2 and offscreen WAV narration, revealing harbour/ship/gull/recruiter. Normal executable observed through line 92. | Show Jim, walking/scale, movie 3 handoff, transfer and captain; full original reference comparison. |
+| Animation | Historical core report matches 1,200 isolated scenarios across 17,942 states. Current player feeds the visible harbour loop; character frame preparation clears movement. | Jim and other subtype methods; whole-game clock/scheduling comparison. |
+| Scenes/scenery | Historical report covers 50 LVLs/747 records and scenery/queue routines. Current SceneObjects adds drawable kinds 5/6/9 and name lookup; unscaled depth rendering is connected. | General object methods, persistent registry/transfer, actor-follow camera, scaled rendering and shadows. |
+| Pixels/text | 28 additional function exports complete. Five harbour stages and all 18 narration texts match isolated original compositor/font code: 7,065,600 pixels. | Same-input sprites do not prove actor logic. No scaled/shadow, Windows display or audible-output comparison. |
 | Original runtime | No verified original-game reference session. | Explicitly authorized environment/paths, working installation, captures and checkpoints. |
 
 The [full structural catalogue](analysis/full-game-catalogue.json) is reproducible:
@@ -43,14 +46,13 @@ correct the game data or assume this spelling has ordinary `menuitem0` semantics
 
 ## Next work queue
 
-1. Scene reading, harbour entry and scenery playback/queue are implemented and
-   compared in [SCENE_LIFECYCLE.md](SCENE_LIFECYCLE.md). Recover and implement
-   Jim/character initialization and transfer, then the registry and scheduling
-   needed by [INTRODUCTION_CONTRACT.md](INTRODUCTION_CONTRACT.md).
-2. Port the required resumable script and scene/object behaviour in reviewable
-   increments, preserving native no-ops and lazy participant lookup.
-3. Connect the real-adventure button to the authentic introduction when these
-   dependencies are ready; do not substitute an office teleport or guessed walk.
+1. Recover and implement Jim's persistent initialization/banks, floor/depth/scale
+   update and scaled composition; unblock type-1 ordinal 4 in the connected
+   normal New Game route. See [LIVE_OPENING.md](LIVE_OPENING.md).
+2. Implement the original walk to the door, actor-follow camera and transfer;
+   then movie 3, office scene context, captain speech/animation and lazy lookup.
+3. Complete required scheduler semantics incrementally, preserving native no-ops
+   and visible unsupported boundaries. Do not substitute an office teleport.
 4. Resume original reference setup only after explicit environment/path approval;
    then capture startup → office and record repeatable inputs and checkpoints.
 5. Replace provisional pen mechanics with general walking/UI/object dispatch,
@@ -78,14 +80,21 @@ correct the game data or assume this spelling has ordinary `menuitem0` semantics
   isolated native comparisons cover name keys, room bounds, scenery state/bank
   selection, camera projection and ordered sprite submissions. Exact counts,
   source hashes and remaining gaps are in [SCENE_LIFECYCLE.md](SCENE_LIFECYCLE.md).
+- The current normal executable reaches the animated harbour through actual UI
+  actions. [Build/identity evidence](analysis/live-opening-verification.json)
+  distinguishes this from external component checks. The current
+  [pixel report](analysis/opening-pixel-comparison.json) compares exact unscaled
+  composition and narration layout against isolated original instructions.
+  Earlier scene/animation reports retain their historical source identities.
 
 ## Known approximation ledger
 
 | Location | Approximation / gap | Removal target |
 | --- | --- | --- |
 | Preserved prototype | Straight walking, temporary harbour scale, limited hotspots and toolbar, unverified talk/shadow timing. | M3 general movement/UI/composition; preserve snapshot as historical evidence. |
-| Preserved script VM/tracer | Tail-only `run` handling; incomplete command forms. | M2/M4 scheduler/parser recovery. |
-| Active startup | Temporary cursor, fixed censorship sequence, unavailable adventure/joke branches, no actual gameplay saves. Unfinished saves are now disabled. | M2 scripts; M3 original UI; M4 persistence. |
+| Script VM/tracer, including active subset | Tail-only `run` handling; incomplete command forms and variable context. | M2/M4 scheduler/parser recovery. |
+| Active startup | Temporary cursor, fixed censorship sequence, unavailable joke branches; save scaffold advertises capabilities but syncGame errors. | M2 scripts; M3 original UI; M4 persistence. |
+| Active adventure | Stops at Show Jim; ordinal 0 omits absent Jim state; only drawable base behavior; no CD music or character speech; unscaled kinds 1/3 only. | Jim, movement/scaling/shadows, transfer and captain before full M2 completion. |
 | Historical startup notes | Old results apply to their old source state. | Closed for the current startup baseline by the four matching-build checks; retain historical captures separately. |
 
 Add rows for new approximations with precise implementation location and reason.

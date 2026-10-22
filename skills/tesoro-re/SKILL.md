@@ -55,6 +55,12 @@ Keep addresses and provenance in research notes rather than engine comments.
   comparison captures original group insertion and sprite submissions with
   simultaneously live objects. It does not validate the pixel compositor or
   actor scheduler. Its invocation is in the native comparison reference.
+- For the connected normal New Game route and current stopping point, read
+  `LIVE_OPENING.md`. The live executable now reveals the harbour and stops at
+  Show Jim. `tools/compare_opening_pixels.py` executes original RLE composition
+  and font layout/drawing against the production renderer. Its same-input sprite
+  comparison proves pixels, not actor logic or a Windows reference session.
+  Reproduction and live-UI capture guidance are in the native comparison reference.
 
 ## Follow the actual executable dispatch
 

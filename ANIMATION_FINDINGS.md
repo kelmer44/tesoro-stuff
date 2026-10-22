@@ -94,10 +94,11 @@ No test classes or test hooks should be reintroduced into submitted engine code.
 The currently restored save API scaffold has an error-returning `syncGame` body;
 real persistence is still unimplemented.
 
-The player now feeds object-owned scenery playback and an ordered sprite queue;
-see [SCENE_LIFECYCLE.md](SCENE_LIFECYCLE.md). Harbour entry is recovered. Actor
-lifecycle, script waits and the gameplay renderer/loop still need integration;
-the introduction is not playable yet.
+The player now feeds the connected harbour rendering loop and original script
+reveals; see [LIVE_OPENING.md](LIVE_OPENING.md). Character frame preparation can
+clear movement outputs, matching `0x407770`. Jim lifecycle and movement remain
+pending; the live introduction stops at his appearance. The comparison above
+retains its historical source identity; it did not exercise the new caller.
 The isolated comparison injects the clock and constructs native frame records;
 it does not validate loader integration, whole-game scheduling, visual output or
 a running Windows reference. Original-runtime comparison remains open. The

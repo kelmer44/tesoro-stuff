@@ -2,9 +2,10 @@
 
 21 October 2026. This increment recovers scene initialization and implements the
 scene reader, default floor-origin entry, immediate camera placement, scenery
-ownership and scenery sprite submissions. The adventure button still cannot run
-the introduction: actors, interactive objects, script scheduling and the gameplay
-rasterizer remain to be connected. No Windows reference session was started.
+ownership and scenery sprite submissions. This document records the earlier
+scenery increment and its source-specific checks. The adventure button now
+reaches the harbour through the connected runtime described in
+[LIVE_OPENING.md](LIVE_OPENING.md). No Windows reference session was started.
 
 ## Evidence and scene initialization
 
@@ -129,9 +130,10 @@ bank/image identity, coordinates, depth and submission order match. Hidden or
 inactive scenery is omitted from the draw traversal. The driver also checks
 activation/show operations separately, so the two flags remain distinct.
 
-These checks do not execute a complete original scene, actor collision/update
-schedule, room transition, rendering backend or Windows session. They do not show
-a playable harbour in ScummVM yet. Next recover and implement Jim/character
-initialization and the resumable script waits/messages needed by the introduction,
-then connect the object registry and sprite queue to the gameplay loop and
-recovered depth compositor. Reference-run comparison remains open.
+These historical checks do not execute a complete original scene, actor
+collision/update schedule, room transition, rendering backend or Windows session.
+The current collection is named `SceneObjects`/`SceneObject` and also includes
+drawable base state for kinds 5, 6 and 9. The old driver must be adapted before
+rerunning against that API. Current build, native pixel checks and visible
+harbour evidence are in [LIVE_OPENING.md](LIVE_OPENING.md). Jim lifecycle and the
+rest of the introduction remain next; reference-run comparison remains open.
