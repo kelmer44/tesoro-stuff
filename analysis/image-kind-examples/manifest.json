@@ -1,0 +1,70 @@
+[
+  {
+    "resource": "JIMQUIETO.anm",
+    "bank": 0,
+    "image": 0,
+    "kind": 1,
+    "width": 121,
+    "height": 294,
+    "preview": "kind1-jim.png",
+    "scale": 1,
+    "checkerboard": true
+  },
+  {
+    "resource": "INTERFACE.lvl",
+    "bank": 9,
+    "image": 0,
+    "kind": 2,
+    "width": 640,
+    "height": 100,
+    "preview": "kind2-interface.png",
+    "scale": 1,
+    "checkerboard": false
+  },
+  {
+    "resource": "Tablero.lvl",
+    "bank": 0,
+    "image": 0,
+    "kind": 3,
+    "width": 25,
+    "height": 25,
+    "preview": "kind3-board-piece.png",
+    "scale": 6,
+    "checkerboard": true
+  },
+  {
+    "resource": "FUENTES.anm",
+    "bank": 0,
+    "images": [
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57
+    ],
+    "kind": 3,
+    "preview": "kind3-font-glyphs.png",
+    "scale": 3
+  }
+]

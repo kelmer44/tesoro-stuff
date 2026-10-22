@@ -5,6 +5,14 @@ engineering; we implement the ScummVM engine together. This is the project's
 main guideline, superseding the task ordering in `FEASIBILITY_AND_PLAN.md`.
 Maintain the live checkpoint in [RE_STATUS.md](RE_STATUS.md).
 
+**Branch workflow, updated 22 October 2026:** `tesoro-engine` belongs to Gabriel.
+Branch future engine work off it into a separate `codex/<topic>` branch and push
+only to that separate branch. Do not edit, commit, merge or push directly on
+`tesoro-engine` unless explicitly requested. Gabriel reviews and copies pieces
+from the Codex branch into his branch at his own pace. Keep increments small;
+do not perform that integration for him. Verify checkout, base revision and
+remote first. This supersedes older branch instructions in reports and skills.
+
 ## Target and fidelity contract
 
 Reimplement the complete verified Spanish edition of **El Tesoro de Isla

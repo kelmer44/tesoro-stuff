@@ -2,6 +2,14 @@
 
 Updated 21 October 2026. Governing direction: [MASTER_PLAN.md](MASTER_PLAN.md).
 
+Workflow update, 22 October 2026: `tesoro-engine` is Gabriel's working branch.
+Future engine changes must branch off it into a separate `codex/<topic>` branch;
+push only to that separate branch. Gabriel copies pieces into `tesoro-engine`
+himself. Do not edit, commit, merge or push directly on his branch unless
+explicitly requested. Verify checkout, base revision and remote first. Older
+build records retain their original branch identities. No branch switch, merge
+or push was performed when recording this instruction.
+
 ## Current target
 
 **M0 source/build baseline is verified.** See [the baseline report](M0_BASELINE.md).

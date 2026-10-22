@@ -11,8 +11,17 @@ Codex will implement it together; Codex leads the reverse engineering.
 - Original files in `/Users/gabriel/Desktop/ags/TESORO` and original disc media
   are evidence and remain unchanged. Extracted media, VM disks, save captures
   and Ghidra databases stay local. Keep reusable analysis tools and findings.
-- The active engine worktree is `/Users/gabriel/Desktop/source/scummvm-tesoro`,
-  branch `tesoro`; verify its actual state before editing. `scummvm-fork` is the
+- The engine worktree has been `/Users/gabriel/Desktop/source/scummvm-tesoro`;
+  `tesoro-engine` is Gabriel's own working branch. For future engine work,
+  branch off `tesoro-engine` into a separate `codex/<topic>` branch and push
+  implementation commits only to that separate branch. Do not edit, commit,
+  merge or push directly on `tesoro-engine` unless Gabriel explicitly requests
+  it. Verify the checkout, base revision and remote before starting. Gabriel
+  reviews and copies pieces from the Codex branch into `tesoro-engine` at his
+  own pace. Keep changes small and reviewable; do not perform that integration
+  for him unless requested. This supersedes older branch instructions and does
+  not request a branch switch or push now.
+  `scummvm-fork` is the
   shared repository's other checkout and may be on unrelated work. Preserve
   uncommitted changes. `prototype/source` is an immutable reference snapshot.
 - Keep task-file inspection within the named Tesoro project folders. Do not

@@ -24,11 +24,43 @@ All numbers below are little-endian unless stated otherwise.
 
 - TRE has **no header**. Each 28-byte record is `u32 offset, u32 payloadSize, u8 flags, char name[19]`. File records have `flags & 4`. Both flags 4 and 6 occur on valid files. DAT offset zero is valid and contains `JIMQUIETO.anm`.
 - DAT blocks are `u32 payloadSize` followed by exactly that many bytes. Read at `offset + 4`. The prefix is excluded from the indexed size. Every indexed prefix matches in this copy. Nine gaps total 3,448,956 bytes; they were not classified.
-- ANM magic is `ANM\x01`, or `ANM\x00` for fonts. Header including magic is 28 bytes. Frame count is a u16 at magic+4; image count is a u16 at magic+8. Do not infer wider field widths merely from zero padding. Image-bank label for non-fonts occupies magic+12..+23. Frame records are 24 bytes plus a u16 extra-data length stored at frame+22. Their detailed timing/movement semantics remain to be mapped.
+- ANM magic is `ANM\x01`, or `ANM\x00` for fonts. Header including magic is 28 bytes. Frame count is a u16 at magic+4; image count is a u16 at magic+8. Do not infer wider field widths merely from zero padding. Image-bank label for non-fonts occupies magic+12..+23. The header is followed by all frame records, then all image blocks. Frame layout is described below; recovered playback rules are in [ANIMATION_FINDINGS.md](ANIMATION_FINDINGS.md).
 - Image blocks begin with a u32 buffer size. The following buffer contains `u32 pixelOffset, u32 pixelBytes, u16 width, u16 height, u16 kind, u16 unused`. Each row has `u32 spanOffset, u16 count, u16 unused`. Spans are `u32 value, u16 relativeSkip, u16 pixelCount`. Offsets are relative to the image buffer, excluding its size word. X skip is relative to the end of the preceding span. Kind 1 uses literal RGB565 pixels, kind 3 solid RGB565 colors, kind 2 shadow intensities. Grayscale shadow previews do not establish the original blending rule.
 - LVL magic is `LVL\x01`, followed by three u32 fields. Bank count is at magic+8. Sequential ANM banks begin at magic+16. Object data follows banks; it has not been fully mapped for a running game. Do not scan for magic inside pixels to locate banks.
 - WAV payloads are standard RIFF/WAVE. All 2,346 in this index are PCM, 22,050 Hz, mono, 8-bit. This finding does not account for external CD music.
 - `.DLG` payloads are readable scripts, **not binary compiled bytecode**. `.TXT` files are text-ID/string tables. Spanish high bytes look like OEM encoding; CP850 gives readable sampled text. Verify original font/glyph mapping rather than assuming Latin-1 because the old resource viewer uses it.
+
+### ANM frame records
+
+`Frame` and `Image` are separate records. A frame describes an animation step and
+references an image by index into the same bank's image array. The image block
+above contains the encoded pixels, which the port decodes into `Image::pixels`.
+Multiple frames can reference the same image; `image == -1` means no visible
+image and can also delimit an animation sequence.
+
+Each stored frame has a 24-byte fixed part followed by `extraSize` bytes:
+
+| Byte offset | Stored type | Current engine field |
+| --- | --- | --- |
+| +0, +2 | i16, i16 | `x`, `y` |
+| +4, +6 | i16, i16 | `dx`, `dy` |
+| +8 | u16 | `duration` |
+| +10 | i16 | `image` (image index, not pixel data) |
+| +12, +14 | i16, i16 | `hitX`, `hitY` |
+| +16, +18 | u16, u16 | `hitW`, `hitH` |
+| +20 | u16 | `type` |
+| +22 | u16 | `extraSize` (read by the loader, not retained in `Frame`) |
+| +24 | byte[extraSize] | Type-dependent extra data; currently skipped by the port |
+
+These names match the current engine representation, whose C++ member order
+differs from the serialized order. For non-font banks, `dx`/`dy` are stored
+movement positions: the original loader subtracts frame zero's position from
+later frames and clears frame zero's movement. They are not per-frame velocity
+increments. `duration` is used against elapsed game time in milliseconds; see
+[the animation findings](ANIMATION_FINDINGS.md) for boundary and loop rules.
+The original loader interprets extra data according to `type`; the field names
+and fixed layout do not imply complete recovery or implementation of those
+type-dependent behaviours. Evidence: [original loader export](analysis/decompiled/00401160_tesoro_load_animation_bank.raw.c).
 
 See the current resource browser implementation and `engine-sources.md` for validated image parsing. Do not use the superseded historical layouts in `TESORO_RE_NOTES.md`.
 
