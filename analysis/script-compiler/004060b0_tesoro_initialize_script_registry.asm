@@ -1,0 +1,3 @@
+004060b0  MOV EAX,ECX
+004060b2  MOV dword ptr [EAX + 0x2ac],0x0
+004060bc  RET

@@ -1,0 +1,23 @@
+address	name	completed	error
+004067a0	tesoro_link_script_block	true	
+00406110	tesoro_link_script_registry	true	
+00405630	tesoro_link_script_ops	true	
+004060b0	tesoro_initialize_script_registry	true	
+00404630	tesoro_copy_script_block_linked	true	
+00413570	tesoro_load_text_table	true	
+004138b0	tesoro_text_table_lookup	true	
+004137c0	tesoro_sort_text_table	true	
+00405850	tesoro_script_update	true	
+00413a10	tesoro_current_frame_time	true	
+00401ee0	tesoro_object_virtual_28	true	
+00401f90	tesoro_object_virtual_2c	true	
+00401fa0	tesoro_object_virtual_30	true	
+00401dc0	tesoro_restore_object_animation_state	true	
+00401a70	tesoro_resume_animation_bank	true	
+0040ec90	tesoro_initialize_object_base	true	
+00413940	tesoro_find_phrase_index	true	
+0040fa10	tesoro_add_object_to_list	true	
+0040fb20	tesoro_remove_object_from_list	true	
+00404210	tesoro_audio_service	true	
+00404110	tesoro_play_wav	true	
+00403cb0	tesoro_play_cd_track	true	

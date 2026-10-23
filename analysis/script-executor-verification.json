@@ -1,0 +1,75 @@
+{
+  "driver_sha256": "fd0409af051ba86ad91e091e7d0635c6dbfd6da3229f9ef4541b0579acbda405",
+  "events": 13,
+  "stopped_at_show_jim_ms": 24847,
+  "mismatching_events": 0,
+  "state_errors": [],
+  "first_mismatches": [],
+  "timeline": [
+    [
+      "run",
+      0,
+      "FANPRESENT"
+    ],
+    [
+      "input",
+      0,
+      "0"
+    ],
+    [
+      "native",
+      0,
+      "1 0"
+    ],
+    [
+      "native",
+      0,
+      "1 1"
+    ],
+    [
+      "movie",
+      0,
+      "2"
+    ],
+    [
+      "speech",
+      0,
+      "ANM1OFF1 10077"
+    ],
+    [
+      "native",
+      10278,
+      "1 2"
+    ],
+    [
+      "speech",
+      11278,
+      "ANM1OFF3 1590"
+    ],
+    [
+      "native",
+      13069,
+      "1 3"
+    ],
+    [
+      "speech",
+      15069,
+      "ANM1OFF4 2205"
+    ],
+    [
+      "speech",
+      20475,
+      "ANM1OFF5 2171"
+    ],
+    [
+      "native",
+      24847,
+      "1 4"
+    ],
+    [
+      "speech",
+      24847,
+      "ANM1OFF6 9682"
+    ]
+  ]
+}

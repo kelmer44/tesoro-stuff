@@ -1,0 +1,34 @@
+{
+  "scenes": 50,
+  "scenes_with_floor": 38,
+  "scenes_without_floor": 12,
+  "points_compared": 7879,
+  "points_skipped": 2,
+  "skipped": [
+    {
+      "scene": "Tierra.lvl",
+      "point": [
+        355,
+        -146
+      ],
+      "error": "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+    },
+    {
+      "scene": "Tierra.lvl",
+      "point": [
+        355,
+        -113
+      ],
+      "error": "Unhandled CPU exception (UC_ERR_EXCEPTION)"
+    }
+  ],
+  "executable_sha256": "0fcd56b306b857283347e705dcce41a4b44dd4d9ef7c9226694114bba80792ef",
+  "driver_sha256": "6e13f618930620d527c7a0c981afed4f84c15325e726e25e451e62e775e6ad36",
+  "source_sha256": {
+    "scene.cpp": "0764c62bc80de78063bf473d480700a7cb24753e735e37b309be0a40fe7b8683",
+    "scene.h": "b1c70abb155599abd37fa6c356e12179ead5c36cf723756ea5b606036fdc095e",
+    "resources.cpp": "3cf4a4e1dc8ba898f6b4ef3b90df55ddc6197d1b69b2992a959ff86a83382d71",
+    "resources.h": "629cd18b15615ef285d639cbf9fe16876eff6fa21079431380d88684820db79a"
+  },
+  "tool_sha256": "df23bf4d9de42c5808e931b02ac1a024e9798d39dce77ad207828a9fce9e6f05"
+}

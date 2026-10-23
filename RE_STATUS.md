@@ -29,6 +29,9 @@ ignored local storage; previous startup reports refer to that instrumented build
 
 | Area | Established | Remaining |
 | --- | --- | --- |
+| Script compiler | `0x404810`/`0x405630` recovered; engine `script.cpp` compiles all 145 blocks (4,274 ops) and matches an independent reading of the files. See [SCRIPT_COMPILER.md](SCRIPT_COMPILER.md). | Executor, waits/resume, menus, native `DO` handlers; no differential run of the original parser. |
+| Script executor | Update/execute/resume rules recovered (`0x405850`, `0x405a60`, `0x406140`, `0x405fd0`); engine `scriptexec.cpp` runs `FANPRESENT/main` to Show Jim on a fake host with the predicted timeline. See [SCRIPT_EXECUTOR.md](SCRIPT_EXECUTOR.md). | Walking, character speech, choice display, Jim, native handlers beyond type 1 ordinals 0-3; not run in the live executable. |
+| Jim and walking | Jim (`0x4070c0`), start walk `0x407600`, step `0x407790`, floor scale `0x414740`, scaled drawing (`0x4120c0`/`0x412120`) recovered and ported; walks, floor scale and scaled pixels match the original routines in the emulator (see [JIM_AND_WALKING.md](JIM_AND_WALKING.md)). | Camera follow, talk overlay and character speech, click walking, shadow/solid scaled images, office transfer (native ordinal 5). |
 | Original resources | Existing readers account for all 50 LVLs/747 records, 23 observed kinds, 145 script blocks; all 87 DO sites indexed. | Kind/subtype methods, field semantics, reachability and complete behaviour. |
 | Executable | 48 general + 11 startup exports report completed decompilation; assembly/xrefs retained. | Full object/vtable map, walking, animation, scheduler, UI, save and special-system code. |
 | Prototype | Preserved office pen implementation and documented prior host checks. | General gameplay systems and original comparison; do not treat approximations as recovered rules. |

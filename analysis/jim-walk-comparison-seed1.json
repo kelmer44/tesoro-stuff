@@ -1,0 +1,25 @@
+{
+  "walks": 500,
+  "steps_compared": 38873,
+  "arrivals": 500,
+  "never_arrive": [],
+  "never_arrive_count": 0,
+  "directions": {
+    "4": 143,
+    "3": 148,
+    "1": 108,
+    "2": 101
+  },
+  "native_errors": [],
+  "native_error_count": 0,
+  "executable_sha256": "0fcd56b306b857283347e705dcce41a4b44dd4d9ef7c9226694114bba80792ef",
+  "driver_sha256": "2064e6fe8e218572b0240f4de7936afcece4452de5ffe837e3e506fc5ec6f8b3",
+  "source_sha256": {
+    "jim.cpp": "7eb42069d8902acbea8241a3d22148d4b25c5c04e42991b52e40b74ea94dd3fd",
+    "jim.h": "4b7f82282c9091ea5e4a9d0edf18099e58c7da09231cfbcab593f1e2e0951269",
+    "scene.cpp": "0764c62bc80de78063bf473d480700a7cb24753e735e37b309be0a40fe7b8683",
+    "animation.cpp": "37fb19455118598262da9aa6e26bb9846539ea0a587e345300bdefc46da59e65",
+    "resources.cpp": "3cf4a4e1dc8ba898f6b4ef3b90df55ddc6197d1b69b2992a959ff86a83382d71"
+  },
+  "tool_sha256": "ed09536b611c931213d2799e1d6dca3bf6d320a91e5d8f98d6a022fe313946f6"
+}

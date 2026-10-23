@@ -34,6 +34,7 @@ class NativePixels(NativeScene):
     rows = 0x4300000
     shadow_rows = 0x4400000
     output = 0x4500000
+    arena_size = 0x800000
 
     def submit(self, uc, address, size, data):
         # Leave the native queue routine running; the scene-state harness intercepts it.
@@ -41,7 +42,7 @@ class NativePixels(NativeScene):
 
     def __init__(self, executable, scene, font):
         super().__init__(executable)
-        self.uc.mem_map(0x4000000, 0x800000)
+        self.uc.mem_map(0x4000000, self.arena_size)
         self.next_image = 0x4010000
         self.buffers = {}
         for b, bank in enumerate(read_banks(scene)):

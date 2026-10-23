@@ -1,0 +1,34 @@
+{
+  "driver_sha256": "d17ac5a00258f42b009a9fd923895bc34913f6ea1099cf968ec36a441cd864cd",
+  "inputs": {
+    "ANIMS.DLG": "d36fa96a8f92cd3a13c14e2a394c8c7d375f34b9a41c2aed63d92c24da3b9d95",
+    "ANIMS.TXT": "2f2bd6943a8bd8bb4ef003b3b5b11f412713868fed1eb5c6076dd9f38c05fdd0",
+    "CONVERS.DLG": "6c1bf5cc1cbb969ac2c1dc9d236fa4d0977a943df7fc1a5c6ee7ee04df4fc8b5",
+    "CONVERS.TXT": "8557b31c42e08edb443c6b54a6f907e3652c151e0d22d67f27f7cc0d9b733810",
+    "ICONS.DLG": "0c7e8c5ce2bfd2b6e02e2160a2c1471d8650477b789886ee96966825846368e5",
+    "ICONS.TXT": "8fba19e0cccfc56aa3bdbb356a70eb751907d742fad91b37d6a76535e8eff921",
+    "OBJETOS.DLG": "15930d129bef3372d34c450c20d26f50558fc5723aaa43343dc82a5451ac36ef",
+    "OBJETOS.TXT": "21c0f1766e9a3c7445e7716b23a311efd8c5e2e44cadfb8155c72ff895d1f54e"
+  },
+  "blocks": 145,
+  "ops": 4274,
+  "expected_lines": 4419,
+  "actual_lines": 4419,
+  "mismatching_lines": 0,
+  "missing_jump_labels": [
+    {
+      "block": "FDICKCOCINA",
+      "line": 854
+    },
+    {
+      "block": "FORZOGUEI",
+      "line": 1235
+    },
+    {
+      "block": "FTIENDA",
+      "line": 1673
+    }
+  ],
+  "duplicate_text_ids": 0,
+  "first_mismatches": []
+}

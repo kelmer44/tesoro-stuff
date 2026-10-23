@@ -1,0 +1,3 @@
+004103f0  MOV EAX,0x1
+004103f5  MOV byte ptr [ECX + 0xd5],AL
+004103fb  RET 0x10

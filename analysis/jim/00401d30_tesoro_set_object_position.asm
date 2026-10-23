@@ -1,0 +1,13 @@
+00401d30  MOV AL,byte ptr [ESP + 0xc]
+00401d34  MOV EDX,dword ptr [ESP + 0x4]
+00401d38  TEST AL,AL
+00401d3a  MOV EAX,dword ptr [ESP + 0x8]
+00401d3e  JZ 0x00401d46
+00401d40  MOV dword ptr [ECX + 0x4c],EDX
+00401d43  MOV dword ptr [ECX + 0x50],EAX
+00401d46  MOV dword ptr [ECX + 0x54],EDX
+00401d49  MOV dword ptr [ECX + 0x58],EAX
+00401d4c  PUSH ECX
+00401d4d  MOV ECX,dword ptr [ECX + 0x40]
+00401d50  CALL 0x00408440
+00401d55  RET 0xc

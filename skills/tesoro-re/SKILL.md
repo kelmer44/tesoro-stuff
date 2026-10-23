@@ -66,7 +66,11 @@ Keep addresses and provenance in research notes rather than engine comments.
 
 1. Start with a concrete input/script/message or LVL record. Link original
    resource, line/offset, object kind/subtype and state owner to the native path.
-2. For scripts, `.BLOCK N` selects the script class; **DO is numbered in source
+2. For script text, parsing and linking, read `SCRIPT_COMPILER.md`; verify the
+   engine compiler with `tools/verify_script_compiler.py`. The executor is in
+   `SCRIPT_EXECUTOR.md` with `tools/verify_script_executor.py`. Jim, floors and scaled
+   drawing are in `JIM_AND_WALKING.md` with `tools/compare_scaled_sprites.py`,
+   `compare_floor_scale.py` and `compare_jim_walk.py` (emulator comparisons). For scripts, `.BLOCK N` selects the script class; **DO is numbered in source
    order per block**, independent of annotation words. The parser is `0x404810`,
    executor `0x405a60`, registration `0x406190`, callback vtable offset `+0x70`.
    Use the CSV to retain ordinals. Types 0, 11 and 13 share the established

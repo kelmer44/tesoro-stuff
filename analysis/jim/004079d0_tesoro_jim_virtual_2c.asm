@@ -1,0 +1,4 @@
+004079d0  MOV EAX,dword ptr [ESP + 0x4]
+004079d4  CMP byte ptr [EAX + 0x5c],0x7
+004079d8  SETZ AL
+004079db  RET 0x4
