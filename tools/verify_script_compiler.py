@@ -110,7 +110,7 @@ def parse_op(src, number, participants, ordinal):
     if src.startswith(' '):
         m = re.match(r' ([^,]*), *(-?\d+)(?: *, *(-?\d+))?', src)
         op.update(type=TYPES['speech'], id=m.group(1), speaker=int(m.group(2)),
-                  option=int(m.group(3)) if m.group(3) else 1)
+                  option=int(m.group(3)) if m.group(3) else 0)  # the original parser stores 0 when no option follows (0x404810)
     elif src.startswith('D'):
         op.update(type=TYPES['do'], value=ordinal)
     elif src.startswith('break'):

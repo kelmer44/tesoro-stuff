@@ -86,8 +86,8 @@ hidden in mode 0. Automatic ship reveal/play still needs native/script dispatch.
 Immediate camera clamping follows `0x402120`, including clamp order for bounds
 smaller than the viewport. For each group the view coordinates are camera center
 multiplied by 300 and divided by its projection divisor, with signed division.
-The actor-follow and timed movement portions of `0x401fc0` are recovered but not
-implemented in this camera class.
+The actor-follow and timed movement portions of `0x401fc0` are in the camera class (see
+the camera follow section of [JIM_AND_WALKING.md](JIM_AND_WALKING.md)).
 
 Scenery draw submission `0x40e6b0` produces:
 

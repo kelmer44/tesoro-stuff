@@ -121,6 +121,7 @@ class NativeScene(NativeAnimation):
             struct.pack_into('<I', raw, 0x18, 8 if bank['interpolate'] else 0)
             struct.pack_into('<I', raw, 0x1c, address + 0x1000)
             struct.pack_into('<HH', raw, 0x20, len(bank['images']), bank['frames'])
+            raw[0x32:0x3e] = bank['name'].encode('cp850')[:12].ljust(12, b'\0')  # the loader keeps the file's name
             self.uc.mem_write(address, bytes(raw))
             self.uc.mem_write(self.bank_table + i * 4, struct.pack('<I', address))
             for j, frame in enumerate(bank['records']):

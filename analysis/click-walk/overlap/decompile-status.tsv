@@ -1,0 +1,6 @@
+address	name	completed	error
+00402240	tesoro_probe_ctor	true	
+00409280	tesoro_overlap_box	true	
+00409560	tesoro_overlap_point_in_poly	true	
+00409790	tesoro_overlap_poly_poly	true	
+00409c10	tesoro_overlap_clip	true	

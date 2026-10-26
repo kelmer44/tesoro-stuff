@@ -1,0 +1,13 @@
+enter 1
+click 1 PUERTA1 0
+state 0 PUERTA1
+click 0 PUERTA1 0
+click 0 PUERTA1 4
+state 0 PUERTA1
+click 0 PUERTA1 0
+rclick 0 PUERTA1 0
+click 0 PUERTA1 4
+rclick 0 PUERTA1 0
+enter 1
+click 1 PUERTA2 0
+click 1 PUERTA2 0

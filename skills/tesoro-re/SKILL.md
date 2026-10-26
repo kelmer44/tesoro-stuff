@@ -68,7 +68,9 @@ Keep addresses and provenance in research notes rather than engine comments.
    resource, line/offset, object kind/subtype and state owner to the native path.
 2. For script text, parsing and linking, read `SCRIPT_COMPILER.md`; verify the
    engine compiler with `tools/verify_script_compiler.py`. The executor is in
-   `SCRIPT_EXECUTOR.md` with `tools/verify_script_executor.py`. Jim, floors and scaled
+   `SCRIPT_EXECUTOR.md` with `tools/verify_script_executor.py`. Scene transfer, speech and the captain scene are in
+   `OFFICE_TRANSFER.md` with `tools/compare_text_layout.py` and `compare_talk_draw.py`.
+   Jim, floors and scaled
    drawing are in `JIM_AND_WALKING.md` with `tools/compare_scaled_sprites.py`,
    `compare_floor_scale.py` and `compare_jim_walk.py` (emulator comparisons). For scripts, `.BLOCK N` selects the script class; **DO is numbered in source
    order per block**, independent of annotation words. The parser is `0x404810`,
@@ -125,3 +127,12 @@ inputs/version, output interpretation and limitations in this skill or a linked
 reference. Add scripts when repeated execution benefits from them. Untried
 debugger/emulator ideas stay in the master plan until demonstrated. Keep original
 assets, full extracted scripts/media, VM disks and Ghidra databases local.
+
+**Building an ignored production driver without the full ScummVM link (demonstrated 26 October 2026).** From the engine worktree, after
+`make` has produced `engines/tesoro/*.o`: `ar rcs libc.a $(find common graphics -name '*.o')`, then
+`g++ -std=c++11 -g -fno-exceptions -DHAVE_CONFIG_H -DMACOSX -DPOSIX -DENABLE_TESORO=STATIC_PLUGIN -I. -I./engines -I/opt/homebrew/include
+driver.cpp <engines/tesoro/*.o except metaengine, detection, console, tesoro.o, natives.o> libc.a -o driver` (the archive lets the linker take only the
+`common` objects it needs). Drivers read binary requests on stdin and write int32 results on stdout; `#define private public` before the engine headers
+lets a driver read members without touching engine code. In zsh keep the object list in an array (no word splitting) and write temporary output in the
+scratchpad. Pairs with a Unicorn harness (`tools/compare_path_route.py` is the smallest example: capture a virtual call by hooking its stub address).
+Pitfall found: a generic point-in-polygon is not a reference for the original's x-monotone test; compare engine and original code, not a third implementation.

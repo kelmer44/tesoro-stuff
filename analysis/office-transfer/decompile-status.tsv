@@ -1,0 +1,12 @@
+address	name	completed	error
+004139e0	tesoro_clock_hold	true	
+00413a50	tesoro_begin_frame_time	true	
+004040d0	tesoro_audio_handle_lookup	true	
+004043b0	tesoro_audio_stop	true	
+00401da0	tesoro_save_object_animation_state	true	
+00401de0	tesoro_play_object_animation	true	
+00410400	tesoro_character_end_speech	true	
+0040f900	tesoro_object_list_insert_priority	true	
+00408c50	tesoro_order_objects	true	
+00412c50	tesoro_draw_text_overlay	true	
+00401fc0	tesoro_set_group_camera	true	

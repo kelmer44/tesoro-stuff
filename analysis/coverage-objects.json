@@ -1,0 +1,462 @@
+{
+ "objects": 747,
+ "by_status": {
+  "complete": 628,
+  "unported": 105,
+  "partial": 14
+ },
+ "by_kind": {
+  "0": {
+   "complete": 1
+  },
+  "1": {
+   "complete": 50
+  },
+  "2": {
+   "complete": 2
+  },
+  "3": {
+   "complete": 217
+  },
+  "5": {
+   "complete": 14,
+   "partial": 9,
+   "unported": 4
+  },
+  "6": {
+   "complete": 62,
+   "unported": 8,
+   "partial": 5
+  },
+  "7": {
+   "complete": 38
+  },
+  "8": {
+   "complete": 39
+  },
+  "9": {
+   "complete": 124
+  },
+  "10": {
+   "complete": 1
+  },
+  "11": {
+   "complete": 1
+  },
+  "12": {
+   "complete": 9,
+   "unported": 3
+  },
+  "13": {
+   "complete": 33,
+   "unported": 13
+  },
+  "15": {
+   "complete": 1
+  },
+  "16": {
+   "unported": 3
+  },
+  "17": {
+   "complete": 30
+  },
+  "19": {
+   "unported": 7
+  },
+  "20": {
+   "unported": 38,
+   "complete": 6
+  },
+  "21": {
+   "unported": 7
+  },
+  "22": {
+   "unported": 7
+  },
+  "23": {
+   "unported": 3
+  },
+  "24": {
+   "unported": 7
+  },
+  "25": {
+   "unported": 5
+  }
+ },
+ "unported_classes": [
+  [
+   5,
+   13
+  ],
+  [
+   5,
+   14
+  ],
+  [
+   5,
+   15
+  ],
+  [
+   5,
+   16
+  ],
+  [
+   6,
+   1
+  ],
+  [
+   6,
+   5
+  ],
+  [
+   6,
+   6
+  ],
+  [
+   6,
+   7
+  ],
+  [
+   6,
+   10
+  ],
+  [
+   12,
+   7
+  ],
+  [
+   12,
+   8
+  ],
+  [
+   12,
+   9
+  ],
+  [
+   13,
+   9
+  ],
+  [
+   13,
+   10
+  ],
+  [
+   13,
+   15
+  ],
+  [
+   13,
+   16
+  ],
+  [
+   13,
+   19
+  ],
+  [
+   13,
+   26
+  ],
+  [
+   13,
+   28
+  ],
+  [
+   13,
+   29
+  ],
+  [
+   13,
+   33
+  ],
+  [
+   13,
+   36
+  ],
+  [
+   13,
+   37
+  ],
+  [
+   13,
+   42
+  ],
+  [
+   13,
+   44
+  ],
+  [
+   20,
+   0
+  ],
+  [
+   20,
+   1
+  ],
+  [
+   20,
+   2
+  ],
+  [
+   20,
+   3
+  ],
+  [
+   20,
+   4
+  ],
+  [
+   20,
+   6
+  ],
+  [
+   20,
+   7
+  ],
+  [
+   20,
+   8
+  ],
+  [
+   20,
+   9
+  ],
+  [
+   20,
+   10
+  ],
+  [
+   20,
+   11
+  ],
+  [
+   20,
+   12
+  ],
+  [
+   20,
+   13
+  ],
+  [
+   20,
+   14
+  ],
+  [
+   20,
+   15
+  ],
+  [
+   20,
+   16
+  ],
+  [
+   20,
+   20
+  ],
+  [
+   20,
+   21
+  ],
+  [
+   20,
+   22
+  ],
+  [
+   20,
+   27
+  ],
+  [
+   20,
+   28
+  ],
+  [
+   20,
+   29
+  ],
+  [
+   20,
+   30
+  ]
+ ],
+ "scenes": {
+  "1.lvl": {
+   "complete": 7
+  },
+  "10.lvl": {
+   "complete": 6
+  },
+  "11.lvl": {
+   "complete": 4,
+   "unported": 2
+  },
+  "12.lvl": {
+   "complete": 6,
+   "unported": 1
+  },
+  "13.lvl": {
+   "complete": 7
+  },
+  "14.lvl": {
+   "complete": 6,
+   "unported": 1
+  },
+  "15.lvl": {
+   "complete": 6,
+   "unported": 1
+  },
+  "16.lvl": {
+   "complete": 8
+  },
+  "17.lvl": {
+   "complete": 6
+  },
+  "18.lvl": {
+   "complete": 6
+  },
+  "19.lvl": {
+   "complete": 9,
+   "unported": 2
+  },
+  "2.lvl": {
+   "complete": 7
+  },
+  "20.lvl": {
+   "complete": 4,
+   "unported": 1
+  },
+  "3.lvl": {
+   "complete": 6
+  },
+  "4.lvl": {
+   "complete": 7
+  },
+  "5.lvl": {
+   "complete": 6
+  },
+  "6.lvl": {
+   "complete": 7
+  },
+  "7.lvl": {
+   "complete": 7,
+   "unported": 1
+  },
+  "8.lvl": {
+   "complete": 5
+  },
+  "9.lvl": {
+   "complete": 8
+  },
+  "Almacen.lvl": {
+   "complete": 32,
+   "partial": 2
+  },
+  "Almacen2.lvl": {
+   "complete": 33
+  },
+  "Armario.lvl": {
+   "complete": 4,
+   "unported": 16
+  },
+  "Camarote.lvl": {
+   "complete": 24,
+   "partial": 1
+  },
+  "Camarote2.lvl": {
+   "complete": 27
+  },
+  "Campamento.lvl": {
+   "complete": 17,
+   "unported": 3
+  },
+  "Cocina.lvl": {
+   "complete": 12,
+   "partial": 2
+  },
+  "Cocina2.lvl": {
+   "complete": 10
+  },
+  "Creditos.lvl": {
+   "complete": 8
+  },
+  "Cubierta.lvl": {
+   "complete": 20,
+   "partial": 2
+  },
+  "Cubierta2.lvl": {
+   "complete": 16
+  },
+  "Despacho.lvl": {
+   "complete": 25,
+   "partial": 2
+  },
+  "Entrada.lvl": {
+   "complete": 6,
+   "unported": 2
+  },
+  "Final.lvl": {
+   "complete": 9
+  },
+  "INTERFACE.lvl": {
+   "complete": 48,
+   "unported": 23
+  },
+  "Lucha.lvl": {
+   "complete": 8,
+   "unported": 1
+  },
+  "Mapa.lvl": {
+   "complete": 3,
+   "unported": 7
+  },
+  "Nuevo.lvl": {
+   "complete": 13,
+   "unported": 3
+  },
+  "Pantano.lvl": {
+   "complete": 8,
+   "unported": 5
+  },
+  "Playa.lvl": {
+   "complete": 15,
+   "unported": 8
+  },
+  "Poblado.lvl": {
+   "complete": 19,
+   "unported": 6
+  },
+  "Principal.lvl": {
+   "complete": 2,
+   "unported": 2
+  },
+  "Puerto.lvl": {
+   "complete": 23,
+   "partial": 2
+  },
+  "Risco.lvl": {
+   "complete": 16,
+   "unported": 2
+  },
+  "RiscoFinal.lvl": {
+   "complete": 13
+  },
+  "Taberna.lvl": {
+   "complete": 14,
+   "unported": 7,
+   "partial": 3
+  },
+  "Tablero.lvl": {
+   "complete": 52,
+   "unported": 7
+  },
+  "Tierra.lvl": {
+   "complete": 11,
+   "unported": 2
+  },
+  "Trono.lvl": {
+   "complete": 6
+  },
+  "Volcan.lvl": {
+   "complete": 6,
+   "unported": 2
+  }
+ }
+}

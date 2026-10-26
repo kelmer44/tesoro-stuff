@@ -1,0 +1,35 @@
+enter 3
+click 3 PESCADOR 2
+click 3 LUDOPATA 2
+click 3 POLVORA 3
+enter 5
+click 5 CUERDA 3
+click 5 CIRUELAS 3
+click 5 REVITALIZA 3
+click 5 COFRE 1
+phase 4 0
+click 5 COFRE 3
+phase 0 1
+click 5 PUERTA1 0
+phase 0 0
+click 5 PUERTA2 0
+enter 6
+click 6 PATATAS 3
+click 6 PUCHERO 2
+click 6 DICK 2
+click 6 LOROPOCHO 1
+click 6 LOROPOCHO 2
+enter 4
+click 4 LIBROS 1
+click 4 BANDERA 1
+click 4 MESA 1
+click 4 ALFOMBRA 3
+click 4 BAUL 4
+phase 2 0
+click 4 BAUL 4
+enter 18
+click 18 SUICIDA 1
+click 18 NOTASUICIDA 1
+click 18 ESPADA 3
+enter 17
+click 17 CAPIMUERTO 1

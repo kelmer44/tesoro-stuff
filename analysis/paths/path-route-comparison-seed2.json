@@ -1,0 +1,261 @@
+{
+ "queries_compared": 11400,
+ "routed": 8350,
+ "legs": 23350,
+ "scenes_with_path": 38,
+ "scenes": [
+  {
+   "scene": "1.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "10.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "11.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "12.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "13.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "14.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "15.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "16.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "17.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "18.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "19.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "2.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "20.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "3.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "4.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "5.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "6.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "7.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "8.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "9.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "Almacen.lvl",
+   "path": true,
+   "nodes": 3
+  },
+  {
+   "scene": "Almacen2.lvl",
+   "path": true,
+   "nodes": 3
+  },
+  {
+   "scene": "Armario.lvl",
+   "path": false,
+   "nodes": 0
+  },
+  {
+   "scene": "Camarote.lvl",
+   "path": true,
+   "nodes": 4
+  },
+  {
+   "scene": "Camarote2.lvl",
+   "path": true,
+   "nodes": 4
+  },
+  {
+   "scene": "Campamento.lvl",
+   "path": true,
+   "nodes": 5
+  },
+  {
+   "scene": "Cocina.lvl",
+   "path": false,
+   "nodes": 0
+  },
+  {
+   "scene": "Cocina2.lvl",
+   "path": false,
+   "nodes": 0
+  },
+  {
+   "scene": "Creditos.lvl",
+   "path": false,
+   "nodes": 0
+  },
+  {
+   "scene": "Cubierta.lvl",
+   "path": true,
+   "nodes": 8
+  },
+  {
+   "scene": "Cubierta2.lvl",
+   "path": true,
+   "nodes": 8
+  },
+  {
+   "scene": "Despacho.lvl",
+   "path": true,
+   "nodes": 5
+  },
+  {
+   "scene": "Entrada.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "Final.lvl",
+   "path": false,
+   "nodes": 0
+  },
+  {
+   "scene": "INTERFACE.lvl",
+   "path": false,
+   "nodes": 0
+  },
+  {
+   "scene": "Lucha.lvl",
+   "path": false,
+   "nodes": 0
+  },
+  {
+   "scene": "Mapa.lvl",
+   "path": false,
+   "nodes": 0
+  },
+  {
+   "scene": "Nuevo.lvl",
+   "path": false,
+   "nodes": 0
+  },
+  {
+   "scene": "Pantano.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "Playa.lvl",
+   "path": true,
+   "nodes": 2
+  },
+  {
+   "scene": "Poblado.lvl",
+   "path": true,
+   "nodes": 4
+  },
+  {
+   "scene": "Principal.lvl",
+   "path": false,
+   "nodes": 0
+  },
+  {
+   "scene": "Puerto.lvl",
+   "path": true,
+   "nodes": 5
+  },
+  {
+   "scene": "Risco.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "RiscoFinal.lvl",
+   "path": true,
+   "nodes": 1
+  },
+  {
+   "scene": "Taberna.lvl",
+   "path": true,
+   "nodes": 3
+  },
+  {
+   "scene": "Tablero.lvl",
+   "path": false,
+   "nodes": 0
+  },
+  {
+   "scene": "Tierra.lvl",
+   "path": true,
+   "nodes": 10
+  },
+  {
+   "scene": "Trono.lvl",
+   "path": false,
+   "nodes": 0
+  },
+  {
+   "scene": "Volcan.lvl",
+   "path": true,
+   "nodes": 1
+  }
+ ],
+ "executable_sha256": "0fcd56b306b857283347e705dcce41a4b44dd4d9ef7c9226694114bba80792ef",
+ "driver_sha256": "3fd895e79cf0363c2ecd1efa349d71d1fee48816ce3949af93bf3b08b4107003",
+ "tool_sha256": "2bd3245b35ce8d1d7acdb876b8f8de97f8363e7c37705aba5361b46bba362327"
+}

@@ -36,7 +36,7 @@ def signed32(value):
 
 class NativeJim(NativeScene):
     J, SCENE, ROOM, FLOOR, FLOOR_BANK, FLOOR_FRAMES = 0x600000, 0x600400, 0x600500, 0x600600, 0x600700, 0x600800
-    ARRAY, WAITER, WAITER_VTABLE, STUB, IDLE = 0x600900, 0x600a00, 0x600b00, 0x600c00, 0x6f0000
+    ARRAY, WAITER, WAITER_VTABLE, STUB, IDLE, BANKS = 0x600900, 0x600a00, 0x600b00, 0x600c00, 0x670000, 0x600d00
     POINTS, SCALES = 0x601000, 0x601400
 
     def __init__(self, exe):
@@ -91,10 +91,20 @@ class NativeJim(NativeScene):
                 struct.pack_into('<I', raw, 24, 0 if image < 0 else 1)
                 w(address + 0x1000 + i * 36, bytes(raw))
             w(self.ARRAY + direction * 4, struct.pack('<I', address))
+        # The idle bank (JIMQUIETO, with a frame for each direction), reached through Jim's bank array.
+        frames, interpolate = banks['JIMQUIETO']
         w(self.IDLE, bytes(64))
-        w(self.IDLE + 0x22, struct.pack('<H', 1))
+        w(self.IDLE + 0x18, struct.pack('<I', 8 if interpolate else 0))
         w(self.IDLE + 0x1c, struct.pack('<I', self.IDLE + 0x1000))
-        w(self.IDLE + 0x1000, bytes(36))
+        w(self.IDLE + 0x22, struct.pack('<H', len(frames)))
+        for i, (header, image) in enumerate(frames):
+            raw = bytearray(36)
+            raw[:24] = header
+            struct.pack_into('<I', raw, 24, 0 if image < 0 else 1)
+            w(self.IDLE + 0x1000 + i * 36, bytes(raw))
+        w(self.J + 0x34, struct.pack('<I', self.BANKS))
+        w(self.BANKS + 2 * 4, struct.pack('<I', self.IDLE))
+        w(self.J + 0xac, struct.pack('<I', 2))
         w(self.WAITER, struct.pack('<I', self.WAITER_VTABLE))
         w(self.WAITER_VTABLE + 0x34, struct.pack('<I', self.STUB))
         w(self.J + 0x38, struct.pack('<I', self.IDLE))
@@ -116,6 +126,10 @@ class NativeJim(NativeScene):
     def step(self, now):
         self.moved = False
         self.invoke(0x407790, self.J, now=now, instruction_limit=2000000)
+        if self.arrived:
+            # The waiting script's resume turns Jim to face the way he walked (0x406140 calls 0x407a80).
+            direction = struct.unpack('<I', bytes(self.uc.mem_read(self.J + 0x10c, 4)))[0]
+            self.invoke(0x407a80, self.J, (direction,), now=now)
         read = lambda at, fmt: struct.unpack(fmt, bytes(self.uc.mem_read(self.J + at, struct.calcsize(fmt))))
         if self.moved and not self.arrived:  # the scene commits positions at the end of a frame
             self.uc.mem_write(self.J + 0x4c, bytes(self.uc.mem_read(self.J + 0x54, 8)))

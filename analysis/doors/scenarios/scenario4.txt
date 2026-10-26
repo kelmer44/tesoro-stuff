@@ -1,0 +1,16 @@
+enter 0
+play 0 CAPITAN 2
+click 0 PLUMA 3
+state -1 IPLUMA
+click 0 CARTA 9
+state -1 IPLUMA
+click -1 IPLUMA 0
+click -1 IPLUMA 1
+click -1 IPLUMA 3
+setactive -1 IBOLI 1
+click -1 IPLUMA 9
+click -1 IBOLI 9
+click 0 CARTA 7
+setactive -1 IBOLI 1
+setactive 0 CAPITAN 1
+click 0 CAPITAN 7

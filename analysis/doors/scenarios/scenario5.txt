@@ -1,0 +1,16 @@
+enter 2
+state 2 DICK
+state 2 LORO
+state 2 NUDERO
+state 2 TONTO
+click 2 LORO 2
+click 2 DICK 2
+click 2 NUDERO 2
+state 2 TONTO
+setactive -1 IBOLI 1
+click 2 DICK 7
+click 2 NUDERO 7
+setactive -1 IPLUMA 1
+click 2 DICK 9
+setactive -1 IDOBLON 1
+click 2 DICK 12

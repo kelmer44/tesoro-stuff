@@ -1,0 +1,1540 @@
+//==== 0040c2c0
+undefined4 __fastcall f40c2c0(int *param_1)
+{
+iVar1 = FIND(SCENE[0],"CAPITAN");
+if (*(char *)(iVar1 + 0x32) != '\x02') {
+pvVar5 = (void *)param_1[0x10];
+iVar1 = 0;
+START(FNOCOGER / coger, vars=iVar1, scene=pvVar5)
+param_1.slot0x20();
+return 1;
+}
+piVar2 = (int *)FIND(INTERFACE,"IPLUMA");
+piVar2.slot0x20();
+param_1.slot0x20(0);
+return 1;
+}
+
+//==== 0040c370
+undefined4 __fastcall f40c370(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FBOLI / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040c3c0
+undefined4 __fastcall f40c3c0(int param_1)
+{
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar1 = FIND(SCENE[0],"CAPITAN");
+local_c = (int)(uVar4 >> 0x20);
+local_10 = (int)uVar4;
+iVar1 = *(int *)(iVar1 + 0x60);
+START(FBOLI / coger, vars=iVar1, scene=pvVar5)
+if (*(int *)((int)POINTER + 300) != 0) {
+*(undefined4 *)((int)POINTER + 300) = 0;
+FUN_00401de0(POINTER,0,0,0,0,'\0');
+}
+return 1;
+}
+
+//==== 0040c480
+undefined4 __fastcall f40c480(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FBOLI / abrir, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040c4d0
+undefined4 __fastcall f40c4d0(int param_1)
+{
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar1 = FIND(SCENE[0],"CAPITAN");
+local_c = (int)(uVar4 >> 0x20);
+local_10 = (int)uVar4;
+iVar1 = *(int *)(iVar1 + 0x60);
+START(FCARTA / mirar, vars=iVar1, scene=pvVar5)
+return 1;
+}
+
+//==== 0040c560
+undefined4 __fastcall f40c560(int param_1)
+{
+iVar1 = FIND(SCENE[0],"JARRON");
+**(byte **)(param_1 + 0x60) = (byte)(*(uint *)(iVar1 + 0x68) >> 1) & 1;
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FTABURETE / coger, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 0040c5d0
+undefined4 __fastcall f40c5d0(int param_1)
+{
+iVar1 = FIND(SCENE[0],"JARRON");
+**(byte **)(param_1 + 0x60) = (byte)(*(uint *)(iVar1 + 0x68) >> 1) & 1;
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FTABURETE / mover, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 0040c640
+undefined4 __fastcall f40c640(int param_1)
+{
+iVar1 = FIND(SCENE[0],"CAPITAN");
+if (*(char *)(iVar1 + 0x32) == '\x02') {
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+}
+else {
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = 0;
+}
+START(FNOCOGER / coger, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 0040c6d0
+undefined4 __fastcall f40c6d0(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FPLACA / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040c720
+undefined4 __fastcall f40c720(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FPEZESP / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040c770
+undefined4 __fastcall f40c770(int *param_1)
+{
+iVar1 = FIND(SCENE[0],"CAPITAN");
+if (*(char *)(iVar1 + 0x32) != '\x02') {
+pvVar5 = (void *)param_1[0x10];
+iVar1 = 0;
+START(FNOCOGER / coger, vars=iVar1, scene=pvVar5)
+return 1;
+}
+piVar2 = (int *)FIND(INTERFACE,"IJARRON");
+piVar2.slot0x20();
+param_1.slot0x20(0);
+return 1;
+}
+
+//==== 0040c810
+undefined4 __fastcall f40c810(int param_1)
+{
+iVar1 = FIND(SCENE[0],"CAPITAN");
+if (*(char *)(iVar1 + 0x32) == '\x02') {
+}
+else {
+}
+uVar2 = tesoro_encode_name((int)puVar5);
+lVar4 = (ulonglong)*(uint *)(param_1 + 0x40) << 0x20;
+tesoro_start_script(this,(int)uVar2,(int)(uVar2 >> 0x20),(int)lVar4,
+(void *)((ulonglong)lVar4 >> 0x20));
+return 1;
+}
+
+//==== 0040c880
+undefined4 __fastcall f40c880(int param_1)
+{
+if (**(char **)(param_1 + 0x60) != '\0') {
+return 1;
+}
+uVar1 = tesoro_generic_door_use(param_1);
+return uVar1;
+}
+
+//==== 0040c8a0
+undefined4 __fastcall f40c8a0(void *param_1)
+{
+**(char **)((int)param_1 + 0x60) = **(char **)((int)param_1 + 0x60) == '\0';
+tesoro_set_object_flag_bit2(param_1,**(char **)((int)param_1 + 0x60) != '\0');
+return 1;
+}
+
+//==== 0040c8d0
+undefined4 __thiscall f40c8d0(void *this,int param_1)
+{
+if (**(char **)((int)this + 0x60) == '\0') {
+return 1;
+}
+uVar1 = FUN_00414d50(this,param_1);
+return uVar1;
+}
+
+//==== 0040c8f0
+undefined4 __fastcall f40c8f0(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FLORO / hablar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040c940
+undefined4 __fastcall f40c940(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FJOE / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040c990
+undefined4 __fastcall f40c990(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FJOE / hablar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040c9e0
+undefined4 __fastcall f40c9e0(int *param_1)
+{
+param_1.slot0x20(0);
+piVar1 = (int *)FIND(INTERFACE,"IJARRA");
+piVar1.slot0x20();
+return 1;
+}
+
+//==== 0040ca10
+undefined4 __fastcall f40ca10(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FTONTO / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040ca60
+undefined4 __fastcall f40ca60(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FTONTO / hablar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040cab0
+undefined4 __fastcall f40cab0(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FBANDERA / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040cb00
+undefined4 __fastcall f40cb00(int param_1)
+{
+iVar1 = FUN_00413ac0(0,4);
+**(undefined1 **)(param_1 + 0x60) = (char)iVar1;
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FLIBROS / mirar, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 0040cb60
+undefined4 __fastcall f40cb60(int param_1)
+{
+*(bool *)*(undefined4 *)(param_1 + 0x60) = *(char *)(JIM + 0x111) == '\x06';
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FPAPELES / coger, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040cbd0
+undefined4 __fastcall f40cbd0(int param_1)
+{
+*(bool *)*(undefined4 *)(param_1 + 0x60) = *(char *)(JIM + 0x111) == '\b';
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FALFOMBRA / coger, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040cc40
+undefined4 __fastcall f40cc40(int param_1)
+{
+iVar1 = FIND(INTERFACE,"IPAPELES");
+if (((*(uint *)(iVar1 + 0x68) >> 1 & 1) != 0) && (**(char **)(param_1 + 0x60) < '\x01')) {
+**(char **)(param_1 + 0x60) = '\x01';
+}
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FMESA / mirar, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 0040ccc0
+undefined4 __fastcall f40ccc0(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FBAULOPEN / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040cd10
+undefined4 __fastcall f40cd10(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FPESCADOR / hablar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040cd60
+undefined4 __fastcall f40cd60(int param_1)
+{
+if (**(char **)(param_1 + 0x60) == '\0') {
+iVar1 = FIND(INTERFACE,"IPLATO");
+if (((*(uint *)(iVar1 + 0x68) >> 1 & 1) != 0) &&
+(*(char *)(*(int *)(param_1 + 0x60) + 3) == '\0')) {
+*(undefined1 *)(*(int *)(param_1 + 0x60) + 3) = 1;
+}
+}
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FLUDOPATA / hablar, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 0040cdf0
+undefined4 f40cdf0(void)
+{
+piVar1 = (int *)FIND(INTERFACE,"IPOLVORA");
+piVar1.slot0x20();
+return 1;
+}
+
+//==== 0040ce20
+undefined4 __fastcall f40ce20(int param_1)
+{
+*(bool *)*(undefined4 *)(param_1 + 0x60) = *(int *)(JIM + 0x40) != SCENE[20];
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FPATATAS / coger, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040ce90
+undefined4 __fastcall f40ce90(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FPUCHERO / hablar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040cee0
+undefined4 __fastcall f40cee0(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FCUBO / coger, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040cf30
+undefined4 __fastcall f40cf30(int param_1)
+{
+iVar2 = FIND(INTERFACE,"ICIRUELA");
+if ((*(uint *)(iVar2 + 0x68) >> 1 & 1) == 0) {
+iVar2 = FIND(INTERFACE,"ICIRUELABRT");
+if ((*(uint *)(iVar2 + 0x68) >> 1 & 1) == 0) {
+uVar1 = 0;
+goto LAB_0040cf85;
+}
+}
+uVar1 = 1;
+LAB_0040cf85:
+**(undefined1 **)(param_1 + 0x60) = uVar1;
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar2 = *(int *)(param_1 + 0x60);
+START(FCIRUELAS / coger, vars=iVar2, scene=pvVar5)
+return 1;
+}
+
+//==== 0040cfd0
+undefined4 f40cfd0(void)
+{
+piVar1 = (int *)FIND(INTERFACE,"IREVITALIZA");
+piVar1.slot0x20();
+return 1;
+}
+
+//==== 0040d000
+undefined4 __fastcall f40d000(int param_1)
+{
+*(bool *)*(undefined4 *)(param_1 + 0x60) = *(char *)(JIM + 0x111) == '\x04';
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FCOFRE / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d070
+undefined4 __fastcall f40d070(int param_1)
+{
+*(bool *)*(undefined4 *)(param_1 + 0x60) = *(char *)(JIM + 0x111) == '\x04';
+if (*(char *)(JIM + 0x111) == '\x04') {
+*(undefined1 *)(JIM + 0x110) = 0;
+*(undefined1 *)(JIM + 0x111) = 5;
+}
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FCOFRE / coger, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d100
+undefined4 __fastcall f40d100(int param_1)
+{
+iVar1 = FIND(INTERFACE,"ICUERDANUDO");
+**(byte **)(param_1 + 0x60) = (byte)(*(uint *)(iVar1 + 0x68) >> 1) & 1;
+if (**(char **)(param_1 + 0x60) == '\0') {
+piVar2 = (int *)FIND(SCENE[19],"CUERDA");
+piVar2.slot0x20();
+}
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FCUERDA / coger, vars=iVar1, scene=pvVar5)
+return 1;
+}
+
+//==== 0040d1a0
+undefined4 __fastcall f40d1a0(int param_1)
+{
+iVar1 = tesoro_generic_door_use(param_1);
+if (iVar1 == 0) {
+return 0;
+}
+if (**(char **)(param_1 + 0x60) == '\0') {
+**(char **)(param_1 + 0x60) = '\x01';
+pvVar7 = SCENE[6];
+iVar1 = FIND(SCENE[6],"DICK");
+iVar1 = *(int *)(iVar1 + 0x60);
+local_4 = (int)(uVar4 >> 0x20);
+local_8 = (int)uVar4;
+iVar5 = (int)uVar3;
+iVar6 = (int)(uVar3 >> 0x20);
+tesoro_start_script(this,iVar5,iVar6,iVar1,pvVar7);
+}
+return 1;
+}
+
+//==== 0040d240
+undefined4 __fastcall f40d240(int param_1)
+{
+**(undefined1 **)(param_1 + 0x60) = 1;
+piVar1 = (int *)FIND(SCENE[7],"SALIDA");
+piVar1.slot0x50();
+return 1;
+}
+
+//==== 0040d270
+undefined4 __fastcall f40d270(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FCOCOTERO / hablar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d2c0
+undefined4 __fastcall f40d2c0(int param_1)
+{
+iVar1 = FIND(SCENE[7],"CANOA");
+**(byte **)(param_1 + 0x60) = (byte)(*(uint *)(iVar1 + 0x68) >> 1) & 1;
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FBARCO / ir, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d330
+undefined4 f40d330(void)
+{
+piVar1 = (int *)FIND(SCENE[7],"ANIMCOCO");
+piVar1.slot0x20(0);
+piVar1 = (int *)FIND(INTERFACE,"ICOCO");
+piVar1.slot0x20(1);
+return 1;
+}
+
+//==== 0040d380
+undefined4 __fastcall f40d380(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FOBTUSU / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d3d0
+undefined4 __fastcall f40d3d0(int param_1)
+{
+iVar1 = FIND(SCENE[9],"ORZOGUEI");
+*(bool *)(*(int *)(param_1 + 0x60) + 1) = *(char *)(*(int *)(iVar1 + 0x60) + 1) == '\x05';
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FOBTUSU / hablar, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d450
+undefined4 __fastcall f40d450(int param_1)
+{
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar1 = FIND(SCENE[9],"ORZOGUEI");
+local_c = (int)(uVar4 >> 0x20);
+local_10 = (int)uVar4;
+iVar1 = *(int *)(iVar1 + 0x60);
+START(FTABLERO / mirar, vars=iVar1, scene=pvVar5)
+return 1;
+}
+
+//==== 0040d4e0
+undefined4 __fastcall f40d4e0(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FCHOZA / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d530
+undefined4 __fastcall f40d530(int param_1)
+{
+iVar1 = FIND(INTERFACE,"ICOCOABIERT");
+**(byte **)(param_1 + 0x60) = (byte)(*(uint *)(iVar1 + 0x68) >> 1) & 1;
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FCHOZA / ir, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d5a0
+undefined4 __fastcall f40d5a0(int param_1)
+{
+uStack_4 = param_1;
+iVar1 = FIND(SCENE[12],"JUSTINO");
+uStack_4 = CONCAT13((char)(*(uint *)(iVar1 + 0x68) >> 1),(undefined3)uStack_4) & 0x1ffffff;
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = (int)&uStack_4 + 3;
+START(FENTVOLCAN / ir, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d620
+undefined4 __fastcall f40d620(int *param_1)
+{
+param_1.slot0x20(0);
+piVar1 = (int *)FIND(INTERFACE,"IPOMEZ");
+piVar1.slot0x20();
+return 1;
+}
+
+//==== 0040d650
+undefined4 __fastcall f40d650(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FFERNAN / hablar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d6a0
+undefined4 __fastcall f40d6a0(int param_1)
+{
+**(undefined1 **)(param_1 + 0x60) = 1;
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FFERNAN / coger, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d6f0
+undefined4 __fastcall f40d6f0(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FPIRATAS / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d740
+undefined4 __fastcall f40d740(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FCAMPMAPA / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d790
+undefined4 __fastcall f40d790(int param_1)
+{
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar1 = FIND(SCENE[9],"CHOZA");
+local_c = (int)(uVar4 >> 0x20);
+local_10 = (int)uVar4;
+iVar1 = *(int *)(iVar1 + 0x60) + 1;
+START(FCAMPMAPA / coger, vars=iVar1, scene=pvVar5)
+return 1;
+}
+
+//==== 0040d820
+undefined4 f40d820(void)
+{
+piVar1 = (int *)FIND(INTERFACE,"IBOLSO");
+piVar1.slot0x20(1);
+piVar1 = (int *)FIND(SCENE[13],"BOLSO");
+piVar1.slot0x20(0);
+return 1;
+}
+
+//==== 0040d870
+undefined4 __fastcall f40d870(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FCERRADURA / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d8c0
+undefined4 __fastcall f40d8c0(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FCAPIMUERTO / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d910
+undefined4 __fastcall f40d910(int *param_1)
+{
+piVar1 = (int *)FIND(INTERFACE,"ISOGA");
+piVar1.slot0x20();
+param_1.slot0x20(0);
+return 1;
+}
+
+//==== 0040d950
+undefined4 __fastcall f40d950(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FESPADA / coger, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040d9a0
+undefined4 __fastcall f40d9a0(int param_1)
+{
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar1 = FIND(SCENE[18],"SUICIDA");
+local_c = (int)(uVar4 >> 0x20);
+local_10 = (int)uVar4;
+iVar1 = *(int *)(iVar1 + 0x60);
+START(FNOTARIP / mirar, vars=iVar1, scene=pvVar5)
+return 1;
+}
+
+//==== 0040da30
+undefined4 __fastcall f40da30(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FSUICIDA / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 0040da80
+undefined4 __fastcall f40da80(int param_1)
+{
+iVar1 = FIND(INTERFACE,"IMECHERO");
+**(byte **)(param_1 + 0x60) = (byte)(*(uint *)(iVar1 + 0x68) >> 1) & 1;
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FSOUVENIR / coger, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 0040daf0
+undefined4 __fastcall f40daf0(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = 0;
+START(FENTCUEVA / ir, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 00415d20
+undefined4 __fastcall f415d20(uint param_1)
+{
+if (*(char *)(JIM + 0x110) != '\0') {
+uStack_4 = param_1 & 0xffffff;
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar4 = (int)&uStack_4 + 3;
+START(FSALCAMAROTE / ira, vars=iVar4, scene=pvVar5)
+return 3;
+}
+uStack_4 = param_1;
+uVar1 = tesoro_generic_door_use(param_1);
+return uVar1;
+}
+
+//==== 00415d90
+undefined4 __thiscall f415d90(void *this,int param_1)
+{
+if (param_1 != 0x1e) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+tesoro_set_object_flag_bit2(JIM,1);
+*(void **)((int)this + 0x40) = SCENE[11];
+iVar2 = FIND(SCENE[11],"SUELO");
+tesoro_place_jim_in_scene
+(JIM,*(void **)((int)this + 0x40),
+*(int *)((int)*(void **)((int)this + 0x40) + 0x70),*(int *)(iVar2 + 0x4c),
+*(int *)(iVar2 + 0x50));
+JIM.slot0x74();
+*(undefined4 *)((int)POINTER + 300) = 0;
+FUN_00401de0(POINTER,0,0,0,0,'\0');
+return 3;
+}
+
+//==== 00415e30
+undefined4 __thiscall f415e30(void *this,int param_1)
+{
+if (param_1 != 0x28) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+pvVar5 = *(void **)((int)this + 0x40);
+iVar4 = 0;
+START(FCORTAR / main, vars=iVar4, scene=pvVar5)
+return 3;
+}
+
+//==== 00415e90
+undefined4 __fastcall f415e90(int param_1)
+{
+uStack_4 = param_1;
+iVar1 = FIND(SCENE[4],"MESA");
+uStack_4 = CONCAT13('\0' < **(char **)(iVar1 + 0x60),(undefined3)uStack_4);
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = (int)&uStack_4 + 3;
+START(FLIBRO / mirar, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 00415f10
+undefined4 __fastcall f415f10(int param_1)
+{
+uStack_4 = param_1;
+iVar1 = FIND(SCENE[4],"MESA");
+uStack_4 = CONCAT13('\0' < **(char **)(iVar1 + 0x60),(undefined3)uStack_4);
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = (int)&uStack_4 + 3;
+START(FLIBRO / coger, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 00415f90
+undefined4 __fastcall f415f90(uint param_1)
+{
+if (*(char *)(JIM + 0x110) != '\0') {
+uStack_4 = param_1 & 0xffffff;
+iVar1 = FIND(INTERFACE,"IMAPA");
+if ((*(uint *)(iVar1 + 0x68) >> 1 & 1) != 0) {
+uStack_4 = CONCAT13(1,(undefined3)uStack_4);
+}
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar1 = (int)&uStack_4 + 3;
+START(FSALCAMAROTE / ira, vars=iVar1, scene=pvVar5)
+return 3;
+}
+uStack_4 = param_1;
+uVar2 = tesoro_generic_door_use(param_1);
+return uVar2;
+}
+
+//==== 00416030
+undefined4 __fastcall f416030(int param_1)
+{
+if (*(char *)((int)JIM + 0x111) == '\0') {
+iVar1 = FIND(INTERFACE,"IPLATO");
+FUN_00401de0(*(void **)(*(int *)(*(int *)(param_1 + 0x40) + 0x90) + 0x78),0,0,0,0,'\0');
+FUN_00401de0(*(void **)(*(int *)(*(int *)(*(int *)(param_1 + 0x40) + 0x90) + 0x78) + 0x78),0,1,1
+,0,'\0');
+if (**(char **)(iVar1 + 0x60) == '\x02') {
+*(undefined1 *)((int)JIM + 0x111) = 1;
+**(undefined1 **)(param_1 + 0x60) = 6;
+}
+if ((*(uint *)(iVar1 + 0x68) >> 1 & 1) == 0) {
+iVar1 = FUN_00413ac0(0,3);
+**(undefined1 **)(param_1 + 0x60) = (char)iVar1;
+FUN_00401de0(*(void **)(*(int *)(*(int *)(param_1 + 0x40) + 0x90) + 0x78),0,2,2,0,'\0');
+FUN_00401de0(*(void **)(*(int *)(*(int *)(*(int *)(param_1 + 0x40) + 0x90) + 0x78) + 0x78),0,3
+,3,0,'\0');
+JIM.slot0x10();
+}
+else if (**(char **)(param_1 + 0x60) < '\x04') {
+**(char **)(param_1 + 0x60) = '\x04';
+}
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FANCAMAROTE / main, vars=iVar1, scene=pvVar4)
+}
+return 1;
+}
+
+//==== 00416170
+undefined4 __fastcall f416170(int param_1)
+{
+if (*(char *)(JIM + 0x111) == '\x02') {
+*(undefined1 *)(JIM + 0x110) = 0;
+*(undefined1 *)(JIM + 0x111) = 3;
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar4 = 0;
+START(FBAUL / main, vars=iVar4, scene=pvVar5)
+return 1;
+}
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar4 = 0;
+START(FBAUL / main2, vars=iVar4, scene=pvVar5)
+return 0;
+}
+
+//==== 00416220
+undefined4 __thiscall f416220(void *this,int param_1)
+{
+if (param_1 == 0x15) {
+pvVar5 = *(void **)((int)this + 0x40);
+iVar4 = 0;
+START(FILLAVE / cerradura, vars=iVar4, scene=pvVar5)
+return 3;
+}
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+
+//==== 00416280
+undefined4 __fastcall f416280(int param_1)
+{
+uStack_4 = param_1;
+iVar1 = FIND(INTERFACE,"IMAPA");
+uStack_4 = CONCAT13((char)(*(uint *)(iVar1 + 0x68) >> 1),(undefined3)uStack_4) & 0x1ffffff;
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = (int)&uStack_4 + 3;
+START(FVENTOPEN / mirar, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 00416540
+undefined4 __fastcall f416540(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FDICKCOCINA / hablar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 00416590
+undefined4 __thiscall f416590(void *this,int param_1)
+{
+if (param_1 == 7) {
+pvVar9 = *(void **)((int)this + 0x40);
+iVar2 = *(int *)((int)this + 0x60);
+iVar7 = (int)uVar4;
+iVar8 = (int)(uVar4 >> 0x20);
+uVar1 = tesoro_start_script(pvVar3,iVar7,iVar8,iVar2,pvVar9);
+return uVar1;
+}
+if (param_1 != 0xc) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+pvVar9 = *(void **)((int)this + 0x40);
+iVar2 = FIND(SCENE[6],"LOROPOCHO");
+local_10 = (int)uVar6;
+iVar2 = *(int *)(iVar2 + 0x60);
+pvVar3 = (void *)FUN_004060c0(SCRIPTS,local_10,(int)(uVar6 >> 0x20));
+START(FICNUDO / loro, vars=iVar2, scene=pvVar9)
+return 3;
+}
+
+//==== 00416680
+undefined4 __thiscall f416680(void *this,int param_1)
+{
+if (param_1 == 0xc) {
+}
+else {
+if (param_1 != 0x11) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+}
+uVar3 = tesoro_encode_name((int)pcVar5);
+pvVar6 = *(void **)((int)this + 0x40);
+iVar4 = *(int *)((int)this + 0x60);
+START(uVar3 / loro, vars=iVar4, scene=pvVar6)
+return 3;
+}
+
+//==== 00416700
+undefined4 __fastcall f416700(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FLOROCOCINA / hablar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 00416750
+undefined4 __fastcall f416750(int param_1)
+{
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar3 = *(int *)(param_1 + 0x60);
+START(FLOROCOCINA / mirar, vars=iVar3, scene=pvVar4)
+return 1;
+}
+
+//==== 004167a0
+undefined4 __thiscall f4167a0(void *this,int param_1)
+{
+if (param_1 != 0x14) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+pvVar5 = *(void **)((int)this + 0x40);
+iVar4 = 0;
+START(FIPESCAO / pucherito, vars=iVar4, scene=pvVar5)
+return 1;
+}
+
+//==== 00416910
+undefined4 __thiscall f416910(void *this,int param_1)
+{
+if (param_1 == 0xb) {
+pvVar5 = *(void **)((int)this + 0x40);
+iVar4 = 0;
+}
+else {
+if (param_1 != 0x11) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+pvVar5 = *(void **)((int)this + 0x40);
+iVar4 = *(int *)((int)this + 0x60);
+}
+START(FIGUSANO / pescador, vars=iVar4, scene=pvVar5)
+return 1;
+}
+
+//==== 00416a20
+undefined4 __fastcall f416a20(int param_1)
+{
+iVar1 = FIND(SCENE[2],"NUDERO");
+*(bool *)(*(int *)(param_1 + 0x60) + 1) = *(char *)(*(int *)(iVar1 + 0x60) + 4) != '\0';
+iVar1 = FIND(SCENE[1],"RECLUTADOR");
+*(undefined1 *)(*(int *)(param_1 + 0x60) + 2) = *(undefined1 *)(*(int *)(iVar1 + 0x60) + 3);
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FCAPITAN / hablar, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 00416ac0
+undefined4 __thiscall f416ac0(void *this,int param_1)
+{
+if (param_1 != 0) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+iVar2 = FIND(SCENE[2],"NUDERO");
+*(bool *)(*(int *)((int)this + 0x60) + 1) = *(char *)(*(int *)(iVar2 + 0x60) + 4) != '\0';
+pvVar5 = *(void **)((int)this + 0x40);
+iVar2 = *(int *)((int)this + 0x60);
+START(FIBOLI / capitan, vars=iVar2, scene=pvVar5)
+return 3;
+}
+
+//==== 00416e30
+undefined4 __thiscall f416e30(void *this,uint param_1)
+{
+if (param_1 != 0x28) {
+if ((param_1 & 1) == 0) {
+}
+else {
+}
+uVar2 = tesoro_encode_name((int)pcVar5);
+pvVar6 = *(void **)((int)this + 0x40);
+iVar4 = 0;
+START(FCUERDALUCHA / uVar2, vars=iVar4, scene=pvVar6)
+return 1;
+}
+pvVar6 = *(void **)((int)this + 0x40);
+iVar4 = 0;
+START(FCUERDALUCHA / espada, vars=iVar4, scene=pvVar6)
+return 3;
+}
+
+//==== 00417640
+undefined4 __fastcall f417640(int param_1)
+{
+iVar4 = *(int *)(JIM + 0x40);
+if (iVar4 == SCENE[23]) {
+if (**(char **)(param_1 + 0x60) != '\0') {
+pvVar6 = *(void **)(param_1 + 0x40);
+iVar4 = 0;
+START(FPUERTALAB / entrada, vars=iVar4, scene=pvVar6)
+}
+**(undefined1 **)(param_1 + 0x60) = 1;
+return 1;
+}
+if (iVar4 == SCENE[34]) {
+}
+else {
+if (iVar4 != SCENE[43]) {
+return 1;
+}
+}
+uVar3 = tesoro_encode_name((int)pcVar5);
+pvVar6 = *(void **)(param_1 + 0x40);
+iVar4 = 0;
+START(FPUERTALAB / main, vars=iVar4, scene=pvVar6)
+return 1;
+}
+
+//==== 00417ca0
+undefined4 __thiscall f417ca0(void *this,int param_1)
+{
+if (param_1 != 0x1b) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+piVar2 = (int *)FIND(INTERFACE,"IRAMA");
+piVar2.slot0x20(1);
+piVar2 = (int *)FIND(SCENE[10],"RAMA");
+piVar2.slot0x20(0);
+return 1;
+}
+
+//==== 00417d00
+void __thiscall f417d00(void *this,int param_1)
+{
+if (param_1 == 0x20) {
+piVar1 = (int *)FIND(INTERFACE,"ICUBOTAPON");
+piVar1.slot0x20(0);
+piVar1 = (int *)FIND(INTERFACE,"ICUBOPANT");
+piVar1.slot0x20(1);
+FUN_0040f480(this,0x20);
+return;
+}
+if (param_1 != 0x25) {
+FUN_0040f480(this,param_1);
+return;
+}
+piVar1 = (int *)FIND(INTERFACE,"ICUBOMAR");
+piVar1.slot0x20(0);
+piVar1 = (int *)FIND(INTERFACE,"ICUBOPANT");
+piVar1.slot0x20(1);
+FUN_0040f480(this,0x25);
+return;
+}
+
+//==== 00417dd0
+undefined4 __fastcall f417dd0(int param_1)
+{
+uVar1 = tesoro_generic_door_use(param_1);
+return uVar1;
+}
+
+//==== 00417de0
+undefined4 __thiscall f417de0(void *this,uint param_1)
+{
+if (*(void **)((int)this + 0x40) != SCENE[7]) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+if (param_1 != 0x1b) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+iVar2 = FIND(SCENE[7],"RESINA");
+param_1 = CONCAT31(param_1._1_3_,(char)(*(uint *)(iVar2 + 0x68) >> 1)) & 0xffffff01;
+pvVar6 = *(void **)((int)this + 0x40);
+puVar5 = &param_1;
+START(FIPIEDRAA / cocotero, vars=(int)puVar5, scene=pvVar6)
+return 1;
+}
+
+//==== 00417e90
+undefined4 __thiscall f417e90(void *this,uint param_1)
+{
+if (param_1 == 0x17) {
+}
+else {
+if (param_1 != 0x1a) {
+if (param_1 != 0x1b) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+iVar2 = FIND(INTERFACE,"IRAMA");
+iVar3 = FIND(INTERFACE,"IRAMARESINA");
+local_18 = (int)uVar9;
+iVar4 = tesoro_find_scene_object(INTERFACE,local_18,(int)(uVar9 >> 0x20));
+local_10 = (int)uVar10;
+iVar5 = tesoro_find_scene_object(INTERFACE,local_10,(int)(uVar10 >> 0x20));
+local_8 = (int)uVar11;
+iVar6 = tesoro_find_scene_object(INTERFACE,local_8,(int)(uVar11 >> 0x20));
+param_1 = CONCAT31(param_1._1_3_,
+(byte)(*(uint *)(iVar6 + 0x68) >> 1) | (byte)(*(uint *)(iVar2 + 0x68) >> 1)
+| (byte)(*(uint *)(iVar3 + 0x68) >> 1) |
+(byte)(*(uint *)(iVar4 + 0x68) >> 1) | (byte)(*(uint *)(iVar5 + 0x68) >> 1)
+) & 0xffffff01;
+pvVar14 = *(void **)((int)this + 0x40);
+puVar12 = &param_1;
+goto LAB_00418020;
+}
+}
+uVar8 = tesoro_encode_name((int)pcVar13);
+pvVar14 = *(void **)((int)this + 0x40);
+puVar12 = (uint *)0x0;
+LAB_00418020:
+START(FIPIEDRAA / rocas, vars=(int)puVar12, scene=pvVar14)
+return 1;
+}
+
+//==== 00418050
+undefined4 __fastcall f418050(int param_1)
+{
+if (**(char **)(param_1 + 0x60) == '\0') {
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar4 = 0;
+START(FANPLAYA / main, vars=iVar4, scene=pvVar5)
+**(undefined1 **)(param_1 + 0x60) = 1;
+return 1;
+}
+uVar1 = tesoro_generic_door_use(param_1);
+return uVar1;
+}
+
+//==== 004180b0
+undefined4 __thiscall f4180b0(void *this,int param_1)
+{
+if (param_1 != 0x23) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+piVar2 = (int *)FIND(INTERFACE,"IRAMA");
+piVar2.slot0x20(0);
+piVar2 = (int *)FIND(INTERFACE,"IRAMARESINA");
+piVar2.slot0x20(1);
+return 1;
+}
+
+//==== 00418110
+void __thiscall f418110(void *this,int param_1)
+{
+if (param_1 == 0x20) {
+piVar1 = (int *)FIND(INTERFACE,"ICUBOTAPON");
+piVar1.slot0x20(0);
+piVar1 = (int *)FIND(INTERFACE,"ICUBOMAR");
+piVar1.slot0x20(1);
+FUN_0040f480(this,0x20);
+return;
+}
+if (param_1 != 0x21) {
+FUN_0040f480(this,param_1);
+return;
+}
+piVar1 = (int *)FIND(INTERFACE,"ICUBOPANT");
+piVar1.slot0x20(0);
+piVar1 = (int *)FIND(INTERFACE,"ICUBOMAR");
+piVar1.slot0x20(1);
+FUN_0040f480(this,0x21);
+return;
+}
+
+//==== 004181e0
+undefined4 __thiscall f4181e0(void *this,int param_1)
+{
+if (param_1 == 0x1a) {
+pvVar6 = *(void **)((int)this + 0x40);
+iVar5 = FIND(INTERFACE,"ICANTORODD");
+iVar5 = *(int *)(iVar5 + 0x60);
+}
+else {
+if (param_1 != 0x1b) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+pvVar6 = *(void **)((int)this + 0x40);
+iVar5 = 0;
+}
+START(FIPIEDRAA / obtusu, vars=iVar5, scene=pvVar6)
+return 3;
+}
+
+//==== 004182c0
+undefined4 __thiscall f4182c0(void *this,int param_1)
+{
+if (param_1 != 0x29) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+pvVar5 = *(void **)((int)this + 0x40);
+iVar4 = 0;
+START(FIMECHERO / orzoguei, vars=iVar4, scene=pvVar5)
+return 3;
+}
+
+//==== 00418320
+undefined4 __thiscall f418320(void *this,int param_1)
+{
+if (param_1 != 0x26) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+iVar2 = FIND(SCENE[9],"ORZOGUEI");
+if (*(char *)(*(int *)(iVar2 + 0x60) + 1) == '\0') {
+uVar1 = FUN_0040f480(this,0x26);
+return uVar1;
+}
+iVar2 = FIND(SCENE[9],"ORZOGUEI");
+*(undefined1 *)(*(int *)(iVar2 + 0x60) + 0xd) = 1;
+lVar5 = (ulonglong)*(uint *)((int)this + 0x40) << 0x20;
+tesoro_start_script(this_00,(int)uVar3,(int)(uVar3 >> 0x20),(int)lVar5,
+(void *)((ulonglong)lVar5 >> 0x20));
+return 3;
+}
+
+//==== 004183e0
+undefined4 __fastcall f4183e0(int param_1)
+{
+iVar1 = FIND(INTERFACE,"ICUBOBARRO");
+*(byte *)(*(int *)(param_1 + 0x60) + 3) = (byte)(*(uint *)(iVar1 + 0x68) >> 1) & 1;
+if (**(char **)(param_1 + 0x60) == '\0') {
+iVar1 = FIND(SCENE[9],"CHOZA");
+**(undefined1 **)(param_1 + 0x60) = *(undefined1 *)(*(int *)(iVar1 + 0x60) + 1);
+}
+iVar1 = *(int *)(param_1 + 0x60);
+if ((((*(char *)(iVar1 + 0xb) != '\0') && (*(char *)(iVar1 + 0xc) != '\0')) &&
+(*(char *)(iVar1 + 0xd) != '\0')) && (*(char *)(iVar1 + 0xe) != '\0')) {
+*(undefined1 *)(iVar1 + 1) = 5;
+}
+if (*(char *)(*(int *)(param_1 + 0x60) + 1) == '\x05') {
+iVar1 = FIND(SCENE[15],"JUSTINO");
+if (*(char *)(*(int *)(iVar1 + 0x60) + 2) != '\0') {
+*(undefined1 *)(*(int *)(param_1 + 0x60) + 1) = 6;
+}
+}
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FORZOGUEI / hablar, vars=iVar1, scene=pvVar4)
+return 3;
+}
+
+//==== 004184e0
+undefined4 __fastcall f4184e0(int param_1)
+{
+if (**(char **)(param_1 + 0x60) == '\0') {
+iVar1 = FIND(SCENE[9],"CHOZA");
+**(undefined1 **)(param_1 + 0x60) = *(undefined1 *)(*(int *)(iVar1 + 0x60) + 1);
+}
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FORZOGUEI / mirar, vars=iVar1, scene=pvVar4)
+return 3;
+}
+
+//==== 00418560
+undefined4 __fastcall f418560(int param_1)
+{
+iVar1 = tesoro_generic_door_use(param_1);
+if (iVar1 == 0) {
+return 0;
+}
+if (**(char **)(param_1 + 0x60) == '\0') {
+**(char **)(param_1 + 0x60) = '\x01';
+iVar1 = 0;
+pvVar4 = SCENE[2];
+START(FANTABERNA / main, vars=iVar1, scene=pvVar4)
+}
+return 3;
+}
+
+//==== 004185c0
+undefined4 __fastcall f4185c0(int param_1)
+{
+if (**(char **)(param_1 + 0x60) < '\x04') {
+iVar1 = FIND(SCENE[0],"CAPITAN");
+if (**(char **)(iVar1 + 0x60) != '\0') {
+**(undefined1 **)(param_1 + 0x60) = 4;
+}
+}
+if (**(char **)(param_1 + 0x60) < '\x06') {
+iVar1 = FIND(INTERFACE,"IHALFDOBLON");
+if ((*(uint *)(iVar1 + 0x68) >> 1 & 1) != 0) {
+**(undefined1 **)(param_1 + 0x60) = 6;
+}
+}
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FRECLUTADOR / hablar, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 00418670
+undefined4 __thiscall f418670(void *this,int param_1)
+{
+if (**(char **)((int)this + 0x60) < '\x04') {
+iVar1 = FIND(SCENE[0],"CAPITAN");
+if (**(char **)(iVar1 + 0x60) != '\0') {
+**(undefined1 **)((int)this + 0x60) = 4;
+}
+}
+if (**(char **)((int)this + 0x60) < '\x06') {
+iVar1 = FIND(INTERFACE,"IHALFDOBLON");
+if ((*(uint *)(iVar1 + 0x68) >> 1 & 1) != 0) {
+**(undefined1 **)((int)this + 0x60) = 6;
+}
+}
+if (param_1 == 0) {
+}
+else {
+if (param_1 != 7) {
+if (param_1 != 0x2d) {
+uVar2 = FUN_0040f480(this,param_1);
+return uVar2;
+}
+pvVar6 = *(void **)((int)this + 0x40);
+iVar1 = *(int *)((int)this + 0x60);
+goto LAB_0041875b;
+}
+}
+uVar4 = tesoro_encode_name((int)pcVar5);
+pvVar6 = *(void **)((int)this + 0x40);
+iVar1 = 0;
+LAB_0041875b:
+START(FIHLFDBLN / reclutador, vars=iVar1, scene=pvVar6)
+return 1;
+}
+
+//==== 00418780
+undefined4 __thiscall f418780(void *this,int param_1)
+{
+if (param_1 != 0x2b) {
+uVar1 = FUN_0040f480(this,param_1);
+return uVar1;
+}
+pvVar5 = *(void **)((int)this + 0x40);
+iVar4 = 0;
+START(FIXCUERDA / diente, vars=iVar4, scene=pvVar5)
+return 1;
+}
+
+//==== 004187e0
+undefined4 __fastcall f4187e0(int param_1)
+{
+iVar1 = FIND(INTERFACE,"IDOBLON");
+if ((*(uint *)(iVar1 + 0x68) >> 1 & 1) != 0) {
+**(undefined1 **)(param_1 + 0x60) = 2;
+}
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FDICKTABER / hablar, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 00418860
+undefined4 __thiscall f418860(void *this,undefined4 param_1)
+{
+switch(param_1) {
+case 0:
+break;
+default:
+goto switchD_0041887a_caseD_1;
+case 3:
+iVar1 = FIND(INTERFACE,"IDOBLON");
+if ((*(uint *)(iVar1 + 0x68) >> 1 & 1) != 0) {
+**(undefined1 **)((int)this + 0x60) = 2;
+}
+goto LAB_004188f4;
+case 5:
+LAB_004188f4:
+uVar3 = tesoro_encode_name((int)pcVar4);
+pvVar5 = *(void **)((int)this + 0x40);
+iVar1 = *(int *)((int)this + 0x60);
+goto LAB_0041892a;
+case 0x2d:
+}
+uVar3 = tesoro_encode_name((int)pcVar4);
+pvVar5 = *(void **)((int)this + 0x40);
+iVar1 = 0;
+LAB_0041892a:
+START(uVar3 / dick, vars=iVar1, scene=pvVar5)
+switchD_0041887a_caseD_1:
+return 1;
+}
+
+//==== 00418990
+undefined4 __fastcall f418990(int param_1)
+{
+iVar1 = FIND(INTERFACE,"ICUERDA");
+*(byte *)(*(int *)(param_1 + 0x60) + 1) = (byte)(*(uint *)(iVar1 + 0x68) >> 1) & 1;
+iVar1 = FIND(INTERFACE,"IJARRALLENA");
+*(byte *)(*(int *)(param_1 + 0x60) + 2) = (byte)(*(uint *)(iVar1 + 0x68) >> 1) & 1;
+if (*(char *)(*(int *)(param_1 + 0x60) + 4) == '\0') {
+iVar1 = FIND(SCENE[1],"RECLUTADOR");
+*(undefined1 *)(*(int *)(param_1 + 0x60) + 4) = *(undefined1 *)(*(int *)(iVar1 + 0x60) + 0xb);
+}
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FNUDERO / hablar, vars=iVar1, scene=pvVar4)
+iVar1 = FIND(SCENE[2],"TONTO");
+if (**(char **)(iVar1 + 0x60) == '\0') {
+iVar1 = FIND(SCENE[2],"TONTO");
+**(undefined1 **)(iVar1 + 0x60) = 1;
+}
+return 1;
+}
+
+//==== 00418aa0
+undefined4 __thiscall f418aa0(void *this,undefined4 param_1)
+{
+switch(param_1) {
+case 0:
+pvVar5 = *(void **)((int)this + 0x40);
+iVar3 = 0;
+break;
+default:
+goto switchD_00418ab2_caseD_1;
+case 4:
+goto LAB_00418b33;
+case 5:
+pvVar5 = *(void **)((int)this + 0x40);
+iVar3 = 0;
+break;
+case 6:
+LAB_00418b33:
+uVar2 = tesoro_encode_name((int)pcVar4);
+pvVar5 = *(void **)((int)this + 0x40);
+iVar3 = *(int *)((int)this + 0x60);
+}
+START(FIDOBLON / nudero, vars=iVar3, scene=pvVar5)
+switchD_00418ab2_caseD_1:
+return 1;
+}
+
+//==== 00418b80
+undefined4 __fastcall f418b80(int param_1)
+{
+iVar1 = FIND(INTERFACE,"IJARRALLENA");
+if ((*(uint *)(iVar1 + 0x68) >> 1 & 1) == 0) {
+iVar1 = FIND(INTERFACE,"IJARRA");
+if ((*(uint *)(iVar1 + 0x68) >> 1 & 1) == 0) {
+tesoro_generic_door_use(param_1);
+return 1;
+}
+**(undefined1 **)(param_1 + 0x60) = 0;
+}
+else {
+**(undefined1 **)(param_1 + 0x60) = 1;
+}
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FSALTABERNA / main, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 00418c30
+void __thiscall f418c30(void *this,int param_1)
+{
+if ((*(char *)((int)this + 0xc) == '\0') || (*(char *)((int)this + 0xd4) != '\0')) {
+FUN_004102e0(this,param_1);
+}
+return;
+}
+
+//==== 00418c80
+void __fastcall f418c80(int param_1)
+{
+FUN_00410400(param_1);
+bVar2 = 1;
+this = (void *)FIND(SCENE[2],"DICK");
+tesoro_set_object_flag_bit2(this,bVar2);
+return;
+}
+
+//==== 00418cb0
+undefined4 __thiscall f418cb0(void *this,int param_1)
+{
+if (param_1 == 4) {
+}
+else {
+if (param_1 != 5) {
+return 1;
+}
+}
+uVar2 = tesoro_encode_name((int)pcVar4);
+pvVar5 = *(void **)((int)this + 0x40);
+iVar3 = *(int *)((int)this + 0x60);
+START(uVar2 / tonto, vars=iVar3, scene=pvVar5)
+return 1;
+}
+
+//==== 00419620
+undefined4 __fastcall f419620(int param_1)
+{
+iVar1 = FIND(SCENE[12],"JUSTINO");
+**(undefined1 **)(param_1 + 0x60) = *(undefined1 *)(*(int *)(iVar1 + 0x60) + 1);
+iVar1 = FIND(INTERFACE,"IMECHERO");
+if (((*(uint *)(iVar1 + 0x68) >> 1 & 1) != 0) &&
+(*(char *)(*(int *)(param_1 + 0x60) + 1) < '\x02')) {
+*(undefined1 *)(*(int *)(param_1 + 0x60) + 1) = 2;
+}
+pvVar4 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FTIENDA / hablar, vars=iVar1, scene=pvVar4)
+return 1;
+}
+
+//==== 004196c0
+undefined4 __fastcall f4196c0(int param_1)
+{
+iVar1 = FIND(INTERFACE,"ICUBOBARRO");
+iVar2 = FIND(SCENE[9],"ORZOGUEI");
+*(byte *)(*(int *)(param_1 + 0x60) + 2) =
+(*(byte *)(*(int *)(iVar2 + 0x60) + 4) | (byte)(*(uint *)(iVar1 + 0x68) >> 1)) & 1;
+iVar1 = FIND(SCENE[9],"CHOZA");
+*(undefined1 *)(*(int *)(param_1 + 0x60) + 3) = *(undefined1 *)(*(int *)(iVar1 + 0x60) + 1);
+pvVar5 = *(void **)(param_1 + 0x40);
+iVar1 = *(int *)(param_1 + 0x60);
+START(FJUSTINO / hablar, vars=iVar1, scene=pvVar5)
+return 1;
+}
+

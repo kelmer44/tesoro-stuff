@@ -1,0 +1,4 @@
+address	name	status
+00402e50	tesoro_probe_in_front	ready
+00402e60	tesoro_probe_collide	ready
+00401ee0	tesoro_base_401ee0	ready

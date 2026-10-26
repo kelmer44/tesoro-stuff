@@ -1,0 +1,420 @@
+
+######## Almacen.lvl
+-- CUERDA kind 17 class 9: take=0x40d100
+   [take 0040d100]
+     iVar1 = FIND(INTERFACE,"ICUERDANUDO");
+     **(byte **)(param_1 + 0x60) = (byte)(*(uint *)(iVar1 + 0x68) >> 1) & 1;
+     if (**(char **)(param_1 + 0x60) == '\0') {
+     piVar2 = (int *)FIND(DAT_0044217c,"CUERDA");
+     piVar2.slot0x20();
+     }
+     pvVar5 = *(void **)(param_1 + 0x40);
+     iVar1 = *(int *)(param_1 + 0x60);
+     START(FCUERDA / coger, vars=iVar1, scene=pvVar5)
+     return 1;
+-- PUERTA1 kind 6 class 9: verb0=0x415d20
+   [verb0 00415d20]
+     if (*(char *)(JIM + 0x110) != '\0') {
+     uStack_4 = param_1 & 0xffffff;
+     pvVar5 = *(void **)(param_1 + 0x40);
+     iVar4 = (int)&uStack_4 + 3;
+     START(FSALCAMAROTE / ira, vars=iVar4, scene=pvVar5)
+     return 3;
+     }
+     uStack_4 = param_1;
+     uVar1 = tesoro_generic_door_use(param_1);
+     return uVar1;
+-- COFRE kind 17 class 8: look=0x40d000, take=0x40d070
+   [look 0040d000]
+     *(bool *)*(undefined4 *)(param_1 + 0x60) = *(char *)(JIM + 0x111) == '\x04';
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = *(int *)(param_1 + 0x60);
+     START(FCOFRE / mirar, vars=iVar3, scene=pvVar4)
+     return 1;
+   [take 0040d070]
+     *(bool *)*(undefined4 *)(param_1 + 0x60) = *(char *)(JIM + 0x111) == '\x04';
+     if (*(char *)(JIM + 0x111) == '\x04') {
+     *(undefined1 *)(JIM + 0x110) = 0;
+     *(undefined1 *)(JIM + 0x111) = 5;
+     }
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = *(int *)(param_1 + 0x60);
+     START(FCOFRE / coger, vars=iVar3, scene=pvVar4)
+     return 1;
+-- CIRUELAS kind 17 class 7: take=0x40cf30
+   [take 0040cf30]
+     iVar2 = FIND(INTERFACE,"ICIRUELA");
+     if ((*(uint *)(iVar2 + 0x68) >> 1 & 1) == 0) {
+     iVar2 = FIND(INTERFACE,"ICIRUELABRT");
+     if ((*(uint *)(iVar2 + 0x68) >> 1 & 1) == 0) {
+     uVar1 = 0;
+     goto LAB_0040cf85;
+     }
+     }
+     uVar1 = 1;
+     LAB_0040cf85:
+     **(undefined1 **)(param_1 + 0x60) = uVar1;
+     pvVar5 = *(void **)(param_1 + 0x40);
+     iVar2 = *(int *)(param_1 + 0x60);
+     START(FCIRUELAS / coger, vars=iVar2, scene=pvVar5)
+     return 1;
+-- REVITALIZA kind 17 class 15: take=0x40cfd0
+   [take 0040cfd0]
+     piVar1 = (int *)FIND(INTERFACE,"IREVITALIZA");
+     piVar1.slot0x20();
+     return 1;
+-- PUERTA2 kind 6 class 4: verb0=0x40d1a0
+   [verb0 0040d1a0]
+     iVar1 = tesoro_generic_door_use(param_1);
+     if (iVar1 == 0) {
+     return 0;
+     }
+     if (**(char **)(param_1 + 0x60) == '\0') {
+     **(char **)(param_1 + 0x60) = '\x01';
+     pvVar7 = DAT_00442148;
+     iVar1 = FIND(DAT_00442148,"DICK");
+     iVar1 = *(int *)(iVar1 + 0x60);
+     local_4 = (int)(uVar4 >> 0x20);
+     local_8 = (int)uVar4;
+     iVar5 = (int)uVar3;
+     iVar6 = (int)(uVar3 >> 0x20);
+     tesoro_start_script(this,iVar5,iVar6,iVar1,pvVar7);
+     }
+     return 1;
+
+######## Almacen2.lvl
+-- PUERTA1 kind 6 class 0: 
+-- CIRUELAS kind 17 class 7: take=0x40cf30
+-- PUERTA2 kind 6 class 0: 
+-- CUERDA kind 17 class 9: take=0x40d100
+-- REVITA kind 17 class 15: take=0x40cfd0
+
+######## Camarote.lvl
+-- LIBROS kind 17 class 2: look=0x40cb00
+   [look 0040cb00]
+     iVar1 = FUN_00413ac0(0,4);
+     **(undefined1 **)(param_1 + 0x60) = (char)iVar1;
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar1 = *(int *)(param_1 + 0x60);
+     START(FLIBROS / mirar, vars=iVar1, scene=pvVar4)
+     return 1;
+-- LIBRO kind 17 class 0: look=0x415e90, take=0x415f10
+   [look 00415e90]
+     uStack_4 = param_1;
+     iVar1 = FIND(DAT_00442140,"MESA");
+     uStack_4 = CONCAT13('\0' < **(char **)(iVar1 + 0x60),(undefined3)uStack_4);
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar1 = (int)&uStack_4 + 3;
+     START(FLIBRO / mirar, vars=iVar1, scene=pvVar4)
+     return 1;
+   [take 00415f10]
+     uStack_4 = param_1;
+     iVar1 = FIND(DAT_00442140,"MESA");
+     uStack_4 = CONCAT13('\0' < **(char **)(iVar1 + 0x60),(undefined3)uStack_4);
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar1 = (int)&uStack_4 + 3;
+     START(FLIBRO / coger, vars=iVar1, scene=pvVar4)
+     return 1;
+-- BANDERA kind 17 class 1: look=0x40cab0
+   [look 0040cab0]
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = 0;
+     START(FBANDERA / mirar, vars=iVar3, scene=pvVar4)
+     return 1;
+-- LIBROS2 kind 17 class 2: look=0x40cb00
+-- PUERTA1 kind 6 class 3: verb0=0x415f90, hook70=0x416030
+   [verb0 00415f90]
+     if (*(char *)(JIM + 0x110) != '\0') {
+     uStack_4 = param_1 & 0xffffff;
+     iVar1 = FIND(INTERFACE,"IMAPA");
+     if ((*(uint *)(iVar1 + 0x68) >> 1 & 1) != 0) {
+     uStack_4 = CONCAT13(1,(undefined3)uStack_4);
+     }
+     pvVar5 = *(void **)(param_1 + 0x40);
+     iVar1 = (int)&uStack_4 + 3;
+     START(FSALCAMAROTE / ira, vars=iVar1, scene=pvVar5)
+     return 3;
+     }
+     uStack_4 = param_1;
+     uVar2 = tesoro_generic_door_use(param_1);
+     return uVar2;
+   [hook70 00416030]
+     if (*(char *)((int)JIM + 0x111) == '\0') {
+     iVar1 = FIND(INTERFACE,"IPLATO");
+     FUN_00401de0(*(void **)(*(int *)(*(int *)(param_1 + 0x40) + 0x90) + 0x78),0,0,0,0,'\0');
+     FUN_00401de0(*(void **)(*(int *)(*(int *)(*(int *)(param_1 + 0x40) + 0x90) + 0x78) + 0x78),0,1,1
+     ,0,'\0');
+     if (**(char **)(iVar1 + 0x60) == '\x02') {
+     *(undefined1 *)((int)JIM + 0x111) = 1;
+     **(undefined1 **)(param_1 + 0x60) = 6;
+     }
+     if ((*(uint *)(iVar1 + 0x68) >> 1 & 1) == 0) {
+     iVar1 = FUN_00413ac0(0,3);
+     **(undefined1 **)(param_1 + 0x60) = (char)iVar1;
+     FUN_00401de0(*(void **)(*(int *)(*(int *)(param_1 + 0x40) + 0x90) + 0x78),0,2,2,0,'\0');
+     FUN_00401de0(*(void **)(*(int *)(*(int *)(*(int *)(param_1 + 0x40) + 0x90) + 0x78) + 0x78),0,3
+     ,3,0,'\0');
+     JIM.slot0x10();
+     }
+     else if (**(char **)(param_1 + 0x60) < '\x04') {
+     **(char **)(param_1 + 0x60) = '\x04';
+     }
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar1 = *(int *)(param_1 + 0x60);
+     START(FANCAMAROTE / main, vars=iVar1, scene=pvVar4)
+     }
+     return 1;
+-- ALFOMBRA kind 17 class 3: take=0x40cbd0
+   [take 0040cbd0]
+     *(bool *)*(undefined4 *)(param_1 + 0x60) = *(char *)(JIM + 0x111) == '\b';
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = *(int *)(param_1 + 0x60);
+     START(FALFOMBRA / coger, vars=iVar3, scene=pvVar4)
+     return 1;
+-- MESA kind 17 class 4: look=0x40cc40
+   [look 0040cc40]
+     iVar1 = FIND(INTERFACE,"IPAPELES");
+     if (((*(uint *)(iVar1 + 0x68) >> 1 & 1) != 0) && (**(char **)(param_1 + 0x60) < '\x01')) {
+     **(char **)(param_1 + 0x60) = '\x01';
+     }
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar1 = *(int *)(param_1 + 0x60);
+     START(FMESA / mirar, vars=iVar1, scene=pvVar4)
+     return 1;
+-- PAPELES kind 17 class 13: take=0x40cb60
+   [take 0040cb60]
+     *(bool *)*(undefined4 *)(param_1 + 0x60) = *(char *)(JIM + 0x111) == '\x06';
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = *(int *)(param_1 + 0x60);
+     START(FPAPELES / coger, vars=iVar3, scene=pvVar4)
+     return 1;
+-- BAUL kind 17 class 16: open=0x416170, item=0x416220
+   [open 00416170]
+     if (*(char *)(JIM + 0x111) == '\x02') {
+     *(undefined1 *)(JIM + 0x110) = 0;
+     *(undefined1 *)(JIM + 0x111) = 3;
+     pvVar5 = *(void **)(param_1 + 0x40);
+     iVar4 = 0;
+     START(FBAUL / main, vars=iVar4, scene=pvVar5)
+     return 1;
+     }
+     pvVar5 = *(void **)(param_1 + 0x40);
+     iVar4 = 0;
+     START(FBAUL / main2, vars=iVar4, scene=pvVar5)
+     return 0;
+   [item 00416220]
+     if (param_1 == 0x15) {
+     pvVar5 = *(void **)((int)this + 0x40);
+     iVar4 = 0;
+     START(FILLAVE / cerradura, vars=iVar4, scene=pvVar5)
+     return 3;
+     }
+     uVar1 = FUN_0040f480(this,param_1);
+     return uVar1;
+-- VENTCERRADA kind 17 class 2: look=0x40cb00
+-- VENTABIERTA kind 17 class 6: verb0=0x416280
+   [verb0 00416280]
+     uStack_4 = param_1;
+     iVar1 = FIND(INTERFACE,"IMAPA");
+     uStack_4 = CONCAT13((char)(*(uint *)(iVar1 + 0x68) >> 1),(undefined3)uStack_4) & 0x1ffffff;
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar1 = (int)&uStack_4 + 3;
+     START(FVENTOPEN / mirar, vars=iVar1, scene=pvVar4)
+     return 1;
+-- BAULOPEN kind 17 class 5: look=0x40ccc0
+   [look 0040ccc0]
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = *(int *)(param_1 + 0x60);
+     START(FBAULOPEN / mirar, vars=iVar3, scene=pvVar4)
+     return 1;
+-- CAPITAN kind 5 class 9: 
+
+######## Camarote2.lvl
+-- LIBROS kind 17 class 2: look=0x40cb00
+-- LIBRO kind 17 class 0: look=0x415e90, take=0x415f10
+-- BANDERA kind 17 class 1: look=0x40cab0
+-- LIBROS2 kind 17 class 2: look=0x40cb00
+-- PUERTA1 kind 6 class 0: 
+-- ALFOMBRA kind 17 class 3: take=0x40cbd0
+-- VENTCERRADA kind 17 class 2: look=0x40cb00
+-- SUICIDA kind 20 class 26: look=0x40da30
+   [look 0040da30]
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = *(int *)(param_1 + 0x60);
+     START(FSUICIDA / mirar, vars=iVar3, scene=pvVar4)
+     return 1;
+-- NOTASUICIDA kind 20 class 25: look=0x40d9a0
+   [look 0040d9a0]
+     pvVar5 = *(void **)(param_1 + 0x40);
+     iVar1 = FIND(DAT_00442178,"SUICIDA");
+     local_c = (int)(uVar4 >> 0x20);
+     local_10 = (int)uVar4;
+     iVar1 = *(int *)(iVar1 + 0x60);
+     START(FNOTARIP / mirar, vars=iVar1, scene=pvVar5)
+     return 1;
+-- ESPADA kind 20 class 18: take=0x40d950
+   [take 0040d950]
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = 0;
+     START(FESPADA / coger, vars=iVar3, scene=pvVar4)
+     return 1;
+-- UNNAMED001 kind 6 class 0: 
+
+######## Cocina.lvl
+-- PATATAS kind 17 class 10: take=0x40ce20
+   [take 0040ce20]
+     *(bool *)*(undefined4 *)(param_1 + 0x60) = *(int *)(JIM + 0x40) != DAT_00442180;
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = *(int *)(param_1 + 0x60);
+     START(FPATATAS / coger, vars=iVar3, scene=pvVar4)
+     return 1;
+-- PUCHERO kind 17 class 11: talk=0x40ce90, item=0x4167a0
+   [talk 0040ce90]
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = 0;
+     START(FPUCHERO / hablar, vars=iVar3, scene=pvVar4)
+     return 1;
+   [item 004167a0]
+     if (param_1 != 0x14) {
+     uVar1 = FUN_0040f480(this,param_1);
+     return uVar1;
+     }
+     pvVar5 = *(void **)((int)this + 0x40);
+     iVar4 = 0;
+     START(FIPESCAO / pucherito, vars=iVar4, scene=pvVar5)
+     return 1;
+-- CUBO kind 17 class 12: take=0x40cee0
+   [take 0040cee0]
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = 0;
+     START(FCUBO / coger, vars=iVar3, scene=pvVar4)
+     return 1;
+-- PUERTA1 kind 6 class 0: 
+-- DICK kind 5 class 7: talk=00416540, item=00416590
+   [talk 00416540]
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = *(int *)(param_1 + 0x60);
+     START(FDICKCOCINA / hablar, vars=iVar3, scene=pvVar4)
+     return 1;
+   [item 00416590]
+     if (param_1 == 7) {
+     pvVar9 = *(void **)((int)this + 0x40);
+     iVar2 = *(int *)((int)this + 0x60);
+     iVar7 = (int)uVar4;
+     iVar8 = (int)(uVar4 >> 0x20);
+     uVar1 = tesoro_start_script(pvVar3,iVar7,iVar8,iVar2,pvVar9);
+     return uVar1;
+     }
+     if (param_1 != 0xc) {
+     uVar1 = FUN_0040f480(this,param_1);
+     return uVar1;
+     }
+     pvVar9 = *(void **)((int)this + 0x40);
+     iVar2 = FIND(DAT_00442148,"LOROPOCHO");
+     local_10 = (int)uVar6;
+     iVar2 = *(int *)(iVar2 + 0x60);
+     pvVar3 = (void *)FUN_004060c0(SCRIPTS,local_10,(int)(uVar6 >> 0x20));
+     START(FICNUDO / loro, vars=iVar2, scene=pvVar9)
+     return 3;
+-- LOROPOCHO kind 5 class 8: look=00416750, talk=00416700, item=00416680
+   [look 00416750]
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = *(int *)(param_1 + 0x60);
+     START(FLOROCOCINA / mirar, vars=iVar3, scene=pvVar4)
+     return 1;
+   [talk 00416700]
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = *(int *)(param_1 + 0x60);
+     START(FLOROCOCINA / hablar, vars=iVar3, scene=pvVar4)
+     return 1;
+   [item 00416680]
+     if (param_1 == 0xc) {
+     }
+     else {
+     if (param_1 != 0x11) {
+     uVar1 = FUN_0040f480(this,param_1);
+     return uVar1;
+     }
+     }
+     uVar3 = tesoro_encode_name((int)pcVar5);
+     pvVar6 = *(void **)((int)this + 0x40);
+     iVar4 = *(int *)((int)this + 0x60);
+     START(uVar3 / loro, vars=iVar4, scene=pvVar6)
+     return 3;
+
+######## Cocina2.lvl
+-- PATATAS kind 17 class 10: take=0x40ce20
+-- PUERTA1 kind 6 class 0: 
+
+######## Cubierta.lvl
+-- PUERTA1 kind 6 class 0: 
+-- POLVORA kind 17 class 14: take=0x40cdf0
+   [take 0040cdf0]
+     piVar1 = (int *)FIND(INTERFACE,"IPOLVORA");
+     piVar1.slot0x20();
+     return 1;
+-- PUERTA2 kind 6 class 0: 
+-- PESCADOR kind 5 class 5: talk=0040cd10, item=00416910
+   [talk 0040cd10]
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = *(int *)(param_1 + 0x60);
+     START(FPESCADOR / hablar, vars=iVar3, scene=pvVar4)
+     return 1;
+   [item 00416910]
+     if (param_1 == 0xb) {
+     pvVar5 = *(void **)((int)this + 0x40);
+     iVar4 = 0;
+     }
+     else {
+     if (param_1 != 0x11) {
+     uVar1 = FUN_0040f480(this,param_1);
+     return uVar1;
+     }
+     pvVar5 = *(void **)((int)this + 0x40);
+     iVar4 = *(int *)((int)this + 0x60);
+     }
+     START(FIGUSANO / pescador, vars=iVar4, scene=pvVar5)
+     return 1;
+-- LUDOPATA kind 5 class 6: talk=0040cd60
+   [talk 0040cd60]
+     if (**(char **)(param_1 + 0x60) == '\0') {
+     iVar1 = FIND(INTERFACE,"IPLATO");
+     if (((*(uint *)(iVar1 + 0x68) >> 1 & 1) != 0) &&
+     (*(char *)(*(int *)(param_1 + 0x60) + 3) == '\0')) {
+     *(undefined1 *)(*(int *)(param_1 + 0x60) + 3) = 1;
+     }
+     }
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar1 = *(int *)(param_1 + 0x60);
+     START(FLUDOPATA / hablar, vars=iVar1, scene=pvVar4)
+     return 1;
+-- CAPITAN kind 5 class 11: 
+-- DICK kind 5 class 10: 
+-- LORO kind 5 class 12: 
+
+######## Cubierta2.lvl
+-- PUERTA1 kind 6 class 0: 
+-- POLVORA kind 17 class 14: take=0x40cdf0
+-- PUERTA2 kind 6 class 0: 
+-- CUERDA kind 20 class 19: item=0x415e30
+   [item 00415e30]
+     if (param_1 != 0x28) {
+     uVar1 = FUN_0040f480(this,param_1);
+     return uVar1;
+     }
+     pvVar5 = *(void **)((int)this + 0x40);
+     iVar4 = 0;
+     START(FCORTAR / main, vars=iVar4, scene=pvVar5)
+     return 3;
+-- SOGACORTADA kind 20 class 23: take=0x40d910
+   [take 0040d910]
+     piVar1 = (int *)FIND(INTERFACE,"ISOGA");
+     piVar1.slot0x20();
+     param_1.slot0x20(0);
+     return 1;
+-- CAPIMUERTO kind 20 class 24: look=0x40d8c0
+   [look 0040d8c0]
+     pvVar4 = *(void **)(param_1 + 0x40);
+     iVar3 = *(int *)(param_1 + 0x60);
+     START(FCAPIMUERTO / mirar, vars=iVar3, scene=pvVar4)
+     return 1;

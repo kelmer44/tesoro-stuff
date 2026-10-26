@@ -1,0 +1,15 @@
+{
+  "cases": 100,
+  "pixels_compared": 30720000,
+  "with_hovered_choice": 70,
+  "executable_sha256": "0fcd56b306b857283347e705dcce41a4b44dd4d9ef7c9226694114bba80792ef",
+  "font_sha256": "1d9a504a5d252c08d765fcffe2da30c4ff1a3c9ab497b0d23c55301952e124ef",
+  "driver_sha256": "0e07aa3709e96de9883d882608f91b9a8c6152a71f980a62dfd30eb5577c308b",
+  "source_sha256": {
+    "renderer.cpp": "d236800a950d676a42580d43a66fec9a24c6f6aa59cccf1b6a557b3573c7398e",
+    "renderer.h": "5cb6b59e926504c65fe2cfec694ae7276da4672ef43297013416e6f62f225441",
+    "resources.cpp": "3622fdaf8b9c0cf6b96c48ef39b75352895846bdcad6fe4545e9904f7c066828",
+    "resources.h": "d938b10c3e3ca42813c9566b0c929a0a9a8a37240a54b7c561c100dcc6981330"
+  },
+  "tool_sha256": "6b9d43b180990630db1c0f331fe479a95b6297c48200755d3395609dd2e10747"
+}

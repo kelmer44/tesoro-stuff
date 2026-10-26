@@ -1,44 +1,25 @@
 {
-  "walks": 500,
-  "steps_compared": 38377,
-  "arrivals": 499,
-  "never_arrive": [
-    {
-      "walk": 432,
-      "start": [
-        415,
-        111
-      ],
-      "target": [
-        473,
-        181
-      ],
-      "final": [
-        1532,
-        2775,
-        256,
-        1,
-        3
-      ]
-    }
-  ],
-  "never_arrive_count": 1,
+  "walks": 100,
+  "steps_compared": 7040,
+  "arrivals": 100,
+  "never_arrive": [],
+  "never_arrive_count": 0,
   "directions": {
-    "3": 170,
-    "4": 147,
-    "1": 91,
-    "2": 92
+    "3": 41,
+    "4": 30,
+    "1": 16,
+    "2": 13
   },
   "native_errors": [],
   "native_error_count": 0,
   "executable_sha256": "0fcd56b306b857283347e705dcce41a4b44dd4d9ef7c9226694114bba80792ef",
-  "driver_sha256": "2064e6fe8e218572b0240f4de7936afcece4452de5ffe837e3e506fc5ec6f8b3",
+  "driver_sha256": "d1e8e739b6bb89b0ae515004c7fd1e1a8199f98c5cb268c44f32a50c834f696d",
   "source_sha256": {
-    "jim.cpp": "7eb42069d8902acbea8241a3d22148d4b25c5c04e42991b52e40b74ea94dd3fd",
-    "jim.h": "4b7f82282c9091ea5e4a9d0edf18099e58c7da09231cfbcab593f1e2e0951269",
-    "scene.cpp": "0764c62bc80de78063bf473d480700a7cb24753e735e37b309be0a40fe7b8683",
+    "jim.cpp": "1ed184e0e0d4cfff30aa1234f3f5a74205cb7b12cf0c744073860ff5d6a25b0f",
+    "jim.h": "7c3cf402d40ecce293980ab4604a140c2276b8903c4e73cedcc143834d125272",
+    "scene.cpp": "6ba986bf0810c1c89febe33b9aacbcf5f470950a4a133cb0e2a989c482982311",
     "animation.cpp": "37fb19455118598262da9aa6e26bb9846539ea0a587e345300bdefc46da59e65",
-    "resources.cpp": "3cf4a4e1dc8ba898f6b4ef3b90df55ddc6197d1b69b2992a959ff86a83382d71"
+    "resources.cpp": "3622fdaf8b9c0cf6b96c48ef39b75352895846bdcad6fe4545e9904f7c066828"
   },
-  "tool_sha256": "ed09536b611c931213d2799e1d6dca3bf6d320a91e5d8f98d6a022fe313946f6"
+  "tool_sha256": "ef4b135ce698750090c8182e89e5330b17793dc4ec94d671ad77ba328ba59a36"
 }

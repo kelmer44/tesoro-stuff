@@ -1,0 +1,6 @@
+address	name	status
+00414e80	tesoro_floor_arrival	ready
+0040f020	tesoro_object_click_left	ready
+0040f040	tesoro_object_click_right	ready
+0040f050	tesoro_object_hover	ready
+00417b30	tesoro_object_hit_test	ready

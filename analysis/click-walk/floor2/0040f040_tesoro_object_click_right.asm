@@ -1,0 +1,5 @@
+0040f040  MOV EDX,dword ptr [ESP + 0x4]
+0040f044  MOV EAX,dword ptr [ECX]
+0040f046  PUSH EDX
+0040f047  CALL dword ptr [EAX + 0x38]
+0040f04a  RET 0x4

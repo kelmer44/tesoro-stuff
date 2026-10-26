@@ -1,0 +1,27 @@
+{
+  "cases_per_kind": 200,
+  "compared": 834,
+  "per_kind": {
+    "box": 200,
+    "inside": 193,
+    "cross": 178,
+    "clip": 92,
+    "pair": 171
+  },
+  "positive_results": {
+    "pair_queued": 58,
+    "pair_touching": 43,
+    "inside": 63,
+    "cross": 55
+  },
+  "skipped_original_traps": 131,
+  "dependent_on_memory_past_the_points": 44,
+  "real_polygons": 104,
+  "executable_sha256": "0fcd56b306b857283347e705dcce41a4b44dd4d9ef7c9226694114bba80792ef",
+  "driver_sha256": "f71bb75b1d4333aab3fc0897d20622504fc4b7feafbd7637afa9095ea6e6d95e",
+  "source_sha256": {
+    "overlap.cpp": "b1831118b05cfed17cbe8510e6588f09475fb3f5811ffb57931058d418046047",
+    "overlap.h": "2365854f5dd798289f352a57175b74c72a8505bbb540855d77f1f09875f4a74a"
+  },
+  "tool_sha256": "714d9cde82f1d3e1d03d2afd678405a82ba863243e811a727f75b2e5c9804831"
+}

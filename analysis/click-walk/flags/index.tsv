@@ -1,0 +1,5 @@
+address	name	status
+00401f90	tesoro_base_401f90	ready
+00401e20	tesoro_base_401e20	ready
+0040e5a0	tesoro_scenery_base	ready
+0040f020	tesoro_hover	ready

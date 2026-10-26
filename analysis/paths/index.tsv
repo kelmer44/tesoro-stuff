@@ -1,0 +1,5 @@
+address	name	status
+00414e00	path_ctor	ready
+00414e80	path_leg_end	ready
+00407a80	jim_turn_dir	ready
+00407b40	x1	inside_existing_function_00407ac0

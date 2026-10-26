@@ -1,0 +1,5 @@
+00402e50  MOV EAX,dword ptr [ESP + 0x4]
+00402e54  MOV EAX,dword ptr [EAX + 0x68]
+00402e57  SHR EAX,0xa
+00402e5a  AND EAX,0x1
+00402e5d  RET 0x4

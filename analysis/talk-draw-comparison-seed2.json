@@ -1,0 +1,14 @@
+{
+  "cases": 300,
+  "sprites_compared": 446,
+  "talking_cases": 146,
+  "executable_sha256": "0fcd56b306b857283347e705dcce41a4b44dd4d9ef7c9226694114bba80792ef",
+  "driver_sha256": "8cbf1189de6231b1b29849151059ab8900c2d143ee29e8ab767503b2b8e14022",
+  "source_sha256": {
+    "scene.cpp": "44c0dfeef8884c99321494a30d4d28528e83b53e9d0808d4b03b685bb3de8bee",
+    "scene.h": "37b7960d7ab4ab7cd3ae1a6ba2c479878099db2d5d7b5b19f842cc3b5c73d826",
+    "resources.cpp": "3622fdaf8b9c0cf6b96c48ef39b75352895846bdcad6fe4545e9904f7c066828",
+    "animation.cpp": "37fb19455118598262da9aa6e26bb9846539ea0a587e345300bdefc46da59e65"
+  },
+  "tool_sha256": "737ff757be7dfa4a3df5ed97d8210ed7c81db96fdceb7b442ea149ef3ef168db"
+}

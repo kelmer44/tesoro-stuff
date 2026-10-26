@@ -1,0 +1,36 @@
+{
+ "objects": 312,
+ "verb_lines": 216,
+ "missing_text": [],
+ "missing_audio": [
+  "Camarote.lvl:BAULOPEN:OBJ075T11",
+  "Camarote2.lvl:BAULOPEN:OBJ075T11",
+  "Camarote2.lvl:ESPADA:OBJ145T05",
+  "Campamento.lvl:FOGATA:OBJ128T05",
+  "Playa.lvl:COCO:OBJ083T05",
+  "Poblado.lvl:SERVICIOH:OBJ106T03",
+  "Poblado.lvl:CALDERO:OBJ112T05"
+ ],
+ "generic": {
+  "OBJ125T03": {
+   "text": true,
+   "audio": true
+  },
+  "OBJ096T07": {
+   "text": true,
+   "audio": true
+  },
+  "OBJ106T05": {
+   "text": true,
+   "audio": true
+  },
+  "ICON01T058": {
+   "text": true,
+   "audio": true
+  },
+  "MODELO2": {
+   "text": true,
+   "audio": true
+  }
+ }
+}

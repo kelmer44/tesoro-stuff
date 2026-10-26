@@ -1,0 +1,18 @@
+enter 0
+state 0 CAPITAN
+click 0 PLUMA 3
+state 0 PLUMA
+setactive 0 PLUMA 1
+play 0 CAPITAN 2
+click 0 PLUMA 3
+state 0 PLUMA
+state -1 IPLUMA
+click 0 CARTA 1
+click 0 BOLI 1
+click 0 TABURETE 3
+click 0 PLACA 1
+click 0 PEZ 1
+click 0 CAJONES 4
+click 0 PUERTA2 0
+click 0 MAPA 1
+click 0 MAPA 0

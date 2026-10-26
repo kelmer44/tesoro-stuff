@@ -32,9 +32,36 @@ public class RecoverJim extends GhidraScript {
             throw new IllegalArgumentException("These addresses apply only to the verified TESORO.EXE");
         File output = new File(args[0]);
         output.mkdirs();
+        target(0x401010L, "tesoro_bank_residency");
+        target(0x401510L, "tesoro_object_bank_prepare");
+        target(0x401860L, "tesoro_advance_bank");
+        target(0x401d30L, "tesoro_set_object_position");
+        target(0x407510L, "tesoro_jim_virtual_28");
+        target(0x407580L, "tesoro_jim_virtual_24");
+        target(0x407600L, "tesoro_jim_start_walk");
+        target(0x4079d0L, "tesoro_jim_virtual_2c");
+        target(0x4079e0L, "tesoro_jim_virtual_30");
+        target(0x407f30L, "tesoro_jim_virtual_7c");
+        target(0x4080a0L, "tesoro_jim_virtual_6c");
+        target(0x408440L, "tesoro_scene_object_moved");
+        target(0x408800L, "tesoro_scene_initialize_objects");
+        target(0x40ecb0L, "tesoro_initialize_path_base");
+        target(0x40f800L, "tesoro_scene_attach_object");
+        target(0x40f900L, "tesoro_add_object_to_list_priority");
+        target(0x40fea0L, "tesoro_initialize_character_base");
+        target(0x410060L, "tesoro_character_virtual_7c");
+        target(0x4103f0L, "tesoro_character_virtual_80");
+        target(0x410400L, "tesoro_character_virtual_70");
+        target(0x4104a0L, "tesoro_group_insert_object");
         target(0x4108a0L, "tesoro_queue_scaled_literal_spans");
         target(0x410fb0L, "tesoro_queue_scaled_solid_spans");
         target(0x411580L, "tesoro_queue_scaled_shadow_spans");
+        target(0x4120c0L, "tesoro_draw_scaled_image");
+        target(0x413b00L, "tesoro_random_range");
+        target(0x414740L, "tesoro_floor_scale_at");
+        target(0x414930L, "tesoro_initialize_icon_bar");
+        target(0x414e00L, "tesoro_initialize_path");
+        target(0x4157b0L, "tesoro_scenery_bind");
         try (PrintWriter index = new PrintWriter(new File(output, "index.tsv"), "UTF-8")) {
             index.println("address\tname\tstatus");
             for (Map.Entry<Long, String> entry : targets.entrySet()) {

@@ -1,0 +1,12 @@
+0040c8a0  MOV EAX,dword ptr [ECX + 0x60]
+0040c8a3  XOR EDX,EDX
+0040c8a5  CMP byte ptr [EAX],0x0
+0040c8a8  SETZ DL
+0040c8ab  MOV byte ptr [EAX],DL
+0040c8ad  MOV EAX,dword ptr [ECX + 0x60]
+0040c8b0  CMP byte ptr [EAX],0x0
+0040c8b3  SETNZ DL
+0040c8b6  PUSH EDX
+0040c8b7  CALL 0x00401d80
+0040c8bc  MOV EAX,0x1
+0040c8c1  RET

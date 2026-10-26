@@ -101,3 +101,10 @@ walking, character speech) are not exercised. No original-runtime comparison.
 - Group draw lists therefore hold every object with flag `0x100`, not only scenery.
 - Subtitles: ScummVM's global default for `subtitles` is off, so the narration text was
   not drawn. The engine now registers a default of on.
+
+## Script order within a frame (25 October 2026)
+
+The update loop (`0x40fc20`) walks the object list (scripts are added at priority 30 by `0x40fa10`) once per frame, marking each visited
+entry (`+0x68 & 0x200`) and restarting when an update changes the list. An update that returns 2 (a script waiting, pc unchanged) or 3 (it
+yielded) ends the pass for the frame, so a waiting script holds back everything behind it. With `run`, the started script is reached first: the
+caller resumes (its `run` op becomes `pc++`) only after the callee has finished. The engine implements this as newest-script-first with an early stop.

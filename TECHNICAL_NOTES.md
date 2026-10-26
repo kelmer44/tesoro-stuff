@@ -30,6 +30,17 @@ All numbers below are little-endian unless stated otherwise.
 - WAV payloads are standard RIFF/WAVE. All 2,346 in this index are PCM, 22,050 Hz, mono, 8-bit. This finding does not account for external CD music.
 - `.DLG` payloads are readable scripts, **not binary compiled bytecode**. `.TXT` files are text-ID/string tables. Spanish high bytes look like OEM encoding; CP850 gives readable sampled text. Verify original font/glyph mapping rather than assuming Latin-1 because the old resource viewer uses it.
 
+### Image storage in the engine
+
+Images are kept as the file stores them: rows of spans (`skip`, `count`, `value`), plus the
+RGB565 literals of kind 1 images. There is no expanded pixel array; the renderer expands a
+span as it draws it, as the original's span queues do. Checked on 22 October 2026 by hashing
+the expanded pixels of all 2,012 images (all 50 LVLs and the ANMs) before and after the change:
+identical. Rendered harbour frames with narration text (three times) are byte-identical, the
+menu images cover all 307,200 pixels (so the menu draw is unchanged), and the scaled-sprite
+comparison against the original routines still matches (250 frames, 76.8 million pixels).
+The check used ignored local drivers that read the extracted resources.
+
 ### ANM frame records
 
 `Frame` and `Image` are separate records. A frame describes an animation step and

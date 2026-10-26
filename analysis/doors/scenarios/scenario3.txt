@@ -1,0 +1,7 @@
+enter 1
+state 1 RECLUTADOR
+click 1 RECLUTADOR 2
+state 1 RECLUTADOR
+enter 0
+state 0 CAPITAN
+click 0 CAPITAN 2

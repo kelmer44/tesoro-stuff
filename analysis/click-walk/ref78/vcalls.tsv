@@ -1,0 +1,45 @@
+offset	call	function	instruction
+ref 0x78	00402291	00402240	MOV byte ptr [ESI + 0x78],BL
+ref 0x78	0040232c	00402300	MOV byte ptr [ESI + 0x78],BL
+ref 0x78	00402408	004023f0	LEA EBX,[EDX + 0x78]
+ref 0x78	0040241f	004023f0	MOV byte ptr [EDX + 0x78],0x0
+ref 0x78	0040263c	004025b0	MOV byte ptr [EAX + 0x78],BL
+ref 0x78	004027d2	004026d0	MOV byte ptr [EAX + 0x78],0x0
+ref 0x78	00402df3	00402d80	MOV AL,byte ptr [ESI + 0x78]
+ref 0x78	00402df6	00402d80	LEA EDX,[ESI + 0x78]
+ref 0x78	00403210	004031a0	MOV byte ptr [EBP + 0x78],0x0
+ref 0x78	00406a08	-	MOV dword ptr [ESI + 0x78],EAX
+ref 0x78	00406a0d	-	MOV dword ptr [ESI + 0x78],0x0
+ref 0x78	00407257	004070c0	MOV dword ptr [ESP + 0x78],EDX
+ref 0x78	0040761e	00407600	MOV ECX,dword ptr [EDX + 0x78]
+ref 0x78	00407937	-	MOV ECX,dword ptr [EDX + 0x78]
+ref 0x78	00407983	-	MOV ECX,dword ptr [EDX + 0x78]
+ref 0x78	00407a17	004079e0	MOV ECX,dword ptr [EDX + 0x78]
+ref 0x78	00408221	004080e0	MOV dword ptr [EDI + 0x78],ESI
+ref 0x78	004088ac	00408890	MOV EAX,dword ptr [EBX + 0x78]
+ref 0x78	00408b2f	00408890	MOV EAX,dword ptr [ESI + 0x78]
+ref 0x78	00408b3c	00408890	MOV EAX,dword ptr [ESI + 0x78]
+ref 0x78	00408b8c	00408890	MOV EAX,dword ptr [ESI + 0x78]
+ref 0x78	00408ba1	00408890	MOV EAX,dword ptr [ESI + 0x78]
+ref 0x78	004090bf	00408c50	MOV EAX,dword ptr [EDX + 0x78]
+ref 0x78	004090fc	00408c50	MOV EAX,dword ptr [EDX + 0x78]
+ref 0x78	00409154	00408c50	MOV EAX,dword ptr [EDX + 0x78]
+ref 0x78	0040916f	00408c50	MOV ECX,dword ptr [EDX + 0x78]
+ref 0x78	004091c1	00408c50	MOV EAX,dword ptr [EDX + 0x78]
+ref 0x78	0040e835	0040e7e0	MOV dword ptr [ESI + 0x78],EAX
+ref 0x78	0040e869	0040e7e0	MOV dword ptr [ESI + 0x78],EAX
+ref 0x78	0040ea0d	-	MOV dword ptr [ESI + 0x78],EAX
+ref 0x78	0040eaef	-	MOV EAX,dword ptr [ESI + 0x78]
+ref 0x78	0040eb21	-	MOV dword ptr [ESI + 0x78],EAX
+ref 0x78	0040f385	0040f380	MOV EAX,dword ptr [ESI + 0x78]
+ref 0x78	004103ae	00410330	CALL dword ptr [EDI + 0x78]
+ref 0x78	0041456d	00414560	MOV EDX,dword ptr [ECX + 0x78]
+ref 0x78	0041473b	004146b0	MOV dword ptr [ESI + 0x78],EAX
+ref 0x78	00416077	-	MOV ECX,dword ptr [EDX + 0x78]
+ref 0x78	00416092	-	MOV EDX,dword ptr [ECX + 0x78]
+ref 0x78	00416095	-	MOV ECX,dword ptr [EDX + 0x78]
+ref 0x78	004160f5	-	MOV ECX,dword ptr [EAX + 0x78]
+ref 0x78	00416110	-	MOV EAX,dword ptr [EDX + 0x78]
+ref 0x78	00416113	-	MOV ECX,dword ptr [EAX + 0x78]
+ref 0x78	004199b9	004199a0	MOV ECX,dword ptr [ECX + 0x78]
+ref 0x78	0042587c	004253a0	MOV ECX,dword ptr [ESP + 0x78]

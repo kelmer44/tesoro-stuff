@@ -1,0 +1,9 @@
+offset	call	function	instruction
+0x80	00403181	004030e0	CALL dword ptr [EAX + 0x80]
+0x80	00405f60	00405a60	CALL dword ptr [EDI + 0x80]
+0x80	0040f1fa	-	CALL dword ptr [EAX + 0x80]
+0x80	004125be	004123e0	CALL dword ptr [ECX + 0x80]
+0x80	00412bc0	00412bb0	CALL dword ptr [ECX + 0x80]
+0x80	00414ec5	-	CALL dword ptr [EDX + 0x80]
+0x80	00414f01	-	CALL dword ptr [EDI + 0x80]
+0x80	004150bc	00414f10	CALL dword ptr [EDI + 0x80]

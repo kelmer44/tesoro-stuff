@@ -1,0 +1,24 @@
+offset	call	function	instruction
+0x30	004041d1	00404110	CALL dword ptr [ECX + 0x30]
+0x30	0040457b	004043e0	CALL dword ptr [EDX + 0x30]
+ref 0x104	00407673	00407600	MOV dword ptr [ESI + 0x104],EAX
+ref 0x108	0040767d	00407600	MOV dword ptr [ESI + 0x108],EAX
+ref 0xf4	00407691	00407600	MOV dword ptr [ESI + 0xf4],EAX
+ref 0x104	00407697	00407600	MOV EAX,dword ptr [ESI + 0x104]
+ref 0x108	0040769f	00407600	MOV ECX,dword ptr [ESI + 0x108]
+ref 0x104	004077ad	-	MOV EBP,dword ptr [ESI + 0x104]
+ref 0x108	004077be	-	MOV EAX,dword ptr [ESI + 0x108]
+ref 0x104	0040787a	-	MOV ECX,dword ptr [ESI + 0x104]
+ref 0x108	00407880	-	MOV EDX,dword ptr [ESI + 0x108]
+ref 0xf4	00407886	-	MOV EAX,dword ptr [ESI + 0xf4]
+ref 0xf4	004078a2	-	MOV ECX,dword ptr [ESI + 0xf4]
+ref 0x104	004078e8	-	MOV EAX,dword ptr [ESI + 0x104]
+ref 0x108	004078ee	-	MOV ECX,dword ptr [ESI + 0x108]
+ref 0xf4	00407a1e	004079e0	MOV EAX,dword ptr [ESI + 0xf4]
+ref 0x108	00407a24	004079e0	MOV EDX,dword ptr [ESI + 0x108]
+ref 0x104	00407a2b	004079e0	MOV EAX,dword ptr [ESI + 0x104]
+ref 0xf4	00407a4a	004079e0	MOV ECX,dword ptr [ESI + 0xf4]
+0x30	00408b9c	00408890	CALL dword ptr [EDX + 0x30]
+0x30	004119b7	00411870	CALL dword ptr [ECX + 0x30]
+0x30	00413317	004132b0	CALL dword ptr [ECX + 0x30]
+ref 0xf4	0042279f	00422620	MOV byte ptr [EAX + 0xf4],0xff

@@ -1,0 +1,6 @@
+address	name	status
+00402240	tesoro_probe_ctor	ready
+00409280	tesoro_overlap_box	ready
+00409560	tesoro_overlap_point_in_poly	ready
+00409790	tesoro_overlap_poly_poly	ready
+00409c10	tesoro_overlap_clip	ready

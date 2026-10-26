@@ -1,0 +1,4 @@
+address	name	completed	error
+00415cb0	tesoro_name_to_string	true	
+00413940	tesoro_find_text_by_name	true	
+00415c40	tesoro_name_encode_wrapper	true	

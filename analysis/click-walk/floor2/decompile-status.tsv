@@ -1,0 +1,6 @@
+address	name	completed	error
+00414e80	tesoro_floor_arrival	true	
+0040f020	tesoro_object_click_left	true	
+0040f040	tesoro_object_click_right	true	
+0040f050	tesoro_object_hover	true	
+00417b30	tesoro_object_hit_test	true	

@@ -1,0 +1,12 @@
+address	name	status
+004139e0	tesoro_clock_hold	ready
+00413a50	tesoro_begin_frame_time	ready
+004040d0	tesoro_audio_handle_lookup	ready
+004043b0	tesoro_audio_stop	ready
+00401da0	tesoro_save_object_animation_state	ready
+00401de0	tesoro_play_object_animation	ready
+00410400	tesoro_character_end_speech	ready
+0040f900	tesoro_object_list_insert_priority	ready
+00408c50	tesoro_order_objects	ready
+00412c50	tesoro_draw_text_overlay	ready
+00401fc0	tesoro_set_group_camera	ready

@@ -1,0 +1,8 @@
+address	name	status
+00407d00	tesoro_mouse_407d00	ready
+004101f0	tesoro_mouse_4101f0	ready
+00414420	tesoro_mouse_414420	ready
+004144a0	tesoro_mouse_4144a0	ready
+0040f680	tesoro_list_find	ready
+0040f800	tesoro_list_add	ready
+004023f0	tesoro_cursor_text	ready

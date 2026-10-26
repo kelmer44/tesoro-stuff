@@ -1,0 +1,883 @@
+//==== 00407aa0
+void __fastcall jimstop(int *param_1)
+{
+  if (*(char *)((int)param_1 + 0xd5) != '\0') {
+    (**(code **)(*param_1 + 0x74))(param_1[0x43]);
+  }
+  return;
+}
+//==== 004123e0
+void __thiscall fade(void *this,int param_1,int param_2)
+{
+  char cVar1;
+  ushort uVar2;
+  ushort uVar3;
+  code *pcVar4;
+  int iVar5;
+  int iVar6;
+  int iVar7;
+  DWORD DVar8;
+  int iVar9;
+  ushort *puVar10;
+  ushort uVar11;
+  undefined4 *puVar12;
+  int iVar13;
+  ushort *puVar14;
+  undefined2 uVar15;
+  int iStack_214;
+  ushort *local_210;
+  undefined4 uStack_20c;
+  undefined4 auStack_208 [3];
+  undefined1 auStack_1fc [16];
+  undefined4 uStack_1ec;
+  undefined4 uStack_1d8;
+  ushort auStack_180 [64];
+  ushort auStack_100 [64];
+  ushort auStack_80 [64];
+  local_210 = (ushort *)FUN_0040db40(0x96000,3);
+  iVar5 = (int)(0x100 / (longlong)param_1);
+  puVar12 = *(undefined4 **)((int)this + 0x678);
+  puVar10 = local_210;
+  for (iVar9 = 0x25800; iVar9 != 0; iVar9 = iVar9 + -1) {
+    *(undefined4 *)puVar10 = *puVar12;
+    puVar12 = puVar12 + 1;
+    puVar10 = puVar10 + 2;
+  }
+  pcVar4 = GetTickCount_exref;
+  for (iVar9 = 0x100 - iVar5; -1 < iVar9; iVar9 = iVar9 - iVar5) {
+    if (*(char *)((int)this + 0x66a) == '\0') {
+      iVar6 = (**(code **)(**(int **)((int)this + 0xc) + 0x2c))(*(int **)((int)this + 0xc),0,0);
+      while (iVar6 == -0x7789fde4) {
+        iVar6 = (**(code **)(**(int **)((int)this + 0xc) + 0x2c))(*(int **)((int)this + 0xc),0,0);
+      }
+      auStack_208[0] = 0x7c;
+      iVar6 = (**(code **)(**(int **)((int)this + 0xc) + 0x58))
+                        (*(int **)((int)this + 0xc),auStack_208);
+      if (iVar6 == 0) {
+        iVar6 = (**(code **)(**(int **)((int)this + 0xc) + 100))
+                          (*(int **)((int)this + 0xc),0,auStack_1fc,0,0);
+        while (iVar6 == -0x7789fde4) {
+          iVar6 = (**(code **)(**(int **)((int)this + 0xc) + 100))
+                            (*(int **)((int)this + 0xc),0,auStack_1fc,0,0);
+        }
+        if (iVar6 == 0) {
+          *(undefined1 *)((int)this + 0x66a) = 1;
+          *(undefined4 *)((int)this + 0x1c) = uStack_1ec;
+          *(undefined4 *)((int)this + 0x678) = uStack_1d8;
+        }
+      }
+    }
+    cVar1 = *(char *)((int)this + 0x67c);
+    iVar13 = 0;
+    iVar6 = 0;
+    do {
+      iVar7 = iVar13 >> 8;
+      if (cVar1 == '\0') {
+        uVar15 = (undefined2)(iVar7 << 0xb);
+      }
+      else {
+        uVar15 = (undefined2)(iVar7 << 10);
+      }
+      *(undefined2 *)((int)auStack_100 + iVar6) = uVar15;
+      *(short *)((int)auStack_80 + iVar6) = (short)((uint)iVar13 >> 8);
+      *(short *)((int)auStack_180 + iVar6) = (short)(iVar7 << 5);
+      iVar6 = iVar6 + 2;
+      iVar13 = iVar13 + iVar9;
+    } while (iVar6 < 0x80);
+    iVar6 = (*pcVar4)();
+    iStack_214 = 0x4b000;
+    puVar10 = *(ushort **)((int)this + 0x678);
+    puVar14 = local_210;
+    do {
+      uVar2 = *puVar14;
+      puVar14 = puVar14 + 1;
+      if (*(char *)((int)this + 0x67c) == '\0') {
+        uVar11 = auStack_180[uVar2 >> 5 & 0x3f];
+        uVar3 = uVar2 >> 0xb;
+      }
+      else {
+        uVar11 = auStack_180[uVar2 >> 5 & 0x1f];
+        uVar3 = uVar2 >> 10;
+      }
+      *puVar10 = auStack_100[uVar3 & 0x1f] | auStack_80[uVar2 & 0x1f] | uVar11;
+      iStack_214 = iStack_214 + -1;
+      puVar10 = puVar10 + 1;
+    } while (iStack_214 != 0);
+    (**(code **)(**(int **)((int)this + 0xc) + 0x80))(*(int **)((int)this + 0xc),0);
+    iStack_214 = 0;
+    local_210 = (ushort *)0x0;
+    uStack_20c = 0x280;
+    auStack_208[0] = 0x1e0;
+    (**(code **)(**(int **)((int)this + 8) + 0x1c))
+              (*(int **)((int)this + 8),0,0,*(undefined4 *)((int)this + 0xc),&iStack_214,0);
+    pcVar4 = GetTickCount_exref;
+    *(undefined1 *)((int)this + 0x66a) = 0;
+    DVar8 = GetTickCount();
+    iVar13 = DVar8 - iVar6;
+    while (iVar13 < param_2) {
+      DVar8 = GetTickCount();
+      iVar13 = DVar8 - iVar6;
+    }
+  }
+  return;
+}
+//==== 004139e0
+void sleep(uint param_1)
+{
+  DWORD DVar1;
+  DWORD DVar2;
+  uint uVar3;
+  DVar1 = GetTickCount();
+  DVar2 = GetTickCount();
+  uVar3 = DVar2 - DVar1;
+  while (uVar3 < param_1) {
+    DVar2 = GetTickCount();
+    uVar3 = DVar2 - DVar1;
+  }
+  return;
+}
+//==== 00413ac0
+int random(int param_1,int param_2)
+{
+  DWORD DVar1;
+  DVar1 = GetTickCount();
+  return ((int)((DVar1 & 0x78 | (int)DVar1 >> 7 & 7U | (DVar1 & 7) << 7) * ((param_2 - param_1) + 1)
+               ) >> 10) + param_1;
+}
+//==== 00416300
+void __thiscall camarote(void *this,undefined4 param_1)
+{
+  int *piVar1;
+  void *pvVar2;
+  undefined4 uVar3;
+  ulonglong uVar4;
+  byte bVar5;
+  undefined1 uVar6;
+  undefined1 uVar7;
+  int iVar8;
+  byte bVar9;
+  char cVar10;
+  switch(param_1) {
+  case 0:
+  case 1:
+  case 2:
+  case 3:
+  case 4:
+  case 5:
+    uVar4 = "PUERTA1";
+    piVar1 = (int *)tesoro_find_scene_object(SCENE[4],(int)uVar4,(int)(uVar4 >> 0x20));
+    (**(code **)(*piVar1 + 0x50))();
+    return;
+  case 6:
+    uVar4 = "CAPITAN";
+    iVar8 = tesoro_find_scene_object(SCENE[4],(int)uVar4,(int)(uVar4 >> 0x20));
+    *(undefined2 *)(iVar8 + 0x5e) = 10;
+    return;
+  case 7:
+    uVar4 = "PUERTA2";
+    piVar1 = (int *)tesoro_find_scene_object(SCENE[5],(int)uVar4,(int)(uVar4 >> 0x20));
+    (**(code **)(*piVar1 + 0x20))(0);
+    uVar4 = "CIELO";
+    cVar10 = '\0';
+    bVar9 = 1;
+    iVar8 = -1;
+    uVar6 = 0;
+    uVar7 = 0;
+    bVar5 = 1;
+    pvVar2 = (void *)tesoro_find_scene_object(SCENE[3],(int)uVar4,(int)(uVar4 >> 0x20));
+    FUN_00401de0(pvVar2,bVar5,CONCAT11(uVar7,uVar6),iVar8,bVar9,cVar10);
+    uVar4 = "DICK";
+    piVar1 = (int *)tesoro_find_scene_object(SCENE[6],(int)uVar4,(int)(uVar4 >> 0x20));
+    (**(code **)(*piVar1 + 0x20))(0);
+    uVar4 = "LOROPOCHO";
+    piVar1 = (int *)tesoro_find_scene_object(SCENE[6],(int)uVar4,(int)(uVar4 >> 0x20));
+    (**(code **)(*piVar1 + 0x20))(0);
+    uVar4 = "CUBO";
+    piVar1 = (int *)tesoro_find_scene_object(SCENE[6],(int)uVar4,(int)(uVar4 >> 0x20));
+    (**(code **)(*piVar1 + 0x20))(0);
+    fade(COMPOSITOR,4,100);
+    pvVar2 = SCENE[3];
+    *(void **)((int)this + 0x40) = SCENE[3];
+    tesoro_place_jim_in_scene(JIM,pvVar2,*(int *)((int)pvVar2 + 0x70),0x1b3,0x2d);
+    tesoro_set_object_flag_bit2(JIM,0);
+    tesoro_update_scene_view
+              (*(void **)((int)this + 0x40),*(int *)((int)JIM + 0x4c),
+               *(int *)((int)JIM + 0x50),0);
+    iVar8 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar3 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar8 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar8 * 8));
+        iVar8 = iVar8 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar8 * 4) = uVar3;
+      } while (iVar8 < *(int *)((int)this + 0xb8));
+      return;
+    }
+    break;
+  case 8:
+    tesoro_set_object_flag_bit2(JIM,1);
+    return;
+  case 9:
+    fade(COMPOSITOR,4,100);
+    pvVar2 = SCENE[4];
+    *(void **)((int)this + 0x40) = SCENE[4];
+    tesoro_place_jim_in_scene(JIM,pvVar2,*(int *)((int)pvVar2 + 0x70),-0xfa,0x82);
+    *(undefined1 *)((int)JIM + 0x110) = 1;
+    *(undefined1 *)((int)JIM + 0x111) = 2;
+  }
+  return;
+}
+//==== 004169a0
+void __thiscall motin(void *this,int param_1)
+{
+  void *pvVar1;
+  int iVar2;
+  int iVar3;
+  if (param_1 == 0) {
+    fade(COMPOSITOR,4,100);
+    pvVar1 = SCENE[5];
+    iVar3 = 0x87;
+    *(void **)((int)this + 0x40) = SCENE[5];
+    iVar2 = 0x87;
+  }
+  else {
+    if (param_1 < 1) {
+      return;
+    }
+    if (2 < param_1) {
+      return;
+    }
+    fade(COMPOSITOR,4,100);
+    pvVar1 = SCENE[4];
+    iVar3 = 0x82;
+    *(void **)((int)this + 0x40) = SCENE[4];
+    iVar2 = -0xfa;
+  }
+  tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),iVar2,iVar3);
+  *(undefined1 *)((int)JIM + 0x110) = 1;
+  return;
+}
+//==== 00416b80
+void __thiscall luchdick(void *this,int param_1)
+{
+  void *pvVar1;
+  undefined4 uVar2;
+  int iVar3;
+  if (param_1 == 0) {
+    fade(COMPOSITOR,4,100);
+    pvVar1 = SCENE[44];
+    *(void **)((int)this + 0x40) = SCENE[44];
+    tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),0x8a,-0x67);
+    iVar3 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar2 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar3 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar3 * 8));
+        iVar3 = iVar3 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar3 * 4) = uVar2;
+      } while (iVar3 < *(int *)((int)this + 0xb8));
+    }
+  }
+  else if (param_1 == 1) {
+    fade(COMPOSITOR,4,100);
+    pvVar1 = SCENE[21];
+    *(void **)((int)this + 0x40) = SCENE[21];
+    tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),1000,-0x5f);
+    tesoro_set_object_flag_bit2(JIM,0);
+    iVar3 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar2 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar3 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar3 * 8));
+        iVar3 = iVar3 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar3 * 4) = uVar2;
+      } while (iVar3 < *(int *)((int)this + 0xb8));
+      return;
+    }
+  }
+  return;
+}
+//==== 00416c80
+void __thiscall ffinal(void *this,undefined4 param_1)
+{
+  void *pvVar1;
+  undefined4 uVar2;
+  int iVar3;
+  pvVar1 = SCENE[44];
+  switch(param_1) {
+  case 0:
+    *(void **)((int)this + 0x40) = SCENE[44];
+    tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),-0xad,-0x3f);
+    iVar3 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar2 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar3 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar3 * 8));
+        iVar3 = iVar3 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar3 * 4) = uVar2;
+      } while (iVar3 < *(int *)((int)this + 0xb8));
+      return;
+    }
+    break;
+  case 1:
+    fade(COMPOSITOR,4,100);
+    pvVar1 = SCENE[45];
+    *(void **)((int)this + 0x40) = SCENE[45];
+    tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),0,0);
+    tesoro_set_object_flag_bit2(JIM,0);
+    iVar3 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar2 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar3 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar3 * 8));
+        iVar3 = iVar3 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar3 * 4) = uVar2;
+      } while (iVar3 < *(int *)((int)this + 0xb8));
+      return;
+    }
+    break;
+  case 2:
+    fade(COMPOSITOR,4,100);
+    pvVar1 = SCENE[46];
+    *(void **)((int)this + 0x40) = SCENE[46];
+    tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),0,0);
+    tesoro_set_object_flag_bit2(JIM,0);
+    iVar3 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar2 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar3 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar3 * 8));
+        iVar3 = iVar3 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar3 * 4) = uVar2;
+      } while (iVar3 < *(int *)((int)this + 0xb8));
+      return;
+    }
+    break;
+  case 3:
+    fade(COMPOSITOR,10,100);
+    return;
+  case 4:
+    fade(COMPOSITOR,4,100);
+    FUN_0040fe20(UPDATELIST);
+  }
+  return;
+}
+//==== 00417c80
+void menu_fade(int param_1)
+{
+  if ((-1 < param_1) && (param_1 < 4)) {
+    fade(COMPOSITOR,4,100);
+  }
+  return;
+}
+//==== 004193b0
+void __thiscall conecta(void *this,int param_1)
+{
+  void *pvVar1;
+  int iVar2;
+  undefined4 uVar3;
+  pvVar1 = SCENE[9];
+  if (param_1 != 0) {
+    if (param_1 != 1) {
+      return;
+    }
+    *(void **)((int)this + 0x40) = SCENE[9];
+    tesoro_place_jim_in_scene
+              (JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),JIM[0x13],
+               JIM[0x14]);
+    (**(code **)(*POINTER + 0x20))(0);
+    (**(code **)(*JIM + 0x20))(1);
+    return;
+  }
+  (**(code **)(*POINTER + 0x20))(1);
+  if (DAT_00442228 == '\0') {
+    if (DAT_00442230 == '\0') {
+      return;
+    }
+    if (DAT_00442220 != 0) {
+      iVar2 = FUN_00413a10(CLOCK);
+      if ((uint)(iVar2 - DAT_00442220) < 0x5dd) {
+        return;
+      }
+      DAT_00442220 = 0;
+      return;
+    }
+    DAT_00442230 = '\0';
+    uVar3 = FUN_004191c0(0x442278,(int)DAT_00442278);
+    switch(uVar3) {
+    case 1:
+      DAT_00442228 = '\x02';
+      break;
+    case 2:
+    case 3:
+      DAT_00442228 = '\x01';
+      break;
+    default:
+      goto switchD_004194cb_caseD_ffffffff;
+    }
+    DAT_00442230 = '\x01';
+    DAT_00442220 = FUN_00413a10(CLOCK);
+    _DAT_00442224 = FUN_00413a10(CLOCK);
+  }
+  else {
+    iVar2 = FUN_00413a10(CLOCK);
+    if (3000 < (uint)(iVar2 - DAT_00442220)) {
+      *(undefined1 *)(*(int *)((int)this + 0xd0) + 2) = DAT_0044222c;
+      if (DAT_00442228 == '\x02') {
+        *(undefined1 *)(*(int *)((int)this + 0xd0) + 2) = 2;
+      }
+      (**(code **)(*POINTER + 0x20))(0);
+      FUN_00418e90();
+      return;
+    }
+  }
+switchD_004194cb_caseD_ffffffff:
+  FUN_00418e90();
+  return;
+}
+//==== 00419530
+void __thiscall conv33(void *this,int param_1)
+{
+  undefined1 *puVar1;
+  void *this_00;
+  ulonglong uVar2;
+  ulonglong uVar3;
+  int iVar4;
+  void *pvVar5;
+  pvVar5 = SCENE[14];
+  if (param_1 == 0) {
+    *(void **)((int)this + 0x40) = SCENE[14];
+    tesoro_place_jim_in_scene
+              (JIM,pvVar5,*(int *)((int)pvVar5 + 0x70),JIM[0x13],
+               JIM[0x14]);
+    (**(code **)(*JIM + 0x20))(0);
+    (**(code **)(*POINTER + 0x20))(1);
+    puVar1 = &DAT_00442279;
+    do {
+      *puVar1 = 0;
+      puVar1 = puVar1 + 8;
+    } while ((int)puVar1 < 0x4422b1);
+    FUN_00418e90();
+    DAT_00442230 = 0;
+    DAT_00442228 = 0;
+    DAT_00442220 = 0;
+    DAT_0044222c = *(undefined1 *)(*(int *)((int)this + 0xd0) + 2);
+    *(undefined1 *)(*(int *)((int)this + 0xd0) + 2) = 0xff;
+    uVar2 = "main";
+    uVar3 = "FCONECTA";
+    pvVar5 = *(void **)((int)this + 0x40);
+    iVar4 = *(int *)((int)this + 0xd0);
+    this_00 = (void *)FUN_004060c0(SCRIPTS,(int)uVar3,(int)(uVar3 >> 0x20));
+    tesoro_start_script(this_00,(int)uVar2,(int)(uVar2 >> 0x20),iVar4,pvVar5);
+  }
+  else if (param_1 == 1) {
+    (**(code **)(*POINTER + 0x20))(0);
+    return;
+  }
+  return;
+}
+//==== 004197a0
+void __thiscall present(void *this,undefined4 param_1)
+{
+  int *piVar1;
+  void *pvVar2;
+  ulonglong uVar3;
+  ushort uVar4;
+  int iVar5;
+  byte bVar6;
+  byte bVar7;
+  char cVar8;
+  switch(param_1) {
+  case 0:
+    tesoro_set_object_flag_bit2(JIM,0);
+    (**(code **)(*JIM + 0x20))(1);
+    tesoro_update_scene_view((void *)JIM[0x10],JIM[0x13],JIM[0x14],0);
+    return;
+  case 3:
+    uVar3 = "BARCO";
+    bVar7 = 1;
+    pvVar2 = (void *)tesoro_find_scene_object(SCENE[1],(int)uVar3,(int)(uVar3 >> 0x20));
+    tesoro_set_object_flag_bit2(pvVar2,bVar7);
+    uVar3 = "BARCO";
+    cVar8 = '\0';
+    bVar6 = 1;
+    iVar5 = -1;
+    uVar4 = 0;
+    bVar7 = 0;
+    pvVar2 = (void *)tesoro_find_scene_object(SCENE[1],(int)uVar3,(int)(uVar3 >> 0x20));
+    FUN_00401de0(pvVar2,bVar7,uVar4,iVar5,bVar6,cVar8);
+    return;
+  case 4:
+    tesoro_set_object_flag_bit2(JIM,1);
+    return;
+  case 5:
+    uVar3 = "PUERTA1";
+    piVar1 = (int *)tesoro_find_scene_object(SCENE[1],(int)uVar3,(int)(uVar3 >> 0x20));
+    (**(code **)(*piVar1 + 0x20))(1);
+    uVar3 = "PUERTA1";
+    bVar7 = 0;
+    pvVar2 = (void *)tesoro_find_scene_object(SCENE[1],(int)uVar3,(int)(uVar3 >> 0x20));
+    tesoro_set_object_flag_bit2(pvVar2,bVar7);
+    pvVar2 = SCENE[0];
+    *(void **)((int)this + 0x40) = SCENE[0];
+    tesoro_place_jim_in_scene(JIM,pvVar2,*(int *)((int)pvVar2 + 0x70),0x226,100);
+  }
+  return;
+}
+//==== 004198d0
+void __thiscall embark(void *this,int param_1)
+{
+  void *pvVar1;
+  undefined4 uVar2;
+  int iVar3;
+  pvVar1 = SCENE[3];
+  if (param_1 != 0) {
+    if (param_1 == 1) {
+      *(void **)((int)this + 0x40) = SCENE[3];
+      tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),0x1e,0x7d);
+      tesoro_update_scene_view
+                (*(void **)((int)this + 0x40),*(int *)((int)JIM + 0x4c),
+                 *(int *)((int)JIM + 0x50),0);
+      tesoro_set_object_flag_bit2(JIM,0);
+      iVar3 = 0;
+      if (0 < *(int *)((int)this + 0xb8)) {
+        do {
+          uVar2 = tesoro_find_scene_object
+                            (*(void **)((int)this + 0x40),
+                             *(int *)(*(int *)((int)this + 0xb4) + iVar3 * 8),
+                             *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar3 * 8));
+          iVar3 = iVar3 + 1;
+          *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar3 * 4) = uVar2;
+        } while (iVar3 < *(int *)((int)this + 0xb8));
+      }
+    }
+    else if (param_1 == 2) {
+      *(undefined4 *)((int)JIM + 0x4c) = 0x1b3;
+      *(undefined4 *)((int)JIM + 0x50) = 0x2d;
+      tesoro_set_object_flag_bit2(JIM,1);
+      return;
+    }
+  }
+  return;
+}
+//==== 004199a0
+void __thiscall isla(void *this,int param_1)
+{
+  int iVar1;
+  void *pvVar2;
+  pvVar2 = SCENE[7];
+  if (param_1 == 0) {
+    *(void **)((int)this + 0x40) = SCENE[7];
+    iVar1 = *(int *)(*(int *)((int)pvVar2 + 0x90) + 0x78);
+    tesoro_place_jim_in_scene
+              (JIM,pvVar2,*(int *)((int)pvVar2 + 0x70),*(int *)(iVar1 + 0x4c),
+               *(int *)(iVar1 + 0x50));
+    tesoro_update_scene_view
+              (*(void **)((int)this + 0x40),*(int *)((int)JIM + 0x4c),
+               *(int *)((int)JIM + 0x50),0);
+    tesoro_set_object_flag_bit2(JIM,1);
+    *(undefined1 *)((int)JIM + 0x110) = 0;
+  }
+  return;
+}
+//==== 00419a10
+void __thiscall playa(void *this,int param_1)
+{
+  void *pvVar1;
+  undefined4 uVar2;
+  int iVar3;
+  if (param_1 == 0) {
+    fade(COMPOSITOR,4,100);
+    pvVar1 = SCENE[9];
+    *(void **)((int)this + 0x40) = SCENE[9];
+    tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),0x48,-0x97);
+    tesoro_set_object_flag_bit2(JIM,1);
+    tesoro_update_scene_view
+              (*(void **)((int)this + 0x40),*(int *)((int)JIM + 0x4c),
+               *(int *)((int)JIM + 0x50),0);
+    iVar3 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar2 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar3 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar3 * 8));
+        iVar3 = iVar3 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar3 * 4) = uVar2;
+      } while (iVar3 < *(int *)((int)this + 0xb8));
+    }
+    tesoro_reset_render_lists((int)COMPOSITOR);
+  }
+  return;
+}
+//==== 00419ac0
+void __thiscall explosion(void *this,int param_1)
+{
+  int iVar1;
+  ulonglong uVar2;
+  if (param_1 == 0) {
+    *(void **)((int)this + 0x40) = SCENE[9];
+    uVar2 = "SALIDA";
+    iVar1 = tesoro_find_scene_object(SCENE[9],(int)uVar2,(int)(uVar2 >> 0x20));
+    tesoro_place_jim_in_scene
+              (JIM,*(void **)((int)this + 0x40),
+               *(int *)((int)*(void **)((int)this + 0x40) + 0x70),*(int *)(iVar1 + 0x4c),
+               *(int *)(iVar1 + 0x50));
+    tesoro_update_scene_view
+              (*(void **)((int)this + 0x40),*(int *)((int)JIM + 0x4c),
+               *(int *)((int)JIM + 0x50),0);
+  }
+  return;
+}
+//==== 00419b30
+void __thiscall salpanta(void *this,int param_1)
+{
+  void *pvVar1;
+  if (param_1 == 1) {
+    *(undefined4 *)((int)POINTER + 300) = 0;
+    FUN_00401de0(POINTER,0,0,0,0,'\0');
+    pvVar1 = SCENE[13];
+    *(void **)((int)this + 0x40) = SCENE[13];
+    tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),0,0);
+    tesoro_set_object_flag_bit2(JIM,0);
+  }
+  return;
+}
+//==== 00419b90
+void __thiscall conv35(void *this,int param_1)
+{
+  void *pvVar1;
+  undefined4 uVar2;
+  int *piVar3;
+  void *pvVar4;
+  int iVar5;
+  ulonglong uVar6;
+  byte bVar7;
+  ushort uVar8;
+  byte bVar9;
+  char cVar10;
+  pvVar1 = SCENE[9];
+  pvVar4 = SCENE[7];
+  if (param_1 == 0) {
+    *(void **)((int)this + 0x40) = SCENE[7];
+    tesoro_place_jim_in_scene(JIM,pvVar4,*(int *)((int)pvVar4 + 0x70),0x28,-0x93);
+    iVar5 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar2 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar5 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar5 * 8));
+        iVar5 = iVar5 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar5 * 4) = uVar2;
+      } while (iVar5 < *(int *)((int)this + 0xb8));
+    }
+    uVar6 = "ORZOGUEI";
+    piVar3 = (int *)tesoro_find_scene_object(SCENE[7],(int)uVar6,(int)(uVar6 >> 0x20));
+    (**(code **)(*piVar3 + 0x20))();
+    uVar6 = "SUELO";
+    iVar5 = 1;
+    uVar8 = 1;
+  }
+  else {
+    if (param_1 != 1) {
+      return;
+    }
+    *(void **)((int)this + 0x40) = SCENE[9];
+    tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),0x104,-0x47);
+    iVar5 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar2 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar5 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar5 * 8));
+        iVar5 = iVar5 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar5 * 4) = uVar2;
+      } while (iVar5 < *(int *)((int)this + 0xb8));
+    }
+    uVar6 = "ORZOGUEI";
+    piVar3 = (int *)tesoro_find_scene_object(SCENE[7],(int)uVar6,(int)(uVar6 >> 0x20));
+    (**(code **)(*piVar3 + 0x20))();
+    uVar6 = "SUELO";
+    iVar5 = 0;
+    uVar8 = 0;
+  }
+  cVar10 = '\0';
+  bVar9 = 0;
+  bVar7 = 0;
+  pvVar4 = (void *)tesoro_find_scene_object(SCENE[7],(int)uVar6,(int)(uVar6 >> 0x20));
+  FUN_00401de0(pvVar4,bVar7,uVar8,iVar5,bVar9,cVar10);
+  return;
+}
+//==== 00419cf0
+void __thiscall ixcuerda(void *this,int param_1)
+{
+  void *pvVar1;
+  if (param_1 == 0) {
+    fade(COMPOSITOR,4,100);
+    sleep(300);
+    pvVar1 = SCENE[23];
+    *(void **)((int)this + 0x40) = SCENE[23];
+    tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),-0x5a,-0x7f);
+  }
+  return;
+}
+//==== 00419d40
+void __thiscall barco(void *this,int param_1)
+{
+  void *pvVar1;
+  if (param_1 == 0) {
+    fade(COMPOSITOR,4,100);
+    sleep(300);
+    pvVar1 = SCENE[18];
+    *(void **)((int)this + 0x40) = SCENE[18];
+    tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),0x82,0x82);
+  }
+  return;
+}
+//==== 00419d90
+void __thiscall conv31(void *this,undefined4 param_1)
+{
+  void *pvVar1;
+  undefined4 uVar2;
+  int *piVar3;
+  void *pvVar4;
+  int iVar5;
+  ulonglong uVar6;
+  byte bVar7;
+  ushort uVar8;
+  byte bVar9;
+  char cVar10;
+  pvVar1 = SCENE[9];
+  pvVar4 = SCENE[7];
+  switch(param_1) {
+  case 0:
+    *(void **)((int)this + 0x40) = SCENE[7];
+    tesoro_place_jim_in_scene(JIM,pvVar4,*(int *)((int)pvVar4 + 0x70),0x28,-0x93);
+    iVar5 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar2 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar5 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar5 * 8));
+        iVar5 = iVar5 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar5 * 4) = uVar2;
+      } while (iVar5 < *(int *)((int)this + 0xb8));
+    }
+    uVar6 = "ORZOGUEI";
+    piVar3 = (int *)tesoro_find_scene_object(SCENE[7],(int)uVar6,(int)(uVar6 >> 0x20));
+    (**(code **)(*piVar3 + 0x20))();
+    uVar6 = "SUELO";
+    iVar5 = 1;
+    uVar8 = 1;
+    break;
+  case 1:
+  case 2:
+    fade(COMPOSITOR,4,100);
+    return;
+  case 3:
+    *(void **)((int)this + 0x40) = SCENE[9];
+    tesoro_place_jim_in_scene(JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),0x104,-0x47);
+    iVar5 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar2 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar5 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar5 * 8));
+        iVar5 = iVar5 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar5 * 4) = uVar2;
+      } while (iVar5 < *(int *)((int)this + 0xb8));
+    }
+    uVar6 = "ORZOGUEI";
+    piVar3 = (int *)tesoro_find_scene_object(SCENE[7],(int)uVar6,(int)(uVar6 >> 0x20));
+    (**(code **)(*piVar3 + 0x20))();
+    uVar6 = "SUELO";
+    iVar5 = 0;
+    uVar8 = 0;
+    break;
+  default:
+    goto switchD_00419da1_default;
+  }
+  cVar10 = '\0';
+  bVar9 = 0;
+  bVar7 = 0;
+  pvVar4 = (void *)tesoro_find_scene_object(SCENE[7],(int)uVar6,(int)(uVar6 >> 0x20));
+  FUN_00401de0(pvVar4,bVar7,uVar8,iVar5,bVar9,cVar10);
+switchD_00419da1_default:
+  return;
+}
+//==== 00419f10
+void __thiscall trono(void *this,int param_1)
+{
+  void *pvVar1;
+  undefined4 uVar2;
+  int iVar3;
+  if (param_1 == 0) {
+    fade(COMPOSITOR,4,100);
+    pvVar1 = SCENE[22];
+    *(void **)((int)this + 0x40) = SCENE[22];
+    tesoro_place_jim_in_scene
+              (JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),*(int *)((int)JIM + 0x4c),
+               *(int *)((int)JIM + 0x50));
+    tesoro_set_object_flag_bit2(JIM,0);
+    tesoro_update_scene_view
+              (*(void **)((int)this + 0x40),*(int *)((int)JIM + 0x4c),
+               *(int *)((int)JIM + 0x50),0);
+    iVar3 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar2 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar3 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar3 * 8));
+        iVar3 = iVar3 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar3 * 4) = uVar2;
+      } while (iVar3 < *(int *)((int)this + 0xb8));
+    }
+  }
+  else {
+    if (param_1 != 1) {
+      return;
+    }
+    fade(COMPOSITOR,4,100);
+    pvVar1 = SCENE[9];
+    *(void **)((int)this + 0x40) = SCENE[9];
+    tesoro_place_jim_in_scene
+              (JIM,pvVar1,*(int *)((int)pvVar1 + 0x70),*(int *)((int)JIM + 0x4c),
+               *(int *)((int)JIM + 0x50));
+    tesoro_set_object_flag_bit2(JIM,1);
+    tesoro_update_scene_view
+              (*(void **)((int)this + 0x40),*(int *)((int)JIM + 0x4c),
+               *(int *)((int)JIM + 0x50),0);
+    iVar3 = 0;
+    if (0 < *(int *)((int)this + 0xb8)) {
+      do {
+        uVar2 = tesoro_find_scene_object
+                          (*(void **)((int)this + 0x40),
+                           *(int *)(*(int *)((int)this + 0xb4) + iVar3 * 8),
+                           *(int *)(*(int *)((int)this + 0xb4) + 4 + iVar3 * 8));
+        iVar3 = iVar3 + 1;
+        *(undefined4 *)(*(int *)((int)this + 0xb0) + -4 + iVar3 * 4) = uVar2;
+      } while (iVar3 < *(int *)((int)this + 0xb8));
+      tesoro_reset_render_lists((int)COMPOSITOR);
+      return;
+    }
+  }
+  tesoro_reset_render_lists((int)COMPOSITOR);
+  return;
+}

@@ -10,6 +10,48 @@ explicitly requested. Verify checkout, base revision and remote first. Older
 build records retain their original branch identities. No branch switch, merge
 or push was performed when recording this instruction.
 
+Camera follow (`0x401fc0`) was recovered, ported and compared on 23 October 2026 on
+`codex/camera-follow` (engine worktree `../scummvm-tesoro-codex`, off `tesoro-engine`
+`de00bc8a36a`): 3 x 2,000 emulator scenarios identical. See [JIM_AND_WALKING.md](JIM_AND_WALKING.md).
+
+Click walking recovery is under way (24 October 2026): see [CLICK_WALKING.md](CLICK_WALKING.md).
+The click handler, mouse convention, object approach and the floor chain routing are recovered;
+the re-route turned out to be the collision response (obstacle detours), so a click on open ground is a straight walk. Straight click walking is in the engine; obstacle detours not yet.
+Hotspot picking turned out to be the same pair-overlap machinery (`0x408c50`): see the last sections of [CLICK_WALKING.md](CLICK_WALKING.md) for the pipeline, the staged plan and the ported overlap geometry (`overlap.cpp` on `codex/hotspots`, compared in the emulator). The moved list, pair queue, end-of-frame dispatch and pointer probe are on `codex/hotspots-queue` (uncommitted, verified by reading and compile only; assumptions listed at the end of that document). Hover, click and the approach walk are on `codex/hotspots-hover` (same status; the verbs themselves are not ported and warn when reached).
+
+Default verb answers (25 October 2026, `codex/verbs` off `tesoro-engine` `ce3f10c8bfc`): recovered from the
+vtable and ported (verbs 0-6; Jim speaks, pointer off meanwhile); compiled only. The verb bar (top edge: `ACCION0..4`, `CONTROL_ICO`, `CURSOR`) is recovered and ported too, so verbs 1-4 can be chosen; compiled only, shade behind the bar and inventory still missing. See the
+last section of [CLICK_WALKING.md](CLICK_WALKING.md).
+
+Shadow images (25 October 2026, `codex/shadow-labels` off `tesoro-engine` `545da5e492e`): recovered, ported and compared with the
+original routines (600 frames identical, unscaled only); the only shadow in the data is the verb bar's shade. The original has no
+verb names on the bar. See the last section of [CLICK_WALKING.md](CLICK_WALKING.md).
+
+Doors, per-object variable blocks and the office's verb overrides (25 October 2026, `codex/doors` off `tesoro-engine` `491457e17eb`):
+recovered, ported and driven headless with the production code; not run in a window or compared with the original. See
+[DOORS_AND_VERBS.md](DOORS_AND_VERBS.md). Next: dialogue menus, the inventory (items, held item, item verbs) and the fade.
+
+Dialogue menus (25 October 2026, `codex/menus` off `tesoro-engine` `6fdf961cafb`): layout and drawing compared with the original text
+routines (500 frames identical), pointer and script wait ported from the decompilation; also found that the speech option defaults to 0 and selects
+the talking bank. See [DIALOGUE_MENUS.md](DIALOGUE_MENUS.md). Next: the inventory (items, held item, item verbs) and the door fade.
+
+Inventory (25 October 2026, `codex/inventory` off `tesoro-engine` `2b030bbb844`): items, the held item as the pointer, the inventory page on the right
+button, using items on objects, and the mouse button states recovered and ported (the right button is the inventory; slot `0x3c` is the double click). Compiled and driven
+headless only. See [INVENTORY.md](INVENTORY.md). Next: the per-item classes, the door fade, the tavern characters.
+
+Tavern characters and coverage (25 October 2026, `codex/tavern` off `tesoro-engine` `db7eea2744d`): talk and item answers of Dick, the parrot and Nudero (and the parrot's
+words bringing Dick into view) ported; headless conversations run. [COVERAGE.md](COVERAGE.md) measures what is left from the data: 190 of 747 objects inert (81
+classes, mostly kinds 20 and 17), 48 of 87 callbacks, saves, music, fades, the path graph and the special games.
+
+The ship (26 October 2026, `codex/ship` off `tesoro-engine` `745414d5480`): the story state kept in Jim, the door fade and arrival hooks, natives of types 2 to 5, all 17 classes of
+kind 17, six of kind 20 and the ship's characters recovered and ported; objects driven headless, natives compiled only. See [SHIP.md](SHIP.md). Coverage: 589 of 747 objects behave as
+recovered, 144 inert (39 are the path objects). Next: the path graph (kind 8) and Jim's detours, then the island's classes.
+
+The path graph and Jim's detours (26 October 2026, `codex/paths` off `tesoro-engine` `a48ba515fa3`): kind 8 (`PathObject`: route `0x414f10`, leg end `0x414e80`), the floor's
+link to its path, Jim's in-front test and collision response (`0x4079d0`, `0x4079e0`) and the one-point outline of Jim's walking banks (`0x4070c0`) ported. The routing is compared with the
+original over 19,000 random queries in all 38 rooms with a path; the collision stop/re-plan flow is by reading only. Coverage: 642 of 747 objects behave as recovered. See [CLICK_WALKING.md](CLICK_WALKING.md).
+Next: the island's kind 20 classes (38 inert objects) or saves.
+
 ## Current target
 
 **M0 source/build baseline is verified.** See [the baseline report](M0_BASELINE.md).
@@ -31,7 +73,8 @@ ignored local storage; previous startup reports refer to that instrumented build
 | --- | --- | --- |
 | Script compiler | `0x404810`/`0x405630` recovered; engine `script.cpp` compiles all 145 blocks (4,274 ops) and matches an independent reading of the files. See [SCRIPT_COMPILER.md](SCRIPT_COMPILER.md). | Executor, waits/resume, menus, native `DO` handlers; no differential run of the original parser. |
 | Script executor | Update/execute/resume rules recovered (`0x405850`, `0x405a60`, `0x406140`, `0x405fd0`); engine `scriptexec.cpp` runs `FANPRESENT/main` to Show Jim on a fake host with the predicted timeline. See [SCRIPT_EXECUTOR.md](SCRIPT_EXECUTOR.md). | Walking, character speech, choice display, Jim, native handlers beyond type 1 ordinals 0-3; not run in the live executable. |
-| Jim and walking | Jim (`0x4070c0`), start walk `0x407600`, step `0x407790`, floor scale `0x414740`, scaled drawing (`0x4120c0`/`0x412120`) recovered and ported; walks, floor scale and scaled pixels match the original routines in the emulator (see [JIM_AND_WALKING.md](JIM_AND_WALKING.md)). | Camera follow, talk overlay and character speech, click walking, shadow/solid scaled images, office transfer (native ordinal 5). |
+| Jim and walking | Jim (`0x4070c0`), start walk `0x407600`, step `0x407790`, floor scale `0x414740`, scaled drawing (`0x4120c0`/`0x412120`) recovered and ported; walks, floor scale and scaled pixels match the original routines in the emulator (see [JIM_AND_WALKING.md](JIM_AND_WALKING.md)). | Click walking, routes, shadow/solid scaled images, office transfer (native ordinal 5). |
+| Office transfer and speech | Scene table (47 preloaded scenes), Jim's move between scenes, native ordinal 5, character speech (colour, banks, talk state, body sprite, text anchor), movie handling recovered and ported; `FANPRESENT/main` runs headless to its end. Text layout and the captain's sprites match the original routines; walks match including the look after arrival. See [OFFICE_TRANSFER.md](OFFICE_TRANSFER.md). | Jim's talking sprites against the original, CD music, real movies and audio in a window, native types 2-20, the rest of the game. |
 | Original resources | Existing readers account for all 50 LVLs/747 records, 23 observed kinds, 145 script blocks; all 87 DO sites indexed. | Kind/subtype methods, field semantics, reachability and complete behaviour. |
 | Executable | 48 general + 11 startup exports report completed decompilation; assembly/xrefs retained. | Full object/vtable map, walking, animation, scheduler, UI, save and special-system code. |
 | Prototype | Preserved office pen implementation and documented prior host checks. | General gameplay systems and original comparison; do not treat approximations as recovered rules. |

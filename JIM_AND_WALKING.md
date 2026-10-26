@@ -37,9 +37,11 @@ advance the bank; the step is the change of the animation's movement since the l
 times his scale (24.8); the axis the bank does not move along follows the slope
 (`moveX += moveY * dx / dy` for up/down, `moveY += moveX * dy / dx` for left/right); add to
 the fixed position. Arrival is detected on the frame after the position equals the target
-(distance 0): he is placed on the target, and the waiting script is resumed (its return
-code 3 ends his update without refreshing his scale) or, with no waiter, he faces the walk's
-direction (`0x407a80`, the idle bank frame `direction - 1`). If the step would pass the
+(distance 0): he is placed on the target, and the waiting script is resumed, which first turns
+him to face the walk's direction (`0x406140` calls his look `0x407a80`: the idle bank frame
+`direction - 1`; its return code 3 ends his update without refreshing his scale) or, with no
+waiter, he turns the same way himself and his scale is refreshed (corrected 23 October: the first
+version of the engine and of this comparison left out the look on the waiter path). If the step would pass the
 target (remaining squared distance < squared step) he snaps to it. The new position is the
 *pending* position (`+0x54/+0x58`); the scene commits pending positions to the drawn position
 (`+0x4c/+0x50`) at the end of its update (`0x408890`). The scale is then recomputed from the
@@ -100,10 +102,40 @@ time; overlapping scaled sprites rely on the far-to-near order read from the com
 live executable was run headless (no window, speech muted, no movies), not on screen. Walking
 uses the engine's game clock, not a recovered 60 Hz or host rate.
 
+## Camera follow (`0x401fc0`, `0x4021a0`, `0x402230`)
+
+Recovered on 23 October 2026. A scene's camera holds the object it follows (`0x402230`, set when
+Jim is placed, `0x407c3c`), its bounds, the clamped centre, the target the centre is heading for
+and a glide (start centre, start time, duration). Each frame the scene composition calls
+`0x401fc0`, which:
+
+1. If an actor is set and its x is more than 75 pixels left of the target x, and the target x
+   minus 320 is still right of the left bound, the target moves 100 pixels left and a 750 ms
+   glide starts from the current centre. Then the same to the right (target x plus 75 is left
+   of the actor and target x plus 319 is left of the right bound). Only x is followed.
+2. A running glide places the centre at `from + (target - from) * elapsed / duration`
+   (truncating signed division), clamped as at `0x402120`; once elapsed is **greater than** the
+   duration the clamped target becomes the centre and the target the clamped centre.
+3. Stores the divisor and each group's view = centre * 300 / divisor.
+
+`0x4021a0` with a duration starts the same kind of glide without clamping; without one it clamps
+at once and keeps the unclamped request as target. The clock is the game clock. Engine:
+`SceneCamera::update`, called from `Scene::appendSprites`; `TesoroEngine::placeJim` sets the actor.
+
+| Tool | Original routines run in the emulator | Result |
+| --- | --- | --- |
+| `tools/compare_camera_follow.py` | `0x402200`, `0x4021a0`, `0x402230`, `0x401fc0` (-> `0x402120`) on random bounds, walking actors, frame jumps and timed moves | 3 seeds x 2,000 scenarios, about 245,000 steps identical in centre and group view (`analysis/camera-follow-comparison-seed*.json`); a changed threshold (74) fails at once |
+
+Limits: the driver uses a stand-in actor and a camera alone, so it checks the camera's logic, not
+that Jim's committed x is the value the original reads at that moment during a walk (the walk
+comparison treats it as the committed position). Not seen on screen against the original: the
+harbour opening has not been re-run with scrolling. The original calls `0x401fc0` from the
+scene's composition loop (`0x40857f`, once per group); the engine calls it once per frame, which
+only differs if a call between groups could change the actor.
+
 ## Not done
 
-Camera following Jim (`0x401fc0`: the camera target jumps 100 pixels, over 750 ms, when he is
-within 75 pixels of the target's edge, horizontally only), the talk overlay and speech
-(`0x407f30`, `0x410330`), click walking and routes, depth reordering between moving objects
+The talk overlay and speech
+(`0x407f30`, `0x410330`), obstacle detours (the collision response, see [CLICK_WALKING.md](CLICK_WALKING.md)), depth reordering between moving objects
 (`0x408c50`), shadow and solid scaled images, and the office transfer (native ordinal 5) that
 follows the walk. Jim's scene-view update at native ordinal 0 only repeats the entry position.
