@@ -8729,7 +8729,7 @@
   "cluster": 6,
   "status": "decompiled",
   "engine": "",
-  "notes": "vtable slot 11: returns flag bit 10 of +0x68"
+  "notes": "vtable slot 11 (ret 4): IsHitter(other): returns flag bit 10 (0x400) of this, ignoring the argument. Base default returns false. Level_CollisionPass asks A.slot11(B) then B.slot11(A) to decide which object is the hitter"
  },
  {
   "addr": "00402e60",
@@ -8753,7 +8753,7 @@
   "cluster": 6,
   "status": "decompiled",
   "engine": "",
-  "notes": "vtable slot 12: appends an object to the candidate list +0x70 (objects under the pointer register themselves; the registering geometric test is not yet located)"
+  "notes": "vtable slot 12 (ret 8: two stack arguments, the decompiler shows one): OnTouched(other, extra). Cursor override appends the touched object (first argument) to candidate list +0x70 and returns 1. Called by Level_CollisionPass flush"
  },
  {
   "addr": "00402e80",
@@ -11915,7 +11915,7 @@
  {
   "addr": "00409280",
   "ghidra_name": "FUN_00409280",
-  "name": "",
+  "name": "inferred_Rect_SweepTime",
   "tier": "game",
   "lines": 124,
   "decompile_ok": true,
@@ -11927,14 +11927,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 15,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(rect A, rect B, dx, dy): earliest contact of two moving rectangles as a 16.16 fraction, -1 when they never touch. Name from use in ResolveOverlap, unverified"
  },
  {
   "addr": "00409560",
   "ghidra_name": "FUN_00409560",
-  "name": "",
+  "name": "inferred_Polygon_ContainsPoint",
   "tier": "game",
   "lines": 142,
   "decompile_ok": true,
@@ -11946,14 +11946,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 15,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(polygon, x, y): even-odd edge crossing test over the shape's vertex list (count at +0, vertex array pointer at +4, vertices are short pairs); returns bool. Read partially"
  },
  {
   "addr": "00409790",
   "ghidra_name": "FUN_00409790",
-  "name": "",
+  "name": "inferred_Polygon_Overlaps",
   "tier": "game",
   "lines": 255,
   "decompile_ok": true,
@@ -11965,14 +11965,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 15,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(polygon A, polygon B): edge/vertex overlap test between two shapes; called in both orders by ResolveOverlap. Not read in detail"
  },
  {
   "addr": "00409c10",
   "ghidra_name": "FUN_00409c10",
-  "name": "",
+  "name": "inferred_Polygon_ClipToRect",
   "tier": "game",
   "lines": 113,
   "decompile_ok": true,
@@ -11984,9 +11984,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 15,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(polygon, rect x0,y0,x1,y1, out polygon, rect of other object): produces the part of a shape inside a rectangle. Name from argument list only, unverified"
  },
  {
   "addr": "00409e50",

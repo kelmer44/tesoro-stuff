@@ -8,7 +8,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 175 | 39% |
+| decompiled or later | 179 | 40% |
 | understood or later | 0 | 0% |
 | ported or later | 0 | 0% |
 | emu-compared or later | 0 | 0% |
@@ -75,9 +75,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 6: 00402e50–00403300 (0/12 ported)
 
-- [ ] `00402e50` inferred_Cursor_IsFlag10 (vtable) · depth 0 · 7 lines · **decompiled** — vtable slot 11: returns flag bit 10 of +0x68
+- [ ] `00402e50` inferred_Cursor_IsFlag10 (vtable) · depth 0 · 7 lines · **decompiled** — vtable slot 11 (ret 4): IsHitter(other): returns flag bit 10 (0x400) of this, ignoring the argument. Base default returns false. Level_CollisionPass asks A.slot11(B) then B.slot11(A) to decide which object is the hitter
 - [ ] `00402d80` FUN_00402d80 (vtable) · depth 1 · 24 lines · **untouched**
-- [ ] `00402e60` inferred_Cursor_AddCandidate (vtable) · depth 1 · 8 lines · **decompiled** — vtable slot 12: appends an object to the candidate list +0x70 (objects under the pointer register themselves; the registering geometric test is not yet located)
+- [ ] `00402e60` inferred_Cursor_AddCandidate (vtable) · depth 1 · 8 lines · **decompiled** — vtable slot 12 (ret 8: two stack arguments, the decompiler shows one): OnTouched(other, extra). Cursor override appends the touched object (first argument) to candidate list +0x70 and returns 1. Called by Level_CollisionPass flush
 - [ ] `00402e80` inferred_Cursor_ProcessCandidates · depth 1 · 127 lines · **decompiled** — per frame: for each registered candidate, with left button (mouse buttons byte & 8) calls candidate slot 14 with the cursor's current animation index (the verb), with right button (& 0x10) slot 15, otherwise slot 17 (show hover text); candidates that stopped being under the pointer get slot 18 (clear text) and are dropped
 - [ ] `004031a0` FUN_004031a0 (vtable) · depth 1 · 38 lines · **untouched**
 - [ ] `00403220` FUN_00403220 · depth 1 · 11 lines · **untouched**
@@ -189,10 +189,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 15: 00409280–0040c040 (0/7 ported)
 
-- [ ] `00409280` FUN_00409280 · depth 0 · 124 lines · **untouched**
-- [ ] `00409560` FUN_00409560 · depth 0 · 142 lines · **untouched**
-- [ ] `00409790` FUN_00409790 · depth 0 · 255 lines · **untouched**
-- [ ] `00409c10` FUN_00409c10 · depth 0 · 113 lines · **untouched**
+- [ ] `00409280` inferred_Rect_SweepTime · depth 0 · 124 lines · **decompiled** — (rect A, rect B, dx, dy): earliest contact of two moving rectangles as a 16.16 fraction, -1 when they never touch. Name from use in ResolveOverlap, unverified
+- [ ] `00409560` inferred_Polygon_ContainsPoint · depth 0 · 142 lines · **decompiled** — (polygon, x, y): even-odd edge crossing test over the shape's vertex list (count at +0, vertex array pointer at +4, vertices are short pairs); returns bool. Read partially
+- [ ] `00409790` inferred_Polygon_Overlaps · depth 0 · 255 lines · **decompiled** — (polygon A, polygon B): edge/vertex overlap test between two shapes; called in both orders by ResolveOverlap. Not read in detail
+- [ ] `00409c10` inferred_Polygon_ClipToRect · depth 0 · 113 lines · **decompiled** — (polygon, rect x0,y0,x1,y1, out polygon, rect of other object): produces the part of a shape inside a rectangle. Name from argument list only, unverified
 - [ ] `00408c50` inferred_Level_ResolveOverlap · depth 1 · 256 lines · **decompiled** — (A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls
 - [ ] `00409e50` inferred_Level_CreateObject · depth 14 · 1145 lines · **decompiled** — factory: switch on kind (record +0x18) allocating the right object class (sizes 0x6c, 0x84, 0x78, 0x6c, 0x74, 0xd8 ... kind 5 has a sub-switch on record byte +5); adds objects of kind 1 to level +0x90
 - [ ] `0040c040` FUN_0040c040 (vtable) · depth 14 · 19 lines · **untouched**

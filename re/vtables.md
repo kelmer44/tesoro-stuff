@@ -74,3 +74,9 @@ Jim and the one nearest the destination; Jim walks to his vertex, `NextWaypoint`
 Slots: 0 = 00402440 (OnAttach), 4 = 004029f0 (Update), 5 = 004030e0, 6 = 00402d80 (Draw), 11 = 00402e50, 12 = 00402e60 (AddCandidate), 13 = 0041ba00 (stub that calls __amsg_exit; unused).
 Correction: cursor field +0x12c is the carried inventory item (set by `Item_SetHeld`), not a hovered object; `Interactive_Update` returns the item to its place by setting flag bit 2 on it and zeroing +0x12c.
 Mouse button byte (mouse object +0x1c, first byte): bit 3 (8) = left button, bit 4 (0x10) = right button.
+
+## Collision protocol (slots 11 and 12 of every object)
+`Level_CollisionPass` examines every pair (A, B) of objects with flags 8 (collidable) and 2 (active) in the level: if `A.slot11(B)` is true A is the hitter, else if `B.slot11(A)` is true B is.
+`Level_ResolveOverlap(hitter, other)` tests the hitter's shape against the other's (rectangle sweep, polygon tests). On contact it queues (hitter, other, priority = larger sort value +0x5e) in the level's
+list +0x78, and after the pass each queued entry calls `hitter.slot12(other, extra)`. Base slots: 11 = false, 12 = no-op (ret 8). The cursor overrides slot 11 (flag 0x400) and slot 12 (add to candidate list),
+so hovering and clicking objects is plain object collision between the cursor's shape and each object's polygon, not a separate hit-test.

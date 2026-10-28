@@ -161,3 +161,9 @@ Result: **ground click located, object hit test still not found.**
   is probably tested through this pass; no virtual call registers candidates with the cursor, and the registration into the candidate list (`Cursor_AddCandidate`, slot 12) still has no caller by name or
   by `[reg+0x30]` call in the disassembly. Candidates may be added through a copy of the list pointer. Next: trace writes to the cursor's lists (+0x6c/+0x70) and read `00409280`, `00409560`, `00409790`, `00409c10`.
 - `Dialogue_ChoiceMenu` (`00407d00`) was named from its mouse-y selection.
+
+### Phase 2, hit test resolved (28 Oct 2026)
+The "missing" hit test is the generic collision protocol: the cursor is an ordinary collidable object whose frame polygon is tested against other objects by `Level_ResolveOverlap`, and
+`Cursor_AddCandidate` is reached as `hitter.slot12(other, extra)` from the queued-contact flush in `Level_CollisionPass` (the earlier search missed it because slot 12 takes two arguments and the
+flush pushes them from a list entry). Details in `re/vtables.md`. Remaining unknowns: how the queue prioritises contacts (it special-cases the player object), where the cursor's flag 0x400 is set, and the geometry routines' exact algorithms.
+Consequence for the port: hovering and clicking must be reproduced with the original polygon tests and sort-value priority, not with simple rectangle hit-tests.

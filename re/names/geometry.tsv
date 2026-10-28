@@ -1,0 +1,5 @@
+# Collision geometry (28 Oct 2026). Only caller of all four: Level_ResolveOverlap.
+00409560	inferred_Polygon_ContainsPoint	decompiled	(polygon, x, y): even-odd edge crossing test over the shape's vertex list (count at +0, vertex array pointer at +4, vertices are short pairs); returns bool. Read partially
+00409790	inferred_Polygon_Overlaps	decompiled	(polygon A, polygon B): edge/vertex overlap test between two shapes; called in both orders by ResolveOverlap. Not read in detail
+00409c10	inferred_Polygon_ClipToRect	decompiled	(polygon, rect x0,y0,x1,y1, out polygon, rect of other object): produces the part of a shape inside a rectangle. Name from argument list only, unverified
+00409280	inferred_Rect_SweepTime	decompiled	(rect A, rect B, dx, dy): earliest contact of two moving rectangles as a 16.16 fraction, -1 when they never touch. Name from use in ResolveOverlap, unverified
