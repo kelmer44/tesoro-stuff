@@ -22,7 +22,7 @@
 0041c1b0	inferred_ctime	replaced	localtime then asctime
 0041c1d0	inferred__findfirst	replaced	FindFirstFileA, fills _finddata_t
 0041c300	inferred__findclose	replaced	
-0041c3b0	inferred__stat	replaced	path split on \ / :, uses find
+0041c3b0	inferred__execl	replaced	exec-family wrapper, launches via CreateProcessA (corrected from _stat)
 # Internals worth knowing
 0041c320	inferred___timet_from_ft	replaced	FILETIME to time_t
 0041c7f0	inferred__flush	replaced	

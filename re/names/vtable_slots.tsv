@@ -1,0 +1,190 @@
+# Structure-based names for unread virtual methods: inferred_C<vtable>_<role of the base slot>. Status unchanged (untouched): the function body was NOT read.
+00402440	inferred_C00428038_OnAttach		unread; first seen in vtable 00428038 slot 0
+0040e6a0	inferred_C00428038_AnimTick		unread; first seen in vtable 00428038 slot 2
+004030e0	inferred_C00428038_Update2		unread; first seen in vtable 00428038 slot 5
+00402d80	inferred_C00428038_Draw		unread; first seen in vtable 00428038 slot 6
+004031a0	inferred_C00428038_SetActive		unread; first seen in vtable 00428038 slot 8
+004038f0	inferred_C00428070_Slot00		unread; first seen in vtable 00428070 slot 0 (non-object class)
+00403aa0	inferred_C00428074_Slot00		unread; first seen in vtable 00428074 slot 0 (non-object class)
+00416b50	inferred_C004280f0_Slot28		unread; first seen in vtable 004280f0 slot 28
+00416c80	inferred_C004281e0_Slot28		unread; first seen in vtable 004281e0 slot 28
+00416b80	inferred_C00428258_Slot28		unread; first seen in vtable 00428258 slot 28
+00417c80	inferred_C004282d0_Slot28		unread; first seen in vtable 004282d0 slot 28
+00419d40	inferred_C00428348_Slot28		unread; first seen in vtable 00428348 slot 28
+00419cf0	inferred_C004283c0_Slot28		unread; first seen in vtable 004283c0 slot 28
+004193b0	inferred_C00428438_Slot28		unread; first seen in vtable 00428438 slot 28
+00419b90	inferred_C00428528_Slot28		unread; first seen in vtable 00428528 slot 28
+00419d90	inferred_C00428618_Slot28		unread; first seen in vtable 00428618 slot 28
+00419b30	inferred_C00428690_Slot28		unread; first seen in vtable 00428690 slot 28
+00419530	inferred_C00428708_Slot28		unread; first seen in vtable 00428708 slot 28
+00419ac0	inferred_C00428780_Slot28		unread; first seen in vtable 00428780 slot 28
+00419a10	inferred_C004287f8_Slot28		unread; first seen in vtable 004287f8 slot 28
+004199a0	inferred_C00428870_Slot28		unread; first seen in vtable 00428870 slot 28
+004169a0	inferred_C004288e8_Slot28		unread; first seen in vtable 004288e8 slot 28
+004198d0	inferred_C00428960_Slot28		unread; first seen in vtable 00428960 slot 28
+00416300	inferred_C004289d8_Slot28		unread; first seen in vtable 004289d8 slot 28
+004197a0	inferred_C00428a50_Slot28		unread; first seen in vtable 00428a50 slot 28
+00406d50	inferred_C00428b00_SetVerbAndClick		unread; first seen in vtable 00428b00 slot 14
+004087d0	inferred_C00428bf8_Update2		unread; first seen in vtable 00428bf8 slot 5
+00408840	inferred_C00428bf8_RunVerb		unread; first seen in vtable 00428bf8 slot 13
+0040d240	inferred_C00428c30_Verb0		unread; first seen in vtable 00428c30 slot 20 (kind 20 subtype 30)
+0040d870	inferred_C00428ca0_Verb1		unread; first seen in vtable 00428ca0 slot 21 (kind 20 subtype 29)
+00416e30	inferred_C00428d10_UseItem		unread; first seen in vtable 00428d10 slot 27 (kind 20 subtype 28)
+0040d330	inferred_C00428d80_Verb3		unread; first seen in vtable 00428d80 slot 22 (kind 20 subtype 27)
+0040da30	inferred_C00428df0_Verb1		unread; first seen in vtable 00428df0 slot 21 (kind 20 subtype 26)
+0040d9a0	inferred_C00428e60_Verb1		unread; first seen in vtable 00428e60 slot 21 (kind 20 subtype 25)
+0040d910	inferred_C00428ed0_Verb3		unread; first seen in vtable 00428ed0 slot 22 (kind 20 subtype 23)
+0040d8c0	inferred_C00428f40_Verb1		unread; first seen in vtable 00428f40 slot 21 (kind 20 subtype 24)
+0040da80	inferred_C00428fb0_Verb3		unread; first seen in vtable 00428fb0 slot 22 (kind 20 subtype 22)
+00418780	inferred_C00429020_UseItem		unread; first seen in vtable 00429020 slot 27 (kind 20 subtype 21)
+0040d2c0	inferred_C00429090_Verb0		unread; first seen in vtable 00429090 slot 20 (kind 20 subtype 20)
+00415e30	inferred_C00429100_UseItem		unread; first seen in vtable 00429100 slot 27 (kind 20 subtype 19)
+0040d950	inferred_C00429170_Verb3		unread; first seen in vtable 00429170 slot 22 (kind 20 subtype 18)
+00418320	inferred_C00429250_UseItem		unread; first seen in vtable 00429250 slot 27 (kind 20 subtype 14)
+00418110	inferred_C004292c0_UseItem		unread; first seen in vtable 004292c0 slot 27 (kind 20 subtype 16)
+0040d6f0	inferred_C00429330_Verb1		unread; first seen in vtable 00429330 slot 21 (kind 20 subtype 13)
+0040d740	inferred_C004293a0_Verb1		unread; first seen in vtable 004293a0 slot 21 (kind 20 subtype 12)
+0040d790	inferred_C004293a0_Verb3		unread; first seen in vtable 004293a0 slot 22 (kind 20 subtype 12)
+00415d90	inferred_C00429410_UseItem		unread; first seen in vtable 00429410 slot 27 (kind 20 subtype 11)
+0040d820	inferred_C00429480_Verb3		unread; first seen in vtable 00429480 slot 22 (kind 20 subtype 10)
+0040d6a0	inferred_C004294f0_Verb3		unread; first seen in vtable 004294f0 slot 22 (kind 20 subtype 9)
+0040d650	inferred_C004294f0_Verb2		unread; first seen in vtable 004294f0 slot 23 (kind 20 subtype 9)
+00417d00	inferred_C00429560_UseItem		unread; first seen in vtable 00429560 slot 27 (kind 20 subtype 8)
+00417ca0	inferred_C004295d0_UseItem		unread; first seen in vtable 004295d0 slot 27 (kind 20 subtype 7)
+0040d620	inferred_C00429640_Verb3		unread; first seen in vtable 00429640 slot 22 (kind 20 subtype 6)
+0040d5a0	inferred_C004296b0_Verb0		unread; first seen in vtable 004296b0 slot 20 (kind 20 subtype 5)
+0040d450	inferred_C00429720_Verb1		unread; first seen in vtable 00429720 slot 21 (kind 20 subtype 4)
+0040d530	inferred_C00429790_Verb0		unread; first seen in vtable 00429790 slot 20 (kind 20 subtype 3)
+0040d4e0	inferred_C00429790_Verb1		unread; first seen in vtable 00429790 slot 21 (kind 20 subtype 3)
+00417e90	inferred_C00429800_UseItem		unread; first seen in vtable 00429800 slot 27 (kind 20 subtype 2)
+004180b0	inferred_C00429870_UseItem		unread; first seen in vtable 00429870 slot 27 (kind 20 subtype 1)
+0040d270	inferred_C004298e0_Verb2		unread; first seen in vtable 004298e0 slot 23 (kind 20 subtype 0)
+00417de0	inferred_C004298e0_UseItem		unread; first seen in vtable 004298e0 slot 27 (kind 20 subtype 0)
+00416170	inferred_C00429950_Verb4		unread; first seen in vtable 00429950 slot 24 (kind 17 subtype 16)
+00416220	inferred_C00429950_UseItem		unread; first seen in vtable 00429950 slot 27 (kind 17 subtype 16)
+0040cfd0	inferred_C004299c0_Verb3		unread; first seen in vtable 004299c0 slot 22 (kind 17 subtype 15)
+0040cdf0	inferred_C00429a30_Verb3		unread; first seen in vtable 00429a30 slot 22 (kind 17 subtype 14)
+0040cee0	inferred_C00429aa0_Verb3		unread; first seen in vtable 00429aa0 slot 22 (kind 17 subtype 12)
+0040ce90	inferred_C00429b10_Verb2		unread; first seen in vtable 00429b10 slot 23 (kind 17 subtype 11)
+004167a0	inferred_C00429b10_UseItem		unread; first seen in vtable 00429b10 slot 27 (kind 17 subtype 11)
+0040ce20	inferred_C00429b80_Verb3		unread; first seen in vtable 00429b80 slot 22 (kind 17 subtype 10)
+0040d100	inferred_C00429bf0_Verb3		unread; first seen in vtable 00429bf0 slot 22 (kind 17 subtype 9)
+0040d000	inferred_C00429c60_Verb1		unread; first seen in vtable 00429c60 slot 21 (kind 17 subtype 8)
+0040d070	inferred_C00429c60_Verb3		unread; first seen in vtable 00429c60 slot 22 (kind 17 subtype 8)
+0040cf30	inferred_C00429cd0_Verb3		unread; first seen in vtable 00429cd0 slot 22 (kind 17 subtype 7)
+0040cb60	inferred_C00429d40_Verb3		unread; first seen in vtable 00429d40 slot 22 (kind 17 subtype 13)
+00416280	inferred_C00429db0_Verb0		unread; first seen in vtable 00429db0 slot 20 (kind 17 subtype 6)
+0040ccc0	inferred_C00429e20_Verb1		unread; first seen in vtable 00429e20 slot 21 (kind 17 subtype 5)
+0040cc40	inferred_C00429e90_Verb1		unread; first seen in vtable 00429e90 slot 21 (kind 17 subtype 4)
+0040cbd0	inferred_C00429f00_Verb3		unread; first seen in vtable 00429f00 slot 22 (kind 17 subtype 3)
+0040cb00	inferred_C00429f70_Verb1		unread; first seen in vtable 00429f70 slot 21 (kind 17 subtype 2)
+0040cab0	inferred_C00429fe0_Verb1		unread; first seen in vtable 00429fe0 slot 21 (kind 17 subtype 1)
+00415e90	inferred_C0042a050_Verb1		unread; first seen in vtable 0042a050 slot 21 (kind 17 subtype 0)
+00415f10	inferred_C0042a050_Verb3		unread; first seen in vtable 0042a050 slot 22 (kind 17 subtype 0)
+00417530	inferred_C0042a130_UseItem		unread; first seen in vtable 0042a130 slot 27 (kind 13 subtype 42)
+0040c250	inferred_C0042a1a0_Verb4		unread; first seen in vtable 0042a1a0 slot 24 (kind 13 subtype 29)
+004174b0	inferred_C0042a210_UseItem		unread; first seen in vtable 0042a210 slot 27 (kind 13 subtype 33)
+0040c200	inferred_C0042a280_Verb1		unread; first seen in vtable 0042a280 slot 21 (kind 13 subtype 44)
+004173e0	inferred_C0042a2f0_UseItem		unread; first seen in vtable 0042a2f0 slot 27 (kind 13 subtype 37)
+00417360	inferred_C0042a360_UseItem		unread; first seen in vtable 0042a360 slot 27 (kind 13 subtype 36)
+0040c140	inferred_C0042a3d0_Verb1		unread; first seen in vtable 0042a3d0 slot 21 (kind 13 subtype 19)
+0040c1f0	inferred_C0042a3d0_Verb4		unread; first seen in vtable 0042a3d0 slot 24 (kind 13 subtype 19)
+0040c0f0	inferred_C0042a440_Verb1		unread; first seen in vtable 0042a440 slot 21 (kind 13 subtype 28)
+00417250	inferred_C0042a440_UseItem		unread; first seen in vtable 0042a440 slot 27 (kind 13 subtype 28)
+0040c0e0	inferred_C0042a4b0_Verb4		unread; first seen in vtable 0042a4b0 slot 24 (kind 13 subtype 15)
+00417180	inferred_C0042a520_Verb4		unread; first seen in vtable 0042a520 slot 24 (kind 13 subtype 9)
+0040c090	inferred_C0042a590_Verb4		unread; first seen in vtable 0042a590 slot 24 (kind 13 subtype 10)
+0040c040	inferred_C0042a600_Verb1		unread; first seen in vtable 0042a600 slot 21 (kind 13 subtype 16)
+00416ee0	inferred_C0042a600_UseItem		unread; first seen in vtable 0042a600 slot 27 (kind 13 subtype 16)
+0040c810	inferred_C0042a670_Verb0		unread; first seen in vtable 0042a670 slot 20 (kind 12 subtype 11)
+0040c2c0	inferred_C0042a6e0_Verb3		unread; first seen in vtable 0042a6e0 slot 22 (kind 12 subtype 10)
+0040ca10	inferred_C0042a750_Verb1		unread; first seen in vtable 0042a750 slot 21 (kind 12 subtype 8)
+0040ca60	inferred_C0042a750_Verb2		unread; first seen in vtable 0042a750 slot 23 (kind 12 subtype 8)
+00418cb0	inferred_C0042a750_UseItem		unread; first seen in vtable 0042a750 slot 27 (kind 12 subtype 8)
+0040c9e0	inferred_C0042a7c0_Verb3		unread; first seen in vtable 0042a7c0 slot 22 (kind 12 subtype 9)
+0040c940	inferred_C0042a830_Verb1		unread; first seen in vtable 0042a830 slot 21 (kind 12 subtype 7)
+0040c990	inferred_C0042a830_Verb2		unread; first seen in vtable 0042a830 slot 23 (kind 12 subtype 7)
+0040c770	inferred_C0042a8a0_Verb3		unread; first seen in vtable 0042a8a0 slot 22 (kind 12 subtype 6)
+0040c370	inferred_C0042a910_Verb1		unread; first seen in vtable 0042a910 slot 21 (kind 12 subtype 5)
+0040c3c0	inferred_C0042a910_Verb3		unread; first seen in vtable 0042a910 slot 22 (kind 12 subtype 5)
+0040c480	inferred_C0042a910_Verb4		unread; first seen in vtable 0042a910 slot 24 (kind 12 subtype 5)
+0040c6d0	inferred_C0042a980_Verb1		unread; first seen in vtable 0042a980 slot 21 (kind 12 subtype 4)
+0040c640	inferred_C0042a9f0_Verb4		unread; first seen in vtable 0042a9f0 slot 24 (kind 12 subtype 3)
+0040c4d0	inferred_C0042aa60_Verb1		unread; first seen in vtable 0042aa60 slot 21 (kind 12 subtype 2)
+0040c720	inferred_C0042aad0_Verb1		unread; first seen in vtable 0042aad0 slot 21 (kind 12 subtype 1)
+0040c560	inferred_C0042ab40_Verb3		unread; first seen in vtable 0042ab40 slot 22 (kind 12 subtype 0)
+0040c5d0	inferred_C0042ab40_Verb6		unread; first seen in vtable 0042ab40 slot 26 (kind 12 subtype 0)
+00414d50	inferred_C0042abb0_Slot15		unread; first seen in vtable 0042abb0 slot 15 (kind 6 subtype 1)
+00418b80	inferred_C0042abb0_Verb0		unread; first seen in vtable 0042abb0 slot 20 (kind 6 subtype 1)
+00414dc0	inferred_C0042abb0_Slot28		unread; first seen in vtable 0042abb0 slot 28 (kind 6 subtype 1)
+00418560	inferred_C0042ac28_Verb0		unread; first seen in vtable 0042ac28 slot 20 (kind 6 subtype 2)
+00415f90	inferred_C0042aca0_Verb0		unread; first seen in vtable 0042aca0 slot 20 (kind 6 subtype 3)
+00416030	inferred_C0042aca0_Slot28		unread; first seen in vtable 0042aca0 slot 28 (kind 6 subtype 3)
+0040d1a0	inferred_C0042ad18_Verb0		unread; first seen in vtable 0042ad18 slot 20 (kind 6 subtype 4)
+00418050	inferred_C0042ad90_Verb0		unread; first seen in vtable 0042ad90 slot 20 (kind 6 subtype 5)
+00417dd0	inferred_C0042ae08_Verb0		unread; first seen in vtable 0042ae08 slot 20 (kind 6 subtype 6)
+0040daf0	inferred_C0042ae80_Verb0		unread; first seen in vtable 0042ae80 slot 20 (kind 6 subtype 7)
+0040c8d0	inferred_C0042aef8_Slot15		unread; first seen in vtable 0042aef8 slot 15 (kind 6 subtype 8)
+0040c880	inferred_C0042aef8_Verb0		unread; first seen in vtable 0042aef8 slot 20 (kind 6 subtype 8)
+0040c8a0	inferred_C0042aef8_Verb4		unread; first seen in vtable 0042aef8 slot 24 (kind 6 subtype 8)
+00415d20	inferred_C0042af70_Verb0		unread; first seen in vtable 0042af70 slot 20 (kind 6 subtype 9)
+00417640	inferred_C0042afe8_Slot28		unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)
+00419620	inferred_C0042b060_Verb2		unread; first seen in vtable 0042b060 slot 23 (kind 5 subtype 16)
+00410060	inferred_C0042b060_Slot31		unread; first seen in vtable 0042b060 slot 31 (kind 5 subtype 16)
+004103f0	inferred_C0042b060_Slot32		unread; first seen in vtable 0042b060 slot 32 (kind 5 subtype 16)
+004196c0	inferred_C0042b0e8_Verb2		unread; first seen in vtable 0042b0e8 slot 23 (kind 5 subtype 15)
+0040d380	inferred_C0042b170_Verb1		unread; first seen in vtable 0042b170 slot 21 (kind 5 subtype 14)
+0040d3d0	inferred_C0042b170_Verb2		unread; first seen in vtable 0042b170 slot 23 (kind 5 subtype 14)
+004181e0	inferred_C0042b170_UseItem		unread; first seen in vtable 0042b170 slot 27 (kind 5 subtype 14)
+004184e0	inferred_C0042b1f8_Verb1		unread; first seen in vtable 0042b1f8 slot 21 (kind 5 subtype 13)
+004183e0	inferred_C0042b1f8_Verb2		unread; first seen in vtable 0042b1f8 slot 23 (kind 5 subtype 13)
+004182c0	inferred_C0042b1f8_UseItem		unread; first seen in vtable 0042b1f8 slot 27 (kind 5 subtype 13)
+00416a20	inferred_C0042b280_Verb2		unread; first seen in vtable 0042b280 slot 23 (kind 5 subtype 0)
+00416ac0	inferred_C0042b280_UseItem		unread; first seen in vtable 0042b280 slot 27 (kind 5 subtype 0)
+004187e0	inferred_C0042b308_Verb2		unread; first seen in vtable 0042b308 slot 23 (kind 5 subtype 2)
+00418860	inferred_C0042b308_UseItem		unread; first seen in vtable 0042b308 slot 27 (kind 5 subtype 2)
+00418c30	inferred_C0042b390_Draw		unread; first seen in vtable 0042b390 slot 6 (kind 5 subtype 3)
+0040c8f0	inferred_C0042b390_Verb2		unread; first seen in vtable 0042b390 slot 23 (kind 5 subtype 3)
+00418c80	inferred_C0042b390_Slot28		unread; first seen in vtable 0042b390 slot 28 (kind 5 subtype 3)
+00418c50	inferred_C0042b390_Slot30		unread; first seen in vtable 0042b390 slot 30 (kind 5 subtype 3)
+00418990	inferred_C0042b418_Verb2		unread; first seen in vtable 0042b418 slot 23 (kind 5 subtype 4)
+00418aa0	inferred_C0042b418_UseItem		unread; first seen in vtable 0042b418 slot 27 (kind 5 subtype 4)
+004185c0	inferred_C0042b4a0_Verb2		unread; first seen in vtable 0042b4a0 slot 23 (kind 5 subtype 1)
+00418670	inferred_C0042b4a0_UseItem		unread; first seen in vtable 0042b4a0 slot 27 (kind 5 subtype 1)
+00416750	inferred_C0042b528_Verb1		unread; first seen in vtable 0042b528 slot 21 (kind 5 subtype 8)
+00416700	inferred_C0042b528_Verb2		unread; first seen in vtable 0042b528 slot 23 (kind 5 subtype 8)
+00416680	inferred_C0042b528_UseItem		unread; first seen in vtable 0042b528 slot 27 (kind 5 subtype 8)
+00416540	inferred_C0042b5b0_Verb2		unread; first seen in vtable 0042b5b0 slot 23 (kind 5 subtype 7)
+00416590	inferred_C0042b5b0_UseItem		unread; first seen in vtable 0042b5b0 slot 27 (kind 5 subtype 7)
+0040cd60	inferred_C0042b638_Verb2		unread; first seen in vtable 0042b638 slot 23 (kind 5 subtype 6)
+0040cd10	inferred_C0042b6c0_Verb2		unread; first seen in vtable 0042b6c0 slot 23 (kind 5 subtype 5)
+00416910	inferred_C0042b6c0_UseItem		unread; first seen in vtable 0042b6c0 slot 27 (kind 5 subtype 5)
+0040ddc0	inferred_C0042b8e0_Draw		unread; first seen in vtable 0042b8e0 slot 6
+0040e580	inferred_C0042b8e0_SetVerbAndClick		unread; first seen in vtable 0042b8e0 slot 14
+0040e590	inferred_C0042b8e0_IsInteractive		unread; first seen in vtable 0042b8e0 slot 16
+0040e000	inferred_C0042b950_SetVerbAndClick		unread; first seen in vtable 0042b950 slot 14
+0040dfc0	inferred_C0042b950_IsInteractive		unread; first seen in vtable 0042b950 slot 16
+0040e560	inferred_C0042b950_ClearHoverText		unread; first seen in vtable 0042b950 slot 18
+004157b0	inferred_C0042b9c0_OnAttach		unread; first seen in vtable 0042b9c0 slot 0
+0040e6b0	inferred_C0042b9c0_Draw		unread; first seen in vtable 0042b9c0 slot 6
+0040e760	inferred_C0042b9f8_Draw		unread; first seen in vtable 0042b9f8 slot 6
+0040ebd0	inferred_C0042ba30_OnAttach		unread; first seen in vtable 0042ba30 slot 0
+0040e890	inferred_C0042ba30_AnimTick		unread; first seen in vtable 0042ba30 slot 2
+0040ec00	inferred_C0042ba30_Draw		unread; first seen in vtable 0042ba30 slot 6
+00416800	inferred_C0042bbd0_RunVerb		unread; first seen in vtable 0042bbd0 slot 13
+004179b0	inferred_C0042bc08_RunVerb		unread; first seen in vtable 0042bc08 slot 13
+004145f0	inferred_C0042bc40_Update2		unread; first seen in vtable 0042bc40 slot 5
+004146b0	inferred_C0042bc78_OnAttach		unread; first seen in vtable 0042bc78 slot 0
+00414a90	inferred_C0042bcb0_OnAttach		unread; first seen in vtable 0042bcb0 slot 0
+00415120	inferred_C0042bdd0_IsHitter		unread; first seen in vtable 0042bdd0 slot 11
+00415130	inferred_C0042bdd0_OnTouched		unread; first seen in vtable 0042bdd0 slot 12
+00415290	inferred_C0042be40_OnAttach		unread; first seen in vtable 0042be40 slot 0
+00415440	inferred_C0042be40_SetVerbAndClick		unread; first seen in vtable 0042be40 slot 14
+00415350	inferred_C0042be40_IsInteractive		unread; first seen in vtable 0042be40 slot 16
+00415490	inferred_C0042be40_ShowHoverText		unread; first seen in vtable 0042be40 slot 17
+00415640	inferred_C0042be40_ClearHoverText		unread; first seen in vtable 0042be40 slot 18
+004157c0	inferred_C0042beb0_SetVerbAndClick		unread; first seen in vtable 0042beb0 slot 14
+004175f0	inferred_C0042bf20_Verb1		unread; first seen in vtable 0042bf20 slot 21
+004178b0	inferred_C0042bf90_SetVerbAndClick		unread; first seen in vtable 0042bf90 slot 14
+00417b40	inferred_C0042c000_SetVerbAndClick		unread; first seen in vtable 0042c000 slot 14
+00419340	inferred_C0042c070_SetVerbAndClick		unread; first seen in vtable 0042c070 slot 14

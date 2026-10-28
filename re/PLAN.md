@@ -77,7 +77,7 @@ Next: run the script in the open Ghidra project (Script Manager, add directory `
 ### Phase 2 status (28 Oct 2026)
 **Step 1, CRT/runtime tier: done.** 256 runtime-tier functions (address >= 0x41b3c0 plus EH funclets), all marked `replaced`.
 - Only 23 are called directly from game code: file I/O (`fopen`, `fread`, `fwrite`, `fseek`, `fgetpos`, `fsetpos`, `fclose`, `ungetc`), `sprintf`, `sscanf`,
-  `fscanf`, `_strncpy`, `_strncmp`, `_strupr`, `ctime`, `_stat`, `_findfirst`/`_findclose`, `__ftol`, `operator new`/`delete`, `__chkstk`.
+  `fscanf`, `_strncpy`, `_strncmp`, `_strupr`, `ctime`, `_execl`, `_findfirst`/`_findclose`, `__ftol`, `operator new`/`delete`, `__chkstk`.
   Names in `re/names/crt.tsv` (Ghidra signature matches have no prefix, behavioural IDs carry `inferred_`).
 - The CRT has no `rand`; the game must use its own random generator in the game tier (to find during triage).
 - Fidelity-relevant CRT behaviour to remember: `__ftol` truncation (every float-to-int in game code goes through it), `sprintf`/`sscanf` formats
@@ -177,3 +177,18 @@ The step executor drives movies (DirectShow), WAV playback, CD audio tracks, act
 `DlgScript_Load` read: first-character dispatch of ten command families (speech line, end, option marker, label, stop, if-jump, jump, menu, play, run, sleep/sendmessage, variable assign). Grammar and step mapping in `re/SCRIPT_LANGUAGE.md`, now marked as read.
 Facing numbers in scripts (ARRIBA 1, ABAJO 2, IZQUIERDA 3, DERECHA 4) agree with Jim's facing values, which cross-checks both readings.
 Open: the exact meaning of the `m` menu flags (`n`), the `D` marker and the second token in the block header; verify with a real script from the data archive (need the extracted script text; reference environment is on hold).
+
+### Phase 2/4, startup contracts (28 Oct 2026)
+18 contracts in `re/contracts/` (WinMain, FindCdAndSetup, CreateMainWindow, MainWndProc, RunFrame, Shutdown, InitSubsystems, Clock x6, RandomRange, NameHash64, SetInitFlags, Pool_AllocZero, Pool_ResetArena), now `understood`.
+`InitGameWorld` stays `decompiled` (its callees and the level data format are unread). Layouts for Clock, Pool, Obj base and AnimPlayer are in `STRUCTS.md`.
+New measurement tools: `re/tools/emu.py` (Unicorn harness over the verified executable, IAT stubs) and `re/tools/check_startup.py` (RandomRange 3000/3000 and NameHash64 212/212 equal to independent models).
+These checks validate the *recovered semantics* against the original machine code; they do not make any function `ported` or `emu-compared`, since no engine code exists yet.
+Correction made while writing contracts: `0041c3b0` is an exec-family wrapper (launches SETUP.EXE via CreateProcessA), not `_stat`.
+
+### Phase 2, naming pass complete (28 Oct 2026)
+All 447 game-tier functions and all 256 runtime-tier functions now have a recorded name or a recorded reason. Breakdown of the 447 game functions:
+- 18 `understood` (contracts), 216 `decompiled` (read; name backed by reading), 189 `untouched` with a **structure-based name** only (`inferred_C<vtable>_<role>`: first vtable that contains the function and the base-class slot role; bodies unread, listed in `re/names/vtable_slots.tsv`),
+  plus 24 more `untouched` with a descriptive name from call sites only (listed in their ledger notes as "body not yet read").
+- `re/vtable_map.json` maps every vtable base to its slot functions (153 bases found by scanning decompiled constructors; one bogus base in the CRT range).
+- Corrections made on the way: `Display_Init` was a mistaken label (00411c00 is a ready-check; the Display constructor does the DirectDraw setup); two time-driven random functions exist (`RandomRange`, `RandomRange7`); a board mini-game (7-column, four-in-a-row style) exists in the 0x418d20 region (hypothesis).
+Remaining naming debt is therefore **quality**, not coverage: semantic names for the 189 structure-named methods require reading them, which is Phase 4 work cluster by cluster.

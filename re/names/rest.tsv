@@ -1,0 +1,72 @@
+# Remaining unnamed game functions (28 Oct 2026). Short descriptions come from a quick reading of the decompile and the call sites; none has a contract yet.
+00401860	inferred_AnimPlayer_Advance	decompiled	advances the animation: reads the game clock, steps frames by their durations, wraps or stops at the range end (86 lines, detail not yet contracted)
+00401a50	inferred_AnimPlayer_Pause	decompiled	flags: clear bit0, set bit1; +0x10 = clock now
+00401a70	inferred_AnimPlayer_Resume	decompiled	adds the paused duration to +8, clears +0x10, flags: clear bit1, set bit0
+00401da0	inferred_Obj_StashAnimState	decompiled	copies bank index (+0x32) to +4 and the player's flags (+0x18) to +8; restored by Obj_ApplyPendingAnim
+00401fc0	inferred_Camera_UpdateToward	decompiled	(camera, target) moves the camera toward a target using the game clock; ends in Camera_SetPositionClamped
+00402120	inferred_Camera_SetPositionClamped	decompiled	stores x,y (+0x2c,+0x30) clamped to the bounds rect (+0x1c..+0x28) with the 640x480 half extents 0x140/0xf0; returns whether it was inside
+00402230	inferred_Camera_SetValue0	decompiled	stores one dword at +0
+004028c0	inferred_Interface_PageLeft	decompiled	shifts the interface level camera and its objects by -0x280 (one screen)
+004029a0	inferred_Interface_ScrollOut	decompiled	moves the interface camera +0x285 and runs the display effect (4, 100)
+00403220	inferred_Archive_Ctor	decompiled	allocates the index buffer (0xd7a0 bytes, from arena 0) into global 00442068
+00403300	inferred_Archive_Tell	decompiled	current position of the archive stream (low dword of fgetpos)
+00403320	inferred_Archive_SeekSavePos	decompiled	(offset) returns the previous position and seeks to offset
+00403380	inferred_Archive_ReadIndex	decompiled	reads 0x1c-byte index records from the .TRE keeping those with flag 4, copies the uppercased name (0x13 bytes) and offset+4 into 0x18-byte entries, then sorts them by name (selection sort); entry count in +0
+004035b0	inferred_DirectInput_Create	decompiled	creates the shared DirectInput object (DirectInputCreateA) and shows "DIRECTINPUT: error al crear el objeto" on failure; reference-counted in 0044207c
+004036c0	inferred_InputDevice_IsReady	decompiled	true when the device pointer (+4) and the DirectInput object exist
+004036e0	inferred_InputDevice_SetTimings	decompiled	+0xc and +0x10 (200 and 20000 are the values given at start)
+00403700	inferred_Keyboard_UpdateKeyStates	decompiled	(new states, count) state machine per key (0,1,2,4,8,0x10,0x20) using GetTickCount and the two timing values (+0xc, +0x10): press, hold, release and repeat
+004037c0	inferred_InputDevice_Dtor	decompiled	releases the DirectInput device and the shared DirectInput object when the count reaches zero
+00403820	inferred_Keyboard_Ctor	decompiled	0x38-byte keyboard device, vtable 00428070, 16-byte state buffer (+0x1c), default timings 200 and 20000
+00403cb0	inferred_CdAudio_PlayTrack	decompiled	(track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)
+00403dc0	inferred_CdAudio_OnNotify	decompiled	on MM_MCINOTIFY success restarts the saved track (+0x29)
+004040b0	inferred_Sound_IsReady	decompiled	true when the first two fields are set
+004040d0	inferred_Sound_FindById	decompiled	finds the active sound slot whose id (+0x2c) matches
+00404110	inferred_Sound_PlayWav	decompiled	(archive offset, ...) reads a RIFF/WAVE header from the archive, fills the next sound slot (DirectSoundBuffer), sets volume and pan, starts playing and returns a new id
+00404210	inferred_Sound_Update	decompiled	per-frame: refills streaming buffers (Sound_StreamRefill) and retires finished slots
+00404260	inferred_Sound_Dtor	decompiled	
+004042c0	inferred_Sound_LoadWavData	decompiled	reads the sound data chunk from the archive into the slot
+004043b0	inferred_Sound_Stop	decompiled	stops the slot's buffer (slot 0x48/0x34 calls) and clears its id
+004043e0	inferred_Sound_StreamRefill	decompiled	refills a streaming DirectSound buffer from the archive; returns whether the sound is still active
+00404630	inferred_DlgEntry_CopyCtorA	decompiled	copy constructor of a script-block entry (vtable 00428078)
+004067a0	inferred_DlgEntry_CopyCtorB	decompiled	field-by-field copy of an entry (used by DialogueTable_Load for kind 1)
+00407aa0	inferred_Jim_ResumeFacing	decompiled	if walking (+0xd5) applies the stored facing again via slot 29
+00408550	inferred_Level_UpdateRoomCameras	decompiled	for every room, moves the camera toward the room's focus point and re-sorts its objects
+00408620	inferred_Level_SaveState	decompiled	writes the object keys and flags and calls each object's SaveState (slot 10) via fwrite
+00408710	inferred_Level_LoadState	decompiled	reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object
+00408800	inferred_Level_ReloadDeferredAnims	decompiled	rewinds pool arena 2, reloads the deferred animation images of every bank and sets +0x94
+0040e5a0	inferred_Obj_Kind03Base_DefaultCtor	decompiled	base object ctor with vtable 0042b9c0
+0040f670	inferred_List_RewindIterator	decompiled	resets a list's iterator (current = head, first flag = 1)
+0040f680	inferred_ObjectList_FindByKey	decompiled	(key lo, key hi) finds an object in the list by its 64-bit name key at object +0x44; returns 0 when absent
+0040f870	inferred_List_Clear	decompiled	empties a 2-field-node list
+0040fa10	inferred_ObjectList_InsertByPriorityFront	decompiled	like InsertByPriority but inserts before nodes of equal priority
+0040fbb0	inferred_ObjectList_AttachAll	decompiled	walks the list calling Object_AttachToLevel on each object
+0040fe20	inferred_ObjectList_Clear	decompiled	empties a 3-field-node list (priority lists)
+0040ffa0	inferred_Obj_DrawSubtitle	decompiled	draws the current phrase text twice (shadow style) at the speaker's position with Display_DrawText, keeping the camera in view
+004105a0	inferred_Display_QueueRow_TypeA	decompiled	AddSprite helper for image type 1: builds per-scanline entries (177 lines)
+004108a0	inferred_Display_Raster_TypeA	decompiled	rasterises queued type-A rows (215 lines)
+00410cc0	inferred_Display_QueueRow_TypeB	decompiled	AddSprite helper for image type 3
+00410fb0	inferred_Display_Raster_TypeB	decompiled	rasterises queued type-B rows
+004112d0	inferred_Display_QueueRow_Mask	decompiled	AddSprite helper writing the second row buffer (+0x674)
+00411580	inferred_Display_Raster_Mask	decompiled	rasterises the mask rows
+00411870	inferred_Display_Ctor	decompiled	DirectDraw setup constructor (0x13a4 bytes)
+00411be0	inferred_Display_Dtor	decompiled	
+00411c00	inferred_Display_IsReady	decompiled	primary surface pointer set
+00411c80	inferred_Display_DrawText	decompiled	(font, text, colour/limits, x, y, width, ...) renders a string with the game font into the frame
+00412120	inferred_Display_RasterRow	decompiled	rasterises one scanline using the three type rasterisers
+004123e0	inferred_Display_StartEffect	decompiled	(effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount
+00412640	inferred_Display_Compose_Background	decompiled	first stage of Display_Compose (282 lines)
+00412bb0	inferred_Display_ClearAndReset	decompiled	clears surfaces via DirectDraw (slot 0x80/4 and 0x1c Blt) and resets the render queue
+00412c50	inferred_Display_Compose_Overlay	decompiled	later stage of Display_Compose
+00412e10	inferred_Display_Compose	decompiled	per-frame composition: runs raster stages and presents (flip) the frame
+004137c0	inferred_TextTable_Sort	decompiled	sorts 16-byte table records by their 64-bit key
+004138b0	inferred_TextTable_Lookup	decompiled	(key lo, key hi) binary search in the sorted table; returns the record or 0
+004139e0	inferred_BusyWait	decompiled	(ms) spins on GetTickCount until the time has passed
+00413ac0	inferred_RandomRange7	decompiled	second time-driven random function: 7 permuted bits of GetTickCount scaled to (max-min+1), plus min
+00414560	inferred_Game_StartIntroSequence	decompiled	enters the stage level with Jim, shows him, and starts a dialogue entry by key
+00415200	inferred_List_InsertAtHead	decompiled	allocates a node and links it at the list head
+00415cb0	inferred_NameHash64_Decode	decompiled	(lo, hi, buffer) rebuilds a readable name from a 64-bit key; used for error text
+00418d20	inferred_Connect4_ScoreMove	decompiled	scores a move on a 7-column board (columns hold up to 7 pieces, lines of 4): hypothesis for a board mini-game
+00418e90	inferred_BoardGame_BlinkUpdate	decompiled	toggles a blink flag every 200 ms of game time and updates board objects; hypothesis
+00419050	inferred_Connect4_FindBestMoves	decompiled	tries each non-full column, collects the best-scoring columns
+004191c0	inferred_Connect4_ChooseMove	decompiled	picks a column (checks for immediate win/loss first, then best-scoring, using RandomRange to break ties)

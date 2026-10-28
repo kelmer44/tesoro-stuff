@@ -170,7 +170,7 @@
  {
   "addr": "00401860",
   "ghidra_name": "FUN_00401860",
-  "name": "",
+  "name": "inferred_AnimPlayer_Advance",
   "tier": "game",
   "lines": 86,
   "decompile_ok": true,
@@ -191,12 +191,12 @@
   "cluster": 2,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "advances the animation: reads the game clock, steps frames by their durations, wraps or stops at the range end (86 lines, detail not yet contracted) | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00401a50",
   "ghidra_name": "FUN_00401a50",
-  "name": "",
+  "name": "inferred_AnimPlayer_Pause",
   "tier": "game",
   "lines": 12,
   "decompile_ok": true,
@@ -210,14 +210,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "flags: clear bit0, set bit1; +0x10 = clock now"
  },
  {
   "addr": "00401a70",
   "ghidra_name": "FUN_00401a70",
-  "name": "",
+  "name": "inferred_AnimPlayer_Resume",
   "tier": "game",
   "lines": 15,
   "decompile_ok": true,
@@ -231,9 +231,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "adds the paused duration to +8, clears +0x10, flags: clear bit1, set bit0"
  },
  {
   "addr": "00401aa0",
@@ -3450,7 +3450,7 @@
  {
   "addr": "00401da0",
   "ghidra_name": "FUN_00401da0",
-  "name": "",
+  "name": "inferred_Obj_StashAnimState",
   "tier": "game",
   "lines": 9,
   "decompile_ok": true,
@@ -3462,9 +3462,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 3,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "copies bank index (+0x32) to +4 and the player's flags (+0x18) to +8; restored by Obj_ApplyPendingAnim"
  },
  {
   "addr": "00401dc0",
@@ -8333,7 +8333,7 @@
  {
   "addr": "00401fc0",
   "ghidra_name": "FUN_00401fc0",
-  "name": "",
+  "name": "inferred_Camera_UpdateToward",
   "tier": "game",
   "lines": 57,
   "decompile_ok": true,
@@ -8351,7 +8351,7 @@
   "cluster": 4,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "(camera, target) moves the camera toward a target using the game clock; ends in Camera_SetPositionClamped | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00402110",
@@ -8375,7 +8375,7 @@
  {
   "addr": "00402120",
   "ghidra_name": "FUN_00402120",
-  "name": "",
+  "name": "inferred_Camera_SetPositionClamped",
   "tier": "game",
   "lines": 35,
   "decompile_ok": true,
@@ -8388,9 +8388,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 4,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "stores x,y (+0x2c,+0x30) clamped to the bounds rect (+0x1c..+0x28) with the 640x480 half extents 0x140/0xf0; returns whether it was inside"
  },
  {
   "addr": "004021a0",
@@ -8438,7 +8438,7 @@
  {
   "addr": "00402230",
   "ghidra_name": "FUN_00402230",
-  "name": "",
+  "name": "inferred_Camera_SetValue0",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -8450,9 +8450,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 4,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "stores one dword at +0"
  },
  {
   "addr": "00402240",
@@ -8532,7 +8532,7 @@
  {
   "addr": "00402440",
   "ghidra_name": "FUN_00402440",
-  "name": "",
+  "name": "inferred_C00428038_OnAttach",
   "tier": "game",
   "lines": 74,
   "decompile_ok": true,
@@ -8554,7 +8554,7 @@
   "cluster": 5,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428038 slot 0"
  },
  {
   "addr": "004025b0",
@@ -8610,7 +8610,7 @@
  {
   "addr": "004028c0",
   "ghidra_name": "FUN_004028c0",
-  "name": "",
+  "name": "inferred_Interface_PageLeft",
   "tier": "game",
   "lines": 51,
   "decompile_ok": true,
@@ -8626,14 +8626,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 5,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "shifts the interface level camera and its objects by -0x280 (one screen)"
  },
  {
   "addr": "004029a0",
   "ghidra_name": "FUN_004029a0",
-  "name": "",
+  "name": "inferred_Interface_ScrollOut",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -8649,9 +8649,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 6,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "moves the interface camera +0x285 and runs the display effect (4, 100)"
  },
  {
   "addr": "004029f0",
@@ -8687,7 +8687,7 @@
  {
   "addr": "00402d80",
   "ghidra_name": "FUN_00402d80",
-  "name": "",
+  "name": "inferred_C00428038_Draw",
   "tier": "game",
   "lines": 24,
   "decompile_ok": true,
@@ -8707,7 +8707,7 @@
   "cluster": 6,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428038 slot 6"
  },
  {
   "addr": "00402e50",
@@ -8782,7 +8782,7 @@
  {
   "addr": "004030e0",
   "ghidra_name": "FUN_004030e0",
-  "name": "",
+  "name": "inferred_C00428038_Update2",
   "tier": "game",
   "lines": 35,
   "decompile_ok": true,
@@ -8802,12 +8802,12 @@
   "cluster": 6,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428038 slot 5"
  },
  {
   "addr": "004031a0",
   "ghidra_name": "FUN_004031a0",
-  "name": "",
+  "name": "inferred_C00428038_SetActive",
   "tier": "game",
   "lines": 38,
   "decompile_ok": true,
@@ -8826,12 +8826,12 @@
   "cluster": 6,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428038 slot 8"
  },
  {
   "addr": "00403220",
   "ghidra_name": "FUN_00403220",
-  "name": "",
+  "name": "inferred_Archive_Ctor",
   "tier": "game",
   "lines": 11,
   "decompile_ok": true,
@@ -8845,9 +8845,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 6,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "allocates the index buffer (0xd7a0 bytes, from arena 0) into global 00442068"
  },
  {
   "addr": "00403250",
@@ -8899,7 +8899,7 @@
  {
   "addr": "00403300",
   "ghidra_name": "FUN_00403300",
-  "name": "",
+  "name": "inferred_Archive_Tell",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -8914,14 +8914,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 6,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "current position of the archive stream (low dword of fgetpos)"
  },
  {
   "addr": "00403320",
   "ghidra_name": "FUN_00403320",
-  "name": "",
+  "name": "inferred_Archive_SeekSavePos",
   "tier": "game",
   "lines": 11,
   "decompile_ok": true,
@@ -8937,9 +8937,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(offset) returns the previous position and seeks to offset"
  },
  {
   "addr": "00403360",
@@ -8965,7 +8965,7 @@
  {
   "addr": "00403380",
   "ghidra_name": "FUN_00403380",
-  "name": "",
+  "name": "inferred_Archive_ReadIndex",
   "tier": "game",
   "lines": 109,
   "decompile_ok": true,
@@ -8981,9 +8981,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "reads 0x1c-byte index records from the .TRE keeping those with flag 4, copies the uppercased name (0x13 bytes) and offset+4 into 0x18-byte entries, then sorts them by name (selection sort); entry count in +0"
  },
  {
   "addr": "00403500",
@@ -9010,7 +9010,7 @@
  {
   "addr": "004035b0",
   "ghidra_name": "FUN_004035b0",
-  "name": "",
+  "name": "inferred_DirectInput_Create",
   "tier": "game",
   "lines": 42,
   "decompile_ok": true,
@@ -9025,14 +9025,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "creates the shared DirectInput object (DirectInputCreateA) and shows \"DIRECTINPUT: error al crear el objeto\" on failure; reference-counted in 0044207c"
  },
  {
   "addr": "004036c0",
   "ghidra_name": "FUN_004036c0",
-  "name": "",
+  "name": "inferred_InputDevice_IsReady",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -9046,12 +9046,12 @@
   "cluster": 7,
   "status": "decompiled",
   "engine": "",
-  "notes": "device ready check"
+  "notes": "device ready check | true when the device pointer (+4) and the DirectInput object exist"
  },
  {
   "addr": "004036e0",
   "ghidra_name": "FUN_004036e0",
-  "name": "",
+  "name": "inferred_InputDevice_SetTimings",
   "tier": "game",
   "lines": 9,
   "decompile_ok": true,
@@ -9063,14 +9063,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "+0xc and +0x10 (200 and 20000 are the values given at start)"
  },
  {
   "addr": "00403700",
   "ghidra_name": "FUN_00403700",
-  "name": "",
+  "name": "inferred_Keyboard_UpdateKeyStates",
   "tier": "game",
   "lines": 50,
   "decompile_ok": true,
@@ -9083,14 +9083,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(new states, count) state machine per key (0,1,2,4,8,0x10,0x20) using GetTickCount and the two timing values (+0xc, +0x10): press, hold, release and repeat"
  },
  {
   "addr": "004037c0",
   "ghidra_name": "FUN_004037c0",
-  "name": "",
+  "name": "inferred_InputDevice_Dtor",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -9105,14 +9105,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "releases the DirectInput device and the shared DirectInput object when the count reaches zero"
  },
  {
   "addr": "00403820",
   "ghidra_name": "FUN_00403820",
-  "name": "",
+  "name": "inferred_Keyboard_Ctor",
   "tier": "game",
   "lines": 44,
   "decompile_ok": true,
@@ -9127,14 +9127,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x38-byte keyboard device, vtable 00428070, 16-byte state buffer (+0x1c), default timings 200 and 20000"
  },
  {
   "addr": "004038f0",
   "ghidra_name": "FUN_004038f0",
-  "name": "",
+  "name": "inferred_C00428070_Slot00",
   "tier": "game",
   "lines": 40,
   "decompile_ok": true,
@@ -9153,7 +9153,7 @@
   "cluster": 7,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428070 slot 0 (non-object class)"
  },
  {
   "addr": "00403980",
@@ -9199,7 +9199,7 @@
  {
   "addr": "00403aa0",
   "ghidra_name": "FUN_00403aa0",
-  "name": "",
+  "name": "inferred_C00428074_Slot00",
   "tier": "game",
   "lines": 57,
   "decompile_ok": true,
@@ -9218,7 +9218,7 @@
   "cluster": 8,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428074 slot 0 (non-object class)"
  },
  {
   "addr": "00403b60",
@@ -9242,7 +9242,7 @@
  {
   "addr": "00403cb0",
   "ghidra_name": "FUN_00403cb0",
-  "name": "",
+  "name": "inferred_CdAudio_PlayTrack",
   "tier": "game",
   "lines": 51,
   "decompile_ok": true,
@@ -9257,14 +9257,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)"
  },
  {
   "addr": "00403dc0",
   "ghidra_name": "FUN_00403dc0",
-  "name": "",
+  "name": "inferred_CdAudio_OnNotify",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -9278,9 +9278,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "on MM_MCINOTIFY success restarts the saved track (+0x29)"
  },
  {
   "addr": "00403e00",
@@ -9308,7 +9308,7 @@
  {
   "addr": "004040b0",
   "ghidra_name": "FUN_004040b0",
-  "name": "",
+  "name": "inferred_Sound_IsReady",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -9322,12 +9322,12 @@
   "cluster": 8,
   "status": "decompiled",
   "engine": "",
-  "notes": "returns obj[0]!=0 && obj[1]!=0"
+  "notes": "returns obj[0]!=0 && obj[1]!=0 | true when the first two fields are set"
  },
  {
   "addr": "004040d0",
   "ghidra_name": "FUN_004040d0",
-  "name": "",
+  "name": "inferred_Sound_FindById",
   "tier": "game",
   "lines": 22,
   "decompile_ok": true,
@@ -9339,14 +9339,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "finds the active sound slot whose id (+0x2c) matches"
  },
  {
   "addr": "00404110",
   "ghidra_name": "FUN_00404110",
-  "name": "",
+  "name": "inferred_Sound_PlayWav",
   "tier": "game",
   "lines": 46,
   "decompile_ok": true,
@@ -9365,14 +9365,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(archive offset, ...) reads a RIFF/WAVE header from the archive, fills the next sound slot (DirectSoundBuffer), sets volume and pan, starts playing and returns a new id"
  },
  {
   "addr": "00404210",
   "ghidra_name": "FUN_00404210",
-  "name": "",
+  "name": "inferred_Sound_Update",
   "tier": "game",
   "lines": 28,
   "decompile_ok": true,
@@ -9387,14 +9387,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "per-frame: refills streaming buffers (Sound_StreamRefill) and retires finished slots"
  },
  {
   "addr": "00404260",
   "ghidra_name": "FUN_00404260",
-  "name": "",
+  "name": "inferred_Sound_Dtor",
   "tier": "game",
   "lines": 22,
   "decompile_ok": true,
@@ -9410,12 +9410,12 @@
   "cluster": 9,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": " | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "004042c0",
   "ghidra_name": "FUN_004042c0",
-  "name": "",
+  "name": "inferred_Sound_LoadWavData",
   "tier": "game",
   "lines": 54,
   "decompile_ok": true,
@@ -9432,12 +9432,12 @@
   "cluster": 9,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "reads the sound data chunk from the archive into the slot | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "004043b0",
   "ghidra_name": "FUN_004043b0",
-  "name": "",
+  "name": "inferred_Sound_Stop",
   "tier": "game",
   "lines": 11,
   "decompile_ok": true,
@@ -9449,14 +9449,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "stops the slot's buffer (slot 0x48/0x34 calls) and clears its id"
  },
  {
   "addr": "004043e0",
   "ghidra_name": "FUN_004043e0",
-  "name": "",
+  "name": "inferred_Sound_StreamRefill",
   "tier": "game",
   "lines": 106,
   "decompile_ok": true,
@@ -9473,12 +9473,12 @@
   "cluster": 9,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "refills a streaming DirectSound buffer from the archive; returns whether the sound is still active | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00404630",
   "ghidra_name": "FUN_00404630",
-  "name": "",
+  "name": "inferred_DlgEntry_CopyCtorA",
   "tier": "game",
   "lines": 69,
   "decompile_ok": true,
@@ -9492,9 +9492,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "copy constructor of a script-block entry (vtable 00428078)"
  },
  {
   "addr": "00404810",
@@ -10137,7 +10137,7 @@
  {
   "addr": "004067a0",
   "ghidra_name": "FUN_004067a0",
-  "name": "",
+  "name": "inferred_DlgEntry_CopyCtorB",
   "tier": "game",
   "lines": 67,
   "decompile_ok": true,
@@ -10149,9 +10149,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 11,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "field-by-field copy of an entry (used by DialogueTable_Load for kind 1)"
  },
  {
   "addr": "00406980",
@@ -10305,7 +10305,7 @@
  {
   "addr": "00406d50",
   "ghidra_name": "FUN_00406d50",
-  "name": "",
+  "name": "inferred_C00428b00_SetVerbAndClick",
   "tier": "game",
   "lines": 123,
   "decompile_ok": true,
@@ -10380,7 +10380,7 @@
   "cluster": 11,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428b00 slot 14"
  },
  {
   "addr": "00407000",
@@ -11248,7 +11248,7 @@
  {
   "addr": "00407aa0",
   "ghidra_name": "FUN_00407aa0",
-  "name": "",
+  "name": "inferred_Jim_ResumeFacing",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -11261,9 +11261,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 12,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "if walking (+0xd5) applies the stored facing again via slot 29"
  },
  {
   "addr": "00407ac0",
@@ -11571,7 +11571,7 @@
  {
   "addr": "00408550",
   "ghidra_name": "FUN_00408550",
-  "name": "",
+  "name": "inferred_Level_UpdateRoomCameras",
   "tier": "game",
   "lines": 52,
   "decompile_ok": true,
@@ -11590,12 +11590,12 @@
   "cluster": 13,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "for every room, moves the camera toward the room's focus point and re-sorts its objects | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00408620",
   "ghidra_name": "FUN_00408620",
-  "name": "",
+  "name": "inferred_Level_SaveState",
   "tier": "game",
   "lines": 77,
   "decompile_ok": true,
@@ -11611,12 +11611,12 @@
   "cluster": 14,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "writes the object keys and flags and calls each object's SaveState (slot 10) via fwrite | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00408710",
   "ghidra_name": "FUN_00408710",
-  "name": "",
+  "name": "inferred_Level_LoadState",
   "tier": "game",
   "lines": 20,
   "decompile_ok": true,
@@ -11631,9 +11631,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 14,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object"
  },
  {
   "addr": "00408780",
@@ -11783,7 +11783,7 @@
  {
   "addr": "004087d0",
   "ghidra_name": "FUN_004087d0",
-  "name": "",
+  "name": "inferred_C00428bf8_Update2",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -11812,12 +11812,12 @@
   "cluster": 14,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428bf8 slot 5"
  },
  {
   "addr": "00408800",
   "ghidra_name": "FUN_00408800",
-  "name": "",
+  "name": "inferred_Level_ReloadDeferredAnims",
   "tier": "game",
   "lines": 18,
   "decompile_ok": true,
@@ -11832,14 +11832,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 14,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "rewinds pool arena 2, reloads the deferred animation images of every bank and sets +0x94"
  },
  {
   "addr": "00408840",
   "ghidra_name": "FUN_00408840",
-  "name": "",
+  "name": "inferred_C00428bf8_RunVerb",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -11864,7 +11864,7 @@
   "cluster": 14,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428bf8 slot 13"
  },
  {
   "addr": "00408890",
@@ -12035,7 +12035,7 @@
  {
   "addr": "0040c040",
   "ghidra_name": "FUN_0040c040",
-  "name": "",
+  "name": "inferred_C0042a600_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12056,12 +12056,12 @@
   "cluster": 15,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a600 slot 21 (kind 13 subtype 16)"
  },
  {
   "addr": "0040c090",
   "ghidra_name": "FUN_0040c090",
-  "name": "",
+  "name": "inferred_C0042a590_Verb4",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12082,12 +12082,12 @@
   "cluster": 16,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a590 slot 24 (kind 13 subtype 10)"
  },
  {
   "addr": "0040c0e0",
   "ghidra_name": "FUN_0040c0e0",
-  "name": "",
+  "name": "inferred_C0042a4b0_Verb4",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -12104,12 +12104,12 @@
   "cluster": 16,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a4b0 slot 24 (kind 13 subtype 15)"
  },
  {
   "addr": "0040c0f0",
   "ghidra_name": "FUN_0040c0f0",
-  "name": "",
+  "name": "inferred_C0042a440_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12130,12 +12130,12 @@
   "cluster": 16,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a440 slot 21 (kind 13 subtype 28)"
  },
  {
   "addr": "0040c140",
   "ghidra_name": "FUN_0040c140",
-  "name": "",
+  "name": "inferred_C0042a3d0_Verb1",
   "tier": "game",
   "lines": 35,
   "decompile_ok": true,
@@ -12158,12 +12158,12 @@
   "cluster": 16,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a3d0 slot 21 (kind 13 subtype 19)"
  },
  {
   "addr": "0040c1f0",
   "ghidra_name": "FUN_0040c1f0",
-  "name": "",
+  "name": "inferred_C0042a3d0_Verb4",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -12180,12 +12180,12 @@
   "cluster": 16,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a3d0 slot 24 (kind 13 subtype 19)"
  },
  {
   "addr": "0040c200",
   "ghidra_name": "FUN_0040c200",
-  "name": "",
+  "name": "inferred_C0042a280_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12206,12 +12206,12 @@
   "cluster": 16,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a280 slot 21 (kind 13 subtype 44)"
  },
  {
   "addr": "0040c250",
   "ghidra_name": "FUN_0040c250",
-  "name": "",
+  "name": "inferred_C0042a1a0_Verb4",
   "tier": "game",
   "lines": 24,
   "decompile_ok": true,
@@ -12233,12 +12233,12 @@
   "cluster": 16,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a1a0 slot 24 (kind 13 subtype 29)"
  },
  {
   "addr": "0040c2c0",
   "ghidra_name": "FUN_0040c2c0",
-  "name": "",
+  "name": "inferred_C0042a6e0_Verb3",
   "tier": "game",
   "lines": 31,
   "decompile_ok": true,
@@ -12260,12 +12260,12 @@
   "cluster": 16,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a6e0 slot 22 (kind 12 subtype 10)"
  },
  {
   "addr": "0040c370",
   "ghidra_name": "FUN_0040c370",
-  "name": "",
+  "name": "inferred_C0042a910_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12286,12 +12286,12 @@
   "cluster": 16,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a910 slot 21 (kind 12 subtype 5)"
  },
  {
   "addr": "0040c3c0",
   "ghidra_name": "FUN_0040c3c0",
-  "name": "",
+  "name": "inferred_C0042a910_Verb3",
   "tier": "game",
   "lines": 31,
   "decompile_ok": true,
@@ -12314,12 +12314,12 @@
   "cluster": 16,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a910 slot 22 (kind 12 subtype 5)"
  },
  {
   "addr": "0040c480",
   "ghidra_name": "FUN_0040c480",
-  "name": "",
+  "name": "inferred_C0042a910_Verb4",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12340,12 +12340,12 @@
   "cluster": 16,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a910 slot 24 (kind 12 subtype 5)"
  },
  {
   "addr": "0040c4d0",
   "ghidra_name": "FUN_0040c4d0",
-  "name": "",
+  "name": "inferred_C0042aa60_Verb1",
   "tier": "game",
   "lines": 27,
   "decompile_ok": true,
@@ -12367,12 +12367,12 @@
   "cluster": 16,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042aa60 slot 21 (kind 12 subtype 2)"
  },
  {
   "addr": "0040c560",
   "ghidra_name": "FUN_0040c560",
-  "name": "",
+  "name": "inferred_C0042ab40_Verb3",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -12394,12 +12394,12 @@
   "cluster": 17,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042ab40 slot 22 (kind 12 subtype 0)"
  },
  {
   "addr": "0040c5d0",
   "ghidra_name": "FUN_0040c5d0",
-  "name": "",
+  "name": "inferred_C0042ab40_Verb6",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -12421,12 +12421,12 @@
   "cluster": 17,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042ab40 slot 26 (kind 12 subtype 0)"
  },
  {
   "addr": "0040c640",
   "ghidra_name": "FUN_0040c640",
-  "name": "",
+  "name": "inferred_C0042a9f0_Verb4",
   "tier": "game",
   "lines": 30,
   "decompile_ok": true,
@@ -12448,12 +12448,12 @@
   "cluster": 17,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a9f0 slot 24 (kind 12 subtype 3)"
  },
  {
   "addr": "0040c6d0",
   "ghidra_name": "FUN_0040c6d0",
-  "name": "",
+  "name": "inferred_C0042a980_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12474,12 +12474,12 @@
   "cluster": 17,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a980 slot 21 (kind 12 subtype 4)"
  },
  {
   "addr": "0040c720",
   "ghidra_name": "FUN_0040c720",
-  "name": "",
+  "name": "inferred_C0042aad0_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12500,12 +12500,12 @@
   "cluster": 17,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042aad0 slot 21 (kind 12 subtype 1)"
  },
  {
   "addr": "0040c770",
   "ghidra_name": "FUN_0040c770",
-  "name": "",
+  "name": "inferred_C0042a8a0_Verb3",
   "tier": "game",
   "lines": 30,
   "decompile_ok": true,
@@ -12527,12 +12527,12 @@
   "cluster": 17,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a8a0 slot 22 (kind 12 subtype 6)"
  },
  {
   "addr": "0040c810",
   "ghidra_name": "FUN_0040c810",
-  "name": "",
+  "name": "inferred_C0042a670_Verb0",
   "tier": "game",
   "lines": 27,
   "decompile_ok": true,
@@ -12554,12 +12554,12 @@
   "cluster": 17,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a670 slot 20 (kind 12 subtype 11)"
  },
  {
   "addr": "0040c880",
   "ghidra_name": "FUN_0040c880",
-  "name": "",
+  "name": "inferred_C0042aef8_Verb0",
   "tier": "game",
   "lines": 13,
   "decompile_ok": true,
@@ -12578,12 +12578,12 @@
   "cluster": 18,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042aef8 slot 20 (kind 6 subtype 8)"
  },
  {
   "addr": "0040c8a0",
   "ghidra_name": "FUN_0040c8a0",
-  "name": "",
+  "name": "inferred_C0042aef8_Verb4",
   "tier": "game",
   "lines": 9,
   "decompile_ok": true,
@@ -12602,12 +12602,12 @@
   "cluster": 18,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042aef8 slot 24 (kind 6 subtype 8)"
  },
  {
   "addr": "0040c8d0",
   "ghidra_name": "FUN_0040c8d0",
-  "name": "",
+  "name": "inferred_C0042aef8_Slot15",
   "tier": "game",
   "lines": 13,
   "decompile_ok": true,
@@ -12626,12 +12626,12 @@
   "cluster": 18,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042aef8 slot 15 (kind 6 subtype 8)"
  },
  {
   "addr": "0040c8f0",
   "ghidra_name": "FUN_0040c8f0",
-  "name": "",
+  "name": "inferred_C0042b390_Verb2",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12652,12 +12652,12 @@
   "cluster": 18,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b390 slot 23 (kind 5 subtype 3)"
  },
  {
   "addr": "0040c940",
   "ghidra_name": "FUN_0040c940",
-  "name": "",
+  "name": "inferred_C0042a830_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12678,12 +12678,12 @@
   "cluster": 18,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a830 slot 21 (kind 12 subtype 7)"
  },
  {
   "addr": "0040c990",
   "ghidra_name": "FUN_0040c990",
-  "name": "",
+  "name": "inferred_C0042a830_Verb2",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12704,12 +12704,12 @@
   "cluster": 18,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a830 slot 23 (kind 12 subtype 7)"
  },
  {
   "addr": "0040c9e0",
   "ghidra_name": "FUN_0040c9e0",
-  "name": "",
+  "name": "inferred_C0042a7c0_Verb3",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -12729,12 +12729,12 @@
   "cluster": 18,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a7c0 slot 22 (kind 12 subtype 9)"
  },
  {
   "addr": "0040ca10",
   "ghidra_name": "FUN_0040ca10",
-  "name": "",
+  "name": "inferred_C0042a750_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12755,12 +12755,12 @@
   "cluster": 18,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a750 slot 21 (kind 12 subtype 8)"
  },
  {
   "addr": "0040ca60",
   "ghidra_name": "FUN_0040ca60",
-  "name": "",
+  "name": "inferred_C0042a750_Verb2",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12781,12 +12781,12 @@
   "cluster": 18,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a750 slot 23 (kind 12 subtype 8)"
  },
  {
   "addr": "0040cab0",
   "ghidra_name": "FUN_0040cab0",
-  "name": "",
+  "name": "inferred_C00429fe0_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12807,12 +12807,12 @@
   "cluster": 19,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429fe0 slot 21 (kind 17 subtype 1)"
  },
  {
   "addr": "0040cb00",
   "ghidra_name": "FUN_0040cb00",
-  "name": "",
+  "name": "inferred_C00429f70_Verb1",
   "tier": "game",
   "lines": 22,
   "decompile_ok": true,
@@ -12834,12 +12834,12 @@
   "cluster": 19,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429f70 slot 21 (kind 17 subtype 2)"
  },
  {
   "addr": "0040cb60",
   "ghidra_name": "FUN_0040cb60",
-  "name": "",
+  "name": "inferred_C00429d40_Verb3",
   "tier": "game",
   "lines": 20,
   "decompile_ok": true,
@@ -12860,12 +12860,12 @@
   "cluster": 19,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429d40 slot 22 (kind 17 subtype 13)"
  },
  {
   "addr": "0040cbd0",
   "ghidra_name": "FUN_0040cbd0",
-  "name": "",
+  "name": "inferred_C00429f00_Verb3",
   "tier": "game",
   "lines": 20,
   "decompile_ok": true,
@@ -12886,12 +12886,12 @@
   "cluster": 19,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429f00 slot 22 (kind 17 subtype 3)"
  },
  {
   "addr": "0040cc40",
   "ghidra_name": "FUN_0040cc40",
-  "name": "",
+  "name": "inferred_C00429e90_Verb1",
   "tier": "game",
   "lines": 25,
   "decompile_ok": true,
@@ -12913,12 +12913,12 @@
   "cluster": 19,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429e90 slot 21 (kind 17 subtype 4)"
  },
  {
   "addr": "0040ccc0",
   "ghidra_name": "FUN_0040ccc0",
-  "name": "",
+  "name": "inferred_C00429e20_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12939,12 +12939,12 @@
   "cluster": 19,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429e20 slot 21 (kind 17 subtype 5)"
  },
  {
   "addr": "0040cd10",
   "ghidra_name": "FUN_0040cd10",
-  "name": "",
+  "name": "inferred_C0042b6c0_Verb2",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -12965,12 +12965,12 @@
   "cluster": 19,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b6c0 slot 23 (kind 5 subtype 5)"
  },
  {
   "addr": "0040cd60",
   "ghidra_name": "FUN_0040cd60",
-  "name": "",
+  "name": "inferred_C0042b638_Verb2",
   "tier": "game",
   "lines": 28,
   "decompile_ok": true,
@@ -12992,12 +12992,12 @@
   "cluster": 19,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b638 slot 23 (kind 5 subtype 6)"
  },
  {
   "addr": "0040cdf0",
   "ghidra_name": "FUN_0040cdf0",
-  "name": "",
+  "name": "inferred_C00429a30_Verb3",
   "tier": "game",
   "lines": 13,
   "decompile_ok": true,
@@ -13017,12 +13017,12 @@
   "cluster": 20,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429a30 slot 22 (kind 17 subtype 14)"
  },
  {
   "addr": "0040ce20",
   "ghidra_name": "FUN_0040ce20",
-  "name": "",
+  "name": "inferred_C00429b80_Verb3",
   "tier": "game",
   "lines": 20,
   "decompile_ok": true,
@@ -13043,12 +13043,12 @@
   "cluster": 20,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429b80 slot 22 (kind 17 subtype 10)"
  },
  {
   "addr": "0040ce90",
   "ghidra_name": "FUN_0040ce90",
-  "name": "",
+  "name": "inferred_C00429b10_Verb2",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13069,12 +13069,12 @@
   "cluster": 20,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429b10 slot 23 (kind 17 subtype 11)"
  },
  {
   "addr": "0040cee0",
   "ghidra_name": "FUN_0040cee0",
-  "name": "",
+  "name": "inferred_C00429aa0_Verb3",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13095,12 +13095,12 @@
   "cluster": 20,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429aa0 slot 22 (kind 17 subtype 12)"
  },
  {
   "addr": "0040cf30",
   "ghidra_name": "FUN_0040cf30",
-  "name": "",
+  "name": "inferred_C00429cd0_Verb3",
   "tier": "game",
   "lines": 34,
   "decompile_ok": true,
@@ -13122,12 +13122,12 @@
   "cluster": 20,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429cd0 slot 22 (kind 17 subtype 7)"
  },
  {
   "addr": "0040cfd0",
   "ghidra_name": "FUN_0040cfd0",
-  "name": "",
+  "name": "inferred_C004299c0_Verb3",
   "tier": "game",
   "lines": 13,
   "decompile_ok": true,
@@ -13147,12 +13147,12 @@
   "cluster": 20,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004299c0 slot 22 (kind 17 subtype 15)"
  },
  {
   "addr": "0040d000",
   "ghidra_name": "FUN_0040d000",
-  "name": "",
+  "name": "inferred_C00429c60_Verb1",
   "tier": "game",
   "lines": 20,
   "decompile_ok": true,
@@ -13173,12 +13173,12 @@
   "cluster": 20,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429c60 slot 21 (kind 17 subtype 8)"
  },
  {
   "addr": "0040d070",
   "ghidra_name": "FUN_0040d070",
-  "name": "",
+  "name": "inferred_C00429c60_Verb3",
   "tier": "game",
   "lines": 24,
   "decompile_ok": true,
@@ -13199,12 +13199,12 @@
   "cluster": 20,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429c60 slot 22 (kind 17 subtype 8)"
  },
  {
   "addr": "0040d100",
   "ghidra_name": "FUN_0040d100",
-  "name": "",
+  "name": "inferred_C00429bf0_Verb3",
   "tier": "game",
   "lines": 29,
   "decompile_ok": true,
@@ -13226,12 +13226,12 @@
   "cluster": 20,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429bf0 slot 22 (kind 17 subtype 9)"
  },
  {
   "addr": "0040d1a0",
   "ghidra_name": "FUN_0040d1a0",
-  "name": "",
+  "name": "inferred_C0042ad18_Verb0",
   "tier": "game",
   "lines": 37,
   "decompile_ok": true,
@@ -13254,12 +13254,12 @@
   "cluster": 20,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042ad18 slot 20 (kind 6 subtype 4)"
  },
  {
   "addr": "0040d240",
   "ghidra_name": "FUN_0040d240",
-  "name": "",
+  "name": "inferred_C00428c30_Verb0",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -13279,12 +13279,12 @@
   "cluster": 21,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428c30 slot 20 (kind 20 subtype 30)"
  },
  {
   "addr": "0040d270",
   "ghidra_name": "FUN_0040d270",
-  "name": "",
+  "name": "inferred_C004298e0_Verb2",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13305,12 +13305,12 @@
   "cluster": 21,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004298e0 slot 23 (kind 20 subtype 0)"
  },
  {
   "addr": "0040d2c0",
   "ghidra_name": "FUN_0040d2c0",
-  "name": "",
+  "name": "inferred_C00429090_Verb0",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -13332,12 +13332,12 @@
   "cluster": 21,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429090 slot 20 (kind 20 subtype 20)"
  },
  {
   "addr": "0040d330",
   "ghidra_name": "FUN_0040d330",
-  "name": "",
+  "name": "inferred_C00428d80_Verb3",
   "tier": "game",
   "lines": 16,
   "decompile_ok": true,
@@ -13357,12 +13357,12 @@
   "cluster": 21,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428d80 slot 22 (kind 20 subtype 27)"
  },
  {
   "addr": "0040d380",
   "ghidra_name": "FUN_0040d380",
-  "name": "",
+  "name": "inferred_C0042b170_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13383,12 +13383,12 @@
   "cluster": 21,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b170 slot 21 (kind 5 subtype 14)"
  },
  {
   "addr": "0040d3d0",
   "ghidra_name": "FUN_0040d3d0",
-  "name": "",
+  "name": "inferred_C0042b170_Verb2",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -13410,12 +13410,12 @@
   "cluster": 21,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b170 slot 23 (kind 5 subtype 14)"
  },
  {
   "addr": "0040d450",
   "ghidra_name": "FUN_0040d450",
-  "name": "",
+  "name": "inferred_C00429720_Verb1",
   "tier": "game",
   "lines": 27,
   "decompile_ok": true,
@@ -13437,12 +13437,12 @@
   "cluster": 21,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429720 slot 21 (kind 20 subtype 4)"
  },
  {
   "addr": "0040d4e0",
   "ghidra_name": "FUN_0040d4e0",
-  "name": "",
+  "name": "inferred_C00429790_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13463,12 +13463,12 @@
   "cluster": 21,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429790 slot 21 (kind 20 subtype 3)"
  },
  {
   "addr": "0040d530",
   "ghidra_name": "FUN_0040d530",
-  "name": "",
+  "name": "inferred_C00429790_Verb0",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -13490,12 +13490,12 @@
   "cluster": 21,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429790 slot 20 (kind 20 subtype 3)"
  },
  {
   "addr": "0040d5a0",
   "ghidra_name": "FUN_0040d5a0",
-  "name": "",
+  "name": "inferred_C004296b0_Verb0",
   "tier": "game",
   "lines": 24,
   "decompile_ok": true,
@@ -13517,12 +13517,12 @@
   "cluster": 21,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004296b0 slot 20 (kind 20 subtype 5)"
  },
  {
   "addr": "0040d620",
   "ghidra_name": "FUN_0040d620",
-  "name": "",
+  "name": "inferred_C00429640_Verb3",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -13542,12 +13542,12 @@
   "cluster": 22,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429640 slot 22 (kind 20 subtype 6)"
  },
  {
   "addr": "0040d650",
   "ghidra_name": "FUN_0040d650",
-  "name": "",
+  "name": "inferred_C004294f0_Verb2",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13568,12 +13568,12 @@
   "cluster": 22,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004294f0 slot 23 (kind 20 subtype 9)"
  },
  {
   "addr": "0040d6a0",
   "ghidra_name": "FUN_0040d6a0",
-  "name": "",
+  "name": "inferred_C004294f0_Verb3",
   "tier": "game",
   "lines": 20,
   "decompile_ok": true,
@@ -13594,12 +13594,12 @@
   "cluster": 22,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004294f0 slot 22 (kind 20 subtype 9)"
  },
  {
   "addr": "0040d6f0",
   "ghidra_name": "FUN_0040d6f0",
-  "name": "",
+  "name": "inferred_C00429330_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13620,12 +13620,12 @@
   "cluster": 22,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429330 slot 21 (kind 20 subtype 13)"
  },
  {
   "addr": "0040d740",
   "ghidra_name": "FUN_0040d740",
-  "name": "",
+  "name": "inferred_C004293a0_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13646,12 +13646,12 @@
   "cluster": 22,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004293a0 slot 21 (kind 20 subtype 12)"
  },
  {
   "addr": "0040d790",
   "ghidra_name": "FUN_0040d790",
-  "name": "",
+  "name": "inferred_C004293a0_Verb3",
   "tier": "game",
   "lines": 26,
   "decompile_ok": true,
@@ -13673,12 +13673,12 @@
   "cluster": 22,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004293a0 slot 22 (kind 20 subtype 12)"
  },
  {
   "addr": "0040d820",
   "ghidra_name": "FUN_0040d820",
-  "name": "",
+  "name": "inferred_C00429480_Verb3",
   "tier": "game",
   "lines": 16,
   "decompile_ok": true,
@@ -13698,12 +13698,12 @@
   "cluster": 22,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429480 slot 22 (kind 20 subtype 10)"
  },
  {
   "addr": "0040d870",
   "ghidra_name": "FUN_0040d870",
-  "name": "",
+  "name": "inferred_C00428ca0_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13724,12 +13724,12 @@
   "cluster": 22,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428ca0 slot 21 (kind 20 subtype 29)"
  },
  {
   "addr": "0040d8c0",
   "ghidra_name": "FUN_0040d8c0",
-  "name": "",
+  "name": "inferred_C00428f40_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13750,12 +13750,12 @@
   "cluster": 22,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428f40 slot 21 (kind 20 subtype 24)"
  },
  {
   "addr": "0040d910",
   "ghidra_name": "FUN_0040d910",
-  "name": "",
+  "name": "inferred_C00428ed0_Verb3",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -13775,12 +13775,12 @@
   "cluster": 22,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428ed0 slot 22 (kind 20 subtype 23)"
  },
  {
   "addr": "0040d950",
   "ghidra_name": "FUN_0040d950",
-  "name": "",
+  "name": "inferred_C00429170_Verb3",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13801,12 +13801,12 @@
   "cluster": 22,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429170 slot 22 (kind 20 subtype 18)"
  },
  {
   "addr": "0040d9a0",
   "ghidra_name": "FUN_0040d9a0",
-  "name": "",
+  "name": "inferred_C00428e60_Verb1",
   "tier": "game",
   "lines": 27,
   "decompile_ok": true,
@@ -13828,12 +13828,12 @@
   "cluster": 22,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428e60 slot 21 (kind 20 subtype 25)"
  },
  {
   "addr": "0040da30",
   "ghidra_name": "FUN_0040da30",
-  "name": "",
+  "name": "inferred_C00428df0_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13854,12 +13854,12 @@
   "cluster": 23,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428df0 slot 21 (kind 20 subtype 26)"
  },
  {
   "addr": "0040da80",
   "ghidra_name": "FUN_0040da80",
-  "name": "",
+  "name": "inferred_C00428fb0_Verb3",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -13881,12 +13881,12 @@
   "cluster": 23,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428fb0 slot 22 (kind 20 subtype 22)"
  },
  {
   "addr": "0040daf0",
   "ghidra_name": "FUN_0040daf0",
-  "name": "",
+  "name": "inferred_C0042ae80_Verb0",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -13907,7 +13907,7 @@
   "cluster": 23,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042ae80 slot 20 (kind 6 subtype 7)"
  },
  {
   "addr": "0040db40",
@@ -13940,7 +13940,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 23,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "bump-allocates size bytes (4-aligned) zeroed from arena index in global pool 00442100; returns 0 when full"
  },
@@ -14082,7 +14082,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 23,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "rewinds arena bump pointer to its start"
  },
@@ -14111,7 +14111,7 @@
  {
   "addr": "0040ddc0",
   "ghidra_name": "FUN_0040ddc0",
-  "name": "",
+  "name": "inferred_C0042b8e0_Draw",
   "tier": "game",
   "lines": 73,
   "decompile_ok": true,
@@ -14133,7 +14133,7 @@
   "cluster": 24,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b8e0 slot 6"
  },
  {
   "addr": "0040df70",
@@ -14159,7 +14159,7 @@
  {
   "addr": "0040dfc0",
   "ghidra_name": "FUN_0040dfc0",
-  "name": "",
+  "name": "inferred_C0042b950_IsInteractive",
   "tier": "game",
   "lines": 12,
   "decompile_ok": true,
@@ -14179,12 +14179,12 @@
   "cluster": 24,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b950 slot 16"
  },
  {
   "addr": "0040e000",
   "ghidra_name": "FUN_0040e000",
-  "name": "",
+  "name": "inferred_C0042b950_SetVerbAndClick",
   "tier": "game",
   "lines": 142,
   "decompile_ok": true,
@@ -14216,12 +14216,12 @@
   "cluster": 24,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b950 slot 14"
  },
  {
   "addr": "0040e560",
   "ghidra_name": "FUN_0040e560",
-  "name": "",
+  "name": "inferred_C0042b950_ClearHoverText",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -14240,12 +14240,12 @@
   "cluster": 24,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b950 slot 18"
  },
  {
   "addr": "0040e580",
   "ghidra_name": "FUN_0040e580",
-  "name": "",
+  "name": "inferred_C0042b8e0_SetVerbAndClick",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -14266,12 +14266,12 @@
   "cluster": 24,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b8e0 slot 14"
  },
  {
   "addr": "0040e590",
   "ghidra_name": "FUN_0040e590",
-  "name": "",
+  "name": "inferred_C0042b8e0_IsInteractive",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -14296,12 +14296,12 @@
   "cluster": 24,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b8e0 slot 16"
  },
  {
   "addr": "0040e5a0",
   "ghidra_name": "FUN_0040e5a0",
-  "name": "",
+  "name": "inferred_Obj_Kind03Base_DefaultCtor",
   "tier": "game",
   "lines": 9,
   "decompile_ok": true,
@@ -14315,9 +14315,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 24,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "base object ctor with vtable 0042b9c0"
  },
  {
   "addr": "0040e5c0",
@@ -14347,7 +14347,7 @@
  {
   "addr": "0040e6a0",
   "ghidra_name": "FUN_0040e6a0",
-  "name": "",
+  "name": "inferred_C00428038_AnimTick",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -14374,12 +14374,12 @@
   "cluster": 24,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428038 slot 2"
  },
  {
   "addr": "0040e6b0",
   "ghidra_name": "FUN_0040e6b0",
-  "name": "",
+  "name": "inferred_C0042b9c0_Draw",
   "tier": "game",
   "lines": 20,
   "decompile_ok": true,
@@ -14398,7 +14398,7 @@
   "cluster": 24,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b9c0 slot 6"
  },
  {
   "addr": "0040e720",
@@ -14424,7 +14424,7 @@
  {
   "addr": "0040e760",
   "ghidra_name": "FUN_0040e760",
-  "name": "",
+  "name": "inferred_C0042b9f8_Draw",
   "tier": "game",
   "lines": 22,
   "decompile_ok": true,
@@ -14443,7 +14443,7 @@
   "cluster": 25,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b9f8 slot 6"
  },
  {
   "addr": "0040e7e0",
@@ -14471,7 +14471,7 @@
  {
   "addr": "0040e890",
   "ghidra_name": "FUN_0040e890",
-  "name": "",
+  "name": "inferred_C0042ba30_AnimTick",
   "tier": "game",
   "lines": 103,
   "decompile_ok": true,
@@ -14495,12 +14495,12 @@
   "cluster": 25,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042ba30 slot 2"
  },
  {
   "addr": "0040ebd0",
   "ghidra_name": "FUN_0040ebd0",
-  "name": "",
+  "name": "inferred_C0042ba30_OnAttach",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -14521,12 +14521,12 @@
   "cluster": 25,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042ba30 slot 0"
  },
  {
   "addr": "0040ec00",
   "ghidra_name": "FUN_0040ec00",
-  "name": "",
+  "name": "inferred_C0042ba30_Draw",
   "tier": "game",
   "lines": 24,
   "decompile_ok": true,
@@ -14545,7 +14545,7 @@
   "cluster": 25,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042ba30 slot 6"
  },
  {
   "addr": "0040ec90",
@@ -20844,7 +20844,7 @@
  {
   "addr": "0040f670",
   "ghidra_name": "FUN_0040f670",
-  "name": "",
+  "name": "inferred_List_RewindIterator",
   "tier": "game",
   "lines": 12,
   "decompile_ok": true,
@@ -20856,14 +20856,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 27,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "resets a list's iterator (current = head, first flag = 1)"
  },
  {
   "addr": "0040f680",
   "ghidra_name": "FUN_0040f680",
-  "name": "",
+  "name": "inferred_ObjectList_FindByKey",
   "tier": "game",
   "lines": 55,
   "decompile_ok": true,
@@ -20886,9 +20886,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 27,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(key lo, key hi) finds an object in the list by its 64-bit name key at object +0x44; returns 0 when absent"
  },
  {
   "addr": "0040f710",
@@ -20956,7 +20956,7 @@
  {
   "addr": "0040f870",
   "ghidra_name": "FUN_0040f870",
-  "name": "",
+  "name": "inferred_List_Clear",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -20968,9 +20968,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "empties a 2-field-node list"
  },
  {
   "addr": "0040f890",
@@ -21025,7 +21025,7 @@
  {
   "addr": "0040fa10",
   "ghidra_name": "FUN_0040fa10",
-  "name": "",
+  "name": "inferred_ObjectList_InsertByPriorityFront",
   "tier": "game",
   "lines": 82,
   "decompile_ok": true,
@@ -21038,9 +21038,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "like InsertByPriority but inserts before nodes of equal priority"
  },
  {
   "addr": "0040fb20",
@@ -21075,7 +21075,7 @@
  {
   "addr": "0040fbb0",
   "ghidra_name": "FUN_0040fbb0",
-  "name": "",
+  "name": "inferred_ObjectList_AttachAll",
   "tier": "game",
   "lines": 38,
   "decompile_ok": true,
@@ -21089,9 +21089,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "walks the list calling Object_AttachToLevel on each object"
  },
  {
   "addr": "0040fc20",
@@ -21134,7 +21134,7 @@
  {
   "addr": "0040fe20",
   "ghidra_name": "FUN_0040fe20",
-  "name": "",
+  "name": "inferred_ObjectList_Clear",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -21148,9 +21148,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "empties a 3-field-node list (priority lists)"
  },
  {
   "addr": "0040fe40",
@@ -21217,7 +21217,7 @@
  {
   "addr": "0040ffa0",
   "ghidra_name": "FUN_0040ffa0",
-  "name": "",
+  "name": "inferred_Obj_DrawSubtitle",
   "tier": "game",
   "lines": 27,
   "decompile_ok": true,
@@ -21232,14 +21232,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "draws the current phrase text twice (shadow style) at the speaker's position with Display_DrawText, keeping the camera in view"
  },
  {
   "addr": "00410060",
   "ghidra_name": "FUN_00410060",
-  "name": "",
+  "name": "inferred_C0042b060_Slot31",
   "tier": "game",
   "lines": 34,
   "decompile_ok": true,
@@ -21325,7 +21325,7 @@
   "cluster": 29,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b060 slot 31 (kind 5 subtype 16)"
  },
  {
   "addr": "00410130",
@@ -21723,7 +21723,7 @@
  {
   "addr": "004103f0",
   "ghidra_name": "FUN_004103f0",
-  "name": "",
+  "name": "inferred_C0042b060_Slot32",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -21804,7 +21804,7 @@
   "cluster": 30,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b060 slot 32 (kind 5 subtype 16)"
  },
  {
   "addr": "00410400",
@@ -21964,7 +21964,7 @@
  {
   "addr": "004105a0",
   "ghidra_name": "FUN_004105a0",
-  "name": "",
+  "name": "inferred_Display_QueueRow_TypeA",
   "tier": "game",
   "lines": 177,
   "decompile_ok": true,
@@ -21978,12 +21978,12 @@
   "cluster": 30,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "AddSprite helper for image type 1: builds per-scanline entries (177 lines) | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "004108a0",
   "ghidra_name": "FUN_004108a0",
-  "name": "",
+  "name": "inferred_Display_Raster_TypeA",
   "tier": "game",
   "lines": 215,
   "decompile_ok": true,
@@ -21997,12 +21997,12 @@
   "cluster": 30,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "rasterises queued type-A rows (215 lines) | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00410cc0",
   "ghidra_name": "FUN_00410cc0",
-  "name": "",
+  "name": "inferred_Display_QueueRow_TypeB",
   "tier": "game",
   "lines": 173,
   "decompile_ok": true,
@@ -22016,12 +22016,12 @@
   "cluster": 31,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "AddSprite helper for image type 3 | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00410fb0",
   "ghidra_name": "FUN_00410fb0",
-  "name": "",
+  "name": "inferred_Display_Raster_TypeB",
   "tier": "game",
   "lines": 177,
   "decompile_ok": true,
@@ -22035,12 +22035,12 @@
   "cluster": 31,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "rasterises queued type-B rows | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "004112d0",
   "ghidra_name": "FUN_004112d0",
-  "name": "",
+  "name": "inferred_Display_QueueRow_Mask",
   "tier": "game",
   "lines": 159,
   "decompile_ok": true,
@@ -22054,12 +22054,12 @@
   "cluster": 31,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "AddSprite helper writing the second row buffer (+0x674) | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00411580",
   "ghidra_name": "FUN_00411580",
-  "name": "",
+  "name": "inferred_Display_Raster_Mask",
   "tier": "game",
   "lines": 164,
   "decompile_ok": true,
@@ -22073,12 +22073,12 @@
   "cluster": 31,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "rasterises the mask rows | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00411870",
   "ghidra_name": "FUN_00411870",
-  "name": "",
+  "name": "inferred_Display_Ctor",
   "tier": "game",
   "lines": 127,
   "decompile_ok": true,
@@ -22093,14 +22093,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x13a4-byte display constructor performing the whole DirectDraw setup: DirectDrawCreate, cooperative level, display mode, primary and back surfaces; each failure shows a DIRECTDRAW message box and returns the half-built object. Flag +0x67c selects 5-5-5 pixel handling"
  },
  {
   "addr": "00411be0",
   "ghidra_name": "FUN_00411be0",
-  "name": "",
+  "name": "inferred_Display_Dtor",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -22112,14 +22112,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "releases the back surface (+0xc), primary surface (+8) and DirectDraw object (+4, slot 0x4c = RestoreDisplayMode)"
  },
  {
   "addr": "00411c00",
   "ghidra_name": "FUN_00411c00",
-  "name": "",
+  "name": "inferred_Display_IsReady",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -22131,9 +22131,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "returns whether the primary surface pointer (+8) is set (corrected: it is a check, not DirectDraw setup)"
  },
  {
   "addr": "00411c10",
@@ -22179,7 +22179,7 @@
  {
   "addr": "00411c80",
   "ghidra_name": "FUN_00411c80",
-  "name": "",
+  "name": "inferred_Display_DrawText",
   "tier": "game",
   "lines": 127,
   "decompile_ok": true,
@@ -22196,7 +22196,7 @@
   "cluster": 31,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "(font, text, colour/limits, x, y, width, ...) renders a string with the game font into the frame | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00411f20",
@@ -22272,7 +22272,7 @@
  {
   "addr": "00412120",
   "ghidra_name": "FUN_00412120",
-  "name": "",
+  "name": "inferred_Display_RasterRow",
   "tier": "game",
   "lines": 101,
   "decompile_ok": true,
@@ -22290,12 +22290,12 @@
   "cluster": 32,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "rasterises one scanline using the three type rasterisers | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "004123e0",
   "ghidra_name": "FUN_004123e0",
-  "name": "",
+  "name": "inferred_Display_StartEffect",
   "tier": "game",
   "lines": 118,
   "decompile_ok": true,
@@ -22325,12 +22325,12 @@
   "cluster": 32,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "(effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00412640",
   "ghidra_name": "FUN_00412640",
-  "name": "",
+  "name": "inferred_Display_Compose_Background",
   "tier": "game",
   "lines": 282,
   "decompile_ok": true,
@@ -22344,12 +22344,12 @@
   "cluster": 32,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "first stage of Display_Compose (282 lines) | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00412bb0",
   "ghidra_name": "FUN_00412bb0",
-  "name": "",
+  "name": "inferred_Display_ClearAndReset",
   "tier": "game",
   "lines": 34,
   "decompile_ok": true,
@@ -22362,14 +22362,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 32,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "clears surfaces via DirectDraw (slot 0x80/4 and 0x1c Blt) and resets the render queue"
  },
  {
   "addr": "00412c50",
   "ghidra_name": "FUN_00412c50",
-  "name": "",
+  "name": "inferred_Display_Compose_Overlay",
   "tier": "game",
   "lines": 99,
   "decompile_ok": true,
@@ -22383,12 +22383,12 @@
   "cluster": 32,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "later stage of Display_Compose | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00412e10",
   "ghidra_name": "FUN_00412e10",
-  "name": "",
+  "name": "inferred_Display_Compose",
   "tier": "game",
   "lines": 263,
   "decompile_ok": true,
@@ -22408,7 +22408,7 @@
   "cluster": 32,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "004132b0",
@@ -22468,7 +22468,7 @@
  {
   "addr": "004137c0",
   "ghidra_name": "FUN_004137c0",
-  "name": "",
+  "name": "inferred_TextTable_Sort",
   "tier": "game",
   "lines": 67,
   "decompile_ok": true,
@@ -22482,12 +22482,12 @@
   "cluster": 33,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "sorts 16-byte table records by their 64-bit key | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "004138b0",
   "ghidra_name": "FUN_004138b0",
-  "name": "",
+  "name": "inferred_TextTable_Lookup",
   "tier": "game",
   "lines": 47,
   "decompile_ok": true,
@@ -22499,9 +22499,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 33,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(key lo, key hi) binary search in the sorted table; returns the record or 0"
  },
  {
   "addr": "00413940",
@@ -22553,14 +22553,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 33,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended"
  },
  {
   "addr": "004139e0",
   "ghidra_name": "FUN_004139e0",
-  "name": "",
+  "name": "inferred_BusyWait",
   "tier": "game",
   "lines": 18,
   "decompile_ok": true,
@@ -22575,9 +22575,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 33,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(ms) spins on GetTickCount until the time has passed"
  },
  {
   "addr": "00413a10",
@@ -22611,7 +22611,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "adds elapsed GetTickCount delta when below 500 ms (longer gaps are ignored); returns frozen value while frozen"
  },
@@ -22630,7 +22630,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "updates accumulation then freezes at the current value (called at start of each frame)"
  },
@@ -22649,7 +22649,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "window deactivated: stop accumulating"
  },
@@ -22668,7 +22668,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "window activated: re-stamp last tick, resume"
  },
@@ -22687,14 +22687,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "clears frozen flag (end of frame)"
  },
  {
   "addr": "00413ac0",
   "ghidra_name": "FUN_00413ac0",
-  "name": "",
+  "name": "inferred_RandomRange7",
   "tier": "game",
   "lines": 11,
   "decompile_ok": true,
@@ -22708,9 +22708,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "second time-driven random function: 7 permuted bits of GetTickCount scaled to (max-min+1), plus min"
  },
  {
   "addr": "00413b00",
@@ -22731,7 +22731,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded"
  },
@@ -22766,7 +22766,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "builds CD, input, sound, video objects; error dialogs"
  },
@@ -22838,7 +22838,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end"
  },
@@ -22866,14 +22866,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "deletes display, sound, mouse, keyboard, archive, memory pools, clock in that order"
  },
  {
   "addr": "00414560",
   "ghidra_name": "FUN_00414560",
-  "name": "",
+  "name": "inferred_Game_StartIntroSequence",
   "tier": "game",
   "lines": 25,
   "decompile_ok": true,
@@ -22891,14 +22891,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "enters the stage level with Jim, shows him, and starts a dialogue entry by key"
  },
  {
   "addr": "004145f0",
   "ghidra_name": "FUN_004145f0",
-  "name": "",
+  "name": "inferred_C0042bc40_Update2",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -22917,7 +22917,7 @@
   "cluster": 35,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042bc40 slot 5"
  },
  {
   "addr": "00414600",
@@ -22986,7 +22986,7 @@
  {
   "addr": "004146b0",
   "ghidra_name": "FUN_004146b0",
-  "name": "",
+  "name": "inferred_C0042bc78_OnAttach",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -23006,7 +23006,7 @@
   "cluster": 35,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042bc78 slot 0"
  },
  {
   "addr": "00414740",
@@ -23053,7 +23053,7 @@
  {
   "addr": "00414a90",
   "ghidra_name": "FUN_00414a90",
-  "name": "",
+  "name": "inferred_C0042bcb0_OnAttach",
   "tier": "game",
   "lines": 92,
   "decompile_ok": true,
@@ -23074,7 +23074,7 @@
   "cluster": 35,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042bcb0 slot 0"
  },
  {
   "addr": "00414be0",
@@ -23146,7 +23146,7 @@
  {
   "addr": "00414d50",
   "ghidra_name": "FUN_00414d50",
-  "name": "",
+  "name": "inferred_C0042abb0_Slot15",
   "tier": "game",
   "lines": 18,
   "decompile_ok": true,
@@ -23203,12 +23203,12 @@
   "cluster": 35,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042abb0 slot 15 (kind 6 subtype 1)"
  },
  {
   "addr": "00414dc0",
   "ghidra_name": "FUN_00414dc0",
-  "name": "",
+  "name": "inferred_C0042abb0_Slot28",
   "tier": "game",
   "lines": 12,
   "decompile_ok": true,
@@ -23255,7 +23255,7 @@
   "cluster": 35,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042abb0 slot 28 (kind 6 subtype 1)"
  },
  {
   "addr": "00414e00",
@@ -23345,7 +23345,7 @@
  {
   "addr": "00415120",
   "ghidra_name": "FUN_00415120",
-  "name": "",
+  "name": "inferred_C0042bdd0_IsHitter",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -23362,12 +23362,12 @@
   "cluster": 36,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042bdd0 slot 11"
  },
  {
   "addr": "00415130",
   "ghidra_name": "FUN_00415130",
-  "name": "",
+  "name": "inferred_C0042bdd0_OnTouched",
   "tier": "game",
   "lines": 43,
   "decompile_ok": true,
@@ -23384,12 +23384,12 @@
   "cluster": 36,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042bdd0 slot 12"
  },
  {
   "addr": "00415200",
   "ghidra_name": "FUN_00415200",
-  "name": "",
+  "name": "inferred_List_InsertAtHead",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -23401,9 +23401,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 36,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "allocates a node and links it at the list head"
  },
  {
   "addr": "00415230",
@@ -23450,7 +23450,7 @@
  {
   "addr": "00415290",
   "ghidra_name": "FUN_00415290",
-  "name": "",
+  "name": "inferred_C0042be40_OnAttach",
   "tier": "game",
   "lines": 27,
   "decompile_ok": true,
@@ -23471,12 +23471,12 @@
   "cluster": 36,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042be40 slot 0"
  },
  {
   "addr": "00415350",
   "ghidra_name": "FUN_00415350",
-  "name": "",
+  "name": "inferred_C0042be40_IsInteractive",
   "tier": "game",
   "lines": 40,
   "decompile_ok": true,
@@ -23496,12 +23496,12 @@
   "cluster": 36,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042be40 slot 16"
  },
  {
   "addr": "00415440",
   "ghidra_name": "FUN_00415440",
-  "name": "",
+  "name": "inferred_C0042be40_SetVerbAndClick",
   "tier": "game",
   "lines": 17,
   "decompile_ok": true,
@@ -23520,12 +23520,12 @@
   "cluster": 36,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042be40 slot 14"
  },
  {
   "addr": "00415490",
   "ghidra_name": "FUN_00415490",
-  "name": "",
+  "name": "inferred_C0042be40_ShowHoverText",
   "tier": "game",
   "lines": 85,
   "decompile_ok": true,
@@ -23544,12 +23544,12 @@
   "cluster": 37,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042be40 slot 17"
  },
  {
   "addr": "00415640",
   "ghidra_name": "FUN_00415640",
-  "name": "",
+  "name": "inferred_C0042be40_ClearHoverText",
   "tier": "game",
   "lines": 64,
   "decompile_ok": true,
@@ -23568,7 +23568,7 @@
   "cluster": 37,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042be40 slot 18"
  },
  {
   "addr": "00415770",
@@ -23594,7 +23594,7 @@
  {
   "addr": "004157b0",
   "ghidra_name": "FUN_004157b0",
-  "name": "",
+  "name": "inferred_C0042b9c0_OnAttach",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -23621,12 +23621,12 @@
   "cluster": 37,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b9c0 slot 0"
  },
  {
   "addr": "004157c0",
   "ghidra_name": "FUN_004157c0",
-  "name": "",
+  "name": "inferred_C0042beb0_SetVerbAndClick",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -23643,7 +23643,7 @@
   "cluster": 37,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042beb0 slot 14"
  },
  {
   "addr": "004157d0",
@@ -23667,7 +23667,7 @@
    }
   ],
   "cluster": 37,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "WM_ACTIVATEAPP (0x1c): clock suspend/resume and restores the two display surfaces via vtable +0x6c; MM_MCINOTIFY (0x3b9) success: CD audio notify handler 00403dc0"
  },
@@ -23689,7 +23689,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 37,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "RegisterClass + CreateWindowEx 640x480 (style 0x90000000, ex 8), ShowWindow, ShowCursor(0), sets init flags, calls InitSubsystems"
  },
@@ -23715,7 +23715,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 37,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "args: none=CD check+SETUP.EXE; '_$_$_ '+byte=game; 'Uninstall'"
  },
@@ -23736,7 +23736,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 38,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "scans drives for label TESORO, checks SETUP.EXE"
  },
@@ -23755,7 +23755,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 38,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "sets globals 00442208 and 0044221c to 1"
  },
@@ -23930,14 +23930,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 38,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "packs up to 12 chars of a name, 5 bits each (chars below '5' get +11), into a 64-bit key; used with level object lookup"
  },
  {
   "addr": "00415cb0",
   "ghidra_name": "FUN_00415cb0",
-  "name": "",
+  "name": "inferred_NameHash64_Decode",
   "tier": "game",
   "lines": 55,
   "decompile_ok": true,
@@ -23950,14 +23950,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 38,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(lo, hi, buffer) rebuilds a readable name from a 64-bit key; used for error text"
  },
  {
   "addr": "00415d20",
   "ghidra_name": "FUN_00415d20",
-  "name": "",
+  "name": "inferred_C0042af70_Verb0",
   "tier": "game",
   "lines": 27,
   "decompile_ok": true,
@@ -23979,12 +23979,12 @@
   "cluster": 38,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042af70 slot 20 (kind 6 subtype 9)"
  },
  {
   "addr": "00415d90",
   "ghidra_name": "FUN_00415d90",
-  "name": "",
+  "name": "inferred_C00429410_UseItem",
   "tier": "game",
   "lines": 25,
   "decompile_ok": true,
@@ -24008,12 +24008,12 @@
   "cluster": 38,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429410 slot 27 (kind 20 subtype 11)"
  },
  {
   "addr": "00415e30",
   "ghidra_name": "FUN_00415e30",
-  "name": "",
+  "name": "inferred_C00429100_UseItem",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -24035,12 +24035,12 @@
   "cluster": 38,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429100 slot 27 (kind 20 subtype 19)"
  },
  {
   "addr": "00415e90",
   "ghidra_name": "FUN_00415e90",
-  "name": "",
+  "name": "inferred_C0042a050_Verb1",
   "tier": "game",
   "lines": 24,
   "decompile_ok": true,
@@ -24062,12 +24062,12 @@
   "cluster": 38,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a050 slot 21 (kind 17 subtype 0)"
  },
  {
   "addr": "00415f10",
   "ghidra_name": "FUN_00415f10",
-  "name": "",
+  "name": "inferred_C0042a050_Verb3",
   "tier": "game",
   "lines": 24,
   "decompile_ok": true,
@@ -24089,12 +24089,12 @@
   "cluster": 38,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a050 slot 22 (kind 17 subtype 0)"
  },
  {
   "addr": "00415f90",
   "ghidra_name": "FUN_00415f90",
-  "name": "",
+  "name": "inferred_C0042aca0_Verb0",
   "tier": "game",
   "lines": 32,
   "decompile_ok": true,
@@ -24117,12 +24117,12 @@
   "cluster": 38,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042aca0 slot 20 (kind 6 subtype 3)"
  },
  {
   "addr": "00416030",
   "ghidra_name": "FUN_00416030",
-  "name": "",
+  "name": "inferred_C0042aca0_Slot28",
   "tier": "game",
   "lines": 42,
   "decompile_ok": true,
@@ -24146,12 +24146,12 @@
   "cluster": 38,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042aca0 slot 28 (kind 6 subtype 3)"
  },
  {
   "addr": "00416170",
   "ghidra_name": "FUN_00416170",
-  "name": "",
+  "name": "inferred_C00429950_Verb4",
   "tier": "game",
   "lines": 30,
   "decompile_ok": true,
@@ -24172,12 +24172,12 @@
   "cluster": 38,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429950 slot 24 (kind 17 subtype 16)"
  },
  {
   "addr": "00416220",
   "ghidra_name": "FUN_00416220",
-  "name": "",
+  "name": "inferred_C00429950_UseItem",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -24199,12 +24199,12 @@
   "cluster": 39,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429950 slot 27 (kind 17 subtype 16)"
  },
  {
   "addr": "00416280",
   "ghidra_name": "FUN_00416280",
-  "name": "",
+  "name": "inferred_C00429db0_Verb0",
   "tier": "game",
   "lines": 24,
   "decompile_ok": true,
@@ -24226,12 +24226,12 @@
   "cluster": 39,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429db0 slot 20 (kind 17 subtype 6)"
  },
  {
   "addr": "00416300",
   "ghidra_name": "FUN_00416300",
-  "name": "",
+  "name": "inferred_C004289d8_Slot28",
   "tier": "game",
   "lines": 86,
   "decompile_ok": true,
@@ -24256,12 +24256,12 @@
   "cluster": 39,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004289d8 slot 28"
  },
  {
   "addr": "00416540",
   "ghidra_name": "FUN_00416540",
-  "name": "",
+  "name": "inferred_C0042b5b0_Verb2",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -24282,12 +24282,12 @@
   "cluster": 39,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b5b0 slot 23 (kind 5 subtype 7)"
  },
  {
   "addr": "00416590",
   "ghidra_name": "FUN_00416590",
-  "name": "",
+  "name": "inferred_C0042b5b0_UseItem",
   "tier": "game",
   "lines": 41,
   "decompile_ok": true,
@@ -24310,12 +24310,12 @@
   "cluster": 39,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b5b0 slot 27 (kind 5 subtype 7)"
  },
  {
   "addr": "00416680",
   "ghidra_name": "FUN_00416680",
-  "name": "",
+  "name": "inferred_C0042b528_UseItem",
   "tier": "game",
   "lines": 31,
   "decompile_ok": true,
@@ -24337,12 +24337,12 @@
   "cluster": 39,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b528 slot 27 (kind 5 subtype 8)"
  },
  {
   "addr": "00416700",
   "ghidra_name": "FUN_00416700",
-  "name": "",
+  "name": "inferred_C0042b528_Verb2",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -24363,12 +24363,12 @@
   "cluster": 39,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b528 slot 23 (kind 5 subtype 8)"
  },
  {
   "addr": "00416750",
   "ghidra_name": "FUN_00416750",
-  "name": "",
+  "name": "inferred_C0042b528_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -24389,12 +24389,12 @@
   "cluster": 39,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b528 slot 21 (kind 5 subtype 8)"
  },
  {
   "addr": "004167a0",
   "ghidra_name": "FUN_004167a0",
-  "name": "",
+  "name": "inferred_C00429b10_UseItem",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -24416,12 +24416,12 @@
   "cluster": 39,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429b10 slot 27 (kind 17 subtype 11)"
  },
  {
   "addr": "00416800",
   "ghidra_name": "FUN_00416800",
-  "name": "",
+  "name": "inferred_C0042bbd0_RunVerb",
   "tier": "game",
   "lines": 43,
   "decompile_ok": true,
@@ -24445,12 +24445,12 @@
   "cluster": 39,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042bbd0 slot 13"
  },
  {
   "addr": "00416910",
   "ghidra_name": "FUN_00416910",
-  "name": "",
+  "name": "inferred_C0042b6c0_UseItem",
   "tier": "game",
   "lines": 31,
   "decompile_ok": true,
@@ -24472,12 +24472,12 @@
   "cluster": 39,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b6c0 slot 27 (kind 5 subtype 5)"
  },
  {
   "addr": "004169a0",
   "ghidra_name": "FUN_004169a0",
-  "name": "",
+  "name": "inferred_C004288e8_Slot28",
   "tier": "game",
   "lines": 33,
   "decompile_ok": true,
@@ -24497,12 +24497,12 @@
   "cluster": 39,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004288e8 slot 28"
  },
  {
   "addr": "00416a20",
   "ghidra_name": "FUN_00416a20",
-  "name": "",
+  "name": "inferred_C0042b280_Verb2",
   "tier": "game",
   "lines": 26,
   "decompile_ok": true,
@@ -24524,12 +24524,12 @@
   "cluster": 40,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b280 slot 23 (kind 5 subtype 0)"
  },
  {
   "addr": "00416ac0",
   "ghidra_name": "FUN_00416ac0",
-  "name": "",
+  "name": "inferred_C0042b280_UseItem",
   "tier": "game",
   "lines": 27,
   "decompile_ok": true,
@@ -24552,12 +24552,12 @@
   "cluster": 40,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b280 slot 27 (kind 5 subtype 0)"
  },
  {
   "addr": "00416b50",
   "ghidra_name": "FUN_00416b50",
-  "name": "",
+  "name": "inferred_C004280f0_Slot28",
   "tier": "game",
   "lines": 15,
   "decompile_ok": true,
@@ -24577,12 +24577,12 @@
   "cluster": 40,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004280f0 slot 28"
  },
  {
   "addr": "00416b80",
   "ghidra_name": "FUN_00416b80",
-  "name": "",
+  "name": "inferred_C00428258_Slot28",
   "tier": "game",
   "lines": 45,
   "decompile_ok": true,
@@ -24604,12 +24604,12 @@
   "cluster": 40,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428258 slot 28"
  },
  {
   "addr": "00416c80",
   "ghidra_name": "FUN_00416c80",
-  "name": "",
+  "name": "inferred_C004281e0_Slot28",
   "tier": "game",
   "lines": 71,
   "decompile_ok": true,
@@ -24632,12 +24632,12 @@
   "cluster": 40,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004281e0 slot 28"
  },
  {
   "addr": "00416e30",
   "ghidra_name": "FUN_00416e30",
-  "name": "",
+  "name": "inferred_C00428d10_UseItem",
   "tier": "game",
   "lines": 35,
   "decompile_ok": true,
@@ -24658,12 +24658,12 @@
   "cluster": 40,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428d10 slot 27 (kind 20 subtype 28)"
  },
  {
   "addr": "00416ee0",
   "ghidra_name": "FUN_00416ee0",
-  "name": "",
+  "name": "inferred_C0042a600_UseItem",
   "tier": "game",
   "lines": 106,
   "decompile_ok": true,
@@ -24685,12 +24685,12 @@
   "cluster": 40,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a600 slot 27 (kind 13 subtype 16)"
  },
  {
   "addr": "00417180",
   "ghidra_name": "FUN_00417180",
-  "name": "",
+  "name": "inferred_C0042a520_Verb4",
   "tier": "game",
   "lines": 34,
   "decompile_ok": true,
@@ -24712,12 +24712,12 @@
   "cluster": 40,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a520 slot 24 (kind 13 subtype 9)"
  },
  {
   "addr": "00417250",
   "ghidra_name": "FUN_00417250",
-  "name": "",
+  "name": "inferred_C0042a440_UseItem",
   "tier": "game",
   "lines": 47,
   "decompile_ok": true,
@@ -24740,12 +24740,12 @@
   "cluster": 40,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a440 slot 27 (kind 13 subtype 28)"
  },
  {
   "addr": "00417360",
   "ghidra_name": "FUN_00417360",
-  "name": "",
+  "name": "inferred_C0042a360_UseItem",
   "tier": "game",
   "lines": 22,
   "decompile_ok": true,
@@ -24765,12 +24765,12 @@
   "cluster": 41,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a360 slot 27 (kind 13 subtype 36)"
  },
  {
   "addr": "004173e0",
   "ghidra_name": "FUN_004173e0",
-  "name": "",
+  "name": "inferred_C0042a2f0_UseItem",
   "tier": "game",
   "lines": 35,
   "decompile_ok": true,
@@ -24792,12 +24792,12 @@
   "cluster": 41,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a2f0 slot 27 (kind 13 subtype 37)"
  },
  {
   "addr": "004174b0",
   "ghidra_name": "FUN_004174b0",
-  "name": "",
+  "name": "inferred_C0042a210_UseItem",
   "tier": "game",
   "lines": 22,
   "decompile_ok": true,
@@ -24817,12 +24817,12 @@
   "cluster": 41,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a210 slot 27 (kind 13 subtype 33)"
  },
  {
   "addr": "00417530",
   "ghidra_name": "FUN_00417530",
-  "name": "",
+  "name": "inferred_C0042a130_UseItem",
   "tier": "game",
   "lines": 22,
   "decompile_ok": true,
@@ -24842,7 +24842,7 @@
   "cluster": 41,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a130 slot 27 (kind 13 subtype 42)"
  },
  {
   "addr": "004175b0",
@@ -24868,7 +24868,7 @@
  {
   "addr": "004175f0",
   "ghidra_name": "FUN_004175f0",
-  "name": "",
+  "name": "inferred_C0042bf20_Verb1",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -24893,12 +24893,12 @@
   "cluster": 41,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042bf20 slot 21"
  },
  {
   "addr": "00417640",
   "ghidra_name": "FUN_00417640",
-  "name": "",
+  "name": "inferred_C0042afe8_Slot28",
   "tier": "game",
   "lines": 44,
   "decompile_ok": true,
@@ -24919,7 +24919,7 @@
   "cluster": 41,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)"
  },
  {
   "addr": "00417720",
@@ -24948,7 +24948,7 @@
  {
   "addr": "004178b0",
   "ghidra_name": "FUN_004178b0",
-  "name": "",
+  "name": "inferred_C0042bf90_SetVerbAndClick",
   "tier": "game",
   "lines": 37,
   "decompile_ok": true,
@@ -24972,12 +24972,12 @@
   "cluster": 41,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042bf90 slot 14"
  },
  {
   "addr": "004179b0",
   "ghidra_name": "FUN_004179b0",
-  "name": "",
+  "name": "inferred_C0042bc08_RunVerb",
   "tier": "game",
   "lines": 41,
   "decompile_ok": true,
@@ -24997,7 +24997,7 @@
   "cluster": 42,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042bc08 slot 13"
  },
  {
   "addr": "00417ad0",
@@ -25594,7 +25594,7 @@
  {
   "addr": "00417b40",
   "ghidra_name": "FUN_00417b40",
-  "name": "",
+  "name": "inferred_C0042c000_SetVerbAndClick",
   "tier": "game",
   "lines": 49,
   "decompile_ok": true,
@@ -25619,12 +25619,12 @@
   "cluster": 42,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042c000 slot 14"
  },
  {
   "addr": "00417c80",
   "ghidra_name": "FUN_00417c80",
-  "name": "",
+  "name": "inferred_C004282d0_Slot28",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -25643,12 +25643,12 @@
   "cluster": 42,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004282d0 slot 28"
  },
  {
   "addr": "00417ca0",
   "ghidra_name": "FUN_00417ca0",
-  "name": "",
+  "name": "inferred_C004295d0_UseItem",
   "tier": "game",
   "lines": 21,
   "decompile_ok": true,
@@ -25669,12 +25669,12 @@
   "cluster": 42,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004295d0 slot 27 (kind 20 subtype 7)"
  },
  {
   "addr": "00417d00",
   "ghidra_name": "FUN_00417d00",
-  "name": "",
+  "name": "inferred_C00429560_UseItem",
   "tier": "game",
   "lines": 31,
   "decompile_ok": true,
@@ -25695,12 +25695,12 @@
   "cluster": 42,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429560 slot 27 (kind 20 subtype 8)"
  },
  {
   "addr": "00417dd0",
   "ghidra_name": "thunk_FUN_00414c40",
-  "name": "",
+  "name": "inferred_C0042ae08_Verb0",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -25719,12 +25719,12 @@
   "cluster": 43,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042ae08 slot 20 (kind 6 subtype 6)"
  },
  {
   "addr": "00417de0",
   "ghidra_name": "FUN_00417de0",
-  "name": "",
+  "name": "inferred_C004298e0_UseItem",
   "tier": "game",
   "lines": 32,
   "decompile_ok": true,
@@ -25747,12 +25747,12 @@
   "cluster": 43,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004298e0 slot 27 (kind 20 subtype 0)"
  },
  {
   "addr": "00417e90",
   "ghidra_name": "FUN_00417e90",
-  "name": "",
+  "name": "inferred_C00429800_UseItem",
   "tier": "game",
   "lines": 69,
   "decompile_ok": true,
@@ -25775,12 +25775,12 @@
   "cluster": 43,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429800 slot 27 (kind 20 subtype 2)"
  },
  {
   "addr": "00418050",
   "ghidra_name": "FUN_00418050",
-  "name": "",
+  "name": "inferred_C0042ad90_Verb0",
   "tier": "game",
   "lines": 24,
   "decompile_ok": true,
@@ -25802,12 +25802,12 @@
   "cluster": 43,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042ad90 slot 20 (kind 6 subtype 5)"
  },
  {
   "addr": "004180b0",
   "ghidra_name": "FUN_004180b0",
-  "name": "",
+  "name": "inferred_C00429870_UseItem",
   "tier": "game",
   "lines": 21,
   "decompile_ok": true,
@@ -25828,12 +25828,12 @@
   "cluster": 43,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429870 slot 27 (kind 20 subtype 1)"
  },
  {
   "addr": "00418110",
   "ghidra_name": "FUN_00418110",
-  "name": "",
+  "name": "inferred_C004292c0_UseItem",
   "tier": "game",
   "lines": 31,
   "decompile_ok": true,
@@ -25854,12 +25854,12 @@
   "cluster": 43,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004292c0 slot 27 (kind 20 subtype 16)"
  },
  {
   "addr": "004181e0",
   "ghidra_name": "FUN_004181e0",
-  "name": "",
+  "name": "inferred_C0042b170_UseItem",
   "tier": "game",
   "lines": 35,
   "decompile_ok": true,
@@ -25882,12 +25882,12 @@
   "cluster": 43,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b170 slot 27 (kind 5 subtype 14)"
  },
  {
   "addr": "004182c0",
   "ghidra_name": "FUN_004182c0",
-  "name": "",
+  "name": "inferred_C0042b1f8_UseItem",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -25909,12 +25909,12 @@
   "cluster": 43,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b1f8 slot 27 (kind 5 subtype 13)"
  },
  {
   "addr": "00418320",
   "ghidra_name": "FUN_00418320",
-  "name": "",
+  "name": "inferred_C00429250_UseItem",
   "tier": "game",
   "lines": 33,
   "decompile_ok": true,
@@ -25937,12 +25937,12 @@
   "cluster": 43,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429250 slot 27 (kind 20 subtype 14)"
  },
  {
   "addr": "004183e0",
   "ghidra_name": "FUN_004183e0",
-  "name": "",
+  "name": "inferred_C0042b1f8_Verb2",
   "tier": "game",
   "lines": 40,
   "decompile_ok": true,
@@ -25964,12 +25964,12 @@
   "cluster": 43,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b1f8 slot 23 (kind 5 subtype 13)"
  },
  {
   "addr": "004184e0",
   "ghidra_name": "FUN_004184e0",
-  "name": "",
+  "name": "inferred_C0042b1f8_Verb1",
   "tier": "game",
   "lines": 25,
   "decompile_ok": true,
@@ -25991,12 +25991,12 @@
   "cluster": 43,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b1f8 slot 21 (kind 5 subtype 13)"
  },
  {
   "addr": "00418560",
   "ghidra_name": "FUN_00418560",
-  "name": "",
+  "name": "inferred_C0042ac28_Verb0",
   "tier": "game",
   "lines": 27,
   "decompile_ok": true,
@@ -26018,12 +26018,12 @@
   "cluster": 43,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042ac28 slot 20 (kind 6 subtype 2)"
  },
  {
   "addr": "004185c0",
   "ghidra_name": "FUN_004185c0",
-  "name": "",
+  "name": "inferred_C0042b4a0_Verb2",
   "tier": "game",
   "lines": 34,
   "decompile_ok": true,
@@ -26045,12 +26045,12 @@
   "cluster": 44,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b4a0 slot 23 (kind 5 subtype 1)"
  },
  {
   "addr": "00418670",
   "ghidra_name": "FUN_00418670",
-  "name": "",
+  "name": "inferred_C0042b4a0_UseItem",
   "tier": "game",
   "lines": 54,
   "decompile_ok": true,
@@ -26073,12 +26073,12 @@
   "cluster": 44,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b4a0 slot 27 (kind 5 subtype 1)"
  },
  {
   "addr": "00418780",
   "ghidra_name": "FUN_00418780",
-  "name": "",
+  "name": "inferred_C00429020_UseItem",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -26100,12 +26100,12 @@
   "cluster": 44,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00429020 slot 27 (kind 20 subtype 21)"
  },
  {
   "addr": "004187e0",
   "ghidra_name": "FUN_004187e0",
-  "name": "",
+  "name": "inferred_C0042b308_Verb2",
   "tier": "game",
   "lines": 25,
   "decompile_ok": true,
@@ -26127,12 +26127,12 @@
   "cluster": 44,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b308 slot 23 (kind 5 subtype 2)"
  },
  {
   "addr": "00418860",
   "ghidra_name": "FUN_00418860",
-  "name": "",
+  "name": "inferred_C0042b308_UseItem",
   "tier": "game",
   "lines": 50,
   "decompile_ok": true,
@@ -26154,12 +26154,12 @@
   "cluster": 44,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b308 slot 27 (kind 5 subtype 2)"
  },
  {
   "addr": "00418990",
   "ghidra_name": "FUN_00418990",
-  "name": "",
+  "name": "inferred_C0042b418_Verb2",
   "tier": "game",
   "lines": 38,
   "decompile_ok": true,
@@ -26181,12 +26181,12 @@
   "cluster": 44,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b418 slot 23 (kind 5 subtype 4)"
  },
  {
   "addr": "00418aa0",
   "ghidra_name": "FUN_00418aa0",
-  "name": "",
+  "name": "inferred_C0042b418_UseItem",
   "tier": "game",
   "lines": 44,
   "decompile_ok": true,
@@ -26207,12 +26207,12 @@
   "cluster": 44,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b418 slot 27 (kind 5 subtype 4)"
  },
  {
   "addr": "00418b80",
   "ghidra_name": "FUN_00418b80",
-  "name": "",
+  "name": "inferred_C0042abb0_Verb0",
   "tier": "game",
   "lines": 34,
   "decompile_ok": true,
@@ -26235,12 +26235,12 @@
   "cluster": 44,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042abb0 slot 20 (kind 6 subtype 1)"
  },
  {
   "addr": "00418c30",
   "ghidra_name": "FUN_00418c30",
-  "name": "",
+  "name": "inferred_C0042b390_Draw",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -26259,12 +26259,12 @@
   "cluster": 45,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b390 slot 6 (kind 5 subtype 3)"
  },
  {
   "addr": "00418c50",
   "ghidra_name": "FUN_00418c50",
-  "name": "",
+  "name": "inferred_C0042b390_Slot30",
   "tier": "game",
   "lines": 16,
   "decompile_ok": true,
@@ -26286,12 +26286,12 @@
   "cluster": 45,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b390 slot 30 (kind 5 subtype 3)"
  },
  {
   "addr": "00418c80",
   "ghidra_name": "FUN_00418c80",
-  "name": "",
+  "name": "inferred_C0042b390_Slot28",
   "tier": "game",
   "lines": 16,
   "decompile_ok": true,
@@ -26313,12 +26313,12 @@
   "cluster": 45,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b390 slot 28 (kind 5 subtype 3)"
  },
  {
   "addr": "00418cb0",
   "ghidra_name": "FUN_00418cb0",
-  "name": "",
+  "name": "inferred_C0042a750_UseItem",
   "tier": "game",
   "lines": 30,
   "decompile_ok": true,
@@ -26339,12 +26339,12 @@
   "cluster": 45,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042a750 slot 27 (kind 12 subtype 8)"
  },
  {
   "addr": "00418d20",
   "ghidra_name": "FUN_00418d20",
-  "name": "",
+  "name": "inferred_Connect4_ScoreMove",
   "tier": "game",
   "lines": 76,
   "decompile_ok": true,
@@ -26359,12 +26359,12 @@
   "cluster": 45,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "scores a move on a 7-column board (columns hold up to 7 pieces, lines of 4): hypothesis for a board mini-game | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00418e90",
   "ghidra_name": "FUN_00418e90",
-  "name": "",
+  "name": "inferred_BoardGame_BlinkUpdate",
   "tier": "game",
   "lines": 97,
   "decompile_ok": true,
@@ -26385,12 +26385,12 @@
   "cluster": 45,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "toggles a blink flag every 200 ms of game time and updates board objects; hypothesis | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "00419050",
   "ghidra_name": "FUN_00419050",
-  "name": "",
+  "name": "inferred_Connect4_FindBestMoves",
   "tier": "game",
   "lines": 74,
   "decompile_ok": true,
@@ -26407,12 +26407,12 @@
   "cluster": 45,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "tries each non-full column, collects the best-scoring columns | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "004191c0",
   "ghidra_name": "FUN_004191c0",
-  "name": "",
+  "name": "inferred_Connect4_ChooseMove",
   "tier": "game",
   "lines": 46,
   "decompile_ok": true,
@@ -26429,7 +26429,7 @@
   "cluster": 46,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "picks a column (checks for immediate win/loss first, then best-scoring, using RandomRange to break ties) | name from call sites and a skim; body not yet read"
  },
  {
   "addr": "004192c0",
@@ -26456,7 +26456,7 @@
  {
   "addr": "00419340",
   "ghidra_name": "FUN_00419340",
-  "name": "",
+  "name": "inferred_C0042c070_SetVerbAndClick",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -26476,12 +26476,12 @@
   "cluster": 46,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042c070 slot 14"
  },
  {
   "addr": "004193b0",
   "ghidra_name": "FUN_004193b0",
-  "name": "",
+  "name": "inferred_C00428438_Slot28",
   "tier": "game",
   "lines": 69,
   "decompile_ok": true,
@@ -26503,12 +26503,12 @@
   "cluster": 46,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428438 slot 28"
  },
  {
   "addr": "00419530",
   "ghidra_name": "FUN_00419530",
-  "name": "",
+  "name": "inferred_C00428708_Slot28",
   "tier": "game",
   "lines": 43,
   "decompile_ok": true,
@@ -26531,12 +26531,12 @@
   "cluster": 46,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428708 slot 28"
  },
  {
   "addr": "00419620",
   "ghidra_name": "FUN_00419620",
-  "name": "",
+  "name": "inferred_C0042b060_Verb2",
   "tier": "game",
   "lines": 29,
   "decompile_ok": true,
@@ -26558,12 +26558,12 @@
   "cluster": 46,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b060 slot 23 (kind 5 subtype 16)"
  },
  {
   "addr": "004196c0",
   "ghidra_name": "FUN_004196c0",
-  "name": "",
+  "name": "inferred_C0042b0e8_Verb2",
   "tier": "game",
   "lines": 30,
   "decompile_ok": true,
@@ -26585,12 +26585,12 @@
   "cluster": 46,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 0042b0e8 slot 23 (kind 5 subtype 15)"
  },
  {
   "addr": "004197a0",
   "ghidra_name": "FUN_004197a0",
-  "name": "",
+  "name": "inferred_C00428a50_Slot28",
   "tier": "game",
   "lines": 51,
   "decompile_ok": true,
@@ -26614,12 +26614,12 @@
   "cluster": 46,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428a50 slot 28"
  },
  {
   "addr": "004198d0",
   "ghidra_name": "FUN_004198d0",
-  "name": "",
+  "name": "inferred_C00428960_Slot28",
   "tier": "game",
   "lines": 37,
   "decompile_ok": true,
@@ -26641,12 +26641,12 @@
   "cluster": 46,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428960 slot 28"
  },
  {
   "addr": "004199a0",
   "ghidra_name": "FUN_004199a0",
-  "name": "",
+  "name": "inferred_C00428870_Slot28",
   "tier": "game",
   "lines": 21,
   "decompile_ok": true,
@@ -26667,12 +26667,12 @@
   "cluster": 46,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428870 slot 28"
  },
  {
   "addr": "00419a10",
   "ghidra_name": "FUN_00419a10",
-  "name": "",
+  "name": "inferred_C004287f8_Slot28",
   "tier": "game",
   "lines": 31,
   "decompile_ok": true,
@@ -26696,12 +26696,12 @@
   "cluster": 46,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004287f8 slot 28"
  },
  {
   "addr": "00419ac0",
   "ghidra_name": "FUN_00419ac0",
-  "name": "",
+  "name": "inferred_C00428780_Slot28",
   "tier": "game",
   "lines": 20,
   "decompile_ok": true,
@@ -26723,12 +26723,12 @@
   "cluster": 46,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428780 slot 28"
  },
  {
   "addr": "00419b30",
   "ghidra_name": "FUN_00419b30",
-  "name": "",
+  "name": "inferred_C00428690_Slot28",
   "tier": "game",
   "lines": 17,
   "decompile_ok": true,
@@ -26749,12 +26749,12 @@
   "cluster": 47,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428690 slot 28"
  },
  {
   "addr": "00419b90",
   "ghidra_name": "FUN_00419b90",
-  "name": "",
+  "name": "inferred_C00428528_Slot28",
   "tier": "game",
   "lines": 68,
   "decompile_ok": true,
@@ -26776,12 +26776,12 @@
   "cluster": 47,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428528 slot 28"
  },
  {
   "addr": "00419cf0",
   "ghidra_name": "FUN_00419cf0",
-  "name": "",
+  "name": "inferred_C004283c0_Slot28",
   "tier": "game",
   "lines": 16,
   "decompile_ok": true,
@@ -26802,12 +26802,12 @@
   "cluster": 47,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 004283c0 slot 28"
  },
  {
   "addr": "00419d40",
   "ghidra_name": "FUN_00419d40",
-  "name": "",
+  "name": "inferred_C00428348_Slot28",
   "tier": "game",
   "lines": 16,
   "decompile_ok": true,
@@ -26828,12 +26828,12 @@
   "cluster": 47,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428348 slot 28"
  },
  {
   "addr": "00419d90",
   "ghidra_name": "FUN_00419d90",
-  "name": "",
+  "name": "inferred_C00428618_Slot28",
   "tier": "game",
   "lines": 74,
   "decompile_ok": true,
@@ -26856,7 +26856,7 @@
   "cluster": 47,
   "status": "untouched",
   "engine": "",
-  "notes": ""
+  "notes": "unread; first seen in vtable 00428618 slot 28"
  },
  {
   "addr": "00419f10",
@@ -27911,7 +27911,7 @@
  {
   "addr": "0041c3b0",
   "ghidra_name": "FUN_0041c3b0",
-  "name": "inferred__stat",
+  "name": "inferred__execl",
   "tier": "runtime",
   "lines": 8,
   "decompile_ok": true,
@@ -27927,7 +27927,7 @@
   "cluster": null,
   "status": "replaced",
   "engine": "",
-  "notes": "path split on \\ / :, uses find"
+  "notes": "exec-family wrapper (path, args...): passes the argument list and a null environment to 00420a60, which tries .exe/.com/.bat variants and finally CreateProcessA (00424620). First labelled _stat in error; corrected 28 Oct 2026. Used by FindCdAndSetup to launch SETUP.EXE"
  },
  {
   "addr": "0041c3d0",

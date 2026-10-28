@@ -8,8 +8,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 189 | 42% |
-| understood or later | 0 | 0% |
+| decompiled or later | 234 | 52% |
+| understood or later | 18 | 4% |
 | ported or later | 0 | 0% |
 | emu-compared or later | 0 | 0% |
 | original-compared or later | 0 | 0% |
@@ -34,9 +34,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00401c50` inferred_Obj_UpdateBounds (vtable) · depth 0 · 30 lines · **decompiled** — base slot 3: recomputes bounds rect (+0x10..+0x1c) and screen position (+0x20..+0x2c) from the current frame record (0x24-byte entries); calls slot 2 in between
 - [ ] `00401d20` inferred_Obj_Stub_Void_1Arg (vtable) · depth 0 · 7 lines · **decompiled** — base slot 6 default (draw with one argument)
 - [ ] `00401d60` inferred_Obj_SetActive (vtable) · depth 0 · 8 lines · **decompiled** — base slot 8: sets flag bit 1 (+0x68) from argument
-- [ ] `00401860` FUN_00401860 · depth 1 · 86 lines · **untouched**
-- [ ] `00401a50` FUN_00401a50 · depth 1 · 12 lines · **untouched**
-- [ ] `00401a70` FUN_00401a70 · depth 1 · 15 lines · **untouched**
+- [ ] `00401860` inferred_AnimPlayer_Advance · depth 1 · 86 lines · **untouched** — advances the animation: reads the game clock, steps frames by their durations, wraps or stops at the range end (86 lines, detail not yet contracted) | name from call sites and a skim; body not yet read
+- [ ] `00401a50` inferred_AnimPlayer_Pause · depth 1 · 12 lines · **decompiled** — flags: clear bit0, set bit1; +0x10 = clock now
+- [ ] `00401a70` inferred_AnimPlayer_Resume · depth 1 · 15 lines · **decompiled** — adds the paused duration to +8, clears +0x10, flags: clear bit1, set bit0
 - [ ] `00401bf0` inferred_Object_AttachToLevel · depth 1 · 16 lines · **decompiled** — sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0
 - [ ] `00401d30` inferred_Obj_SetPosition · depth 1 · 14 lines · **decompiled** — (x, y, flag) sets previous position (+0x54/+0x58), and current (+0x4c/+0x50) when flag set; notifies the level
 - [ ] `00401aa0` inferred_Obj_Kind00_Ctor · depth 2 · 63 lines · **decompiled** — 0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38)
@@ -45,7 +45,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 3: 00401d80–00401fa0 (0/8 ported)
 
 - [ ] `00401d80` inferred_Obj_SetVisible · depth 0 · 8 lines · **decompiled** — sets flag bit 2 (+0x68) from argument
-- [ ] `00401da0` FUN_00401da0 · depth 0 · 9 lines · **untouched**
+- [ ] `00401da0` inferred_Obj_StashAnimState · depth 0 · 9 lines · **decompiled** — copies bank index (+0x32) to +4 and the player's flags (+0x18) to +8; restored by Obj_ApplyPendingAnim
 - [ ] `00401dc0` inferred_Obj_ApplyPendingAnim · depth 0 · 13 lines · **decompiled** — selects bank index +4 and stores +8 as the AnimPlayer start value
 - [ ] `00401f90` inferred_Obj_Stub_RetFalse_1Arg (vtable) · depth 0 · 7 lines · **decompiled** — base slot 11 default (ret 4)
 - [ ] `00401fa0` inferred_Obj_Stub_RetZero_2Args (vtable) · depth 0 · 7 lines · **decompiled** — base slot 12 default (ret 8)
@@ -57,33 +57,33 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 - [ ] `00401fb0` inferred_Obj_Stub_RetZero (vtable) · depth 0 · 7 lines · **decompiled** — default for update/draw-style slots: returns 0
 - [ ] `00402110` inferred_Camera_Ctor · depth 0 · 9 lines · **decompiled** — 0x40-byte object at level +0x80; zeroes +0 and +0x10
-- [ ] `00402120` FUN_00402120 · depth 0 · 35 lines · **untouched**
+- [ ] `00402120` inferred_Camera_SetPositionClamped · depth 0 · 35 lines · **decompiled** — stores x,y (+0x2c,+0x30) clamped to the bounds rect (+0x1c..+0x28) with the 640x480 half extents 0x140/0xf0; returns whether it was inside
 - [ ] `00402200` inferred_Camera_SetBounds · depth 0 · 12 lines · **decompiled** — stores 4 ints at +0x1c..+0x28; Level_Load passes (-320, 239, 319, -240)
-- [ ] `00402230` FUN_00402230 · depth 0 · 8 lines · **untouched**
-- [ ] `00401fc0` FUN_00401fc0 · depth 1 · 57 lines · **untouched**
+- [ ] `00402230` inferred_Camera_SetValue0 · depth 0 · 8 lines · **decompiled** — stores one dword at +0
+- [ ] `00401fc0` inferred_Camera_UpdateToward · depth 1 · 57 lines · **untouched** — (camera, target) moves the camera toward a target using the game clock; ends in Camera_SetPositionClamped | name from call sites and a skim; body not yet read
 - [ ] `004021a0` inferred_Camera_MoveTo · depth 1 · 22 lines · **decompiled** — duration 0: set position now (00402120); otherwise stores start/target and a start time from the game clock
 
 ### Cluster 5: 004023f0–004028c0 (0/7 ported)
 
 - [ ] `004023f0` inferred_Cursor_SetText · depth 0 · 43 lines · **decompiled** — copies a C string into the cursor's hover-text buffer (+0x78), or clears it; optional ushort at +0x118
 - [ ] `004025b0` inferred_Cursor_PageInterfaceRight · depth 1 · 49 lines · **decompiled** — shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge
-- [ ] `004028c0` FUN_004028c0 · depth 1 · 51 lines · **untouched**
+- [ ] `004028c0` inferred_Interface_PageLeft · depth 1 · 51 lines · **decompiled** — shifts the interface level camera and its objects by -0x280 (one screen)
 - [ ] `00402240` inferred_Cursor_Ctor · depth 2 · 42 lines · **decompiled** — 0x130-byte object, vtable 00428038, base 0040e5a0; creates candidate lists (capacity 0x1e) at +0x6c/+0x70 and a shared list 00442060
-- [ ] `00402440` FUN_00402440 (vtable) · depth 2 · 74 lines · **untouched**
+- [ ] `00402440` inferred_C00428038_OnAttach (vtable) · depth 2 · 74 lines · **untouched** — unread; first seen in vtable 00428038 slot 0
 - [ ] `004026d0` inferred_Cursor_CaptureThumbnail · depth 3 · 84 lines · **decompiled** — renders the scene without the cursor into the display buffer and copies a 213x160 sample (every third pixel of every third row) to +0x128: a save-game thumbnail (hypothesis from the sampling pattern)
 - [ ] `00402300` inferred_Obj_Kind10_Ctor · depth 4 · 46 lines · **decompiled** — 0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object
 
 ### Cluster 6: 00402e50–00403300 (0/12 ported)
 
 - [ ] `00402e50` inferred_Cursor_IsFlag10 (vtable) · depth 0 · 7 lines · **decompiled** — vtable slot 11 (ret 4): IsHitter(other): returns flag bit 10 (0x400) of this, ignoring the argument. Base default returns false. Level_CollisionPass asks A.slot11(B) then B.slot11(A) to decide which object is the hitter
-- [ ] `00402d80` FUN_00402d80 (vtable) · depth 1 · 24 lines · **untouched**
+- [ ] `00402d80` inferred_C00428038_Draw (vtable) · depth 1 · 24 lines · **untouched** — unread; first seen in vtable 00428038 slot 6
 - [ ] `00402e60` inferred_Cursor_AddCandidate (vtable) · depth 1 · 8 lines · **decompiled** — vtable slot 12 (ret 8: two stack arguments, the decompiler shows one): OnTouched(other, extra). Cursor override appends the touched object (first argument) to candidate list +0x70 and returns 1. Called by Level_CollisionPass flush
 - [ ] `00402e80` inferred_Cursor_ProcessCandidates · depth 1 · 127 lines · **decompiled** — per frame: for each registered candidate, with left button (mouse buttons byte & 8) calls candidate slot 14 with the cursor's current animation index (the verb), with right button (& 0x10) slot 15, otherwise slot 17 (show hover text); candidates that stopped being under the pointer get slot 18 (clear text) and are dropped
-- [ ] `004031a0` FUN_004031a0 (vtable) · depth 1 · 38 lines · **untouched**
-- [ ] `00403220` FUN_00403220 · depth 1 · 11 lines · **untouched**
-- [ ] `004029a0` FUN_004029a0 · depth 2 · 14 lines · **untouched**
-- [ ] `004030e0` FUN_004030e0 (vtable) · depth 2 · 35 lines · **untouched**
-- [ ] `00403300` FUN_00403300 · depth 4 · 10 lines · **untouched**
+- [ ] `004031a0` inferred_C00428038_SetActive (vtable) · depth 1 · 38 lines · **untouched** — unread; first seen in vtable 00428038 slot 8
+- [ ] `00403220` inferred_Archive_Ctor · depth 1 · 11 lines · **decompiled** — allocates the index buffer (0xd7a0 bytes, from arena 0) into global 00442068
+- [ ] `004029a0` inferred_Interface_ScrollOut · depth 2 · 14 lines · **decompiled** — moves the interface camera +0x285 and runs the display effect (4, 100)
+- [ ] `004030e0` inferred_C00428038_Update2 (vtable) · depth 2 · 35 lines · **untouched** — unread; first seen in vtable 00428038 slot 5
+- [ ] `00403300` inferred_Archive_Tell · depth 4 · 10 lines · **decompiled** — current position of the archive stream (low dword of fgetpos)
 - [ ] `004032e0` inferred_Archive_SeekEntry · depth 5 · 8 lines · **decompiled** — fseek the archive handle to offset, returns the FILE*
 - [ ] `00403250` inferred_Archive_Open · depth 10 · 28 lines · **decompiled** — thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4
 - [ ] `004029f0` inferred_Cursor_Update (vtable) · depth 12 · 156 lines · **decompiled** — vtable slot 4: reads the mouse position and buttons and the keyboard state array, handles the interface strip scrolling (shifts by 0x280 = one screen width), then positions the cursor object and its +0x74 companion at the mouse position plus the interface camera offset, and flags the held item
@@ -91,38 +91,38 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 7: 00403500–00403980 (0/12 ported)
 
 - [ ] `00403500` inferred_Archive_FindEntry · depth 0 · 59 lines · **decompiled** — binary search by name in sorted 0x18-byte index records at 00442068; returns data offset (+0x14) or fails
-- [ ] `004036c0` FUN_004036c0 · depth 0 · 7 lines · **decompiled** — device ready check
-- [ ] `004036e0` FUN_004036e0 · depth 0 · 9 lines · **untouched**
-- [ ] `00403700` FUN_00403700 · depth 0 · 50 lines · **untouched**
-- [ ] `004037c0` FUN_004037c0 · depth 0 · 23 lines · **untouched**
-- [ ] `004035b0` FUN_004035b0 · depth 1 · 42 lines · **untouched**
-- [ ] `004038f0` FUN_004038f0 (vtable) · depth 1 · 40 lines · **untouched**
-- [ ] `00403320` FUN_00403320 · depth 5 · 11 lines · **untouched**
-- [ ] `00403820` FUN_00403820 · depth 5 · 44 lines · **untouched**
+- [ ] `004036c0` inferred_InputDevice_IsReady · depth 0 · 7 lines · **decompiled** — device ready check | true when the device pointer (+4) and the DirectInput object exist
+- [ ] `004036e0` inferred_InputDevice_SetTimings · depth 0 · 9 lines · **decompiled** — +0xc and +0x10 (200 and 20000 are the values given at start)
+- [ ] `00403700` inferred_Keyboard_UpdateKeyStates · depth 0 · 50 lines · **decompiled** — (new states, count) state machine per key (0,1,2,4,8,0x10,0x20) using GetTickCount and the two timing values (+0xc, +0x10): press, hold, release and repeat
+- [ ] `004037c0` inferred_InputDevice_Dtor · depth 0 · 23 lines · **decompiled** — releases the DirectInput device and the shared DirectInput object when the count reaches zero
+- [ ] `004035b0` inferred_DirectInput_Create · depth 1 · 42 lines · **decompiled** — creates the shared DirectInput object (DirectInputCreateA) and shows "DIRECTINPUT: error al crear el objeto" on failure; reference-counted in 0044207c
+- [ ] `004038f0` inferred_C00428070_Slot00 (vtable) · depth 1 · 40 lines · **untouched** — unread; first seen in vtable 00428070 slot 0 (non-object class)
+- [ ] `00403320` inferred_Archive_SeekSavePos · depth 5 · 11 lines · **decompiled** — (offset) returns the previous position and seeks to offset
+- [ ] `00403820` inferred_Keyboard_Ctor · depth 5 · 44 lines · **decompiled** — 0x38-byte keyboard device, vtable 00428070, 16-byte state buffer (+0x1c), default timings 200 and 20000
 - [ ] `00403980` inferred_MouseCtor · depth 5 · 46 lines · **decompiled** — DirectInput mouse, range 640x480, starts at (320,240)
 - [ ] `00403360` inferred_Archive_Close · depth 6 · 10 lines · **decompiled**
-- [ ] `00403380` FUN_00403380 · depth 8 · 109 lines · **untouched**
+- [ ] `00403380` inferred_Archive_ReadIndex · depth 8 · 109 lines · **decompiled** — reads 0x1c-byte index records from the .TRE keeping those with flag 4, copies the uppercased name (0x13 bytes) and offset+4 into 0x18-byte entries, then sorts them by name (selection sort); entry count in +0
 
 ### Cluster 8: 00403a70–004040d0 (0/8 ported)
 
 - [ ] `00403a70` inferred_MouseCenter · depth 0 · 9 lines · **decompiled**
 - [ ] `00403b60` inferred_CdAudioInit · depth 0 · 52 lines · **decompiled** — MCI open cdaudio; track count at +0x1bc, -1 if failed
-- [ ] `00403cb0` FUN_00403cb0 · depth 0 · 51 lines · **untouched**
-- [ ] `004040b0` FUN_004040b0 · depth 0 · 7 lines · **decompiled** — returns obj[0]!=0 && obj[1]!=0
-- [ ] `004040d0` FUN_004040d0 · depth 0 · 22 lines · **untouched**
-- [ ] `00403aa0` FUN_00403aa0 (vtable) · depth 1 · 57 lines · **untouched**
-- [ ] `00403dc0` FUN_00403dc0 · depth 1 · 14 lines · **untouched**
+- [ ] `00403cb0` inferred_CdAudio_PlayTrack · depth 0 · 51 lines · **decompiled** — (track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)
+- [ ] `004040b0` inferred_Sound_IsReady · depth 0 · 7 lines · **decompiled** — returns obj[0]!=0 && obj[1]!=0 | true when the first two fields are set
+- [ ] `004040d0` inferred_Sound_FindById · depth 0 · 22 lines · **decompiled** — finds the active sound slot whose id (+0x2c) matches
+- [ ] `00403aa0` inferred_C00428074_Slot00 (vtable) · depth 1 · 57 lines · **untouched** — unread; first seen in vtable 00428074 slot 0 (non-object class)
+- [ ] `00403dc0` inferred_CdAudio_OnNotify · depth 1 · 14 lines · **decompiled** — on MM_MCINOTIFY success restarts the saved track (+0x29)
 - [ ] `00403e00` inferred_DirectSoundInit · depth 5 · 138 lines · **decompiled** — only creates DirectSound if CD track count >= 0
 
 ### Cluster 9: 004043b0–00404630 (0/7 ported)
 
-- [ ] `004043b0` FUN_004043b0 · depth 0 · 11 lines · **untouched**
-- [ ] `00404630` FUN_00404630 · depth 2 · 69 lines · **untouched**
-- [ ] `00404260` FUN_00404260 · depth 5 · 22 lines · **untouched**
-- [ ] `004042c0` FUN_004042c0 · depth 8 · 54 lines · **untouched**
-- [ ] `004043e0` FUN_004043e0 · depth 8 · 106 lines · **untouched**
-- [ ] `00404110` FUN_00404110 · depth 9 · 46 lines · **untouched**
-- [ ] `00404210` FUN_00404210 · depth 9 · 28 lines · **untouched**
+- [ ] `004043b0` inferred_Sound_Stop · depth 0 · 11 lines · **decompiled** — stops the slot's buffer (slot 0x48/0x34 calls) and clears its id
+- [ ] `00404630` inferred_DlgEntry_CopyCtorA · depth 2 · 69 lines · **decompiled** — copy constructor of a script-block entry (vtable 00428078)
+- [ ] `00404260` inferred_Sound_Dtor · depth 5 · 22 lines · **untouched** —  | name from call sites and a skim; body not yet read
+- [ ] `004042c0` inferred_Sound_LoadWavData · depth 8 · 54 lines · **untouched** — reads the sound data chunk from the archive into the slot | name from call sites and a skim; body not yet read
+- [ ] `004043e0` inferred_Sound_StreamRefill · depth 8 · 106 lines · **untouched** — refills a streaming DirectSound buffer from the archive; returns whether the sound is still active | name from call sites and a skim; body not yet read
+- [ ] `00404110` inferred_Sound_PlayWav · depth 9 · 46 lines · **decompiled** — (archive offset, ...) reads a RIFF/WAVE header from the archive, fills the next sound slot (DirectSoundBuffer), sets volume and pan, starts playing and returns a new id
+- [ ] `00404210` inferred_Sound_Update · depth 9 · 28 lines · **decompiled** — per-frame: refills streaming buffers (Sound_StreamRefill) and retires finished slots
 
 ### Cluster 10: 004060b0–00406140 (0/9 ported)
 
@@ -138,19 +138,19 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 11: 004067a0–00407000 (0/8 ported)
 
-- [ ] `004067a0` FUN_004067a0 · depth 0 · 67 lines · **untouched**
+- [ ] `004067a0` inferred_DlgEntry_CopyCtorB · depth 0 · 67 lines · **decompiled** — field-by-field copy of an entry (used by DialogueTable_Load for kind 1)
 - [ ] `00406c50` inferred_Obj_Kind13_Update (vtable) · depth 1 · 44 lines · **decompiled** — slot 4 of kind 13: same pending-click dispatch as Interactive_Update, with an extra item-use path when no verb handler applies (calls the hovered object's slot 27)
 - [ ] `004069e0` inferred_Obj_Kind01_OnAttach (vtable) · depth 2 · 35 lines · **decompiled** — vtable slot 0 of kind 1 (run by Object_AttachToLevel): resolves the walk area object by the name at +0x6c in the level's object list (+0x78), sets the camera bounds to the first frame's rectangle and moves the camera to the object's position
 - [ ] `00406980` inferred_Obj_Kind01_Ctor · depth 3 · 16 lines · **decompiled** — 0x84 bytes, vtable 00428ac8, extends Kind00; Level_CreateObject stores the instance at level +0x90 (single special object per level)
 - [ ] `00407000` inferred_Item_SetHeld (vtable) · depth 3 · 30 lines · **decompiled** — kind 13 method (flag): when set, makes this object the carried item (cursor +0x12c) and switches the cursor animation to item id + 7; when cleared, drops it. Verb indices 7 and above are therefore carried inventory items
 - [ ] `00406a90` inferred_Obj_Kind13_Ctor · depth 12 · 88 lines · **decompiled** — 0xac bytes, extends MidBase; 14 per-subtype vtables selected by record byte 1; increments global instance counter 004420f8; phrase key lookup
-- [ ] `00406d50` FUN_00406d50 (vtable) · depth 12 · 123 lines · **untouched**
+- [ ] `00406d50` inferred_C00428b00_SetVerbAndClick (vtable) · depth 12 · 123 lines · **untouched** — unread; first seen in vtable 00428b00 slot 14
 - [ ] `00406190` inferred_DialogueTable_Load · depth 13 · 228 lines · **decompiled** — (archive offset, id): reads entries introduced by '.' bytes; each entry built by 00404810 and registered by kind
 
 ### Cluster 12: 004079d0–00407aa0 (0/11 ported)
 
 - [ ] `004079d0` inferred_Jim_IsInPose7 (vtable) · depth 0 · 7 lines · **decompiled** — slot 11: returns (+0x5c == 7)
-- [ ] `00407aa0` FUN_00407aa0 · depth 0 · 10 lines · **untouched**
+- [ ] `00407aa0` inferred_Jim_ResumeFacing · depth 0 · 10 lines · **decompiled** — if walking (+0xd5) applies the stored facing again via slot 29
 - [ ] `00407730` inferred_Jim_UpdateBounds (vtable) · depth 1 · 15 lines · **decompiled** — slot 3: base UpdateBounds then multiplies the four rect values by the perspective scale (+0xfc, 0x100 = 1.0) >> 8
 - [ ] `004079e0` inferred_Jim_ArriveStep (vtable) · depth 1 · 31 lines · **decompiled** — slot 12: called when a walk segment ends: updates previous position, unless the walk-area path search (WalkArea_FindPath) produces a further waypoint, calls slot 29 (face) and the target object's slot 13
 - [ ] `00407600` inferred_Jim_WalkTo (vtable) · depth 2 · 55 lines · **decompiled** — slot 32: (x, y, target object, flag) starts a walk: records target +0x104/+0x108, converts position to fixed point, chooses facing 1..4 from the dominant axis, selects the matching walking animation (table +0xd8); the function always ends by calling the target object's slot 13 (RunVerb), including at walk start, purpose not yet understood
@@ -169,7 +169,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00407f30` inferred_Jim_TalkAnimate (vtable) · depth 2 · 37 lines · **decompiled** — slot 31: draws the speaking-mouth animation; while talking picks a random frame (RandomRange) at most every 100 ms of game time, else rests on frame 1
 - [ ] `004080a0` inferred_Jim_UseItemForward (vtable) · depth 2 · 17 lines · **decompiled** — slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27
 - [ ] `00408520` inferred_Level_CameraMoveTo · depth 2 · 8 lines · **decompiled** — forwards (x, y, duration) to the camera at +0x80
-- [ ] `00408550` FUN_00408550 · depth 2 · 52 lines · **untouched**
+- [ ] `00408550` inferred_Level_UpdateRoomCameras · depth 2 · 52 lines · **untouched** — for every room, moves the camera toward the room's focus point and re-sorts its objects | name from call sites and a skim; body not yet read
 - [ ] `00408030` inferred_Jim_SetIdlePose (vtable) · depth 3 · 29 lines · **decompiled** — slot 30: direction 3,4,2,1 -> idle animation index 0,1,2,3 via 00410130, then recomputes speech anchor point +0xa4
 - [ ] `00408540` inferred_Level_AttachObjects · depth 3 · 8 lines · **decompiled** — calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child
 - [ ] `00407b80` inferred_Jim_EnterLevel · depth 11 · 50 lines · **decompiled** — (level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14
@@ -179,13 +179,13 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 14: 00408780–00408890 (0/8 ported)
 
 - [ ] `00408780` inferred_Level_FindObjectByKey · depth 1 · 8 lines · **decompiled** — forwards to the object list at +0x74 with the 64-bit key
-- [ ] `00408840` FUN_00408840 (vtable) · depth 1 · 14 lines · **untouched**
+- [ ] `00408840` inferred_C00428bf8_RunVerb (vtable) · depth 1 · 14 lines · **untouched** — unread; first seen in vtable 00428bf8 slot 13
 - [ ] `00408890` inferred_Level_CollisionPass · depth 2 · 200 lines · **decompiled** — per-frame pass over the level's object list (+0x7c): for each pair of objects with flags 8 (collidable) and 2 (active) in the same room, asks A.slot11(B) then runs ResolveOverlap; afterwards sends queued position notifications (+0x78 list of object,x,y) through object slot 12
 - [ ] `004087a0` inferred_Level_UpdateOrCollide (vtable) · depth 3 · 17 lines · **decompiled** — level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true
-- [ ] `004087d0` FUN_004087d0 (vtable) · depth 3 · 10 lines · **untouched**
-- [ ] `00408620` FUN_00408620 · depth 8 · 77 lines · **untouched**
-- [ ] `00408710` FUN_00408710 · depth 8 · 20 lines · **untouched**
-- [ ] `00408800` FUN_00408800 · depth 10 · 18 lines · **untouched**
+- [ ] `004087d0` inferred_C00428bf8_Update2 (vtable) · depth 3 · 10 lines · **untouched** — unread; first seen in vtable 00428bf8 slot 5
+- [ ] `00408620` inferred_Level_SaveState · depth 8 · 77 lines · **untouched** — writes the object keys and flags and calls each object's SaveState (slot 10) via fwrite | name from call sites and a skim; body not yet read
+- [ ] `00408710` inferred_Level_LoadState · depth 8 · 20 lines · **decompiled** — reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object
+- [ ] `00408800` inferred_Level_ReloadDeferredAnims · depth 10 · 18 lines · **decompiled** — rewinds pool arena 2, reloads the deferred animation images of every bank and sets +0x94
 
 ### Cluster 15: 00409280–0040c040 (0/7 ported)
 
@@ -195,136 +195,136 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00409c10` inferred_Polygon_ClipToRect · depth 0 · 113 lines · **decompiled** — (polygon, rect x0,y0,x1,y1, out polygon, rect of other object): produces the part of a shape inside a rectangle. Name from argument list only, unverified
 - [ ] `00408c50` inferred_Level_ResolveOverlap · depth 1 · 256 lines · **decompiled** — (A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls
 - [ ] `00409e50` inferred_Level_CreateObject · depth 14 · 1145 lines · **decompiled** — factory: switch on kind (record +0x18) allocating the right object class (sizes 0x6c, 0x84, 0x78, 0x6c, 0x74, 0xd8 ... kind 5 has a sub-switch on record byte +5); adds objects of kind 1 to level +0x90
-- [ ] `0040c040` FUN_0040c040 (vtable) · depth 14 · 19 lines · **untouched**
+- [ ] `0040c040` inferred_C0042a600_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a600 slot 21 (kind 13 subtype 16)
 
 ### Cluster 16: 0040c0e0–0040c4d0 (0/12 ported)
 
-- [ ] `0040c0e0` FUN_0040c0e0 (vtable) · depth 0 · 8 lines · **untouched**
-- [ ] `0040c1f0` FUN_0040c1f0 (vtable) · depth 0 · 8 lines · **untouched**
-- [ ] `0040c090` FUN_0040c090 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040c0f0` FUN_0040c0f0 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040c140` FUN_0040c140 (vtable) · depth 14 · 35 lines · **untouched**
-- [ ] `0040c200` FUN_0040c200 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040c250` FUN_0040c250 (vtable) · depth 14 · 24 lines · **untouched**
-- [ ] `0040c2c0` FUN_0040c2c0 (vtable) · depth 14 · 31 lines · **untouched**
-- [ ] `0040c370` FUN_0040c370 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040c3c0` FUN_0040c3c0 (vtable) · depth 14 · 31 lines · **untouched**
-- [ ] `0040c480` FUN_0040c480 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040c4d0` FUN_0040c4d0 (vtable) · depth 14 · 27 lines · **untouched**
+- [ ] `0040c0e0` inferred_C0042a4b0_Verb4 (vtable) · depth 0 · 8 lines · **untouched** — unread; first seen in vtable 0042a4b0 slot 24 (kind 13 subtype 15)
+- [ ] `0040c1f0` inferred_C0042a3d0_Verb4 (vtable) · depth 0 · 8 lines · **untouched** — unread; first seen in vtable 0042a3d0 slot 24 (kind 13 subtype 19)
+- [ ] `0040c090` inferred_C0042a590_Verb4 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a590 slot 24 (kind 13 subtype 10)
+- [ ] `0040c0f0` inferred_C0042a440_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a440 slot 21 (kind 13 subtype 28)
+- [ ] `0040c140` inferred_C0042a3d0_Verb1 (vtable) · depth 14 · 35 lines · **untouched** — unread; first seen in vtable 0042a3d0 slot 21 (kind 13 subtype 19)
+- [ ] `0040c200` inferred_C0042a280_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a280 slot 21 (kind 13 subtype 44)
+- [ ] `0040c250` inferred_C0042a1a0_Verb4 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 0042a1a0 slot 24 (kind 13 subtype 29)
+- [ ] `0040c2c0` inferred_C0042a6e0_Verb3 (vtable) · depth 14 · 31 lines · **untouched** — unread; first seen in vtable 0042a6e0 slot 22 (kind 12 subtype 10)
+- [ ] `0040c370` inferred_C0042a910_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a910 slot 21 (kind 12 subtype 5)
+- [ ] `0040c3c0` inferred_C0042a910_Verb3 (vtable) · depth 14 · 31 lines · **untouched** — unread; first seen in vtable 0042a910 slot 22 (kind 12 subtype 5)
+- [ ] `0040c480` inferred_C0042a910_Verb4 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a910 slot 24 (kind 12 subtype 5)
+- [ ] `0040c4d0` inferred_C0042aa60_Verb1 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 0042aa60 slot 21 (kind 12 subtype 2)
 
 ### Cluster 17: 0040c560–0040c810 (0/7 ported)
 
-- [ ] `0040c560` FUN_0040c560 (vtable) · depth 14 · 23 lines · **untouched**
-- [ ] `0040c5d0` FUN_0040c5d0 (vtable) · depth 14 · 23 lines · **untouched**
-- [ ] `0040c640` FUN_0040c640 (vtable) · depth 14 · 30 lines · **untouched**
-- [ ] `0040c6d0` FUN_0040c6d0 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040c720` FUN_0040c720 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040c770` FUN_0040c770 (vtable) · depth 14 · 30 lines · **untouched**
-- [ ] `0040c810` FUN_0040c810 (vtable) · depth 14 · 27 lines · **untouched**
+- [ ] `0040c560` inferred_C0042ab40_Verb3 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 0042ab40 slot 22 (kind 12 subtype 0)
+- [ ] `0040c5d0` inferred_C0042ab40_Verb6 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 0042ab40 slot 26 (kind 12 subtype 0)
+- [ ] `0040c640` inferred_C0042a9f0_Verb4 (vtable) · depth 14 · 30 lines · **untouched** — unread; first seen in vtable 0042a9f0 slot 24 (kind 12 subtype 3)
+- [ ] `0040c6d0` inferred_C0042a980_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a980 slot 21 (kind 12 subtype 4)
+- [ ] `0040c720` inferred_C0042aad0_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042aad0 slot 21 (kind 12 subtype 1)
+- [ ] `0040c770` inferred_C0042a8a0_Verb3 (vtable) · depth 14 · 30 lines · **untouched** — unread; first seen in vtable 0042a8a0 slot 22 (kind 12 subtype 6)
+- [ ] `0040c810` inferred_C0042a670_Verb0 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 0042a670 slot 20 (kind 12 subtype 11)
 
 ### Cluster 18: 0040c8a0–0040ca60 (0/9 ported)
 
-- [ ] `0040c8a0` FUN_0040c8a0 (vtable) · depth 1 · 9 lines · **untouched**
-- [ ] `0040c8d0` FUN_0040c8d0 (vtable) · depth 2 · 13 lines · **untouched**
-- [ ] `0040c9e0` FUN_0040c9e0 (vtable) · depth 2 · 14 lines · **untouched**
-- [ ] `0040c880` FUN_0040c880 (vtable) · depth 13 · 13 lines · **untouched**
-- [ ] `0040c8f0` FUN_0040c8f0 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040c940` FUN_0040c940 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040c990` FUN_0040c990 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040ca10` FUN_0040ca10 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040ca60` FUN_0040ca60 (vtable) · depth 14 · 19 lines · **untouched**
+- [ ] `0040c8a0` inferred_C0042aef8_Verb4 (vtable) · depth 1 · 9 lines · **untouched** — unread; first seen in vtable 0042aef8 slot 24 (kind 6 subtype 8)
+- [ ] `0040c8d0` inferred_C0042aef8_Slot15 (vtable) · depth 2 · 13 lines · **untouched** — unread; first seen in vtable 0042aef8 slot 15 (kind 6 subtype 8)
+- [ ] `0040c9e0` inferred_C0042a7c0_Verb3 (vtable) · depth 2 · 14 lines · **untouched** — unread; first seen in vtable 0042a7c0 slot 22 (kind 12 subtype 9)
+- [ ] `0040c880` inferred_C0042aef8_Verb0 (vtable) · depth 13 · 13 lines · **untouched** — unread; first seen in vtable 0042aef8 slot 20 (kind 6 subtype 8)
+- [ ] `0040c8f0` inferred_C0042b390_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042b390 slot 23 (kind 5 subtype 3)
+- [ ] `0040c940` inferred_C0042a830_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a830 slot 21 (kind 12 subtype 7)
+- [ ] `0040c990` inferred_C0042a830_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a830 slot 23 (kind 12 subtype 7)
+- [ ] `0040ca10` inferred_C0042a750_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a750 slot 21 (kind 12 subtype 8)
+- [ ] `0040ca60` inferred_C0042a750_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a750 slot 23 (kind 12 subtype 8)
 
 ### Cluster 19: 0040cab0–0040cd60 (0/8 ported)
 
-- [ ] `0040cab0` FUN_0040cab0 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040cb00` FUN_0040cb00 (vtable) · depth 14 · 22 lines · **untouched**
-- [ ] `0040cb60` FUN_0040cb60 (vtable) · depth 14 · 20 lines · **untouched**
-- [ ] `0040cbd0` FUN_0040cbd0 (vtable) · depth 14 · 20 lines · **untouched**
-- [ ] `0040cc40` FUN_0040cc40 (vtable) · depth 14 · 25 lines · **untouched**
-- [ ] `0040ccc0` FUN_0040ccc0 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040cd10` FUN_0040cd10 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040cd60` FUN_0040cd60 (vtable) · depth 14 · 28 lines · **untouched**
+- [ ] `0040cab0` inferred_C00429fe0_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429fe0 slot 21 (kind 17 subtype 1)
+- [ ] `0040cb00` inferred_C00429f70_Verb1 (vtable) · depth 14 · 22 lines · **untouched** — unread; first seen in vtable 00429f70 slot 21 (kind 17 subtype 2)
+- [ ] `0040cb60` inferred_C00429d40_Verb3 (vtable) · depth 14 · 20 lines · **untouched** — unread; first seen in vtable 00429d40 slot 22 (kind 17 subtype 13)
+- [ ] `0040cbd0` inferred_C00429f00_Verb3 (vtable) · depth 14 · 20 lines · **untouched** — unread; first seen in vtable 00429f00 slot 22 (kind 17 subtype 3)
+- [ ] `0040cc40` inferred_C00429e90_Verb1 (vtable) · depth 14 · 25 lines · **untouched** — unread; first seen in vtable 00429e90 slot 21 (kind 17 subtype 4)
+- [ ] `0040ccc0` inferred_C00429e20_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429e20 slot 21 (kind 17 subtype 5)
+- [ ] `0040cd10` inferred_C0042b6c0_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042b6c0 slot 23 (kind 5 subtype 5)
+- [ ] `0040cd60` inferred_C0042b638_Verb2 (vtable) · depth 14 · 28 lines · **untouched** — unread; first seen in vtable 0042b638 slot 23 (kind 5 subtype 6)
 
 ### Cluster 20: 0040cdf0–0040d1a0 (0/10 ported)
 
-- [ ] `0040cdf0` FUN_0040cdf0 (vtable) · depth 2 · 13 lines · **untouched**
-- [ ] `0040cfd0` FUN_0040cfd0 (vtable) · depth 2 · 13 lines · **untouched**
-- [ ] `0040ce20` FUN_0040ce20 (vtable) · depth 14 · 20 lines · **untouched**
-- [ ] `0040ce90` FUN_0040ce90 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040cee0` FUN_0040cee0 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040cf30` FUN_0040cf30 (vtable) · depth 14 · 34 lines · **untouched**
-- [ ] `0040d000` FUN_0040d000 (vtable) · depth 14 · 20 lines · **untouched**
-- [ ] `0040d070` FUN_0040d070 (vtable) · depth 14 · 24 lines · **untouched**
-- [ ] `0040d100` FUN_0040d100 (vtable) · depth 14 · 29 lines · **untouched**
-- [ ] `0040d1a0` FUN_0040d1a0 (vtable) · depth 14 · 37 lines · **untouched**
+- [ ] `0040cdf0` inferred_C00429a30_Verb3 (vtable) · depth 2 · 13 lines · **untouched** — unread; first seen in vtable 00429a30 slot 22 (kind 17 subtype 14)
+- [ ] `0040cfd0` inferred_C004299c0_Verb3 (vtable) · depth 2 · 13 lines · **untouched** — unread; first seen in vtable 004299c0 slot 22 (kind 17 subtype 15)
+- [ ] `0040ce20` inferred_C00429b80_Verb3 (vtable) · depth 14 · 20 lines · **untouched** — unread; first seen in vtable 00429b80 slot 22 (kind 17 subtype 10)
+- [ ] `0040ce90` inferred_C00429b10_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429b10 slot 23 (kind 17 subtype 11)
+- [ ] `0040cee0` inferred_C00429aa0_Verb3 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429aa0 slot 22 (kind 17 subtype 12)
+- [ ] `0040cf30` inferred_C00429cd0_Verb3 (vtable) · depth 14 · 34 lines · **untouched** — unread; first seen in vtable 00429cd0 slot 22 (kind 17 subtype 7)
+- [ ] `0040d000` inferred_C00429c60_Verb1 (vtable) · depth 14 · 20 lines · **untouched** — unread; first seen in vtable 00429c60 slot 21 (kind 17 subtype 8)
+- [ ] `0040d070` inferred_C00429c60_Verb3 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 00429c60 slot 22 (kind 17 subtype 8)
+- [ ] `0040d100` inferred_C00429bf0_Verb3 (vtable) · depth 14 · 29 lines · **untouched** — unread; first seen in vtable 00429bf0 slot 22 (kind 17 subtype 9)
+- [ ] `0040d1a0` inferred_C0042ad18_Verb0 (vtable) · depth 14 · 37 lines · **untouched** — unread; first seen in vtable 0042ad18 slot 20 (kind 6 subtype 4)
 
 ### Cluster 21: 0040d240–0040d5a0 (0/10 ported)
 
-- [ ] `0040d240` FUN_0040d240 (vtable) · depth 2 · 14 lines · **untouched**
-- [ ] `0040d330` FUN_0040d330 (vtable) · depth 2 · 16 lines · **untouched**
-- [ ] `0040d270` FUN_0040d270 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040d2c0` FUN_0040d2c0 (vtable) · depth 14 · 23 lines · **untouched**
-- [ ] `0040d380` FUN_0040d380 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040d3d0` FUN_0040d3d0 (vtable) · depth 14 · 23 lines · **untouched**
-- [ ] `0040d450` FUN_0040d450 (vtable) · depth 14 · 27 lines · **untouched**
-- [ ] `0040d4e0` FUN_0040d4e0 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040d530` FUN_0040d530 (vtable) · depth 14 · 23 lines · **untouched**
-- [ ] `0040d5a0` FUN_0040d5a0 (vtable) · depth 14 · 24 lines · **untouched**
+- [ ] `0040d240` inferred_C00428c30_Verb0 (vtable) · depth 2 · 14 lines · **untouched** — unread; first seen in vtable 00428c30 slot 20 (kind 20 subtype 30)
+- [ ] `0040d330` inferred_C00428d80_Verb3 (vtable) · depth 2 · 16 lines · **untouched** — unread; first seen in vtable 00428d80 slot 22 (kind 20 subtype 27)
+- [ ] `0040d270` inferred_C004298e0_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 004298e0 slot 23 (kind 20 subtype 0)
+- [ ] `0040d2c0` inferred_C00429090_Verb0 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00429090 slot 20 (kind 20 subtype 20)
+- [ ] `0040d380` inferred_C0042b170_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042b170 slot 21 (kind 5 subtype 14)
+- [ ] `0040d3d0` inferred_C0042b170_Verb2 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 0042b170 slot 23 (kind 5 subtype 14)
+- [ ] `0040d450` inferred_C00429720_Verb1 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 00429720 slot 21 (kind 20 subtype 4)
+- [ ] `0040d4e0` inferred_C00429790_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429790 slot 21 (kind 20 subtype 3)
+- [ ] `0040d530` inferred_C00429790_Verb0 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00429790 slot 20 (kind 20 subtype 3)
+- [ ] `0040d5a0` inferred_C004296b0_Verb0 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 004296b0 slot 20 (kind 20 subtype 5)
 
 ### Cluster 22: 0040d620–0040d9a0 (0/12 ported)
 
-- [ ] `0040d620` FUN_0040d620 (vtable) · depth 2 · 14 lines · **untouched**
-- [ ] `0040d820` FUN_0040d820 (vtable) · depth 2 · 16 lines · **untouched**
-- [ ] `0040d910` FUN_0040d910 (vtable) · depth 2 · 14 lines · **untouched**
-- [ ] `0040d650` FUN_0040d650 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040d6a0` FUN_0040d6a0 (vtable) · depth 14 · 20 lines · **untouched**
-- [ ] `0040d6f0` FUN_0040d6f0 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040d740` FUN_0040d740 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040d790` FUN_0040d790 (vtable) · depth 14 · 26 lines · **untouched**
-- [ ] `0040d870` FUN_0040d870 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040d8c0` FUN_0040d8c0 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040d950` FUN_0040d950 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040d9a0` FUN_0040d9a0 (vtable) · depth 14 · 27 lines · **untouched**
+- [ ] `0040d620` inferred_C00429640_Verb3 (vtable) · depth 2 · 14 lines · **untouched** — unread; first seen in vtable 00429640 slot 22 (kind 20 subtype 6)
+- [ ] `0040d820` inferred_C00429480_Verb3 (vtable) · depth 2 · 16 lines · **untouched** — unread; first seen in vtable 00429480 slot 22 (kind 20 subtype 10)
+- [ ] `0040d910` inferred_C00428ed0_Verb3 (vtable) · depth 2 · 14 lines · **untouched** — unread; first seen in vtable 00428ed0 slot 22 (kind 20 subtype 23)
+- [ ] `0040d650` inferred_C004294f0_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 004294f0 slot 23 (kind 20 subtype 9)
+- [ ] `0040d6a0` inferred_C004294f0_Verb3 (vtable) · depth 14 · 20 lines · **untouched** — unread; first seen in vtable 004294f0 slot 22 (kind 20 subtype 9)
+- [ ] `0040d6f0` inferred_C00429330_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429330 slot 21 (kind 20 subtype 13)
+- [ ] `0040d740` inferred_C004293a0_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 004293a0 slot 21 (kind 20 subtype 12)
+- [ ] `0040d790` inferred_C004293a0_Verb3 (vtable) · depth 14 · 26 lines · **untouched** — unread; first seen in vtable 004293a0 slot 22 (kind 20 subtype 12)
+- [ ] `0040d870` inferred_C00428ca0_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00428ca0 slot 21 (kind 20 subtype 29)
+- [ ] `0040d8c0` inferred_C00428f40_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00428f40 slot 21 (kind 20 subtype 24)
+- [ ] `0040d950` inferred_C00429170_Verb3 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429170 slot 22 (kind 20 subtype 18)
+- [ ] `0040d9a0` inferred_C00428e60_Verb1 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 00428e60 slot 21 (kind 20 subtype 25)
 
 ### Cluster 23: 0040db40–0040dd40 (0/12 ported)
 
-- [ ] `0040db40` inferred_Pool_AllocZero · depth 0 · 38 lines · **decompiled** — bump-allocates size bytes (4-aligned) zeroed from arena index in global pool 00442100; returns 0 when full
+- [ ] `0040db40` inferred_Pool_AllocZero · depth 0 · 38 lines · **understood** — bump-allocates size bytes (4-aligned) zeroed from arena index in global pool 00442100; returns 0 when full
 - [ ] `0040dc00` inferred_Pool_IsValid · depth 0 · 7 lines · **decompiled**
 - [ ] `0040dc10` inferred_Pool_AllocAligned · depth 0 · 25 lines · **decompiled** — thiscall(size, align, arena) no zero fill
 - [ ] `0040dc70` inferred_Pool_AllocAlignedZero · depth 0 · 36 lines · **decompiled** — thiscall(size, align, arena) zeroed
 - [ ] `0040dcf0` inferred_Pool_SetArena · depth 0 · 20 lines · **decompiled** — carves arena N of given size out after the previous one (sizes 0x17a6b0, 3000000, 9600000, 650000 for arenas 0-3)
-- [ ] `0040dd30` inferred_Pool_ResetArena · depth 0 · 8 lines · **decompiled** — rewinds arena bump pointer to its start
+- [ ] `0040dd30` inferred_Pool_ResetArena · depth 0 · 8 lines · **understood** — rewinds arena bump pointer to its start
 - [ ] `0040dd40` inferred_Obj_Kind23_Ctor · depth 4 · 20 lines · **decompiled** — 0xa4 bytes, vtable 0042b8e0, extends MidBase, sort value +0x5e = 2 (0 when flag byte set)
 - [ ] `0040dbc0` inferred_Pool_Ctor · depth 5 · 11 lines · **decompiled** — allocates param*1000 bytes (called with 0x39d0 = about 14.8 MB)
 - [ ] `0040dbf0` inferred_Pool_Dtor · depth 5 · 8 lines · **decompiled**
-- [ ] `0040da30` FUN_0040da30 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `0040da80` FUN_0040da80 (vtable) · depth 14 · 23 lines · **untouched**
-- [ ] `0040daf0` FUN_0040daf0 (vtable) · depth 14 · 19 lines · **untouched**
+- [ ] `0040da30` inferred_C00428df0_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00428df0 slot 21 (kind 20 subtype 26)
+- [ ] `0040da80` inferred_C00428fb0_Verb3 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00428fb0 slot 22 (kind 20 subtype 22)
+- [ ] `0040daf0` inferred_C0042ae80_Verb0 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042ae80 slot 20 (kind 6 subtype 7)
 
 ### Cluster 24: 0040e580–0040e720 (0/12 ported)
 
-- [ ] `0040e580` FUN_0040e580 (vtable) · depth 0 · 7 lines · **untouched**
-- [ ] `0040e590` FUN_0040e590 (vtable) · depth 0 · 7 lines · **untouched**
-- [ ] `0040e5a0` FUN_0040e5a0 · depth 1 · 9 lines · **untouched**
-- [ ] `0040dfc0` FUN_0040dfc0 (vtable) · depth 2 · 12 lines · **untouched**
-- [ ] `0040e560` FUN_0040e560 (vtable) · depth 2 · 10 lines · **untouched**
-- [ ] `0040e6a0` FUN_0040e6a0 (vtable) · depth 2 · 8 lines · **untouched**
-- [ ] `0040e6b0` FUN_0040e6b0 (vtable) · depth 2 · 20 lines · **untouched**
+- [ ] `0040e580` inferred_C0042b8e0_SetVerbAndClick (vtable) · depth 0 · 7 lines · **untouched** — unread; first seen in vtable 0042b8e0 slot 14
+- [ ] `0040e590` inferred_C0042b8e0_IsInteractive (vtable) · depth 0 · 7 lines · **untouched** — unread; first seen in vtable 0042b8e0 slot 16
+- [ ] `0040e5a0` inferred_Obj_Kind03Base_DefaultCtor · depth 1 · 9 lines · **decompiled** — base object ctor with vtable 0042b9c0
+- [ ] `0040dfc0` inferred_C0042b950_IsInteractive (vtable) · depth 2 · 12 lines · **untouched** — unread; first seen in vtable 0042b950 slot 16
+- [ ] `0040e560` inferred_C0042b950_ClearHoverText (vtable) · depth 2 · 10 lines · **untouched** — unread; first seen in vtable 0042b950 slot 18
+- [ ] `0040e6a0` inferred_C00428038_AnimTick (vtable) · depth 2 · 8 lines · **untouched** — unread; first seen in vtable 00428038 slot 2
+- [ ] `0040e6b0` inferred_C0042b9c0_Draw (vtable) · depth 2 · 20 lines · **untouched** — unread; first seen in vtable 0042b9c0 slot 6
 - [ ] `0040e5c0` inferred_Obj_Kind03_Ctor · depth 3 · 30 lines · **decompiled** — 0x6c bytes, vtable 0042b9c0, extends Kind00; record byte 1 selects an animation start mode via AnimPlayer_SetRange (0 stay, 1 single frame, 2 loop from, 3 loop with flag)
 - [ ] `0040df70` inferred_Obj_Kind22_Ctor · depth 4 · 12 lines · **decompiled** — 0xa4 bytes, vtable 0042b950, extends MidBase, sort value +0x5e = 1
 - [ ] `0040e720` inferred_Obj_Kind04_Ctor · depth 4 · 10 lines · **decompiled** — 0x74 bytes, vtable 0042b9f8, extends Kind03
-- [ ] `0040ddc0` FUN_0040ddc0 (vtable) · depth 14 · 73 lines · **untouched**
-- [ ] `0040e000` FUN_0040e000 (vtable) · depth 15 · 142 lines · **untouched**
+- [ ] `0040ddc0` inferred_C0042b8e0_Draw (vtable) · depth 14 · 73 lines · **untouched** — unread; first seen in vtable 0042b8e0 slot 6
+- [ ] `0040e000` inferred_C0042b950_SetVerbAndClick (vtable) · depth 15 · 142 lines · **untouched** — unread; first seen in vtable 0042b950 slot 14
 
 ### Cluster 25: 0040f020–0040f020 (0/11 ported)
 
 - [ ] `0040f020` inferred_Obj_SetVerbAndClick (vtable) · depth 0 · 10 lines · **decompiled** — MidBase slot 14: stores verb +0x9c then calls slot 19 (OnClick)
-- [ ] `0040ebd0` FUN_0040ebd0 (vtable) · depth 1 · 14 lines · **untouched**
-- [ ] `0040ec00` FUN_0040ec00 (vtable) · depth 1 · 24 lines · **untouched**
+- [ ] `0040ebd0` inferred_C0042ba30_OnAttach (vtable) · depth 1 · 14 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 0
+- [ ] `0040ec00` inferred_C0042ba30_Draw (vtable) · depth 1 · 24 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 6
 - [ ] `0040ec90` inferred_Obj_MidBase_DefaultCtor · depth 1 · 9 lines · **decompiled** — base object ctor with vtable 0042ba68 only
-- [ ] `0040e760` FUN_0040e760 (vtable) · depth 2 · 22 lines · **untouched**
+- [ ] `0040e760` inferred_C0042b9f8_Draw (vtable) · depth 2 · 22 lines · **untouched** — unread; first seen in vtable 0042b9f8 slot 6
 - [ ] `0040efa0` inferred_Obj_Draw (vtable) · depth 2 · 24 lines · **decompiled** — MidBase slot 6: converts world position to screen (camera at argument, +0x140/+0xf0 centre) and queues the current frame's image through Display_AddSprite with the object's sort value (+0x5e)
-- [ ] `0040e890` FUN_0040e890 (vtable) · depth 3 · 103 lines · **untouched**
+- [ ] `0040e890` inferred_C0042ba30_AnimTick (vtable) · depth 3 · 103 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 2
 - [ ] `0040ecb0` inferred_Obj_MidBase_Ctor · depth 3 · 14 lines · **decompiled** — Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25
 - [ ] `0040ee70` inferred_Obj_Interactive_Update (vtable) · depth 3 · 52 lines · **decompiled** — MidBase slot 4: when a click is pending (+0x8c), clears it, removes the object from the main list, runs the verb handler for the current verb (index +0x9c, slots 20-26), clears the cursor's target (+0x12c), resets the cursor animation and calls slot 27 with verb-7. Pending flag is cleared at the end
 - [ ] `0040e7e0` inferred_Obj_Kind16_Ctor · depth 4 · 25 lines · **decompiled** — 0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)
@@ -342,8 +342,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 27: 0040f670–0040f780 (0/11 ported)
 
-- [ ] `0040f670` FUN_0040f670 · depth 0 · 12 lines · **untouched**
-- [ ] `0040f680` FUN_0040f680 · depth 0 · 55 lines · **untouched**
+- [ ] `0040f670` inferred_List_RewindIterator · depth 0 · 12 lines · **decompiled** — resets a list's iterator (current = head, first flag = 1)
+- [ ] `0040f680` inferred_ObjectList_FindByKey · depth 0 · 55 lines · **decompiled** — (key lo, key hi) finds an object in the list by its 64-bit name key at object +0x44; returns 0 when absent
 - [ ] `0040f780` inferred_List_Remove · depth 0 · 49 lines · **decompiled** — removes the node holding the pointer
 - [ ] `0040f590` inferred_List_Ctor · depth 1 · 37 lines · **decompiled** — pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list
 - [ ] `0040f650` inferred_Pool_AllocAlignedZero_Global · depth 1 · 8 lines · **decompiled** — wrapper on the global pool
@@ -357,22 +357,22 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 28: 0040f800–0040fbb0 (0/7 ported)
 
 - [ ] `0040f800` inferred_List_PushBack · depth 0 · 40 lines · **decompiled** — iterates to the last node and links a new node holding the pointer
-- [ ] `0040f870` FUN_0040f870 · depth 0 · 14 lines · **untouched**
+- [ ] `0040f870` inferred_List_Clear · depth 0 · 14 lines · **decompiled** — empties a 2-field-node list
 - [ ] `0040f900` inferred_ObjectList_InsertByPriority · depth 0 · 82 lines · **decompiled** — 12-byte nodes (object, priority): inserts before the first node with a higher priority; main list uses priorities 0x13 (interface level), 100 (top object)
-- [ ] `0040fa10` FUN_0040fa10 · depth 0 · 82 lines · **untouched**
+- [ ] `0040fa10` inferred_ObjectList_InsertByPriorityFront · depth 0 · 82 lines · **decompiled** — like InsertByPriority but inserts before nodes of equal priority
 - [ ] `0040fb20` inferred_ObjectList_RemoveByObject · depth 0 · 58 lines · **decompiled** — removes the node holding the given object from the main list
 - [ ] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **decompiled** — allocates a linked list with capacity param (100 for the main list 00442104)
-- [ ] `0040fbb0` FUN_0040fbb0 · depth 2 · 38 lines · **untouched**
+- [ ] `0040fbb0` inferred_ObjectList_AttachAll · depth 2 · 38 lines · **decompiled** — walks the list calling Object_AttachToLevel on each object
 
 ### Cluster 29: 0040fc20–00410330 (0/12 ported)
 
 - [ ] `0040fc20` inferred_ObjectList_PassA · depth 0 · 83 lines · **decompiled** — walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1
 - [ ] `0040fd20` inferred_ObjectList_PassB · depth 0 · 83 lines · **decompiled** — same walk calling vtable slot 5
-- [ ] `0040fe20` FUN_0040fe20 · depth 0 · 14 lines · **untouched**
+- [ ] `0040fe20` inferred_ObjectList_Clear · depth 0 · 14 lines · **decompiled** — empties a 3-field-node list (priority lists)
 - [ ] `0040fe40` inferred_ObjectList_EndFrame · depth 0 · 31 lines · **decompiled** — iterator reset helper; its result decides loop continuation
 - [ ] `0040fea0` inferred_Obj_Kind05Base_Ctor · depth 2 · 9 lines · **decompiled** — MidBase default ctor then vtable 0042bb48
-- [ ] `0040ffa0` FUN_0040ffa0 · depth 2 · 27 lines · **untouched**
-- [ ] `00410060` FUN_00410060 (vtable) · depth 2 · 34 lines · **untouched**
+- [ ] `0040ffa0` inferred_Obj_DrawSubtitle · depth 2 · 27 lines · **decompiled** — draws the current phrase text twice (shadow style) at the speaker's position with Display_DrawText, keeping the camera in view
+- [ ] `00410060` inferred_C0042b060_Slot31 (vtable) · depth 2 · 34 lines · **untouched** — unread; first seen in vtable 0042b060 slot 31 (kind 5 subtype 16)
 - [ ] `00410130` inferred_Jim_SetPoseAnim (vtable) · depth 2 · 41 lines · **decompiled** — (direction index) recomputes speech anchor and selects the bank listed in +0xb0..
 - [ ] `004102e0` inferred_Obj_Kind05_Draw (vtable) · depth 3 · 20 lines · **decompiled** — slot 6 of the kind 5 class family: wraps Obj_Draw with slot 31 calls depending on flags +0xd4/+0xc/+0xd5
 - [ ] `004101f0` inferred_Obj_Kind05_Update (vtable) · depth 10 · 46 lines · **decompiled** — slot 4 of the kind 5 class family: runs Interactive_Update unless deferred, polls keyboard/mouse button state and the sound manager to stop a playing sound on input, calls slot 28
@@ -381,63 +381,63 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 30: 004103f0–004108a0 (0/8 ported)
 
-- [ ] `004103f0` FUN_004103f0 (vtable) · depth 0 · 8 lines · **untouched**
+- [ ] `004103f0` inferred_C0042b060_Slot32 (vtable) · depth 0 · 8 lines · **untouched** — unread; first seen in vtable 0042b060 slot 32 (kind 5 subtype 16)
 - [ ] `004104a0` inferred_Room_InsertSorted · depth 0 · 44 lines · **decompiled** — inserts object into the room list ordered by object field +0x4c
 - [ ] `00410530` inferred_Room_RemoveObject · depth 0 · 38 lines · **decompiled**
-- [ ] `004105a0` FUN_004105a0 · depth 0 · 177 lines · **untouched**
-- [ ] `004108a0` FUN_004108a0 · depth 0 · 215 lines · **untouched**
+- [ ] `004105a0` inferred_Display_QueueRow_TypeA · depth 0 · 177 lines · **untouched** — AddSprite helper for image type 1: builds per-scanline entries (177 lines) | name from call sites and a skim; body not yet read
+- [ ] `004108a0` inferred_Display_Raster_TypeA · depth 0 · 215 lines · **untouched** — rasterises queued type-A rows (215 lines) | name from call sites and a skim; body not yet read
 - [ ] `00410400` inferred_Jim_ClearSpeech (vtable) · depth 1 · 10 lines · **decompiled** — slot 28: clears phrase +0xc4 and talking flag +0xd4, removes itself from the main list
 - [ ] `00410420` inferred_Room_Ctor · depth 1 · 26 lines · **decompiled** — 16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list
 - [ ] `004103d0` inferred_Obj_SetFacingAnim (vtable) · depth 3 · 9 lines · **decompiled** — selects the bank from +0xac and starts animation index (param-1) with AnimPlayer
 
 ### Cluster 31: 00410cc0–00411f80 (0/12 ported)
 
-- [ ] `00410cc0` FUN_00410cc0 · depth 0 · 173 lines · **untouched**
-- [ ] `00410fb0` FUN_00410fb0 · depth 0 · 177 lines · **untouched**
-- [ ] `004112d0` FUN_004112d0 · depth 0 · 159 lines · **untouched**
-- [ ] `00411580` FUN_00411580 · depth 0 · 164 lines · **untouched**
-- [ ] `00411be0` FUN_00411be0 · depth 0 · 10 lines · **untouched**
-- [ ] `00411c00` FUN_00411c00 · depth 0 · 7 lines · **untouched**
+- [ ] `00410cc0` inferred_Display_QueueRow_TypeB · depth 0 · 173 lines · **untouched** — AddSprite helper for image type 3 | name from call sites and a skim; body not yet read
+- [ ] `00410fb0` inferred_Display_Raster_TypeB · depth 0 · 177 lines · **untouched** — rasterises queued type-B rows | name from call sites and a skim; body not yet read
+- [ ] `004112d0` inferred_Display_QueueRow_Mask · depth 0 · 159 lines · **untouched** — AddSprite helper writing the second row buffer (+0x674) | name from call sites and a skim; body not yet read
+- [ ] `00411580` inferred_Display_Raster_Mask · depth 0 · 164 lines · **untouched** — rasterises the mask rows | name from call sites and a skim; body not yet read
+- [ ] `00411be0` inferred_Display_Dtor · depth 0 · 10 lines · **decompiled** — releases the back surface (+0xc), primary surface (+8) and DirectDraw object (+4, slot 0x4c = RestoreDisplayMode)
+- [ ] `00411c00` inferred_Display_IsReady · depth 0 · 7 lines · **decompiled** — returns whether the primary surface pointer (+8) is set (corrected: it is a check, not DirectDraw setup)
 - [ ] `00411c10` inferred_Display_SetFont · depth 0 · 8 lines · **decompiled** — stores pointer at slot (index*4+0x20)
-- [ ] `00411c80` FUN_00411c80 · depth 0 · 127 lines · **untouched**
+- [ ] `00411c80` inferred_Display_DrawText · depth 0 · 127 lines · **untouched** — (font, text, colour/limits, x, y, width, ...) renders a string with the game font into the frame | name from call sites and a skim; body not yet read
 - [ ] `00411f20` inferred_Display_ResetRenderQueue · depth 0 · 30 lines · **decompiled** — clears two arrays of 0x1e0 entries (stride 500 and 200 dwords) and counters
-- [ ] `00411870` FUN_00411870 · depth 1 · 127 lines · **untouched**
+- [ ] `00411870` inferred_Display_Ctor · depth 1 · 127 lines · **decompiled** — 0x13a4-byte display constructor performing the whole DirectDraw setup: DirectDrawCreate, cooperative level, display mode, primary and back surfaces; each failure shows a DIRECTDRAW message box and returns the half-built object. Flag +0x67c selects 5-5-5 pixel handling
 - [ ] `00411f80` inferred_Display_AddSprite · depth 1 · 57 lines · **decompiled** — (x, y, sort value, image, flag): clips a 640x480 sprite and queues it in the render rows (per-scanline lists) by image type (1 or 3 get extra passes)
 - [ ] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **decompiled** — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set
 
 ### Cluster 32: 004120c0–00412e10 (0/7 ported)
 
 - [ ] `004120c0` inferred_Display_AddSpriteScaled · depth 0 · 21 lines · **decompiled** — like AddSprite with x/y scale factors (16.16 fixed)
-- [ ] `00412640` FUN_00412640 · depth 0 · 282 lines · **untouched**
-- [ ] `00412bb0` FUN_00412bb0 · depth 0 · 34 lines · **untouched**
-- [ ] `00412c50` FUN_00412c50 · depth 0 · 99 lines · **untouched**
-- [ ] `00412120` FUN_00412120 · depth 1 · 101 lines · **untouched**
-- [ ] `004123e0` FUN_004123e0 · depth 1 · 118 lines · **untouched**
-- [ ] `00412e10` FUN_00412e10 · depth 2 · 263 lines · **untouched**
+- [ ] `00412640` inferred_Display_Compose_Background · depth 0 · 282 lines · **untouched** — first stage of Display_Compose (282 lines) | name from call sites and a skim; body not yet read
+- [ ] `00412bb0` inferred_Display_ClearAndReset · depth 0 · 34 lines · **decompiled** — clears surfaces via DirectDraw (slot 0x80/4 and 0x1c Blt) and resets the render queue
+- [ ] `00412c50` inferred_Display_Compose_Overlay · depth 0 · 99 lines · **untouched** — later stage of Display_Compose | name from call sites and a skim; body not yet read
+- [ ] `00412120` inferred_Display_RasterRow · depth 1 · 101 lines · **untouched** — rasterises one scanline using the three type rasterisers | name from call sites and a skim; body not yet read
+- [ ] `004123e0` inferred_Display_StartEffect · depth 1 · 118 lines · **untouched** — (effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read
+- [ ] `00412e10` inferred_Display_Compose · depth 2 · 263 lines · **untouched** — per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read
 
 ### Cluster 33: 004137c0–004139e0 (0/7 ported)
 
-- [ ] `004137c0` FUN_004137c0 · depth 0 · 67 lines · **untouched**
-- [ ] `004138b0` FUN_004138b0 · depth 0 · 47 lines · **untouched**
-- [ ] `004139c0` inferred_Clock_Ctor · depth 0 · 14 lines · **decompiled** — game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended
-- [ ] `004139e0` FUN_004139e0 · depth 0 · 18 lines · **untouched**
+- [ ] `004137c0` inferred_TextTable_Sort · depth 0 · 67 lines · **untouched** — sorts 16-byte table records by their 64-bit key | name from call sites and a skim; body not yet read
+- [ ] `004138b0` inferred_TextTable_Lookup · depth 0 · 47 lines · **decompiled** — (key lo, key hi) binary search in the sorted table; returns the record or 0
+- [ ] `004139c0` inferred_Clock_Ctor · depth 0 · 14 lines · **understood** — game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended
+- [ ] `004139e0` inferred_BusyWait · depth 0 · 18 lines · **decompiled** — (ms) spins on GetTickCount until the time has passed
 - [ ] `004132b0` inferred_Movie_Start · depth 11 · 123 lines · **decompiled** — DirectShow setup via CoCreateInstance, builds path c:\INSTALL\BIN\DATA\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed
 - [ ] `00413570` inferred_TextTable_Load · depth 11 · 121 lines · **decompiled** — (archive offset): reads lines of the OBJETOS.TXT-style table and stores records of 16 bytes; first pass counts lines
 - [ ] `00413940` inferred_PhraseLookup · depth 11 · 27 lines · **decompiled** — (name) hashes the name with NameHash64 and searches the four text tables 00442110..0044211c; MessageBox "frase no encontrada" if missing
 
 ### Cluster 34: 00413a10–00414560 (0/12 ported)
 
-- [ ] `00413a10` inferred_Clock_Now · depth 0 · 19 lines · **decompiled** — adds elapsed GetTickCount delta when below 500 ms (longer gaps are ignored); returns frozen value while frozen
-- [ ] `00413a50` inferred_Clock_Freeze · depth 0 · 18 lines · **decompiled** — updates accumulation then freezes at the current value (called at start of each frame)
-- [ ] `00413a80` inferred_Clock_Suspend · depth 0 · 8 lines · **decompiled** — window deactivated: stop accumulating
-- [ ] `00413a90` inferred_Clock_Resume · depth 0 · 12 lines · **decompiled** — window activated: re-stamp last tick, resume
-- [ ] `00413ab0` inferred_Clock_Unfreeze · depth 0 · 8 lines · **decompiled** — clears frozen flag (end of frame)
-- [ ] `00413ac0` FUN_00413ac0 · depth 0 · 11 lines · **untouched**
-- [ ] `00413b00` inferred_RandomRange · depth 0 · 13 lines · **decompiled** — THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded
-- [ ] `00413b90` inferred_InitSubsystems · depth 6 · 140 lines · **decompiled** — builds CD, input, sound, video objects; error dialogs
-- [ ] `004144a0` inferred_Shutdown · depth 7 · 45 lines · **decompiled** — deletes display, sound, mouse, keyboard, archive, memory pools, clock in that order
-- [ ] `00414420` inferred_RunFrame · depth 10 · 21 lines · **decompiled** — per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end
-- [ ] `00414560` FUN_00414560 · depth 14 · 25 lines · **untouched**
+- [ ] `00413a10` inferred_Clock_Now · depth 0 · 19 lines · **understood** — adds elapsed GetTickCount delta when below 500 ms (longer gaps are ignored); returns frozen value while frozen
+- [ ] `00413a50` inferred_Clock_Freeze · depth 0 · 18 lines · **understood** — updates accumulation then freezes at the current value (called at start of each frame)
+- [ ] `00413a80` inferred_Clock_Suspend · depth 0 · 8 lines · **understood** — window deactivated: stop accumulating
+- [ ] `00413a90` inferred_Clock_Resume · depth 0 · 12 lines · **understood** — window activated: re-stamp last tick, resume
+- [ ] `00413ab0` inferred_Clock_Unfreeze · depth 0 · 8 lines · **understood** — clears frozen flag (end of frame)
+- [ ] `00413ac0` inferred_RandomRange7 · depth 0 · 11 lines · **decompiled** — second time-driven random function: 7 permuted bits of GetTickCount scaled to (max-min+1), plus min
+- [ ] `00413b00` inferred_RandomRange · depth 0 · 13 lines · **understood** — THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded
+- [ ] `00413b90` inferred_InitSubsystems · depth 6 · 140 lines · **understood** — builds CD, input, sound, video objects; error dialogs
+- [ ] `004144a0` inferred_Shutdown · depth 7 · 45 lines · **understood** — deletes display, sound, mouse, keyboard, archive, memory pools, clock in that order
+- [ ] `00414420` inferred_RunFrame · depth 10 · 21 lines · **understood** — per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end
+- [ ] `00414560` inferred_Game_StartIntroSequence · depth 14 · 25 lines · **decompiled** — enters the stage level with Jim, shows him, and starts a dialogue entry by key
 - [ ] `00413e60` inferred_InitGameWorld · depth 16 · 252 lines · **decompiled** — opens archive Tesoro.DAT/Tesoro.TRE, loads TABLA1.TBL, FUENTES.ANM, OBJETOS.TXT/DLG tables, INTERFACE.LVL, CUBIERTA/MAPA/DESPACHO..LVL levels (0x2f slots), PRINCIPAL.LVL, NUEVO.LVL, then starts the first level; SEH frame
 
 ### Cluster 35: 00414740–00414dc0 (0/12 ported)
@@ -445,164 +445,164 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00414740` inferred_WalkArea_ScaleAt · depth 0 · 86 lines · **decompiled** — (x, y) piecewise interpolation of a perspective scale (default 0x100) from the walk-area edge table in the current frame record | (x, y) perspective scale 0x100 = 1.0: finds the polyline edges spanning x, interpolates their y and per-vertex scale, then interpolates the scale vertically between the edge above and the edge below the point; 0x100 when no edge pair brackets the point
 - [ ] `00414600` inferred_Keyboard_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428070
 - [ ] `00414610` inferred_Mouse_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428074
-- [ ] `004146b0` FUN_004146b0 (vtable) · depth 1 · 23 lines · **untouched**
-- [ ] `00414a90` FUN_00414a90 (vtable) · depth 1 · 92 lines · **untouched**
-- [ ] `00414d50` FUN_00414d50 (vtable) · depth 1 · 18 lines · **untouched**
-- [ ] `004145f0` FUN_004145f0 (vtable) · depth 3 · 8 lines · **untouched**
+- [ ] `004146b0` inferred_C0042bc78_OnAttach (vtable) · depth 1 · 23 lines · **untouched** — unread; first seen in vtable 0042bc78 slot 0
+- [ ] `00414a90` inferred_C0042bcb0_OnAttach (vtable) · depth 1 · 92 lines · **untouched** — unread; first seen in vtable 0042bcb0 slot 0
+- [ ] `00414d50` inferred_C0042abb0_Slot15 (vtable) · depth 1 · 18 lines · **untouched** — unread; first seen in vtable 0042abb0 slot 15 (kind 6 subtype 1)
+- [ ] `004145f0` inferred_C0042bc40_Update2 (vtable) · depth 3 · 8 lines · **untouched** — unread; first seen in vtable 0042bc40 slot 5
 - [ ] `00414620` inferred_Obj_Kind07_Ctor · depth 3 · 19 lines · **decompiled** — 0x7c bytes, vtable 0042bc78, extends Kind00
 - [ ] `00414930` inferred_Obj_Kind02_Ctor · depth 3 · 81 lines · **decompiled** — 0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record
 - [ ] `00414c40` inferred_Exit_Activate (vtable) · depth 12 · 27 lines · **decompiled** — kind 6/other exit-style handler: when Jim is idle, resets display queues, looks up the destination level in the level table 00442130 by index (+0xa0) and name key (+0xa4,+0xa8), and moves Jim there with Jim_EnterLevel
-- [ ] `00414dc0` FUN_00414dc0 (vtable) · depth 12 · 12 lines · **untouched**
+- [ ] `00414dc0` inferred_C0042abb0_Slot28 (vtable) · depth 12 · 12 lines · **untouched** — unread; first seen in vtable 0042abb0 slot 28 (kind 6 subtype 1)
 - [ ] `00414be0` inferred_Obj_Kind06_Ctor · depth 13 · 16 lines · **decompiled** — 0xb0 bytes, vtable 0042bce8, extends Kind09; 10 per-subtype vtables chosen by record byte 1
 
 ### Cluster 36: 00414e80–00415440 (0/12 ported)
 
 - [ ] `00414e80` inferred_WalkArea_NextWaypoint (vtable) · depth 0 · 31 lines · **decompiled** — vtable slot 13: runs each time Jim reaches a vertex. Steps the vertex index +0xa0 one towards the destination index +0xa4 and sends Jim to that vertex (Jim slot 32, target = this); when the indices are equal first sends Jim to the real destination (+0xa8,+0xac) with the original target (+0xb0)
 - [ ] `00414f10` inferred_WalkArea_FindPath · depth 0 · 73 lines · **decompiled** — (x, y, target) picks the nearest waypoint of the walk area to the destination and prepares a route; returns whether a route exists | (x, y, target) finds the polyline vertex nearest the destination (+0xa4) and the vertex nearest Jim (+0xa0), stores the destination (+0xa8,+0xac) and target (+0xb0), then sends Jim to his nearest vertex; always returns true when the polyline has vertices. No search algorithm: movement is along the vertex list
-- [ ] `00415120` FUN_00415120 (vtable) · depth 0 · 7 lines · **untouched**
-- [ ] `00415130` FUN_00415130 (vtable) · depth 0 · 43 lines · **untouched**
-- [ ] `00415200` FUN_00415200 · depth 0 · 23 lines · **untouched**
+- [ ] `00415120` inferred_C0042bdd0_IsHitter (vtable) · depth 0 · 7 lines · **untouched** — unread; first seen in vtable 0042bdd0 slot 11
+- [ ] `00415130` inferred_C0042bdd0_OnTouched (vtable) · depth 0 · 43 lines · **untouched** — unread; first seen in vtable 0042bdd0 slot 12
+- [ ] `00415200` inferred_List_InsertAtHead · depth 0 · 23 lines · **decompiled** — allocates a node and links it at the list head
 - [ ] `00415230` inferred_TopObject_Ctor · depth 1 · 9 lines · **decompiled** — base object with vtable 0042be08, inserted with priority 100 (frontmost)
-- [ ] `00415290` FUN_00415290 (vtable) · depth 1 · 27 lines · **untouched**
+- [ ] `00415290` inferred_C0042be40_OnAttach (vtable) · depth 1 · 27 lines · **untouched** — unread; first seen in vtable 0042be40 slot 0
 - [ ] `004150d0` inferred_Obj_Kind14_Ctor · depth 3 · 17 lines · **decompiled** — 0x74 bytes, vtable 0042bdd0, extends Kind00; inserts itself in its room list
-- [ ] `00415350` FUN_00415350 (vtable) · depth 3 · 40 lines · **untouched**
-- [ ] `00415440` FUN_00415440 (vtable) · depth 3 · 17 lines · **untouched**
+- [ ] `00415350` inferred_C0042be40_IsInteractive (vtable) · depth 3 · 40 lines · **untouched** — unread; first seen in vtable 0042be40 slot 16
+- [ ] `00415440` inferred_C0042be40_SetVerbAndClick (vtable) · depth 3 · 17 lines · **untouched** — unread; first seen in vtable 0042be40 slot 14
 - [ ] `00414e00` inferred_WalkArea_Ctor · depth 4 · 13 lines · **decompiled** — 0xb4 bytes, vtable 0042bd60, extends Obj_MidBase | kind 8, 0xb4 bytes, vtable 0042bd60 (only slot 13 overridden), extends MidBase; starts the single-frame animation whose frame record holds the vertex list. Rename of inferred_Obj_Kind08_Ctor
 - [ ] `00415250` inferred_Obj_Kind11_Ctor · depth 4 · 10 lines · **decompiled** — 0xbc bytes, vtable 0042be40, extends MidBase
 
 ### Cluster 37: 004157c0–00415960 (0/8 ported)
 
-- [ ] `004157c0` FUN_004157c0 (vtable) · depth 0 · 7 lines · **untouched**
-- [ ] `004157b0` FUN_004157b0 (vtable) · depth 1 · 8 lines · **untouched**
-- [ ] `004157d0` inferred_MainWndProc · depth 2 · 34 lines · **decompiled** — WM_ACTIVATEAPP (0x1c): clock suspend/resume and restores the two display surfaces via vtable +0x6c; MM_MCINOTIFY (0x3b9) success: CD audio notify handler 00403dc0
-- [ ] `00415490` FUN_00415490 (vtable) · depth 3 · 85 lines · **untouched**
-- [ ] `00415640` FUN_00415640 (vtable) · depth 3 · 64 lines · **untouched**
+- [ ] `004157c0` inferred_C0042beb0_SetVerbAndClick (vtable) · depth 0 · 7 lines · **untouched** — unread; first seen in vtable 0042beb0 slot 14
+- [ ] `004157b0` inferred_C0042b9c0_OnAttach (vtable) · depth 1 · 8 lines · **untouched** — unread; first seen in vtable 0042b9c0 slot 0
+- [ ] `004157d0` inferred_MainWndProc · depth 2 · 34 lines · **understood** — WM_ACTIVATEAPP (0x1c): clock suspend/resume and restores the two display surfaces via vtable +0x6c; MM_MCINOTIFY (0x3b9) success: CD audio notify handler 00403dc0
+- [ ] `00415490` inferred_C0042be40_ShowHoverText (vtable) · depth 3 · 85 lines · **untouched** — unread; first seen in vtable 0042be40 slot 17
+- [ ] `00415640` inferred_C0042be40_ClearHoverText (vtable) · depth 3 · 64 lines · **untouched** — unread; first seen in vtable 0042be40 slot 18
 - [ ] `00415770` inferred_Obj_Kind15_Ctor · depth 4 · 11 lines · **decompiled** — 0xa0 bytes, vtable 0042beb0, extends MidBase, sort value +0x5e = 0x32
-- [ ] `00415880` inferred_CreateMainWindow · depth 7 · 37 lines · **decompiled** — RegisterClass + CreateWindowEx 640x480 (style 0x90000000, ex 8), ShowWindow, ShowCursor(0), sets init flags, calls InitSubsystems
-- [ ] `00415960` inferred_WinMain · depth 17 · 89 lines · **decompiled** — args: none=CD check+SETUP.EXE; '_$_$_ '+byte=game; 'Uninstall'
+- [ ] `00415880` inferred_CreateMainWindow · depth 7 · 37 lines · **understood** — RegisterClass + CreateWindowEx 640x480 (style 0x90000000, ex 8), ShowWindow, ShowCursor(0), sets init flags, calls InitSubsystems
+- [ ] `00415960` inferred_WinMain · depth 17 · 89 lines · **understood** — args: none=CD check+SETUP.EXE; '_$_$_ '+byte=game; 'Uninstall'
 
 ### Cluster 38: 00415c30–00416170 (0/12 ported)
 
-- [ ] `00415c30` inferred_SetInitFlags · depth 0 · 11 lines · **decompiled** — sets globals 00442208 and 0044221c to 1
-- [ ] `00415c40` inferred_NameHash64 · depth 0 · 44 lines · **decompiled** — packs up to 12 chars of a name, 5 bits each (chars below '5' get +11), into a 64-bit key; used with level object lookup
-- [ ] `00415cb0` FUN_00415cb0 · depth 0 · 55 lines · **untouched**
-- [ ] `00415b00` inferred_FindCdAndSetup · depth 10 · 71 lines · **decompiled** — scans drives for label TESORO, checks SETUP.EXE
-- [ ] `00415d90` FUN_00415d90 (vtable) · depth 13 · 25 lines · **untouched**
-- [ ] `00415d20` FUN_00415d20 (vtable) · depth 14 · 27 lines · **untouched**
-- [ ] `00415e30` FUN_00415e30 (vtable) · depth 14 · 23 lines · **untouched**
-- [ ] `00415e90` FUN_00415e90 (vtable) · depth 14 · 24 lines · **untouched**
-- [ ] `00415f10` FUN_00415f10 (vtable) · depth 14 · 24 lines · **untouched**
-- [ ] `00415f90` FUN_00415f90 (vtable) · depth 14 · 32 lines · **untouched**
-- [ ] `00416030` FUN_00416030 (vtable) · depth 14 · 42 lines · **untouched**
-- [ ] `00416170` FUN_00416170 (vtable) · depth 14 · 30 lines · **untouched**
+- [ ] `00415c30` inferred_SetInitFlags · depth 0 · 11 lines · **understood** — sets globals 00442208 and 0044221c to 1
+- [ ] `00415c40` inferred_NameHash64 · depth 0 · 44 lines · **understood** — packs up to 12 chars of a name, 5 bits each (chars below '5' get +11), into a 64-bit key; used with level object lookup
+- [ ] `00415cb0` inferred_NameHash64_Decode · depth 0 · 55 lines · **decompiled** — (lo, hi, buffer) rebuilds a readable name from a 64-bit key; used for error text
+- [ ] `00415b00` inferred_FindCdAndSetup · depth 10 · 71 lines · **understood** — scans drives for label TESORO, checks SETUP.EXE
+- [ ] `00415d90` inferred_C00429410_UseItem (vtable) · depth 13 · 25 lines · **untouched** — unread; first seen in vtable 00429410 slot 27 (kind 20 subtype 11)
+- [ ] `00415d20` inferred_C0042af70_Verb0 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 0042af70 slot 20 (kind 6 subtype 9)
+- [ ] `00415e30` inferred_C00429100_UseItem (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00429100 slot 27 (kind 20 subtype 19)
+- [ ] `00415e90` inferred_C0042a050_Verb1 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 0042a050 slot 21 (kind 17 subtype 0)
+- [ ] `00415f10` inferred_C0042a050_Verb3 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 0042a050 slot 22 (kind 17 subtype 0)
+- [ ] `00415f90` inferred_C0042aca0_Verb0 (vtable) · depth 14 · 32 lines · **untouched** — unread; first seen in vtable 0042aca0 slot 20 (kind 6 subtype 3)
+- [ ] `00416030` inferred_C0042aca0_Slot28 (vtable) · depth 14 · 42 lines · **untouched** — unread; first seen in vtable 0042aca0 slot 28 (kind 6 subtype 3)
+- [ ] `00416170` inferred_C00429950_Verb4 (vtable) · depth 14 · 30 lines · **untouched** — unread; first seen in vtable 00429950 slot 24 (kind 17 subtype 16)
 
 ### Cluster 39: 00416300–004169a0 (0/12 ported)
 
-- [ ] `00416300` FUN_00416300 (vtable) · depth 12 · 86 lines · **untouched**
-- [ ] `004169a0` FUN_004169a0 (vtable) · depth 12 · 33 lines · **untouched**
-- [ ] `00416220` FUN_00416220 (vtable) · depth 14 · 23 lines · **untouched**
-- [ ] `00416280` FUN_00416280 (vtable) · depth 14 · 24 lines · **untouched**
-- [ ] `00416540` FUN_00416540 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `00416590` FUN_00416590 (vtable) · depth 14 · 41 lines · **untouched**
-- [ ] `00416680` FUN_00416680 (vtable) · depth 14 · 31 lines · **untouched**
-- [ ] `00416700` FUN_00416700 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `00416750` FUN_00416750 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `004167a0` FUN_004167a0 (vtable) · depth 14 · 23 lines · **untouched**
-- [ ] `00416800` FUN_00416800 (vtable) · depth 14 · 43 lines · **untouched**
-- [ ] `00416910` FUN_00416910 (vtable) · depth 14 · 31 lines · **untouched**
+- [ ] `00416300` inferred_C004289d8_Slot28 (vtable) · depth 12 · 86 lines · **untouched** — unread; first seen in vtable 004289d8 slot 28
+- [ ] `004169a0` inferred_C004288e8_Slot28 (vtable) · depth 12 · 33 lines · **untouched** — unread; first seen in vtable 004288e8 slot 28
+- [ ] `00416220` inferred_C00429950_UseItem (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00429950 slot 27 (kind 17 subtype 16)
+- [ ] `00416280` inferred_C00429db0_Verb0 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 00429db0 slot 20 (kind 17 subtype 6)
+- [ ] `00416540` inferred_C0042b5b0_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042b5b0 slot 23 (kind 5 subtype 7)
+- [ ] `00416590` inferred_C0042b5b0_UseItem (vtable) · depth 14 · 41 lines · **untouched** — unread; first seen in vtable 0042b5b0 slot 27 (kind 5 subtype 7)
+- [ ] `00416680` inferred_C0042b528_UseItem (vtable) · depth 14 · 31 lines · **untouched** — unread; first seen in vtable 0042b528 slot 27 (kind 5 subtype 8)
+- [ ] `00416700` inferred_C0042b528_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042b528 slot 23 (kind 5 subtype 8)
+- [ ] `00416750` inferred_C0042b528_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042b528 slot 21 (kind 5 subtype 8)
+- [ ] `004167a0` inferred_C00429b10_UseItem (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00429b10 slot 27 (kind 17 subtype 11)
+- [ ] `00416800` inferred_C0042bbd0_RunVerb (vtable) · depth 14 · 43 lines · **untouched** — unread; first seen in vtable 0042bbd0 slot 13
+- [ ] `00416910` inferred_C0042b6c0_UseItem (vtable) · depth 14 · 31 lines · **untouched** — unread; first seen in vtable 0042b6c0 slot 27 (kind 5 subtype 5)
 
 ### Cluster 40: 00416b50–00417250 (0/9 ported)
 
-- [ ] `00416b50` FUN_00416b50 (vtable) · depth 2 · 15 lines · **untouched**
-- [ ] `00416b80` FUN_00416b80 (vtable) · depth 12 · 45 lines · **untouched**
-- [ ] `00416c80` FUN_00416c80 (vtable) · depth 12 · 71 lines · **untouched**
-- [ ] `00416a20` FUN_00416a20 (vtable) · depth 14 · 26 lines · **untouched**
-- [ ] `00416ac0` FUN_00416ac0 (vtable) · depth 14 · 27 lines · **untouched**
-- [ ] `00416e30` FUN_00416e30 (vtable) · depth 14 · 35 lines · **untouched**
-- [ ] `00416ee0` FUN_00416ee0 (vtable) · depth 14 · 106 lines · **untouched**
-- [ ] `00417180` FUN_00417180 (vtable) · depth 14 · 34 lines · **untouched**
-- [ ] `00417250` FUN_00417250 (vtable) · depth 14 · 47 lines · **untouched**
+- [ ] `00416b50` inferred_C004280f0_Slot28 (vtable) · depth 2 · 15 lines · **untouched** — unread; first seen in vtable 004280f0 slot 28
+- [ ] `00416b80` inferred_C00428258_Slot28 (vtable) · depth 12 · 45 lines · **untouched** — unread; first seen in vtable 00428258 slot 28
+- [ ] `00416c80` inferred_C004281e0_Slot28 (vtable) · depth 12 · 71 lines · **untouched** — unread; first seen in vtable 004281e0 slot 28
+- [ ] `00416a20` inferred_C0042b280_Verb2 (vtable) · depth 14 · 26 lines · **untouched** — unread; first seen in vtable 0042b280 slot 23 (kind 5 subtype 0)
+- [ ] `00416ac0` inferred_C0042b280_UseItem (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 0042b280 slot 27 (kind 5 subtype 0)
+- [ ] `00416e30` inferred_C00428d10_UseItem (vtable) · depth 14 · 35 lines · **untouched** — unread; first seen in vtable 00428d10 slot 27 (kind 20 subtype 28)
+- [ ] `00416ee0` inferred_C0042a600_UseItem (vtable) · depth 14 · 106 lines · **untouched** — unread; first seen in vtable 0042a600 slot 27 (kind 13 subtype 16)
+- [ ] `00417180` inferred_C0042a520_Verb4 (vtable) · depth 14 · 34 lines · **untouched** — unread; first seen in vtable 0042a520 slot 24 (kind 13 subtype 9)
+- [ ] `00417250` inferred_C0042a440_UseItem (vtable) · depth 14 · 47 lines · **untouched** — unread; first seen in vtable 0042a440 slot 27 (kind 13 subtype 28)
 
 ### Cluster 41: 00417360–004178b0 (0/9 ported)
 
-- [ ] `00417360` FUN_00417360 (vtable) · depth 2 · 22 lines · **untouched**
-- [ ] `004174b0` FUN_004174b0 (vtable) · depth 2 · 22 lines · **untouched**
-- [ ] `00417530` FUN_00417530 (vtable) · depth 2 · 22 lines · **untouched**
+- [ ] `00417360` inferred_C0042a360_UseItem (vtable) · depth 2 · 22 lines · **untouched** — unread; first seen in vtable 0042a360 slot 27 (kind 13 subtype 36)
+- [ ] `004174b0` inferred_C0042a210_UseItem (vtable) · depth 2 · 22 lines · **untouched** — unread; first seen in vtable 0042a210 slot 27 (kind 13 subtype 33)
+- [ ] `00417530` inferred_C0042a130_UseItem (vtable) · depth 2 · 22 lines · **untouched** — unread; first seen in vtable 0042a130 slot 27 (kind 13 subtype 42)
 - [ ] `00417720` inferred_Obj_Kind19_Ctor · depth 12 · 63 lines · **decompiled** — 0xa4 bytes, vtable 0042bf90; builds a temporary Kind00 and copies it field by field into this
 - [ ] `004175b0` inferred_Obj_Kind24_Ctor · depth 13 · 10 lines · **decompiled** — 0xa4 bytes, vtable 0042bf20, extends Kind09
-- [ ] `004173e0` FUN_004173e0 (vtable) · depth 14 · 35 lines · **untouched**
-- [ ] `004175f0` FUN_004175f0 (vtable) · depth 14 · 19 lines · **untouched**
-- [ ] `00417640` FUN_00417640 (vtable) · depth 14 · 44 lines · **untouched**
-- [ ] `004178b0` FUN_004178b0 (vtable) · depth 14 · 37 lines · **untouched**
+- [ ] `004173e0` inferred_C0042a2f0_UseItem (vtable) · depth 14 · 35 lines · **untouched** — unread; first seen in vtable 0042a2f0 slot 27 (kind 13 subtype 37)
+- [ ] `004175f0` inferred_C0042bf20_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042bf20 slot 21
+- [ ] `00417640` inferred_C0042afe8_Slot28 (vtable) · depth 14 · 44 lines · **untouched** — unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)
+- [ ] `004178b0` inferred_C0042bf90_SetVerbAndClick (vtable) · depth 14 · 37 lines · **untouched** — unread; first seen in vtable 0042bf90 slot 14
 
 ### Cluster 42: 00417b30–00417d00 (0/7 ported)
 
 - [ ] `00417b30` inferred_Obj_RetTrue (vtable) · depth 0 · 7 lines · **decompiled** — MidBase slot 16: returns 1 (is interactive/enabled default)
-- [ ] `004179b0` FUN_004179b0 (vtable) · depth 2 · 41 lines · **untouched**
-- [ ] `00417c80` FUN_00417c80 (vtable) · depth 2 · 10 lines · **untouched**
+- [ ] `004179b0` inferred_C0042bc08_RunVerb (vtable) · depth 2 · 41 lines · **untouched** — unread; first seen in vtable 0042bc08 slot 13
+- [ ] `00417c80` inferred_C004282d0_Slot28 (vtable) · depth 2 · 10 lines · **untouched** — unread; first seen in vtable 004282d0 slot 28
 - [ ] `00417ad0` inferred_Obj_Kind25_Ctor · depth 4 · 12 lines · **decompiled** — 0xa4 bytes, vtable 0042c000, extends MidBase
-- [ ] `00417ca0` FUN_00417ca0 (vtable) · depth 13 · 21 lines · **untouched**
-- [ ] `00417d00` FUN_00417d00 (vtable) · depth 13 · 31 lines · **untouched**
-- [ ] `00417b40` FUN_00417b40 (vtable) · depth 15 · 49 lines · **untouched**
+- [ ] `00417ca0` inferred_C004295d0_UseItem (vtable) · depth 13 · 21 lines · **untouched** — unread; first seen in vtable 004295d0 slot 27 (kind 20 subtype 7)
+- [ ] `00417d00` inferred_C00429560_UseItem (vtable) · depth 13 · 31 lines · **untouched** — unread; first seen in vtable 00429560 slot 27 (kind 20 subtype 8)
+- [ ] `00417b40` inferred_C0042c000_SetVerbAndClick (vtable) · depth 15 · 49 lines · **untouched** — unread; first seen in vtable 0042c000 slot 14
 
 ### Cluster 43: 00417dd0–00418560 (0/12 ported)
 
-- [ ] `00417dd0` thunk_FUN_00414c40 (vtable) · depth 13 · 10 lines · **untouched**
-- [ ] `004180b0` FUN_004180b0 (vtable) · depth 13 · 21 lines · **untouched**
-- [ ] `00418110` FUN_00418110 (vtable) · depth 13 · 31 lines · **untouched**
-- [ ] `00417de0` FUN_00417de0 (vtable) · depth 14 · 32 lines · **untouched**
-- [ ] `00417e90` FUN_00417e90 (vtable) · depth 14 · 69 lines · **untouched**
-- [ ] `00418050` FUN_00418050 (vtable) · depth 14 · 24 lines · **untouched**
-- [ ] `004181e0` FUN_004181e0 (vtable) · depth 14 · 35 lines · **untouched**
-- [ ] `004182c0` FUN_004182c0 (vtable) · depth 14 · 23 lines · **untouched**
-- [ ] `00418320` FUN_00418320 (vtable) · depth 14 · 33 lines · **untouched**
-- [ ] `004183e0` FUN_004183e0 (vtable) · depth 14 · 40 lines · **untouched**
-- [ ] `004184e0` FUN_004184e0 (vtable) · depth 14 · 25 lines · **untouched**
-- [ ] `00418560` FUN_00418560 (vtable) · depth 14 · 27 lines · **untouched**
+- [ ] `00417dd0` inferred_C0042ae08_Verb0 (vtable) · depth 13 · 10 lines · **untouched** — unread; first seen in vtable 0042ae08 slot 20 (kind 6 subtype 6)
+- [ ] `004180b0` inferred_C00429870_UseItem (vtable) · depth 13 · 21 lines · **untouched** — unread; first seen in vtable 00429870 slot 27 (kind 20 subtype 1)
+- [ ] `00418110` inferred_C004292c0_UseItem (vtable) · depth 13 · 31 lines · **untouched** — unread; first seen in vtable 004292c0 slot 27 (kind 20 subtype 16)
+- [ ] `00417de0` inferred_C004298e0_UseItem (vtable) · depth 14 · 32 lines · **untouched** — unread; first seen in vtable 004298e0 slot 27 (kind 20 subtype 0)
+- [ ] `00417e90` inferred_C00429800_UseItem (vtable) · depth 14 · 69 lines · **untouched** — unread; first seen in vtable 00429800 slot 27 (kind 20 subtype 2)
+- [ ] `00418050` inferred_C0042ad90_Verb0 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 0042ad90 slot 20 (kind 6 subtype 5)
+- [ ] `004181e0` inferred_C0042b170_UseItem (vtable) · depth 14 · 35 lines · **untouched** — unread; first seen in vtable 0042b170 slot 27 (kind 5 subtype 14)
+- [ ] `004182c0` inferred_C0042b1f8_UseItem (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 0042b1f8 slot 27 (kind 5 subtype 13)
+- [ ] `00418320` inferred_C00429250_UseItem (vtable) · depth 14 · 33 lines · **untouched** — unread; first seen in vtable 00429250 slot 27 (kind 20 subtype 14)
+- [ ] `004183e0` inferred_C0042b1f8_Verb2 (vtable) · depth 14 · 40 lines · **untouched** — unread; first seen in vtable 0042b1f8 slot 23 (kind 5 subtype 13)
+- [ ] `004184e0` inferred_C0042b1f8_Verb1 (vtable) · depth 14 · 25 lines · **untouched** — unread; first seen in vtable 0042b1f8 slot 21 (kind 5 subtype 13)
+- [ ] `00418560` inferred_C0042ac28_Verb0 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 0042ac28 slot 20 (kind 6 subtype 2)
 
 ### Cluster 44: 004185c0–00418b80 (0/8 ported)
 
-- [ ] `004185c0` FUN_004185c0 (vtable) · depth 14 · 34 lines · **untouched**
-- [ ] `00418670` FUN_00418670 (vtable) · depth 14 · 54 lines · **untouched**
-- [ ] `00418780` FUN_00418780 (vtable) · depth 14 · 23 lines · **untouched**
-- [ ] `004187e0` FUN_004187e0 (vtable) · depth 14 · 25 lines · **untouched**
-- [ ] `00418860` FUN_00418860 (vtable) · depth 14 · 50 lines · **untouched**
-- [ ] `00418990` FUN_00418990 (vtable) · depth 14 · 38 lines · **untouched**
-- [ ] `00418aa0` FUN_00418aa0 (vtable) · depth 14 · 44 lines · **untouched**
-- [ ] `00418b80` FUN_00418b80 (vtable) · depth 14 · 34 lines · **untouched**
+- [ ] `004185c0` inferred_C0042b4a0_Verb2 (vtable) · depth 14 · 34 lines · **untouched** — unread; first seen in vtable 0042b4a0 slot 23 (kind 5 subtype 1)
+- [ ] `00418670` inferred_C0042b4a0_UseItem (vtable) · depth 14 · 54 lines · **untouched** — unread; first seen in vtable 0042b4a0 slot 27 (kind 5 subtype 1)
+- [ ] `00418780` inferred_C00429020_UseItem (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00429020 slot 27 (kind 20 subtype 21)
+- [ ] `004187e0` inferred_C0042b308_Verb2 (vtable) · depth 14 · 25 lines · **untouched** — unread; first seen in vtable 0042b308 slot 23 (kind 5 subtype 2)
+- [ ] `00418860` inferred_C0042b308_UseItem (vtable) · depth 14 · 50 lines · **untouched** — unread; first seen in vtable 0042b308 slot 27 (kind 5 subtype 2)
+- [ ] `00418990` inferred_C0042b418_Verb2 (vtable) · depth 14 · 38 lines · **untouched** — unread; first seen in vtable 0042b418 slot 23 (kind 5 subtype 4)
+- [ ] `00418aa0` inferred_C0042b418_UseItem (vtable) · depth 14 · 44 lines · **untouched** — unread; first seen in vtable 0042b418 slot 27 (kind 5 subtype 4)
+- [ ] `00418b80` inferred_C0042abb0_Verb0 (vtable) · depth 14 · 34 lines · **untouched** — unread; first seen in vtable 0042abb0 slot 20 (kind 6 subtype 1)
 
 ### Cluster 45: 00418d20–00419050 (0/7 ported)
 
-- [ ] `00418d20` FUN_00418d20 · depth 0 · 76 lines · **untouched**
-- [ ] `00419050` FUN_00419050 · depth 1 · 74 lines · **untouched**
-- [ ] `00418c80` FUN_00418c80 (vtable) · depth 2 · 16 lines · **untouched**
-- [ ] `00418c50` FUN_00418c50 (vtable) · depth 3 · 16 lines · **untouched**
-- [ ] `00418e90` FUN_00418e90 · depth 3 · 97 lines · **untouched**
-- [ ] `00418c30` FUN_00418c30 (vtable) · depth 4 · 10 lines · **untouched**
-- [ ] `00418cb0` FUN_00418cb0 (vtable) · depth 14 · 30 lines · **untouched**
+- [ ] `00418d20` inferred_Connect4_ScoreMove · depth 0 · 76 lines · **untouched** — scores a move on a 7-column board (columns hold up to 7 pieces, lines of 4): hypothesis for a board mini-game | name from call sites and a skim; body not yet read
+- [ ] `00419050` inferred_Connect4_FindBestMoves · depth 1 · 74 lines · **untouched** — tries each non-full column, collects the best-scoring columns | name from call sites and a skim; body not yet read
+- [ ] `00418c80` inferred_C0042b390_Slot28 (vtable) · depth 2 · 16 lines · **untouched** — unread; first seen in vtable 0042b390 slot 28 (kind 5 subtype 3)
+- [ ] `00418c50` inferred_C0042b390_Slot30 (vtable) · depth 3 · 16 lines · **untouched** — unread; first seen in vtable 0042b390 slot 30 (kind 5 subtype 3)
+- [ ] `00418e90` inferred_BoardGame_BlinkUpdate · depth 3 · 97 lines · **untouched** — toggles a blink flag every 200 ms of game time and updates board objects; hypothesis | name from call sites and a skim; body not yet read
+- [ ] `00418c30` inferred_C0042b390_Draw (vtable) · depth 4 · 10 lines · **untouched** — unread; first seen in vtable 0042b390 slot 6 (kind 5 subtype 3)
+- [ ] `00418cb0` inferred_C0042a750_UseItem (vtable) · depth 14 · 30 lines · **untouched** — unread; first seen in vtable 0042a750 slot 27 (kind 12 subtype 8)
 
 ### Cluster 46: 004191c0–00419ac0 (0/12 ported)
 
-- [ ] `004191c0` FUN_004191c0 · depth 2 · 46 lines · **untouched**
-- [ ] `00419340` FUN_00419340 (vtable) · depth 4 · 23 lines · **untouched**
+- [ ] `004191c0` inferred_Connect4_ChooseMove · depth 2 · 46 lines · **untouched** — picks a column (checks for immediate win/loss first, then best-scoring, using RandomRange to break ties) | name from call sites and a skim; body not yet read
+- [ ] `00419340` inferred_C0042c070_SetVerbAndClick (vtable) · depth 4 · 23 lines · **untouched** — unread; first seen in vtable 0042c070 slot 14
 - [ ] `004192c0` inferred_Obj_Kind21_Ctor · depth 12 · 24 lines · **decompiled** — 0xa4 bytes, vtable 0042c070, extends MidBase; builds a phrase key from a base string plus a digit from the record
-- [ ] `004193b0` FUN_004193b0 (vtable) · depth 12 · 69 lines · **untouched**
-- [ ] `004197a0` FUN_004197a0 (vtable) · depth 12 · 51 lines · **untouched**
-- [ ] `004198d0` FUN_004198d0 (vtable) · depth 12 · 37 lines · **untouched**
-- [ ] `004199a0` FUN_004199a0 (vtable) · depth 12 · 21 lines · **untouched**
-- [ ] `00419a10` FUN_00419a10 (vtable) · depth 12 · 31 lines · **untouched**
-- [ ] `00419ac0` FUN_00419ac0 (vtable) · depth 12 · 20 lines · **untouched**
-- [ ] `00419530` FUN_00419530 (vtable) · depth 14 · 43 lines · **untouched**
-- [ ] `00419620` FUN_00419620 (vtable) · depth 14 · 29 lines · **untouched**
-- [ ] `004196c0` FUN_004196c0 (vtable) · depth 14 · 30 lines · **untouched**
+- [ ] `004193b0` inferred_C00428438_Slot28 (vtable) · depth 12 · 69 lines · **untouched** — unread; first seen in vtable 00428438 slot 28
+- [ ] `004197a0` inferred_C00428a50_Slot28 (vtable) · depth 12 · 51 lines · **untouched** — unread; first seen in vtable 00428a50 slot 28
+- [ ] `004198d0` inferred_C00428960_Slot28 (vtable) · depth 12 · 37 lines · **untouched** — unread; first seen in vtable 00428960 slot 28
+- [ ] `004199a0` inferred_C00428870_Slot28 (vtable) · depth 12 · 21 lines · **untouched** — unread; first seen in vtable 00428870 slot 28
+- [ ] `00419a10` inferred_C004287f8_Slot28 (vtable) · depth 12 · 31 lines · **untouched** — unread; first seen in vtable 004287f8 slot 28
+- [ ] `00419ac0` inferred_C00428780_Slot28 (vtable) · depth 12 · 20 lines · **untouched** — unread; first seen in vtable 00428780 slot 28
+- [ ] `00419530` inferred_C00428708_Slot28 (vtable) · depth 14 · 43 lines · **untouched** — unread; first seen in vtable 00428708 slot 28
+- [ ] `00419620` inferred_C0042b060_Verb2 (vtable) · depth 14 · 29 lines · **untouched** — unread; first seen in vtable 0042b060 slot 23 (kind 5 subtype 16)
+- [ ] `004196c0` inferred_C0042b0e8_Verb2 (vtable) · depth 14 · 30 lines · **untouched** — unread; first seen in vtable 0042b0e8 slot 23 (kind 5 subtype 15)
 
 ### Cluster 47: 00419b30–00419f10 (0/6 ported)
 
-- [ ] `00419b30` FUN_00419b30 (vtable) · depth 12 · 17 lines · **untouched**
-- [ ] `00419b90` FUN_00419b90 (vtable) · depth 12 · 68 lines · **untouched**
-- [ ] `00419cf0` FUN_00419cf0 (vtable) · depth 12 · 16 lines · **untouched**
-- [ ] `00419d40` FUN_00419d40 (vtable) · depth 12 · 16 lines · **untouched**
-- [ ] `00419d90` FUN_00419d90 (vtable) · depth 12 · 74 lines · **untouched**
+- [ ] `00419b30` inferred_C00428690_Slot28 (vtable) · depth 12 · 17 lines · **untouched** — unread; first seen in vtable 00428690 slot 28
+- [ ] `00419b90` inferred_C00428528_Slot28 (vtable) · depth 12 · 68 lines · **untouched** — unread; first seen in vtable 00428528 slot 28
+- [ ] `00419cf0` inferred_C004283c0_Slot28 (vtable) · depth 12 · 16 lines · **untouched** — unread; first seen in vtable 004283c0 slot 28
+- [ ] `00419d40` inferred_C00428348_Slot28 (vtable) · depth 12 · 16 lines · **untouched** — unread; first seen in vtable 00428348 slot 28
+- [ ] `00419d90` inferred_C00428618_Slot28 (vtable) · depth 12 · 74 lines · **untouched** — unread; first seen in vtable 00428618 slot 28
 - [ ] `00419f10` inferred_DlgScript_EnterStageLevel (vtable) · depth 12 · 57 lines · **decompiled** — (0 or 1): moves Jim into a fixed stage level (globals 00442188 / 00442154), repositions the camera and re-resolves the script's actor table there
 
 ## Runtime, CRT and import thunks
@@ -654,7 +654,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `0041c1d0` inferred__findfirst · runtime · **replaced**
 - [x] `0041c300` inferred__findclose · runtime · **replaced**
 - [x] `0041c320` inferred___timet_from_ft · runtime · **replaced**
-- [x] `0041c3b0` inferred__stat · runtime · **replaced**
+- [x] `0041c3b0` inferred__execl · runtime · **replaced**
 - [x] `0041c3d0` inferred_WinMainCRTStartup · runtime · **replaced**
 - [x] `0041c570` __amsg_exit · runtime · **replaced**
 - [x] `0041c5a0` FUN_0041c5a0 · runtime · **replaced**
