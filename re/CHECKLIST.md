@@ -8,7 +8,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 162 | 36% |
+| decompiled or later | 171 | 38% |
 | understood or later | 0 | 0% |
 | ported or later | 0 | 0% |
 | emu-compared or later | 0 | 0% |
@@ -66,19 +66,19 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 5: 004023f0–004028c0 (0/7 ported)
 
 - [ ] `004023f0` inferred_Cursor_SetText · depth 0 · 43 lines · **decompiled** — copies a C string into the cursor's hover-text buffer (+0x78), or clears it; optional ushort at +0x118
-- [ ] `004025b0` FUN_004025b0 · depth 1 · 49 lines · **untouched**
+- [ ] `004025b0` inferred_Cursor_PageInterfaceRight · depth 1 · 49 lines · **decompiled** — shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge
 - [ ] `004028c0` FUN_004028c0 · depth 1 · 51 lines · **untouched**
-- [ ] `00402240` FUN_00402240 · depth 2 · 42 lines · **untouched**
+- [ ] `00402240` inferred_Cursor_Ctor · depth 2 · 42 lines · **decompiled** — 0x130-byte object, vtable 00428038, base 0040e5a0; creates candidate lists (capacity 0x1e) at +0x6c/+0x70 and a shared list 00442060
 - [ ] `00402440` FUN_00402440 (vtable) · depth 2 · 74 lines · **untouched**
-- [ ] `004026d0` FUN_004026d0 · depth 3 · 84 lines · **untouched**
+- [ ] `004026d0` inferred_Cursor_CaptureThumbnail · depth 3 · 84 lines · **decompiled** — renders the scene without the cursor into the display buffer and copies a 213x160 sample (every third pixel of every third row) to +0x128: a save-game thumbnail (hypothesis from the sampling pattern)
 - [ ] `00402300` inferred_Obj_Kind10_Ctor · depth 4 · 46 lines · **decompiled** — 0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object
 
 ### Cluster 6: 00402e50–00403300 (0/12 ported)
 
-- [ ] `00402e50` FUN_00402e50 (vtable) · depth 0 · 7 lines · **untouched**
+- [ ] `00402e50` inferred_Cursor_IsFlag10 (vtable) · depth 0 · 7 lines · **decompiled** — vtable slot 11: returns flag bit 10 of +0x68
 - [ ] `00402d80` FUN_00402d80 (vtable) · depth 1 · 24 lines · **untouched**
-- [ ] `00402e60` FUN_00402e60 (vtable) · depth 1 · 8 lines · **untouched**
-- [ ] `00402e80` FUN_00402e80 · depth 1 · 127 lines · **untouched**
+- [ ] `00402e60` inferred_Cursor_AddCandidate (vtable) · depth 1 · 8 lines · **decompiled** — vtable slot 12: appends an object to the candidate list +0x70 (objects under the pointer register themselves; the registering geometric test is not yet located)
+- [ ] `00402e80` inferred_Cursor_ProcessCandidates · depth 1 · 127 lines · **decompiled** — per frame: for each registered candidate, with left button (mouse buttons byte & 8) calls candidate slot 14 with the cursor's current animation index (the verb), with right button (& 0x10) slot 15, otherwise slot 17 (show hover text); candidates that stopped being under the pointer get slot 18 (clear text) and are dropped
 - [ ] `004031a0` FUN_004031a0 (vtable) · depth 1 · 38 lines · **untouched**
 - [ ] `00403220` FUN_00403220 · depth 1 · 11 lines · **untouched**
 - [ ] `004029a0` FUN_004029a0 · depth 2 · 14 lines · **untouched**
@@ -86,7 +86,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00403300` FUN_00403300 · depth 4 · 10 lines · **untouched**
 - [ ] `004032e0` inferred_Archive_SeekEntry · depth 5 · 8 lines · **decompiled** — fseek the archive handle to offset, returns the FILE*
 - [ ] `00403250` inferred_Archive_Open · depth 10 · 28 lines · **decompiled** — thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4
-- [ ] `004029f0` FUN_004029f0 (vtable) · depth 12 · 156 lines · **untouched**
+- [ ] `004029f0` inferred_Cursor_Update (vtable) · depth 12 · 156 lines · **decompiled** — vtable slot 4: reads the mouse position and buttons and the keyboard state array, handles the interface strip scrolling (shifts by 0x280 = one screen width), then positions the cursor object and its +0x74 companion at the mouse position plus the interface camera offset, and flags the held item
 
 ### Cluster 7: 00403500–00403980 (0/12 ported)
 
@@ -133,7 +133,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00404810` FUN_00404810 · depth 12 · 691 lines · **untouched**
 - [ ] `00405a60` FUN_00405a60 · depth 13 · 228 lines · **untouched**
 - [ ] `00405fd0` FUN_00405fd0 · depth 13 · 44 lines · **untouched**
-- [ ] `00405850` FUN_00405850 (vtable) · depth 14 · 70 lines · **untouched**
+- [ ] `00405850` inferred_Dialogue_StepUpdate (vtable) · depth 14 · 70 lines · **decompiled** — per-frame step of a scripted action list (24-byte steps at +0xbc, current step +0xcc): waits (type 1 until the speaker finishes plus 200 ms, type 2 timed), choice menus (types 5, 6: asks the player object to say the options), cursor show/hide (type 8), type 9 wait for an animation; advances or ends the list (returns 2 or 3)
 - [ ] `00406140` FUN_00406140 (vtable) · depth 14 · 12 lines · **untouched**
 
 ### Cluster 11: 004067a0–00407000 (0/8 ported)
@@ -142,7 +142,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00406c50` inferred_Obj_Kind13_Update (vtable) · depth 1 · 44 lines · **decompiled** — slot 4 of kind 13: same pending-click dispatch as Interactive_Update, with an extra item-use path when no verb handler applies (calls the hovered object's slot 27)
 - [ ] `004069e0` inferred_Obj_Kind01_OnAttach (vtable) · depth 2 · 35 lines · **decompiled** — vtable slot 0 of kind 1 (run by Object_AttachToLevel): resolves the walk area object by the name at +0x6c in the level's object list (+0x78), sets the camera bounds to the first frame's rectangle and moves the camera to the object's position
 - [ ] `00406980` inferred_Obj_Kind01_Ctor · depth 3 · 16 lines · **decompiled** — 0x84 bytes, vtable 00428ac8, extends Kind00; Level_CreateObject stores the instance at level +0x90 (single special object per level)
-- [ ] `00407000` FUN_00407000 (vtable) · depth 3 · 30 lines · **untouched**
+- [ ] `00407000` inferred_Item_SetHeld (vtable) · depth 3 · 30 lines · **decompiled** — kind 13 method (flag): when set, makes this object the carried item (cursor +0x12c) and switches the cursor animation to item id + 7; when cleared, drops it. Verb indices 7 and above are therefore carried inventory items
 - [ ] `00406a90` inferred_Obj_Kind13_Ctor · depth 12 · 88 lines · **decompiled** — 0xac bytes, extends MidBase; 14 per-subtype vtables selected by record byte 1; increments global instance counter 004420f8; phrase key lookup
 - [ ] `00406d50` FUN_00406d50 (vtable) · depth 12 · 123 lines · **untouched**
 - [ ] `00406190` inferred_DialogueTable_Load · depth 13 · 228 lines · **decompiled** — (archive offset, id): reads entries introduced by '.' bytes; each entry built by 00404810 and registered by kind

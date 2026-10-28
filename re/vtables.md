@@ -69,3 +69,8 @@ Perspective: a walk-area object (the kind 1 instance stored at level +0x90, fiel
 Identical to Obj_MidBase except slot 13 = 00414e80 (NextWaypoint). Pathfinding is a vertex walk, not a search: `FindPath` (00414f10) picks the polyline vertex nearest
 Jim and the one nearest the destination; Jim walks to his vertex, `NextWaypoint` moves him vertex by vertex (index +/-1 per step) and finally to the real target.
 `ScaleAt` (00414740) gives the perspective scale from the same polyline. The kind 1 object stores the walk area's name (+0x6c) and resolves it in `OnAttach`.
+
+## Cursor (vtable 00428038, 14 slots; instance behind global 00442128)
+Slots: 0 = 00402440 (OnAttach), 4 = 004029f0 (Update), 5 = 004030e0, 6 = 00402d80 (Draw), 11 = 00402e50, 12 = 00402e60 (AddCandidate), 13 = 0041ba00 (stub that calls __amsg_exit; unused).
+Correction: cursor field +0x12c is the carried inventory item (set by `Item_SetHeld`), not a hovered object; `Interactive_Update` returns the item to its place by setting flag bit 2 on it and zeroing +0x12c.
+Mouse button byte (mouse object +0x1c, first byte): bit 3 (8) = left button, bit 4 (0x10) = right button.

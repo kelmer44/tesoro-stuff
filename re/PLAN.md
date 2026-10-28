@@ -144,3 +144,11 @@ Click -> `FindPath` -> Jim walks to the vertex nearest him -> `NextWaypoint` run
 -> final straight walk to the clicked point, then the target object's verb runs. This explains why `Jim_WalkTo` ends by calling the target's slot 13.
 Direct lines between waypoints use Jim's root-motion step with clamping (see `Jim_Update`). Object slot 0 is `OnAttach`, not a destructor.
 Open: how the engine decides a click is on walkable ground versus on an object (hit-testing) and the cursor object's input handling are still unread.
+
+### Phase 2, cursor and clicks (28 Oct 2026)
+`re/names/cursor.tsv` (10 functions). Established: the cursor keeps a list of candidate objects (those under the pointer); each frame `Cursor_ProcessCandidates` sends
+left-click as slot 14 (verb = cursor animation index), right-click as slot 15 and plain hover as slot 17 (hover text). Carried inventory items are cursor animation indices >= 7.
+`Dialogue_StepUpdate` is the per-frame executor of dialogue/cutscene action lists (24-byte steps) and is a high-priority reading target.
+**Not yet found: the geometric hit test** that decides which objects register as candidates; the call is made through a virtual slot that the decompiler does not show. Next step: scan the
+object classes' slot 5 / draw code for `Cursor_AddCandidate` calls via the disassembly.
+Possible save-game feature: `Cursor_CaptureThumbnail` (213x160) suggests save slots carry a thumbnail.
