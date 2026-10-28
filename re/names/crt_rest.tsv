@@ -1,0 +1,210 @@
+# Ghidra library-signature matches, EH funclets, and remaining runtime-tier functions
+0041ba00		replaced	CRT-tier internal, individually unidentified
+0041ba20		replaced	CRT-tier internal, individually unidentified
+0041ba60		replaced	CRT-tier internal, individually unidentified
+0041ba70		replaced	CRT-tier internal, individually unidentified
+0041bad0		replaced	CRT-tier internal, individually unidentified
+0041bb10		replaced	CRT-tier internal, individually unidentified
+0041bb70		replaced	CRT-tier internal, individually unidentified
+0041bba0		replaced	CRT-tier internal, individually unidentified
+0041bc70		replaced	CRT-tier internal, individually unidentified
+0041bd00		replaced	CRT-tier internal, individually unidentified
+0041bd80	__global_unwind2	replaced	Ghidra library match (VS 1998)
+0041bda0		replaced	CRT-tier internal, individually unidentified
+0041bdc2	__local_unwind2	replaced	Ghidra library match (VS 1998)
+0041be2a	__abnormal_termination	replaced	Ghidra library match (VS 1998)
+0041be4d	__NLG_Notify1	replaced	Ghidra library match (VS 1998)
+0041be56		replaced	CRT-tier internal, individually unidentified
+0041bec0	__fpmath	replaced	Ghidra library match (VS 1998)
+0041bee0		replaced	CRT-tier internal, individually unidentified
+0041c5a0		replaced	CRT-tier internal, individually unidentified
+0041c5d0		replaced	CRT-tier internal, individually unidentified
+0041c610		replaced	CRT-tier internal, individually unidentified
+0041c6c0		replaced	CRT-tier internal, individually unidentified
+0041c7a0		replaced	CRT-tier internal, individually unidentified
+0041c860		replaced	CRT-tier internal, individually unidentified
+0041c870		replaced	CRT-tier internal, individually unidentified
+0041cef0		replaced	CRT-tier internal, individually unidentified
+0041d770		replaced	CRT-tier internal, individually unidentified
+0041d990		replaced	CRT-tier internal, individually unidentified
+0041d9c0		replaced	CRT-tier internal, individually unidentified
+0041da90		replaced	CRT-tier internal, individually unidentified
+0041dd40		replaced	CRT-tier internal, individually unidentified
+0041de10		replaced	CRT-tier internal, individually unidentified
+0041ded0		replaced	CRT-tier internal, individually unidentified
+0041def0		replaced	CRT-tier internal, individually unidentified
+0041df80		replaced	CRT-tier internal, individually unidentified
+0041e040		replaced	CRT-tier internal, individually unidentified
+0041e061		replaced	CRT-tier internal, individually unidentified
+0041e06a		replaced	CRT-tier internal, individually unidentified
+0041e0d0		replaced	CRT-tier internal, individually unidentified
+0041e100		replaced	CRT-tier internal, individually unidentified
+0041e310		replaced	CRT-tier internal, individually unidentified
+0041e390		replaced	CRT-tier internal, individually unidentified
+0041e3c0	__CallSettingFrame@12	replaced	Ghidra library match (VS 1998)
+0041e410		replaced	CRT-tier internal, individually unidentified
+0041e47e		replaced	CRT-tier internal, individually unidentified
+0041e4a0		replaced	CRT-tier internal, individually unidentified
+0041e50e		replaced	CRT-tier internal, individually unidentified
+0041e530	__setdefaultprecision	replaced	Ghidra library match (VS 1998)
+0041e550		replaced	CRT-tier internal, individually unidentified
+0041e5a0		replaced	CRT-tier internal, individually unidentified
+0041e5d0		replaced	CRT-tier internal, individually unidentified
+0041e630		replaced	CRT-tier internal, individually unidentified
+0041e6a0		replaced	CRT-tier internal, individually unidentified
+0041e6c0		replaced	CRT-tier internal, individually unidentified
+0041e720		replaced	CRT-tier internal, individually unidentified
+0041e860		replaced	CRT-tier internal, individually unidentified
+0041e960		replaced	CRT-tier internal, individually unidentified
+0041ea10		replaced	CRT-tier internal, individually unidentified
+0041ea40		replaced	CRT-tier internal, individually unidentified
+0041ea70		replaced	CRT-tier internal, individually unidentified
+0041eae0		replaced	CRT-tier internal, individually unidentified
+0041f850		replaced	CRT-tier internal, individually unidentified
+0041f890		replaced	CRT-tier internal, individually unidentified
+0041f8c0		replaced	CRT-tier internal, individually unidentified
+0041f8e0		replaced	CRT-tier internal, individually unidentified
+00420520		replaced	CRT-tier internal, individually unidentified
+00420570		replaced	CRT-tier internal, individually unidentified
+004205b0		replaced	CRT-tier internal, individually unidentified
+004205f0		replaced	CRT-tier internal, individually unidentified
+00420610		replaced	CRT-tier internal, individually unidentified
+00420630		replaced	CRT-tier internal, individually unidentified
+00420650		replaced	CRT-tier internal, individually unidentified
+00420740		replaced	CRT-tier internal, individually unidentified
+00420780		replaced	CRT-tier internal, individually unidentified
+00420970		replaced	CRT-tier internal, individually unidentified
+00420a60		replaced	CRT-tier internal, individually unidentified
+00420c50		replaced	CRT-tier internal, individually unidentified
+00420cc0		replaced	CRT-tier internal, individually unidentified
+00420e00		replaced	CRT-tier internal, individually unidentified
+00420e50		replaced	CRT-tier internal, individually unidentified
+00420e70		replaced	CRT-tier internal, individually unidentified
+00420eb0		replaced	CRT-tier internal, individually unidentified
+00420fa0		replaced	CRT-tier internal, individually unidentified
+00421040		replaced	CRT-tier internal, individually unidentified
+00421250		replaced	CRT-tier internal, individually unidentified
+004213b0		replaced	CRT-tier internal, individually unidentified
+004215a0		replaced	CRT-tier internal, individually unidentified
+004215f0		replaced	CRT-tier internal, individually unidentified
+00421650		replaced	CRT-tier internal, individually unidentified
+00421680		replaced	CRT-tier internal, individually unidentified
+00421690		replaced	CRT-tier internal, individually unidentified
+004216d0		replaced	CRT-tier internal, individually unidentified
+00421795	__seh_longjmp_unwind@4	replaced	Ghidra library match (VS 1998)
+004217b0		replaced	CRT-tier internal, individually unidentified
+004217f0		replaced	CRT-tier internal, individually unidentified
+004219d0		replaced	CRT-tier internal, individually unidentified
+00421a40		replaced	CRT-tier internal, individually unidentified
+00421b00		replaced	CRT-tier internal, individually unidentified
+00421bb0		replaced	CRT-tier internal, individually unidentified
+00421c50		replaced	CRT-tier internal, individually unidentified
+00421ca0		replaced	CRT-tier internal, individually unidentified
+00421d00		replaced	CRT-tier internal, individually unidentified
+00421dc0		replaced	CRT-tier internal, individually unidentified
+00421de0		replaced	CRT-tier internal, individually unidentified
+00421ed0		replaced	CRT-tier internal, individually unidentified
+00421f00		replaced	CRT-tier internal, individually unidentified
+004222c0		replaced	CRT-tier internal, individually unidentified
+00422430		replaced	CRT-tier internal, individually unidentified
+00422490		replaced	CRT-tier internal, individually unidentified
+00422560		replaced	CRT-tier internal, individually unidentified
+004225c0		replaced	CRT-tier internal, individually unidentified
+00422620		replaced	CRT-tier internal, individually unidentified
+00422860		replaced	CRT-tier internal, individually unidentified
+004229e0		replaced	CRT-tier internal, individually unidentified
+00422ab0		replaced	CRT-tier internal, individually unidentified
+00422ad0		replaced	CRT-tier internal, individually unidentified
+00422b30		replaced	CRT-tier internal, individually unidentified
+00422b50		replaced	CRT-tier internal, individually unidentified
+00422b60		replaced	CRT-tier internal, individually unidentified
+00422b80		replaced	CRT-tier internal, individually unidentified
+00422ba0		replaced	CRT-tier internal, individually unidentified
+00422bc0		replaced	CRT-tier internal, individually unidentified
+00422f00	_abort	replaced	Ghidra library match (VS 1998)
+00422f20		replaced	CRT-tier internal, individually unidentified
+00422f60		replaced	CRT-tier internal, individually unidentified
+00422f80		replaced	CRT-tier internal, individually unidentified
+00423020		replaced	CRT-tier internal, individually unidentified
+004230b0		replaced	CRT-tier internal, individually unidentified
+00423150		replaced	CRT-tier internal, individually unidentified
+00423250		replaced	CRT-tier internal, individually unidentified
+004232c0		replaced	CRT-tier internal, individually unidentified
+00423330		replaced	CRT-tier internal, individually unidentified
+004233d0		replaced	CRT-tier internal, individually unidentified
+004233f0		replaced	CRT-tier internal, individually unidentified
+00423400		replaced	CRT-tier internal, individually unidentified
+00423420		replaced	CRT-tier internal, individually unidentified
+004234e0		replaced	CRT-tier internal, individually unidentified
+004236b0		replaced	CRT-tier internal, individually unidentified
+004236d0		replaced	CRT-tier internal, individually unidentified
+004236f0		replaced	CRT-tier internal, individually unidentified
+00423730		replaced	CRT-tier internal, individually unidentified
+00423770		replaced	CRT-tier internal, individually unidentified
+00423810		replaced	CRT-tier internal, individually unidentified
+00423890		replaced	CRT-tier internal, individually unidentified
+00423950		replaced	CRT-tier internal, individually unidentified
+00423960		replaced	CRT-tier internal, individually unidentified
+00423a60		replaced	CRT-tier internal, individually unidentified
+00423a90	__allmul	replaced	Ghidra library match (VS 1998)
+00423ad0	__allshl	replaced	Ghidra library match (VS 1998)
+00423af0		replaced	CRT-tier internal, individually unidentified
+00423b70	__aulldiv	replaced	Ghidra library match (VS 1998)
+00423be0	__aullrem	replaced	Ghidra library match (VS 1998)
+00423c60		replaced	CRT-tier internal, individually unidentified
+00423c80		replaced	CRT-tier internal, individually unidentified
+00423f30		replaced	CRT-tier internal, individually unidentified
+004241a0		replaced	CRT-tier internal, individually unidentified
+00424340		replaced	CRT-tier internal, individually unidentified
+004244a0		replaced	CRT-tier internal, individually unidentified
+004244f0		replaced	CRT-tier internal, individually unidentified
+004245a0		replaced	CRT-tier internal, individually unidentified
+00424620		replaced	CRT-tier internal, individually unidentified
+004248a0		replaced	CRT-tier internal, individually unidentified
+00424b60		replaced	CRT-tier internal, individually unidentified
+00424b80		replaced	CRT-tier internal, individually unidentified
+00424c10		replaced	CRT-tier internal, individually unidentified
+00424cb0		replaced	CRT-tier internal, individually unidentified
+00424d20		replaced	CRT-tier internal, individually unidentified
+00424ea0		replaced	CRT-tier internal, individually unidentified
+00425020		replaced	CRT-tier internal, individually unidentified
+00425070		replaced	CRT-tier internal, individually unidentified
+004251a0		replaced	CRT-tier internal, individually unidentified
+004251d0		replaced	CRT-tier internal, individually unidentified
+00425240		replaced	CRT-tier internal, individually unidentified
+00425270		replaced	CRT-tier internal, individually unidentified
+004252a0		replaced	CRT-tier internal, individually unidentified
+004253a0		replaced	CRT-tier internal, individually unidentified
+00425b30		replaced	CRT-tier internal, individually unidentified
+00425ec0		replaced	CRT-tier internal, individually unidentified
+00425f60		replaced	CRT-tier internal, individually unidentified
+00426150		replaced	CRT-tier internal, individually unidentified
+00426190		replaced	CRT-tier internal, individually unidentified
+00426230	_strchr	replaced	Ghidra library match (VS 1998)
+004262f0	_strrchr	replaced	Ghidra library match (VS 1998)
+00426320		replaced	CRT-tier internal, individually unidentified
+004263a0		replaced	CRT-tier internal, individually unidentified
+00426660		replaced	CRT-tier internal, individually unidentified
+004266f0		replaced	CRT-tier internal, individually unidentified
+00426730		replaced	CRT-tier internal, individually unidentified
+004267b0		replaced	CRT-tier internal, individually unidentified
+00426a80		replaced	CRT-tier internal, individually unidentified
+00426c90		replaced	CRT-tier internal, individually unidentified
+00426d10		replaced	CRT-tier internal, individually unidentified
+00426d80		replaced	CRT-tier internal, individually unidentified
+00426f20		replaced	CRT-tier internal, individually unidentified
+00426f70		replaced	CRT-tier internal, individually unidentified
+00426f80	inferred_ehfunclet_00426f80	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+00426fa0	inferred_ehfunclet_00426fa0	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+00426fc0	inferred_ehfunclet_00426fc0	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+00426fce	inferred_ehfunclet_00426fce	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+00426ff0	inferred_ehfunclet_00426ff0	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+00427010	inferred_ehfunclet_00427010	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+0042701b	inferred_ehfunclet_0042701b	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+00427026	inferred_ehfunclet_00427026	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+00427031	inferred_ehfunclet_00427031	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+0042703c	inferred_ehfunclet_0042703c	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+00427047	inferred_ehfunclet_00427047	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+00427052	inferred_ehfunclet_00427052	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+00427070	inferred_ehfunclet_00427070	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)
+00427090	inferred_ehfunclet_00427090	replaced	compiler EH unwind funclet in a game function's frame (delete/dtor call)

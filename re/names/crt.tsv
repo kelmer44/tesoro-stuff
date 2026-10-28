@@ -1,0 +1,49 @@
+# CRT functions called from game code (identified by Ghidra signature match or by behaviour). Confidence in note.
+0041b3c0	__chkstk	replaced	stack probe loop (4 KB steps); behavioural match
+0041b3f0	inferred_fseek	replaced	FILE flags at +0xc, handle +0x10; whence 0/1/2
+0041b490	inferred_fgetpos	replaced	wraps 64-bit tell
+0041b4c0	inferred_fread	replaced	size*count loop, buffered/unbuffered paths
+0041b600	inferred_fsetpos	replaced	
+0041b620	inferred_fwrite	replaced	
+0041b770	inferred__fsopen	replaced	gets stream slot then opens (share flag)
+0041b7a0	inferred_fopen	replaced	_fsopen with share flag 0x40
+0041b7c0	inferred_fclose	replaced	
+0041b840	_strncpy	replaced	Ghidra library match
+0041b940	inferred__strupr	replaced	locale-aware via LCMapString when locale set, else ASCII a-z
+0041ba10	inferred_operator_new	replaced	_nh_malloc(size,1)
+0041be70	inferred_operator_delete	replaced	calls free
+0041be80	_strncmp	replaced	Ghidra library match
+0041bf20	__ftol	replaced	Ghidra library match; float to int truncation, check game uses for rounding
+0041bf50	inferred_sscanf	replaced	string stream over strlen, calls _input
+0041bfa0	inferred_ungetc	replaced	
+0041c030	inferred__filbuf	replaced	
+0041c120	inferred_fscanf	replaced	calls _input
+0041c140	inferred_sprintf	replaced	string stream flags 0x42, count 0x7fffffff, calls _output
+0041c1b0	inferred_ctime	replaced	localtime then asctime
+0041c1d0	inferred__findfirst	replaced	FindFirstFileA, fills _finddata_t
+0041c300	inferred__findclose	replaced	
+0041c3b0	inferred__stat	replaced	path split on \ / :, uses find
+# Internals worth knowing
+0041c320	inferred___timet_from_ft	replaced	FILETIME to time_t
+0041c7f0	inferred__flush	replaced	
+0041c8f0	inferred__ftell	replaced	
+0041c6e0	inferred__lseek	replaced	SetFilePointer
+0041caa0	inferred__lseeki64_tell	replaced	64-bit result
+0041cc90	inferred__read	replaced	ReadFile
+0041d0d0	inferred__write	replaced	WriteFile
+0041cfa0	inferred__flsbuf	replaced	
+0041d5a0	inferred__close	replaced	CloseHandle
+0041d680	inferred__freebuf	replaced	
+0041d4c0	inferred__getstream	replaced	
+0041d2f0	inferred__openfile	replaced	
+0041f930	inferred__getbuf	replaced	
+0041eb10	inferred__input	replaced	scanf core, 654 lines
+0041fb90	inferred__output	replaced	printf core, 420 lines
+0041d6c0	inferred_malloc	replaced	_nh_malloc with global new-handler mode
+0041d6e0	inferred__nh_malloc	replaced	
+0041d730	inferred__heap_alloc	replaced	HeapAlloc
+0041d550	inferred_free	replaced	HeapFree
+0041f990	inferred__ioinit	replaced	GetStartupInfoA, handle table
+0041c3d0	inferred_WinMainCRTStartup	replaced	CRT entry; GetCommandLineA, GetModuleHandleA
+0041c5f0	__exit	replaced	Ghidra library match
+0041c570	__amsg_exit	replaced	Ghidra library match

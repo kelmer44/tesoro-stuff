@@ -8,14 +8,16 @@ Ghidra program verified (PE32, base 0x400000, SHA-256 matches). Export of 537 fu
 contract template, session protocol. Python venv with Unicorn/Capstone. Reference environments:
 DOSBox-X Win95 (faithful; works, slow; real CD audio and mouse) and Wine copies (fast; patched, no mouse/music).
 
-## Phase 1 — Complete the function inventory
+## Phase 1 — Complete the function inventory  (DONE 28 Oct 2026)
 Ghidra only knows functions it found by calls. Code reached only through vtables or function-pointer tables is
 missed (example: the mouse update routine at `0x403aa0`). Steps: (a) scan the data sections for pointers into
 `.text`, (b) define those targets as functions in Ghidra, (c) look for undefined code between functions,
 (d) re-export and rebuild the ledger, (e) list pointer tables and which class each belongs to.
 Exit: every code byte in `.text` belongs to a function or is documented data; ledger regenerated.
+Result: 700 exported functions (441 game tier, 46 clusters). Not yet re-run: the gap scan over the new function set to confirm no
+undefined code remains; do that first thing in Phase 2 if any caller points into a gap.
 
-## Phase 2 — Triage and naming
+## Phase 2 — Triage and naming  (IN PROGRESS: CRT step done)
 Classify each function: game logic, C runtime/SEH helper, DirectX/Windows glue, import thunk. Give C runtime
 functions their standard names (they are not ported). Then name game functions in batches by subsystem, from
 callers/callees and strings, every name prefixed `inferred_` until contract and validation support it.
@@ -49,7 +51,7 @@ points), then full route to credits plus second route; save/load; timing.
 Platform builds, detection entries, code style, documentation, commits for Gabriel's review on `codex/*` branches.
 
 ## Where we are
-Phase 0 done. Phase 1 next (small: a few hours of work). Nine game functions already read (see checklist).
+Phases 0 and 1 done. Phase 2 (triage and naming) is next. Nine game functions already read (see checklist).
 
 ## Phase 1 status (28 October 2026)
 Candidates found by `tools/find_missing_functions.py` (data pointers + call targets + gap scan) and filtered by
@@ -65,3 +67,24 @@ Next: run the script in the open Ghidra project (Script Manager, add directory `
 - About 100 candidates were skipped because they fall inside another function (jump-table targets and internal labels). See `re/define_missing_functions.log`.
 - Re-exported to `re/export/` (700 functions). Ledger now has 700 functions, 441 game tier, 46 clusters. The 9 earlier `decompiled` statuses and names were preserved.
 - Phase 1 is complete. Next is Phase 2 (triage and `inferred_` naming).
+
+### Phase 1 closing pass (28 Oct 2026)
+- Gap scan re-run on the 700-function set found 7 more starts (`new_functions.txt`; first batch kept in `new_functions_batch1.txt`). Defined 6 in Ghidra (`00401d20`, `00401f90`, `004087a0`, `0040f270`, `00417b30`, `00419340`; function count 785 -> 791). The seventh, `00408880` (a lone `ret`), is the shared target of `jmp` from SEH unwind stubs at `00426ff0`/`00427090`; Ghidra counts it as part of those, so it is left as is.
+- Remaining uncovered starts are `0041a340` and `0041b340`: data in `.text` (CRT tables), not code. Other gaps are jump tables, `ret N` tails, exception-handler epilogues and padding.
+- Re-exported: 706 functions, 447 game tier, 47 clusters. Pointer tables dropped from 361 to 64 because runs of function pointers that were broken by missing functions are now contiguous, which is the expected effect.
+- Phase 1 exit criterion met. Phase 2 can start.
+
+### Phase 2 status (28 Oct 2026)
+**Step 1, CRT/runtime tier: done.** 256 runtime-tier functions (address >= 0x41b3c0 plus EH funclets), all marked `replaced`.
+- Only 23 are called directly from game code: file I/O (`fopen`, `fread`, `fwrite`, `fseek`, `fgetpos`, `fsetpos`, `fclose`, `ungetc`), `sprintf`, `sscanf`,
+  `fscanf`, `_strncpy`, `_strncmp`, `_strupr`, `ctime`, `_stat`, `_findfirst`/`_findclose`, `__ftol`, `operator new`/`delete`, `__chkstk`.
+  Names in `re/names/crt.tsv` (Ghidra signature matches have no prefix, behavioural IDs carry `inferred_`).
+- The CRT has no `rand`; the game must use its own random generator in the game tier (to find during triage).
+- Fidelity-relevant CRT behaviour to remember: `__ftol` truncation (every float-to-int in game code goes through it), `sprintf`/`sscanf` formats
+  (string and script text handling), `_strupr` (ASCII vs locale), `fseek`/`fread` on the data archive.
+- 16 functions at 0x426f80..0x427090 are compiler EH unwind funclets inside game function frames (delete/destructor calls), not logic.
+- About 190 CRT-internal functions are marked `replaced` without individual names (note says so): the named 23 reach 125 of the 256, the rest are startup/SEH.
+  They are not ported; revisit one only if a game function turns out to depend on it.
+- 63 names pushed to the Ghidra database through `rename_function_by_address`; save the project (Ctrl+S) to keep them.
+**Next, step 2: name the 447 game functions cluster by cluster** (start with cluster 1 / startup), from callers, callees and strings.
+Tool: `re/tools/apply_names.py <tsv>` applies name/status/notes in bulk.
