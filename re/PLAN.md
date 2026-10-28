@@ -127,3 +127,13 @@ Startup structure read from the fresh decompilation:
   `Interactive_Update` run the handler for the selected verb (slots 20-26). Verb 0-6 are fixed; 7 and above are inventory items passed to slot 27 as (verb - 7).
   Unset verb phrases fall back to default phrases.
 - Drawing goes through a per-scanline render queue (`Display_AddSprite`), sorted by each object's +0x5e value.
+
+### Phase 2, player object (28 Oct 2026)
+`re/names/jim.tsv` (22 functions) and the Jim table in `re/vtables.md`.
+- Jim (`004070c0`, global 004420fc) loads JIM*.ANM banks (walk/idle per direction, talk) and moves by **root motion**: each frame the animation's own offset is
+  scaled by a perspective factor from the walk area and added to a 24.8 fixed-point position. There is no speed constant; walking speed is a property of the animations.
+- A walk ends when the squared distance to the target reaches exactly zero (the step is clamped to the target when it would overshoot), then the target object's `RunVerb` runs.
+- Facing is one of four, chosen from the dominant axis of the displacement. Talking picks a random mouth frame every 100 ms of game time (time-driven RNG).
+- The kind 1 object stored at level +0x90 holds the walk area with perspective data (`WalkArea_ScaleAt`, `WalkArea_FindPath`, both only named, not yet ported/understood).
+- Caution: `Jim_WalkTo` calls the target's slot 13 unconditionally at its end; meaning to be understood before porting click-walking.
+- Legacy walking notes (`CLICK_WALKING.md`) exist; compare only after the fresh walk-area functions are read.

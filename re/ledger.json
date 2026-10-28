@@ -2837,7 +2837,7 @@
  {
   "addr": "00401d30",
   "ghidra_name": "FUN_00401d30",
-  "name": "",
+  "name": "inferred_Obj_SetPosition",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -2852,9 +2852,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(x, y, flag) sets previous position (+0x54/+0x58), and current (+0x4c/+0x50) when flag set; notifies the level"
  },
  {
   "addr": "00401d60",
@@ -10461,7 +10461,7 @@
  {
   "addr": "004070c0",
   "ghidra_name": "FUN_004070c0",
-  "name": "",
+  "name": "inferred_Jim_Ctor",
   "tier": "game",
   "lines": 282,
   "decompile_ok": true,
@@ -10483,14 +10483,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 12,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x114-byte object, vtable 00428b70, base chain Kind05-family ctor 0040fea0 -> 0040ec90. Loads 9 animation files (JIMHABDER, JIMQUIETO, JIMARRIBA, JIMABAJO, JIMIZQUIERDA, JIMDERECHA, JIMHABAR ... .ANM) into bank array +0x34, name key from string at 0042d2a4, start position (0x15e,0x14), sort value 0x23, scale +0xfc = 0x100, speech/idle fields, calls SetFacing(3)"
  },
  {
   "addr": "00407510",
   "ghidra_name": "FUN_00407510",
-  "name": "",
+  "name": "inferred_Jim_SaveState",
   "tier": "game",
   "lines": 12,
   "decompile_ok": true,
@@ -10507,14 +10507,14 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 10: writes the same fields"
  },
  {
   "addr": "00407580",
   "ghidra_name": "FUN_00407580",
-  "name": "",
+  "name": "inferred_Jim_LoadState",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -10532,14 +10532,14 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 9: stops walking, reads position (8 bytes at +0x4c), facing +0x10c, bank index +0x32, +0x110, flags +0x68"
  },
  {
   "addr": "00407600",
   "ghidra_name": "FUN_00407600",
-  "name": "",
+  "name": "inferred_Jim_WalkTo",
   "tier": "game",
   "lines": 55,
   "decompile_ok": true,
@@ -10558,14 +10558,14 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 32: (x, y, target object, flag) starts a walk: records target +0x104/+0x108, converts position to fixed point, chooses facing 1..4 from the dominant axis, selects the matching walking animation (table +0xd8); the function always ends by calling the target object's slot 13 (RunVerb), including at walk start, purpose not yet understood"
  },
  {
   "addr": "00407730",
   "ghidra_name": "FUN_00407730",
-  "name": "",
+  "name": "inferred_Jim_UpdateBounds",
   "tier": "game",
   "lines": 15,
   "decompile_ok": true,
@@ -10582,9 +10582,9 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 3: base UpdateBounds then multiplies the four rect values by the perspective scale (+0xfc, 0x100 = 1.0) >> 8"
  },
  {
   "addr": "00407770",
@@ -11149,7 +11149,7 @@
  {
   "addr": "00407790",
   "ghidra_name": "FUN_00407790",
-  "name": "",
+  "name": "inferred_Jim_Update",
   "tier": "game",
   "lines": 89,
   "decompile_ok": true,
@@ -11170,14 +11170,14 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 4: per-frame walking step. Position is 24.8 fixed point (+0xe0,+0xe4); the animation's own per-frame offset (+0x28,+0x2a, root motion) scaled by perspective moves Jim; ends when the squared distance reaches zero (arrival), then removes itself from the main list and either calls slot 29 (face) or the target object's slot 13 (RunVerb)"
  },
  {
   "addr": "004079d0",
   "ghidra_name": "FUN_004079d0",
-  "name": "",
+  "name": "inferred_Jim_IsInPose7",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -11192,14 +11192,14 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 11: returns (+0x5c == 7)"
  },
  {
   "addr": "004079e0",
   "ghidra_name": "FUN_004079e0",
-  "name": "",
+  "name": "inferred_Jim_ArriveStep",
   "tier": "game",
   "lines": 31,
   "decompile_ok": true,
@@ -11217,14 +11217,14 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 12: called when a walk segment ends: updates previous position, unless the walk-area path search (WalkArea_FindPath) produces a further waypoint, calls slot 29 (face) and the target object's slot 13"
  },
  {
   "addr": "00407a80",
   "ghidra_name": "FUN_00407a80",
-  "name": "",
+  "name": "inferred_Jim_SetFacing",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -11241,9 +11241,9 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 29: clears walking flag, stores direction +0x10c (1..4) and starts the matching animation"
  },
  {
   "addr": "00407aa0",
@@ -11268,7 +11268,7 @@
  {
   "addr": "00407ac0",
   "ghidra_name": "FUN_00407ac0",
-  "name": "",
+  "name": "inferred_Jim_Draw",
   "tier": "game",
   "lines": 34,
   "decompile_ok": true,
@@ -11285,9 +11285,9 @@
   ],
   "data_refs": [],
   "cluster": 13,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 6: updates talk state then queues the current frame scaled by +0xfc (scaled sprite, 16.16 factor) at screen position relative to the camera"
  },
  {
   "addr": "00407b80",
@@ -11391,7 +11391,7 @@
  {
   "addr": "00407f30",
   "ghidra_name": "FUN_00407f30",
-  "name": "",
+  "name": "inferred_Jim_TalkAnimate",
   "tier": "game",
   "lines": 37,
   "decompile_ok": true,
@@ -11412,14 +11412,14 @@
   ],
   "data_refs": [],
   "cluster": 13,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 31: draws the speaking-mouth animation; while talking picks a random frame (RandomRange) at most every 100 ms of game time, else rests on frame 1"
  },
  {
   "addr": "00408030",
   "ghidra_name": "FUN_00408030",
-  "name": "",
+  "name": "inferred_Jim_SetIdlePose",
   "tier": "game",
   "lines": 29,
   "decompile_ok": true,
@@ -11436,14 +11436,14 @@
   ],
   "data_refs": [],
   "cluster": 13,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 30: direction 3,4,2,1 -> idle animation index 0,1,2,3 via 00410130, then recomputes speech anchor point +0xa4"
  },
  {
   "addr": "004080a0",
   "ghidra_name": "FUN_004080a0",
-  "name": "",
+  "name": "inferred_Jim_UseItemForward",
   "tier": "game",
   "lines": 17,
   "decompile_ok": true,
@@ -11461,9 +11461,9 @@
   ],
   "data_refs": [],
   "cluster": 13,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27"
  },
  {
   "addr": "004080e0",
@@ -11503,7 +11503,7 @@
  {
   "addr": "00408440",
   "ghidra_name": "FUN_00408440",
-  "name": "",
+  "name": "inferred_Level_ObjectMoved",
   "tier": "game",
   "lines": 61,
   "decompile_ok": true,
@@ -11515,9 +11515,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "re-sorts the object in the level's sorted list at +0x7c after it moved"
  },
  {
   "addr": "00408520",
@@ -21174,7 +21174,7 @@
  {
   "addr": "0040fea0",
   "ghidra_name": "FUN_0040fea0",
-  "name": "",
+  "name": "inferred_Obj_Kind05Base_Ctor",
   "tier": "game",
   "lines": 9,
   "decompile_ok": true,
@@ -21188,9 +21188,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "MidBase default ctor then vtable 0042bb48"
  },
  {
   "addr": "0040fec0",
@@ -21330,7 +21330,7 @@
  {
   "addr": "00410130",
   "ghidra_name": "FUN_00410130",
-  "name": "",
+  "name": "inferred_Jim_SetPoseAnim",
   "tier": "game",
   "lines": 41,
   "decompile_ok": true,
@@ -21410,9 +21410,9 @@
   ],
   "data_refs": [],
   "cluster": 29,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(direction index) recomputes speech anchor and selects the bank listed in +0xb0.."
  },
  {
   "addr": "004101f0",
@@ -21632,7 +21632,7 @@
  {
   "addr": "004103d0",
   "ghidra_name": "FUN_004103d0",
-  "name": "",
+  "name": "inferred_Obj_SetFacingAnim",
   "tier": "game",
   "lines": 9,
   "decompile_ok": true,
@@ -21716,9 +21716,9 @@
   ],
   "data_refs": [],
   "cluster": 30,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "selects the bank from +0xac and starts animation index (param-1) with AnimPlayer"
  },
  {
   "addr": "004103f0",
@@ -21809,7 +21809,7 @@
  {
   "addr": "00410400",
   "ghidra_name": "FUN_00410400",
-  "name": "",
+  "name": "inferred_Jim_ClearSpeech",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -21892,9 +21892,9 @@
   ],
   "data_refs": [],
   "cluster": 30,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 28: clears phrase +0xc4 and talking flag +0xd4, removes itself from the main list"
  },
  {
   "addr": "00410420",
@@ -22250,7 +22250,7 @@
  {
   "addr": "004120c0",
   "ghidra_name": "FUN_004120c0",
-  "name": "",
+  "name": "inferred_Display_AddSpriteScaled",
   "tier": "game",
   "lines": 21,
   "decompile_ok": true,
@@ -22265,9 +22265,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 32,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "like AddSprite with x/y scale factors (16.16 fixed)"
  },
  {
   "addr": "00412120",
@@ -23011,7 +23011,7 @@
  {
   "addr": "00414740",
   "ghidra_name": "FUN_00414740",
-  "name": "",
+  "name": "inferred_WalkArea_ScaleAt",
   "tier": "game",
   "lines": 86,
   "decompile_ok": true,
@@ -23023,9 +23023,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 35,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(x, y) piecewise interpolation of a perspective scale (default 0x100) from the walk-area edge table in the current frame record"
  },
  {
   "addr": "00414930",
@@ -23304,7 +23304,7 @@
  {
   "addr": "00414f10",
   "ghidra_name": "FUN_00414f10",
-  "name": "",
+  "name": "inferred_WalkArea_FindPath",
   "tier": "game",
   "lines": 73,
   "decompile_ok": true,
@@ -23316,9 +23316,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 36,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(x, y, target) picks the nearest waypoint of the walk area to the destination and prepares a route; returns whether a route exists"
  },
  {
   "addr": "004150d0",

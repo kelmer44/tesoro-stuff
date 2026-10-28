@@ -8,7 +8,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 135 | 30% |
+| decompiled or later | 157 | 35% |
 | understood or later | 0 | 0% |
 | ported or later | 0 | 0% |
 | emu-compared or later | 0 | 0% |
@@ -38,7 +38,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00401a50` FUN_00401a50 · depth 1 · 12 lines · **untouched**
 - [ ] `00401a70` FUN_00401a70 · depth 1 · 15 lines · **untouched**
 - [ ] `00401bf0` inferred_Object_AttachToLevel · depth 1 · 16 lines · **decompiled** — sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0
-- [ ] `00401d30` FUN_00401d30 · depth 1 · 14 lines · **untouched**
+- [ ] `00401d30` inferred_Obj_SetPosition · depth 1 · 14 lines · **decompiled** — (x, y, flag) sets previous position (+0x54/+0x58), and current (+0x4c/+0x50) when flag set; notifies the level
 - [ ] `00401aa0` inferred_Obj_Kind00_Ctor · depth 2 · 63 lines · **decompiled** — 0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38)
 - [ ] `00401c30` inferred_Obj_AnimTick (vtable) · depth 2 · 11 lines · **decompiled** — base slot 2: if object has animation (flag bit 4) advance AnimPlayer via 00401860
 
@@ -149,28 +149,28 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 12: 004079d0–00407aa0 (0/11 ported)
 
-- [ ] `004079d0` FUN_004079d0 (vtable) · depth 0 · 7 lines · **untouched**
+- [ ] `004079d0` inferred_Jim_IsInPose7 (vtable) · depth 0 · 7 lines · **decompiled** — slot 11: returns (+0x5c == 7)
 - [ ] `00407aa0` FUN_00407aa0 · depth 0 · 10 lines · **untouched**
-- [ ] `00407730` FUN_00407730 (vtable) · depth 1 · 15 lines · **untouched**
-- [ ] `004079e0` FUN_004079e0 (vtable) · depth 1 · 31 lines · **untouched**
-- [ ] `00407600` FUN_00407600 (vtable) · depth 2 · 55 lines · **untouched**
+- [ ] `00407730` inferred_Jim_UpdateBounds (vtable) · depth 1 · 15 lines · **decompiled** — slot 3: base UpdateBounds then multiplies the four rect values by the perspective scale (+0xfc, 0x100 = 1.0) >> 8
+- [ ] `004079e0` inferred_Jim_ArriveStep (vtable) · depth 1 · 31 lines · **decompiled** — slot 12: called when a walk segment ends: updates previous position, unless the walk-area path search (WalkArea_FindPath) produces a further waypoint, calls slot 29 (face) and the target object's slot 13
+- [ ] `00407600` inferred_Jim_WalkTo (vtable) · depth 2 · 55 lines · **decompiled** — slot 32: (x, y, target object, flag) starts a walk: records target +0x104/+0x108, converts position to fixed point, chooses facing 1..4 from the dominant axis, selects the matching walking animation (table +0xd8); the function always ends by calling the target object's slot 13 (RunVerb), including at walk start, purpose not yet understood
 - [ ] `00407770` inferred_Obj_AnimTickResetOffset (vtable) · depth 2 · 10 lines · **decompiled** — MidBase slots 2 (and 3 in some classes): AnimTick then zero the current sequence's x/y offset (+0x28, +0x2a)
-- [ ] `00407a80` FUN_00407a80 (vtable) · depth 4 · 10 lines · **untouched**
-- [ ] `00407510` FUN_00407510 (vtable) · depth 8 · 12 lines · **untouched**
-- [ ] `00407580` FUN_00407580 (vtable) · depth 8 · 14 lines · **untouched**
-- [ ] `00407790` FUN_00407790 (vtable) · depth 11 · 89 lines · **untouched**
-- [ ] `004070c0` FUN_004070c0 · depth 12 · 282 lines · **untouched**
+- [ ] `00407a80` inferred_Jim_SetFacing (vtable) · depth 4 · 10 lines · **decompiled** — slot 29: clears walking flag, stores direction +0x10c (1..4) and starts the matching animation
+- [ ] `00407510` inferred_Jim_SaveState (vtable) · depth 8 · 12 lines · **decompiled** — slot 10: writes the same fields
+- [ ] `00407580` inferred_Jim_LoadState (vtable) · depth 8 · 14 lines · **decompiled** — slot 9: stops walking, reads position (8 bytes at +0x4c), facing +0x10c, bank index +0x32, +0x110, flags +0x68
+- [ ] `00407790` inferred_Jim_Update (vtable) · depth 11 · 89 lines · **decompiled** — slot 4: per-frame walking step. Position is 24.8 fixed point (+0xe0,+0xe4); the animation's own per-frame offset (+0x28,+0x2a, root motion) scaled by perspective moves Jim; ends when the squared distance reaches zero (arrival), then removes itself from the main list and either calls slot 29 (face) or the target object's slot 13 (RunVerb)
+- [ ] `004070c0` inferred_Jim_Ctor · depth 12 · 282 lines · **decompiled** — 0x114-byte object, vtable 00428b70, base chain Kind05-family ctor 0040fea0 -> 0040ec90. Loads 9 animation files (JIMHABDER, JIMQUIETO, JIMARRIBA, JIMABAJO, JIMIZQUIERDA, JIMDERECHA, JIMHABAR ... .ANM) into bank array +0x34, name key from string at 0042d2a4, start position (0x15e,0x14), sort value 0x23, scale +0xfc = 0x100, speech/idle fields, calls SetFacing(3)
 
 ### Cluster 13: 00408440–00408550 (0/12 ported)
 
-- [ ] `00408440` FUN_00408440 · depth 0 · 61 lines · **untouched**
-- [ ] `00407ac0` FUN_00407ac0 (vtable) · depth 1 · 34 lines · **untouched**
+- [ ] `00408440` inferred_Level_ObjectMoved · depth 0 · 61 lines · **decompiled** — re-sorts the object in the level's sorted list at +0x7c after it moved
+- [ ] `00407ac0` inferred_Jim_Draw (vtable) · depth 1 · 34 lines · **decompiled** — slot 6: updates talk state then queues the current frame scaled by +0xfc (scaled sprite, 16.16 factor) at screen position relative to the camera
 - [ ] `00407d00` FUN_00407d00 · depth 1 · 71 lines · **untouched**
-- [ ] `00407f30` FUN_00407f30 (vtable) · depth 2 · 37 lines · **untouched**
-- [ ] `004080a0` FUN_004080a0 (vtable) · depth 2 · 17 lines · **untouched**
+- [ ] `00407f30` inferred_Jim_TalkAnimate (vtable) · depth 2 · 37 lines · **decompiled** — slot 31: draws the speaking-mouth animation; while talking picks a random frame (RandomRange) at most every 100 ms of game time, else rests on frame 1
+- [ ] `004080a0` inferred_Jim_UseItemForward (vtable) · depth 2 · 17 lines · **decompiled** — slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27
 - [ ] `00408520` inferred_Level_CameraMoveTo · depth 2 · 8 lines · **decompiled** — forwards (x, y, duration) to the camera at +0x80
 - [ ] `00408550` FUN_00408550 · depth 2 · 52 lines · **untouched**
-- [ ] `00408030` FUN_00408030 (vtable) · depth 3 · 29 lines · **untouched**
+- [ ] `00408030` inferred_Jim_SetIdlePose (vtable) · depth 3 · 29 lines · **decompiled** — slot 30: direction 3,4,2,1 -> idle animation index 0,1,2,3 via 00410130, then recomputes speech anchor point +0xa4
 - [ ] `00408540` inferred_Level_AttachObjects · depth 3 · 8 lines · **decompiled** — calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child
 - [ ] `00407b80` FUN_00407b80 · depth 11 · 50 lines · **untouched**
 - [ ] `00407ce0` FUN_00407ce0 · depth 11 · 8 lines · **untouched**
@@ -370,10 +370,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040fd20` inferred_ObjectList_PassB · depth 0 · 83 lines · **decompiled** — same walk calling vtable slot 5
 - [ ] `0040fe20` FUN_0040fe20 · depth 0 · 14 lines · **untouched**
 - [ ] `0040fe40` inferred_ObjectList_EndFrame · depth 0 · 31 lines · **decompiled** — iterator reset helper; its result decides loop continuation
-- [ ] `0040fea0` FUN_0040fea0 · depth 2 · 9 lines · **untouched**
+- [ ] `0040fea0` inferred_Obj_Kind05Base_Ctor · depth 2 · 9 lines · **decompiled** — MidBase default ctor then vtable 0042bb48
 - [ ] `0040ffa0` FUN_0040ffa0 · depth 2 · 27 lines · **untouched**
 - [ ] `00410060` FUN_00410060 (vtable) · depth 2 · 34 lines · **untouched**
-- [ ] `00410130` FUN_00410130 (vtable) · depth 2 · 41 lines · **untouched**
+- [ ] `00410130` inferred_Jim_SetPoseAnim (vtable) · depth 2 · 41 lines · **decompiled** — (direction index) recomputes speech anchor and selects the bank listed in +0xb0..
 - [ ] `004102e0` inferred_Obj_Kind05_Draw (vtable) · depth 3 · 20 lines · **decompiled** — slot 6 of the kind 5 class family: wraps Obj_Draw with slot 31 calls depending on flags +0xd4/+0xc/+0xd5
 - [ ] `004101f0` inferred_Obj_Kind05_Update (vtable) · depth 10 · 46 lines · **decompiled** — slot 4 of the kind 5 class family: runs Interactive_Update unless deferred, polls keyboard/mouse button state and the sound manager to stop a playing sound on input, calls slot 28
 - [ ] `00410330` inferred_Player_Say · depth 10 · 33 lines · **decompiled** — (phrase record, id, flag) on the object in global 004420fc (walks, so probably the player): stores phrase +0xc4 / id +0xcc, busy +0xd4=1, starts the phrase sound (record +8) through the sound manager, slot 30 (0x78) with flag, inserts itself into the main list at priority 6, calls slot 4 | see ledger note
@@ -386,9 +386,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00410530` inferred_Room_RemoveObject · depth 0 · 38 lines · **decompiled**
 - [ ] `004105a0` FUN_004105a0 · depth 0 · 177 lines · **untouched**
 - [ ] `004108a0` FUN_004108a0 · depth 0 · 215 lines · **untouched**
-- [ ] `00410400` FUN_00410400 (vtable) · depth 1 · 10 lines · **untouched**
+- [ ] `00410400` inferred_Jim_ClearSpeech (vtable) · depth 1 · 10 lines · **decompiled** — slot 28: clears phrase +0xc4 and talking flag +0xd4, removes itself from the main list
 - [ ] `00410420` inferred_Room_Ctor · depth 1 · 26 lines · **decompiled** — 16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list
-- [ ] `004103d0` FUN_004103d0 (vtable) · depth 3 · 9 lines · **untouched**
+- [ ] `004103d0` inferred_Obj_SetFacingAnim (vtable) · depth 3 · 9 lines · **decompiled** — selects the bank from +0xac and starts animation index (param-1) with AnimPlayer
 
 ### Cluster 31: 00410cc0–00411f80 (0/12 ported)
 
@@ -407,7 +407,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 32: 004120c0–00412e10 (0/7 ported)
 
-- [ ] `004120c0` FUN_004120c0 · depth 0 · 21 lines · **untouched**
+- [ ] `004120c0` inferred_Display_AddSpriteScaled · depth 0 · 21 lines · **decompiled** — like AddSprite with x/y scale factors (16.16 fixed)
 - [ ] `00412640` FUN_00412640 · depth 0 · 282 lines · **untouched**
 - [ ] `00412bb0` FUN_00412bb0 · depth 0 · 34 lines · **untouched**
 - [ ] `00412c50` FUN_00412c50 · depth 0 · 99 lines · **untouched**
@@ -442,7 +442,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 35: 00414740–00414dc0 (0/12 ported)
 
-- [ ] `00414740` FUN_00414740 · depth 0 · 86 lines · **untouched**
+- [ ] `00414740` inferred_WalkArea_ScaleAt · depth 0 · 86 lines · **decompiled** — (x, y) piecewise interpolation of a perspective scale (default 0x100) from the walk-area edge table in the current frame record
 - [ ] `00414600` inferred_Keyboard_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428070
 - [ ] `00414610` inferred_Mouse_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428074
 - [ ] `004146b0` FUN_004146b0 (vtable) · depth 1 · 23 lines · **untouched**
@@ -458,7 +458,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 36: 00414e80–00415440 (0/12 ported)
 
 - [ ] `00414e80` FUN_00414e80 (vtable) · depth 0 · 31 lines · **untouched**
-- [ ] `00414f10` FUN_00414f10 · depth 0 · 73 lines · **untouched**
+- [ ] `00414f10` inferred_WalkArea_FindPath · depth 0 · 73 lines · **decompiled** — (x, y, target) picks the nearest waypoint of the walk area to the destination and prepares a route; returns whether a route exists
 - [ ] `00415120` FUN_00415120 (vtable) · depth 0 · 7 lines · **untouched**
 - [ ] `00415130` FUN_00415130 (vtable) · depth 0 · 43 lines · **untouched**
 - [ ] `00415200` FUN_00415200 · depth 0 · 23 lines · **untouched**

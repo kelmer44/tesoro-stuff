@@ -42,3 +42,24 @@ Same as MidBase, but slots 21 = 0040f280, 22 = 0040f300, 23 = 0040f380, 24 = 004
 Slot 4 = 004101f0 (Kind05_Update), slot 6 = 004102e0 (Kind05_Draw); other slots inherited from 0042bad8 (to be read).
 
 Per-subtype classes (98 subtype vtables, see `re/object_kinds.json`) override verb handlers, update and state methods; they are the next reading target.
+
+## Jim (vtable 00428b70, 33 slots; instance in global 004420fc)
+Slots inherited unchanged from the Kind09 family base: 0, 1, 7 (noop), 5, 8, 13-26. Overrides:
+| Slot | Function | Role |
+|---|---|---|
+| 2 | 00407770 | AnimTick + reset offset |
+| 3 | 00407730 | UpdateBounds scaled by perspective |
+| 4 | 00407790 | per-frame walk step (root motion, 24.8 fixed point) |
+| 6 | 00407ac0 | Draw scaled sprite + talk state |
+| 9 / 10 | 00407580 / 00407510 | LoadState / SaveState (position, facing, bank, +0x110, flags) |
+| 11 | 004079d0 | returns (+0x5c == 7) |
+| 12 | 004079e0 | walk segment finished |
+| 27 | 004080a0 | forward item use to the interface object |
+| 28 | 00410400 | clear speech |
+| 29 | 00407a80 | set facing 1..4 |
+| 30 | 00408030 | set idle pose for facing |
+| 31 | 00407f30 | talk animation (random mouth frame every 100 ms) |
+| 32 | 00407600 | WalkTo(x, y, target, flag) |
+
+Facing 1..4: from WalkTo, |dy| < |dx| gives 3 (dx < 0) or 4 (dx >= 0); otherwise 1 (dy >= 0) or 2 (dy < 0). Idle animation index from facing: 3->0, 4->1, 2->2, 1->3.
+Perspective: a walk-area object (the kind 1 instance stored at level +0x90, field +0x78) gives a scale (0x100 = 1.0) by (x, y).
