@@ -8,7 +8,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 171 | 38% |
+| decompiled or later | 175 | 39% |
 | understood or later | 0 | 0% |
 | ported or later | 0 | 0% |
 | emu-compared or later | 0 | 0% |
@@ -165,7 +165,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 - [ ] `00408440` inferred_Level_ObjectMoved · depth 0 · 61 lines · **decompiled** — re-sorts the object in the level's sorted list at +0x7c after it moved
 - [ ] `00407ac0` inferred_Jim_Draw (vtable) · depth 1 · 34 lines · **decompiled** — slot 6: updates talk state then queues the current frame scaled by +0xfc (scaled sprite, 16.16 factor) at screen position relative to the camera
-- [ ] `00407d00` FUN_00407d00 · depth 1 · 71 lines · **untouched**
+- [ ] `00407d00` inferred_Dialogue_ChoiceMenu · depth 1 · 71 lines · **decompiled** — lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled
 - [ ] `00407f30` inferred_Jim_TalkAnimate (vtable) · depth 2 · 37 lines · **decompiled** — slot 31: draws the speaking-mouth animation; while talking picks a random frame (RandomRange) at most every 100 ms of game time, else rests on frame 1
 - [ ] `004080a0` inferred_Jim_UseItemForward (vtable) · depth 2 · 17 lines · **decompiled** — slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27
 - [ ] `00408520` inferred_Level_CameraMoveTo · depth 2 · 8 lines · **decompiled** — forwards (x, y, duration) to the camera at +0x80
@@ -180,8 +180,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 - [ ] `00408780` inferred_Level_FindObjectByKey · depth 1 · 8 lines · **decompiled** — forwards to the object list at +0x74 with the 64-bit key
 - [ ] `00408840` FUN_00408840 (vtable) · depth 1 · 14 lines · **untouched**
-- [ ] `00408890` FUN_00408890 · depth 2 · 200 lines · **untouched**
-- [ ] `004087a0` FUN_004087a0 (vtable) · depth 3 · 17 lines · **untouched**
+- [ ] `00408890` inferred_Level_CollisionPass · depth 2 · 200 lines · **decompiled** — per-frame pass over the level's object list (+0x7c): for each pair of objects with flags 8 (collidable) and 2 (active) in the same room, asks A.slot11(B) then runs ResolveOverlap; afterwards sends queued position notifications (+0x78 list of object,x,y) through object slot 12
+- [ ] `004087a0` inferred_Level_UpdateOrCollide (vtable) · depth 3 · 17 lines · **decompiled** — level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true
 - [ ] `004087d0` FUN_004087d0 (vtable) · depth 3 · 10 lines · **untouched**
 - [ ] `00408620` FUN_00408620 · depth 8 · 77 lines · **untouched**
 - [ ] `00408710` FUN_00408710 · depth 8 · 20 lines · **untouched**
@@ -193,7 +193,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00409560` FUN_00409560 · depth 0 · 142 lines · **untouched**
 - [ ] `00409790` FUN_00409790 · depth 0 · 255 lines · **untouched**
 - [ ] `00409c10` FUN_00409c10 · depth 0 · 113 lines · **untouched**
-- [ ] `00408c50` FUN_00408c50 · depth 1 · 256 lines · **untouched**
+- [ ] `00408c50` inferred_Level_ResolveOverlap · depth 1 · 256 lines · **decompiled** — (A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls
 - [ ] `00409e50` inferred_Level_CreateObject · depth 14 · 1145 lines · **decompiled** — factory: switch on kind (record +0x18) allocating the right object class (sizes 0x6c, 0x84, 0x78, 0x6c, 0x74, 0xd8 ... kind 5 has a sub-switch on record byte +5); adds objects of kind 1 to level +0x90
 - [ ] `0040c040` FUN_0040c040 (vtable) · depth 14 · 19 lines · **untouched**
 

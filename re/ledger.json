@@ -11368,7 +11368,7 @@
  {
   "addr": "00407d00",
   "ghidra_name": "FUN_00407d00",
-  "name": "",
+  "name": "inferred_Dialogue_ChoiceMenu",
   "tier": "game",
   "lines": 71,
   "decompile_ok": true,
@@ -11384,9 +11384,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled"
  },
  {
   "addr": "00407f30",
@@ -11747,7 +11747,7 @@
  {
   "addr": "004087a0",
   "ghidra_name": "FUN_004087a0",
-  "name": "",
+  "name": "inferred_Level_UpdateOrCollide",
   "tier": "game",
   "lines": 17,
   "decompile_ok": true,
@@ -11776,9 +11776,9 @@
   ],
   "data_refs": [],
   "cluster": 14,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true"
  },
  {
   "addr": "004087d0",
@@ -11869,7 +11869,7 @@
  {
   "addr": "00408890",
   "ghidra_name": "FUN_00408890",
-  "name": "",
+  "name": "inferred_Level_CollisionPass",
   "tier": "game",
   "lines": 200,
   "decompile_ok": true,
@@ -11884,14 +11884,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 14,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "per-frame pass over the level's object list (+0x7c): for each pair of objects with flags 8 (collidable) and 2 (active) in the same room, asks A.slot11(B) then runs ResolveOverlap; afterwards sends queued position notifications (+0x78 list of object,x,y) through object slot 12"
  },
  {
   "addr": "00408c50",
   "ghidra_name": "FUN_00408c50",
-  "name": "",
+  "name": "inferred_Level_ResolveOverlap",
   "tier": "game",
   "lines": 256,
   "decompile_ok": true,
@@ -11908,9 +11908,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 15,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls"
  },
  {
   "addr": "00409280",

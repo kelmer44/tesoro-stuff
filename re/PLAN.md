@@ -152,3 +152,12 @@ left-click as slot 14 (verb = cursor animation index), right-click as slot 15 an
 **Not yet found: the geometric hit test** that decides which objects register as candidates; the call is made through a virtual slot that the decompiler does not show. Next step: scan the
 object classes' slot 5 / draw code for `Cursor_AddCandidate` calls via the disassembly.
 Possible save-game feature: `Cursor_CaptureThumbnail` (213x160) suggests save slots carry a thumbnail.
+
+### Phase 2, hit test search (28 Oct 2026)
+Result: **ground click located, object hit test still not found.**
+- Ground click: `Cursor` slot 5 (`004030e0`) runs `Cursor_ProcessCandidates` for the cursor and its companion; if the left button went down, no candidate reacted and the cursor animation index is 0,
+  Jim is told to walk (slot 32) to world position (mouse x + camera x, camera y - mouse y), after interrupting speech.
+- Objects flagged 8 (collidable) and 2 (active) are tested pairwise per room by `Level_CollisionPass`/`Level_ResolveOverlap` (swept polygon and segment tests). The cursor object sets flag 8, so the pointer
+  is probably tested through this pass; no virtual call registers candidates with the cursor, and the registration into the candidate list (`Cursor_AddCandidate`, slot 12) still has no caller by name or
+  by `[reg+0x30]` call in the disassembly. Candidates may be added through a copy of the list pointer. Next: trace writes to the cursor's lists (+0x6c/+0x70) and read `00409280`, `00409560`, `00409790`, `00409c10`.
+- `Dialogue_ChoiceMenu` (`00407d00`) was named from its mouse-y selection.

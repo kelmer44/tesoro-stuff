@@ -1,0 +1,5 @@
+# Level collision / overlap pass and dialogue choice menu (28 Oct 2026)
+00408890	inferred_Level_CollisionPass	decompiled	per-frame pass over the level's object list (+0x7c): for each pair of objects with flags 8 (collidable) and 2 (active) in the same room, asks A.slot11(B) then runs ResolveOverlap; afterwards sends queued position notifications (+0x78 list of object,x,y) through object slot 12
+00408c50	inferred_Level_ResolveOverlap	decompiled	(A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls
+004087a0	inferred_Level_UpdateOrCollide	decompiled	level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true
+00407d00	inferred_Dialogue_ChoiceMenu	decompiled	lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled
