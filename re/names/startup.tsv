@@ -1,0 +1,38 @@
+# Startup path: WinMain -> CreateMainWindow -> InitSubsystems -> InitGameWorld -> frame loop -> Shutdown. Names inferred from read decompilation.
+00415880	inferred_CreateMainWindow	decompiled	RegisterClass + CreateWindowEx 640x480 (style 0x90000000, ex 8), ShowWindow, ShowCursor(0), sets init flags, calls InitSubsystems
+004157d0	inferred_MainWndProc	decompiled	WM_ACTIVATEAPP (0x1c): clock suspend/resume and restores the two display surfaces via vtable +0x6c; MM_MCINOTIFY (0x3b9) success: CD audio notify handler 00403dc0
+00414420	inferred_RunFrame	decompiled	per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end
+004144a0	inferred_Shutdown	decompiled	deletes display, sound, mouse, keyboard, archive, memory pools, clock in that order
+00413e60	inferred_InitGameWorld	decompiled	opens archive Tesoro.DAT/Tesoro.TRE, loads TABLA1.TBL, FUENTES.ANM, OBJETOS.TXT/DLG tables, INTERFACE.LVL, CUBIERTA/MAPA/DESPACHO..LVL levels (0x2f slots), PRINCIPAL.LVL, NUEVO.LVL, then starts the first level; SEH frame
+00415c30	inferred_SetInitFlags	decompiled	sets globals 00442208 and 0044221c to 1
+004139c0	inferred_Clock_Ctor	decompiled	game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended
+00413a10	inferred_Clock_Now	decompiled	adds elapsed GetTickCount delta when below 500 ms (longer gaps are ignored); returns frozen value while frozen
+00413a50	inferred_Clock_Freeze	decompiled	updates accumulation then freezes at the current value (called at start of each frame)
+00413ab0	inferred_Clock_Unfreeze	decompiled	clears frozen flag (end of frame)
+00413a80	inferred_Clock_Suspend	decompiled	window deactivated: stop accumulating
+00413a90	inferred_Clock_Resume	decompiled	window activated: re-stamp last tick, resume
+0040db40	inferred_Pool_AllocZero	decompiled	bump-allocates size bytes (4-aligned) zeroed from arena index in global pool 00442100; returns 0 when full
+0040dc10	inferred_Pool_AllocAligned	decompiled	thiscall(size, align, arena) no zero fill
+0040dc70	inferred_Pool_AllocAlignedZero	decompiled	thiscall(size, align, arena) zeroed
+0040f650	inferred_Pool_AllocAlignedZero_Global	decompiled	wrapper on the global pool
+0040dbc0	inferred_Pool_Ctor	decompiled	allocates param*1000 bytes (called with 0x39d0 = about 14.8 MB)
+0040dc00	inferred_Pool_IsValid	decompiled	
+0040dcf0	inferred_Pool_SetArena	decompiled	carves arena N of given size out after the previous one (sizes 0x17a6b0, 3000000, 9600000, 650000 for arenas 0-3)
+0040dd30	inferred_Pool_ResetArena	decompiled	rewinds arena bump pointer to its start
+0040dbf0	inferred_Pool_Dtor	decompiled	
+00403250	inferred_Archive_Open	decompiled	thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4
+00403500	inferred_Archive_FindEntry	decompiled	binary search by name in sorted 0x18-byte index records at 00442068; returns data offset (+0x14) or fails
+004032e0	inferred_Archive_SeekEntry	decompiled	fseek the archive handle to offset, returns the FILE*
+00403360	inferred_Archive_Close	decompiled	
+00415c40	inferred_NameHash64	decompiled	packs up to 12 chars of a name, 5 bits each (chars below '5' get +11), into a 64-bit key; used with level object lookup
+00408780	inferred_Level_FindObjectByKey	decompiled	forwards to the object list at +0x74 with the 64-bit key
+00411c10	inferred_Display_SetFont	decompiled	stores pointer at slot (index*4+0x20)
+00411c20	inferred_Display_LoadColourTable	decompiled	reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set
+00411f20	inferred_Display_ResetRenderQueue	decompiled	clears two arrays of 0x1e0 entries (stride 500 and 200 dwords) and counters
+0040f890	inferred_ObjectList_Ctor	decompiled	allocates a linked list with capacity param (100 for the main list 00442104)
+0040fc20	inferred_ObjectList_PassA	decompiled	walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1
+0040fd20	inferred_ObjectList_PassB	decompiled	same walk calling vtable slot 5
+0040fe40	inferred_ObjectList_EndFrame	decompiled	iterator reset helper; its result decides loop continuation
+00414600	inferred_Keyboard_Dtor	decompiled	vtable 00428070
+00414610	inferred_Mouse_Dtor	decompiled	vtable 00428074
+00401c20	inferred_Clock_Dtor	decompiled	empty

@@ -1,0 +1,8 @@
+# Cluster 1 (00401000-00401740): animation bank loading and playback state. Names inferred from read decompilation.
+00401000	inferred_ReturnThis	decompiled	__fastcall returns ecx; used as a vtable slot of the object built by 00401aa0
+00401010	inferred_AnimBank_ScaleBrightness	decompiled	builds channel scale tables from a 16-bit factor (x/256) and rewrites every 16-bit image's pixels; flag at (DAT_00442108+0x67c) picks 5-5-5 vs 5-6-5 handling
+00401160	inferred_AnimBank_Load	decompiled	thiscall(entry, pool, mode): opens archive entry+4, reads 0x18 header (images +0x20, sequences +0x22), 0x24-byte sequence records at +0x1c, image pointer array at +0, file offsets at +4; mode 2 defers image loading
+00401510	inferred_AnimBank_LoadDeferredImages	decompiled	mode 2 only: seeks to each stored offset (+4 array) and loads the image with 004015a0
+00401580	inferred_Copy64Bytes	decompiled	thiscall copy of 16 dwords from param into this
+004015a0	inferred_AnimBank_LoadImage	decompiled	reads size, allocates from pool DAT_00442100, reads blob, relocates internal pointers by base; converts pixels 5-6-5 to 5-5-5 when flag set; image type 2 (header +0xc) entries are rewritten as (v&0x1f)<<2, meaning not yet known
+00401740	inferred_AnimPlayer_SetRange	decompiled	thiscall(first, last_or_-1, loop_flag, sum_flag): sets play range in sequence table, resets counters, stamps start time from game clock 00413a10

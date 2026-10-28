@@ -8,7 +8,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 9 | 2% |
+| decompiled or later | 53 | 11% |
 | understood or later | 0 | 0% |
 | ported or later | 0 | 0% |
 | emu-compared or later | 0 | 0% |
@@ -19,18 +19,18 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 1: 00401000–00401740 (0/7 ported)
 
-- [ ] `00401000` FUN_00401000 · depth 0 · 7 lines · **untouched**
-- [ ] `00401580` FUN_00401580 · depth 0 · 14 lines · **untouched**
-- [ ] `00401010` FUN_00401010 · depth 1 · 73 lines · **untouched**
-- [ ] `00401740` FUN_00401740 · depth 1 · 70 lines · **untouched**
-- [ ] `004015a0` FUN_004015a0 · depth 8 · 82 lines · **untouched**
-- [ ] `00401160` FUN_00401160 · depth 9 · 163 lines · **untouched**
-- [ ] `00401510` FUN_00401510 · depth 9 · 26 lines · **untouched**
+- [ ] `00401000` inferred_ReturnThis · depth 0 · 7 lines · **decompiled** — __fastcall returns ecx; used as a vtable slot of the object built by 00401aa0
+- [ ] `00401580` inferred_Copy64Bytes · depth 0 · 14 lines · **decompiled** — thiscall copy of 16 dwords from param into this
+- [ ] `00401010` inferred_AnimBank_ScaleBrightness · depth 1 · 73 lines · **decompiled** — builds channel scale tables from a 16-bit factor (x/256) and rewrites every 16-bit image's pixels; flag at (DAT_00442108+0x67c) picks 5-5-5 vs 5-6-5 handling
+- [ ] `00401740` inferred_AnimPlayer_SetRange · depth 1 · 70 lines · **decompiled** — thiscall(first, last_or_-1, loop_flag, sum_flag): sets play range in sequence table, resets counters, stamps start time from game clock 00413a10
+- [ ] `004015a0` inferred_AnimBank_LoadImage · depth 8 · 82 lines · **decompiled** — reads size, allocates from pool DAT_00442100, reads blob, relocates internal pointers by base; converts pixels 5-6-5 to 5-5-5 when flag set; image type 2 (header +0xc) entries are rewritten as (v&0x1f)<<2, meaning not yet known
+- [ ] `00401160` inferred_AnimBank_Load · depth 9 · 163 lines · **decompiled** — thiscall(entry, pool, mode): opens archive entry+4, reads 0x18 header (images +0x20, sequences +0x22), 0x24-byte sequence records at +0x1c, image pointer array at +0, file offsets at +4; mode 2 defers image loading
+- [ ] `00401510` inferred_AnimBank_LoadDeferredImages · depth 9 · 26 lines · **decompiled** — mode 2 only: seeks to each stored offset (+4 array) and loads the image with 004015a0
 
 ### Cluster 2: 00401bc0–00401d60 (0/12 ported)
 
 - [ ] `00401bc0` FUN_00401bc0 · depth 0 · 12 lines · **untouched**
-- [ ] `00401c20` FUN_00401c20 (vtable) · depth 0 · 7 lines · **untouched**
+- [ ] `00401c20` inferred_Clock_Dtor (vtable) · depth 0 · 7 lines · **decompiled** — empty
 - [ ] `00401c50` FUN_00401c50 (vtable) · depth 0 · 30 lines · **untouched**
 - [ ] `00401d20` FUN_00401d20 (vtable) · depth 0 · 7 lines · **untouched**
 - [ ] `00401d60` FUN_00401d60 (vtable) · depth 0 · 8 lines · **untouched**
@@ -84,13 +84,13 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004029a0` FUN_004029a0 · depth 2 · 14 lines · **untouched**
 - [ ] `004030e0` FUN_004030e0 (vtable) · depth 2 · 35 lines · **untouched**
 - [ ] `00403300` FUN_00403300 · depth 4 · 10 lines · **untouched**
-- [ ] `004032e0` FUN_004032e0 · depth 5 · 8 lines · **untouched**
-- [ ] `00403250` FUN_00403250 · depth 10 · 28 lines · **untouched**
+- [ ] `004032e0` inferred_Archive_SeekEntry · depth 5 · 8 lines · **decompiled** — fseek the archive handle to offset, returns the FILE*
+- [ ] `00403250` inferred_Archive_Open · depth 10 · 28 lines · **decompiled** — thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4
 - [ ] `004029f0` FUN_004029f0 (vtable) · depth 12 · 156 lines · **untouched**
 
 ### Cluster 7: 00403500–00403980 (0/12 ported)
 
-- [ ] `00403500` FUN_00403500 · depth 0 · 59 lines · **untouched**
+- [ ] `00403500` inferred_Archive_FindEntry · depth 0 · 59 lines · **decompiled** — binary search by name in sorted 0x18-byte index records at 00442068; returns data offset (+0x14) or fails
 - [ ] `004036c0` FUN_004036c0 · depth 0 · 7 lines · **decompiled** — device ready check
 - [ ] `004036e0` FUN_004036e0 · depth 0 · 9 lines · **untouched**
 - [ ] `00403700` FUN_00403700 · depth 0 · 50 lines · **untouched**
@@ -100,7 +100,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00403320` FUN_00403320 · depth 5 · 11 lines · **untouched**
 - [ ] `00403820` FUN_00403820 · depth 5 · 44 lines · **untouched**
 - [ ] `00403980` inferred_MouseCtor · depth 5 · 46 lines · **decompiled** — DirectInput mouse, range 640x480, starts at (320,240)
-- [ ] `00403360` FUN_00403360 · depth 6 · 10 lines · **untouched**
+- [ ] `00403360` inferred_Archive_Close · depth 6 · 10 lines · **decompiled**
 - [ ] `00403380` FUN_00403380 · depth 8 · 109 lines · **untouched**
 
 ### Cluster 8: 00403a70–004040d0 (0/8 ported)
@@ -178,7 +178,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 14: 00408780–00408890 (0/8 ported)
 
-- [ ] `00408780` FUN_00408780 · depth 1 · 8 lines · **untouched**
+- [ ] `00408780` inferred_Level_FindObjectByKey · depth 1 · 8 lines · **decompiled** — forwards to the object list at +0x74 with the 64-bit key
 - [ ] `00408840` FUN_00408840 (vtable) · depth 1 · 14 lines · **untouched**
 - [ ] `00408890` FUN_00408890 · depth 2 · 200 lines · **untouched**
 - [ ] `004087a0` FUN_004087a0 (vtable) · depth 3 · 17 lines · **untouched**
@@ -288,15 +288,15 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 23: 0040db40–0040dd40 (0/12 ported)
 
-- [ ] `0040db40` FUN_0040db40 · depth 0 · 38 lines · **untouched**
-- [ ] `0040dc00` FUN_0040dc00 · depth 0 · 7 lines · **untouched**
-- [ ] `0040dc10` FUN_0040dc10 · depth 0 · 25 lines · **untouched**
-- [ ] `0040dc70` FUN_0040dc70 · depth 0 · 36 lines · **untouched**
-- [ ] `0040dcf0` FUN_0040dcf0 · depth 0 · 20 lines · **untouched**
-- [ ] `0040dd30` FUN_0040dd30 · depth 0 · 8 lines · **untouched**
+- [ ] `0040db40` inferred_Pool_AllocZero · depth 0 · 38 lines · **decompiled** — bump-allocates size bytes (4-aligned) zeroed from arena index in global pool 00442100; returns 0 when full
+- [ ] `0040dc00` inferred_Pool_IsValid · depth 0 · 7 lines · **decompiled**
+- [ ] `0040dc10` inferred_Pool_AllocAligned · depth 0 · 25 lines · **decompiled** — thiscall(size, align, arena) no zero fill
+- [ ] `0040dc70` inferred_Pool_AllocAlignedZero · depth 0 · 36 lines · **decompiled** — thiscall(size, align, arena) zeroed
+- [ ] `0040dcf0` inferred_Pool_SetArena · depth 0 · 20 lines · **decompiled** — carves arena N of given size out after the previous one (sizes 0x17a6b0, 3000000, 9600000, 650000 for arenas 0-3)
+- [ ] `0040dd30` inferred_Pool_ResetArena · depth 0 · 8 lines · **decompiled** — rewinds arena bump pointer to its start
 - [ ] `0040dd40` FUN_0040dd40 · depth 4 · 20 lines · **untouched**
-- [ ] `0040dbc0` FUN_0040dbc0 · depth 5 · 11 lines · **untouched**
-- [ ] `0040dbf0` FUN_0040dbf0 · depth 5 · 8 lines · **untouched**
+- [ ] `0040dbc0` inferred_Pool_Ctor · depth 5 · 11 lines · **decompiled** — allocates param*1000 bytes (called with 0x39d0 = about 14.8 MB)
+- [ ] `0040dbf0` inferred_Pool_Dtor · depth 5 · 8 lines · **decompiled**
 - [ ] `0040da30` FUN_0040da30 (vtable) · depth 14 · 19 lines · **untouched**
 - [ ] `0040da80` FUN_0040da80 (vtable) · depth 14 · 23 lines · **untouched**
 - [ ] `0040daf0` FUN_0040daf0 (vtable) · depth 14 · 19 lines · **untouched**
@@ -346,7 +346,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040f680` FUN_0040f680 · depth 0 · 55 lines · **untouched**
 - [ ] `0040f780` FUN_0040f780 · depth 0 · 49 lines · **untouched**
 - [ ] `0040f590` FUN_0040f590 · depth 1 · 37 lines · **untouched**
-- [ ] `0040f650` FUN_0040f650 · depth 1 · 8 lines · **untouched**
+- [ ] `0040f650` inferred_Pool_AllocAlignedZero_Global · depth 1 · 8 lines · **decompiled** — wrapper on the global pool
 - [ ] `0040f710` FUN_0040f710 · depth 2 · 39 lines · **untouched**
 - [ ] `0040f280` FUN_0040f280 (vtable) · depth 12 · 25 lines · **untouched**
 - [ ] `0040f300` FUN_0040f300 (vtable) · depth 12 · 25 lines · **untouched**
@@ -361,15 +361,15 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040f900` FUN_0040f900 · depth 0 · 82 lines · **untouched**
 - [ ] `0040fa10` FUN_0040fa10 · depth 0 · 82 lines · **untouched**
 - [ ] `0040fb20` FUN_0040fb20 · depth 0 · 58 lines · **untouched**
-- [ ] `0040f890` FUN_0040f890 · depth 1 · 23 lines · **untouched**
+- [ ] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **decompiled** — allocates a linked list with capacity param (100 for the main list 00442104)
 - [ ] `0040fbb0` FUN_0040fbb0 · depth 2 · 38 lines · **untouched**
 
 ### Cluster 29: 0040fc20–00410330 (0/12 ported)
 
-- [ ] `0040fc20` FUN_0040fc20 · depth 0 · 83 lines · **untouched**
-- [ ] `0040fd20` FUN_0040fd20 · depth 0 · 83 lines · **untouched**
+- [ ] `0040fc20` inferred_ObjectList_PassA · depth 0 · 83 lines · **decompiled** — walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1
+- [ ] `0040fd20` inferred_ObjectList_PassB · depth 0 · 83 lines · **decompiled** — same walk calling vtable slot 5
 - [ ] `0040fe20` FUN_0040fe20 · depth 0 · 14 lines · **untouched**
-- [ ] `0040fe40` FUN_0040fe40 · depth 0 · 31 lines · **untouched**
+- [ ] `0040fe40` inferred_ObjectList_EndFrame · depth 0 · 31 lines · **decompiled** — iterator reset helper; its result decides loop continuation
 - [ ] `0040fea0` FUN_0040fea0 · depth 2 · 9 lines · **untouched**
 - [ ] `0040ffa0` FUN_0040ffa0 · depth 2 · 27 lines · **untouched**
 - [ ] `00410060` FUN_00410060 (vtable) · depth 2 · 34 lines · **untouched**
@@ -398,12 +398,12 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00411580` FUN_00411580 · depth 0 · 164 lines · **untouched**
 - [ ] `00411be0` FUN_00411be0 · depth 0 · 10 lines · **untouched**
 - [ ] `00411c00` FUN_00411c00 · depth 0 · 7 lines · **untouched**
-- [ ] `00411c10` FUN_00411c10 · depth 0 · 8 lines · **untouched**
+- [ ] `00411c10` inferred_Display_SetFont · depth 0 · 8 lines · **decompiled** — stores pointer at slot (index*4+0x20)
 - [ ] `00411c80` FUN_00411c80 · depth 0 · 127 lines · **untouched**
-- [ ] `00411f20` FUN_00411f20 · depth 0 · 30 lines · **untouched**
+- [ ] `00411f20` inferred_Display_ResetRenderQueue · depth 0 · 30 lines · **decompiled** — clears two arrays of 0x1e0 entries (stride 500 and 200 dwords) and counters
 - [ ] `00411870` FUN_00411870 · depth 1 · 127 lines · **untouched**
 - [ ] `00411f80` FUN_00411f80 · depth 1 · 57 lines · **untouched**
-- [ ] `00411c20` FUN_00411c20 · depth 8 · 22 lines · **untouched**
+- [ ] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **decompiled** — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set
 
 ### Cluster 32: 004120c0–00412e10 (0/7 ported)
 
@@ -419,7 +419,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 - [ ] `004137c0` FUN_004137c0 · depth 0 · 67 lines · **untouched**
 - [ ] `004138b0` FUN_004138b0 · depth 0 · 47 lines · **untouched**
-- [ ] `004139c0` FUN_004139c0 · depth 0 · 14 lines · **untouched**
+- [ ] `004139c0` inferred_Clock_Ctor · depth 0 · 14 lines · **decompiled** — game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended
 - [ ] `004139e0` FUN_004139e0 · depth 0 · 18 lines · **untouched**
 - [ ] `004132b0` FUN_004132b0 · depth 11 · 123 lines · **untouched**
 - [ ] `00413570` FUN_00413570 · depth 11 · 121 lines · **untouched**
@@ -427,24 +427,24 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 34: 00413a10–00414560 (0/12 ported)
 
-- [ ] `00413a10` FUN_00413a10 · depth 0 · 19 lines · **untouched**
-- [ ] `00413a50` FUN_00413a50 · depth 0 · 18 lines · **untouched**
-- [ ] `00413a80` FUN_00413a80 · depth 0 · 8 lines · **untouched**
-- [ ] `00413a90` FUN_00413a90 · depth 0 · 12 lines · **untouched**
-- [ ] `00413ab0` FUN_00413ab0 · depth 0 · 8 lines · **untouched**
+- [ ] `00413a10` inferred_Clock_Now · depth 0 · 19 lines · **decompiled** — adds elapsed GetTickCount delta when below 500 ms (longer gaps are ignored); returns frozen value while frozen
+- [ ] `00413a50` inferred_Clock_Freeze · depth 0 · 18 lines · **decompiled** — updates accumulation then freezes at the current value (called at start of each frame)
+- [ ] `00413a80` inferred_Clock_Suspend · depth 0 · 8 lines · **decompiled** — window deactivated: stop accumulating
+- [ ] `00413a90` inferred_Clock_Resume · depth 0 · 12 lines · **decompiled** — window activated: re-stamp last tick, resume
+- [ ] `00413ab0` inferred_Clock_Unfreeze · depth 0 · 8 lines · **decompiled** — clears frozen flag (end of frame)
 - [ ] `00413ac0` FUN_00413ac0 · depth 0 · 11 lines · **untouched**
 - [ ] `00413b00` FUN_00413b00 · depth 0 · 13 lines · **untouched**
 - [ ] `00413b90` inferred_InitSubsystems · depth 6 · 140 lines · **decompiled** — builds CD, input, sound, video objects; error dialogs
-- [ ] `004144a0` FUN_004144a0 · depth 7 · 45 lines · **untouched**
-- [ ] `00414420` FUN_00414420 · depth 10 · 21 lines · **untouched**
+- [ ] `004144a0` inferred_Shutdown · depth 7 · 45 lines · **decompiled** — deletes display, sound, mouse, keyboard, archive, memory pools, clock in that order
+- [ ] `00414420` inferred_RunFrame · depth 10 · 21 lines · **decompiled** — per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end
 - [ ] `00414560` FUN_00414560 · depth 14 · 25 lines · **untouched**
-- [ ] `00413e60` FUN_00413e60 · depth 16 · 252 lines · **untouched**
+- [ ] `00413e60` inferred_InitGameWorld · depth 16 · 252 lines · **decompiled** — opens archive Tesoro.DAT/Tesoro.TRE, loads TABLA1.TBL, FUENTES.ANM, OBJETOS.TXT/DLG tables, INTERFACE.LVL, CUBIERTA/MAPA/DESPACHO..LVL levels (0x2f slots), PRINCIPAL.LVL, NUEVO.LVL, then starts the first level; SEH frame
 
 ### Cluster 35: 00414740–00414dc0 (0/12 ported)
 
 - [ ] `00414740` FUN_00414740 · depth 0 · 86 lines · **untouched**
-- [ ] `00414600` FUN_00414600 · depth 1 · 9 lines · **untouched**
-- [ ] `00414610` FUN_00414610 · depth 1 · 9 lines · **untouched**
+- [ ] `00414600` inferred_Keyboard_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428070
+- [ ] `00414610` inferred_Mouse_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428074
 - [ ] `004146b0` FUN_004146b0 (vtable) · depth 1 · 23 lines · **untouched**
 - [ ] `00414a90` FUN_00414a90 (vtable) · depth 1 · 92 lines · **untouched**
 - [ ] `00414d50` FUN_00414d50 (vtable) · depth 1 · 18 lines · **untouched**
@@ -474,17 +474,17 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 - [ ] `004157c0` FUN_004157c0 (vtable) · depth 0 · 7 lines · **untouched**
 - [ ] `004157b0` FUN_004157b0 (vtable) · depth 1 · 8 lines · **untouched**
-- [ ] `004157d0` FUN_004157d0 · depth 2 · 34 lines · **untouched**
+- [ ] `004157d0` inferred_MainWndProc · depth 2 · 34 lines · **decompiled** — WM_ACTIVATEAPP (0x1c): clock suspend/resume and restores the two display surfaces via vtable +0x6c; MM_MCINOTIFY (0x3b9) success: CD audio notify handler 00403dc0
 - [ ] `00415490` FUN_00415490 (vtable) · depth 3 · 85 lines · **untouched**
 - [ ] `00415640` FUN_00415640 (vtable) · depth 3 · 64 lines · **untouched**
 - [ ] `00415770` FUN_00415770 · depth 4 · 11 lines · **untouched**
-- [ ] `00415880` FUN_00415880 · depth 7 · 37 lines · **untouched**
+- [ ] `00415880` inferred_CreateMainWindow · depth 7 · 37 lines · **decompiled** — RegisterClass + CreateWindowEx 640x480 (style 0x90000000, ex 8), ShowWindow, ShowCursor(0), sets init flags, calls InitSubsystems
 - [ ] `00415960` inferred_WinMain · depth 17 · 89 lines · **decompiled** — args: none=CD check+SETUP.EXE; '_$_$_ '+byte=game; 'Uninstall'
 
 ### Cluster 38: 00415c30–00416170 (0/12 ported)
 
-- [ ] `00415c30` FUN_00415c30 · depth 0 · 11 lines · **untouched**
-- [ ] `00415c40` FUN_00415c40 · depth 0 · 44 lines · **untouched**
+- [ ] `00415c30` inferred_SetInitFlags · depth 0 · 11 lines · **decompiled** — sets globals 00442208 and 0044221c to 1
+- [ ] `00415c40` inferred_NameHash64 · depth 0 · 44 lines · **decompiled** — packs up to 12 chars of a name, 5 bits each (chars below '5' get +11), into a 64-bit key; used with level object lookup
 - [ ] `00415cb0` FUN_00415cb0 · depth 0 · 55 lines · **untouched**
 - [ ] `00415b00` inferred_FindCdAndSetup · depth 10 · 71 lines · **decompiled** — scans drives for label TESORO, checks SETUP.EXE
 - [ ] `00415d90` FUN_00415d90 (vtable) · depth 13 · 25 lines · **untouched**

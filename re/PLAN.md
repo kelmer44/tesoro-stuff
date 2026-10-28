@@ -88,3 +88,13 @@ Next: run the script in the open Ghidra project (Script Manager, add directory `
 - 63 names pushed to the Ghidra database through `rename_function_by_address`; save the project (Ctrl+S) to keep them.
 **Next, step 2: name the 447 game functions cluster by cluster** (start with cluster 1 / startup), from callers, callees and strings.
 Tool: `re/tools/apply_names.py <tsv>` applies name/status/notes in bulk.
+
+### Phase 2, startup path named (28 Oct 2026)
+`re/names/startup.tsv` (36 functions) plus the 9 earlier ones. Note: cluster numbers in `clusters.md` are stale after the inventory change; use `ledger.json`.
+Startup structure read from the fresh decompilation:
+- `WinMain` (no argument: CD check and installer menu; `_$_$_`+drive letter: game): `CreateMainWindow` -> `InitSubsystems` -> `InitGameWorld` -> loop {PeekMessage/GetMessage; `RunFrame`} -> `Shutdown`.
+- Global singletons: clock 00442120, memory pool 00442100 (4 arenas: 0x17a6b0, 3,000,000, 9,600,000 and 650,000 bytes), archive manager 00442064, keyboard 00442074, mouse 0044206c, sound 00442080, display 00442108, main object list 00442104 (capacity 100).
+- Per frame: input updates, clock freeze, sound update, pool arena 3 reset (per-frame scratch), render queue reset, object list pass A (vtable slot 4) then pass B (slot 5), clock unfreeze.
+- The game clock ignores any single tick gap of 500 ms or more (a stall does not advance game time). Timing in the port must reproduce this.
+- Resources are found by name in a sorted index (`Tesoro.TRE`), data read from `Tesoro.DAT`. Name hash: 5 bits per character, 12 characters, 64-bit.
+- Still unread: `InitGameWorld` callees (level loader 004080e0, dialogue loader 00406190, 004070c0 game-state constructor, 00415230), the object-list insert/remove functions, and the render path.

@@ -2,7 +2,7 @@
  {
   "addr": "00401000",
   "ghidra_name": "FUN_00401000",
-  "name": "",
+  "name": "inferred_ReturnThis",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -14,14 +14,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "__fastcall returns ecx; used as a vtable slot of the object built by 00401aa0"
  },
  {
   "addr": "00401010",
   "ghidra_name": "FUN_00401010",
-  "name": "",
+  "name": "inferred_AnimBank_ScaleBrightness",
   "tier": "game",
   "lines": 73,
   "decompile_ok": true,
@@ -35,14 +35,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "builds channel scale tables from a 16-bit factor (x/256) and rewrites every 16-bit image's pixels; flag at (DAT_00442108+0x67c) picks 5-5-5 vs 5-6-5 handling"
  },
  {
   "addr": "00401160",
   "ghidra_name": "FUN_00401160",
-  "name": "",
+  "name": "inferred_AnimBank_Load",
   "tier": "game",
   "lines": 163,
   "decompile_ok": true,
@@ -63,14 +63,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "thiscall(entry, pool, mode): opens archive entry+4, reads 0x18 header (images +0x20, sequences +0x22), 0x24-byte sequence records at +0x1c, image pointer array at +0, file offsets at +4; mode 2 defers image loading"
  },
  {
   "addr": "00401510",
   "ghidra_name": "FUN_00401510",
-  "name": "",
+  "name": "inferred_AnimBank_LoadDeferredImages",
   "tier": "game",
   "lines": 26,
   "decompile_ok": true,
@@ -86,14 +86,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "mode 2 only: seeks to each stored offset (+4 array) and loads the image with 004015a0"
  },
  {
   "addr": "00401580",
   "ghidra_name": "FUN_00401580",
-  "name": "",
+  "name": "inferred_Copy64Bytes",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -105,14 +105,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "thiscall copy of 16 dwords from param into this"
  },
  {
   "addr": "004015a0",
   "ghidra_name": "FUN_004015a0",
-  "name": "",
+  "name": "inferred_AnimBank_LoadImage",
   "tier": "game",
   "lines": 82,
   "decompile_ok": true,
@@ -128,14 +128,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "reads size, allocates from pool DAT_00442100, reads blob, relocates internal pointers by base; converts pixels 5-6-5 to 5-5-5 when flag set; image type 2 (header +0xc) entries are rewritten as (v&0x1f)<<2, meaning not yet known"
  },
  {
   "addr": "00401740",
   "ghidra_name": "FUN_00401740",
-  "name": "",
+  "name": "inferred_AnimPlayer_SetRange",
   "tier": "game",
   "lines": 70,
   "decompile_ok": true,
@@ -163,9 +163,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "thiscall(first, last_or_-1, loop_flag, sum_flag): sets play range in sequence table, resets counters, stamps start time from game clock 00413a10"
  },
  {
   "addr": "00401860",
@@ -315,7 +315,7 @@
  {
   "addr": "00401c20",
   "ghidra_name": "FUN_00401c20",
-  "name": "",
+  "name": "inferred_Clock_Dtor",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -2088,9 +2088,9 @@
   ],
   "data_refs": [],
   "cluster": 2,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "empty"
  },
  {
   "addr": "00401c30",
@@ -8852,7 +8852,7 @@
  {
   "addr": "00403250",
   "ghidra_name": "FUN_00403250",
-  "name": "",
+  "name": "inferred_Archive_Open",
   "tier": "game",
   "lines": 28,
   "decompile_ok": true,
@@ -8868,14 +8868,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 6,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4"
  },
  {
   "addr": "004032e0",
   "ghidra_name": "FUN_004032e0",
-  "name": "",
+  "name": "inferred_Archive_SeekEntry",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -8892,9 +8892,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 6,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "fseek the archive handle to offset, returns the FILE*"
  },
  {
   "addr": "00403300",
@@ -8944,7 +8944,7 @@
  {
   "addr": "00403360",
   "ghidra_name": "FUN_00403360",
-  "name": "",
+  "name": "inferred_Archive_Close",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -8958,7 +8958,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
   "notes": ""
  },
@@ -8988,7 +8988,7 @@
  {
   "addr": "00403500",
   "ghidra_name": "FUN_00403500",
-  "name": "",
+  "name": "inferred_Archive_FindEntry",
   "tier": "game",
   "lines": 59,
   "decompile_ok": true,
@@ -9003,9 +9003,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "binary search by name in sorted 0x18-byte index records at 00442068; returns data offset (+0x14) or fails"
  },
  {
   "addr": "004035b0",
@@ -11638,7 +11638,7 @@
  {
   "addr": "00408780",
   "ghidra_name": "FUN_00408780",
-  "name": "",
+  "name": "inferred_Level_FindObjectByKey",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -11740,9 +11740,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 14,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "forwards to the object list at +0x74 with the 64-bit key"
  },
  {
   "addr": "004087a0",
@@ -13912,7 +13912,7 @@
  {
   "addr": "0040db40",
   "ghidra_name": "FUN_0040db40",
-  "name": "",
+  "name": "inferred_Pool_AllocZero",
   "tier": "game",
   "lines": 38,
   "decompile_ok": true,
@@ -13940,14 +13940,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 23,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "bump-allocates size bytes (4-aligned) zeroed from arena index in global pool 00442100; returns 0 when full"
  },
  {
   "addr": "0040dbc0",
   "ghidra_name": "FUN_0040dbc0",
-  "name": "",
+  "name": "inferred_Pool_Ctor",
   "tier": "game",
   "lines": 11,
   "decompile_ok": true,
@@ -13961,14 +13961,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 23,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "allocates param*1000 bytes (called with 0x39d0 = about 14.8 MB)"
  },
  {
   "addr": "0040dbf0",
   "ghidra_name": "FUN_0040dbf0",
-  "name": "",
+  "name": "inferred_Pool_Dtor",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -13982,14 +13982,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 23,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
   "notes": ""
  },
  {
   "addr": "0040dc00",
   "ghidra_name": "FUN_0040dc00",
-  "name": "",
+  "name": "inferred_Pool_IsValid",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -14001,14 +14001,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 23,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
   "notes": ""
  },
  {
   "addr": "0040dc10",
   "ghidra_name": "FUN_0040dc10",
-  "name": "",
+  "name": "inferred_Pool_AllocAligned",
   "tier": "game",
   "lines": 25,
   "decompile_ok": true,
@@ -14022,14 +14022,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 23,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "thiscall(size, align, arena) no zero fill"
  },
  {
   "addr": "0040dc70",
   "ghidra_name": "FUN_0040dc70",
-  "name": "",
+  "name": "inferred_Pool_AllocAlignedZero",
   "tier": "game",
   "lines": 36,
   "decompile_ok": true,
@@ -14042,14 +14042,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 23,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "thiscall(size, align, arena) zeroed"
  },
  {
   "addr": "0040dcf0",
   "ghidra_name": "FUN_0040dcf0",
-  "name": "",
+  "name": "inferred_Pool_SetArena",
   "tier": "game",
   "lines": 20,
   "decompile_ok": true,
@@ -14061,14 +14061,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 23,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "carves arena N of given size out after the previous one (sizes 0x17a6b0, 3000000, 9600000, 650000 for arenas 0-3)"
  },
  {
   "addr": "0040dd30",
   "ghidra_name": "FUN_0040dd30",
-  "name": "",
+  "name": "inferred_Pool_ResetArena",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -14082,9 +14082,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 23,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "rewinds arena bump pointer to its start"
  },
  {
   "addr": "0040dd40",
@@ -20818,7 +20818,7 @@
  {
   "addr": "0040f650",
   "ghidra_name": "FUN_0040f650",
-  "name": "",
+  "name": "inferred_Pool_AllocAlignedZero_Global",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -20837,9 +20837,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 27,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "wrapper on the global pool"
  },
  {
   "addr": "0040f670",
@@ -20975,7 +20975,7 @@
  {
   "addr": "0040f890",
   "ghidra_name": "FUN_0040f890",
-  "name": "",
+  "name": "inferred_ObjectList_Ctor",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -20989,9 +20989,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "allocates a linked list with capacity param (100 for the main list 00442104)"
  },
  {
   "addr": "0040f900",
@@ -21096,7 +21096,7 @@
  {
   "addr": "0040fc20",
   "ghidra_name": "FUN_0040fc20",
-  "name": "",
+  "name": "inferred_ObjectList_PassA",
   "tier": "game",
   "lines": 83,
   "decompile_ok": true,
@@ -21108,14 +21108,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1"
  },
  {
   "addr": "0040fd20",
   "ghidra_name": "FUN_0040fd20",
-  "name": "",
+  "name": "inferred_ObjectList_PassB",
   "tier": "game",
   "lines": 83,
   "decompile_ok": true,
@@ -21127,9 +21127,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "same walk calling vtable slot 5"
  },
  {
   "addr": "0040fe20",
@@ -21155,7 +21155,7 @@
  {
   "addr": "0040fe40",
   "ghidra_name": "FUN_0040fe40",
-  "name": "",
+  "name": "inferred_ObjectList_EndFrame",
   "tier": "game",
   "lines": 31,
   "decompile_ok": true,
@@ -21167,9 +21167,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "iterator reset helper; its result decides loop continuation"
  },
  {
   "addr": "0040fea0",
@@ -22138,7 +22138,7 @@
  {
   "addr": "00411c10",
   "ghidra_name": "FUN_00411c10",
-  "name": "",
+  "name": "inferred_Display_SetFont",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -22150,14 +22150,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "stores pointer at slot (index*4+0x20)"
  },
  {
   "addr": "00411c20",
   "ghidra_name": "FUN_00411c20",
-  "name": "",
+  "name": "inferred_Display_LoadColourTable",
   "tier": "game",
   "lines": 22,
   "decompile_ok": true,
@@ -22172,9 +22172,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set"
  },
  {
   "addr": "00411c80",
@@ -22201,7 +22201,7 @@
  {
   "addr": "00411f20",
   "ghidra_name": "FUN_00411f20",
-  "name": "",
+  "name": "inferred_Display_ResetRenderQueue",
   "tier": "game",
   "lines": 30,
   "decompile_ok": true,
@@ -22217,9 +22217,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "clears two arrays of 0x1e0 entries (stride 500 and 200 dwords) and counters"
  },
  {
   "addr": "00411f80",
@@ -22541,7 +22541,7 @@
  {
   "addr": "004139c0",
   "ghidra_name": "FUN_004139c0",
-  "name": "",
+  "name": "inferred_Clock_Ctor",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -22553,9 +22553,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 33,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended"
  },
  {
   "addr": "004139e0",
@@ -22582,7 +22582,7 @@
  {
   "addr": "00413a10",
   "ghidra_name": "FUN_00413a10",
-  "name": "",
+  "name": "inferred_Clock_Now",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -22611,14 +22611,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "adds elapsed GetTickCount delta when below 500 ms (longer gaps are ignored); returns frozen value while frozen"
  },
  {
   "addr": "00413a50",
   "ghidra_name": "FUN_00413a50",
-  "name": "",
+  "name": "inferred_Clock_Freeze",
   "tier": "game",
   "lines": 18,
   "decompile_ok": true,
@@ -22630,14 +22630,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "updates accumulation then freezes at the current value (called at start of each frame)"
  },
  {
   "addr": "00413a80",
   "ghidra_name": "FUN_00413a80",
-  "name": "",
+  "name": "inferred_Clock_Suspend",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -22649,14 +22649,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "window deactivated: stop accumulating"
  },
  {
   "addr": "00413a90",
   "ghidra_name": "FUN_00413a90",
-  "name": "",
+  "name": "inferred_Clock_Resume",
   "tier": "game",
   "lines": 12,
   "decompile_ok": true,
@@ -22668,14 +22668,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "window activated: re-stamp last tick, resume"
  },
  {
   "addr": "00413ab0",
   "ghidra_name": "FUN_00413ab0",
-  "name": "",
+  "name": "inferred_Clock_Unfreeze",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -22687,9 +22687,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "clears frozen flag (end of frame)"
  },
  {
   "addr": "00413ac0",
@@ -22773,7 +22773,7 @@
  {
   "addr": "00413e60",
   "ghidra_name": "FUN_00413e60",
-  "name": "",
+  "name": "inferred_InitGameWorld",
   "tier": "game",
   "lines": 252,
   "decompile_ok": true,
@@ -22810,14 +22810,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "opens archive Tesoro.DAT/Tesoro.TRE, loads TABLA1.TBL, FUENTES.ANM, OBJETOS.TXT/DLG tables, INTERFACE.LVL, CUBIERTA/MAPA/DESPACHO..LVL levels (0x2f slots), PRINCIPAL.LVL, NUEVO.LVL, then starts the first level; SEH frame"
  },
  {
   "addr": "00414420",
   "ghidra_name": "FUN_00414420",
-  "name": "",
+  "name": "inferred_RunFrame",
   "tier": "game",
   "lines": 21,
   "decompile_ok": true,
@@ -22838,14 +22838,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end"
  },
  {
   "addr": "004144a0",
   "ghidra_name": "FUN_004144a0",
-  "name": "",
+  "name": "inferred_Shutdown",
   "tier": "game",
   "lines": 45,
   "decompile_ok": true,
@@ -22866,9 +22866,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "deletes display, sound, mouse, keyboard, archive, memory pools, clock in that order"
  },
  {
   "addr": "00414560",
@@ -22922,7 +22922,7 @@
  {
   "addr": "00414600",
   "ghidra_name": "FUN_00414600",
-  "name": "",
+  "name": "inferred_Keyboard_Dtor",
   "tier": "game",
   "lines": 9,
   "decompile_ok": true,
@@ -22936,14 +22936,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 35,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "vtable 00428070"
  },
  {
   "addr": "00414610",
   "ghidra_name": "FUN_00414610",
-  "name": "",
+  "name": "inferred_Mouse_Dtor",
   "tier": "game",
   "lines": 9,
   "decompile_ok": true,
@@ -22957,9 +22957,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 35,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "vtable 00428074"
  },
  {
   "addr": "00414620",
@@ -23648,7 +23648,7 @@
  {
   "addr": "004157d0",
   "ghidra_name": "FUN_004157d0",
-  "name": "",
+  "name": "inferred_MainWndProc",
   "tier": "game",
   "lines": 34,
   "decompile_ok": true,
@@ -23667,14 +23667,14 @@
    }
   ],
   "cluster": 37,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "WM_ACTIVATEAPP (0x1c): clock suspend/resume and restores the two display surfaces via vtable +0x6c; MM_MCINOTIFY (0x3b9) success: CD audio notify handler 00403dc0"
  },
  {
   "addr": "00415880",
   "ghidra_name": "FUN_00415880",
-  "name": "",
+  "name": "inferred_CreateMainWindow",
   "tier": "game",
   "lines": 37,
   "decompile_ok": true,
@@ -23689,9 +23689,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 37,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "RegisterClass + CreateWindowEx 640x480 (style 0x90000000, ex 8), ShowWindow, ShowCursor(0), sets init flags, calls InitSubsystems"
  },
  {
   "addr": "00415960",
@@ -23743,7 +23743,7 @@
  {
   "addr": "00415c30",
   "ghidra_name": "FUN_00415c30",
-  "name": "",
+  "name": "inferred_SetInitFlags",
   "tier": "game",
   "lines": 11,
   "decompile_ok": true,
@@ -23755,14 +23755,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 38,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "sets globals 00442208 and 0044221c to 1"
  },
  {
   "addr": "00415c40",
   "ghidra_name": "FUN_00415c40",
-  "name": "",
+  "name": "inferred_NameHash64",
   "tier": "game",
   "lines": 44,
   "decompile_ok": true,
@@ -23930,9 +23930,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 38,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "packs up to 12 chars of a name, 5 bits each (chars below '5' get +11), into a 64-bit key; used with level object lookup"
  },
  {
   "addr": "00415cb0",
