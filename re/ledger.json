@@ -9523,7 +9523,7 @@
   "cluster": 10,
   "status": "decompiled",
   "engine": "",
-  "notes": "constructor and text parser (691 lines): reads one script block from the stream with a sscanf-based command grammar, compiles it to 24-byte steps (+0xbc, count +0xc0) plus actor key table (+0xc4, 12-byte entries) and variable byte array (+0xd0); reports \"ERROR AL LEER COMANDO\" on a bad line"
+  "notes": "constructor and text parser (691 lines): reads one script block from the stream with a sscanf-based command grammar, compiles it to 24-byte steps (+0xbc, count +0xc0) plus actor key table (+0xc4, 12-byte entries) and variable byte array (+0xd0); reports \"ERROR AL LEER COMANDO\" on a bad line | parser read: dispatches each line on its first character (space, ., D, _, b, i, j, m, p, r, s, v); see re/SCRIPT_LANGUAGE.md"
  },
  {
   "addr": "00405630",

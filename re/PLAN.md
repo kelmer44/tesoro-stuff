@@ -172,3 +172,8 @@ Consequence for the port: hovering and clicking must be reproduced with the orig
 `re/names/dlgscript.tsv` (11 functions) and `re/SCRIPT_LANGUAGE.md`. Story/puzzle sequencing runs in a text script language compiled at load time into 24-byte steps and executed by `DlgScript_RunSteps`/`Update`.
 This is a distinct script system from the per-subtype object classes; both must be reproduced. Parser `DlgScript_Load` (691 lines) is the next large reading target in the script cluster.
 The step executor drives movies (DirectShow), WAV playback, CD audio tracks, actor walking and animations, and byte-sized script variables.
+
+### Phase 2, script parser (28 Oct 2026)
+`DlgScript_Load` read: first-character dispatch of ten command families (speech line, end, option marker, label, stop, if-jump, jump, menu, play, run, sleep/sendmessage, variable assign). Grammar and step mapping in `re/SCRIPT_LANGUAGE.md`, now marked as read.
+Facing numbers in scripts (ARRIBA 1, ABAJO 2, IZQUIERDA 3, DERECHA 4) agree with Jim's facing values, which cross-checks both readings.
+Open: the exact meaning of the `m` menu flags (`n`), the `D` marker and the second token in the block header; verify with a real script from the data archive (need the extracted script text; reference environment is on hold).
