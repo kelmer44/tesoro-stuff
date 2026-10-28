@@ -8,7 +8,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 157 | 35% |
+| decompiled or later | 162 | 36% |
 | understood or later | 0 | 0% |
 | ported or later | 0 | 0% |
 | emu-compared or later | 0 | 0% |
@@ -139,8 +139,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 11: 004067a0–00407000 (0/8 ported)
 
 - [ ] `004067a0` FUN_004067a0 · depth 0 · 67 lines · **untouched**
-- [ ] `00406c50` FUN_00406c50 (vtable) · depth 1 · 44 lines · **untouched**
-- [ ] `004069e0` FUN_004069e0 (vtable) · depth 2 · 35 lines · **untouched**
+- [ ] `00406c50` inferred_Obj_Kind13_Update (vtable) · depth 1 · 44 lines · **decompiled** — slot 4 of kind 13: same pending-click dispatch as Interactive_Update, with an extra item-use path when no verb handler applies (calls the hovered object's slot 27)
+- [ ] `004069e0` inferred_Obj_Kind01_OnAttach (vtable) · depth 2 · 35 lines · **decompiled** — vtable slot 0 of kind 1 (run by Object_AttachToLevel): resolves the walk area object by the name at +0x6c in the level's object list (+0x78), sets the camera bounds to the first frame's rectangle and moves the camera to the object's position
 - [ ] `00406980` inferred_Obj_Kind01_Ctor · depth 3 · 16 lines · **decompiled** — 0x84 bytes, vtable 00428ac8, extends Kind00; Level_CreateObject stores the instance at level +0x90 (single special object per level)
 - [ ] `00407000` FUN_00407000 (vtable) · depth 3 · 30 lines · **untouched**
 - [ ] `00406a90` inferred_Obj_Kind13_Ctor · depth 12 · 88 lines · **decompiled** — 0xac bytes, extends MidBase; 14 per-subtype vtables selected by record byte 1; increments global instance counter 004420f8; phrase key lookup
@@ -172,7 +172,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00408550` FUN_00408550 · depth 2 · 52 lines · **untouched**
 - [ ] `00408030` inferred_Jim_SetIdlePose (vtable) · depth 3 · 29 lines · **decompiled** — slot 30: direction 3,4,2,1 -> idle animation index 0,1,2,3 via 00410130, then recomputes speech anchor point +0xa4
 - [ ] `00408540` inferred_Level_AttachObjects · depth 3 · 8 lines · **decompiled** — calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child
-- [ ] `00407b80` FUN_00407b80 · depth 11 · 50 lines · **untouched**
+- [ ] `00407b80` inferred_Jim_EnterLevel · depth 11 · 50 lines · **decompiled** — (level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14
 - [ ] `00407ce0` FUN_00407ce0 · depth 11 · 8 lines · **untouched**
 - [ ] `004080e0` inferred_Level_Load · depth 15 · 142 lines · **decompiled** — level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
 
@@ -442,7 +442,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 35: 00414740–00414dc0 (0/12 ported)
 
-- [ ] `00414740` inferred_WalkArea_ScaleAt · depth 0 · 86 lines · **decompiled** — (x, y) piecewise interpolation of a perspective scale (default 0x100) from the walk-area edge table in the current frame record
+- [ ] `00414740` inferred_WalkArea_ScaleAt · depth 0 · 86 lines · **decompiled** — (x, y) piecewise interpolation of a perspective scale (default 0x100) from the walk-area edge table in the current frame record | (x, y) perspective scale 0x100 = 1.0: finds the polyline edges spanning x, interpolates their y and per-vertex scale, then interpolates the scale vertically between the edge above and the edge below the point; 0x100 when no edge pair brackets the point
 - [ ] `00414600` inferred_Keyboard_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428070
 - [ ] `00414610` inferred_Mouse_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428074
 - [ ] `004146b0` FUN_004146b0 (vtable) · depth 1 · 23 lines · **untouched**
@@ -451,14 +451,14 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004145f0` FUN_004145f0 (vtable) · depth 3 · 8 lines · **untouched**
 - [ ] `00414620` inferred_Obj_Kind07_Ctor · depth 3 · 19 lines · **decompiled** — 0x7c bytes, vtable 0042bc78, extends Kind00
 - [ ] `00414930` inferred_Obj_Kind02_Ctor · depth 3 · 81 lines · **decompiled** — 0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record
-- [ ] `00414c40` FUN_00414c40 (vtable) · depth 12 · 27 lines · **untouched**
+- [ ] `00414c40` inferred_Exit_Activate (vtable) · depth 12 · 27 lines · **decompiled** — kind 6/other exit-style handler: when Jim is idle, resets display queues, looks up the destination level in the level table 00442130 by index (+0xa0) and name key (+0xa4,+0xa8), and moves Jim there with Jim_EnterLevel
 - [ ] `00414dc0` FUN_00414dc0 (vtable) · depth 12 · 12 lines · **untouched**
 - [ ] `00414be0` inferred_Obj_Kind06_Ctor · depth 13 · 16 lines · **decompiled** — 0xb0 bytes, vtable 0042bce8, extends Kind09; 10 per-subtype vtables chosen by record byte 1
 
 ### Cluster 36: 00414e80–00415440 (0/12 ported)
 
-- [ ] `00414e80` FUN_00414e80 (vtable) · depth 0 · 31 lines · **untouched**
-- [ ] `00414f10` inferred_WalkArea_FindPath · depth 0 · 73 lines · **decompiled** — (x, y, target) picks the nearest waypoint of the walk area to the destination and prepares a route; returns whether a route exists
+- [ ] `00414e80` inferred_WalkArea_NextWaypoint (vtable) · depth 0 · 31 lines · **decompiled** — vtable slot 13: runs each time Jim reaches a vertex. Steps the vertex index +0xa0 one towards the destination index +0xa4 and sends Jim to that vertex (Jim slot 32, target = this); when the indices are equal first sends Jim to the real destination (+0xa8,+0xac) with the original target (+0xb0)
+- [ ] `00414f10` inferred_WalkArea_FindPath · depth 0 · 73 lines · **decompiled** — (x, y, target) picks the nearest waypoint of the walk area to the destination and prepares a route; returns whether a route exists | (x, y, target) finds the polyline vertex nearest the destination (+0xa4) and the vertex nearest Jim (+0xa0), stores the destination (+0xa8,+0xac) and target (+0xb0), then sends Jim to his nearest vertex; always returns true when the polyline has vertices. No search algorithm: movement is along the vertex list
 - [ ] `00415120` FUN_00415120 (vtable) · depth 0 · 7 lines · **untouched**
 - [ ] `00415130` FUN_00415130 (vtable) · depth 0 · 43 lines · **untouched**
 - [ ] `00415200` FUN_00415200 · depth 0 · 23 lines · **untouched**
@@ -467,7 +467,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004150d0` inferred_Obj_Kind14_Ctor · depth 3 · 17 lines · **decompiled** — 0x74 bytes, vtable 0042bdd0, extends Kind00; inserts itself in its room list
 - [ ] `00415350` FUN_00415350 (vtable) · depth 3 · 40 lines · **untouched**
 - [ ] `00415440` FUN_00415440 (vtable) · depth 3 · 17 lines · **untouched**
-- [ ] `00414e00` inferred_Obj_Kind08_Ctor · depth 4 · 13 lines · **decompiled** — 0xb4 bytes, vtable 0042bd60, extends Obj_MidBase
+- [ ] `00414e00` inferred_WalkArea_Ctor · depth 4 · 13 lines · **decompiled** — 0xb4 bytes, vtable 0042bd60, extends Obj_MidBase | kind 8, 0xb4 bytes, vtable 0042bd60 (only slot 13 overridden), extends MidBase; starts the single-frame animation whose frame record holds the vertex list. Rename of inferred_Obj_Kind08_Ctor
 - [ ] `00415250` inferred_Obj_Kind11_Ctor · depth 4 · 10 lines · **decompiled** — 0xbc bytes, vtable 0042be40, extends MidBase
 
 ### Cluster 37: 004157c0–00415960 (0/8 ported)

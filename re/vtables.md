@@ -7,7 +7,8 @@ Slot = offset / 4. All object classes descend from `Obj_Kind00`. Names are `infe
 ## Obj_Kind00 (vtable 00428000, 13 slots)
 | Slot | Function | Role |
 |---|---|---|
-| 0, 1, 7 | 00401c20 | no-op (slots 0/1 are probably destructor-style hooks; unverified) |
+| 0 | 00401c20 | OnAttach: run by Object_AttachToLevel for every child when a level is entered/created (kind 1 overrides it: 004069e0) |
+| 1, 7 | 00401c20 | no-op |
 | 2 | 00401c30 | AnimTick: advance current animation if the object has one (flag bit 4) |
 | 3 | 00401c50 | UpdateBounds from the current frame record |
 | 4, 5 | 00401fb0 | update / secondary pass stubs, return 0 (slot 4 = object-list pass A, 5 = pass B) |
@@ -63,3 +64,8 @@ Slots inherited unchanged from the Kind09 family base: 0, 1, 7 (noop), 5, 8, 13-
 
 Facing 1..4: from WalkTo, |dy| < |dx| gives 3 (dx < 0) or 4 (dx >= 0); otherwise 1 (dy >= 0) or 2 (dy < 0). Idle animation index from facing: 3->0, 4->1, 2->2, 1->3.
 Perspective: a walk-area object (the kind 1 instance stored at level +0x90, field +0x78) gives a scale (0x100 = 1.0) by (x, y).
+
+## Walk area (kind 8, vtable 0042bd60)
+Identical to Obj_MidBase except slot 13 = 00414e80 (NextWaypoint). Pathfinding is a vertex walk, not a search: `FindPath` (00414f10) picks the polyline vertex nearest
+Jim and the one nearest the destination; Jim walks to his vertex, `NextWaypoint` moves him vertex by vertex (index +/-1 per step) and finally to the real target.
+`ScaleAt` (00414740) gives the perspective scale from the same polyline. The kind 1 object stores the walk area's name (+0x6c) and resolves it in `OnAttach`.

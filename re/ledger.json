@@ -10177,7 +10177,7 @@
  {
   "addr": "004069e0",
   "ghidra_name": "FUN_004069e0",
-  "name": "",
+  "name": "inferred_Obj_Kind01_OnAttach",
   "tier": "game",
   "lines": 35,
   "decompile_ok": true,
@@ -10197,9 +10197,9 @@
   ],
   "data_refs": [],
   "cluster": 11,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "vtable slot 0 of kind 1 (run by Object_AttachToLevel): resolves the walk area object by the name at +0x6c in the level's object list (+0x78), sets the camera bounds to the first frame's rectangle and moves the camera to the object's position"
  },
  {
   "addr": "00406a90",
@@ -10229,7 +10229,7 @@
  {
   "addr": "00406c50",
   "ghidra_name": "FUN_00406c50",
-  "name": "",
+  "name": "inferred_Obj_Kind13_Update",
   "tier": "game",
   "lines": 44,
   "decompile_ok": true,
@@ -10298,9 +10298,9 @@
   ],
   "data_refs": [],
   "cluster": 11,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "slot 4 of kind 13: same pending-click dispatch as Interactive_Update, with an extra item-use path when no verb handler applies (calls the hovered object's slot 27)"
  },
  {
   "addr": "00406d50",
@@ -11292,7 +11292,7 @@
  {
   "addr": "00407b80",
   "ghidra_name": "FUN_00407b80",
-  "name": "",
+  "name": "inferred_Jim_EnterLevel",
   "tier": "game",
   "lines": 50,
   "decompile_ok": true,
@@ -11340,9 +11340,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14"
  },
  {
   "addr": "00407ce0",
@@ -23025,7 +23025,7 @@
   "cluster": 35,
   "status": "decompiled",
   "engine": "",
-  "notes": "(x, y) piecewise interpolation of a perspective scale (default 0x100) from the walk-area edge table in the current frame record"
+  "notes": "(x, y) piecewise interpolation of a perspective scale (default 0x100) from the walk-area edge table in the current frame record | (x, y) perspective scale 0x100 = 1.0: finds the polyline edges spanning x, interpolates their y and per-vertex scale, then interpolates the scale vertically between the edge above and the edge below the point; 0x100 when no edge pair brackets the point"
  },
  {
   "addr": "00414930",
@@ -23101,7 +23101,7 @@
  {
   "addr": "00414c40",
   "ghidra_name": "FUN_00414c40",
-  "name": "",
+  "name": "inferred_Exit_Activate",
   "tier": "game",
   "lines": 27,
   "decompile_ok": true,
@@ -23139,9 +23139,9 @@
   ],
   "data_refs": [],
   "cluster": 35,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "kind 6/other exit-style handler: when Jim is idle, resets display queues, looks up the destination level in the level table 00442130 by index (+0xa0) and name key (+0xa4,+0xa8), and moves Jim there with Jim_EnterLevel"
  },
  {
   "addr": "00414d50",
@@ -23260,7 +23260,7 @@
  {
   "addr": "00414e00",
   "ghidra_name": "FUN_00414e00",
-  "name": "inferred_Obj_Kind08_Ctor",
+  "name": "inferred_WalkArea_Ctor",
   "tier": "game",
   "lines": 13,
   "decompile_ok": true,
@@ -23277,12 +23277,12 @@
   "cluster": 36,
   "status": "decompiled",
   "engine": "",
-  "notes": "0xb4 bytes, vtable 0042bd60, extends Obj_MidBase"
+  "notes": "0xb4 bytes, vtable 0042bd60, extends Obj_MidBase | kind 8, 0xb4 bytes, vtable 0042bd60 (only slot 13 overridden), extends MidBase; starts the single-frame animation whose frame record holds the vertex list. Rename of inferred_Obj_Kind08_Ctor"
  },
  {
   "addr": "00414e80",
   "ghidra_name": "FUN_00414e80",
-  "name": "",
+  "name": "inferred_WalkArea_NextWaypoint",
   "tier": "game",
   "lines": 31,
   "decompile_ok": true,
@@ -23297,9 +23297,9 @@
   ],
   "data_refs": [],
   "cluster": 36,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "vtable slot 13: runs each time Jim reaches a vertex. Steps the vertex index +0xa0 one towards the destination index +0xa4 and sends Jim to that vertex (Jim slot 32, target = this); when the indices are equal first sends Jim to the real destination (+0xa8,+0xac) with the original target (+0xb0)"
  },
  {
   "addr": "00414f10",
@@ -23318,7 +23318,7 @@
   "cluster": 36,
   "status": "decompiled",
   "engine": "",
-  "notes": "(x, y, target) picks the nearest waypoint of the walk area to the destination and prepares a route; returns whether a route exists"
+  "notes": "(x, y, target) picks the nearest waypoint of the walk area to the destination and prepares a route; returns whether a route exists | (x, y, target) finds the polyline vertex nearest the destination (+0xa4) and the vertex nearest Jim (+0xa0), stores the destination (+0xa8,+0xac) and target (+0xb0), then sends Jim to his nearest vertex; always returns true when the polyline has vertices. No search algorithm: movement is along the vertex list"
  },
  {
   "addr": "004150d0",

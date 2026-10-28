@@ -137,3 +137,10 @@ Startup structure read from the fresh decompilation:
 - The kind 1 object stored at level +0x90 holds the walk area with perspective data (`WalkArea_ScaleAt`, `WalkArea_FindPath`, both only named, not yet ported/understood).
 - Caution: `Jim_WalkTo` calls the target's slot 13 unconditionally at its end; meaning to be understood before porting click-walking.
 - Legacy walking notes (`CLICK_WALKING.md`) exist; compare only after the fresh walk-area functions are read.
+
+### Phase 2, walk area (28 Oct 2026)
+`re/names/walkarea.tsv`. Fresh finding: movement across a room is not graph or grid search. The walk area (kind 8) is a polyline whose vertices carry a perspective scale.
+Click -> `FindPath` -> Jim walks to the vertex nearest him -> `NextWaypoint` runs on each arrival and steps along vertex indices toward the vertex nearest the destination
+-> final straight walk to the clicked point, then the target object's verb runs. This explains why `Jim_WalkTo` ends by calling the target's slot 13.
+Direct lines between waypoints use Jim's root-motion step with clamping (see `Jim_Update`). Object slot 0 is `OnAttach`, not a destructor.
+Open: how the engine decides a click is on walkable ground versus on an object (hit-testing) and the cursor object's input handling are still unread.
