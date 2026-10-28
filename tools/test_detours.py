@@ -5,7 +5,7 @@ Uses the local ignored driver local-media/jim-implementation/detour_driver.cpp. 
 inside the floor, targets anywhere around it; reports how many walks ended at their target, how
 many stopped short (no route), and any that never ended. A smoke test only: the 'inside' columns use a
 generic point-in-polygon, which differs from the original's x-monotone test on some floors, so only
-`never_ended` is a pass criterion. The route itself is compared with the original by compare_path_route.py.
+`never_ended` and `inside_reached == targets_inside` are the pass criteria (the latter agreed on all 242 after the movement fix). The route itself is compared with the original by compare_path_route.py.
 """
 import argparse, json, random, struct, subprocess
 from pathlib import Path

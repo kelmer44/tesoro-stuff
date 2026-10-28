@@ -499,5 +499,11 @@ positions and targets in the 38 rooms with a path (about 8,000 routed, 23,000 le
 **Not compared:** the collision response `0x4079e0` itself and the pair delivery were not run in the emulator (the flow is by reading the decompilation);
 the walk-stops-at-the-edge behaviour has not been seen against a running original; the floor test relies on `pointInPolygon`, which was compared on the
 frames' polygons but not on every floor.
-**Observation:** a walk whose route ends in a leg that leaves the floor at its first step (nodes on or beyond an edge) stops there, as the original
-would given the same data; I cannot tell whether the original ever shows that.
+
+**Correction (same day): the game hung after the pen.** The office script sends Jim to (550, 100) and waits; the first port stopped him at the floor's edge
+inside the room and never called the script. Cause: characters clear the bank's movement right after the animation advance (slot 8, `0x407770`:
+advance, then `+0x28 = +0x2a = 0`), so the outline test uses his foot position; the engine left the cycle's offset (up to 300 px) in the body and the point
+was displaced out of the floor. Fixed: `JimObject::update` clears the movement after taking it, and Jim drops movement in `updateOverlap`. Afterwards every
+generated walk to a target inside the floor arrives (242 of 242 in `tools/test_detours.py`, which now agrees with the generic polygon reference), and
+the office walk to (550, 100) arrives from six starting points. Lesson: a walk that stops short while a script waits shows up as a hang; the smoke test
+now also checks that targets inside the floor are reached.

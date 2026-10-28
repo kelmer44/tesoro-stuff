@@ -46,3 +46,6 @@ __pycache__/
 *.swp
 *.swo
 .DS_Store
+
+# Fresh-analysis export of decompiled original code stays local.
+/re/export/
