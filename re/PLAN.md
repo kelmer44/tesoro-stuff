@@ -119,3 +119,11 @@ Startup structure read from the fresh decompilation:
 - **Random numbers:** `RandomRange(min,max)` derives its value from bit-shuffled low bits of `GetTickCount()`; it is not seeded and cannot be replayed. Anything the original does "randomly" is time-driven. The port needs an equivalent time-driven source, and original-runtime comparisons must not assume determinism.
 - Phrase text is looked up by name hash across four tables (`PhraseLookup`); a missing phrase shows a message box.
 - Kind 10 sets mouse bounds, so it is probably the pointer/cursor object (hypothesis).
+
+### Phase 2, base class methods (28 Oct 2026)
+`re/names/baseclasses.tsv` (30 functions) and `re/vtables.md` (slot tables for `Obj_Kind00`, `Obj_MidBase`, the Kind09 family and the start of the Kind05 family).
+- Every object serialises itself (`LoadState`/`SaveState` slots 9/10), so save games are per-object streams; the port must reproduce each class's stream order.
+- Interaction model: a click calls `OnClick` (slot 19) which sends the player to the object's approach point; when the player arrives the object's pending flag makes
+  `Interactive_Update` run the handler for the selected verb (slots 20-26). Verb 0-6 are fixed; 7 and above are inventory items passed to slot 27 as (verb - 7).
+  Unset verb phrases fall back to default phrases.
+- Drawing goes through a per-scanline render queue (`Display_AddSprite`), sorted by each object's +0x5e value.

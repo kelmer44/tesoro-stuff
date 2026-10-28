@@ -8,7 +8,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 103 | 23% |
+| decompiled or later | 135 | 30% |
 | understood or later | 0 | 0% |
 | ported or later | 0 | 0% |
 | emu-compared or later | 0 | 0% |
@@ -30,32 +30,32 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 2: 00401bc0–00401d60 (0/12 ported)
 
 - [ ] `00401bc0` inferred_Object_BaseCtor · depth 0 · 12 lines · **decompiled** — base game object: vtable 00428000, flags +0x68 |= 6, +0x5e = 5, byte +0x5c = 0
-- [ ] `00401c20` inferred_Clock_Dtor (vtable) · depth 0 · 7 lines · **decompiled** — empty
-- [ ] `00401c50` FUN_00401c50 (vtable) · depth 0 · 30 lines · **untouched**
-- [ ] `00401d20` FUN_00401d20 (vtable) · depth 0 · 7 lines · **untouched**
-- [ ] `00401d60` FUN_00401d60 (vtable) · depth 0 · 8 lines · **untouched**
+- [ ] `00401c20` inferred_Noop (vtable) · depth 0 · 7 lines · **decompiled** — empty function; fills vtable slots 0, 1 and 7 of the base classes (also used as the clock destructor) | empty function; fills vtable slots 0, 1 and 7 of the base classes (and was the clock destructor)
+- [ ] `00401c50` inferred_Obj_UpdateBounds (vtable) · depth 0 · 30 lines · **decompiled** — base slot 3: recomputes bounds rect (+0x10..+0x1c) and screen position (+0x20..+0x2c) from the current frame record (0x24-byte entries); calls slot 2 in between
+- [ ] `00401d20` inferred_Obj_Stub_Void_1Arg (vtable) · depth 0 · 7 lines · **decompiled** — base slot 6 default (draw with one argument)
+- [ ] `00401d60` inferred_Obj_SetActive (vtable) · depth 0 · 8 lines · **decompiled** — base slot 8: sets flag bit 1 (+0x68) from argument
 - [ ] `00401860` FUN_00401860 · depth 1 · 86 lines · **untouched**
 - [ ] `00401a50` FUN_00401a50 · depth 1 · 12 lines · **untouched**
 - [ ] `00401a70` FUN_00401a70 · depth 1 · 15 lines · **untouched**
 - [ ] `00401bf0` inferred_Object_AttachToLevel · depth 1 · 16 lines · **decompiled** — sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0
 - [ ] `00401d30` FUN_00401d30 · depth 1 · 14 lines · **untouched**
 - [ ] `00401aa0` inferred_Obj_Kind00_Ctor · depth 2 · 63 lines · **decompiled** — 0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38)
-- [ ] `00401c30` FUN_00401c30 (vtable) · depth 2 · 11 lines · **untouched**
+- [ ] `00401c30` inferred_Obj_AnimTick (vtable) · depth 2 · 11 lines · **decompiled** — base slot 2: if object has animation (flag bit 4) advance AnimPlayer via 00401860
 
 ### Cluster 3: 00401d80–00401fa0 (0/8 ported)
 
 - [ ] `00401d80` FUN_00401d80 · depth 0 · 8 lines · **untouched**
 - [ ] `00401da0` FUN_00401da0 · depth 0 · 9 lines · **untouched**
 - [ ] `00401dc0` FUN_00401dc0 · depth 0 · 13 lines · **untouched**
-- [ ] `00401f90` FUN_00401f90 (vtable) · depth 0 · 7 lines · **untouched**
-- [ ] `00401fa0` FUN_00401fa0 (vtable) · depth 0 · 7 lines · **untouched**
+- [ ] `00401f90` inferred_Obj_Stub_RetFalse_1Arg (vtable) · depth 0 · 7 lines · **decompiled** — base slot 11 default (ret 4)
+- [ ] `00401fa0` inferred_Obj_Stub_RetZero_2Args (vtable) · depth 0 · 7 lines · **decompiled** — base slot 12 default (ret 8)
 - [ ] `00401de0` inferred_Object_SelectAnimBank · depth 2 · 15 lines · **decompiled** — picks bank index (byte +0x32), sets +0x38, starts AnimPlayer_SetRange
-- [ ] `00401e20` FUN_00401e20 (vtable) · depth 8 · 22 lines · **untouched**
-- [ ] `00401ee0` FUN_00401ee0 (vtable) · depth 8 · 18 lines · **untouched**
+- [ ] `00401e20` inferred_Obj_LoadState (vtable) · depth 8 · 22 lines · **decompiled** — base slot 9: reads from a stream: current bank index (+0x32), per-frame fields of the current sequence (+0x24, +0x26, +0x30, +0x18) and an optional blob of +0x64 bytes at +0x60. Save-game deserialisation
+- [ ] `00401ee0` inferred_Obj_SaveState (vtable) · depth 8 · 18 lines · **decompiled** — base slot 10: mirror of LoadState using fwrite. Save-game serialisation
 
 ### Cluster 4: 00401fb0–00402230 (0/7 ported)
 
-- [ ] `00401fb0` FUN_00401fb0 (vtable) · depth 0 · 7 lines · **untouched**
+- [ ] `00401fb0` inferred_Obj_Stub_RetZero (vtable) · depth 0 · 7 lines · **decompiled** — default for update/draw-style slots: returns 0
 - [ ] `00402110` inferred_Camera_Ctor · depth 0 · 9 lines · **decompiled** — 0x40-byte object at level +0x80; zeroes +0 and +0x10
 - [ ] `00402120` FUN_00402120 · depth 0 · 35 lines · **untouched**
 - [ ] `00402200` inferred_Camera_SetBounds · depth 0 · 12 lines · **decompiled** — stores 4 ints at +0x1c..+0x28; Level_Load passes (-320, 239, 319, -240)
@@ -65,7 +65,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 5: 004023f0–004028c0 (0/7 ported)
 
-- [ ] `004023f0` FUN_004023f0 · depth 0 · 43 lines · **untouched**
+- [ ] `004023f0` inferred_Cursor_SetText · depth 0 · 43 lines · **decompiled** — copies a C string into the cursor's hover-text buffer (+0x78), or clears it; optional ushort at +0x118
 - [ ] `004025b0` FUN_004025b0 · depth 1 · 49 lines · **untouched**
 - [ ] `004028c0` FUN_004028c0 · depth 1 · 51 lines · **untouched**
 - [ ] `00402240` FUN_00402240 · depth 2 · 42 lines · **untouched**
@@ -154,7 +154,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00407730` FUN_00407730 (vtable) · depth 1 · 15 lines · **untouched**
 - [ ] `004079e0` FUN_004079e0 (vtable) · depth 1 · 31 lines · **untouched**
 - [ ] `00407600` FUN_00407600 (vtable) · depth 2 · 55 lines · **untouched**
-- [ ] `00407770` FUN_00407770 (vtable) · depth 2 · 10 lines · **untouched**
+- [ ] `00407770` inferred_Obj_AnimTickResetOffset (vtable) · depth 2 · 10 lines · **decompiled** — MidBase slots 2 (and 3 in some classes): AnimTick then zero the current sequence's x/y offset (+0x28, +0x2a)
 - [ ] `00407a80` FUN_00407a80 (vtable) · depth 4 · 10 lines · **untouched**
 - [ ] `00407510` FUN_00407510 (vtable) · depth 8 · 12 lines · **untouched**
 - [ ] `00407580` FUN_00407580 (vtable) · depth 8 · 14 lines · **untouched**
@@ -318,27 +318,27 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 25: 0040f020–0040f020 (0/11 ported)
 
-- [ ] `0040f020` FUN_0040f020 (vtable) · depth 0 · 10 lines · **untouched**
+- [ ] `0040f020` inferred_Obj_SetVerbAndClick (vtable) · depth 0 · 10 lines · **decompiled** — MidBase slot 14: stores verb +0x9c then calls slot 19 (OnClick)
 - [ ] `0040ebd0` FUN_0040ebd0 (vtable) · depth 1 · 14 lines · **untouched**
 - [ ] `0040ec00` FUN_0040ec00 (vtable) · depth 1 · 24 lines · **untouched**
 - [ ] `0040ec90` inferred_Obj_MidBase_DefaultCtor · depth 1 · 9 lines · **decompiled** — base object ctor with vtable 0042ba68 only
 - [ ] `0040e760` FUN_0040e760 (vtable) · depth 2 · 22 lines · **untouched**
-- [ ] `0040efa0` FUN_0040efa0 (vtable) · depth 2 · 24 lines · **untouched**
+- [ ] `0040efa0` inferred_Obj_Draw (vtable) · depth 2 · 24 lines · **decompiled** — MidBase slot 6: converts world position to screen (camera at argument, +0x140/+0xf0 centre) and queues the current frame's image through Display_AddSprite with the object's sort value (+0x5e)
 - [ ] `0040e890` FUN_0040e890 (vtable) · depth 3 · 103 lines · **untouched**
 - [ ] `0040ecb0` inferred_Obj_MidBase_Ctor · depth 3 · 14 lines · **decompiled** — Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25
-- [ ] `0040ee70` FUN_0040ee70 (vtable) · depth 3 · 52 lines · **untouched**
+- [ ] `0040ee70` inferred_Obj_Interactive_Update (vtable) · depth 3 · 52 lines · **decompiled** — MidBase slot 4: when a click is pending (+0x8c), clears it, removes the object from the main list, runs the verb handler for the current verb (index +0x9c, slots 20-26), clears the cursor's target (+0x12c), resets the cursor animation and calls slot 27 with verb-7. Pending flag is cleared at the end
 - [ ] `0040e7e0` inferred_Obj_Kind16_Ctor · depth 4 · 25 lines · **decompiled** — 0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)
 - [ ] `0040ed10` inferred_Obj_Kind09_Ctor · depth 12 · 61 lines · **decompiled** — 0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits
 
 ### Cluster 26: 0040f040–0040f270 (0/7 ported)
 
-- [ ] `0040f040` FUN_0040f040 (vtable) · depth 0 · 9 lines · **untouched**
-- [ ] `0040f1a0` FUN_0040f1a0 (vtable) · depth 0 · 18 lines · **untouched**
-- [ ] `0040f270` FUN_0040f270 (vtable) · depth 0 · 7 lines · **untouched**
-- [ ] `0040f050` FUN_0040f050 (vtable) · depth 1 · 15 lines · **untouched**
-- [ ] `0040f0b0` FUN_0040f0b0 (vtable) · depth 1 · 8 lines · **untouched**
-- [ ] `0040f0d0` FUN_0040f0d0 (vtable) · depth 3 · 40 lines · **untouched**
-- [ ] `0040f210` FUN_0040f210 (vtable) · depth 11 · 16 lines · **untouched**
+- [ ] `0040f040` inferred_Obj_Slot15_ForwardToSlot14 (vtable) · depth 0 · 9 lines · **decompiled** — MidBase slot 15: calls slot 14 with its argument
+- [ ] `0040f1a0` inferred_Obj_OnClick (vtable) · depth 0 · 18 lines · **decompiled** — MidBase slot 19: interrupts the player if busy, copies the clicked verb for the player object itself, sets the player's target to the object's approach point (+0x94,+0x98) via player slot 32 (walk), then player slot 4
+- [ ] `0040f270` inferred_Obj_Slot27_Stub (vtable) · depth 0 · 7 lines · **decompiled** — MidBase slot 27 default (ret 4, returns 0)
+- [ ] `0040f050` inferred_Obj_ShowHoverText (vtable) · depth 1 · 15 lines · **decompiled** — MidBase slot 17: puts the object's phrase text (+0x6c record, then the 64-bit name key) into the cursor's hover text via Cursor_SetText
+- [ ] `0040f0b0` inferred_Obj_ClearHoverText (vtable) · depth 1 · 8 lines · **decompiled** — MidBase slot 18: Cursor_SetText(null)
+- [ ] `0040f0d0` inferred_Obj_RunVerb (vtable) · depth 3 · 40 lines · **decompiled** — MidBase slot 13: tells the player object (global 004420fc) to select verb +0x90, then dispatches the verb handler like Interactive_Update
+- [ ] `0040f210` inferred_Obj_Verb0_Default (vtable) · depth 11 · 16 lines · **decompiled** — MidBase slot 20: marks click pending (+0x8c, +0x8d), says phrase key +0x70 if set via GameState_Say, sets cursor busy, inserts object into the main list at priority 5
 
 ### Cluster 27: 0040f670–0040f780 (0/11 ported)
 
@@ -348,11 +348,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040f590` inferred_List_Ctor · depth 1 · 37 lines · **decompiled** — pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list
 - [ ] `0040f650` inferred_Pool_AllocAlignedZero_Global · depth 1 · 8 lines · **decompiled** — wrapper on the global pool
 - [ ] `0040f710` inferred_ObjectList_ForEachAttach · depth 2 · 39 lines · **decompiled** — iterates list and calls 00401bf0(node object, arg)
-- [ ] `0040f280` FUN_0040f280 (vtable) · depth 12 · 25 lines · **untouched**
-- [ ] `0040f300` FUN_0040f300 (vtable) · depth 12 · 25 lines · **untouched**
-- [ ] `0040f380` FUN_0040f380 (vtable) · depth 12 · 25 lines · **untouched**
-- [ ] `0040f400` FUN_0040f400 (vtable) · depth 12 · 25 lines · **untouched**
-- [ ] `0040f480` FUN_0040f480 (vtable) · depth 12 · 50 lines · **untouched**
+- [ ] `0040f280` inferred_Obj_Verb1_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 21 of Kind09-based classes: same pattern with phrase key +0x74 and a default phrase when unset
+- [ ] `0040f300` inferred_Obj_Verb3_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 22: phrase key +0x7c
+- [ ] `0040f380` inferred_Obj_Verb2_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 23: phrase key +0x78
+- [ ] `0040f400` inferred_Obj_Verb4_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 24: phrase key +0x80
+- [ ] `0040f480` inferred_Obj_UseItem_Default (vtable) · depth 12 · 50 lines · **decompiled** — slot 27: handles using an inventory item on the object: looks the item up in the object's item table (+0xa0 pairs of name keys, +0xa4 responses) else says a default phrase (ICON01T058 or MODELO2)
 
 ### Cluster 28: 0040f800–0040fbb0 (0/7 ported)
 
@@ -360,7 +360,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040f870` FUN_0040f870 · depth 0 · 14 lines · **untouched**
 - [ ] `0040f900` inferred_ObjectList_InsertByPriority · depth 0 · 82 lines · **decompiled** — 12-byte nodes (object, priority): inserts before the first node with a higher priority; main list uses priorities 0x13 (interface level), 100 (top object)
 - [ ] `0040fa10` FUN_0040fa10 · depth 0 · 82 lines · **untouched**
-- [ ] `0040fb20` FUN_0040fb20 · depth 0 · 58 lines · **untouched**
+- [ ] `0040fb20` inferred_ObjectList_RemoveByObject · depth 0 · 58 lines · **decompiled** — removes the node holding the given object from the main list
 - [ ] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **decompiled** — allocates a linked list with capacity param (100 for the main list 00442104)
 - [ ] `0040fbb0` FUN_0040fbb0 · depth 2 · 38 lines · **untouched**
 
@@ -374,9 +374,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040ffa0` FUN_0040ffa0 · depth 2 · 27 lines · **untouched**
 - [ ] `00410060` FUN_00410060 (vtable) · depth 2 · 34 lines · **untouched**
 - [ ] `00410130` FUN_00410130 (vtable) · depth 2 · 41 lines · **untouched**
-- [ ] `004102e0` FUN_004102e0 (vtable) · depth 3 · 20 lines · **untouched**
-- [ ] `004101f0` FUN_004101f0 (vtable) · depth 10 · 46 lines · **untouched**
-- [ ] `00410330` FUN_00410330 · depth 10 · 33 lines · **untouched**
+- [ ] `004102e0` inferred_Obj_Kind05_Draw (vtable) · depth 3 · 20 lines · **decompiled** — slot 6 of the kind 5 class family: wraps Obj_Draw with slot 31 calls depending on flags +0xd4/+0xc/+0xd5
+- [ ] `004101f0` inferred_Obj_Kind05_Update (vtable) · depth 10 · 46 lines · **decompiled** — slot 4 of the kind 5 class family: runs Interactive_Update unless deferred, polls keyboard/mouse button state and the sound manager to stop a playing sound on input, calls slot 28
+- [ ] `00410330` inferred_Player_Say · depth 10 · 33 lines · **decompiled** — (phrase record, id, flag) on the object in global 004420fc (walks, so probably the player): stores phrase +0xc4 / id +0xcc, busy +0xd4=1, starts the phrase sound (record +8) through the sound manager, slot 30 (0x78) with flag, inserts itself into the main list at priority 6, calls slot 4 | see ledger note
 - [ ] `0040fec0` inferred_Obj_Kind05_Ctor · depth 13 · 40 lines · **decompiled** — 0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags
 
 ### Cluster 30: 004103f0–004108a0 (0/8 ported)
@@ -402,7 +402,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00411c80` FUN_00411c80 · depth 0 · 127 lines · **untouched**
 - [ ] `00411f20` inferred_Display_ResetRenderQueue · depth 0 · 30 lines · **decompiled** — clears two arrays of 0x1e0 entries (stride 500 and 200 dwords) and counters
 - [ ] `00411870` FUN_00411870 · depth 1 · 127 lines · **untouched**
-- [ ] `00411f80` FUN_00411f80 · depth 1 · 57 lines · **untouched**
+- [ ] `00411f80` inferred_Display_AddSprite · depth 1 · 57 lines · **decompiled** — (x, y, sort value, image, flag): clips a 640x480 sprite and queues it in the render rows (per-scanline lists) by image type (1 or 3 get extra passes)
 - [ ] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **decompiled** — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set
 
 ### Cluster 32: 004120c0–00412e10 (0/7 ported)
@@ -537,7 +537,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 42: 00417b30–00417d00 (0/7 ported)
 
-- [ ] `00417b30` FUN_00417b30 (vtable) · depth 0 · 7 lines · **untouched**
+- [ ] `00417b30` inferred_Obj_RetTrue (vtable) · depth 0 · 7 lines · **decompiled** — MidBase slot 16: returns 1 (is interactive/enabled default)
 - [ ] `004179b0` FUN_004179b0 (vtable) · depth 2 · 41 lines · **untouched**
 - [ ] `00417c80` FUN_00417c80 (vtable) · depth 2 · 10 lines · **untouched**
 - [ ] `00417ad0` inferred_Obj_Kind25_Ctor · depth 4 · 12 lines · **decompiled** — 0xa4 bytes, vtable 0042c000, extends MidBase
