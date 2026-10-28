@@ -83,6 +83,12 @@ for fn, vts in stores.items():
 for vt in stores.get("00413e60", []):
     if vt != "00428bf8": parent[vt] = "00428bf8"; SIZE.setdefault(vt, 0x9c)
 SIZE.setdefault("00428bf8", 0x9c)
+# sizes from allocation sites that are not in the factory: InitSubsystems (keyboard 0x38, mouse 0x40), InitGameWorld (top object 0x6c),
+# DialogueTable_Load (every script entry 0xd8), factory kinds for family bases
+for vt, sz in {"00428070": 0x38, "00428074": 0x40, "0042be08": 0x6c, "00428b00": 0xac, "0042bb48": 0xd8, "0042bce8": 0xb0, "00428078": 0xd8}.items(): SIZE.setdefault(vt, sz)
+for vt in list(parent):
+    if parent[vt] == "00428078": SIZE.setdefault(vt, 0xd8)
+ABSTRACT = {"0042806c": "base of Keyboard (0x38) and Mouse (0x40), never allocated alone", "0042ba68": "base of several kinds, never allocated alone (sizes differ by kind)"}
 
 # ---- field access extraction ------------------------------------------------------------------
 WID = {"undefined4": 4, "uint": 4, "int": 4, "ulonglong": 8, "undefined8": 8, "undefined2": 2, "ushort": 2, "short": 2, "undefined1": 1,
@@ -116,7 +122,15 @@ def accesses(src):
             off = int(m.group(3), 0) * scale
             out.append((off, w, m.group(4).strip() in ("=", "|=", "&=", "+=", "-=")))
     first = src.split("{")[0]
+    # offset-0 accesses: *(T *)v (cast form) and *v for pointer parameters; vtable stores (pointer to pointer) are skipped
+    pat0 = re.compile(r"\*\((\w+) ?(\*+) ?\)(?:\(int\))?" + v + r"\b(?! ?\+| ?\[)( ?[|&+\-]?= |)")
+    for m in pat0.finditer(src):
+        t, ptr = m.group(1), m.group(2)
+        if len(ptr) > 1: continue
+        out.append((0, WID.get(t, 4), m.group(3).strip() in ("=", "|=", "&=", "+=", "-=")))
     if re.search(r"(?:int|undefined4|uint) \*\s*" + v + r"\b", first):
+        for m in re.finditer(r"(?<![\w\)\]])\*" + v + r"\b(?! ?\+)( = |)", src):
+            out.append((0, 4, m.group(1) != ""))
         for m in re.finditer(r"\b" + v + r"\[(0x[0-9a-f]+|\d+)\]( = |)", src):
             out.append((int(m.group(1), 0) * 4, 4, m.group(2) != ""))
     return out
@@ -155,6 +169,47 @@ def field_name(vt, off):
         if n: return n
         seen.add(v); v = classes[v]["parent"] if v in classes else None
     return None
+def covered(vt, off, w):
+    v = vt; seen = set()
+    while v and v in classes and v not in seen:
+        for f in classes[v]["fields"]:
+            if f["width"] > w and f["off"] <= off < f["off"] + f["width"] and (f["off"], f["width"]) != (off, w): return f
+        seen.add(v); v = classes[v]["parent"]
+    return None
+for vt, c in classes.items():
+    for f in c["fields"]:
+        cf = covered(vt, f["off"], f["width"])
+        f["part_of"] = cf["off"] if cf else None
+    c["abstract"] = ABSTRACT.get(vt)
+(R / "classes.json").write_text(json.dumps(classes, indent=1))
+
+# ---- non-virtual ("plain") classes: layout from the member functions listed by hand ------------------------------
+PLAIN = {
+ "Clock": (0x10, "004139c0 00413a10 00413a50 00413ab0 00413a80 00413a90"),
+ "Pool": (0x44, "0040dbc0 0040dc10 0040dc70 0040dcf0 0040dd30 0040dbf0 0040dc00"),
+ "Archive": (0x8, "00403220 00403250 004032e0 00403300 00403320 00403360 00403380 00403500"),
+ "AnimPlayer": (0x40, "00401160 00401510 00401740 00401860 00401a50 00401a70"),
+ "Camera": (0x40, "00402110 00402120 00402200 004021a0 00401fc0 00402230"),
+ "Display": (0x13a4, "00411870 00411be0 00411c00 00411c10 00411c20 00411f20 00411f80 00412bb0 004120c0 00412120"),
+ "SoundManager": (0x20, "004040b0 00404110 00404210 004040d0 00404260"),
+ "SoundSlot": (None, "004043b0 004042c0 004043e0"),
+ "CdAudio": (None, "00403cb0 00403dc0 00403b60"),
+ "DialogueTable": (0x2b0, "004060b0 00406110 00406190 004060c0"),
+ "TextTable": (0x8, "00413570 004138b0 004137c0"),
+ "List": (0x1c, "0040f590 0040f800 0040f780 0040f670 0040f870 00415200"),
+ "ObjectList": (0x24, "0040f890 0040f900 0040fa10 0040fb20 0040fc20 0040fd20 0040fe40 0040fe20 0040f710 0040f680"),
+}
+plain_out = {}
+for cn, (size, fns) in PLAIN.items():
+    fields = {}
+    for fn in fns.split():
+        for off, w, wr in accesses(SRC.get(fn, "")):
+            e = fields.setdefault((off, w), {"off": off, "w": w, "reads": 0, "writes": 0, "fns": set()})
+            e["writes" if wr else "reads"] += 1; e["fns"].add(fn)
+    fl = [{"off": e["off"], "width": e["w"], "conf": ("w" if e["writes"] and e["reads"] else ("r" if e["reads"] else "w?")), "reads": e["reads"], "writes": e["writes"], "fns": sorted(e["fns"])}
+          for e in sorted(fields.values(), key=lambda e: (e["off"], e["w"]))]
+    plain_out[cn] = {"size": size, "functions": fns.split(), "fields": fl}
+(R / "plain_classes.json").write_text(json.dumps(plain_out, indent=1))
 # ---- markdown -------------------------------------------------------------------------------------
 def chain(vt):
     out = []; seen = set()
@@ -181,7 +236,7 @@ for vt, c in sorted(classes.items(), key=lambda kv: (len(chain(kv[0])), kv[0])):
     ch = chain(vt)
     md.append(f"\n## {c['name']}  (vtable {vt})\n")
     md.append(f"- parent: {classes[c['parent']]['name'] + ' (' + c['parent'] + ')' if c['parent'] in classes else 'none found'}"
-              f" · size: {hex(c['size']) if c['size'] else 'unknown'} · slots: {len(c['slots'])}"
+              f" · size: {hex(c['size']) if c['size'] else ('abstract: ' + c['abstract'] if c.get('abstract') else 'unknown')} · slots: {len(c['slots'])}"
               f" · constructors: {', '.join(fname(a) for a in c['constructors']) or 'none found'}"
               + (f" · {c['kind']}" if c['kind'] else "") + "\n")
     if c["own_methods"]:
@@ -189,7 +244,14 @@ for vt, c in sorted(classes.items(), key=lambda kv: (len(chain(kv[0])), kv[0])):
     if c["fields"]:
         md.append("\n| Off | W | Conf | R/W | Seen in |\n|---|---|---|---|---|\n")
         for f in c["fields"]:
-            md.append(f"| +0x{f['off']:02x}{(' ' + field_name(vt, f['off'])) if field_name(vt, f['off']) else ''} | {f['width']} | {f['conf']} | {f['reads']}/{f['writes']} | {', '.join(fname(x) for x in f['fns'][:3])}{'…' if len(f['fns']) > 3 else ''} |\n")
+            md.append(f"| +0x{f['off']:02x}{(' ' + field_name(vt, f['off'])) if field_name(vt, f['off']) else ''}{(' (part of +0x%02x)' % f['part_of']) if f.get('part_of') is not None else ''} | {f['width']} | {f['conf']} | {f['reads']}/{f['writes']} | {', '.join(fname(x) for x in f['fns'][:3])}{'…' if len(f['fns']) > 3 else ''} |\n")
+md.append("\n# Plain (non-virtual) classes\n\nLayouts from the listed member functions only (no vtable, so membership is a hand list in `build_classes.py`). Confidence as above: `w` written+read, `r` read, `w?` written only.\n")
+for cn, c in plain_out.items():
+    md.append(f"\n## {cn}  (size {hex(c['size']) if c['size'] else 'unknown'})\n- member functions: {', '.join(fname(a) for a in c['functions'])}\n")
+    if c["fields"]:
+        md.append("\n| Off | W | Conf | R/W | Seen in |\n|---|---|---|---|---|\n")
+        for f in c["fields"]:
+            md.append(f"| +0x{f['off']:02x} | {f['width']} | {f['conf']} | {f['reads']}/{f['writes']} | {', '.join(fname(x) for x in f['fns'][:3])}{'…' if len(f['fns']) > 3 else ''} |\n")
 (R / "STRUCTS_GENERATED.md").write_text("".join(md))
 
 # ---- C header for Ghidra's data type manager ---------------------------------------------------------

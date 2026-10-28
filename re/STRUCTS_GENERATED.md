@@ -24,6 +24,7 @@ InputDevice (0042806c)  [2 leaf classes]
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | c | 2/1 | inferred_Object_BaseCtor, inferred_Obj_UpdateBounds |
 | +0x10 boundsLeft? | 4 | w? | 0/1 | inferred_Obj_UpdateBounds |
 | +0x14 boundsTop? | 4 | w? | 0/1 | inferred_Obj_UpdateBounds |
 | +0x18 boundsRight? | 4 | w? | 0/1 | inferred_Obj_UpdateBounds |
@@ -51,49 +52,52 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x68 flags | 4 | c | 7/5 | inferred_Obj_Kind00_Ctor, inferred_Object_BaseCtor, inferred_Obj_AnimTick… |
 
 ## InputDevice  (vtable 0042806c)
-- parent: none found · size: unknown · slots: 1 · constructors: inferred_InputDevice_Ctor, inferred_InputDevice_Dtor
+- parent: none found · size: abstract: base of Keyboard (0x38) and Mouse (0x40), never allocated alone · slots: 1 · constructors: inferred_InputDevice_Ctor, inferred_InputDevice_Dtor
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | c | 1/1 | inferred_InputDevice_Dtor |
 | +0x04 | 4 | c | 3/1 | inferred_InputDevice_Dtor |
 
 ## Keyboard  (vtable 00428070)
-- parent: InputDevice (0042806c) · size: unknown · slots: 1 · constructors: inferred_Keyboard_Ctor, inferred_Keyboard_Dtor
+- parent: InputDevice (0042806c) · size: 0x38 · slots: 1 · constructors: inferred_Keyboard_Ctor, inferred_Keyboard_Dtor
 - own methods: [0] inferred_C00428070_Slot00
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | c | 1/1 | inferred_Keyboard_Dtor |
 | +0x04 | 4 | r | 6/0 | inferred_C00428070_Slot00 |
-| +0x0c | 4 | c | 0/1 | inferred_Keyboard_Ctor |
-| +0x10 | 4 | c | 0/1 | inferred_Keyboard_Ctor |
-| +0x14 | 4 | c | 0/1 | inferred_Keyboard_Ctor |
-| +0x18 | 4 | c | 2/1 | inferred_Keyboard_Ctor |
-| +0x1c | 4 | c | 1/1 | inferred_Keyboard_Ctor |
+| +0x0c timing0 | 4 | c | 0/1 | inferred_Keyboard_Ctor |
+| +0x10 timing1 | 4 | c | 0/1 | inferred_Keyboard_Ctor |
+| +0x14 deviceBuffer | 4 | c | 0/1 | inferred_Keyboard_Ctor |
+| +0x18 stateSize | 4 | c | 2/1 | inferred_Keyboard_Ctor |
+| +0x1c stateBuffer | 4 | c | 1/1 | inferred_Keyboard_Ctor |
 | +0x20 | 4 | c | 0/1 | inferred_Keyboard_Ctor |
 | +0x24 | 1 | c | 0/1 | inferred_Keyboard_Ctor |
 | +0x30 | 4 | c | 1/1 | inferred_Keyboard_Ctor, inferred_C00428070_Slot00 |
-| +0x34 | 4 | c | 0/1 | inferred_Keyboard_Ctor |
+| +0x34 statePtr | 4 | c | 0/1 | inferred_Keyboard_Ctor |
 
 ## Mouse  (vtable 00428074)
-- parent: InputDevice (0042806c) · size: unknown · slots: 1 · constructors: inferred_MouseCtor, inferred_Mouse_Dtor
+- parent: InputDevice (0042806c) · size: 0x40 · slots: 1 · constructors: inferred_MouseCtor, inferred_Mouse_Dtor
 - own methods: [0] inferred_C00428074_Slot00
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | c | 1/1 | inferred_Mouse_Dtor |
 | +0x04 | 4 | r | 6/0 | inferred_C00428074_Slot00 |
 | +0x0c | 4 | c | 0/1 | inferred_MouseCtor |
 | +0x10 | 4 | c | 0/1 | inferred_MouseCtor |
 | +0x14 | 4 | c | 0/1 | inferred_MouseCtor |
 | +0x18 | 4 | c | 3/1 | inferred_MouseCtor, inferred_C00428074_Slot00 |
-| +0x1c | 4 | c | 0/1 | inferred_MouseCtor |
-| +0x20 | 4 | c | 3/1 | inferred_MouseCtor, inferred_C00428074_Slot00 |
-| +0x24 | 4 | c | 3/1 | inferred_MouseCtor, inferred_C00428074_Slot00 |
-| +0x28 | 4 | c | 3/1 | inferred_MouseCtor, inferred_C00428074_Slot00 |
-| +0x2c | 4 | c | 3/1 | inferred_MouseCtor, inferred_C00428074_Slot00 |
+| +0x1c buttons | 4 | c | 0/1 | inferred_MouseCtor |
+| +0x20 minX | 4 | c | 3/1 | inferred_MouseCtor, inferred_C00428074_Slot00 |
+| +0x24 minY | 4 | c | 3/1 | inferred_MouseCtor, inferred_C00428074_Slot00 |
+| +0x28 maxX | 4 | c | 3/1 | inferred_MouseCtor, inferred_C00428074_Slot00 |
+| +0x2c maxY | 4 | c | 3/1 | inferred_MouseCtor, inferred_C00428074_Slot00 |
 | +0x30 | 4 | w? | 0/1 | inferred_C00428074_Slot00 |
 | +0x34 | 4 | w? | 0/1 | inferred_C00428074_Slot00 |
-| +0x38 | 4 | c | 2/4 | inferred_MouseCtor, inferred_C00428074_Slot00 |
-| +0x3c | 4 | c | 2/4 | inferred_MouseCtor, inferred_C00428074_Slot00 |
+| +0x38 posX | 4 | c | 2/4 | inferred_MouseCtor, inferred_C00428074_Slot00 |
+| +0x3c posY | 4 | c | 2/4 | inferred_MouseCtor, inferred_C00428074_Slot00 |
 
 ## Obj_Kind01  (vtable 00428ac8)
 - parent: Obj_Kind00 (00428000) · size: 0x84 · slots: 13 · constructors: inferred_Obj_Kind01_Ctor
@@ -105,7 +109,7 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x40 level | 4 | r | 3/0 | inferred_Obj_Kind01_OnAttach |
 | +0x4c x | 4 | r | 2/0 | inferred_Obj_Kind01_OnAttach |
 | +0x50 y | 4 | r | 2/0 | inferred_Obj_Kind01_OnAttach |
-| +0x6c | 1 | r | 1/0 | inferred_Obj_Kind01_OnAttach |
+| +0x6c (part of +0x6c) | 1 | r | 1/0 | inferred_Obj_Kind01_OnAttach |
 | +0x6c | 4 | c | 0/1 | inferred_Obj_Kind01_Ctor |
 | +0x70 | 4 | c | 0/1 | inferred_Obj_Kind01_Ctor |
 | +0x74 | 4 | c | 0/1 | inferred_Obj_Kind01_Ctor |
@@ -120,7 +124,8 @@ InputDevice (0042806c)  [2 leaf classes]
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
-| +0x94 reloadAnimsFlag | 1 | w? | 0/1 | inferred_Level_UpdateOrCollide |
+| +0x00 | 4 | r | 2/0 | inferred_Level_UpdateOrCollide, inferred_C00428bf8_RunVerb |
+| +0x94 reloadAnimsFlag (part of +0x94) | 1 | w? | 0/1 | inferred_Level_UpdateOrCollide |
 | +0x94 reloadAnimsFlag | 4 | r | 1/0 | inferred_Level_UpdateOrCollide |
 
 ## Obj_Kind03  (vtable 0042b9c0)
@@ -129,6 +134,7 @@ InputDevice (0042806c)  [2 leaf classes]
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | c | 1/1 | inferred_Obj_Kind03Base_DefaultCtor |
 | +0x38 anim | 4 | r | 5/0 | inferred_Obj_Kind03_Ctor, inferred_C00428038_AnimTick, inferred_C0042b9c0_Draw |
 | +0x3c room | 4 | r | 1/0 | inferred_C0042b9c0_OnAttach |
 | +0x4c x | 4 | r | 1/0 | inferred_C0042b9c0_Draw |
@@ -137,23 +143,24 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x68 flags | 4 | c | 1/2 | inferred_Obj_Kind03_Ctor |
 
 ## Obj_MidBase  (vtable 0042ba68)
-- parent: Obj_Kind00 (00428000) · size: unknown · slots: 28 · constructors: inferred_Obj_MidBase_DefaultCtor, inferred_Obj_MidBase_Ctor, inferred_Obj_Kind09_Ctor
+- parent: Obj_Kind00 (00428000) · size: abstract: base of several kinds, never allocated alone (sizes differ by kind) · slots: 28 · constructors: inferred_Obj_MidBase_DefaultCtor, inferred_Obj_MidBase_Ctor, inferred_Obj_Kind09_Ctor
 - own methods: [2 AnimTick] inferred_Obj_AnimTickResetOffset, [4 Update] inferred_Obj_Interactive_Update, [6 Draw] inferred_Obj_Draw, [13 RunVerb] inferred_Obj_RunVerb, [14 SetVerbAndClick] inferred_Obj_SetVerbAndClick, [15] inferred_Obj_Slot15_ForwardToSlot14, [16 IsInteractive] inferred_Obj_RetTrue, [17 ShowHoverText] inferred_Obj_ShowHoverText, [18 ClearHoverText] inferred_Obj_ClearHoverText, [19 OnClick] inferred_Obj_OnClick, [20 Verb0] inferred_Obj_Verb0_Default, [21 Verb1] inferred_Obj_Stub_RetZero, [22 Verb3] inferred_Obj_Stub_RetZero, [23 Verb2] inferred_Obj_Stub_RetZero, [24 Verb4] inferred_Obj_Stub_RetZero, [25 Verb5] inferred_Obj_Stub_RetZero, [26 Verb6] inferred_Obj_Stub_RetZero, [27 UseItem] inferred_Obj_Slot27_Stub
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | c | 4/1 | inferred_Obj_MidBase_DefaultCtor, inferred_Obj_Interactive_Update, inferred_Obj_RunVerb… |
 | +0x38 anim | 4 | r | 7/0 | inferred_Obj_AnimTickResetOffset, inferred_Obj_MidBase_Ctor, inferred_Obj_Kind09_Ctor… |
-| +0x44 nameKey | 4 | r | 1/0 | inferred_Obj_ShowHoverText |
-| +0x48 | 4 | r | 1/0 | inferred_Obj_ShowHoverText |
+| +0x44 nameKey (part of +0x44) | 4 | r | 1/0 | inferred_Obj_ShowHoverText |
+| +0x48 (part of +0x44) | 4 | r | 1/0 | inferred_Obj_ShowHoverText |
 | +0x4c x | 4 | r | 2/0 | inferred_Obj_Kind09_Ctor, inferred_Obj_Draw |
 | +0x50 y | 4 | r | 2/0 | inferred_Obj_Kind09_Ctor, inferred_Obj_Draw |
 | +0x5e sortValue | 2 | r | 1/0 | inferred_Obj_Draw |
 | +0x68 flags | 4 | c | 4/2 | inferred_Obj_MidBase_Ctor, inferred_Obj_Kind09_Ctor |
 | +0x6c | 4 | c | 2/2 | inferred_Obj_Kind09_Ctor, inferred_Obj_ShowHoverText |
 | +0x70 | 4 | r | 2/0 | inferred_Obj_Verb0_Default |
-| +0x8c | 1 | w? | 0/2 | inferred_Obj_Interactive_Update, inferred_Obj_Verb0_Default |
+| +0x8c (part of +0x8c) | 1 | w? | 0/2 | inferred_Obj_Interactive_Update, inferred_Obj_Verb0_Default |
 | +0x8c | 4 | r | 1/0 | inferred_Obj_Interactive_Update |
-| +0x8d | 1 | w | 1/2 | inferred_Obj_Interactive_Update, inferred_Obj_Verb0_Default |
+| +0x8d (part of +0x8c) | 1 | w | 1/2 | inferred_Obj_Interactive_Update, inferred_Obj_Verb0_Default |
 | +0x90 | 4 | c | 1/2 | inferred_Obj_Kind09_Ctor, inferred_Obj_RunVerb, inferred_Obj_OnClick |
 | +0x94 | 4 | c | 2/2 | inferred_Obj_Kind09_Ctor, inferred_Obj_OnClick |
 | +0x98 | 4 | c | 2/2 | inferred_Obj_Kind09_Ctor, inferred_Obj_OnClick |
@@ -198,16 +205,20 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x50 y | 4 | r | 1/0 | inferred_C0042bdd0_OnTouched |
 | +0x5e sortValue | 2 | r | 4/0 | inferred_C0042bdd0_OnTouched |
 | +0x68 flags | 4 | c | 1/1 | inferred_Obj_Kind14_Ctor |
-| +0x6c | 1 | r | 1/0 | inferred_C0042bdd0_OnTouched |
+| +0x6c (part of +0x6c) | 1 | r | 1/0 | inferred_C0042bdd0_OnTouched |
 | +0x6c | 4 | c | 0/1 | inferred_Obj_Kind14_Ctor |
-| +0x6d | 1 | r | 1/0 | inferred_C0042bdd0_OnTouched |
-| +0x6e | 1 | r | 1/0 | inferred_C0042bdd0_OnTouched |
-| +0x6f | 1 | r | 1/0 | inferred_C0042bdd0_OnTouched |
+| +0x6d (part of +0x6c) | 1 | r | 1/0 | inferred_C0042bdd0_OnTouched |
+| +0x6e (part of +0x6c) | 1 | r | 1/0 | inferred_C0042bdd0_OnTouched |
+| +0x6f (part of +0x6c) | 1 | r | 1/0 | inferred_C0042bdd0_OnTouched |
 | +0x70 | 1 | c | 1/1 | inferred_Obj_Kind14_Ctor, inferred_C0042bdd0_OnTouched |
 
 ## TopObject  (vtable 0042be08)
-- parent: Obj_Kind00 (00428000) · size: unknown · slots: 13 · constructors: inferred_TopObject_Ctor
+- parent: Obj_Kind00 (00428000) · size: 0x6c · slots: 13 · constructors: inferred_TopObject_Ctor
 - own methods: [4 Update] inferred_Obj_RetTrue
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | c | 1/1 | inferred_TopObject_Ctor |
 
 ## Obj_Kind19  (vtable 0042bf90)
 - parent: Obj_Kind00 (00428000) · size: 0xa4 · slots: 28 · constructors: inferred_Obj_Kind19_Ctor
@@ -215,6 +226,7 @@ InputDevice (0042806c)  [2 leaf classes]
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | r | 3/0 | inferred_Obj_Interactive_Update, inferred_Obj_RunVerb, inferred_Obj_OnClick |
 | +0x04 | 4 | c | 0/1 | inferred_Obj_Kind19_Ctor |
 | +0x08 | 4 | c | 0/1 | inferred_Obj_Kind19_Ctor |
 | +0x0c | 1 | c | 0/1 | inferred_Obj_Kind19_Ctor |
@@ -233,8 +245,8 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x38 anim | 4 | c | 8/1 | inferred_Obj_AnimTickResetOffset, inferred_Obj_Draw, inferred_Obj_Kind19_Ctor |
 | +0x3c room | 4 | c | 0/1 | inferred_Obj_Kind19_Ctor |
 | +0x40 level | 4 | c | 1/1 | inferred_Obj_Kind19_Ctor, inferred_C0042bf90_SetVerbAndClick |
-| +0x44 nameKey | 4 | c | 2/1 | inferred_Obj_ShowHoverText, inferred_Obj_UseItem_Default, inferred_Obj_Kind19_Ctor |
-| +0x48 | 4 | c | 2/1 | inferred_Obj_ShowHoverText, inferred_Obj_UseItem_Default, inferred_Obj_Kind19_Ctor |
+| +0x44 nameKey (part of +0x44) | 4 | c | 2/1 | inferred_Obj_ShowHoverText, inferred_Obj_UseItem_Default, inferred_Obj_Kind19_Ctor |
+| +0x48 (part of +0x44) | 4 | c | 2/1 | inferred_Obj_ShowHoverText, inferred_Obj_UseItem_Default, inferred_Obj_Kind19_Ctor |
 | +0x4c x | 4 | c | 1/1 | inferred_Obj_Draw, inferred_Obj_Kind19_Ctor |
 | +0x50 y | 4 | c | 1/1 | inferred_Obj_Draw, inferred_Obj_Kind19_Ctor |
 | +0x54 prevX | 4 | c | 0/1 | inferred_Obj_Kind19_Ctor |
@@ -251,9 +263,9 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x78 | 4 | r | 1/0 | inferred_Obj_Verb2_Default |
 | +0x7c | 4 | r | 1/0 | inferred_Obj_Verb3_Default |
 | +0x80 | 4 | r | 1/0 | inferred_Obj_Verb4_Default |
-| +0x8c | 1 | w? | 0/8 | inferred_Obj_Interactive_Update, inferred_Obj_Verb0_Default, inferred_Obj_Verb1_Default… |
+| +0x8c (part of +0x8c) | 1 | w? | 0/8 | inferred_Obj_Interactive_Update, inferred_Obj_Verb0_Default, inferred_Obj_Verb1_Default… |
 | +0x8c | 4 | r | 1/0 | inferred_Obj_Interactive_Update |
-| +0x8d | 1 | w | 1/7 | inferred_Obj_Interactive_Update, inferred_Obj_Verb0_Default, inferred_Obj_Verb1_Default… |
+| +0x8d (part of +0x8c) | 1 | w | 1/7 | inferred_Obj_Interactive_Update, inferred_Obj_Verb0_Default, inferred_Obj_Verb1_Default… |
 | +0x90 | 4 | w | 1/1 | inferred_Obj_RunVerb, inferred_Obj_OnClick |
 | +0x94 | 4 | r | 1/0 | inferred_Obj_OnClick |
 | +0x98 | 4 | r | 1/0 | inferred_Obj_OnClick |
@@ -266,28 +278,30 @@ InputDevice (0042806c)  [2 leaf classes]
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | c | 1/1 | inferred_Cursor_Ctor |
 | +0x38 anim | 4 | r | 5/0 | inferred_C00428038_OnAttach, inferred_C00428038_Draw, inferred_C00428038_Update2 |
 | +0x3c room | 4 | r | 1/0 | inferred_C00428038_OnAttach |
 | +0x4c x | 4 | r | 2/0 | inferred_C00428038_Draw |
 | +0x50 y | 4 | r | 2/0 | inferred_C00428038_Draw |
 | +0x5e sortValue | 2 | c | 1/2 | inferred_Cursor_Ctor, inferred_Obj_Kind10_Ctor, inferred_C00428038_Draw |
 | +0x68 flags | 4 | c | 3/3 | inferred_Cursor_Ctor, inferred_Obj_Kind10_Ctor |
-| +0x6c | 4 | c | 1/2 | inferred_Cursor_Ctor, inferred_Obj_Kind10_Ctor, inferred_C00428038_SetActive |
-| +0x70 | 4 | c | 2/3 | inferred_Cursor_Ctor, inferred_Obj_Kind10_Ctor, inferred_Cursor_AddCandidate… |
-| +0x74 | 4 | c | 10/4 | inferred_Cursor_Ctor, inferred_Obj_Kind10_Ctor, inferred_C00428038_OnAttach… |
+| +0x6c candidatesPrev | 4 | c | 1/2 | inferred_Cursor_Ctor, inferred_Obj_Kind10_Ctor, inferred_C00428038_SetActive |
+| +0x70 candidates | 4 | c | 2/3 | inferred_Cursor_Ctor, inferred_Obj_Kind10_Ctor, inferred_Cursor_AddCandidate… |
+| +0x74 companion | 4 | c | 10/4 | inferred_Cursor_Ctor, inferred_Obj_Kind10_Ctor, inferred_C00428038_OnAttach… |
 | +0x78 hoverText | 1 | c | 1/3 | inferred_Cursor_Ctor, inferred_Obj_Kind10_Ctor, inferred_C00428038_Draw… |
 | +0x118 hoverTextArg | 2 | r | 1/0 | inferred_C00428038_Draw |
 | +0x11a | 2 | w | 1/2 | inferred_C00428038_OnAttach |
-| +0x11c | 2 | w? | 0/1 | inferred_C00428038_OnAttach |
-| +0x120 | 4 | c | 0/2 | inferred_Cursor_Ctor, inferred_C00428038_OnAttach |
-| +0x128 | 4 | w? | 0/1 | inferred_C00428038_OnAttach |
+| +0x11c thumbCount? | 2 | w? | 0/1 | inferred_C00428038_OnAttach |
+| +0x120 thumbWork? | 4 | c | 0/2 | inferred_Cursor_Ctor, inferred_C00428038_OnAttach |
+| +0x128 thumbnail? | 4 | w? | 0/1 | inferred_C00428038_OnAttach |
 
 ## DlgScriptEntry  (vtable 00428078)
-- parent: Obj_MidBase (0042ba68) · size: unknown · slots: 29 · constructors: inferred_DlgEntry_CopyCtorA, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load
+- parent: Obj_MidBase (0042ba68) · size: 0xd8 · slots: 29 · constructors: inferred_DlgEntry_CopyCtorA, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load, inferred_DialogueTable_Load
 - own methods: [4 Update] inferred_DlgScript_Update, [13 RunVerb] inferred_DlgScript_ResumePlayer, [28] inferred_Obj_Stub_Void_1Arg
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | r | 2/0 | inferred_DlgScript_Update, inferred_DlgScript_ResumePlayer |
 | +0x04 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x08 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x0c | 1 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
@@ -306,8 +320,8 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x38 anim | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x3c room | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x40 level | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0x44 nameKey | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0x48 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0x44 nameKey (part of +0x44) | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0x48 (part of +0x44) | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x4c x | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x50 y | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x54 prevX | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
@@ -318,33 +332,34 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x60 stateBlob | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x64 stateBlobSize | 2 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x68 flags | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0x8c | 1 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0x8d | 1 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0x8c (part of +0x8c) | 1 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0x8d (part of +0x8c) | 1 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x90 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x94 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x98 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0x9c | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0xa0 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0xa0 loopStart | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 | +0xa4 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0xa8 | 4 | c | 1/1 | inferred_DlgEntry_CopyCtorA, inferred_DlgScript_Update |
-| +0xac | 4 | c | 4/2 | inferred_DlgEntry_CopyCtorA, inferred_DlgScript_Update, inferred_DlgScript_ResumePlayer |
-| +0xb0 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0xb4 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0xb8 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0xbc | 4 | c | 2/1 | inferred_DlgEntry_CopyCtorA, inferred_DlgScript_Update |
-| +0xc0 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0xc4 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0xc8 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0xcc | 4 | c | 4/4 | inferred_DlgEntry_CopyCtorA, inferred_DlgScript_Update, inferred_DlgScript_ResumePlayer |
-| +0xd0 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
-| +0xd4 | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0xa8 waitStart | 4 | c | 1/1 | inferred_DlgEntry_CopyCtorA, inferred_DlgScript_Update |
+| +0xac currentSpeaker | 4 | c | 4/2 | inferred_DlgEntry_CopyCtorA, inferred_DlgScript_Update, inferred_DlgScript_ResumePlayer |
+| +0xb0 actorObjects | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0xb4 actorKeys | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0xb8 actorCount | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0xbc steps | 4 | c | 2/1 | inferred_DlgEntry_CopyCtorA, inferred_DlgScript_Update |
+| +0xc0 stepCount | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0xc4 labels | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0xc8 labelCount | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0xcc pc | 4 | c | 4/4 | inferred_DlgEntry_CopyCtorA, inferred_DlgScript_Update, inferred_DlgScript_ResumePlayer |
+| +0xd0 variables | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
+| +0xd4 blockKind | 4 | c | 0/1 | inferred_DlgEntry_CopyCtorA |
 
 ## Obj_Kind13Base  (vtable 00428b00)
-- parent: Obj_MidBase (0042ba68) · size: unknown · slots: 28 · constructors: inferred_Obj_Kind13_Ctor
+- parent: Obj_MidBase (0042ba68) · size: 0xac · slots: 28 · constructors: inferred_Obj_Kind13_Ctor
 - own methods: [4 Update] inferred_Obj_Kind13_Update, [8 SetActive] inferred_Item_SetHeld, [14 SetVerbAndClick] inferred_C00428b00_SetVerbAndClick
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | r | 1/0 | inferred_Obj_Kind13_Update |
 | +0x38 anim | 4 | r | 2/0 | inferred_Obj_Kind13_Ctor |
 | +0x4c x | 4 | r | 1/0 | inferred_Obj_Kind13_Ctor |
 | +0x50 y | 4 | r | 1/0 | inferred_Obj_Kind13_Ctor |
@@ -352,7 +367,7 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x5e sortValue | 2 | c | 1/1 | inferred_Obj_Kind13_Ctor |
 | +0x68 flags | 4 | c | 4/4 | inferred_Obj_Kind13_Ctor, inferred_Item_SetHeld |
 | +0x6c | 4 | c | 0/2 | inferred_Obj_Kind13_Ctor |
-| +0x8c | 1 | w? | 0/3 | inferred_Obj_Kind13_Update, inferred_C00428b00_SetVerbAndClick |
+| +0x8c (part of +0x8c) | 1 | w? | 0/3 | inferred_Obj_Kind13_Update, inferred_C00428b00_SetVerbAndClick |
 | +0x8c | 4 | r | 1/0 | inferred_Obj_Kind13_Update |
 | +0x94 | 4 | c | 0/1 | inferred_Obj_Kind13_Ctor |
 | +0x98 | 4 | c | 0/1 | inferred_Obj_Kind13_Ctor |
@@ -379,10 +394,11 @@ InputDevice (0042806c)  [2 leaf classes]
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | r | 1/0 | inferred_C0042b950_IsInteractive |
 | +0x38 anim | 4 | r | 3/0 | inferred_C0042b950_IsInteractive, inferred_C0042b950_SetVerbAndClick, inferred_C0042b950_ClearHoverText |
 | +0x5e sortValue | 2 | c | 0/1 | inferred_Obj_Kind22_Ctor |
 | +0x68 flags | 4 | c | 1/1 | inferred_Obj_Kind22_Ctor |
-| +0xa0 | 1 | c | 2/1 | inferred_Obj_Kind22_Ctor, inferred_C0042b950_SetVerbAndClick, inferred_C0042b950_ClearHoverText |
+| +0xa0 (part of +0xa0) | 1 | c | 2/1 | inferred_Obj_Kind22_Ctor, inferred_C0042b950_SetVerbAndClick, inferred_C0042b950_ClearHoverText |
 | +0xa0 | 4 | r | 1/0 | inferred_C0042b950_IsInteractive |
 
 ## Obj_Kind04  (vtable 0042b9f8)
@@ -434,8 +450,8 @@ InputDevice (0042806c)  [2 leaf classes]
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
 | +0x38 anim | 4 | r | 1/0 | inferred_Obj_Kind09_Ctor |
-| +0x44 nameKey | 4 | r | 1/0 | inferred_Obj_UseItem_Default |
-| +0x48 | 4 | r | 1/0 | inferred_Obj_UseItem_Default |
+| +0x44 nameKey (part of +0x44) | 4 | r | 1/0 | inferred_Obj_UseItem_Default |
+| +0x48 (part of +0x44) | 4 | r | 1/0 | inferred_Obj_UseItem_Default |
 | +0x4c x | 4 | r | 1/0 | inferred_Obj_Kind09_Ctor |
 | +0x50 y | 4 | r | 1/0 | inferred_Obj_Kind09_Ctor |
 | +0x68 flags | 4 | c | 2/2 | inferred_Obj_Kind09_Ctor |
@@ -444,26 +460,27 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x78 phraseVerb2 | 4 | r | 1/0 | inferred_Obj_Verb2_Default |
 | +0x7c phraseVerb3 | 4 | r | 1/0 | inferred_Obj_Verb3_Default |
 | +0x80 phraseVerb4 | 4 | r | 1/0 | inferred_Obj_Verb4_Default |
-| +0x8c clickPending | 1 | w? | 0/6 | inferred_Obj_Verb1_Default, inferred_Obj_Verb3_Default, inferred_Obj_Verb2_Default… |
-| +0x8d clickFlag | 1 | w? | 0/5 | inferred_Obj_Verb1_Default, inferred_Obj_Verb3_Default, inferred_Obj_Verb2_Default… |
+| +0x8c clickPending (part of +0x8c) | 1 | w? | 0/6 | inferred_Obj_Verb1_Default, inferred_Obj_Verb3_Default, inferred_Obj_Verb2_Default… |
+| +0x8d clickFlag (part of +0x8c) | 1 | w? | 0/5 | inferred_Obj_Verb1_Default, inferred_Obj_Verb3_Default, inferred_Obj_Verb2_Default… |
 | +0x90 | 4 | c | 0/1 | inferred_Obj_Kind09_Ctor |
 | +0x94 approachX | 4 | c | 1/2 | inferred_Obj_Kind09_Ctor |
 | +0x98 approachY | 4 | c | 1/2 | inferred_Obj_Kind09_Ctor |
 
 ## Obj_Kind05Family  (vtable 0042bb48)
-- parent: Obj_MidBase (0042ba68) · size: unknown · slots: 33 · constructors: inferred_Obj_Kind05Base_Ctor, inferred_Obj_Kind05_Ctor
+- parent: Obj_MidBase (0042ba68) · size: 0xd8 · slots: 33 · constructors: inferred_Obj_Kind05Base_Ctor, inferred_Obj_Kind05_Ctor
 - own methods: [4 Update] inferred_Obj_Kind05_Update, [6 Draw] inferred_Obj_Kind05_Draw, [21 Verb1] inferred_Obj_Verb1_Default, [22 Verb3] inferred_Obj_Verb3_Default, [23 Verb2] inferred_Obj_Verb2_Default, [24 Verb4] inferred_Obj_Verb4_Default, [27 UseItem] inferred_Obj_UseItem_Default, [28] inferred_Jim_ClearSpeech, [29] inferred_Obj_SetFacingAnim, [30] inferred_Jim_SetPoseAnim, [31] inferred_C0042b060_Slot31, [32] inferred_C0042b060_Slot32
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | c | 2/1 | inferred_Obj_Kind05Base_Ctor, inferred_Obj_Kind05_Update |
 | +0x0c | 1 | r | 1/0 | inferred_Obj_Kind05_Draw |
 | +0x32 bankIndex | 1 | w? | 0/1 | inferred_Jim_SetPoseAnim |
 | +0x33 bankCount | 1 | r | 2/0 | inferred_Obj_Kind05_Ctor |
 | +0x34 banks | 4 | r | 3/0 | inferred_Obj_Kind05_Ctor, inferred_Jim_SetPoseAnim |
 | +0x38 anim | 4 | w | 6/1 | inferred_C0042b060_Slot31, inferred_Jim_SetPoseAnim |
 | +0x40 level | 4 | r | 1/0 | inferred_C0042b060_Slot31 |
-| +0x44 nameKey | 4 | r | 1/0 | inferred_Obj_UseItem_Default |
-| +0x48 | 4 | r | 1/0 | inferred_Obj_UseItem_Default |
+| +0x44 nameKey (part of +0x44) | 4 | r | 1/0 | inferred_Obj_UseItem_Default |
+| +0x48 (part of +0x44) | 4 | r | 1/0 | inferred_Obj_UseItem_Default |
 | +0x4c x | 4 | r | 2/0 | inferred_C0042b060_Slot31, inferred_Jim_SetPoseAnim |
 | +0x50 y | 4 | r | 2/0 | inferred_C0042b060_Slot31, inferred_Jim_SetPoseAnim |
 | +0x5e sortValue | 2 | r | 1/0 | inferred_C0042b060_Slot31 |
@@ -472,20 +489,20 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x78 | 4 | r | 1/0 | inferred_Obj_Verb2_Default |
 | +0x7c | 4 | r | 1/0 | inferred_Obj_Verb3_Default |
 | +0x80 | 4 | r | 1/0 | inferred_Obj_Verb4_Default |
-| +0x8c | 1 | w? | 0/6 | inferred_Obj_Verb1_Default, inferred_Obj_Verb3_Default, inferred_Obj_Verb2_Default… |
-| +0x8d | 1 | w? | 0/5 | inferred_Obj_Verb1_Default, inferred_Obj_Verb3_Default, inferred_Obj_Verb2_Default… |
+| +0x8c (part of +0x8c) | 1 | w? | 0/6 | inferred_Obj_Verb1_Default, inferred_Obj_Verb3_Default, inferred_Obj_Verb2_Default… |
+| +0x8d (part of +0x8c) | 1 | w? | 0/5 | inferred_Obj_Verb1_Default, inferred_Obj_Verb3_Default, inferred_Obj_Verb2_Default… |
 | +0xa0 | 4 | w? | 0/3 | inferred_Jim_SetPoseAnim |
 | +0xa4 | 4 | w? | 0/2 | inferred_Jim_SetPoseAnim |
 | +0xa8 | 4 | w | 1/1 | inferred_C0042b060_Slot31 |
-| +0xac | 4 | c | 1/2 | inferred_Obj_Kind05_Ctor, inferred_Obj_SetFacingAnim |
-| +0xc0 | 4 | c | 3/2 | inferred_Obj_Kind05_Ctor, inferred_Jim_SetPoseAnim |
+| +0xac idleBank | 4 | c | 1/2 | inferred_Obj_Kind05_Ctor, inferred_Obj_SetFacingAnim |
+| +0xc0 talkBankCount | 4 | c | 3/2 | inferred_Obj_Kind05_Ctor, inferred_Jim_SetPoseAnim |
 | +0xc4 | 4 | w | 2/1 | inferred_Obj_Kind05_Update, inferred_Jim_ClearSpeech |
 | +0xc8 | 4 | r | 4/0 | inferred_Obj_Kind05_Update |
-| +0xd0 | 2 | c | 0/1 | inferred_Obj_Kind05_Ctor |
-| +0xd2 | 2 | c | 0/1 | inferred_Obj_Kind05_Ctor |
-| +0xd4 | 1 | c | 1/2 | inferred_Obj_Kind05_Ctor, inferred_Obj_Kind05_Draw, inferred_Jim_ClearSpeech |
-| +0xd4 | 4 | r | 1/0 | inferred_Obj_Kind05_Update |
-| +0xd5 | 1 | c | 2/3 | inferred_Obj_Kind05_Ctor, inferred_Obj_Kind05_Update, inferred_Obj_Kind05_Draw… |
+| +0xd0 hotX? | 2 | c | 0/1 | inferred_Obj_Kind05_Ctor |
+| +0xd2 hotY? | 2 | c | 0/1 | inferred_Obj_Kind05_Ctor |
+| +0xd4 flagD4 (part of +0xd4) | 1 | c | 1/2 | inferred_Obj_Kind05_Ctor, inferred_Obj_Kind05_Draw, inferred_Jim_ClearSpeech |
+| +0xd4 flagD4 | 4 | r | 1/0 | inferred_Obj_Kind05_Update |
+| +0xd5 flagD5 (part of +0xd4) | 1 | c | 2/3 | inferred_Obj_Kind05_Ctor, inferred_Obj_Kind05_Update, inferred_Obj_Kind05_Draw… |
 
 ## CubiertaLevel  (vtable 0042bbd0)
 - parent: Level (00428bf8) · size: 0x9c · slots: 14 · constructors: inferred_InitGameWorld
@@ -493,6 +510,7 @@ InputDevice (0042806c)  [2 leaf classes]
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | r | 1/0 | inferred_C0042bbd0_RunVerb |
 | +0x90 walkAreaSetup | 4 | r | 2/0 | inferred_C0042bbd0_RunVerb |
 
 ## MapaLevel  (vtable 0042bc08)
@@ -525,6 +543,7 @@ InputDevice (0042806c)  [2 leaf classes]
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | r | 1/0 | inferred_C0042be40_IsInteractive |
 | +0x3c room | 4 | r | 1/0 | inferred_C0042be40_OnAttach |
 | +0xa0 | 4 | w | 19/1 | inferred_C0042be40_OnAttach, inferred_C0042be40_IsInteractive, inferred_C0042be40_ShowHoverText… |
 | +0xa4 | 4 | w | 1/1 | inferred_C0042be40_OnAttach, inferred_C0042be40_ShowHoverText |
@@ -561,52 +580,52 @@ InputDevice (0042806c)  [2 leaf classes]
 |---|---|---|---|---|
 | +0x68 flags | 4 | c | 1/1 | inferred_Obj_Kind21_Ctor |
 | +0x6c | 4 | c | 0/1 | inferred_Obj_Kind21_Ctor |
-| +0xa0 | 1 | r | 2/0 | inferred_Obj_Kind21_Ctor, inferred_C0042c070_SetVerbAndClick |
+| +0xa0 (part of +0xa0) | 1 | r | 2/0 | inferred_Obj_Kind21_Ctor, inferred_C0042c070_SetVerbAndClick |
 | +0xa0 | 4 | c | 2/1 | inferred_Obj_Kind21_Ctor, inferred_C0042c070_SetVerbAndClick |
 
 ## Cls_004280f0  (vtable 004280f0)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C004280f0_Slot28
 
 ## Cls_00428168  (vtable 00428168)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_DlgScript_EnterStageLevel
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
 | +0x40 level | 4 | w | 4/2 | inferred_DlgScript_EnterStageLevel |
-| +0xb0 | 4 | r | 2/0 | inferred_DlgScript_EnterStageLevel |
-| +0xb4 | 4 | r | 4/0 | inferred_DlgScript_EnterStageLevel |
-| +0xb8 | 4 | r | 4/0 | inferred_DlgScript_EnterStageLevel |
+| +0xb0 actorObjects | 4 | r | 2/0 | inferred_DlgScript_EnterStageLevel |
+| +0xb4 actorKeys | 4 | r | 4/0 | inferred_DlgScript_EnterStageLevel |
+| +0xb8 actorCount | 4 | r | 4/0 | inferred_DlgScript_EnterStageLevel |
 
 ## Cls_004281e0  (vtable 004281e0)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C004281e0_Slot28
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
 | +0x40 level | 4 | w | 3/3 | inferred_C004281e0_Slot28 |
-| +0xb0 | 4 | r | 3/0 | inferred_C004281e0_Slot28 |
-| +0xb4 | 4 | r | 6/0 | inferred_C004281e0_Slot28 |
-| +0xb8 | 4 | r | 6/0 | inferred_C004281e0_Slot28 |
+| +0xb0 actorObjects | 4 | r | 3/0 | inferred_C004281e0_Slot28 |
+| +0xb4 actorKeys | 4 | r | 6/0 | inferred_C004281e0_Slot28 |
+| +0xb8 actorCount | 4 | r | 6/0 | inferred_C004281e0_Slot28 |
 
 ## Cls_00428258  (vtable 00428258)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C00428258_Slot28
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
 | +0x40 level | 4 | w | 2/2 | inferred_C00428258_Slot28 |
-| +0xb0 | 4 | r | 2/0 | inferred_C00428258_Slot28 |
-| +0xb4 | 4 | r | 4/0 | inferred_C00428258_Slot28 |
-| +0xb8 | 4 | r | 4/0 | inferred_C00428258_Slot28 |
+| +0xb0 actorObjects | 4 | r | 2/0 | inferred_C00428258_Slot28 |
+| +0xb4 actorKeys | 4 | r | 4/0 | inferred_C00428258_Slot28 |
+| +0xb8 actorCount | 4 | r | 4/0 | inferred_C00428258_Slot28 |
 
 ## Cls_004282d0  (vtable 004282d0)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C004282d0_Slot28
 
 ## Cls_00428348  (vtable 00428348)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C00428348_Slot28
 
 | Off | W | Conf | R/W | Seen in |
@@ -614,7 +633,7 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x40 level | 4 | w? | 0/1 | inferred_C00428348_Slot28 |
 
 ## Cls_004283c0  (vtable 004283c0)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C004283c0_Slot28
 
 | Off | W | Conf | R/W | Seen in |
@@ -622,44 +641,44 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x40 level | 4 | w? | 0/1 | inferred_C004283c0_Slot28 |
 
 ## Cls_00428438  (vtable 00428438)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C00428438_Slot28
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
 | +0x40 level | 4 | w? | 0/1 | inferred_C00428438_Slot28 |
-| +0xd0 | 4 | r | 2/0 | inferred_C00428438_Slot28 |
+| +0xd0 variables | 4 | r | 2/0 | inferred_C00428438_Slot28 |
 
 ## Cls_004284b0  (vtable 004284b0)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 
 ## Cls_00428528  (vtable 00428528)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C00428528_Slot28
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
 | +0x40 level | 4 | w | 2/2 | inferred_C00428528_Slot28 |
-| +0xb0 | 4 | r | 2/0 | inferred_C00428528_Slot28 |
-| +0xb4 | 4 | r | 4/0 | inferred_C00428528_Slot28 |
-| +0xb8 | 4 | r | 4/0 | inferred_C00428528_Slot28 |
+| +0xb0 actorObjects | 4 | r | 2/0 | inferred_C00428528_Slot28 |
+| +0xb4 actorKeys | 4 | r | 4/0 | inferred_C00428528_Slot28 |
+| +0xb8 actorCount | 4 | r | 4/0 | inferred_C00428528_Slot28 |
 
 ## Cls_004285a0  (vtable 004285a0)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 
 ## Cls_00428618  (vtable 00428618)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C00428618_Slot28
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
 | +0x40 level | 4 | w | 2/2 | inferred_C00428618_Slot28 |
-| +0xb0 | 4 | r | 2/0 | inferred_C00428618_Slot28 |
-| +0xb4 | 4 | r | 4/0 | inferred_C00428618_Slot28 |
-| +0xb8 | 4 | r | 4/0 | inferred_C00428618_Slot28 |
+| +0xb0 actorObjects | 4 | r | 2/0 | inferred_C00428618_Slot28 |
+| +0xb4 actorKeys | 4 | r | 4/0 | inferred_C00428618_Slot28 |
+| +0xb8 actorCount | 4 | r | 4/0 | inferred_C00428618_Slot28 |
 
 ## Cls_00428690  (vtable 00428690)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C00428690_Slot28
 
 | Off | W | Conf | R/W | Seen in |
@@ -667,16 +686,16 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x40 level | 4 | w? | 0/1 | inferred_C00428690_Slot28 |
 
 ## Cls_00428708  (vtable 00428708)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C00428708_Slot28
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
 | +0x40 level | 4 | w | 1/1 | inferred_C00428708_Slot28 |
-| +0xd0 | 4 | r | 3/0 | inferred_C00428708_Slot28 |
+| +0xd0 variables | 4 | r | 3/0 | inferred_C00428708_Slot28 |
 
 ## Cls_00428780  (vtable 00428780)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C00428780_Slot28
 
 | Off | W | Conf | R/W | Seen in |
@@ -684,18 +703,18 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x40 level | 4 | w | 3/1 | inferred_C00428780_Slot28 |
 
 ## Cls_004287f8  (vtable 004287f8)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C004287f8_Slot28
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
 | +0x40 level | 4 | w | 2/1 | inferred_C004287f8_Slot28 |
-| +0xb0 | 4 | r | 1/0 | inferred_C004287f8_Slot28 |
-| +0xb4 | 4 | r | 2/0 | inferred_C004287f8_Slot28 |
-| +0xb8 | 4 | r | 2/0 | inferred_C004287f8_Slot28 |
+| +0xb0 actorObjects | 4 | r | 1/0 | inferred_C004287f8_Slot28 |
+| +0xb4 actorKeys | 4 | r | 2/0 | inferred_C004287f8_Slot28 |
+| +0xb8 actorCount | 4 | r | 2/0 | inferred_C004287f8_Slot28 |
 
 ## Cls_00428870  (vtable 00428870)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C00428870_Slot28
 
 | Off | W | Conf | R/W | Seen in |
@@ -703,7 +722,7 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x40 level | 4 | w | 1/1 | inferred_C00428870_Slot28 |
 
 ## Cls_004288e8  (vtable 004288e8)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C004288e8_Slot28
 
 | Off | W | Conf | R/W | Seen in |
@@ -711,29 +730,29 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x40 level | 4 | w? | 0/2 | inferred_C004288e8_Slot28 |
 
 ## Cls_00428960  (vtable 00428960)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C00428960_Slot28
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
 | +0x40 level | 4 | w | 2/1 | inferred_C00428960_Slot28 |
-| +0xb0 | 4 | r | 1/0 | inferred_C00428960_Slot28 |
-| +0xb4 | 4 | r | 2/0 | inferred_C00428960_Slot28 |
-| +0xb8 | 4 | r | 2/0 | inferred_C00428960_Slot28 |
+| +0xb0 actorObjects | 4 | r | 1/0 | inferred_C00428960_Slot28 |
+| +0xb4 actorKeys | 4 | r | 2/0 | inferred_C00428960_Slot28 |
+| +0xb8 actorCount | 4 | r | 2/0 | inferred_C00428960_Slot28 |
 
 ## Cls_004289d8  (vtable 004289d8)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C004289d8_Slot28
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
 | +0x40 level | 4 | w | 2/2 | inferred_C004289d8_Slot28 |
-| +0xb0 | 4 | r | 1/0 | inferred_C004289d8_Slot28 |
-| +0xb4 | 4 | r | 2/0 | inferred_C004289d8_Slot28 |
-| +0xb8 | 4 | r | 2/0 | inferred_C004289d8_Slot28 |
+| +0xb0 actorObjects | 4 | r | 1/0 | inferred_C004289d8_Slot28 |
+| +0xb4 actorKeys | 4 | r | 2/0 | inferred_C004289d8_Slot28 |
+| +0xb8 actorCount | 4 | r | 2/0 | inferred_C004289d8_Slot28 |
 
 ## Cls_00428a50  (vtable 00428a50)
-- parent: DlgScriptEntry (00428078) · size: unknown · slots: 29 · constructors: inferred_DialogueTable_Load
+- parent: DlgScriptEntry (00428078) · size: 0xd8 · slots: 29 · constructors: inferred_DialogueTable_Load
 - own methods: [28] inferred_C00428a50_Slot28
 
 | Off | W | Conf | R/W | Seen in |
@@ -746,6 +765,7 @@ InputDevice (0042806c)  [2 leaf classes]
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | c | 3/1 | inferred_Jim_Ctor, inferred_Jim_UpdateBounds, inferred_Jim_Update |
 | +0x0c | 1 | r | 1/0 | inferred_Jim_Draw |
 | +0x10 boundsLeft? | 4 | w | 1/1 | inferred_Jim_UpdateBounds |
 | +0x14 boundsTop? | 4 | w | 1/1 | inferred_Jim_UpdateBounds |
@@ -767,17 +787,17 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x6c | 4 | c | 0/1 | inferred_Jim_Ctor |
 | +0xa4 | 4 | r | 1/0 | inferred_Jim_SetIdlePose |
 | +0xa8 | 4 | w | 1/1 | inferred_Jim_TalkAnimate |
-| +0xac | 4 | c | 0/1 | inferred_Jim_Ctor |
-| +0xb0 | 4 | c | 0/1 | inferred_Jim_Ctor |
+| +0xac idleBank | 4 | c | 0/1 | inferred_Jim_Ctor |
+| +0xb0 talkBanks | 4 | c | 0/1 | inferred_Jim_Ctor |
 | +0xb4 | 4 | c | 0/1 | inferred_Jim_Ctor |
 | +0xb8 | 4 | c | 0/1 | inferred_Jim_Ctor |
 | +0xbc | 4 | c | 0/1 | inferred_Jim_Ctor |
-| +0xc0 | 4 | c | 0/1 | inferred_Jim_Ctor |
+| +0xc0 talkBankCount | 4 | c | 0/1 | inferred_Jim_Ctor |
 | +0xcc speechId | 4 | r | 1/0 | inferred_Jim_Draw |
-| +0xd0 | 2 | c | 0/1 | inferred_Jim_Ctor |
-| +0xd2 | 2 | c | 0/1 | inferred_Jim_Ctor |
-| +0xd4 talking | 1 | r | 1/0 | inferred_Jim_Draw |
-| +0xd5 walking | 1 | c | 3/4 | inferred_Jim_Ctor, inferred_Jim_LoadState, inferred_Jim_WalkTo… |
+| +0xd0 hotX? | 2 | c | 0/1 | inferred_Jim_Ctor |
+| +0xd2 hotY? | 2 | c | 0/1 | inferred_Jim_Ctor |
+| +0xd4 talking (part of +0xd4) | 1 | r | 1/0 | inferred_Jim_Draw |
+| +0xd5 walking (part of +0xd4) | 1 | c | 3/4 | inferred_Jim_Ctor, inferred_Jim_LoadState, inferred_Jim_WalkTo… |
 | +0xd8 walkAnimTable | 4 | c | 1/1 | inferred_Jim_Ctor, inferred_Jim_WalkTo |
 | +0xe0 fixedX | 4 | w | 3/3 | inferred_Jim_WalkTo, inferred_Jim_Update |
 | +0xe4 fixedY | 4 | w | 3/3 | inferred_Jim_WalkTo, inferred_Jim_Update |
@@ -840,6 +860,10 @@ InputDevice (0042806c)  [2 leaf classes]
 ## Obj_Kind20_Sub23  (vtable 00428ed0)
 - parent: Obj_Kind09Family (0042bad8) · size: 0xa0 · slots: 28 · constructors: inferred_Level_CreateObject · kind 20 subtype 23
 - own methods: [22 Verb3] inferred_C00428ed0_Verb3
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | r | 1/0 | inferred_C00428ed0_Verb3 |
 
 ## Obj_Kind20_Sub24  (vtable 00428f40)
 - parent: Obj_Kind09Family (0042bad8) · size: 0xa0 · slots: 28 · constructors: inferred_Level_CreateObject · kind 20 subtype 24
@@ -956,6 +980,10 @@ InputDevice (0042806c)  [2 leaf classes]
 ## Obj_Kind20_Sub6  (vtable 00429640)
 - parent: Obj_Kind09Family (0042bad8) · size: 0xa0 · slots: 28 · constructors: inferred_Level_CreateObject · kind 20 subtype 6
 - own methods: [22 Verb3] inferred_C00429640_Verb3
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | r | 1/0 | inferred_C00429640_Verb3 |
 
 ## Obj_Kind20_Sub5  (vtable 004296b0)
 - parent: Obj_Kind09Family (0042bad8) · size: 0xa0 · slots: 28 · constructors: inferred_Level_CreateObject · kind 20 subtype 5
@@ -1181,6 +1209,7 @@ InputDevice (0042806c)  [2 leaf classes]
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | r | 1/0 | inferred_C0042a3d0_Verb4 |
 | +0x60 stateBlob | 4 | w | 2/1 | inferred_C0042a3d0_Verb1 |
 
 ## Obj_Kind13_Sub28  (vtable 0042a440)
@@ -1233,6 +1262,7 @@ InputDevice (0042806c)  [2 leaf classes]
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | r | 1/0 | inferred_C0042a6e0_Verb3 |
 | +0x40 level | 4 | r | 1/0 | inferred_C0042a6e0_Verb3 |
 
 ## Obj_Kind12_Sub8  (vtable 0042a750)
@@ -1248,6 +1278,10 @@ InputDevice (0042806c)  [2 leaf classes]
 - parent: Obj_Kind09Family (0042bad8) · size: 0xa0 · slots: 28 · constructors: inferred_Level_CreateObject · kind 12 subtype 9
 - own methods: [22 Verb3] inferred_C0042a7c0_Verb3
 
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | r | 1/0 | inferred_C0042a7c0_Verb3 |
+
 ## Obj_Kind12_Sub7  (vtable 0042a830)
 - parent: Obj_Kind09Family (0042bad8) · size: 0xa0 · slots: 28 · constructors: inferred_Level_CreateObject · kind 12 subtype 7
 - own methods: [21 Verb1] inferred_C0042a830_Verb1, [23 Verb2] inferred_C0042a830_Verb2
@@ -1262,6 +1296,7 @@ InputDevice (0042806c)  [2 leaf classes]
 
 | Off | W | Conf | R/W | Seen in |
 |---|---|---|---|---|
+| +0x00 | 4 | r | 1/0 | inferred_C0042a8a0_Verb3 |
 | +0x40 level | 4 | r | 1/0 | inferred_C0042a8a0_Verb3 |
 
 ## Obj_Kind12_Sub5  (vtable 0042a910)
@@ -1377,7 +1412,7 @@ InputDevice (0042806c)  [2 leaf classes]
 |---|---|---|---|---|
 | +0x0c | 1 | r | 1/0 | inferred_C0042b390_Draw |
 | +0x40 level | 4 | r | 1/0 | inferred_C0042b390_Verb2 |
-| +0xd4 | 1 | r | 1/0 | inferred_C0042b390_Draw |
+| +0xd4 flagD4 (part of +0xd4) | 1 | r | 1/0 | inferred_C0042b390_Draw |
 
 ## Obj_Kind05_Sub4  (vtable 0042b418)
 - parent: Obj_Kind05Family (0042bb48) · size: 0xd8 · slots: 33 · constructors: inferred_Level_CreateObject · kind 5 subtype 4
@@ -1443,7 +1478,7 @@ InputDevice (0042806c)  [2 leaf classes]
 - parent: Obj_Kind05Family (0042bb48) · size: 0xd8 · slots: 33 · constructors: inferred_Level_CreateObject · kind 5 subtype 10
 
 ## Obj_Kind06Base  (vtable 0042bce8)
-- parent: Obj_Kind09Family (0042bad8) · size: unknown · slots: 29 · constructors: inferred_Obj_Kind06_Ctor
+- parent: Obj_Kind09Family (0042bad8) · size: 0xb0 · slots: 29 · constructors: inferred_Obj_Kind06_Ctor
 - own methods: [15] inferred_C0042abb0_Slot15, [20 Verb0] inferred_Exit_Activate, [28] inferred_C0042abb0_Slot28
 
 | Off | W | Conf | R/W | Seen in |
@@ -1453,9 +1488,9 @@ InputDevice (0042806c)  [2 leaf classes]
 | +0x98 approachY | 4 | r | 1/0 | inferred_C0042abb0_Slot15 |
 | +0x9c currentVerb | 4 | r | 1/0 | inferred_Exit_Activate |
 | +0xa0 itemKeys | 1 | c | 1/1 | inferred_Obj_Kind06_Ctor, inferred_Exit_Activate |
-| +0xa4 itemResponses | 4 | r | 1/0 | inferred_Exit_Activate |
+| +0xa4 itemResponses (part of +0xa4) | 4 | r | 1/0 | inferred_Exit_Activate |
 | +0xa4 itemResponses | 8 | c | 0/1 | inferred_Obj_Kind06_Ctor |
-| +0xa8 itemCount | 4 | r | 1/0 | inferred_Exit_Activate |
+| +0xa8 itemCount (part of +0xa4) | 4 | r | 1/0 | inferred_Exit_Activate |
 | +0xac | 4 | c | 1/1 | inferred_Obj_Kind06_Ctor, inferred_Exit_Activate |
 
 ## Obj_Kind24  (vtable 0042bf20)
@@ -1546,3 +1581,178 @@ InputDevice (0042806c)  [2 leaf classes]
 |---|---|---|---|---|
 | +0x40 level | 4 | r | 2/0 | inferred_C0042afe8_Slot28 |
 | +0x60 stateBlob | 4 | w | 1/1 | inferred_C0042afe8_Slot28 |
+
+# Plain (non-virtual) classes
+
+Layouts from the listed member functions only (no vtable, so membership is a hand list in `build_classes.py`). Confidence as above: `w` written+read, `r` read, `w?` written only.
+
+## Clock  (size 0x10)
+- member functions: inferred_Clock_Ctor, inferred_Clock_Now, inferred_Clock_Freeze, inferred_Clock_Unfreeze, inferred_Clock_Suspend, inferred_Clock_Resume
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | w | 5/3 | inferred_Clock_Ctor, inferred_Clock_Now, inferred_Clock_Freeze |
+| +0x04 | 4 | w | 1/1 | inferred_Clock_Now, inferred_Clock_Freeze |
+| +0x08 | 4 | w | 4/4 | inferred_Clock_Ctor, inferred_Clock_Now, inferred_Clock_Freeze… |
+| +0x0c | 1 | w? | 0/3 | inferred_Clock_Ctor, inferred_Clock_Freeze, inferred_Clock_Unfreeze |
+| +0x0c | 4 | r | 1/0 | inferred_Clock_Now |
+| +0x0d | 1 | w | 2/3 | inferred_Clock_Ctor, inferred_Clock_Now, inferred_Clock_Freeze… |
+
+## Pool  (size 0x44)
+- member functions: inferred_Pool_Ctor, inferred_Pool_AllocAligned, inferred_Pool_AllocAlignedZero, inferred_Pool_SetArena, inferred_Pool_ResetArena, inferred_Pool_Dtor, inferred_Pool_IsValid
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | w | 3/1 | inferred_Pool_Ctor, inferred_Pool_Dtor, inferred_Pool_IsValid |
+| +0x04 | 4 | w? | 0/1 | inferred_Pool_SetArena |
+| +0x14 | 4 | w? | 0/1 | inferred_Pool_SetArena |
+| +0x24 | 4 | w? | 0/1 | inferred_Pool_SetArena |
+
+## Archive  (size 0x8)
+- member functions: inferred_Archive_Ctor, inferred_Archive_Open, inferred_Archive_SeekEntry, inferred_Archive_Tell, inferred_Archive_SeekSavePos, inferred_Archive_Close, inferred_Archive_ReadIndex, inferred_Archive_FindEntry
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | w | 3/2 | inferred_Archive_ReadIndex |
+| +0x04 | 4 | w | 12/3 | inferred_Archive_Ctor, inferred_Archive_Open, inferred_Archive_SeekEntry… |
+
+## AnimPlayer  (size 0x40)
+- member functions: inferred_AnimBank_Load, inferred_AnimBank_LoadDeferredImages, inferred_AnimPlayer_SetRange, inferred_AnimPlayer_Advance, inferred_AnimPlayer_Pause, inferred_AnimPlayer_Resume
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | w | 1/1 | inferred_AnimBank_Load, inferred_AnimBank_LoadDeferredImages |
+| +0x04 | 4 | w | 2/1 | inferred_AnimBank_Load, inferred_AnimBank_LoadDeferredImages |
+| +0x08 | 4 | w | 5/4 | inferred_AnimPlayer_SetRange, inferred_AnimPlayer_Advance, inferred_AnimPlayer_Resume |
+| +0x0c | 4 | w | 2/3 | inferred_AnimPlayer_SetRange, inferred_AnimPlayer_Advance |
+| +0x10 | 4 | w | 1/2 | inferred_AnimPlayer_Pause, inferred_AnimPlayer_Resume |
+| +0x14 | 4 | w | 2/1 | inferred_AnimBank_Load, inferred_AnimBank_LoadDeferredImages |
+| +0x18 | 4 | w | 6/8 | inferred_AnimBank_Load, inferred_AnimPlayer_SetRange, inferred_AnimPlayer_Advance… |
+| +0x1c | 4 | w | 14/1 | inferred_AnimBank_Load, inferred_AnimPlayer_SetRange, inferred_AnimPlayer_Advance |
+| +0x20 | 2 | w | 5/1 | inferred_AnimBank_Load, inferred_AnimBank_LoadDeferredImages |
+| +0x20 | 4 | r | 1/0 | inferred_AnimBank_LoadDeferredImages |
+| +0x22 | 2 | w | 6/1 | inferred_AnimBank_Load, inferred_AnimPlayer_SetRange |
+| +0x24 | 2 | w | 1/2 | inferred_AnimPlayer_SetRange, inferred_AnimPlayer_Advance |
+| +0x26 | 2 | w | 9/5 | inferred_AnimPlayer_SetRange, inferred_AnimPlayer_Advance |
+| +0x28 | 2 | r | 2/0 | inferred_AnimPlayer_Advance |
+| +0x28 | 4 | r | 1/0 | inferred_AnimPlayer_Advance |
+| +0x2a | 2 | r | 2/0 | inferred_AnimPlayer_Advance |
+| +0x2c | 2 | w | 4/1 | inferred_AnimPlayer_SetRange, inferred_AnimPlayer_Advance |
+| +0x2e | 2 | w | 4/1 | inferred_AnimPlayer_SetRange, inferred_AnimPlayer_Advance |
+| +0x30 | 2 | w | 3/4 | inferred_AnimPlayer_SetRange, inferred_AnimPlayer_Advance |
+| +0x32 | 4 | w? | 0/1 | inferred_AnimBank_Load |
+| +0x36 | 4 | w? | 0/1 | inferred_AnimBank_Load |
+| +0x3a | 4 | w? | 0/1 | inferred_AnimBank_Load |
+
+## Camera  (size 0x40)
+- member functions: inferred_Camera_Ctor, inferred_Camera_SetPositionClamped, inferred_Camera_SetBounds, inferred_Camera_MoveTo, inferred_Camera_UpdateToward, inferred_Camera_SetValue0
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | w | 1/2 | inferred_Camera_Ctor, inferred_Camera_SetValue0 |
+| +0x04 | 4 | w | 2/3 | inferred_Camera_UpdateToward, inferred_Camera_MoveTo |
+| +0x08 | 4 | w | 2/3 | inferred_Camera_UpdateToward, inferred_Camera_MoveTo |
+| +0x0c | 4 | w | 1/3 | inferred_Camera_UpdateToward, inferred_Camera_MoveTo |
+| +0x10 | 4 | w | 2/5 | inferred_Camera_UpdateToward, inferred_Camera_Ctor, inferred_Camera_MoveTo |
+| +0x14 | 4 | w | 4/5 | inferred_Camera_UpdateToward, inferred_Camera_MoveTo |
+| +0x18 | 4 | w | 4/5 | inferred_Camera_UpdateToward, inferred_Camera_MoveTo |
+| +0x1c | 4 | w | 2/1 | inferred_Camera_UpdateToward, inferred_Camera_SetPositionClamped, inferred_Camera_SetBounds |
+| +0x20 | 4 | w | 1/1 | inferred_Camera_SetPositionClamped, inferred_Camera_SetBounds |
+| +0x24 | 4 | w | 2/1 | inferred_Camera_UpdateToward, inferred_Camera_SetPositionClamped, inferred_Camera_SetBounds |
+| +0x28 | 4 | w | 1/1 | inferred_Camera_SetPositionClamped, inferred_Camera_SetBounds |
+| +0x2c | 4 | w | 6/3 | inferred_Camera_UpdateToward, inferred_Camera_SetPositionClamped, inferred_Camera_MoveTo |
+| +0x30 | 4 | w | 6/3 | inferred_Camera_UpdateToward, inferred_Camera_SetPositionClamped, inferred_Camera_MoveTo |
+| +0x34 | 4 | w? | 0/1 | inferred_Camera_UpdateToward |
+| +0x38 | 4 | w? | 0/1 | inferred_Camera_UpdateToward |
+| +0x3c | 4 | w? | 0/1 | inferred_Camera_UpdateToward |
+
+## Display  (size 0x13a4)
+- member functions: inferred_Display_Ctor, inferred_Display_Dtor, inferred_Display_IsReady, inferred_Display_SetFont, inferred_Display_LoadColourTable, inferred_Display_ResetRenderQueue, inferred_Display_AddSprite, inferred_Display_ClearAndReset, inferred_Display_AddSpriteScaled, inferred_Display_RasterRow
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | w? | 0/1 | inferred_Display_Ctor |
+| +0x04 | 4 | r | 2/0 | inferred_Display_Dtor |
+| +0x08 | 4 | w | 6/1 | inferred_Display_Ctor, inferred_Display_Dtor, inferred_Display_IsReady… |
+| +0x0c | 4 | w | 5/1 | inferred_Display_Ctor, inferred_Display_Dtor, inferred_Display_ClearAndReset |
+| +0x10 | 4 | w | 9/1 | inferred_Display_Ctor |
+| +0x664 | 4 | w | 2/4 | inferred_Display_Ctor, inferred_Display_ResetRenderQueue, inferred_Display_AddSpriteScaled… |
+| +0x668 | 2 | w? | 0/3 | inferred_Display_Ctor, inferred_Display_ResetRenderQueue, inferred_Display_ClearAndReset |
+| +0x66a | 1 | w? | 0/2 | inferred_Display_Ctor, inferred_Display_ClearAndReset |
+| +0x66c | 4 | w | 2/1 | inferred_Display_Ctor, inferred_Display_LoadColourTable |
+| +0x670 | 4 | w | 7/1 | inferred_Display_Ctor, inferred_Display_ResetRenderQueue, inferred_Display_AddSprite… |
+| +0x674 | 4 | w | 2/1 | inferred_Display_Ctor, inferred_Display_AddSprite, inferred_Display_RasterRow |
+| +0x67c | 1 | w | 1/2 | inferred_Display_Ctor, inferred_Display_LoadColourTable |
+| +0x13a0 | 4 | w? | 0/3 | inferred_Display_Ctor, inferred_Display_ResetRenderQueue, inferred_Display_ClearAndReset |
+
+## SoundManager  (size 0x20)
+- member functions: inferred_Sound_IsReady, inferred_Sound_PlayWav, inferred_Sound_Update, inferred_Sound_FindById, inferred_Sound_Dtor
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | r | 3/0 | inferred_Sound_IsReady, inferred_Sound_Dtor |
+| +0x04 | 4 | r | 1/0 | inferred_Sound_IsReady |
+| +0x14 | 4 | w | 2/1 | inferred_Sound_PlayWav |
+| +0x18 | 4 | w | 9/2 | inferred_Sound_FindById, inferred_Sound_PlayWav, inferred_Sound_Update |
+| +0x1c | 4 | r | 1/0 | inferred_Sound_Dtor |
+
+## SoundSlot  (size unknown)
+- member functions: inferred_Sound_Stop, inferred_Sound_LoadWavData, inferred_Sound_StreamRefill
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | r | 3/0 | inferred_Sound_LoadWavData, inferred_Sound_Stop, inferred_Sound_StreamRefill |
+| +0x04 | 4 | r | 2/0 | inferred_Sound_LoadWavData, inferred_Sound_StreamRefill |
+| +0x08 | 4 | w | 2/2 | inferred_Sound_LoadWavData, inferred_Sound_StreamRefill |
+| +0x0c | 4 | r | 6/0 | inferred_Sound_LoadWavData, inferred_Sound_StreamRefill |
+| +0x20 | 4 | r | 6/0 | inferred_Sound_LoadWavData, inferred_Sound_StreamRefill |
+| +0x26 | 1 | w | 4/2 | inferred_Sound_LoadWavData, inferred_Sound_StreamRefill |
+| +0x27 | 1 | w | 1/6 | inferred_Sound_LoadWavData, inferred_Sound_Stop, inferred_Sound_StreamRefill |
+| +0x30 | 4 | w | 2/6 | inferred_Sound_LoadWavData, inferred_Sound_Stop, inferred_Sound_StreamRefill |
+
+## CdAudio  (size unknown)
+- member functions: inferred_CdAudio_PlayTrack, inferred_CdAudio_OnNotify, inferred_CdAudioInit
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x04 | 1 | r | 1/0 | inferred_CdAudioInit |
+| +0x04 | 4 | r | 2/0 | inferred_CdAudioInit |
+| +0x05 | 1 | r | 1/0 | inferred_CdAudioInit |
+| +0x08 | 4 | w? | 0/2 | inferred_CdAudioInit |
+| +0x0c | 4 | w? | 0/1 | inferred_CdAudioInit |
+| +0x14 | 4 | w | 12/1 | inferred_CdAudioInit, inferred_CdAudio_PlayTrack, inferred_CdAudio_OnNotify |
+| +0x18 | 4 | w? | 0/1 | inferred_CdAudioInit |
+| +0x24 | 4 | w | 3/1 | inferred_CdAudioInit, inferred_CdAudio_PlayTrack |
+| +0x28 | 1 | w | 1/5 | inferred_CdAudioInit, inferred_CdAudio_PlayTrack, inferred_CdAudio_OnNotify |
+| +0x29 | 1 | w | 1/1 | inferred_CdAudio_PlayTrack, inferred_CdAudio_OnNotify |
+| +0x1bc | 4 | w | 4/3 | inferred_CdAudioInit, inferred_CdAudio_PlayTrack |
+
+## DialogueTable  (size 0x2b0)
+- member functions: inferred_DialogueTable_Ctor, inferred_DialogueTable_Finalize, inferred_DialogueTable_Load, inferred_DialogueTable_FindByKey
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x2ac | 4 | w | 6/2 | inferred_DialogueTable_Ctor, inferred_DialogueTable_FindByKey, inferred_DialogueTable_Finalize… |
+
+## TextTable  (size 0x8)
+- member functions: inferred_TextTable_Load, inferred_TextTable_Lookup, inferred_TextTable_Sort
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | r | 2/0 | inferred_TextTable_Sort |
+| +0x04 | 4 | w | 7/2 | inferred_TextTable_Load, inferred_TextTable_Sort, inferred_TextTable_Lookup |
+
+## List  (size 0x1c)
+- member functions: inferred_List_Ctor, inferred_List_PushBack, inferred_List_Remove, inferred_List_RewindIterator, inferred_List_Clear, inferred_List_InsertAtHead
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | w | 3/2 | inferred_List_Ctor, inferred_List_RewindIterator, inferred_List_Clear |
+| +0x0c | 4 | w | 1/1 | inferred_List_InsertAtHead |
+
+## ObjectList  (size 0x24)
+- member functions: inferred_ObjectList_Ctor, inferred_ObjectList_InsertByPriority, inferred_ObjectList_InsertByPriorityFront, inferred_ObjectList_RemoveByObject, inferred_ObjectList_PassA, inferred_ObjectList_PassB, inferred_ObjectList_EndFrame, inferred_ObjectList_Clear, inferred_ObjectList_ForEachAttach, inferred_ObjectList_FindByKey
+
+| Off | W | Conf | R/W | Seen in |
+|---|---|---|---|---|
+| +0x00 | 4 | w | 16/1 | inferred_ObjectList_Ctor, inferred_ObjectList_PassA, inferred_ObjectList_PassB… |

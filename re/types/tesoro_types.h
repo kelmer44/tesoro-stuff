@@ -41,16 +41,16 @@ typedef struct Keyboard {
     void *vtable; /* 00428070 */
     unsigned int f_04; /* c */
     unsigned char pad_08[4];
-    unsigned int f_0c; /* c */
-    unsigned int f_10; /* c */
-    unsigned int f_14; /* c */
-    unsigned int f_18; /* c */
-    unsigned int f_1c; /* c */
+    unsigned int timing0; /* c */
+    unsigned int timing1; /* c */
+    unsigned int deviceBuffer; /* c */
+    unsigned int stateSize; /* c */
+    unsigned int stateBuffer; /* c */
     unsigned int f_20; /* c */
     unsigned char f_24; /* c */
     unsigned char pad_25[11];
     unsigned int f_30; /* c */
-    unsigned int f_34; /* c */
+    unsigned int statePtr; /* c */
 } Keyboard;
 
 typedef struct Mouse {
@@ -61,15 +61,15 @@ typedef struct Mouse {
     unsigned int f_10; /* c */
     unsigned int f_14; /* c */
     unsigned int f_18; /* c */
-    unsigned int f_1c; /* c */
-    unsigned int f_20; /* c */
-    unsigned int f_24; /* c */
-    unsigned int f_28; /* c */
-    unsigned int f_2c; /* c */
+    unsigned int buttons; /* c */
+    unsigned int minX; /* c */
+    unsigned int minY; /* c */
+    unsigned int maxX; /* c */
+    unsigned int maxY; /* c */
     unsigned int f_30; /* w? */
     unsigned int f_34; /* w? */
-    unsigned int f_38; /* c */
-    unsigned int f_3c; /* c */
+    unsigned int posX; /* c */
+    unsigned int posY; /* c */
 } Mouse;
 
 typedef struct Obj_Kind01 {
@@ -447,18 +447,18 @@ typedef struct Cursor {
     unsigned short stateBlobSize; /* c */
     unsigned char pad_66[2];
     unsigned int flags; /* c */
-    unsigned int f_6c; /* c */
-    unsigned int f_70; /* c */
-    unsigned int f_74; /* c */
+    unsigned int candidatesPrev; /* c */
+    unsigned int candidates; /* c */
+    unsigned int companion; /* c */
     unsigned char hoverText; /* c */
     unsigned char pad_79[159];
     unsigned short hoverTextArg; /* r */
     unsigned short f_11a; /* w */
-    unsigned short f_11c; /* w? */
+    unsigned short thumbCount; /* w? */
     unsigned char pad_11e[2];
-    unsigned int f_120; /* c */
+    unsigned int thumbWork; /* c */
     unsigned char pad_124[4];
-    unsigned int f_128; /* w? */
+    unsigned int thumbnail; /* w? */
     unsigned char pad_12c[4];
 } Cursor;
 
@@ -505,20 +505,20 @@ typedef struct DlgScriptEntry {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } DlgScriptEntry;
 
 typedef struct Obj_Kind13Base {
@@ -832,16 +832,17 @@ typedef struct Obj_Kind05Family {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
+    unsigned char pad_d6[2];
 } Obj_Kind05Family;
 
 typedef struct CubiertaLevel {
@@ -1218,20 +1219,20 @@ typedef struct Cls_004280f0 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_004280f0;
 
 typedef struct Cls_00428168 {
@@ -1277,20 +1278,20 @@ typedef struct Cls_00428168 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_00428168;
 
 typedef struct Cls_004281e0 {
@@ -1336,20 +1337,20 @@ typedef struct Cls_004281e0 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_004281e0;
 
 typedef struct Cls_00428258 {
@@ -1395,20 +1396,20 @@ typedef struct Cls_00428258 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_00428258;
 
 typedef struct Cls_004282d0 {
@@ -1454,20 +1455,20 @@ typedef struct Cls_004282d0 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_004282d0;
 
 typedef struct Cls_00428348 {
@@ -1513,20 +1514,20 @@ typedef struct Cls_00428348 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_00428348;
 
 typedef struct Cls_004283c0 {
@@ -1572,20 +1573,20 @@ typedef struct Cls_004283c0 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_004283c0;
 
 typedef struct Cls_00428438 {
@@ -1631,20 +1632,20 @@ typedef struct Cls_00428438 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_00428438;
 
 typedef struct Cls_004284b0 {
@@ -1690,20 +1691,20 @@ typedef struct Cls_004284b0 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_004284b0;
 
 typedef struct Cls_00428528 {
@@ -1749,20 +1750,20 @@ typedef struct Cls_00428528 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_00428528;
 
 typedef struct Cls_004285a0 {
@@ -1808,20 +1809,20 @@ typedef struct Cls_004285a0 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_004285a0;
 
 typedef struct Cls_00428618 {
@@ -1867,20 +1868,20 @@ typedef struct Cls_00428618 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_00428618;
 
 typedef struct Cls_00428690 {
@@ -1926,20 +1927,20 @@ typedef struct Cls_00428690 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_00428690;
 
 typedef struct Cls_00428708 {
@@ -1985,20 +1986,20 @@ typedef struct Cls_00428708 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_00428708;
 
 typedef struct Cls_00428780 {
@@ -2044,20 +2045,20 @@ typedef struct Cls_00428780 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_00428780;
 
 typedef struct Cls_004287f8 {
@@ -2103,20 +2104,20 @@ typedef struct Cls_004287f8 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_004287f8;
 
 typedef struct Cls_00428870 {
@@ -2162,20 +2163,20 @@ typedef struct Cls_00428870 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_00428870;
 
 typedef struct Cls_004288e8 {
@@ -2221,20 +2222,20 @@ typedef struct Cls_004288e8 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_004288e8;
 
 typedef struct Cls_00428960 {
@@ -2280,20 +2281,20 @@ typedef struct Cls_00428960 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_00428960;
 
 typedef struct Cls_004289d8 {
@@ -2339,20 +2340,20 @@ typedef struct Cls_004289d8 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_004289d8;
 
 typedef struct Cls_00428a50 {
@@ -2398,20 +2399,20 @@ typedef struct Cls_00428a50 {
     unsigned int f_94; /* c */
     unsigned int f_98; /* c */
     unsigned int f_9c; /* w */
-    unsigned int f_a0; /* c */
+    unsigned int loopStart; /* c */
     unsigned int f_a4; /* c */
-    unsigned int f_a8; /* c */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
-    unsigned int f_b4; /* c */
-    unsigned int f_b8; /* c */
-    unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
-    unsigned int f_c4; /* c */
-    unsigned int f_c8; /* c */
-    unsigned int f_cc; /* c */
-    unsigned int f_d0; /* c */
-    unsigned int f_d4; /* c */
+    unsigned int waitStart; /* c */
+    unsigned int currentSpeaker; /* c */
+    unsigned int actorObjects; /* c */
+    unsigned int actorKeys; /* c */
+    unsigned int actorCount; /* c */
+    unsigned int steps; /* c */
+    unsigned int stepCount; /* c */
+    unsigned int labels; /* c */
+    unsigned int labelCount; /* c */
+    unsigned int pc; /* c */
+    unsigned int variables; /* c */
+    unsigned int blockKind; /* c */
 } Cls_00428a50;
 
 typedef struct Jim {
@@ -2463,17 +2464,17 @@ typedef struct Jim {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
-    unsigned int f_b0; /* c */
+    unsigned int idleBank; /* c */
+    unsigned int talkBanks; /* c */
     unsigned int f_b4; /* c */
     unsigned int f_b8; /* c */
     unsigned int f_bc; /* c */
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int speechPhrase; /* w */
     unsigned int f_c8; /* r */
     unsigned int speechId; /* r */
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
     unsigned char talking; /* c */
     unsigned char walking; /* c */
     unsigned char pad_d6[2];
@@ -5858,16 +5859,16 @@ typedef struct Obj_Kind05_Sub16 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub16;
 
@@ -5920,16 +5921,16 @@ typedef struct Obj_Kind05_Sub15 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub15;
 
@@ -5982,16 +5983,16 @@ typedef struct Obj_Kind05_Sub14 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub14;
 
@@ -6044,16 +6045,16 @@ typedef struct Obj_Kind05_Sub13 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub13;
 
@@ -6106,16 +6107,16 @@ typedef struct Obj_Kind05_Sub0 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub0;
 
@@ -6168,16 +6169,16 @@ typedef struct Obj_Kind05_Sub2 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub2;
 
@@ -6230,16 +6231,16 @@ typedef struct Obj_Kind05_Sub3 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub3;
 
@@ -6292,16 +6293,16 @@ typedef struct Obj_Kind05_Sub4 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub4;
 
@@ -6354,16 +6355,16 @@ typedef struct Obj_Kind05_Sub1 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub1;
 
@@ -6416,16 +6417,16 @@ typedef struct Obj_Kind05_Sub8 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub8;
 
@@ -6478,16 +6479,16 @@ typedef struct Obj_Kind05_Sub7 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub7;
 
@@ -6540,16 +6541,16 @@ typedef struct Obj_Kind05_Sub6 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub6;
 
@@ -6602,16 +6603,16 @@ typedef struct Obj_Kind05_Sub5 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub5;
 
@@ -6664,16 +6665,16 @@ typedef struct Obj_Kind05_Sub9 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub9;
 
@@ -6726,16 +6727,16 @@ typedef struct Obj_Kind05_Sub11 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub11;
 
@@ -6788,16 +6789,16 @@ typedef struct Obj_Kind05_Sub10 {
     unsigned int f_a0; /* w? */
     unsigned int f_a4; /* w? */
     unsigned int f_a8; /* w */
-    unsigned int f_ac; /* c */
+    unsigned int idleBank; /* c */
     unsigned char pad_b0[16];
-    unsigned int f_c0; /* c */
+    unsigned int talkBankCount; /* c */
     unsigned int f_c4; /* w */
     unsigned int f_c8; /* r */
     unsigned char pad_cc[4];
-    unsigned short f_d0; /* c */
-    unsigned short f_d2; /* c */
-    unsigned char f_d4; /* c */
-    unsigned char f_d5; /* c */
+    unsigned short hotX; /* c */
+    unsigned short hotY; /* c */
+    unsigned char flagD4; /* c */
+    unsigned char flagD5; /* c */
     unsigned char pad_d6[2];
 } Obj_Kind05_Sub10;
 

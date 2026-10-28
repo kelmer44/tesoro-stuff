@@ -203,3 +203,11 @@ Honest gaps (Phase 3 exit is **not fully met**):
 - Types were NOT applied inside Ghidra (the bridge cannot create data types). To apply: Ghidra > File > Parse C Source > `re/types/tesoro_types.h`, then set `this` types on methods.
 - Level subclasses (Cubierta, Mapa, Interface) and the 21 script-entry subclasses are placed by their constructor stores; the Level layout itself is only partly known because `Level_Load` decompiles badly.
 Also renamed `004035b0` to `InputDevice_Ctor` (it is the base-class constructor of Keyboard and Mouse).
+
+### Phase 3, gaps closed (28 Oct 2026)
+- **Sizes:** all 150 concrete classes now have an allocation size (evidence: factory sizes, InitSubsystems for keyboard 0x38 and mouse 0x40, InitGameWorld for the top object 0x6c and level family 0x9c, DialogueTable_Load for every script entry 0xd8). `InputDevice` and `Obj_MidBase` are marked abstract (never allocated alone).
+- **Width conflicts:** the 9 reported conflicts were the 64-bit name key at +0x44 accessed as two dwords (+0x44/+0x48) in some functions; the generator now marks such accesses `part of` the wider field (36 records marked). No real conflicts remain.
+- **Classes without fields:** 25 classes; 6 override nothing (their vtable equals the parent's slots, they are type tags) and the rest override one or two methods that touch no field of `this` (verb or item-use handlers that only call phrase functions). Nothing further to recover from field accesses.
+- **Field names:** added for Keyboard, Mouse, Cursor, script entries (`DlgScriptEntry`), the Kind05 family and Level (`re/field_names.json`).
+- **Plain (non-virtual) classes** are now covered by `re/plain_classes.json` and a section of `STRUCTS_GENERATED.md`: Clock, Pool, Archive, AnimPlayer, Camera, Display, SoundManager, SoundSlot, CdAudio, DialogueTable, TextTable, List, ObjectList. These are derived from hand-listed member functions and are weaker: members that reach fields only through pointer arithmetic (e.g. the dialogue table's entry array at +0x54, the pooled list nodes) are missing; CdAudio has no size. Treat them as lower bound layouts.
+- Still not done: applying the types inside Ghidra (bridge limitation), field names for most subtype classes, and the pooled-list/node layouts.
