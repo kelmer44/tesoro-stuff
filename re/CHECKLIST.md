@@ -8,7 +8,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 75 | 16% |
+| decompiled or later | 103 | 23% |
 | understood or later | 0 | 0% |
 | ported or later | 0 | 0% |
 | emu-compared or later | 0 | 0% |
@@ -37,9 +37,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00401860` FUN_00401860 · depth 1 · 86 lines · **untouched**
 - [ ] `00401a50` FUN_00401a50 · depth 1 · 12 lines · **untouched**
 - [ ] `00401a70` FUN_00401a70 · depth 1 · 15 lines · **untouched**
-- [ ] `00401bf0` FUN_00401bf0 · depth 1 · 16 lines · **untouched**
+- [ ] `00401bf0` inferred_Object_AttachToLevel · depth 1 · 16 lines · **decompiled** — sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0
 - [ ] `00401d30` FUN_00401d30 · depth 1 · 14 lines · **untouched**
-- [ ] `00401aa0` FUN_00401aa0 · depth 2 · 63 lines · **untouched**
+- [ ] `00401aa0` inferred_Obj_Kind00_Ctor · depth 2 · 63 lines · **decompiled** — 0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38)
 - [ ] `00401c30` FUN_00401c30 (vtable) · depth 2 · 11 lines · **untouched**
 
 ### Cluster 3: 00401d80–00401fa0 (0/8 ported)
@@ -49,7 +49,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00401dc0` FUN_00401dc0 · depth 0 · 13 lines · **untouched**
 - [ ] `00401f90` FUN_00401f90 (vtable) · depth 0 · 7 lines · **untouched**
 - [ ] `00401fa0` FUN_00401fa0 (vtable) · depth 0 · 7 lines · **untouched**
-- [ ] `00401de0` FUN_00401de0 · depth 2 · 15 lines · **untouched**
+- [ ] `00401de0` inferred_Object_SelectAnimBank · depth 2 · 15 lines · **decompiled** — picks bank index (byte +0x32), sets +0x38, starts AnimPlayer_SetRange
 - [ ] `00401e20` FUN_00401e20 (vtable) · depth 8 · 22 lines · **untouched**
 - [ ] `00401ee0` FUN_00401ee0 (vtable) · depth 8 · 18 lines · **untouched**
 
@@ -71,7 +71,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00402240` FUN_00402240 · depth 2 · 42 lines · **untouched**
 - [ ] `00402440` FUN_00402440 (vtable) · depth 2 · 74 lines · **untouched**
 - [ ] `004026d0` FUN_004026d0 · depth 3 · 84 lines · **untouched**
-- [ ] `00402300` FUN_00402300 · depth 4 · 46 lines · **untouched**
+- [ ] `00402300` inferred_Obj_Kind10_Ctor · depth 4 · 46 lines · **decompiled** — 0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object
 
 ### Cluster 6: 00402e50–00403300 (0/12 ported)
 
@@ -141,9 +141,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004067a0` FUN_004067a0 · depth 0 · 67 lines · **untouched**
 - [ ] `00406c50` FUN_00406c50 (vtable) · depth 1 · 44 lines · **untouched**
 - [ ] `004069e0` FUN_004069e0 (vtable) · depth 2 · 35 lines · **untouched**
-- [ ] `00406980` FUN_00406980 · depth 3 · 16 lines · **untouched**
+- [ ] `00406980` inferred_Obj_Kind01_Ctor · depth 3 · 16 lines · **decompiled** — 0x84 bytes, vtable 00428ac8, extends Kind00; Level_CreateObject stores the instance at level +0x90 (single special object per level)
 - [ ] `00407000` FUN_00407000 (vtable) · depth 3 · 30 lines · **untouched**
-- [ ] `00406a90` FUN_00406a90 · depth 12 · 88 lines · **untouched**
+- [ ] `00406a90` inferred_Obj_Kind13_Ctor · depth 12 · 88 lines · **decompiled** — 0xac bytes, extends MidBase; 14 per-subtype vtables selected by record byte 1; increments global instance counter 004420f8; phrase key lookup
 - [ ] `00406d50` FUN_00406d50 (vtable) · depth 12 · 123 lines · **untouched**
 - [ ] `00406190` inferred_DialogueTable_Load · depth 13 · 228 lines · **decompiled** — (archive offset, id): reads entries introduced by '.' bytes; each entry built by 00404810 and registered by kind
 
@@ -294,7 +294,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040dc70` inferred_Pool_AllocAlignedZero · depth 0 · 36 lines · **decompiled** — thiscall(size, align, arena) zeroed
 - [ ] `0040dcf0` inferred_Pool_SetArena · depth 0 · 20 lines · **decompiled** — carves arena N of given size out after the previous one (sizes 0x17a6b0, 3000000, 9600000, 650000 for arenas 0-3)
 - [ ] `0040dd30` inferred_Pool_ResetArena · depth 0 · 8 lines · **decompiled** — rewinds arena bump pointer to its start
-- [ ] `0040dd40` FUN_0040dd40 · depth 4 · 20 lines · **untouched**
+- [ ] `0040dd40` inferred_Obj_Kind23_Ctor · depth 4 · 20 lines · **decompiled** — 0xa4 bytes, vtable 0042b8e0, extends MidBase, sort value +0x5e = 2 (0 when flag byte set)
 - [ ] `0040dbc0` inferred_Pool_Ctor · depth 5 · 11 lines · **decompiled** — allocates param*1000 bytes (called with 0x39d0 = about 14.8 MB)
 - [ ] `0040dbf0` inferred_Pool_Dtor · depth 5 · 8 lines · **decompiled**
 - [ ] `0040da30` FUN_0040da30 (vtable) · depth 14 · 19 lines · **untouched**
@@ -310,9 +310,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040e560` FUN_0040e560 (vtable) · depth 2 · 10 lines · **untouched**
 - [ ] `0040e6a0` FUN_0040e6a0 (vtable) · depth 2 · 8 lines · **untouched**
 - [ ] `0040e6b0` FUN_0040e6b0 (vtable) · depth 2 · 20 lines · **untouched**
-- [ ] `0040e5c0` FUN_0040e5c0 · depth 3 · 30 lines · **untouched**
-- [ ] `0040df70` FUN_0040df70 · depth 4 · 12 lines · **untouched**
-- [ ] `0040e720` FUN_0040e720 · depth 4 · 10 lines · **untouched**
+- [ ] `0040e5c0` inferred_Obj_Kind03_Ctor · depth 3 · 30 lines · **decompiled** — 0x6c bytes, vtable 0042b9c0, extends Kind00; record byte 1 selects an animation start mode via AnimPlayer_SetRange (0 stay, 1 single frame, 2 loop from, 3 loop with flag)
+- [ ] `0040df70` inferred_Obj_Kind22_Ctor · depth 4 · 12 lines · **decompiled** — 0xa4 bytes, vtable 0042b950, extends MidBase, sort value +0x5e = 1
+- [ ] `0040e720` inferred_Obj_Kind04_Ctor · depth 4 · 10 lines · **decompiled** — 0x74 bytes, vtable 0042b9f8, extends Kind03
 - [ ] `0040ddc0` FUN_0040ddc0 (vtable) · depth 14 · 73 lines · **untouched**
 - [ ] `0040e000` FUN_0040e000 (vtable) · depth 15 · 142 lines · **untouched**
 
@@ -321,14 +321,14 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040f020` FUN_0040f020 (vtable) · depth 0 · 10 lines · **untouched**
 - [ ] `0040ebd0` FUN_0040ebd0 (vtable) · depth 1 · 14 lines · **untouched**
 - [ ] `0040ec00` FUN_0040ec00 (vtable) · depth 1 · 24 lines · **untouched**
-- [ ] `0040ec90` FUN_0040ec90 · depth 1 · 9 lines · **untouched**
+- [ ] `0040ec90` inferred_Obj_MidBase_DefaultCtor · depth 1 · 9 lines · **decompiled** — base object ctor with vtable 0042ba68 only
 - [ ] `0040e760` FUN_0040e760 (vtable) · depth 2 · 22 lines · **untouched**
 - [ ] `0040efa0` FUN_0040efa0 (vtable) · depth 2 · 24 lines · **untouched**
 - [ ] `0040e890` FUN_0040e890 (vtable) · depth 3 · 103 lines · **untouched**
-- [ ] `0040ecb0` FUN_0040ecb0 · depth 3 · 14 lines · **untouched**
+- [ ] `0040ecb0` inferred_Obj_MidBase_Ctor · depth 3 · 14 lines · **decompiled** — Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25
 - [ ] `0040ee70` FUN_0040ee70 (vtable) · depth 3 · 52 lines · **untouched**
-- [ ] `0040e7e0` FUN_0040e7e0 · depth 4 · 25 lines · **untouched**
-- [ ] `0040ed10` FUN_0040ed10 · depth 12 · 61 lines · **untouched**
+- [ ] `0040e7e0` inferred_Obj_Kind16_Ctor · depth 4 · 25 lines · **decompiled** — 0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)
+- [ ] `0040ed10` inferred_Obj_Kind09_Ctor · depth 12 · 61 lines · **decompiled** — 0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits
 
 ### Cluster 26: 0040f040–0040f270 (0/7 ported)
 
@@ -377,7 +377,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004102e0` FUN_004102e0 (vtable) · depth 3 · 20 lines · **untouched**
 - [ ] `004101f0` FUN_004101f0 (vtable) · depth 10 · 46 lines · **untouched**
 - [ ] `00410330` FUN_00410330 · depth 10 · 33 lines · **untouched**
-- [ ] `0040fec0` FUN_0040fec0 · depth 13 · 40 lines · **untouched**
+- [ ] `0040fec0` inferred_Obj_Kind05_Ctor · depth 13 · 40 lines · **decompiled** — 0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags
 
 ### Cluster 30: 004103f0–004108a0 (0/8 ported)
 
@@ -423,7 +423,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004139e0` FUN_004139e0 · depth 0 · 18 lines · **untouched**
 - [ ] `004132b0` inferred_Movie_Start · depth 11 · 123 lines · **decompiled** — DirectShow setup via CoCreateInstance, builds path c:\INSTALL\BIN\DATA\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed
 - [ ] `00413570` inferred_TextTable_Load · depth 11 · 121 lines · **decompiled** — (archive offset): reads lines of the OBJETOS.TXT-style table and stores records of 16 bytes; first pass counts lines
-- [ ] `00413940` FUN_00413940 · depth 11 · 27 lines · **untouched**
+- [ ] `00413940` inferred_PhraseLookup · depth 11 · 27 lines · **decompiled** — (name) hashes the name with NameHash64 and searches the four text tables 00442110..0044211c; MessageBox "frase no encontrada" if missing
 
 ### Cluster 34: 00413a10–00414560 (0/12 ported)
 
@@ -433,7 +433,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00413a90` inferred_Clock_Resume · depth 0 · 12 lines · **decompiled** — window activated: re-stamp last tick, resume
 - [ ] `00413ab0` inferred_Clock_Unfreeze · depth 0 · 8 lines · **decompiled** — clears frozen flag (end of frame)
 - [ ] `00413ac0` FUN_00413ac0 · depth 0 · 11 lines · **untouched**
-- [ ] `00413b00` FUN_00413b00 · depth 0 · 13 lines · **untouched**
+- [ ] `00413b00` inferred_RandomRange · depth 0 · 13 lines · **decompiled** — THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded
 - [ ] `00413b90` inferred_InitSubsystems · depth 6 · 140 lines · **decompiled** — builds CD, input, sound, video objects; error dialogs
 - [ ] `004144a0` inferred_Shutdown · depth 7 · 45 lines · **decompiled** — deletes display, sound, mouse, keyboard, archive, memory pools, clock in that order
 - [ ] `00414420` inferred_RunFrame · depth 10 · 21 lines · **decompiled** — per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end
@@ -449,11 +449,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00414a90` FUN_00414a90 (vtable) · depth 1 · 92 lines · **untouched**
 - [ ] `00414d50` FUN_00414d50 (vtable) · depth 1 · 18 lines · **untouched**
 - [ ] `004145f0` FUN_004145f0 (vtable) · depth 3 · 8 lines · **untouched**
-- [ ] `00414620` FUN_00414620 · depth 3 · 19 lines · **untouched**
-- [ ] `00414930` FUN_00414930 · depth 3 · 81 lines · **untouched**
+- [ ] `00414620` inferred_Obj_Kind07_Ctor · depth 3 · 19 lines · **decompiled** — 0x7c bytes, vtable 0042bc78, extends Kind00
+- [ ] `00414930` inferred_Obj_Kind02_Ctor · depth 3 · 81 lines · **decompiled** — 0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record
 - [ ] `00414c40` FUN_00414c40 (vtable) · depth 12 · 27 lines · **untouched**
 - [ ] `00414dc0` FUN_00414dc0 (vtable) · depth 12 · 12 lines · **untouched**
-- [ ] `00414be0` FUN_00414be0 · depth 13 · 16 lines · **untouched**
+- [ ] `00414be0` inferred_Obj_Kind06_Ctor · depth 13 · 16 lines · **decompiled** — 0xb0 bytes, vtable 0042bce8, extends Kind09; 10 per-subtype vtables chosen by record byte 1
 
 ### Cluster 36: 00414e80–00415440 (0/12 ported)
 
@@ -464,11 +464,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00415200` FUN_00415200 · depth 0 · 23 lines · **untouched**
 - [ ] `00415230` inferred_TopObject_Ctor · depth 1 · 9 lines · **decompiled** — base object with vtable 0042be08, inserted with priority 100 (frontmost)
 - [ ] `00415290` FUN_00415290 (vtable) · depth 1 · 27 lines · **untouched**
-- [ ] `004150d0` FUN_004150d0 · depth 3 · 17 lines · **untouched**
+- [ ] `004150d0` inferred_Obj_Kind14_Ctor · depth 3 · 17 lines · **decompiled** — 0x74 bytes, vtable 0042bdd0, extends Kind00; inserts itself in its room list
 - [ ] `00415350` FUN_00415350 (vtable) · depth 3 · 40 lines · **untouched**
 - [ ] `00415440` FUN_00415440 (vtable) · depth 3 · 17 lines · **untouched**
-- [ ] `00414e00` FUN_00414e00 · depth 4 · 13 lines · **untouched**
-- [ ] `00415250` FUN_00415250 · depth 4 · 10 lines · **untouched**
+- [ ] `00414e00` inferred_Obj_Kind08_Ctor · depth 4 · 13 lines · **decompiled** — 0xb4 bytes, vtable 0042bd60, extends Obj_MidBase
+- [ ] `00415250` inferred_Obj_Kind11_Ctor · depth 4 · 10 lines · **decompiled** — 0xbc bytes, vtable 0042be40, extends MidBase
 
 ### Cluster 37: 004157c0–00415960 (0/8 ported)
 
@@ -477,7 +477,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004157d0` inferred_MainWndProc · depth 2 · 34 lines · **decompiled** — WM_ACTIVATEAPP (0x1c): clock suspend/resume and restores the two display surfaces via vtable +0x6c; MM_MCINOTIFY (0x3b9) success: CD audio notify handler 00403dc0
 - [ ] `00415490` FUN_00415490 (vtable) · depth 3 · 85 lines · **untouched**
 - [ ] `00415640` FUN_00415640 (vtable) · depth 3 · 64 lines · **untouched**
-- [ ] `00415770` FUN_00415770 · depth 4 · 11 lines · **untouched**
+- [ ] `00415770` inferred_Obj_Kind15_Ctor · depth 4 · 11 lines · **decompiled** — 0xa0 bytes, vtable 0042beb0, extends MidBase, sort value +0x5e = 0x32
 - [ ] `00415880` inferred_CreateMainWindow · depth 7 · 37 lines · **decompiled** — RegisterClass + CreateWindowEx 640x480 (style 0x90000000, ex 8), ShowWindow, ShowCursor(0), sets init flags, calls InitSubsystems
 - [ ] `00415960` inferred_WinMain · depth 17 · 89 lines · **decompiled** — args: none=CD check+SETUP.EXE; '_$_$_ '+byte=game; 'Uninstall'
 
@@ -528,8 +528,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00417360` FUN_00417360 (vtable) · depth 2 · 22 lines · **untouched**
 - [ ] `004174b0` FUN_004174b0 (vtable) · depth 2 · 22 lines · **untouched**
 - [ ] `00417530` FUN_00417530 (vtable) · depth 2 · 22 lines · **untouched**
-- [ ] `00417720` FUN_00417720 · depth 12 · 63 lines · **untouched**
-- [ ] `004175b0` FUN_004175b0 · depth 13 · 10 lines · **untouched**
+- [ ] `00417720` inferred_Obj_Kind19_Ctor · depth 12 · 63 lines · **decompiled** — 0xa4 bytes, vtable 0042bf90; builds a temporary Kind00 and copies it field by field into this
+- [ ] `004175b0` inferred_Obj_Kind24_Ctor · depth 13 · 10 lines · **decompiled** — 0xa4 bytes, vtable 0042bf20, extends Kind09
 - [ ] `004173e0` FUN_004173e0 (vtable) · depth 14 · 35 lines · **untouched**
 - [ ] `004175f0` FUN_004175f0 (vtable) · depth 14 · 19 lines · **untouched**
 - [ ] `00417640` FUN_00417640 (vtable) · depth 14 · 44 lines · **untouched**
@@ -540,7 +540,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00417b30` FUN_00417b30 (vtable) · depth 0 · 7 lines · **untouched**
 - [ ] `004179b0` FUN_004179b0 (vtable) · depth 2 · 41 lines · **untouched**
 - [ ] `00417c80` FUN_00417c80 (vtable) · depth 2 · 10 lines · **untouched**
-- [ ] `00417ad0` FUN_00417ad0 · depth 4 · 12 lines · **untouched**
+- [ ] `00417ad0` inferred_Obj_Kind25_Ctor · depth 4 · 12 lines · **decompiled** — 0xa4 bytes, vtable 0042c000, extends MidBase
 - [ ] `00417ca0` FUN_00417ca0 (vtable) · depth 13 · 21 lines · **untouched**
 - [ ] `00417d00` FUN_00417d00 (vtable) · depth 13 · 31 lines · **untouched**
 - [ ] `00417b40` FUN_00417b40 (vtable) · depth 15 · 49 lines · **untouched**
@@ -585,7 +585,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 - [ ] `004191c0` FUN_004191c0 · depth 2 · 46 lines · **untouched**
 - [ ] `00419340` FUN_00419340 (vtable) · depth 4 · 23 lines · **untouched**
-- [ ] `004192c0` FUN_004192c0 · depth 12 · 24 lines · **untouched**
+- [ ] `004192c0` inferred_Obj_Kind21_Ctor · depth 12 · 24 lines · **decompiled** — 0xa4 bytes, vtable 0042c070, extends MidBase; builds a phrase key from a base string plus a digit from the record
 - [ ] `004193b0` FUN_004193b0 (vtable) · depth 12 · 69 lines · **untouched**
 - [ ] `004197a0` FUN_004197a0 (vtable) · depth 12 · 51 lines · **untouched**
 - [ ] `004198d0` FUN_004198d0 (vtable) · depth 12 · 37 lines · **untouched**

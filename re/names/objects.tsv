@@ -1,0 +1,30 @@
+# Object constructors reached from Level_CreateObject (28 Oct 2026). Kind numbers are the switch values of the record kind field (+0x18).
+# Names are kind-numbered on purpose; semantic names come when behaviour (vtable methods) is read.
+00401aa0	inferred_Obj_Kind00_Ctor	decompiled	0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38)
+00406980	inferred_Obj_Kind01_Ctor	decompiled	0x84 bytes, vtable 00428ac8, extends Kind00; Level_CreateObject stores the instance at level +0x90 (single special object per level)
+00414930	inferred_Obj_Kind02_Ctor	decompiled	0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record
+0040e5c0	inferred_Obj_Kind03_Ctor	decompiled	0x6c bytes, vtable 0042b9c0, extends Kind00; record byte 1 selects an animation start mode via AnimPlayer_SetRange (0 stay, 1 single frame, 2 loop from, 3 loop with flag)
+0040e720	inferred_Obj_Kind04_Ctor	decompiled	0x74 bytes, vtable 0042b9f8, extends Kind03
+0040fec0	inferred_Obj_Kind05_Ctor	decompiled	0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags
+00414be0	inferred_Obj_Kind06_Ctor	decompiled	0xb0 bytes, vtable 0042bce8, extends Kind09; 10 per-subtype vtables chosen by record byte 1
+00414620	inferred_Obj_Kind07_Ctor	decompiled	0x7c bytes, vtable 0042bc78, extends Kind00
+00414e00	inferred_Obj_Kind08_Ctor	decompiled	0xb4 bytes, vtable 0042bd60, extends Obj_MidBase
+0040ed10	inferred_Obj_Kind09_Ctor	decompiled	0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits
+0040ecb0	inferred_Obj_MidBase_Ctor	decompiled	Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25
+0040ec90	inferred_Obj_MidBase_DefaultCtor	decompiled	base object ctor with vtable 0042ba68 only
+00402300	inferred_Obj_Kind10_Ctor	decompiled	0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object
+00415250	inferred_Obj_Kind11_Ctor	decompiled	0xbc bytes, vtable 0042be40, extends MidBase
+00406a90	inferred_Obj_Kind13_Ctor	decompiled	0xac bytes, extends MidBase; 14 per-subtype vtables selected by record byte 1; increments global instance counter 004420f8; phrase key lookup
+004150d0	inferred_Obj_Kind14_Ctor	decompiled	0x74 bytes, vtable 0042bdd0, extends Kind00; inserts itself in its room list
+00415770	inferred_Obj_Kind15_Ctor	decompiled	0xa0 bytes, vtable 0042beb0, extends MidBase, sort value +0x5e = 0x32
+0040e7e0	inferred_Obj_Kind16_Ctor	decompiled	0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)
+00417720	inferred_Obj_Kind19_Ctor	decompiled	0xa4 bytes, vtable 0042bf90; builds a temporary Kind00 and copies it field by field into this
+004192c0	inferred_Obj_Kind21_Ctor	decompiled	0xa4 bytes, vtable 0042c070, extends MidBase; builds a phrase key from a base string plus a digit from the record
+0040df70	inferred_Obj_Kind22_Ctor	decompiled	0xa4 bytes, vtable 0042b950, extends MidBase, sort value +0x5e = 1
+0040dd40	inferred_Obj_Kind23_Ctor	decompiled	0xa4 bytes, vtable 0042b8e0, extends MidBase, sort value +0x5e = 2 (0 when flag byte set)
+004175b0	inferred_Obj_Kind24_Ctor	decompiled	0xa4 bytes, vtable 0042bf20, extends Kind09
+00417ad0	inferred_Obj_Kind25_Ctor	decompiled	0xa4 bytes, vtable 0042c000, extends MidBase
+00413b00	inferred_RandomRange	decompiled	THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded
+00413940	inferred_PhraseLookup	decompiled	(name) hashes the name with NameHash64 and searches the four text tables 00442110..0044211c; MessageBox "frase no encontrada" if missing
+00401bf0	inferred_Object_AttachToLevel	decompiled	sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0
+00401de0	inferred_Object_SelectAnimBank	decompiled	picks bank index (byte +0x32), sets +0x38, starts AnimPlayer_SetRange

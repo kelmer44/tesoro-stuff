@@ -238,7 +238,7 @@
  {
   "addr": "00401aa0",
   "ghidra_name": "FUN_00401aa0",
-  "name": "",
+  "name": "inferred_Obj_Kind00_Ctor",
   "tier": "game",
   "lines": 63,
   "decompile_ok": true,
@@ -264,9 +264,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38)"
  },
  {
   "addr": "00401bc0",
@@ -293,7 +293,7 @@
  {
   "addr": "00401bf0",
   "ghidra_name": "FUN_00401bf0",
-  "name": "",
+  "name": "inferred_Object_AttachToLevel",
   "tier": "game",
   "lines": 16,
   "decompile_ok": true,
@@ -308,9 +308,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0"
  },
  {
   "addr": "00401c20",
@@ -3488,7 +3488,7 @@
  {
   "addr": "00401de0",
   "ghidra_name": "FUN_00401de0",
-  "name": "",
+  "name": "inferred_Object_SelectAnimBank",
   "tier": "game",
   "lines": 15,
   "decompile_ok": true,
@@ -3526,9 +3526,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 3,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "picks bank index (byte +0x32), sets +0x38, starts AnimPlayer_SetRange"
  },
  {
   "addr": "00401e20",
@@ -8480,7 +8480,7 @@
  {
   "addr": "00402300",
   "ghidra_name": "FUN_00402300",
-  "name": "",
+  "name": "inferred_Obj_Kind10_Ctor",
   "tier": "game",
   "lines": 46,
   "decompile_ok": true,
@@ -8500,9 +8500,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 5,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object"
  },
  {
   "addr": "004023f0",
@@ -10156,7 +10156,7 @@
  {
   "addr": "00406980",
   "ghidra_name": "FUN_00406980",
-  "name": "",
+  "name": "inferred_Obj_Kind01_Ctor",
   "tier": "game",
   "lines": 16,
   "decompile_ok": true,
@@ -10170,9 +10170,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 11,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x84 bytes, vtable 00428ac8, extends Kind00; Level_CreateObject stores the instance at level +0x90 (single special object per level)"
  },
  {
   "addr": "004069e0",
@@ -10204,7 +10204,7 @@
  {
   "addr": "00406a90",
   "ghidra_name": "FUN_00406a90",
-  "name": "",
+  "name": "inferred_Obj_Kind13_Ctor",
   "tier": "game",
   "lines": 88,
   "decompile_ok": true,
@@ -10222,9 +10222,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 11,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xac bytes, extends MidBase; 14 per-subtype vtables selected by record byte 1; increments global instance counter 004420f8; phrase key lookup"
  },
  {
   "addr": "00406c50",
@@ -14089,7 +14089,7 @@
  {
   "addr": "0040dd40",
   "ghidra_name": "FUN_0040dd40",
-  "name": "",
+  "name": "inferred_Obj_Kind23_Ctor",
   "tier": "game",
   "lines": 20,
   "decompile_ok": true,
@@ -14104,9 +14104,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 23,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xa4 bytes, vtable 0042b8e0, extends MidBase, sort value +0x5e = 2 (0 when flag byte set)"
  },
  {
   "addr": "0040ddc0",
@@ -14138,7 +14138,7 @@
  {
   "addr": "0040df70",
   "ghidra_name": "FUN_0040df70",
-  "name": "",
+  "name": "inferred_Obj_Kind22_Ctor",
   "tier": "game",
   "lines": 12,
   "decompile_ok": true,
@@ -14152,9 +14152,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 24,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xa4 bytes, vtable 0042b950, extends MidBase, sort value +0x5e = 1"
  },
  {
   "addr": "0040dfc0",
@@ -14322,7 +14322,7 @@
  {
   "addr": "0040e5c0",
   "ghidra_name": "FUN_0040e5c0",
-  "name": "",
+  "name": "inferred_Obj_Kind03_Ctor",
   "tier": "game",
   "lines": 30,
   "decompile_ok": true,
@@ -14340,9 +14340,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 24,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x6c bytes, vtable 0042b9c0, extends Kind00; record byte 1 selects an animation start mode via AnimPlayer_SetRange (0 stay, 1 single frame, 2 loop from, 3 loop with flag)"
  },
  {
   "addr": "0040e6a0",
@@ -14403,7 +14403,7 @@
  {
   "addr": "0040e720",
   "ghidra_name": "FUN_0040e720",
-  "name": "",
+  "name": "inferred_Obj_Kind04_Ctor",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -14417,9 +14417,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 24,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x74 bytes, vtable 0042b9f8, extends Kind03"
  },
  {
   "addr": "0040e760",
@@ -14448,7 +14448,7 @@
  {
   "addr": "0040e7e0",
   "ghidra_name": "FUN_0040e7e0",
-  "name": "",
+  "name": "inferred_Obj_Kind16_Ctor",
   "tier": "game",
   "lines": 25,
   "decompile_ok": true,
@@ -14464,9 +14464,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 25,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)"
  },
  {
   "addr": "0040e890",
@@ -14550,7 +14550,7 @@
  {
   "addr": "0040ec90",
   "ghidra_name": "FUN_0040ec90",
-  "name": "",
+  "name": "inferred_Obj_MidBase_DefaultCtor",
   "tier": "game",
   "lines": 9,
   "decompile_ok": true,
@@ -14568,14 +14568,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 25,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "base object ctor with vtable 0042ba68 only"
  },
  {
   "addr": "0040ecb0",
   "ghidra_name": "FUN_0040ecb0",
-  "name": "",
+  "name": "inferred_Obj_MidBase_Ctor",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -14596,14 +14596,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 25,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25"
  },
  {
   "addr": "0040ed10",
   "ghidra_name": "FUN_0040ed10",
-  "name": "",
+  "name": "inferred_Obj_Kind09_Ctor",
   "tier": "game",
   "lines": 61,
   "decompile_ok": true,
@@ -14622,9 +14622,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 25,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits"
  },
  {
   "addr": "0040ee70",
@@ -21195,7 +21195,7 @@
  {
   "addr": "0040fec0",
   "ghidra_name": "FUN_0040fec0",
-  "name": "",
+  "name": "inferred_Obj_Kind05_Ctor",
   "tier": "game",
   "lines": 40,
   "decompile_ok": true,
@@ -21210,9 +21210,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags"
  },
  {
   "addr": "0040ffa0",
@@ -22506,7 +22506,7 @@
  {
   "addr": "00413940",
   "ghidra_name": "FUN_00413940",
-  "name": "",
+  "name": "inferred_PhraseLookup",
   "tier": "game",
   "lines": 27,
   "decompile_ok": true,
@@ -22534,9 +22534,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 33,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(name) hashes the name with NameHash64 and searches the four text tables 00442110..0044211c; MessageBox \"frase no encontrada\" if missing"
  },
  {
   "addr": "004139c0",
@@ -22715,7 +22715,7 @@
  {
   "addr": "00413b00",
   "ghidra_name": "FUN_00413b00",
-  "name": "",
+  "name": "inferred_RandomRange",
   "tier": "game",
   "lines": 13,
   "decompile_ok": true,
@@ -22731,9 +22731,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded"
  },
  {
   "addr": "00413b90",
@@ -22964,7 +22964,7 @@
  {
   "addr": "00414620",
   "ghidra_name": "FUN_00414620",
-  "name": "",
+  "name": "inferred_Obj_Kind07_Ctor",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -22979,9 +22979,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 35,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x7c bytes, vtable 0042bc78, extends Kind00"
  },
  {
   "addr": "004146b0",
@@ -23030,7 +23030,7 @@
  {
   "addr": "00414930",
   "ghidra_name": "FUN_00414930",
-  "name": "",
+  "name": "inferred_Obj_Kind02_Ctor",
   "tier": "game",
   "lines": 81,
   "decompile_ok": true,
@@ -23046,9 +23046,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 35,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record"
  },
  {
   "addr": "00414a90",
@@ -23079,7 +23079,7 @@
  {
   "addr": "00414be0",
   "ghidra_name": "FUN_00414be0",
-  "name": "",
+  "name": "inferred_Obj_Kind06_Ctor",
   "tier": "game",
   "lines": 16,
   "decompile_ok": true,
@@ -23094,9 +23094,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 35,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xb0 bytes, vtable 0042bce8, extends Kind09; 10 per-subtype vtables chosen by record byte 1"
  },
  {
   "addr": "00414c40",
@@ -23260,7 +23260,7 @@
  {
   "addr": "00414e00",
   "ghidra_name": "FUN_00414e00",
-  "name": "",
+  "name": "inferred_Obj_Kind08_Ctor",
   "tier": "game",
   "lines": 13,
   "decompile_ok": true,
@@ -23275,9 +23275,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 36,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xb4 bytes, vtable 0042bd60, extends Obj_MidBase"
  },
  {
   "addr": "00414e80",
@@ -23323,7 +23323,7 @@
  {
   "addr": "004150d0",
   "ghidra_name": "FUN_004150d0",
-  "name": "",
+  "name": "inferred_Obj_Kind14_Ctor",
   "tier": "game",
   "lines": 17,
   "decompile_ok": true,
@@ -23338,9 +23338,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 36,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x74 bytes, vtable 0042bdd0, extends Kind00; inserts itself in its room list"
  },
  {
   "addr": "00415120",
@@ -23429,7 +23429,7 @@
  {
   "addr": "00415250",
   "ghidra_name": "FUN_00415250",
-  "name": "",
+  "name": "inferred_Obj_Kind11_Ctor",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -23443,9 +23443,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 36,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xbc bytes, vtable 0042be40, extends MidBase"
  },
  {
   "addr": "00415290",
@@ -23573,7 +23573,7 @@
  {
   "addr": "00415770",
   "ghidra_name": "FUN_00415770",
-  "name": "",
+  "name": "inferred_Obj_Kind15_Ctor",
   "tier": "game",
   "lines": 11,
   "decompile_ok": true,
@@ -23587,9 +23587,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 37,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xa0 bytes, vtable 0042beb0, extends MidBase, sort value +0x5e = 0x32"
  },
  {
   "addr": "004157b0",
@@ -24847,7 +24847,7 @@
  {
   "addr": "004175b0",
   "ghidra_name": "FUN_004175b0",
-  "name": "",
+  "name": "inferred_Obj_Kind24_Ctor",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -24861,9 +24861,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 41,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xa4 bytes, vtable 0042bf20, extends Kind09"
  },
  {
   "addr": "004175f0",
@@ -24924,7 +24924,7 @@
  {
   "addr": "00417720",
   "ghidra_name": "FUN_00417720",
-  "name": "",
+  "name": "inferred_Obj_Kind19_Ctor",
   "tier": "game",
   "lines": 63,
   "decompile_ok": true,
@@ -24941,9 +24941,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 41,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xa4 bytes, vtable 0042bf90; builds a temporary Kind00 and copies it field by field into this"
  },
  {
   "addr": "004178b0",
@@ -25002,7 +25002,7 @@
  {
   "addr": "00417ad0",
   "ghidra_name": "FUN_00417ad0",
-  "name": "",
+  "name": "inferred_Obj_Kind25_Ctor",
   "tier": "game",
   "lines": 12,
   "decompile_ok": true,
@@ -25017,9 +25017,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 42,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xa4 bytes, vtable 0042c000, extends MidBase"
  },
  {
   "addr": "00417b30",
@@ -26434,7 +26434,7 @@
  {
   "addr": "004192c0",
   "ghidra_name": "FUN_004192c0",
-  "name": "",
+  "name": "inferred_Obj_Kind21_Ctor",
   "tier": "game",
   "lines": 24,
   "decompile_ok": true,
@@ -26449,9 +26449,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 46,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0xa4 bytes, vtable 0042c070, extends MidBase; builds a phrase key from a base string plus a digit from the record"
  },
  {
   "addr": "00419340",

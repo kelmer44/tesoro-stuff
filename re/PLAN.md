@@ -109,3 +109,13 @@ Startup structure read from the fresh decompilation:
   with different node sizes. A port can use plain containers but must keep ordering semantics (insert by priority, insert by +0x4c, push back).
 - Caveat: `Level_Load` is garbled in the decompiler output because of its huge stack frame; port from disassembly.
 - Still unread: `Level_CreateObject` per-kind constructors, `004070c0` (game-state object, 0x114 bytes), `Movie_Start` remainder, dialogue entry class (`00404810`).
+
+### Phase 2, object constructors (28 Oct 2026)
+`re/names/objects.tsv` (27 functions) and `re/object_kinds.json` (kind -> constructor, size, per-subtype vtables, parsed from `Level_CreateObject`).
+- The factory has **25 kinds** (values 0..25, kind 18 absent and creates nothing), not 23. Legacy notes said 23; treat the fresh number as authoritative until the scene-record format is read.
+- Constructors: ~22 distinct ctors. Kinds 9, 12, 17 and 20 share constructor `0040ed10` and differ only in per-subtype vtables (98 subtype vtables across kinds 5, 6, 12, 13, 17, 20 and 9's alias).
+  Puzzle and scene behaviour therefore lives in many small classes in the executable, selected by a subtype byte in the level record; this is why the game tier has ~450 functions.
+- Hierarchy: `Obj_Kind00` (sprite/animated base) <- `Obj_MidBase` <- kinds 8, 11, 13, 15, 21, 22, 23, 25; `Kind00` <- kinds 1, 2, 3 (<- 4, 10, 16), 7, 14, 19; `Kind09` <- kinds 5, 6, 24 (and 12, 17, 20 as aliases).
+- **Random numbers:** `RandomRange(min,max)` derives its value from bit-shuffled low bits of `GetTickCount()`; it is not seeded and cannot be replayed. Anything the original does "randomly" is time-driven. The port needs an equivalent time-driven source, and original-runtime comparisons must not assume determinism.
+- Phrase text is looked up by name hash across four tables (`PhraseLookup`); a missing phrase shows a message box.
+- Kind 10 sets mouse bounds, so it is probably the pointer/cursor object (hypothesis).
