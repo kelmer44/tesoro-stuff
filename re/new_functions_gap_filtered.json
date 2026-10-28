@@ -1,0 +1,2682 @@
+[
+ {
+  "addr": "00402440",
+  "src": "gap-scan",
+  "evidence": [
+   "118 instructions to ret at 004025a4"
+  ],
+  "instr": 118,
+  "end": "004025a4",
+  "decodes": true
+ },
+ {
+  "addr": "004024a0",
+  "src": "gap-scan",
+  "evidence": [
+   "90 instructions to ret at 004025a4"
+  ],
+  "instr": 90,
+  "end": "004025a4",
+  "decodes": true
+ },
+ {
+  "addr": "004024b0",
+  "src": "gap-scan",
+  "evidence": [
+   "84 instructions to ret at 004025a4"
+  ],
+  "instr": 84,
+  "end": "004025a4",
+  "decodes": true
+ },
+ {
+  "addr": "004038f0",
+  "src": "gap-scan",
+  "evidence": [
+   "51 instructions to ret at 00403973"
+  ],
+  "instr": 51,
+  "end": "00403973",
+  "decodes": true
+ },
+ {
+  "addr": "00403920",
+  "src": "gap-scan",
+  "evidence": [
+   "33 instructions to ret at 00403973"
+  ],
+  "instr": 33,
+  "end": "00403973",
+  "decodes": true
+ },
+ {
+  "addr": "00403960",
+  "src": "gap-scan",
+  "evidence": [
+   "8 instructions to ret at 00403973"
+  ],
+  "instr": 8,
+  "end": "00403973",
+  "decodes": true
+ },
+ {
+  "addr": "00403b50",
+  "src": "gap-scan",
+  "evidence": [
+   "5 instructions to ret at 00403b5c"
+  ],
+  "instr": 5,
+  "end": "00403b5c",
+  "decodes": true
+ },
+ {
+  "addr": "00405920",
+  "src": "gap-scan",
+  "evidence": [
+   "78 instructions to ret at 00405a39"
+  ],
+  "instr": 78,
+  "end": "00405a39",
+  "decodes": true
+ },
+ {
+  "addr": "00405990",
+  "src": "gap-scan",
+  "evidence": [
+   "53 instructions to ret at 00405a39"
+  ],
+  "instr": 53,
+  "end": "00405a39",
+  "decodes": true
+ },
+ {
+  "addr": "004059c0",
+  "src": "gap-scan",
+  "evidence": [
+   "11 instructions to ret at 004059e7"
+  ],
+  "instr": 11,
+  "end": "004059e7",
+  "decodes": true
+ },
+ {
+  "addr": "00406780",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 004067a0"
+  ],
+  "instr": 13,
+  "end": "004067a0",
+  "decodes": true
+ },
+ {
+  "addr": "004069e0",
+  "src": "gap-scan",
+  "evidence": [
+   "59 instructions to ret at 00406a85"
+  ],
+  "instr": 59,
+  "end": "00406a85",
+  "decodes": true
+ },
+ {
+  "addr": "00406ec0",
+  "src": "gap-scan",
+  "evidence": [
+   "76 instructions to ret at 00406fa6"
+  ],
+  "instr": 76,
+  "end": "00406fa6",
+  "decodes": true
+ },
+ {
+  "addr": "00406ee0",
+  "src": "gap-scan",
+  "evidence": [
+   "19 instructions to ret at 00406f20"
+  ],
+  "instr": 19,
+  "end": "00406f20",
+  "decodes": true
+ },
+ {
+  "addr": "00406f30",
+  "src": "gap-scan",
+  "evidence": [
+   "39 instructions to ret at 00406fa6"
+  ],
+  "instr": 39,
+  "end": "00406fa6",
+  "decodes": true
+ },
+ {
+  "addr": "00406f50",
+  "src": "gap-scan",
+  "evidence": [
+   "23 instructions to ret at 00406f9a"
+  ],
+  "instr": 23,
+  "end": "00406f9a",
+  "decodes": true
+ },
+ {
+  "addr": "00406f80",
+  "src": "gap-scan",
+  "evidence": [
+   "10 instructions to ret at 00406f9a"
+  ],
+  "instr": 10,
+  "end": "00406f9a",
+  "decodes": true
+ },
+ {
+  "addr": "00407020",
+  "src": "gap-scan",
+  "evidence": [
+   "44 instructions to ret at 004070b2"
+  ],
+  "instr": 44,
+  "end": "004070b2",
+  "decodes": true
+ },
+ {
+  "addr": "00407080",
+  "src": "gap-scan",
+  "evidence": [
+   "15 instructions to ret at 004070b2"
+  ],
+  "instr": 15,
+  "end": "004070b2",
+  "decodes": true
+ },
+ {
+  "addr": "00407510",
+  "src": "gap-scan",
+  "evidence": [
+   "42 instructions to ret at 00407578"
+  ],
+  "instr": 42,
+  "end": "00407578",
+  "decodes": true
+ },
+ {
+  "addr": "00407530",
+  "src": "gap-scan",
+  "evidence": [
+   "29 instructions to ret at 00407578"
+  ],
+  "instr": 29,
+  "end": "00407578",
+  "decodes": true
+ },
+ {
+  "addr": "00407540",
+  "src": "gap-scan",
+  "evidence": [
+   "23 instructions to ret at 00407578"
+  ],
+  "instr": 23,
+  "end": "00407578",
+  "decodes": true
+ },
+ {
+  "addr": "00407790",
+  "src": "gap-scan",
+  "evidence": [
+   "182 instructions to ret at 004079c5"
+  ],
+  "instr": 182,
+  "end": "004079c5",
+  "decodes": true
+ },
+ {
+  "addr": "004077e0",
+  "src": "gap-scan",
+  "evidence": [
+   "157 instructions to ret at 004079c5"
+  ],
+  "instr": 157,
+  "end": "004079c5",
+  "decodes": true
+ },
+ {
+  "addr": "00407890",
+  "src": "gap-scan",
+  "evidence": [
+   "108 instructions to ret at 004079c5"
+  ],
+  "instr": 108,
+  "end": "004079c5",
+  "decodes": true
+ },
+ {
+  "addr": "004078d0",
+  "src": "gap-scan",
+  "evidence": [
+   "56 instructions to ret at 00407975"
+  ],
+  "instr": 56,
+  "end": "00407975",
+  "decodes": true
+ },
+ {
+  "addr": "00407920",
+  "src": "gap-scan",
+  "evidence": [
+   "31 instructions to ret at 00407975"
+  ],
+  "instr": 31,
+  "end": "00407975",
+  "decodes": true
+ },
+ {
+  "addr": "00407a80",
+  "src": "gap-scan",
+  "evidence": [
+   "6 instructions to ret at 00407a9a"
+  ],
+  "instr": 6,
+  "end": "00407a9a",
+  "decodes": true
+ },
+ {
+  "addr": "004080a0",
+  "src": "gap-scan",
+  "evidence": [
+   "16 instructions to ret at 004080d5"
+  ],
+  "instr": 16,
+  "end": "004080d5",
+  "decodes": true
+ },
+ {
+  "addr": "004087e0",
+  "src": "gap-scan",
+  "evidence": [
+   "4 instructions to ret at 004087f1"
+  ],
+  "instr": 4,
+  "end": "004087f1",
+  "decodes": true
+ },
+ {
+  "addr": "0040c000",
+  "src": "gap-scan",
+  "evidence": [
+   "24 instructions to ret at 0040c040"
+  ],
+  "instr": 24,
+  "end": "0040c040",
+  "decodes": true
+ },
+ {
+  "addr": "0040c020",
+  "src": "gap-scan",
+  "evidence": [
+   "16 instructions to ret at 0040c040"
+  ],
+  "instr": 16,
+  "end": "0040c040",
+  "decodes": true
+ },
+ {
+  "addr": "0040c030",
+  "src": "gap-scan",
+  "evidence": [
+   "12 instructions to ret at 0040c040"
+  ],
+  "instr": 12,
+  "end": "0040c040",
+  "decodes": true
+ },
+ {
+  "addr": "0040c0e0",
+  "src": "gap-scan",
+  "evidence": [
+   "4 instructions to ret at 0040c0ec"
+  ],
+  "instr": 4,
+  "end": "0040c0ec",
+  "decodes": true
+ },
+ {
+  "addr": "0040c140",
+  "src": "gap-scan",
+  "evidence": [
+   "56 instructions to ret at 0040c1e6"
+  ],
+  "instr": 56,
+  "end": "0040c1e6",
+  "decodes": true
+ },
+ {
+  "addr": "0040c160",
+  "src": "gap-scan",
+  "evidence": [
+   "45 instructions to ret at 0040c1e6"
+  ],
+  "instr": 45,
+  "end": "0040c1e6",
+  "decodes": true
+ },
+ {
+  "addr": "0040c190",
+  "src": "gap-scan",
+  "evidence": [
+   "28 instructions to ret at 0040c1e6"
+  ],
+  "instr": 28,
+  "end": "0040c1e6",
+  "decodes": true
+ },
+ {
+  "addr": "0040c1a0",
+  "src": "gap-scan",
+  "evidence": [
+   "25 instructions to ret at 0040c1e6"
+  ],
+  "instr": 25,
+  "end": "0040c1e6",
+  "decodes": true
+ },
+ {
+  "addr": "0040c250",
+  "src": "gap-scan",
+  "evidence": [
+   "37 instructions to ret at 0040c2bd"
+  ],
+  "instr": 37,
+  "end": "0040c2bd",
+  "decodes": true
+ },
+ {
+  "addr": "0040c290",
+  "src": "gap-scan",
+  "evidence": [
+   "17 instructions to ret at 0040c2bd"
+  ],
+  "instr": 17,
+  "end": "0040c2bd",
+  "decodes": true
+ },
+ {
+  "addr": "0040c2b0",
+  "src": "gap-scan",
+  "evidence": [
+   "5 instructions to ret at 0040c2bd"
+  ],
+  "instr": 5,
+  "end": "0040c2bd",
+  "decodes": true
+ },
+ {
+  "addr": "0040c3c0",
+  "src": "gap-scan",
+  "evidence": [
+   "59 instructions to ret at 0040c474"
+  ],
+  "instr": 59,
+  "end": "0040c474",
+  "decodes": true
+ },
+ {
+  "addr": "0040c460",
+  "src": "gap-scan",
+  "evidence": [
+   "9 instructions to ret at 0040c474"
+  ],
+  "instr": 9,
+  "end": "0040c474",
+  "decodes": true
+ },
+ {
+  "addr": "0040c4d0",
+  "src": "gap-scan",
+  "evidence": [
+   "47 instructions to ret at 0040c556"
+  ],
+  "instr": 47,
+  "end": "0040c556",
+  "decodes": true
+ },
+ {
+  "addr": "0040c880",
+  "src": "gap-scan",
+  "evidence": [
+   "57 instructions to ret at 0040c8f0"
+  ],
+  "instr": 57,
+  "end": "0040c8f0",
+  "decodes": true
+ },
+ {
+  "addr": "0040c8e0",
+  "src": "gap-scan",
+  "evidence": [
+   "4 instructions to ret at 0040c8ed"
+  ],
+  "instr": 4,
+  "end": "0040c8ed",
+  "decodes": true
+ },
+ {
+  "addr": "0040c9e0",
+  "src": "gap-scan",
+  "evidence": [
+   "16 instructions to ret at 0040ca10"
+  ],
+  "instr": 16,
+  "end": "0040ca10",
+  "decodes": true
+ },
+ {
+  "addr": "0040cdf0",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 0040ce19"
+  ],
+  "instr": 13,
+  "end": "0040ce19",
+  "decodes": true
+ },
+ {
+  "addr": "0040cfd0",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 0040cff9"
+  ],
+  "instr": 13,
+  "end": "0040cff9",
+  "decodes": true
+ },
+ {
+  "addr": "0040d070",
+  "src": "gap-scan",
+  "evidence": [
+   "43 instructions to ret at 0040d0f4"
+  ],
+  "instr": 43,
+  "end": "0040d0f4",
+  "decodes": true
+ },
+ {
+  "addr": "0040d0c0",
+  "src": "gap-scan",
+  "evidence": [
+   "20 instructions to ret at 0040d0f4"
+  ],
+  "instr": 20,
+  "end": "0040d0f4",
+  "decodes": true
+ },
+ {
+  "addr": "0040d0d0",
+  "src": "gap-scan",
+  "evidence": [
+   "16 instructions to ret at 0040d0f4"
+  ],
+  "instr": 16,
+  "end": "0040d0f4",
+  "decodes": true
+ },
+ {
+  "addr": "0040d1a0",
+  "src": "gap-scan",
+  "evidence": [
+   "55 instructions to ret at 0040d236"
+  ],
+  "instr": 55,
+  "end": "0040d236",
+  "decodes": true
+ },
+ {
+  "addr": "0040d1c0",
+  "src": "gap-scan",
+  "evidence": [
+   "40 instructions to ret at 0040d236"
+  ],
+  "instr": 40,
+  "end": "0040d236",
+  "decodes": true
+ },
+ {
+  "addr": "0040d200",
+  "src": "gap-scan",
+  "evidence": [
+   "22 instructions to ret at 0040d236"
+  ],
+  "instr": 22,
+  "end": "0040d236",
+  "decodes": true
+ },
+ {
+  "addr": "0040d250",
+  "src": "gap-scan",
+  "evidence": [
+   "10 instructions to ret at 0040d26d"
+  ],
+  "instr": 10,
+  "end": "0040d26d",
+  "decodes": true
+ },
+ {
+  "addr": "0040d330",
+  "src": "gap-scan",
+  "evidence": [
+   "24 instructions to ret at 0040d37c"
+  ],
+  "instr": 24,
+  "end": "0040d37c",
+  "decodes": true
+ },
+ {
+  "addr": "0040d450",
+  "src": "gap-scan",
+  "evidence": [
+   "47 instructions to ret at 0040d4d6"
+  ],
+  "instr": 47,
+  "end": "0040d4d6",
+  "decodes": true
+ },
+ {
+  "addr": "0040d5a0",
+  "src": "gap-scan",
+  "evidence": [
+   "42 instructions to ret at 0040d612"
+  ],
+  "instr": 42,
+  "end": "0040d612",
+  "decodes": true
+ },
+ {
+  "addr": "0040d5b0",
+  "src": "gap-scan",
+  "evidence": [
+   "35 instructions to ret at 0040d612"
+  ],
+  "instr": 35,
+  "end": "0040d612",
+  "decodes": true
+ },
+ {
+  "addr": "0040d5d0",
+  "src": "gap-scan",
+  "evidence": [
+   "25 instructions to ret at 0040d612"
+  ],
+  "instr": 25,
+  "end": "0040d612",
+  "decodes": true
+ },
+ {
+  "addr": "0040d790",
+  "src": "gap-scan",
+  "evidence": [
+   "48 instructions to ret at 0040d817"
+  ],
+  "instr": 48,
+  "end": "0040d817",
+  "decodes": true
+ },
+ {
+  "addr": "0040d7f0",
+  "src": "gap-scan",
+  "evidence": [
+   "16 instructions to ret at 0040d817"
+  ],
+  "instr": 16,
+  "end": "0040d817",
+  "decodes": true
+ },
+ {
+  "addr": "0040d9a0",
+  "src": "gap-scan",
+  "evidence": [
+   "47 instructions to ret at 0040da26"
+  ],
+  "instr": 47,
+  "end": "0040da26",
+  "decodes": true
+ },
+ {
+  "addr": "0040ddc0",
+  "src": "gap-scan",
+  "evidence": [
+   "130 instructions to ret at 0040df69"
+  ],
+  "instr": 130,
+  "end": "0040df69",
+  "decodes": true
+ },
+ {
+  "addr": "0040de00",
+  "src": "gap-scan",
+  "evidence": [
+   "112 instructions to ret at 0040df69"
+  ],
+  "instr": 112,
+  "end": "0040df69",
+  "decodes": true
+ },
+ {
+  "addr": "0040de40",
+  "src": "gap-scan",
+  "evidence": [
+   "97 instructions to ret at 0040df69"
+  ],
+  "instr": 97,
+  "end": "0040df69",
+  "decodes": true
+ },
+ {
+  "addr": "0040dea0",
+  "src": "gap-scan",
+  "evidence": [
+   "69 instructions to ret at 0040df69"
+  ],
+  "instr": 69,
+  "end": "0040df69",
+  "decodes": true
+ },
+ {
+  "addr": "0040df10",
+  "src": "gap-scan",
+  "evidence": [
+   "29 instructions to ret at 0040df69"
+  ],
+  "instr": 29,
+  "end": "0040df69",
+  "decodes": true
+ },
+ {
+  "addr": "0040df30",
+  "src": "gap-scan",
+  "evidence": [
+   "21 instructions to ret at 0040df69"
+  ],
+  "instr": 21,
+  "end": "0040df69",
+  "decodes": true
+ },
+ {
+  "addr": "0040e000",
+  "src": "gap-scan",
+  "evidence": [
+   "375 instructions to ret at 0040e535"
+  ],
+  "instr": 375,
+  "end": "0040e535",
+  "decodes": true
+ },
+ {
+  "addr": "0040e010",
+  "src": "gap-scan",
+  "evidence": [
+   "372 instructions to ret at 0040e535"
+  ],
+  "instr": 372,
+  "end": "0040e535",
+  "decodes": true
+ },
+ {
+  "addr": "0040e020",
+  "src": "gap-scan",
+  "evidence": [
+   "367 instructions to ret at 0040e535"
+  ],
+  "instr": 367,
+  "end": "0040e535",
+  "decodes": true
+ },
+ {
+  "addr": "0040e090",
+  "src": "gap-scan",
+  "evidence": [
+   "339 instructions to ret at 0040e535"
+  ],
+  "instr": 339,
+  "end": "0040e535",
+  "decodes": true
+ },
+ {
+  "addr": "0040e0a0",
+  "src": "gap-scan",
+  "evidence": [
+   "336 instructions to ret at 0040e535"
+  ],
+  "instr": 336,
+  "end": "0040e535",
+  "decodes": true
+ },
+ {
+  "addr": "0040e100",
+  "src": "gap-scan",
+  "evidence": [
+   "309 instructions to ret at 0040e535"
+  ],
+  "instr": 309,
+  "end": "0040e535",
+  "decodes": true
+ },
+ {
+  "addr": "0040e140",
+  "src": "gap-scan",
+  "evidence": [
+   "12 instructions to ret at 0040e16f"
+  ],
+  "instr": 12,
+  "end": "0040e16f",
+  "decodes": true
+ },
+ {
+  "addr": "0040e190",
+  "src": "gap-scan",
+  "evidence": [
+   "40 instructions to ret at 0040e213"
+  ],
+  "instr": 40,
+  "end": "0040e213",
+  "decodes": true
+ },
+ {
+  "addr": "0040e1b0",
+  "src": "gap-scan",
+  "evidence": [
+   "29 instructions to ret at 0040e213"
+  ],
+  "instr": 29,
+  "end": "0040e213",
+  "decodes": true
+ },
+ {
+  "addr": "0040e1f0",
+  "src": "gap-scan",
+  "evidence": [
+   "12 instructions to ret at 0040e213"
+  ],
+  "instr": 12,
+  "end": "0040e213",
+  "decodes": true
+ },
+ {
+  "addr": "0040e240",
+  "src": "gap-scan",
+  "evidence": [
+   "72 instructions to ret at 0040e327"
+  ],
+  "instr": 72,
+  "end": "0040e327",
+  "decodes": true
+ },
+ {
+  "addr": "0040e2b0",
+  "src": "gap-scan",
+  "evidence": [
+   "35 instructions to ret at 0040e327"
+  ],
+  "instr": 35,
+  "end": "0040e327",
+  "decodes": true
+ },
+ {
+  "addr": "0040e2f0",
+  "src": "gap-scan",
+  "evidence": [
+   "16 instructions to ret at 0040e327"
+  ],
+  "instr": 16,
+  "end": "0040e327",
+  "decodes": true
+ },
+ {
+  "addr": "0040e340",
+  "src": "gap-scan",
+  "evidence": [
+   "107 instructions to ret at 0040e4ab"
+  ],
+  "instr": 107,
+  "end": "0040e4ab",
+  "decodes": true
+ },
+ {
+  "addr": "0040e3b0",
+  "src": "gap-scan",
+  "evidence": [
+   "78 instructions to ret at 0040e4ab"
+  ],
+  "instr": 78,
+  "end": "0040e4ab",
+  "decodes": true
+ },
+ {
+  "addr": "0040e460",
+  "src": "gap-scan",
+  "evidence": [
+   "23 instructions to ret at 0040e4ab"
+  ],
+  "instr": 23,
+  "end": "0040e4ab",
+  "decodes": true
+ },
+ {
+  "addr": "0040e4c0",
+  "src": "gap-scan",
+  "evidence": [
+   "7 instructions to ret at 0040e4d6"
+  ],
+  "instr": 7,
+  "end": "0040e4d6",
+  "decodes": true
+ },
+ {
+  "addr": "0040e570",
+  "src": "gap-scan",
+  "evidence": [
+   "5 instructions to ret at 0040e57f"
+  ],
+  "instr": 5,
+  "end": "0040e57f",
+  "decodes": true
+ },
+ {
+  "addr": "0040e8d0",
+  "src": "gap-scan",
+  "evidence": [
+   "235 instructions to ret at 0040ebc8"
+  ],
+  "instr": 235,
+  "end": "0040ebc8",
+  "decodes": true
+ },
+ {
+  "addr": "0040e8f0",
+  "src": "gap-scan",
+  "evidence": [
+   "225 instructions to ret at 0040ebc8"
+  ],
+  "instr": 225,
+  "end": "0040ebc8",
+  "decodes": true
+ },
+ {
+  "addr": "0040e960",
+  "src": "gap-scan",
+  "evidence": [
+   "193 instructions to ret at 0040ebc8"
+  ],
+  "instr": 193,
+  "end": "0040ebc8",
+  "decodes": true
+ },
+ {
+  "addr": "0040ea10",
+  "src": "gap-scan",
+  "evidence": [
+   "140 instructions to ret at 0040ebc8"
+  ],
+  "instr": 140,
+  "end": "0040ebc8",
+  "decodes": true
+ },
+ {
+  "addr": "0040ea50",
+  "src": "gap-scan",
+  "evidence": [
+   "43 instructions to ret at 0040eaca"
+  ],
+  "instr": 43,
+  "end": "0040eaca",
+  "decodes": true
+ },
+ {
+  "addr": "0040ea90",
+  "src": "gap-scan",
+  "evidence": [
+   "21 instructions to ret at 0040eaca"
+  ],
+  "instr": 21,
+  "end": "0040eaca",
+  "decodes": true
+ },
+ {
+  "addr": "0040eae0",
+  "src": "gap-scan",
+  "evidence": [
+   "74 instructions to ret at 0040ebc8"
+  ],
+  "instr": 74,
+  "end": "0040ebc8",
+  "decodes": true
+ },
+ {
+  "addr": "0040eb00",
+  "src": "gap-scan",
+  "evidence": [
+   "16 instructions to ret at 0040eb2c"
+  ],
+  "instr": 16,
+  "end": "0040eb2c",
+  "decodes": true
+ },
+ {
+  "addr": "0040eb80",
+  "src": "gap-scan",
+  "evidence": [
+   "29 instructions to ret at 0040ebc8"
+  ],
+  "instr": 29,
+  "end": "0040ebc8",
+  "decodes": true
+ },
+ {
+  "addr": "0040eb90",
+  "src": "gap-scan",
+  "evidence": [
+   "22 instructions to ret at 0040ebc8"
+  ],
+  "instr": 22,
+  "end": "0040ebc8",
+  "decodes": true
+ },
+ {
+  "addr": "0040ec00",
+  "src": "gap-scan",
+  "evidence": [
+   "53 instructions to ret at 0040ec8d"
+  ],
+  "instr": 53,
+  "end": "0040ec8d",
+  "decodes": true
+ },
+ {
+  "addr": "0040ec40",
+  "src": "gap-scan",
+  "evidence": [
+   "27 instructions to ret at 0040ec8d"
+  ],
+  "instr": 27,
+  "end": "0040ec8d",
+  "decodes": true
+ },
+ {
+  "addr": "0040f020",
+  "src": "gap-scan",
+  "evidence": [
+   "6 instructions to ret at 0040f037"
+  ],
+  "instr": 6,
+  "end": "0040f037",
+  "decodes": true
+ },
+ {
+  "addr": "0040f1f0",
+  "src": "gap-scan",
+  "evidence": [
+   "10 instructions to ret at 0040f20d"
+  ],
+  "instr": 10,
+  "end": "0040f20d",
+  "decodes": true
+ },
+ {
+  "addr": "0040f200",
+  "src": "gap-scan",
+  "evidence": [
+   "5 instructions to ret at 0040f20d"
+  ],
+  "instr": 5,
+  "end": "0040f20d",
+  "decodes": true
+ },
+ {
+  "addr": "004103f0",
+  "src": "gap-scan",
+  "evidence": [
+   "3 instructions to ret at 004103fe"
+  ],
+  "instr": 3,
+  "end": "004103fe",
+  "decodes": true
+ },
+ {
+  "addr": "004145f0",
+  "src": "gap-scan",
+  "evidence": [
+   "3 instructions to ret at 004145fb"
+  ],
+  "instr": 3,
+  "end": "004145fb",
+  "decodes": true
+ },
+ {
+  "addr": "00414f00",
+  "src": "gap-scan",
+  "evidence": [
+   "5 instructions to ret at 00414f0a"
+  ],
+  "instr": 5,
+  "end": "00414f0a",
+  "decodes": true
+ },
+ {
+  "addr": "00415120",
+  "src": "gap-scan",
+  "evidence": [
+   "4 instructions to ret at 0041512e"
+  ],
+  "instr": 4,
+  "end": "0041512e",
+  "decodes": true
+ },
+ {
+  "addr": "004151c0",
+  "src": "gap-scan",
+  "evidence": [
+   "9 instructions to ret at 004151da"
+  ],
+  "instr": 9,
+  "end": "004151da",
+  "decodes": true
+ },
+ {
+  "addr": "00415350",
+  "src": "gap-scan",
+  "evidence": [
+   "87 instructions to ret at 00415439"
+  ],
+  "instr": 87,
+  "end": "00415439",
+  "decodes": true
+ },
+ {
+  "addr": "00415400",
+  "src": "gap-scan",
+  "evidence": [
+   "6 instructions to ret at 0041540c"
+  ],
+  "instr": 6,
+  "end": "0041540c",
+  "decodes": true
+ },
+ {
+  "addr": "004157b0",
+  "src": "gap-scan",
+  "evidence": [
+   "4 instructions to ret at 004157ba"
+  ],
+  "instr": 4,
+  "end": "004157ba",
+  "decodes": true
+ },
+ {
+  "addr": "004157d0",
+  "src": "gap-scan",
+  "evidence": [
+   "58 instructions to ret at 00415871"
+  ],
+  "instr": 58,
+  "end": "00415871",
+  "decodes": true
+ },
+ {
+  "addr": "00415810",
+  "src": "gap-scan",
+  "evidence": [
+   "3 instructions to ret at 00415816"
+  ],
+  "instr": 3,
+  "end": "00415816",
+  "decodes": true
+ },
+ {
+  "addr": "00415820",
+  "src": "gap-scan",
+  "evidence": [
+   "10 instructions to ret at 0041583b"
+  ],
+  "instr": 10,
+  "end": "0041583b",
+  "decodes": true
+ },
+ {
+  "addr": "00415830",
+  "src": "gap-scan",
+  "evidence": [
+   "4 instructions to ret at 0041583b"
+  ],
+  "instr": 4,
+  "end": "0041583b",
+  "decodes": true
+ },
+ {
+  "addr": "00415860",
+  "src": "gap-scan",
+  "evidence": [
+   "3 instructions to ret at 00415866"
+  ],
+  "instr": 3,
+  "end": "00415866",
+  "decodes": true
+ },
+ {
+  "addr": "00415d20",
+  "src": "gap-scan",
+  "evidence": [
+   "41 instructions to ret at 00415d8b"
+  ],
+  "instr": 41,
+  "end": "00415d8b",
+  "decodes": true
+ },
+ {
+  "addr": "00415d50",
+  "src": "gap-scan",
+  "evidence": [
+   "20 instructions to ret at 00415d81"
+  ],
+  "instr": 20,
+  "end": "00415d81",
+  "decodes": true
+ },
+ {
+  "addr": "00415d60",
+  "src": "gap-scan",
+  "evidence": [
+   "15 instructions to ret at 00415d81"
+  ],
+  "instr": 15,
+  "end": "00415d81",
+  "decodes": true
+ },
+ {
+  "addr": "00415dc0",
+  "src": "gap-scan",
+  "evidence": [
+   "32 instructions to ret at 00415e2a"
+  ],
+  "instr": 32,
+  "end": "00415e2a",
+  "decodes": true
+ },
+ {
+  "addr": "00415dd0",
+  "src": "gap-scan",
+  "evidence": [
+   "27 instructions to ret at 00415e2a"
+  ],
+  "instr": 27,
+  "end": "00415e2a",
+  "decodes": true
+ },
+ {
+  "addr": "00415df0",
+  "src": "gap-scan",
+  "evidence": [
+   "16 instructions to ret at 00415e2a"
+  ],
+  "instr": 16,
+  "end": "00415e2a",
+  "decodes": true
+ },
+ {
+  "addr": "00415e70",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 00415e8d"
+  ],
+  "instr": 13,
+  "end": "00415e8d",
+  "decodes": true
+ },
+ {
+  "addr": "00415ea0",
+  "src": "gap-scan",
+  "evidence": [
+   "36 instructions to ret at 00415f06"
+  ],
+  "instr": 36,
+  "end": "00415f06",
+  "decodes": true
+ },
+ {
+  "addr": "00415ed0",
+  "src": "gap-scan",
+  "evidence": [
+   "21 instructions to ret at 00415f06"
+  ],
+  "instr": 21,
+  "end": "00415f06",
+  "decodes": true
+ },
+ {
+  "addr": "00415ee0",
+  "src": "gap-scan",
+  "evidence": [
+   "17 instructions to ret at 00415f06"
+  ],
+  "instr": 17,
+  "end": "00415f06",
+  "decodes": true
+ },
+ {
+  "addr": "00415ef0",
+  "src": "gap-scan",
+  "evidence": [
+   "9 instructions to ret at 00415f06"
+  ],
+  "instr": 9,
+  "end": "00415f06",
+  "decodes": true
+ },
+ {
+  "addr": "00415f20",
+  "src": "gap-scan",
+  "evidence": [
+   "36 instructions to ret at 00415f86"
+  ],
+  "instr": 36,
+  "end": "00415f86",
+  "decodes": true
+ },
+ {
+  "addr": "00415f50",
+  "src": "gap-scan",
+  "evidence": [
+   "21 instructions to ret at 00415f86"
+  ],
+  "instr": 21,
+  "end": "00415f86",
+  "decodes": true
+ },
+ {
+  "addr": "00415f60",
+  "src": "gap-scan",
+  "evidence": [
+   "17 instructions to ret at 00415f86"
+  ],
+  "instr": 17,
+  "end": "00415f86",
+  "decodes": true
+ },
+ {
+  "addr": "00415f70",
+  "src": "gap-scan",
+  "evidence": [
+   "9 instructions to ret at 00415f86"
+  ],
+  "instr": 9,
+  "end": "00415f86",
+  "decodes": true
+ },
+ {
+  "addr": "00416000",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 0041601a"
+  ],
+  "instr": 13,
+  "end": "0041601a",
+  "decodes": true
+ },
+ {
+  "addr": "00416090",
+  "src": "gap-scan",
+  "evidence": [
+   "73 instructions to ret at 0041616b"
+  ],
+  "instr": 73,
+  "end": "0041616b",
+  "decodes": true
+ },
+ {
+  "addr": "004160e0",
+  "src": "gap-scan",
+  "evidence": [
+   "48 instructions to ret at 0041616b"
+  ],
+  "instr": 48,
+  "end": "0041616b",
+  "decodes": true
+ },
+ {
+  "addr": "00416100",
+  "src": "gap-scan",
+  "evidence": [
+   "37 instructions to ret at 0041616b"
+  ],
+  "instr": 37,
+  "end": "0041616b",
+  "decodes": true
+ },
+ {
+  "addr": "004161c0",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 004161db"
+  ],
+  "instr": 13,
+  "end": "004161db",
+  "decodes": true
+ },
+ {
+  "addr": "004161e0",
+  "src": "gap-scan",
+  "evidence": [
+   "23 instructions to ret at 0041621b"
+  ],
+  "instr": 23,
+  "end": "0041621b",
+  "decodes": true
+ },
+ {
+  "addr": "00416210",
+  "src": "gap-scan",
+  "evidence": [
+   "6 instructions to ret at 0041621b"
+  ],
+  "instr": 6,
+  "end": "0041621b",
+  "decodes": true
+ },
+ {
+  "addr": "00416250",
+  "src": "gap-scan",
+  "evidence": [
+   "14 instructions to ret at 00416273"
+  ],
+  "instr": 14,
+  "end": "00416273",
+  "decodes": true
+ },
+ {
+  "addr": "00416290",
+  "src": "gap-scan",
+  "evidence": [
+   "35 instructions to ret at 004162f2"
+  ],
+  "instr": 35,
+  "end": "004162f2",
+  "decodes": true
+ },
+ {
+  "addr": "004162b0",
+  "src": "gap-scan",
+  "evidence": [
+   "25 instructions to ret at 004162f2"
+  ],
+  "instr": 25,
+  "end": "004162f2",
+  "decodes": true
+ },
+ {
+  "addr": "004163f0",
+  "src": "gap-scan",
+  "evidence": [
+   "85 instructions to ret at 00416512"
+  ],
+  "instr": 85,
+  "end": "00416512",
+  "decodes": true
+ },
+ {
+  "addr": "00416420",
+  "src": "gap-scan",
+  "evidence": [
+   "70 instructions to ret at 00416512"
+  ],
+  "instr": 70,
+  "end": "00416512",
+  "decodes": true
+ },
+ {
+  "addr": "00416450",
+  "src": "gap-scan",
+  "evidence": [
+   "56 instructions to ret at 00416512"
+  ],
+  "instr": 56,
+  "end": "00416512",
+  "decodes": true
+ },
+ {
+  "addr": "004164a0",
+  "src": "gap-scan",
+  "evidence": [
+   "6 instructions to ret at 004164ad"
+  ],
+  "instr": 6,
+  "end": "004164ad",
+  "decodes": true
+ },
+ {
+  "addr": "00416500",
+  "src": "gap-scan",
+  "evidence": [
+   "5 instructions to ret at 00416512"
+  ],
+  "instr": 5,
+  "end": "00416512",
+  "decodes": true
+ },
+ {
+  "addr": "00416590",
+  "src": "gap-scan",
+  "evidence": [
+   "86 instructions to ret at 00416680"
+  ],
+  "instr": 86,
+  "end": "00416680",
+  "decodes": true
+ },
+ {
+  "addr": "004165c0",
+  "src": "gap-scan",
+  "evidence": [
+   "40 instructions to ret at 0041663a"
+  ],
+  "instr": 40,
+  "end": "0041663a",
+  "decodes": true
+ },
+ {
+  "addr": "00416600",
+  "src": "gap-scan",
+  "evidence": [
+   "21 instructions to ret at 0041663a"
+  ],
+  "instr": 21,
+  "end": "0041663a",
+  "decodes": true
+ },
+ {
+  "addr": "00416610",
+  "src": "gap-scan",
+  "evidence": [
+   "17 instructions to ret at 0041663a"
+  ],
+  "instr": 17,
+  "end": "0041663a",
+  "decodes": true
+ },
+ {
+  "addr": "00416650",
+  "src": "gap-scan",
+  "evidence": [
+   "20 instructions to ret at 00416680"
+  ],
+  "instr": 20,
+  "end": "00416680",
+  "decodes": true
+ },
+ {
+  "addr": "00416660",
+  "src": "gap-scan",
+  "evidence": [
+   "14 instructions to ret at 00416680"
+  ],
+  "instr": 14,
+  "end": "00416680",
+  "decodes": true
+ },
+ {
+  "addr": "004166b0",
+  "src": "gap-scan",
+  "evidence": [
+   "27 instructions to ret at 004166fe"
+  ],
+  "instr": 27,
+  "end": "004166fe",
+  "decodes": true
+ },
+ {
+  "addr": "004167a0",
+  "src": "gap-scan",
+  "evidence": [
+   "35 instructions to ret at 004167fd"
+  ],
+  "instr": 35,
+  "end": "004167fd",
+  "decodes": true
+ },
+ {
+  "addr": "004167e0",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 004167fd"
+  ],
+  "instr": 13,
+  "end": "004167fd",
+  "decodes": true
+ },
+ {
+  "addr": "00416830",
+  "src": "gap-scan",
+  "evidence": [
+   "66 instructions to ret at 00416909"
+  ],
+  "instr": 66,
+  "end": "00416909",
+  "decodes": true
+ },
+ {
+  "addr": "004168e0",
+  "src": "gap-scan",
+  "evidence": [
+   "14 instructions to ret at 00416909"
+  ],
+  "instr": 14,
+  "end": "00416909",
+  "decodes": true
+ },
+ {
+  "addr": "00416940",
+  "src": "gap-scan",
+  "evidence": [
+   "32 instructions to ret at 0041699c"
+  ],
+  "instr": 32,
+  "end": "0041699c",
+  "decodes": true
+ },
+ {
+  "addr": "00416950",
+  "src": "gap-scan",
+  "evidence": [
+   "28 instructions to ret at 0041699c"
+  ],
+  "instr": 28,
+  "end": "0041699c",
+  "decodes": true
+ },
+ {
+  "addr": "004169d0",
+  "src": "gap-scan",
+  "evidence": [
+   "20 instructions to ret at 00416a1b"
+  ],
+  "instr": 20,
+  "end": "00416a1b",
+  "decodes": true
+ },
+ {
+  "addr": "00416ac0",
+  "src": "gap-scan",
+  "evidence": [
+   "50 instructions to ret at 00416b4b"
+  ],
+  "instr": 50,
+  "end": "00416b4b",
+  "decodes": true
+ },
+ {
+  "addr": "00416b30",
+  "src": "gap-scan",
+  "evidence": [
+   "12 instructions to ret at 00416b4b"
+  ],
+  "instr": 12,
+  "end": "00416b4b",
+  "decodes": true
+ },
+ {
+  "addr": "00416ba0",
+  "src": "gap-scan",
+  "evidence": [
+   "67 instructions to ret at 00416c7f"
+  ],
+  "instr": 67,
+  "end": "00416c7f",
+  "decodes": true
+ },
+ {
+  "addr": "00416c60",
+  "src": "gap-scan",
+  "evidence": [
+   "10 instructions to ret at 00416c7f"
+  ],
+  "instr": 10,
+  "end": "00416c7f",
+  "decodes": true
+ },
+ {
+  "addr": "00416d00",
+  "src": "gap-scan",
+  "evidence": [
+   "86 instructions to ret at 00416e19"
+  ],
+  "instr": 86,
+  "end": "00416e19",
+  "decodes": true
+ },
+ {
+  "addr": "00416d80",
+  "src": "gap-scan",
+  "evidence": [
+   "48 instructions to ret at 00416e19"
+  ],
+  "instr": 48,
+  "end": "00416e19",
+  "decodes": true
+ },
+ {
+  "addr": "00416d90",
+  "src": "gap-scan",
+  "evidence": [
+   "42 instructions to ret at 00416e19"
+  ],
+  "instr": 42,
+  "end": "00416e19",
+  "decodes": true
+ },
+ {
+  "addr": "00416df0",
+  "src": "gap-scan",
+  "evidence": [
+   "4 instructions to ret at 00416dfa"
+  ],
+  "instr": 4,
+  "end": "00416dfa",
+  "decodes": true
+ },
+ {
+  "addr": "00416e00",
+  "src": "gap-scan",
+  "evidence": [
+   "8 instructions to ret at 00416e19"
+  ],
+  "instr": 8,
+  "end": "00416e19",
+  "decodes": true
+ },
+ {
+  "addr": "00416eb0",
+  "src": "gap-scan",
+  "evidence": [
+   "14 instructions to ret at 00416ed3"
+  ],
+  "instr": 14,
+  "end": "00416ed3",
+  "decodes": true
+ },
+ {
+  "addr": "00416f30",
+  "src": "gap-scan",
+  "evidence": [
+   "14 instructions to ret at 00416f53"
+  ],
+  "instr": 14,
+  "end": "00416f53",
+  "decodes": true
+ },
+ {
+  "addr": "00416f80",
+  "src": "gap-scan",
+  "evidence": [
+   "142 instructions to ret at 00417142"
+  ],
+  "instr": 142,
+  "end": "00417142",
+  "decodes": true
+ },
+ {
+  "addr": "00416fc0",
+  "src": "gap-scan",
+  "evidence": [
+   "123 instructions to ret at 00417142"
+  ],
+  "instr": 123,
+  "end": "00417142",
+  "decodes": true
+ },
+ {
+  "addr": "00417030",
+  "src": "gap-scan",
+  "evidence": [
+   "88 instructions to ret at 00417142"
+  ],
+  "instr": 88,
+  "end": "00417142",
+  "decodes": true
+ },
+ {
+  "addr": "00417060",
+  "src": "gap-scan",
+  "evidence": [
+   "74 instructions to ret at 00417142"
+  ],
+  "instr": 74,
+  "end": "00417142",
+  "decodes": true
+ },
+ {
+  "addr": "00417100",
+  "src": "gap-scan",
+  "evidence": [
+   "27 instructions to ret at 00417142"
+  ],
+  "instr": 27,
+  "end": "00417142",
+  "decodes": true
+ },
+ {
+  "addr": "004171a0",
+  "src": "gap-scan",
+  "evidence": [
+   "50 instructions to ret at 00417246"
+  ],
+  "instr": 50,
+  "end": "00417246",
+  "decodes": true
+ },
+ {
+  "addr": "00417210",
+  "src": "gap-scan",
+  "evidence": [
+   "20 instructions to ret at 00417246"
+  ],
+  "instr": 20,
+  "end": "00417246",
+  "decodes": true
+ },
+ {
+  "addr": "00417270",
+  "src": "gap-scan",
+  "evidence": [
+   "78 instructions to ret at 00417355"
+  ],
+  "instr": 78,
+  "end": "00417355",
+  "decodes": true
+ },
+ {
+  "addr": "004172f0",
+  "src": "gap-scan",
+  "evidence": [
+   "36 instructions to ret at 00417355"
+  ],
+  "instr": 36,
+  "end": "00417355",
+  "decodes": true
+ },
+ {
+  "addr": "00417490",
+  "src": "gap-scan",
+  "evidence": [
+   "11 instructions to ret at 004174ae"
+  ],
+  "instr": 11,
+  "end": "004174ae",
+  "decodes": true
+ },
+ {
+  "addr": "00417640",
+  "src": "gap-scan",
+  "evidence": [
+   "73 instructions to ret at 00417713"
+  ],
+  "instr": 73,
+  "end": "00417713",
+  "decodes": true
+ },
+ {
+  "addr": "00417670",
+  "src": "gap-scan",
+  "evidence": [
+   "21 instructions to ret at 004176a8"
+  ],
+  "instr": 21,
+  "end": "004176a8",
+  "decodes": true
+ },
+ {
+  "addr": "00417680",
+  "src": "gap-scan",
+  "evidence": [
+   "17 instructions to ret at 004176a8"
+  ],
+  "instr": 17,
+  "end": "004176a8",
+  "decodes": true
+ },
+ {
+  "addr": "004176b0",
+  "src": "gap-scan",
+  "evidence": [
+   "33 instructions to ret at 00417713"
+  ],
+  "instr": 33,
+  "end": "00417713",
+  "decodes": true
+ },
+ {
+  "addr": "004176d0",
+  "src": "gap-scan",
+  "evidence": [
+   "24 instructions to ret at 00417713"
+  ],
+  "instr": 24,
+  "end": "00417713",
+  "decodes": true
+ },
+ {
+  "addr": "004179b0",
+  "src": "gap-scan",
+  "evidence": [
+   "93 instructions to ret at 00417ad0"
+  ],
+  "instr": 93,
+  "end": "00417ad0",
+  "decodes": true
+ },
+ {
+  "addr": "004179f0",
+  "src": "gap-scan",
+  "evidence": [
+   "70 instructions to ret at 00417ad0"
+  ],
+  "instr": 70,
+  "end": "00417ad0",
+  "decodes": true
+ },
+ {
+  "addr": "00417a60",
+  "src": "gap-scan",
+  "evidence": [
+   "36 instructions to ret at 00417ad0"
+  ],
+  "instr": 36,
+  "end": "00417ad0",
+  "decodes": true
+ },
+ {
+  "addr": "00417ab0",
+  "src": "gap-scan",
+  "evidence": [
+   "12 instructions to ret at 00417ad0"
+  ],
+  "instr": 12,
+  "end": "00417ad0",
+  "decodes": true
+ },
+ {
+  "addr": "00417d20",
+  "src": "gap-scan",
+  "evidence": [
+   "26 instructions to ret at 00417d6e"
+  ],
+  "instr": 26,
+  "end": "00417d6e",
+  "decodes": true
+ },
+ {
+  "addr": "00417d30",
+  "src": "gap-scan",
+  "evidence": [
+   "21 instructions to ret at 00417d6e"
+  ],
+  "instr": 21,
+  "end": "00417d6e",
+  "decodes": true
+ },
+ {
+  "addr": "00417e10",
+  "src": "gap-scan",
+  "evidence": [
+   "5 instructions to ret at 00417e1b"
+  ],
+  "instr": 5,
+  "end": "00417e1b",
+  "decodes": true
+ },
+ {
+  "addr": "00417e20",
+  "src": "gap-scan",
+  "evidence": [
+   "35 instructions to ret at 00417e89"
+  ],
+  "instr": 35,
+  "end": "00417e89",
+  "decodes": true
+ },
+ {
+  "addr": "00417e30",
+  "src": "gap-scan",
+  "evidence": [
+   "30 instructions to ret at 00417e89"
+  ],
+  "instr": 30,
+  "end": "00417e89",
+  "decodes": true
+ },
+ {
+  "addr": "00417e70",
+  "src": "gap-scan",
+  "evidence": [
+   "10 instructions to ret at 00417e89"
+  ],
+  "instr": 10,
+  "end": "00417e89",
+  "decodes": true
+ },
+ {
+  "addr": "00417e80",
+  "src": "gap-scan",
+  "evidence": [
+   "3 instructions to ret at 00417e89"
+  ],
+  "instr": 3,
+  "end": "00417e89",
+  "decodes": true
+ },
+ {
+  "addr": "00417ee0",
+  "src": "gap-scan",
+  "evidence": [
+   "114 instructions to ret at 00418043"
+  ],
+  "instr": 114,
+  "end": "00418043",
+  "decodes": true
+ },
+ {
+  "addr": "00417f20",
+  "src": "gap-scan",
+  "evidence": [
+   "98 instructions to ret at 00418043"
+  ],
+  "instr": 98,
+  "end": "00418043",
+  "decodes": true
+ },
+ {
+  "addr": "00417f70",
+  "src": "gap-scan",
+  "evidence": [
+   "73 instructions to ret at 00418043"
+  ],
+  "instr": 73,
+  "end": "00418043",
+  "decodes": true
+ },
+ {
+  "addr": "00418010",
+  "src": "gap-scan",
+  "evidence": [
+   "20 instructions to ret at 00418043"
+  ],
+  "instr": 20,
+  "end": "00418043",
+  "decodes": true
+ },
+ {
+  "addr": "00418020",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 00418043"
+  ],
+  "instr": 13,
+  "end": "00418043",
+  "decodes": true
+ },
+ {
+  "addr": "004180b0",
+  "src": "gap-scan",
+  "evidence": [
+   "30 instructions to ret at 00418110"
+  ],
+  "instr": 30,
+  "end": "00418110",
+  "decodes": true
+ },
+ {
+  "addr": "004181f0",
+  "src": "gap-scan",
+  "evidence": [
+   "67 instructions to ret at 004182b1"
+  ],
+  "instr": 67,
+  "end": "004182b1",
+  "decodes": true
+ },
+ {
+  "addr": "00418260",
+  "src": "gap-scan",
+  "evidence": [
+   "29 instructions to ret at 004182b1"
+  ],
+  "instr": 29,
+  "end": "004182b1",
+  "decodes": true
+ },
+ {
+  "addr": "00418270",
+  "src": "gap-scan",
+  "evidence": [
+   "25 instructions to ret at 004182b1"
+  ],
+  "instr": 25,
+  "end": "004182b1",
+  "decodes": true
+ },
+ {
+  "addr": "004182f0",
+  "src": "gap-scan",
+  "evidence": [
+   "17 instructions to ret at 0041831d"
+  ],
+  "instr": 17,
+  "end": "0041831d",
+  "decodes": true
+ },
+ {
+  "addr": "00418300",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 0041831d"
+  ],
+  "instr": 13,
+  "end": "0041831d",
+  "decodes": true
+ },
+ {
+  "addr": "00418380",
+  "src": "gap-scan",
+  "evidence": [
+   "29 instructions to ret at 004183d3"
+  ],
+  "instr": 29,
+  "end": "004183d3",
+  "decodes": true
+ },
+ {
+  "addr": "004183b0",
+  "src": "gap-scan",
+  "evidence": [
+   "14 instructions to ret at 004183d3"
+  ],
+  "instr": 14,
+  "end": "004183d3",
+  "decodes": true
+ },
+ {
+  "addr": "00418780",
+  "src": "gap-scan",
+  "evidence": [
+   "35 instructions to ret at 004187dd"
+  ],
+  "instr": 35,
+  "end": "004187dd",
+  "decodes": true
+ },
+ {
+  "addr": "004187c0",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 004187dd"
+  ],
+  "instr": 13,
+  "end": "004187dd",
+  "decodes": true
+ },
+ {
+  "addr": "00418860",
+  "src": "gap-scan",
+  "evidence": [
+   "74 instructions to ret at 0041894b"
+  ],
+  "instr": 74,
+  "end": "0041894b",
+  "decodes": true
+ },
+ {
+  "addr": "00418930",
+  "src": "gap-scan",
+  "evidence": [
+   "12 instructions to ret at 0041894b"
+  ],
+  "instr": 12,
+  "end": "0041894b",
+  "decodes": true
+ },
+ {
+  "addr": "00418aa0",
+  "src": "gap-scan",
+  "evidence": [
+   "64 instructions to ret at 00418b64"
+  ],
+  "instr": 64,
+  "end": "00418b64",
+  "decodes": true
+ },
+ {
+  "addr": "00418af0",
+  "src": "gap-scan",
+  "evidence": [
+   "39 instructions to ret at 00418b64"
+  ],
+  "instr": 39,
+  "end": "00418b64",
+  "decodes": true
+ },
+ {
+  "addr": "00418b30",
+  "src": "gap-scan",
+  "evidence": [
+   "19 instructions to ret at 00418b64"
+  ],
+  "instr": 19,
+  "end": "00418b64",
+  "decodes": true
+ },
+ {
+  "addr": "00418bb0",
+  "src": "gap-scan",
+  "evidence": [
+   "45 instructions to ret at 00418c2f"
+  ],
+  "instr": 45,
+  "end": "00418c2f",
+  "decodes": true
+ },
+ {
+  "addr": "00418bf0",
+  "src": "gap-scan",
+  "evidence": [
+   "19 instructions to ret at 00418c1f"
+  ],
+  "instr": 19,
+  "end": "00418c1f",
+  "decodes": true
+ },
+ {
+  "addr": "00418c00",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 00418c1f"
+  ],
+  "instr": 13,
+  "end": "00418c1f",
+  "decodes": true
+ },
+ {
+  "addr": "00418d10",
+  "src": "gap-scan",
+  "evidence": [
+   "6 instructions to ret at 00418d20"
+  ],
+  "instr": 6,
+  "end": "00418d20",
+  "decodes": true
+ },
+ {
+  "addr": "004193f0",
+  "src": "gap-scan",
+  "evidence": [
+   "6 instructions to ret at 00419401"
+  ],
+  "instr": 6,
+  "end": "00419401",
+  "decodes": true
+ },
+ {
+  "addr": "004194f0",
+  "src": "gap-scan",
+  "evidence": [
+   "8 instructions to ret at 00419513"
+  ],
+  "instr": 8,
+  "end": "00419513",
+  "decodes": true
+ },
+ {
+  "addr": "00419500",
+  "src": "gap-scan",
+  "evidence": [
+   "5 instructions to ret at 00419513"
+  ],
+  "instr": 5,
+  "end": "00419513",
+  "decodes": true
+ },
+ {
+  "addr": "00419520",
+  "src": "gap-scan",
+  "evidence": [
+   "81 instructions to ret at 0041961a"
+  ],
+  "instr": 81,
+  "end": "0041961a",
+  "decodes": true
+ },
+ {
+  "addr": "00419570",
+  "src": "gap-scan",
+  "evidence": [
+   "51 instructions to ret at 0041961a"
+  ],
+  "instr": 51,
+  "end": "0041961a",
+  "decodes": true
+ },
+ {
+  "addr": "00419600",
+  "src": "gap-scan",
+  "evidence": [
+   "11 instructions to ret at 0041961a"
+  ],
+  "instr": 11,
+  "end": "0041961a",
+  "decodes": true
+ },
+ {
+  "addr": "004196c0",
+  "src": "gap-scan",
+  "evidence": [
+   "72 instructions to ret at 00419791"
+  ],
+  "instr": 72,
+  "end": "00419791",
+  "decodes": true
+ },
+ {
+  "addr": "00419770",
+  "src": "gap-scan",
+  "evidence": [
+   "14 instructions to ret at 00419791"
+  ],
+  "instr": 14,
+  "end": "00419791",
+  "decodes": true
+ },
+ {
+  "addr": "00419870",
+  "src": "gap-scan",
+  "evidence": [
+   "23 instructions to ret at 004198b8"
+  ],
+  "instr": 23,
+  "end": "004198b8",
+  "decodes": true
+ },
+ {
+  "addr": "00419890",
+  "src": "gap-scan",
+  "evidence": [
+   "12 instructions to ret at 004198b8"
+  ],
+  "instr": 12,
+  "end": "004198b8",
+  "decodes": true
+ },
+ {
+  "addr": "004198f0",
+  "src": "gap-scan",
+  "evidence": [
+   "9 instructions to ret at 00419916"
+  ],
+  "instr": 9,
+  "end": "00419916",
+  "decodes": true
+ },
+ {
+  "addr": "00419930",
+  "src": "gap-scan",
+  "evidence": [
+   "32 instructions to ret at 00419996"
+  ],
+  "instr": 32,
+  "end": "00419996",
+  "decodes": true
+ },
+ {
+  "addr": "00419a90",
+  "src": "gap-scan",
+  "evidence": [
+   "12 instructions to ret at 00419aba"
+  ],
+  "instr": 12,
+  "end": "00419aba",
+  "decodes": true
+ },
+ {
+  "addr": "00419ab0",
+  "src": "gap-scan",
+  "evidence": [
+   "4 instructions to ret at 00419aba"
+  ],
+  "instr": 4,
+  "end": "00419aba",
+  "decodes": true
+ },
+ {
+  "addr": "00419ad0",
+  "src": "gap-scan",
+  "evidence": [
+   "28 instructions to ret at 00419b23"
+  ],
+  "instr": 28,
+  "end": "00419b23",
+  "decodes": true
+ },
+ {
+  "addr": "00419b10",
+  "src": "gap-scan",
+  "evidence": [
+   "8 instructions to ret at 00419b23"
+  ],
+  "instr": 8,
+  "end": "00419b23",
+  "decodes": true
+ },
+ {
+  "addr": "00419d10",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 00419d3a"
+  ],
+  "instr": 13,
+  "end": "00419d3a",
+  "decodes": true
+ },
+ {
+  "addr": "00419d60",
+  "src": "gap-scan",
+  "evidence": [
+   "13 instructions to ret at 00419d90"
+  ],
+  "instr": 13,
+  "end": "00419d90",
+  "decodes": true
+ },
+ {
+  "addr": "00419d80",
+  "src": "gap-scan",
+  "evidence": [
+   "5 instructions to ret at 00419d90"
+  ],
+  "instr": 5,
+  "end": "00419d90",
+  "decodes": true
+ },
+ {
+  "addr": "00419e50",
+  "src": "gap-scan",
+  "evidence": [
+   "54 instructions to ret at 00419efa"
+  ],
+  "instr": 54,
+  "end": "00419efa",
+  "decodes": true
+ },
+ {
+  "addr": "00419ef0",
+  "src": "gap-scan",
+  "evidence": [
+   "4 instructions to ret at 00419efa"
+  ],
+  "instr": 4,
+  "end": "00419efa",
+  "decodes": true
+ },
+ {
+  "addr": "0041ba00",
+  "src": "gap-scan",
+  "evidence": [
+   "4 instructions to ret at 0041ba0b"
+  ],
+  "instr": 4,
+  "end": "0041ba0b",
+  "decodes": true
+ },
+ {
+  "addr": "0041bda0",
+  "src": "gap-scan",
+  "evidence": [
+   "9 instructions to ret at 0041bdc2"
+  ],
+  "instr": 9,
+  "end": "0041bdc2",
+  "decodes": true
+ },
+ {
+  "addr": "0041c7a0",
+  "src": "gap-scan",
+  "evidence": [
+   "31 instructions to ret at 0041c7e4"
+  ],
+  "instr": 31,
+  "end": "0041c7e4",
+  "decodes": true
+ },
+ {
+  "addr": "0041c7e0",
+  "src": "gap-scan",
+  "evidence": [
+   "3 instructions to ret at 0041c7e4"
+  ],
+  "instr": 3,
+  "end": "0041c7e4",
+  "decodes": true
+ },
+ {
+  "addr": "0041c860",
+  "src": "gap-scan",
+  "evidence": [
+   "4 instructions to ret at 0041c86b"
+  ],
+  "instr": 4,
+  "end": "0041c86b",
+  "decodes": true
+ },
+ {
+  "addr": "0041c870",
+  "src": "gap-scan",
+  "evidence": [
+   "50 instructions to ret at 0041c8e2"
+  ],
+  "instr": 50,
+  "end": "0041c8e2",
+  "decodes": true
+ },
+ {
+  "addr": "0041c8d0",
+  "src": "gap-scan",
+  "evidence": [
+   "11 instructions to ret at 0041c8e2"
+  ],
+  "instr": 11,
+  "end": "0041c8e2",
+  "decodes": true
+ },
+ {
+  "addr": "0041ded0",
+  "src": "gap-scan",
+  "evidence": [
+   "7 instructions to ret at 0041dee6"
+  ],
+  "instr": 7,
+  "end": "0041dee6",
+  "decodes": true
+ },
+ {
+  "addr": "0041e040",
+  "src": "gap-scan",
+  "evidence": [
+   "14 instructions to ret at 0041e061"
+  ],
+  "instr": 14,
+  "end": "0041e061",
+  "decodes": true
+ },
+ {
+  "addr": "0041e0d0",
+  "src": "gap-scan",
+  "evidence": [
+   "15 instructions to ret at 0041e0fd"
+  ],
+  "instr": 15,
+  "end": "0041e0fd",
+  "decodes": true
+ },
+ {
+  "addr": "0041e630",
+  "src": "gap-scan",
+  "evidence": [
+   "53 instructions to ret at 0041e69b"
+  ],
+  "instr": 53,
+  "end": "0041e69b",
+  "decodes": true
+ },
+ {
+  "addr": "0041e6a0",
+  "src": "gap-scan",
+  "evidence": [
+   "10 instructions to ret at 0041e6bc"
+  ],
+  "instr": 10,
+  "end": "0041e6bc",
+  "decodes": true
+ },
+ {
+  "addr": "0041e6c0",
+  "src": "gap-scan",
+  "evidence": [
+   "28 instructions to ret at 0041e712"
+  ],
+  "instr": 28,
+  "end": "0041e712",
+  "decodes": true
+ },
+ {
+  "addr": "0041ea70",
+  "src": "gap-scan",
+  "evidence": [
+   "38 instructions to ret at 0041ead5"
+  ],
+  "instr": 38,
+  "end": "0041ead5",
+  "decodes": true
+ },
+ {
+  "addr": "0041ea80",
+  "src": "gap-scan",
+  "evidence": [
+   "21 instructions to ret at 0041eab8"
+  ],
+  "instr": 21,
+  "end": "0041eab8",
+  "decodes": true
+ },
+ {
+  "addr": "0041ea90",
+  "src": "gap-scan",
+  "evidence": [
+   "5 instructions to ret at 0041ea9b"
+  ],
+  "instr": 5,
+  "end": "0041ea9b",
+  "decodes": true
+ },
+ {
+  "addr": "0041eac0",
+  "src": "gap-scan",
+  "evidence": [
+   "9 instructions to ret at 0041ead5"
+  ],
+  "instr": 9,
+  "end": "0041ead5",
+  "decodes": true
+ },
+ {
+  "addr": "00420cc0",
+  "src": "gap-scan",
+  "evidence": [
+   "104 instructions to ret at 00420dfe"
+  ],
+  "instr": 104,
+  "end": "00420dfe",
+  "decodes": true
+ },
+ {
+  "addr": "00420e00",
+  "src": "gap-scan",
+  "evidence": [
+   "23 instructions to ret at 00420e45"
+  ],
+  "instr": 23,
+  "end": "00420e45",
+  "decodes": true
+ },
+ {
+  "addr": "004216d0",
+  "src": "gap-scan",
+  "evidence": [
+   "79 instructions to ret at 00421795"
+  ],
+  "instr": 79,
+  "end": "00421795",
+  "decodes": true
+ },
+ {
+  "addr": "004216e0",
+  "src": "gap-scan",
+  "evidence": [
+   "68 instructions to ret at 00421795"
+  ],
+  "instr": 68,
+  "end": "00421795",
+  "decodes": true
+ },
+ {
+  "addr": "00421750",
+  "src": "gap-scan",
+  "evidence": [
+   "8 instructions to ret at 0042176a"
+  ],
+  "instr": 8,
+  "end": "0042176a",
+  "decodes": true
+ },
+ {
+  "addr": "00421ca0",
+  "src": "gap-scan",
+  "evidence": [
+   "27 instructions to ret at 00421cfb"
+  ],
+  "instr": 27,
+  "end": "00421cfb",
+  "decodes": true
+ },
+ {
+  "addr": "00421d20",
+  "src": "gap-scan",
+  "evidence": [
+   "47 instructions to ret at 00421db9"
+  ],
+  "instr": 47,
+  "end": "00421db9",
+  "decodes": true
+ },
+ {
+  "addr": "00424cb0",
+  "src": "gap-scan",
+  "evidence": [
+   "39 instructions to ret at 00424d18"
+  ],
+  "instr": 39,
+  "end": "00424d18",
+  "decodes": true
+ },
+ {
+  "addr": "00425000",
+  "src": "gap-scan",
+  "evidence": [
+   "21 instructions to ret at 00425020"
+  ],
+  "instr": 21,
+  "end": "00425020",
+  "decodes": true
+ }
+]

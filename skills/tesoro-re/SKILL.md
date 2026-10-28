@@ -5,6 +5,12 @@ description: Recover and validate El Tesoro de Isla Alcachofa engine behaviour f
 
 # Tesoro reverse engineering
 
+**Restart, 28 October 2026.** Work follows `re/README.md`: fresh, function-by-function
+recovery from the Ghidra program, tracked in `re/ledger.json`. All earlier reports,
+`analysis/`, `tools/compare_*.py` results and engine ports are **legacy reference only**:
+compare against them after a fresh result, never derive from them. Use `re/.venv/bin/python`
+(Unicorn, Capstone). The comparison techniques below remain valid as methods.
+
 Research root on this machine: `/Users/gabriel/Desktop/source/tesoro`. Read its
 `MASTER_PLAN.md` and `RE_STATUS.md` first. Follow the current dependency and
 update the checkpoint when evidence or implementation changes. The skill may

@@ -49,3 +49,4 @@ __pycache__/
 
 # Fresh-analysis export of decompiled original code stays local.
 /re/export/
+/re/.venv/

@@ -1,5 +1,9 @@
 # Current reverse engineering checkpoint
 
+> **Legacy notice, 28 October 2026.** Everything below predates the restart and is
+> reference only. Live progress is in `re/ledger.json` (status per function) and
+> [re/README.md](re/README.md). Do not cite this file as evidence for new work.
+
 Updated 21 October 2026. Governing direction: [MASTER_PLAN.md](MASTER_PLAN.md).
 
 Workflow update, 22 October 2026: `tesoro-engine` is Gabriel's working branch.

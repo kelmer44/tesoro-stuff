@@ -1,5 +1,12 @@
 # Complete Tesoro implementation: governing plan
 
+> **Legacy notice, 28 October 2026.** The project restarted with a fresh
+> function-by-function analysis (see [re/README.md](re/README.md)). This plan's
+> fidelity contract and milestone goals still describe the target, but its
+> evidence, status claims and task ordering are legacy reference material. New
+> engine work must derive from newly decompiled functions recorded in the ledger,
+> not from the notes and ports listed here.
+
 Created 21 October 2026. Owner: Gabriel and Codex. Codex leads reverse
 engineering; we implement the ScummVM engine together. This is the project's
 main guideline, superseding the task ordering in `FEASIBILITY_AND_PLAN.md`.

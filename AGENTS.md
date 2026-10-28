@@ -1,5 +1,21 @@
 # Tesoro project direction
 
+## Restart, 28 October 2026: fresh function-by-function analysis
+
+Gabriel restarted the reverse engineering. Everything produced before this date
+(`MASTER_PLAN.md` task ordering, `RE_STATUS.md` evidence tables, topic reports such
+as `CLICK_WALKING.md`, `analysis/`, `tools/compare_*.py`, `prototype/`, and the
+existing engine ports on `codex/*` branches) is **legacy, for reference only**. It
+is not evidence for new work. The implementation is based on newly decompiled
+functions, recovered one at a time with the process in [re/README.md](re/README.md)
+(ledger `re/ledger.json`, contracts in `re/contracts/`, structures in `re/STRUCTS.md`).
+Do not copy a legacy conclusion into a contract or port. Read legacy notes only
+after a cluster's fresh result exists, to compare; record any disagreement and
+resolve it with evidence. Legacy validation tooling (emulator harness ideas) may
+be reused as measurement tools. The fidelity rules below still apply.
+Python tools for the fresh work run from `re/.venv` (Unicorn, Capstone).
+The Ghidra program is the original `TESORO.EXE` (SHA-256 verified, base 0x400000).
+
 The user's goal is a complete ScummVM implementation of **El Tesoro de Isla
 Alcachofa**, with the greatest practical fidelity to the original. The user and
 Codex will implement it together; Codex leads the reverse engineering.
