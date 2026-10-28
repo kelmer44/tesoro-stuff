@@ -8,7 +8,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 179 | 40% |
+| decompiled or later | 189 | 42% |
 | understood or later | 0 | 0% |
 | ported or later | 0 | 0% |
 | emu-compared or later | 0 | 0% |
@@ -44,9 +44,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 3: 00401d80–00401fa0 (0/8 ported)
 
-- [ ] `00401d80` FUN_00401d80 · depth 0 · 8 lines · **untouched**
+- [ ] `00401d80` inferred_Obj_SetVisible · depth 0 · 8 lines · **decompiled** — sets flag bit 2 (+0x68) from argument
 - [ ] `00401da0` FUN_00401da0 · depth 0 · 9 lines · **untouched**
-- [ ] `00401dc0` FUN_00401dc0 · depth 0 · 13 lines · **untouched**
+- [ ] `00401dc0` inferred_Obj_ApplyPendingAnim · depth 0 · 13 lines · **decompiled** — selects bank index +4 and stores +8 as the AnimPlayer start value
 - [ ] `00401f90` inferred_Obj_Stub_RetFalse_1Arg (vtable) · depth 0 · 7 lines · **decompiled** — base slot 11 default (ret 4)
 - [ ] `00401fa0` inferred_Obj_Stub_RetZero_2Args (vtable) · depth 0 · 7 lines · **decompiled** — base slot 12 default (ret 8)
 - [ ] `00401de0` inferred_Object_SelectAnimBank · depth 2 · 15 lines · **decompiled** — picks bank index (byte +0x32), sets +0x38, starts AnimPlayer_SetRange
@@ -127,14 +127,14 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 10: 004060b0–00406140 (0/9 ported)
 
 - [ ] `004060b0` inferred_DialogueTable_Ctor · depth 0 · 8 lines · **decompiled** — 0x2b0-byte table; entry count at +0x2ac set to 0
-- [ ] `004060c0` FUN_004060c0 · depth 0 · 22 lines · **untouched**
-- [ ] `00405630` FUN_00405630 · depth 1 · 108 lines · **untouched**
+- [ ] `004060c0` inferred_DialogueTable_FindByKey · depth 0 · 22 lines · **decompiled** — linear search of the table's script entries (pointer array at +0x54) for a 64-bit name key at script +0x44/+0x48
+- [ ] `00405630` inferred_DlgScript_Link · depth 1 · 108 lines · **decompiled** — post-load pass over the steps resolving actor keys and jump targets (types 4-7)
 - [ ] `00406110` inferred_DialogueTable_Finalize · depth 2 · 19 lines · **decompiled** — calls 00405630 for each entry
-- [ ] `00404810` FUN_00404810 · depth 12 · 691 lines · **untouched**
-- [ ] `00405a60` FUN_00405a60 · depth 13 · 228 lines · **untouched**
-- [ ] `00405fd0` FUN_00405fd0 · depth 13 · 44 lines · **untouched**
-- [ ] `00405850` inferred_Dialogue_StepUpdate (vtable) · depth 14 · 70 lines · **decompiled** — per-frame step of a scripted action list (24-byte steps at +0xbc, current step +0xcc): waits (type 1 until the speaker finishes plus 200 ms, type 2 timed), choice menus (types 5, 6: asks the player object to say the options), cursor show/hide (type 8), type 9 wait for an animation; advances or ends the list (returns 2 or 3)
-- [ ] `00406140` FUN_00406140 (vtable) · depth 14 · 12 lines · **untouched**
+- [ ] `00404810` inferred_DlgScript_Load · depth 12 · 691 lines · **decompiled** — constructor and text parser (691 lines): reads one script block from the stream with a sscanf-based command grammar, compiles it to 24-byte steps (+0xbc, count +0xc0) plus actor key table (+0xc4, 12-byte entries) and variable byte array (+0xd0); reports "ERROR AL LEER COMANDO" on a bad line
+- [ ] `00405a60` inferred_DlgScript_RunSteps · depth 13 · 228 lines · **decompiled** — executes non-blocking steps from the program counter until a blocking one: say, goto, label/loop, conditional jump on a script variable, event call, actor command (animate, walk, face, activate, show), variable assignment, send message, movie, WAV, CD track
+- [ ] `00405fd0` inferred_DlgScript_Start · depth 13 · 44 lines · **decompiled** — (event, key lo, key hi, variables, level): resolves actors in the level, selects the entry point matching the event key, hides the cursor, inserts the script into the main list at priority 0x1e and runs it; returns 3
+- [ ] `00405850` inferred_DlgScript_Update (vtable) · depth 14 · 70 lines · **decompiled** — per-frame step of a scripted action list (24-byte steps at +0xbc, current step +0xcc): waits (type 1 until the speaker finishes plus 200 ms, type 2 timed), choice menus (types 5, 6: asks the player object to say the options), cursor show/hide (type 8), type 9 wait for an animation; advances or ends the list (returns 2 or 3) | per-frame step: handles the blocking step types (1 wait for speech +200 ms, 2 timed wait, 5/6 choice menu, 8 cursor, 9 animation wait) and, when the program counter moved, runs RunSteps; returns 2 when finished
+- [ ] `00406140` inferred_DlgScript_ResumePlayer (vtable) · depth 14 · 12 lines · **decompiled** — removes a helper object from the main list, clears Jim's walking flag, sets facing and advances the program counter
 
 ### Cluster 11: 004067a0–00407000 (0/8 ported)
 
@@ -173,7 +173,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00408030` inferred_Jim_SetIdlePose (vtable) · depth 3 · 29 lines · **decompiled** — slot 30: direction 3,4,2,1 -> idle animation index 0,1,2,3 via 00410130, then recomputes speech anchor point +0xa4
 - [ ] `00408540` inferred_Level_AttachObjects · depth 3 · 8 lines · **decompiled** — calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child
 - [ ] `00407b80` inferred_Jim_EnterLevel · depth 11 · 50 lines · **decompiled** — (level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14
-- [ ] `00407ce0` FUN_00407ce0 · depth 11 · 8 lines · **untouched**
+- [ ] `00407ce0` inferred_Jim_SayLine · depth 11 · 8 lines · **decompiled** — Player_Say with a negative id derived from +0x100 (spoken subtitle line)
 - [ ] `004080e0` inferred_Level_Load · depth 15 · 142 lines · **decompiled** — level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
 
 ### Cluster 14: 00408780–00408890 (0/8 ported)
@@ -603,7 +603,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00419cf0` FUN_00419cf0 (vtable) · depth 12 · 16 lines · **untouched**
 - [ ] `00419d40` FUN_00419d40 (vtable) · depth 12 · 16 lines · **untouched**
 - [ ] `00419d90` FUN_00419d90 (vtable) · depth 12 · 74 lines · **untouched**
-- [ ] `00419f10` FUN_00419f10 (vtable) · depth 12 · 57 lines · **untouched**
+- [ ] `00419f10` inferred_DlgScript_EnterStageLevel (vtable) · depth 12 · 57 lines · **decompiled** — (0 or 1): moves Jim into a fixed stage level (globals 00442188 / 00442154), repositions the camera and re-resolves the script's actor table there
 
 ## Runtime, CRT and import thunks
 

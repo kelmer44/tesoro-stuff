@@ -167,3 +167,8 @@ The "missing" hit test is the generic collision protocol: the cursor is an ordin
 `Cursor_AddCandidate` is reached as `hitter.slot12(other, extra)` from the queued-contact flush in `Level_CollisionPass` (the earlier search missed it because slot 12 takes two arguments and the
 flush pushes them from a list entry). Details in `re/vtables.md`. Remaining unknowns: how the queue prioritises contacts (it special-cases the player object), where the cursor's flag 0x400 is set, and the geometry routines' exact algorithms.
 Consequence for the port: hovering and clicking must be reproduced with the original polygon tests and sort-value priority, not with simple rectangle hit-tests.
+
+### Phase 2, dialogue executor (28 Oct 2026)
+`re/names/dlgscript.tsv` (11 functions) and `re/SCRIPT_LANGUAGE.md`. Story/puzzle sequencing runs in a text script language compiled at load time into 24-byte steps and executed by `DlgScript_RunSteps`/`Update`.
+This is a distinct script system from the per-subtype object classes; both must be reproduced. Parser `DlgScript_Load` (691 lines) is the next large reading target in the script cluster.
+The step executor drives movies (DirectShow), WAV playback, CD audio tracks, actor walking and animations, and byte-sized script variables.

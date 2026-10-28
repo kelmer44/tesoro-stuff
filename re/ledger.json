@@ -3415,7 +3415,7 @@
  {
   "addr": "00401d80",
   "ghidra_name": "FUN_00401d80",
-  "name": "",
+  "name": "inferred_Obj_SetVisible",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -3443,9 +3443,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 3,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "sets flag bit 2 (+0x68) from argument"
  },
  {
   "addr": "00401da0",
@@ -3469,7 +3469,7 @@
  {
   "addr": "00401dc0",
   "ghidra_name": "FUN_00401dc0",
-  "name": "",
+  "name": "inferred_Obj_ApplyPendingAnim",
   "tier": "game",
   "lines": 13,
   "decompile_ok": true,
@@ -3481,9 +3481,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 3,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "selects bank index +4 and stores +8 as the AnimPlayer start value"
  },
  {
   "addr": "00401de0",
@@ -9499,7 +9499,7 @@
  {
   "addr": "00404810",
   "ghidra_name": "FUN_00404810",
-  "name": "",
+  "name": "inferred_DlgScript_Load",
   "tier": "game",
   "lines": 691,
   "decompile_ok": true,
@@ -9521,14 +9521,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 10,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "constructor and text parser (691 lines): reads one script block from the stream with a sscanf-based command grammar, compiles it to 24-byte steps (+0xbc, count +0xc0) plus actor key table (+0xc4, 12-byte entries) and variable byte array (+0xd0); reports \"ERROR AL LEER COMANDO\" on a bad line"
  },
  {
   "addr": "00405630",
   "ghidra_name": "FUN_00405630",
-  "name": "",
+  "name": "inferred_DlgScript_Link",
   "tier": "game",
   "lines": 108,
   "decompile_ok": true,
@@ -9542,14 +9542,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 10,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "post-load pass over the steps resolving actor keys and jump targets (types 4-7)"
  },
  {
   "addr": "00405850",
   "ghidra_name": "FUN_00405850",
-  "name": "inferred_Dialogue_StepUpdate",
+  "name": "inferred_DlgScript_Update",
   "tier": "game",
   "lines": 70,
   "decompile_ok": true,
@@ -9656,12 +9656,12 @@
   "cluster": 10,
   "status": "decompiled",
   "engine": "",
-  "notes": "per-frame step of a scripted action list (24-byte steps at +0xbc, current step +0xcc): waits (type 1 until the speaker finishes plus 200 ms, type 2 timed), choice menus (types 5, 6: asks the player object to say the options), cursor show/hide (type 8), type 9 wait for an animation; advances or ends the list (returns 2 or 3)"
+  "notes": "per-frame step of a scripted action list (24-byte steps at +0xbc, current step +0xcc): waits (type 1 until the speaker finishes plus 200 ms, type 2 timed), choice menus (types 5, 6: asks the player object to say the options), cursor show/hide (type 8), type 9 wait for an animation; advances or ends the list (returns 2 or 3) | per-frame step: handles the blocking step types (1 wait for speech +200 ms, 2 timed wait, 5/6 choice menu, 8 cursor, 9 animation wait) and, when the program counter moved, runs RunSteps; returns 2 when finished"
  },
  {
   "addr": "00405a60",
   "ghidra_name": "FUN_00405a60",
-  "name": "",
+  "name": "inferred_DlgScript_RunSteps",
   "tier": "game",
   "lines": 228,
   "decompile_ok": true,
@@ -9693,14 +9693,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 10,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "executes non-blocking steps from the program counter until a blocking one: say, goto, label/loop, conditional jump on a script variable, event call, actor command (animate, walk, face, activate, show), variable assignment, send message, movie, WAV, CD track"
  },
  {
   "addr": "00405fd0",
   "ghidra_name": "FUN_00405fd0",
-  "name": "",
+  "name": "inferred_DlgScript_Start",
   "tier": "game",
   "lines": 44,
   "decompile_ok": true,
@@ -9825,9 +9825,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 10,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(event, key lo, key hi, variables, level): resolves actors in the level, selects the entry point matching the event key, hides the cursor, inserts the script into the main list at priority 0x1e and runs it; returns 3"
  },
  {
   "addr": "004060b0",
@@ -9851,7 +9851,7 @@
  {
   "addr": "004060c0",
   "ghidra_name": "FUN_004060c0",
-  "name": "",
+  "name": "inferred_DialogueTable_FindByKey",
   "tier": "game",
   "lines": 22,
   "decompile_ok": true,
@@ -9971,9 +9971,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 10,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "linear search of the table's script entries (pointer array at +0x54) for a 64-bit name key at script +0x44/+0x48"
  },
  {
   "addr": "00406110",
@@ -9999,7 +9999,7 @@
  {
   "addr": "00406140",
   "ghidra_name": "FUN_00406140",
-  "name": "",
+  "name": "inferred_DlgScript_ResumePlayer",
   "tier": "game",
   "lines": 12,
   "decompile_ok": true,
@@ -10101,9 +10101,9 @@
   ],
   "data_refs": [],
   "cluster": 10,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "removes a helper object from the main list, clears Jim's walking flag, sets facing and advances the program counter"
  },
  {
   "addr": "00406190",
@@ -11347,7 +11347,7 @@
  {
   "addr": "00407ce0",
   "ghidra_name": "FUN_00407ce0",
-  "name": "",
+  "name": "inferred_Jim_SayLine",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -11361,9 +11361,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "Player_Say with a negative id derived from +0x100 (spoken subtitle line)"
  },
  {
   "addr": "00407d00",
@@ -26861,7 +26861,7 @@
  {
   "addr": "00419f10",
   "ghidra_name": "FUN_00419f10",
-  "name": "",
+  "name": "inferred_DlgScript_EnterStageLevel",
   "tier": "game",
   "lines": 57,
   "decompile_ok": true,
@@ -26885,9 +26885,9 @@
   ],
   "data_refs": [],
   "cluster": 47,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(0 or 1): moves Jim into a fixed stage level (globals 00442188 / 00442154), repositions the camera and re-resolves the script's actor table there"
  },
  {
   "addr": "0041a070",

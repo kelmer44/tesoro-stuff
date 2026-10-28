@@ -1,0 +1,12 @@
+# Dialogue / cutscene script objects (28 Oct 2026). Script text is compiled to 24-byte steps; see re/SCRIPT_LANGUAGE.md.
+00404810	inferred_DlgScript_Load	decompiled	constructor and text parser (691 lines): reads one script block from the stream with a sscanf-based command grammar, compiles it to 24-byte steps (+0xbc, count +0xc0) plus actor key table (+0xc4, 12-byte entries) and variable byte array (+0xd0); reports "ERROR AL LEER COMANDO" on a bad line
+00405850	inferred_DlgScript_Update	decompiled	per-frame step: handles the blocking step types (1 wait for speech +200 ms, 2 timed wait, 5/6 choice menu, 8 cursor, 9 animation wait) and, when the program counter moved, runs RunSteps; returns 2 when finished
+00405a60	inferred_DlgScript_RunSteps	decompiled	executes non-blocking steps from the program counter until a blocking one: say, goto, label/loop, conditional jump on a script variable, event call, actor command (animate, walk, face, activate, show), variable assignment, send message, movie, WAV, CD track
+00405630	inferred_DlgScript_Link	decompiled	post-load pass over the steps resolving actor keys and jump targets (types 4-7)
+00405fd0	inferred_DlgScript_Start	decompiled	(event, key lo, key hi, variables, level): resolves actors in the level, selects the entry point matching the event key, hides the cursor, inserts the script into the main list at priority 0x1e and runs it; returns 3
+004060c0	inferred_DialogueTable_FindByKey	decompiled	linear search of the table's script entries (pointer array at +0x54) for a 64-bit name key at script +0x44/+0x48
+00406140	inferred_DlgScript_ResumePlayer	decompiled	removes a helper object from the main list, clears Jim's walking flag, sets facing and advances the program counter
+00407ce0	inferred_Jim_SayLine	decompiled	Player_Say with a negative id derived from +0x100 (spoken subtitle line)
+00419f10	inferred_DlgScript_EnterStageLevel	decompiled	(0 or 1): moves Jim into a fixed stage level (globals 00442188 / 00442154), repositions the camera and re-resolves the script's actor table there
+00401dc0	inferred_Obj_ApplyPendingAnim	decompiled	selects bank index +4 and stores +8 as the AnimPlayer start value
+00401d80	inferred_Obj_SetVisible	decompiled	sets flag bit 2 (+0x68) from argument
