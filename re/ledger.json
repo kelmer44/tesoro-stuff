@@ -271,7 +271,7 @@
  {
   "addr": "00401bc0",
   "ghidra_name": "FUN_00401bc0",
-  "name": "",
+  "name": "inferred_Object_BaseCtor",
   "tier": "game",
   "lines": 12,
   "decompile_ok": true,
@@ -286,9 +286,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "base game object: vtable 00428000, flags +0x68 |= 6, +0x5e = 5, byte +0x5c = 0"
  },
  {
   "addr": "00401bf0",
@@ -8356,7 +8356,7 @@
  {
   "addr": "00402110",
   "ghidra_name": "FUN_00402110",
-  "name": "",
+  "name": "inferred_Camera_Ctor",
   "tier": "game",
   "lines": 9,
   "decompile_ok": true,
@@ -8368,9 +8368,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 4,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x40-byte object at level +0x80; zeroes +0 and +0x10"
  },
  {
   "addr": "00402120",
@@ -8395,7 +8395,7 @@
  {
   "addr": "004021a0",
   "ghidra_name": "FUN_004021a0",
-  "name": "",
+  "name": "inferred_Camera_MoveTo",
   "tier": "game",
   "lines": 22,
   "decompile_ok": true,
@@ -8411,14 +8411,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 4,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "duration 0: set position now (00402120); otherwise stores start/target and a start time from the game clock"
  },
  {
   "addr": "00402200",
   "ghidra_name": "FUN_00402200",
-  "name": "",
+  "name": "inferred_Camera_SetBounds",
   "tier": "game",
   "lines": 12,
   "decompile_ok": true,
@@ -8431,9 +8431,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 4,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "stores 4 ints at +0x1c..+0x28; Level_Load passes (-320, 239, 319, -240)"
  },
  {
   "addr": "00402230",
@@ -9832,7 +9832,7 @@
  {
   "addr": "004060b0",
   "ghidra_name": "FUN_004060b0",
-  "name": "",
+  "name": "inferred_DialogueTable_Ctor",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -9844,9 +9844,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 10,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "0x2b0-byte table; entry count at +0x2ac set to 0"
  },
  {
   "addr": "004060c0",
@@ -9978,7 +9978,7 @@
  {
   "addr": "00406110",
   "ghidra_name": "FUN_00406110",
-  "name": "",
+  "name": "inferred_DialogueTable_Finalize",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -9992,9 +9992,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 10,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "calls 00405630 for each entry"
  },
  {
   "addr": "00406140",
@@ -10108,7 +10108,7 @@
  {
   "addr": "00406190",
   "ghidra_name": "FUN_00406190",
-  "name": "",
+  "name": "inferred_DialogueTable_Load",
   "tier": "game",
   "lines": 228,
   "decompile_ok": true,
@@ -10130,9 +10130,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 11,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(archive offset, id): reads entries introduced by '.' bytes; each entry built by 00404810 and registered by kind"
  },
  {
   "addr": "004067a0",
@@ -11468,7 +11468,7 @@
  {
   "addr": "004080e0",
   "ghidra_name": "FUN_004080e0",
-  "name": "",
+  "name": "inferred_Level_Load",
   "tier": "game",
   "lines": 142,
   "decompile_ok": true,
@@ -11496,9 +11496,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting"
  },
  {
   "addr": "00408440",
@@ -11522,7 +11522,7 @@
  {
   "addr": "00408520",
   "ghidra_name": "FUN_00408520",
-  "name": "",
+  "name": "inferred_Level_CameraMoveTo",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -11543,14 +11543,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "forwards (x, y, duration) to the camera at +0x80"
  },
  {
   "addr": "00408540",
   "ghidra_name": "FUN_00408540",
-  "name": "",
+  "name": "inferred_Level_AttachObjects",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -11564,9 +11564,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child"
  },
  {
   "addr": "00408550",
@@ -11991,7 +11991,7 @@
  {
   "addr": "00409e50",
   "ghidra_name": "FUN_00409e50",
-  "name": "",
+  "name": "inferred_Level_CreateObject",
   "tier": "game",
   "lines": 1145,
   "decompile_ok": true,
@@ -12028,9 +12028,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 15,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "factory: switch on kind (record +0x18) allocating the right object class (sizes 0x6c, 0x84, 0x78, 0x6c, 0x74, 0xd8 ... kind 5 has a sub-switch on record byte +5); adds objects of kind 1 to level +0x90"
  },
  {
   "addr": "0040c040",
@@ -20795,7 +20795,7 @@
  {
   "addr": "0040f590",
   "ghidra_name": "FUN_0040f590",
-  "name": "",
+  "name": "inferred_List_Ctor",
   "tier": "game",
   "lines": 37,
   "decompile_ok": true,
@@ -20811,9 +20811,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 27,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list"
  },
  {
   "addr": "0040f650",
@@ -20893,7 +20893,7 @@
  {
   "addr": "0040f710",
   "ghidra_name": "FUN_0040f710",
-  "name": "",
+  "name": "inferred_ObjectList_ForEachAttach",
   "tier": "game",
   "lines": 39,
   "decompile_ok": true,
@@ -20907,14 +20907,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 27,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "iterates list and calls 00401bf0(node object, arg)"
  },
  {
   "addr": "0040f780",
   "ghidra_name": "FUN_0040f780",
-  "name": "",
+  "name": "inferred_List_Remove",
   "tier": "game",
   "lines": 49,
   "decompile_ok": true,
@@ -20927,14 +20927,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 27,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "removes the node holding the pointer"
  },
  {
   "addr": "0040f800",
   "ghidra_name": "FUN_0040f800",
-  "name": "",
+  "name": "inferred_List_PushBack",
   "tier": "game",
   "lines": 40,
   "decompile_ok": true,
@@ -20949,9 +20949,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "iterates to the last node and links a new node holding the pointer"
  },
  {
   "addr": "0040f870",
@@ -20996,7 +20996,7 @@
  {
   "addr": "0040f900",
   "ghidra_name": "FUN_0040f900",
-  "name": "",
+  "name": "inferred_ObjectList_InsertByPriority",
   "tier": "game",
   "lines": 82,
   "decompile_ok": true,
@@ -21018,9 +21018,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "12-byte nodes (object, priority): inserts before the first node with a higher priority; main list uses priorities 0x13 (interface level), 100 (top object)"
  },
  {
   "addr": "0040fa10",
@@ -21899,7 +21899,7 @@
  {
   "addr": "00410420",
   "ghidra_name": "FUN_00410420",
-  "name": "",
+  "name": "inferred_Room_Ctor",
   "tier": "game",
   "lines": 26,
   "decompile_ok": true,
@@ -21913,14 +21913,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 30,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list"
  },
  {
   "addr": "004104a0",
   "ghidra_name": "FUN_004104a0",
-  "name": "",
+  "name": "inferred_Room_InsertSorted",
   "tier": "game",
   "lines": 44,
   "decompile_ok": true,
@@ -21938,14 +21938,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 30,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "inserts object into the room list ordered by object field +0x4c"
  },
  {
   "addr": "00410530",
   "ghidra_name": "FUN_00410530",
-  "name": "",
+  "name": "inferred_Room_RemoveObject",
   "tier": "game",
   "lines": 38,
   "decompile_ok": true,
@@ -21957,7 +21957,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 30,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
   "notes": ""
  },
@@ -22413,7 +22413,7 @@
  {
   "addr": "004132b0",
   "ghidra_name": "FUN_004132b0",
-  "name": "",
+  "name": "inferred_Movie_Start",
   "tier": "game",
   "lines": 123,
   "decompile_ok": true,
@@ -22430,14 +22430,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 33,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "DirectShow setup via CoCreateInstance, builds path c:\\INSTALL\\BIN\\DATA\\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed"
  },
  {
   "addr": "00413570",
   "ghidra_name": "FUN_00413570",
-  "name": "",
+  "name": "inferred_TextTable_Load",
   "tier": "game",
   "lines": 121,
   "decompile_ok": true,
@@ -22461,9 +22461,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 33,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "(archive offset): reads lines of the OBJETOS.TXT-style table and stores records of 16 bytes; first pass counts lines"
  },
  {
   "addr": "004137c0",
@@ -23408,7 +23408,7 @@
  {
   "addr": "00415230",
   "ghidra_name": "FUN_00415230",
-  "name": "",
+  "name": "inferred_TopObject_Ctor",
   "tier": "game",
   "lines": 9,
   "decompile_ok": true,
@@ -23422,9 +23422,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 36,
-  "status": "untouched",
+  "status": "decompiled",
   "engine": "",
-  "notes": ""
+  "notes": "base object with vtable 0042be08, inserted with priority 100 (frontmost)"
  },
  {
   "addr": "00415250",

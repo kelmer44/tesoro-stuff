@@ -1,0 +1,23 @@
+# InitGameWorld callees (28 Oct 2026). Containers share one pooled linked-list layout; roles inferred from callers.
+004080e0	inferred_Level_Load	decompiled	level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
+00401bc0	inferred_Object_BaseCtor	decompiled	base game object: vtable 00428000, flags +0x68 |= 6, +0x5e = 5, byte +0x5c = 0
+00409e50	inferred_Level_CreateObject	decompiled	factory: switch on kind (record +0x18) allocating the right object class (sizes 0x6c, 0x84, 0x78, 0x6c, 0x74, 0xd8 ... kind 5 has a sub-switch on record byte +5); adds objects of kind 1 to level +0x90
+00408540	inferred_Level_AttachObjects	decompiled	calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child
+0040f710	inferred_ObjectList_ForEachAttach	decompiled	iterates list and calls 00401bf0(node object, arg)
+00408520	inferred_Level_CameraMoveTo	decompiled	forwards (x, y, duration) to the camera at +0x80
+00402110	inferred_Camera_Ctor	decompiled	0x40-byte object at level +0x80; zeroes +0 and +0x10
+00402200	inferred_Camera_SetBounds	decompiled	stores 4 ints at +0x1c..+0x28; Level_Load passes (-320, 239, 319, -240)
+004021a0	inferred_Camera_MoveTo	decompiled	duration 0: set position now (00402120); otherwise stores start/target and a start time from the game clock
+0040f590	inferred_List_Ctor	decompiled	pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list
+0040f800	inferred_List_PushBack	decompiled	iterates to the last node and links a new node holding the pointer
+0040f780	inferred_List_Remove	decompiled	removes the node holding the pointer
+0040f900	inferred_ObjectList_InsertByPriority	decompiled	12-byte nodes (object, priority): inserts before the first node with a higher priority; main list uses priorities 0x13 (interface level), 100 (top object)
+00410420	inferred_Room_Ctor	decompiled	16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list
+004104a0	inferred_Room_InsertSorted	decompiled	inserts object into the room list ordered by object field +0x4c
+00410530	inferred_Room_RemoveObject	decompiled	
+004060b0	inferred_DialogueTable_Ctor	decompiled	0x2b0-byte table; entry count at +0x2ac set to 0
+00406190	inferred_DialogueTable_Load	decompiled	(archive offset, id): reads entries introduced by '.' bytes; each entry built by 00404810 and registered by kind
+00406110	inferred_DialogueTable_Finalize	decompiled	calls 00405630 for each entry
+00415230	inferred_TopObject_Ctor	decompiled	base object with vtable 0042be08, inserted with priority 100 (frontmost)
+00413570	inferred_TextTable_Load	decompiled	(archive offset): reads lines of the OBJETOS.TXT-style table and stores records of 16 bytes; first pass counts lines
+004132b0	inferred_Movie_Start	decompiled	DirectShow setup via CoCreateInstance, builds path c:\INSTALL\BIN\DATA\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed

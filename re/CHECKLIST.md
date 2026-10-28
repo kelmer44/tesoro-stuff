@@ -8,7 +8,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 53 | 11% |
+| decompiled or later | 75 | 16% |
 | understood or later | 0 | 0% |
 | ported or later | 0 | 0% |
 | emu-compared or later | 0 | 0% |
@@ -29,7 +29,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 2: 00401bc0–00401d60 (0/12 ported)
 
-- [ ] `00401bc0` FUN_00401bc0 · depth 0 · 12 lines · **untouched**
+- [ ] `00401bc0` inferred_Object_BaseCtor · depth 0 · 12 lines · **decompiled** — base game object: vtable 00428000, flags +0x68 |= 6, +0x5e = 5, byte +0x5c = 0
 - [ ] `00401c20` inferred_Clock_Dtor (vtable) · depth 0 · 7 lines · **decompiled** — empty
 - [ ] `00401c50` FUN_00401c50 (vtable) · depth 0 · 30 lines · **untouched**
 - [ ] `00401d20` FUN_00401d20 (vtable) · depth 0 · 7 lines · **untouched**
@@ -56,12 +56,12 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 4: 00401fb0–00402230 (0/7 ported)
 
 - [ ] `00401fb0` FUN_00401fb0 (vtable) · depth 0 · 7 lines · **untouched**
-- [ ] `00402110` FUN_00402110 · depth 0 · 9 lines · **untouched**
+- [ ] `00402110` inferred_Camera_Ctor · depth 0 · 9 lines · **decompiled** — 0x40-byte object at level +0x80; zeroes +0 and +0x10
 - [ ] `00402120` FUN_00402120 · depth 0 · 35 lines · **untouched**
-- [ ] `00402200` FUN_00402200 · depth 0 · 12 lines · **untouched**
+- [ ] `00402200` inferred_Camera_SetBounds · depth 0 · 12 lines · **decompiled** — stores 4 ints at +0x1c..+0x28; Level_Load passes (-320, 239, 319, -240)
 - [ ] `00402230` FUN_00402230 · depth 0 · 8 lines · **untouched**
 - [ ] `00401fc0` FUN_00401fc0 · depth 1 · 57 lines · **untouched**
-- [ ] `004021a0` FUN_004021a0 · depth 1 · 22 lines · **untouched**
+- [ ] `004021a0` inferred_Camera_MoveTo · depth 1 · 22 lines · **decompiled** — duration 0: set position now (00402120); otherwise stores start/target and a start time from the game clock
 
 ### Cluster 5: 004023f0–004028c0 (0/7 ported)
 
@@ -126,10 +126,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 10: 004060b0–00406140 (0/9 ported)
 
-- [ ] `004060b0` FUN_004060b0 · depth 0 · 8 lines · **untouched**
+- [ ] `004060b0` inferred_DialogueTable_Ctor · depth 0 · 8 lines · **decompiled** — 0x2b0-byte table; entry count at +0x2ac set to 0
 - [ ] `004060c0` FUN_004060c0 · depth 0 · 22 lines · **untouched**
 - [ ] `00405630` FUN_00405630 · depth 1 · 108 lines · **untouched**
-- [ ] `00406110` FUN_00406110 · depth 2 · 19 lines · **untouched**
+- [ ] `00406110` inferred_DialogueTable_Finalize · depth 2 · 19 lines · **decompiled** — calls 00405630 for each entry
 - [ ] `00404810` FUN_00404810 · depth 12 · 691 lines · **untouched**
 - [ ] `00405a60` FUN_00405a60 · depth 13 · 228 lines · **untouched**
 - [ ] `00405fd0` FUN_00405fd0 · depth 13 · 44 lines · **untouched**
@@ -145,7 +145,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00407000` FUN_00407000 (vtable) · depth 3 · 30 lines · **untouched**
 - [ ] `00406a90` FUN_00406a90 · depth 12 · 88 lines · **untouched**
 - [ ] `00406d50` FUN_00406d50 (vtable) · depth 12 · 123 lines · **untouched**
-- [ ] `00406190` FUN_00406190 · depth 13 · 228 lines · **untouched**
+- [ ] `00406190` inferred_DialogueTable_Load · depth 13 · 228 lines · **decompiled** — (archive offset, id): reads entries introduced by '.' bytes; each entry built by 00404810 and registered by kind
 
 ### Cluster 12: 004079d0–00407aa0 (0/11 ported)
 
@@ -168,13 +168,13 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00407d00` FUN_00407d00 · depth 1 · 71 lines · **untouched**
 - [ ] `00407f30` FUN_00407f30 (vtable) · depth 2 · 37 lines · **untouched**
 - [ ] `004080a0` FUN_004080a0 (vtable) · depth 2 · 17 lines · **untouched**
-- [ ] `00408520` FUN_00408520 · depth 2 · 8 lines · **untouched**
+- [ ] `00408520` inferred_Level_CameraMoveTo · depth 2 · 8 lines · **decompiled** — forwards (x, y, duration) to the camera at +0x80
 - [ ] `00408550` FUN_00408550 · depth 2 · 52 lines · **untouched**
 - [ ] `00408030` FUN_00408030 (vtable) · depth 3 · 29 lines · **untouched**
-- [ ] `00408540` FUN_00408540 · depth 3 · 8 lines · **untouched**
+- [ ] `00408540` inferred_Level_AttachObjects · depth 3 · 8 lines · **decompiled** — calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child
 - [ ] `00407b80` FUN_00407b80 · depth 11 · 50 lines · **untouched**
 - [ ] `00407ce0` FUN_00407ce0 · depth 11 · 8 lines · **untouched**
-- [ ] `004080e0` FUN_004080e0 · depth 15 · 142 lines · **untouched**
+- [ ] `004080e0` inferred_Level_Load · depth 15 · 142 lines · **decompiled** — level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
 
 ### Cluster 14: 00408780–00408890 (0/8 ported)
 
@@ -194,7 +194,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00409790` FUN_00409790 · depth 0 · 255 lines · **untouched**
 - [ ] `00409c10` FUN_00409c10 · depth 0 · 113 lines · **untouched**
 - [ ] `00408c50` FUN_00408c50 · depth 1 · 256 lines · **untouched**
-- [ ] `00409e50` FUN_00409e50 · depth 14 · 1145 lines · **untouched**
+- [ ] `00409e50` inferred_Level_CreateObject · depth 14 · 1145 lines · **decompiled** — factory: switch on kind (record +0x18) allocating the right object class (sizes 0x6c, 0x84, 0x78, 0x6c, 0x74, 0xd8 ... kind 5 has a sub-switch on record byte +5); adds objects of kind 1 to level +0x90
 - [ ] `0040c040` FUN_0040c040 (vtable) · depth 14 · 19 lines · **untouched**
 
 ### Cluster 16: 0040c0e0–0040c4d0 (0/12 ported)
@@ -344,10 +344,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 - [ ] `0040f670` FUN_0040f670 · depth 0 · 12 lines · **untouched**
 - [ ] `0040f680` FUN_0040f680 · depth 0 · 55 lines · **untouched**
-- [ ] `0040f780` FUN_0040f780 · depth 0 · 49 lines · **untouched**
-- [ ] `0040f590` FUN_0040f590 · depth 1 · 37 lines · **untouched**
+- [ ] `0040f780` inferred_List_Remove · depth 0 · 49 lines · **decompiled** — removes the node holding the pointer
+- [ ] `0040f590` inferred_List_Ctor · depth 1 · 37 lines · **decompiled** — pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list
 - [ ] `0040f650` inferred_Pool_AllocAlignedZero_Global · depth 1 · 8 lines · **decompiled** — wrapper on the global pool
-- [ ] `0040f710` FUN_0040f710 · depth 2 · 39 lines · **untouched**
+- [ ] `0040f710` inferred_ObjectList_ForEachAttach · depth 2 · 39 lines · **decompiled** — iterates list and calls 00401bf0(node object, arg)
 - [ ] `0040f280` FUN_0040f280 (vtable) · depth 12 · 25 lines · **untouched**
 - [ ] `0040f300` FUN_0040f300 (vtable) · depth 12 · 25 lines · **untouched**
 - [ ] `0040f380` FUN_0040f380 (vtable) · depth 12 · 25 lines · **untouched**
@@ -356,9 +356,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 28: 0040f800–0040fbb0 (0/7 ported)
 
-- [ ] `0040f800` FUN_0040f800 · depth 0 · 40 lines · **untouched**
+- [ ] `0040f800` inferred_List_PushBack · depth 0 · 40 lines · **decompiled** — iterates to the last node and links a new node holding the pointer
 - [ ] `0040f870` FUN_0040f870 · depth 0 · 14 lines · **untouched**
-- [ ] `0040f900` FUN_0040f900 · depth 0 · 82 lines · **untouched**
+- [ ] `0040f900` inferred_ObjectList_InsertByPriority · depth 0 · 82 lines · **decompiled** — 12-byte nodes (object, priority): inserts before the first node with a higher priority; main list uses priorities 0x13 (interface level), 100 (top object)
 - [ ] `0040fa10` FUN_0040fa10 · depth 0 · 82 lines · **untouched**
 - [ ] `0040fb20` FUN_0040fb20 · depth 0 · 58 lines · **untouched**
 - [ ] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **decompiled** — allocates a linked list with capacity param (100 for the main list 00442104)
@@ -382,12 +382,12 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 30: 004103f0–004108a0 (0/8 ported)
 
 - [ ] `004103f0` FUN_004103f0 (vtable) · depth 0 · 8 lines · **untouched**
-- [ ] `004104a0` FUN_004104a0 · depth 0 · 44 lines · **untouched**
-- [ ] `00410530` FUN_00410530 · depth 0 · 38 lines · **untouched**
+- [ ] `004104a0` inferred_Room_InsertSorted · depth 0 · 44 lines · **decompiled** — inserts object into the room list ordered by object field +0x4c
+- [ ] `00410530` inferred_Room_RemoveObject · depth 0 · 38 lines · **decompiled**
 - [ ] `004105a0` FUN_004105a0 · depth 0 · 177 lines · **untouched**
 - [ ] `004108a0` FUN_004108a0 · depth 0 · 215 lines · **untouched**
 - [ ] `00410400` FUN_00410400 (vtable) · depth 1 · 10 lines · **untouched**
-- [ ] `00410420` FUN_00410420 · depth 1 · 26 lines · **untouched**
+- [ ] `00410420` inferred_Room_Ctor · depth 1 · 26 lines · **decompiled** — 16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list
 - [ ] `004103d0` FUN_004103d0 (vtable) · depth 3 · 9 lines · **untouched**
 
 ### Cluster 31: 00410cc0–00411f80 (0/12 ported)
@@ -421,8 +421,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004138b0` FUN_004138b0 · depth 0 · 47 lines · **untouched**
 - [ ] `004139c0` inferred_Clock_Ctor · depth 0 · 14 lines · **decompiled** — game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended
 - [ ] `004139e0` FUN_004139e0 · depth 0 · 18 lines · **untouched**
-- [ ] `004132b0` FUN_004132b0 · depth 11 · 123 lines · **untouched**
-- [ ] `00413570` FUN_00413570 · depth 11 · 121 lines · **untouched**
+- [ ] `004132b0` inferred_Movie_Start · depth 11 · 123 lines · **decompiled** — DirectShow setup via CoCreateInstance, builds path c:\INSTALL\BIN\DATA\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed
+- [ ] `00413570` inferred_TextTable_Load · depth 11 · 121 lines · **decompiled** — (archive offset): reads lines of the OBJETOS.TXT-style table and stores records of 16 bytes; first pass counts lines
 - [ ] `00413940` FUN_00413940 · depth 11 · 27 lines · **untouched**
 
 ### Cluster 34: 00413a10–00414560 (0/12 ported)
@@ -462,7 +462,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00415120` FUN_00415120 (vtable) · depth 0 · 7 lines · **untouched**
 - [ ] `00415130` FUN_00415130 (vtable) · depth 0 · 43 lines · **untouched**
 - [ ] `00415200` FUN_00415200 · depth 0 · 23 lines · **untouched**
-- [ ] `00415230` FUN_00415230 · depth 1 · 9 lines · **untouched**
+- [ ] `00415230` inferred_TopObject_Ctor · depth 1 · 9 lines · **decompiled** — base object with vtable 0042be08, inserted with priority 100 (frontmost)
 - [ ] `00415290` FUN_00415290 (vtable) · depth 1 · 27 lines · **untouched**
 - [ ] `004150d0` FUN_004150d0 · depth 3 · 17 lines · **untouched**
 - [ ] `00415350` FUN_00415350 (vtable) · depth 3 · 40 lines · **untouched**

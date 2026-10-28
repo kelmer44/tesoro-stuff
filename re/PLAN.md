@@ -98,3 +98,14 @@ Startup structure read from the fresh decompilation:
 - The game clock ignores any single tick gap of 500 ms or more (a stall does not advance game time). Timing in the port must reproduce this.
 - Resources are found by name in a sorted index (`Tesoro.TRE`), data read from `Tesoro.DAT`. Name hash: 5 bits per character, 12 characters, 64-bit.
 - Still unread: `InitGameWorld` callees (level loader 004080e0, dialogue loader 00406190, 004070c0 game-state constructor, 00415230), the object-list insert/remove functions, and the render path.
+
+### Phase 2, InitGameWorld callees (28 Oct 2026)
+`re/names/startup2.tsv`: 28 more functions (level loader, object factory, camera, lists, dialogue table, room records, movie setup).
+- Everything game-visible derives from one base object (`Object_BaseCtor`, vtable 00428000, flags word at +0x68 with bit 1 = active, 0x200 = processed this frame).
+  A Level is itself such an object and sits in the main object list (00442104) with a priority; its own children live in an object list at +0x74, room records
+  (0x10 bytes) at +0x70 and anim banks at +0x6c.
+- The scene object factory `Level_CreateObject` switches on the record kind; kind 5 has a second switch. This is the 23-kind dispatch to port early.
+- Linked lists use a pooled node array with a built-in iterator (current node at +0x10 or +0xc, "first" flag); the same layout appears in several list types
+  with different node sizes. A port can use plain containers but must keep ordering semantics (insert by priority, insert by +0x4c, push back).
+- Caveat: `Level_Load` is garbled in the decompiler output because of its huge stack frame; port from disassembly.
+- Still unread: `Level_CreateObject` per-kind constructors, `004070c0` (game-state object, 0x114 bytes), `Movie_Start` remainder, dialogue entry class (`00404810`).
