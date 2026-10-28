@@ -1,4 +1,6 @@
 # Recovered structures
+
+**Generated companion:** `STRUCTS_GENERATED.md` (all 152 classes: inheritance tree, own virtual methods, field accesses with confidence) and `types/tesoro_types.h` (C structs for Ghidra's *File > Parse C Source*), both produced by `tools/build_classes.py` from the fresh exports; hand-assigned field names live in `field_names.json`. The hand-written tables below were checked against the generated ones (Obj base, Jim, Cursor agree).
 Confidence per field: `?` guessed · `r` read-only evidence · `w` written+read evidence · `c` confirmed by constructor/serializer.
 
 | Struct | Size (alloc evidence) | Vtable | Notes |

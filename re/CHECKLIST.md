@@ -95,7 +95,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004036e0` inferred_InputDevice_SetTimings · depth 0 · 9 lines · **decompiled** — +0xc and +0x10 (200 and 20000 are the values given at start)
 - [ ] `00403700` inferred_Keyboard_UpdateKeyStates · depth 0 · 50 lines · **decompiled** — (new states, count) state machine per key (0,1,2,4,8,0x10,0x20) using GetTickCount and the two timing values (+0xc, +0x10): press, hold, release and repeat
 - [ ] `004037c0` inferred_InputDevice_Dtor · depth 0 · 23 lines · **decompiled** — releases the DirectInput device and the shared DirectInput object when the count reaches zero
-- [ ] `004035b0` inferred_DirectInput_Create · depth 1 · 42 lines · **decompiled** — creates the shared DirectInput object (DirectInputCreateA) and shows "DIRECTINPUT: error al crear el objeto" on failure; reference-counted in 0044207c
+- [ ] `004035b0` inferred_InputDevice_Ctor · depth 1 · 42 lines · **decompiled** — base-class constructor of the DirectInput devices (stores vtable 0042806c, creates the shared DirectInput object once and the device); message "DIRECTINPUT: error al crear el objeto" on failure; reference-counted in 0044207c. Called from Keyboard_Ctor and Mouse ctor
 - [ ] `004038f0` inferred_C00428070_Slot00 (vtable) · depth 1 · 40 lines · **untouched** — unread; first seen in vtable 00428070 slot 0 (non-object class)
 - [ ] `00403320` inferred_Archive_SeekSavePos · depth 5 · 11 lines · **decompiled** — (offset) returns the previous position and seeks to offset
 - [ ] `00403820` inferred_Keyboard_Ctor · depth 5 · 44 lines · **decompiled** — 0x38-byte keyboard device, vtable 00428070, 16-byte state buffer (+0x1c), default timings 200 and 20000

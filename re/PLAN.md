@@ -192,3 +192,14 @@ All 447 game-tier functions and all 256 runtime-tier functions now have a record
 - `re/vtable_map.json` maps every vtable base to its slot functions (153 bases found by scanning decompiled constructors; one bogus base in the CRT range).
 - Corrections made on the way: `Display_Init` was a mistaken label (00411c00 is a ready-check; the Display constructor does the DirectDraw setup); two time-driven random functions exist (`RandomRange`, `RandomRange7`); a board mini-game (7-column, four-in-a-row style) exists in the 0x418d20 region (hypothesis).
 Remaining naming debt is therefore **quality**, not coverage: semantic names for the 189 structure-named methods require reading them, which is Phase 4 work cluster by cluster.
+
+### Phase 3, structures and classes (28 Oct 2026)
+Tool: `re/tools/build_classes.py` -> `re/classes.json`, `re/STRUCTS_GENERATED.md`, `re/types/tesoro_types.h` (header compiles with `cc -fsyntax-only`). Hand-assigned field names in `re/field_names.json`.
+Result: 152 classes (every vtable found), 150 with a parent, inheritance tree rooted in `Obj_Kind00` (children: Level family, Kind03 family, `Obj_MidBase` -> {script entries, Kind13 family, Kind09 family -> Kind06 family, Kind05 family -> Jim}) plus the separate `InputDevice` (Keyboard, Mouse) root.
+Field confidence over 559 field records: {'w?': 40, 'c': 227, 'r': 219, 'w': 73}. Jim, Cursor, Obj base layouts agree with the layouts read by hand.
+Honest gaps (Phase 3 exit is **not fully met**):
+- 29 classes have no field accesses of their own (leaf subtype classes that only override behaviour) and 30 have no known allocation size (device classes, script entry subclasses).
+- Field widths are the decompiler's access widths; 9 child/parent width disagreements remain unresolved; names exist only for the Obj base, Kind09 family, Jim, Cursor and Level fields.
+- Types were NOT applied inside Ghidra (the bridge cannot create data types). To apply: Ghidra > File > Parse C Source > `re/types/tesoro_types.h`, then set `this` types on methods.
+- Level subclasses (Cubierta, Mapa, Interface) and the 21 script-entry subclasses are placed by their constructor stores; the Level layout itself is only partly known because `Level_Load` decompiles badly.
+Also renamed `004035b0` to `InputDevice_Ctor` (it is the base-class constructor of Keyboard and Mouse).

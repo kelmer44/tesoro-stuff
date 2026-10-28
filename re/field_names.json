@@ -1,0 +1,8 @@
+{
+ "_note": "Hand-assigned field names, offset -> name. Applied by build_classes.py to the class and inherited by its subclasses. Only fields with read evidence. Keyed by vtable.",
+ "00428000": {"0x10":"boundsLeft?","0x14":"boundsTop?","0x18":"boundsRight?","0x1c":"boundsBottom?","0x20":"screenLeft?","0x24":"screenTop?","0x28":"screenRight?","0x2c":"screenBottom?","0x32":"bankIndex","0x33":"bankCount","0x34":"banks","0x38":"anim","0x3c":"room","0x40":"level","0x44":"nameKey","0x4c":"x","0x50":"y","0x54":"prevX","0x58":"prevY","0x5c":"state","0x5e":"sortValue","0x60":"stateBlob","0x64":"stateBlobSize","0x68":"flags"},
+ "0042bad8": {"0x6c":"hoverPhrase","0x70":"phraseVerb0","0x74":"phraseVerb1","0x78":"phraseVerb2","0x7c":"phraseVerb3","0x80":"phraseVerb4","0x8c":"clickPending","0x8d":"clickFlag","0x94":"approachX","0x98":"approachY","0x9c":"currentVerb","0xa0":"itemKeys","0xa4":"itemResponses","0xa8":"itemCount"},
+ "00428b70": {"0xc4":"speechPhrase","0xcc":"speechId","0xd4":"talking","0xd5":"walking","0xd8":"walkAnimTable","0xe0":"fixedX","0xe4":"fixedY","0xf0":"walkFlag","0xf4":"walkTarget","0xfc":"scale","0x104":"targetX","0x108":"targetY","0x10c":"facing"},
+ "00428038": {"0x78":"hoverText","0x118":"hoverTextArg","0x12c":"heldItem"},
+ "00428bf8": {"0x6c":"banks","0x70":"rooms","0x74":"objects","0x78":"contacts","0x7c":"roomObjects","0x80":"camera","0x84":"roomCount","0x88":"bankCount","0x90":"walkAreaSetup","0x94":"reloadAnimsFlag","0x98":"levelIndex"}
+}

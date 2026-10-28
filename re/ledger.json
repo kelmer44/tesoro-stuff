@@ -9010,7 +9010,7 @@
  {
   "addr": "004035b0",
   "ghidra_name": "FUN_004035b0",
-  "name": "inferred_DirectInput_Create",
+  "name": "inferred_InputDevice_Ctor",
   "tier": "game",
   "lines": 42,
   "decompile_ok": true,
@@ -9027,7 +9027,7 @@
   "cluster": 7,
   "status": "decompiled",
   "engine": "",
-  "notes": "creates the shared DirectInput object (DirectInputCreateA) and shows \"DIRECTINPUT: error al crear el objeto\" on failure; reference-counted in 0044207c"
+  "notes": "base-class constructor of the DirectInput devices (stores vtable 0042806c, creates the shared DirectInput object once and the device); message \"DIRECTINPUT: error al crear el objeto\" on failure; reference-counted in 0044207c. Called from Keyboard_Ctor and Mouse ctor"
  },
  {
   "addr": "004036c0",
