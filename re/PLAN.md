@@ -223,3 +223,6 @@ Validation: `re/tools/run_startup_check.sh` (vectors from the original code in U
 Ledger: 9 functions `emu-compared` (6 clock, 2 random, name hash). `re/AUDIT.md` started; two divergences with `tesoro-engine` recorded (clock only runs in gameplay there; seeded RNG).
 Renamed `00413ac0` to `RandomRangeAlt`: the earlier name (RandomRange7) and "7 bits" description were wrong (it also uses 10 tick bits).
 Next: increment 2 (archive index and lookup). It needs contracts first for `Archive_ReadIndex`, `Archive_Tell` and `Archive_SeekSavePos`, plus a look at how the data files are laid out (`Tesoro.TRE`/`.DAT`, whose location is outside the files I may read without asking).
+
+### Phase 4, increment 2 contracts (29 Oct 2026)
+Contracts written (status `understood`) for the archive cluster: Ctor 00403220, Open 00403250, SeekEntry 004032e0, Tell 00403300, SeekSavePos 00403320, Close 00403360, ReadIndex 00403380, FindEntry 00403500. Finding: the index is sorted **descending** (selection sort, first maximum wins) and FindEntry's binary search is written for that order; the older note said only "sorted by name". Not yet done: C++ port, Unicorn vectors, and the shipped `Tesoro.TRE` has not been read (duplicate names, >2300 entries, meaning of record +4 and of the 4-byte offset skip stay open).

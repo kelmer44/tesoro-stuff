@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
 			sscanf(line + 1, " %15s %u %31s", op, &tick, exp);
 			if (!strcmp(op, "new")) { clock.reset(new Tesoro::GameClock(tick)); continue; }
 			if (!strcmp(op, "now")) {
-				++total[3]; int want = atoi(exp); int got = clock->now(tick);
+				++total[3]; int want = atoi(exp); int got = clock->update(tick);
 				if (got != want && bad[3]++ < 5) printf("clock now mismatch tick=%u: got %d want %d\n", tick, got, want);
 			} else if (!strcmp(op, "freeze")) clock->freeze(tick);
 			else if (!strcmp(op, "unfreeze")) clock->unfreeze();
