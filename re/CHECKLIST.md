@@ -9,9 +9,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 |---|---|---|
 | untouched or later | 447 | 100% |
 | decompiled or later | 236 | 52% |
-| understood or later | 68 | 15% |
-| ported or later | 51 | 11% |
-| emu-compared or later | 40 | 8% |
+| understood or later | 73 | 16% |
+| ported or later | 57 | 12% |
+| emu-compared or later | 43 | 9% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -27,7 +27,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00401160` inferred_AnimBank_Load · depth 9 · 163 lines · **emu-compared** — thiscall(entry, pool, mode): opens archive entry+4, reads 0x18 header (images +0x20, sequences +0x22), 0x24-byte sequence records at +0x1c, image pointer array at +0, file offsets at +4; mode 2 defers image loading | animation vectors 29 Oct
 - [x] `00401510` inferred_AnimBank_LoadDeferredImages · depth 9 · 26 lines · **emu-compared** — mode 2 only: seeks to each stored offset (+4 array) and loads the image with 004015a0 | animation vectors 29 Oct
 
-### Cluster 2: 00401bc0–00401d60 (8/12 ported)
+### Cluster 2: 00401bc0–00401d60 (9/12 ported)
 
 - [x] `00401bc0` inferred_Object_BaseCtor · depth 0 · 12 lines · **emu-compared** → `engines/tesoro/core/object.cpp::Object::initPlain` — base game object: vtable 00428000, flags +0x68 |= 6, +0x5e = 5, byte +0x5c = 0 | object vectors 29 Oct
 - [ ] `00401c20` inferred_Noop (vtable) · depth 0 · 7 lines · **understood** — empty function; fills vtable slots 0, 1 and 7 of the base classes (also used as the clock destructor) | empty function; fills vtable slots 0, 1 and 7 of the base classes (and was the clock destructor)
@@ -37,7 +37,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00401860` inferred_AnimPlayer_Advance · depth 1 · 86 lines · **emu-compared** — advances the animation: reads the game clock, steps frames by their durations, wraps or stops at the range end (86 lines, detail not yet contracted) | name from call sites and a skim; body not yet read | player update vectors 29 Oct
 - [x] `00401a50` inferred_AnimPlayer_Pause · depth 1 · 12 lines · **emu-compared** — flags: clear bit0, set bit1; +0x10 = clock now | player update vectors 29 Oct
 - [x] `00401a70` inferred_AnimPlayer_Resume · depth 1 · 15 lines · **emu-compared** — adds the paused duration to +8, clears +0x10, flags: clear bit1, set bit0 | player update vectors 29 Oct
-- [ ] `00401bf0` inferred_Object_AttachToLevel · depth 1 · 16 lines · **understood** — sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0
+- [x] `00401bf0` inferred_Object_AttachToLevel · depth 1 · 16 lines · **ported** → `engines/tesoro/core/object.cpp::Object::attachToLevel` — sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0 | room-list insertion (004104a0) not ported; warns
 - [ ] `00401d30` inferred_Obj_SetPosition · depth 1 · 14 lines · **understood** — (x, y, flag) sets previous position (+0x54/+0x58), and current (+0x4c/+0x50) when flag set; notifies the level
 - [x] `00401aa0` inferred_Object_AnimatedCtor · depth 2 · 63 lines · **emu-compared** → `engines/tesoro/core/object.cpp::Object::initAnimated` — 0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38) | object vectors 29 Oct
 - [x] `00401c30` inferred_Obj_AnimTick (vtable) · depth 2 · 11 lines · **emu-compared** → `engines/tesoro/core/animset.cpp::AnimSet` — base slot 2: if object has animation (flag bit 4) advance AnimPlayer via 00401860 | AnimSet vectors 29 Oct
@@ -340,21 +340,21 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040f0d0` inferred_Obj_RunVerb (vtable) · depth 3 · 40 lines · **decompiled** — MidBase slot 13: tells the player object (global 004420fc) to select verb +0x90, then dispatches the verb handler like Interactive_Update
 - [ ] `0040f210` inferred_Obj_Verb0_Default (vtable) · depth 11 · 16 lines · **decompiled** — MidBase slot 20: marks click pending (+0x8c, +0x8d), says phrase key +0x70 if set via GameState_Say, sets cursor busy, inserts object into the main list at priority 5
 
-### Cluster 27: 0040f670–0040f780 (4/11 ported)
+### Cluster 27: 0040f670–0040f780 (5/11 ported)
 
 - [x] `0040f670` inferred_List_RewindIterator · depth 0 · 12 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — resets a list's iterator (current = head, first flag = 1)
 - [x] `0040f680` inferred_ObjectList_FindByKey · depth 0 · 55 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — (key lo, key hi) finds an object in the list by its 64-bit name key at object +0x44; returns 0 when absent
 - [x] `0040f780` inferred_List_Remove · depth 0 · 49 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — removes the node holding the pointer
 - [x] `0040f590` inferred_List_Ctor · depth 1 · 37 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list
 - [ ] `0040f650` inferred_Pool_AllocAlignedZero_Global · depth 1 · 8 lines · **decompiled** — wrapper on the global pool
-- [ ] `0040f710` inferred_ObjectList_ForEachAttach · depth 2 · 39 lines · **decompiled** — iterates list and calls 00401bf0(node object, arg)
+- [x] `0040f710` inferred_ObjectList_ForEachAttach · depth 2 · 39 lines · **ported** — iterates list and calls 00401bf0(node object, arg)
 - [ ] `0040f280` inferred_Obj_Verb1_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 21 of Kind09-based classes: same pattern with phrase key +0x74 and a default phrase when unset
 - [ ] `0040f300` inferred_Obj_Verb3_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 22: phrase key +0x7c
 - [ ] `0040f380` inferred_Obj_Verb2_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 23: phrase key +0x78
 - [ ] `0040f400` inferred_Obj_Verb4_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 24: phrase key +0x80
 - [ ] `0040f480` inferred_Obj_UseItem_Default (vtable) · depth 12 · 50 lines · **decompiled** — slot 27: handles using an inventory item on the object: looks the item up in the object's item table (+0xa0 pairs of name keys, +0xa4 responses) else says a default phrase (ICON01T058 or MODELO2)
 
-### Cluster 28: 0040f800–0040fbb0 (6/7 ported)
+### Cluster 28: 0040f800–0040fbb0 (7/7 ported)
 
 - [x] `0040f800` inferred_List_PushBack · depth 0 · 40 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — iterates to the last node and links a new node holding the pointer
 - [x] `0040f870` inferred_List_Clear · depth 0 · 14 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — empties a 2-field-node list
@@ -362,7 +362,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `0040fa10` inferred_ObjectList_InsertByPriorityFront · depth 0 · 82 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — like InsertByPriority but inserts before nodes of equal priority
 - [x] `0040fb20` inferred_ObjectList_RemoveByObject · depth 0 · 58 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — removes the node holding the given object from the main list
 - [x] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — allocates a linked list with capacity param (100 for the main list 00442104)
-- [ ] `0040fbb0` inferred_ObjectList_AttachAll · depth 2 · 38 lines · **decompiled** — walks the list calling Object_AttachToLevel on each object
+- [x] `0040fbb0` inferred_ObjectList_AttachAll · depth 2 · 38 lines · **ported** — walks the list calling Object_AttachToLevel on each object
 
 ### Cluster 29: 0040fc20–00410330 (2/12 ported)
 
@@ -379,15 +379,15 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00410330` inferred_Player_Say · depth 10 · 33 lines · **decompiled** — (phrase record, id, flag) on the object in global 004420fc (walks, so probably the player): stores phrase +0xc4 / id +0xcc, busy +0xd4=1, starts the phrase sound (record +8) through the sound manager, slot 30 (0x78) with flag, inserts itself into the main list at priority 6, calls slot 4 | see ledger note
 - [ ] `0040fec0` inferred_Obj_Kind05_Ctor · depth 13 · 40 lines · **decompiled** — 0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags
 
-### Cluster 30: 004103f0–004108a0 (0/8 ported)
+### Cluster 30: 004103f0–004108a0 (3/8 ported)
 
 - [ ] `004103f0` inferred_C0042b060_Slot32 (vtable) · depth 0 · 8 lines · **untouched** — unread; first seen in vtable 0042b060 slot 32 (kind 5 subtype 16)
-- [ ] `004104a0` inferred_Room_InsertSorted · depth 0 · 44 lines · **decompiled** — inserts object into the room list ordered by object field +0x4c
-- [ ] `00410530` inferred_Room_RemoveObject · depth 0 · 38 lines · **decompiled**
+- [x] `004104a0` inferred_Room_InsertSorted · depth 0 · 44 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::insertSorted` — inserts object into the room list ordered by object field +0x4c | room vectors 30 Oct
+- [x] `00410530` inferred_Room_RemoveObject · depth 0 · 38 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::removeObject` — room vectors 30 Oct
 - [ ] `004105a0` inferred_Display_QueueRow_TypeA · depth 0 · 177 lines · **untouched** — AddSprite helper for image type 1: builds per-scanline entries (177 lines) | name from call sites and a skim; body not yet read
 - [ ] `004108a0` inferred_Display_Raster_TypeA · depth 0 · 215 lines · **untouched** — rasterises queued type-A rows (215 lines) | name from call sites and a skim; body not yet read
 - [ ] `00410400` inferred_Jim_ClearSpeech (vtable) · depth 1 · 10 lines · **decompiled** — slot 28: clears phrase +0xc4 and talking flag +0xd4, removes itself from the main list
-- [ ] `00410420` inferred_Room_Ctor · depth 1 · 26 lines · **decompiled** — 16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list
+- [x] `00410420` inferred_Room_Ctor · depth 1 · 26 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::init` — 16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list | room vectors 30 Oct
 - [ ] `004103d0` inferred_Obj_SetFacingAnim (vtable) · depth 3 · 9 lines · **decompiled** — selects the bank from +0xac and starts animation index (param-1) with AnimPlayer
 
 ### Cluster 31: 00410cc0–00411f80 (0/12 ported)

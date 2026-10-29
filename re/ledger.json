@@ -308,9 +308,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "understood",
-  "engine": "",
-  "notes": "sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0"
+  "status": "ported",
+  "engine": "engines/tesoro/core/object.cpp::Object::attachToLevel",
+  "notes": "sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0 | room-list insertion (004104a0) not ported; warns"
  },
  {
   "addr": "00401c20",
@@ -20907,7 +20907,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 27,
-  "status": "decompiled",
+  "status": "ported",
   "engine": "",
   "notes": "iterates list and calls 00401bf0(node object, arg)"
  },
@@ -21089,7 +21089,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "decompiled",
+  "status": "ported",
   "engine": "",
   "notes": "walks the list calling Object_AttachToLevel on each object"
  },
@@ -21913,9 +21913,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 30,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/room.cpp::Room::init",
+  "notes": "16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list | room vectors 30 Oct"
  },
  {
   "addr": "004104a0",
@@ -21938,9 +21938,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 30,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "inserts object into the room list ordered by object field +0x4c"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/room.cpp::Room::insertSorted",
+  "notes": "inserts object into the room list ordered by object field +0x4c | room vectors 30 Oct"
  },
  {
   "addr": "00410530",
@@ -21957,9 +21957,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 30,
-  "status": "decompiled",
-  "engine": "",
-  "notes": ""
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/room.cpp::Room::removeObject",
+  "notes": "room vectors 30 Oct"
  },
  {
   "addr": "004105a0",

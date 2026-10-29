@@ -137,6 +137,23 @@ flowchart LR
 One quirk is kept on purpose: right after removing the first item the finger is parked in a state where a
 further step would skip the new first item. Nothing we have read relies on it yet.
 
+## Rooms ✅
+
+A level is split into rooms (screens). Each room keeps its own list of the objects standing in it, ordered by
+horizontal position with the rightmost first; an object at the same position as another goes behind it.
+An object joins its room's list when it is attached to the level (if it is a kind that asks for this), and
+leaves it when it moves to another level. Each room also carries a draw-order offset, and the next room's offset
+grows by the size of the one before. The engine class is `Room`. Checked against the original running the same
+random sequences of inserts and removals. Not known: what one number in the room record means, and why the order
+is right-to-left.
+
+```mermaid
+flowchart LR
+    Level --> R1["Room 1<br/>objects, rightmost first"]
+    Level --> R2["Room 2<br/>objects, rightmost first"]
+    Obj["Object attached<br/>to the level"] -->|joins| R1
+```
+
 ## Game objects 🟡
 
 Everything you see in a level (Jim, other characters, items, doors, scenery) is a game object.
