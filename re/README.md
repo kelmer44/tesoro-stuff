@@ -13,6 +13,7 @@ A disagreement is a finding to resolve with evidence, not something to paper ove
   `tools/export_ghidra.py` (needs the Ghidra bridge on :8089).
 - `contracts/<addr>.md`: one note per function (template: `CONTRACT_TEMPLATE.md`).
 - `STRUCTS.md`: recovered layouts, one confidence marker per field.
+- `SUBSYSTEMS.md`: living plain-language map of how the subsystems interact; update it whenever a cluster is finished.
 - `clusters.md`: suggested session units (generated view of ledger `cluster`).
 
 ## Status values (a function only advances with evidence)

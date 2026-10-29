@@ -14,9 +14,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "decompiled",
+  "status": "ported",
   "engine": "",
-  "notes": "__fastcall returns ecx; used as a vtable slot of the object built by 00401aa0"
+  "notes": "__fastcall returns ecx; used as a vtable slot of the object built by 00401aa0 | AnimPlayer value copy / default ctor"
  },
  {
   "addr": "00401010",
@@ -35,9 +35,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
-  "notes": "builds channel scale tables from a 16-bit factor (x/256) and rewrites every 16-bit image's pixels; flag at (DAT_00442108+0x67c) picks 5-5-5 vs 5-6-5 handling"
+  "notes": "builds channel scale tables from a 16-bit factor (x/256) and rewrites every 16-bit image's pixels; flag at (DAT_00442108+0x67c) picks 5-5-5 vs 5-6-5 handling | animation vectors 29 Oct"
  },
  {
   "addr": "00401160",
@@ -63,9 +63,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
-  "notes": "thiscall(entry, pool, mode): opens archive entry+4, reads 0x18 header (images +0x20, sequences +0x22), 0x24-byte sequence records at +0x1c, image pointer array at +0, file offsets at +4; mode 2 defers image loading"
+  "notes": "thiscall(entry, pool, mode): opens archive entry+4, reads 0x18 header (images +0x20, sequences +0x22), 0x24-byte sequence records at +0x1c, image pointer array at +0, file offsets at +4; mode 2 defers image loading | animation vectors 29 Oct"
  },
  {
   "addr": "00401510",
@@ -86,9 +86,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
-  "notes": "mode 2 only: seeks to each stored offset (+4 array) and loads the image with 004015a0"
+  "notes": "mode 2 only: seeks to each stored offset (+4 array) and loads the image with 004015a0 | animation vectors 29 Oct"
  },
  {
   "addr": "00401580",
@@ -105,9 +105,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "decompiled",
+  "status": "ported",
   "engine": "",
-  "notes": "thiscall copy of 16 dwords from param into this"
+  "notes": "thiscall copy of 16 dwords from param into this | AnimPlayer value copy / default ctor"
  },
  {
   "addr": "004015a0",
@@ -128,9 +128,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
-  "notes": "reads size, allocates from pool DAT_00442100, reads blob, relocates internal pointers by base; converts pixels 5-6-5 to 5-5-5 when flag set; image type 2 (header +0xc) entries are rewritten as (v&0x1f)<<2, meaning not yet known"
+  "notes": "reads size, allocates from pool DAT_00442100, reads blob, relocates internal pointers by base; converts pixels 5-6-5 to 5-5-5 when flag set; image type 2 (header +0xc) entries are rewritten as (v&0x1f)<<2, meaning not yet known | animation vectors 29 Oct"
  },
  {
   "addr": "00401740",
@@ -163,9 +163,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 1,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
-  "notes": "thiscall(first, last_or_-1, loop_flag, sum_flag): sets play range in sequence table, resets counters, stamps start time from game clock 00413a10"
+  "notes": "thiscall(first, last_or_-1, loop_flag, sum_flag): sets play range in sequence table, resets counters, stamps start time from game clock 00413a10 | animation vectors 29 Oct"
  },
  {
   "addr": "00401860",
@@ -189,9 +189,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "untouched",
+  "status": "emu-compared",
   "engine": "",
-  "notes": "advances the animation: reads the game clock, steps frames by their durations, wraps or stops at the range end (86 lines, detail not yet contracted) | name from call sites and a skim; body not yet read"
+  "notes": "advances the animation: reads the game clock, steps frames by their durations, wraps or stops at the range end (86 lines, detail not yet contracted) | name from call sites and a skim; body not yet read | player update vectors 29 Oct"
  },
  {
   "addr": "00401a50",
@@ -210,9 +210,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
-  "notes": "flags: clear bit0, set bit1; +0x10 = clock now"
+  "notes": "flags: clear bit0, set bit1; +0x10 = clock now | player update vectors 29 Oct"
  },
  {
   "addr": "00401a70",
@@ -231,9 +231,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
-  "notes": "adds the paused duration to +8, clears +0x10, flags: clear bit1, set bit0"
+  "notes": "adds the paused duration to +8, clears +0x10, flags: clear bit1, set bit0 | player update vectors 29 Oct"
  },
  {
   "addr": "00401aa0",

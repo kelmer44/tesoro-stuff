@@ -229,3 +229,24 @@ Contracts written (status `understood`) for the archive cluster: Ctor 00403220, 
 
 ### Phase 4, increment 2 ported (29 Oct 2026)
 `engines/tesoro/core/archiveindex.{h,cpp}` (pure: load + sort + find) and `archive.{h,cpp}` (Common::File wrapper: open, seekEntry, pos, seekSavePos) on `codex/fresh-core`, uncommitted; engine builds. `run_startup_check.sh` now also runs the archive check: original ReadIndex/FindEntry in Unicorn vs `ArchiveIndex` on synthetic .TRE images, 400/400 and 35527/35527. ReadIndex/FindEntry are `emu-compared`; the file wrappers are `ported` only. The real Tesoro.TRE was not read.
+
+### Phase 4, increment 3 contracts (29 Oct 2026)
+Contracts (status `understood`) for the animation bank cluster: ReturnThis 00401000, Copy64Bytes 00401580, SetRange 00401740, ScaleBrightness 00401010, LoadDeferredImages 00401510, LoadImage 004015a0, Load 00401160. ScaleBrightness, Load and SetRange were read from the assembly because the decompiles mis-assign stack offsets. Findings: Load seeks to FindEntry-result + 4 (a second 4-byte skip); sequence-record extra data starts at +6 (type 2) and +8 (type 4); the sequence's image pointer is a pointer to the bank's image *slot* (so deferred loading fills it later); images are allocated from the arena numbered by the load mode; LoadImage's 5-5-5 conversion runs over twice the pixel data (overrun into free pool space); ScaleBrightness does not clamp blue. Not ported or validated. Unread: the player update (advances +0x2c/+0x2e), callers of ScaleBrightness, where flag +0x67c is set.
+
+### Phase 4, increment 3 ported and validated (29 Oct 2026)
+`engines/tesoro/core/animimage.{h,cpp}` (image blob: load, 5-5-5 conversion, brightness) and `animbank.{h,cpp}` (AnimBank: sequences and images, shared; AnimPlayer: play state, setRange) on `codex/fresh-core`, uncommitted; the engine builds. `run_startup_check.sh` now also runs the animation check (gen_vectors_anim.py, drivers/anim_driver.cpp): original Load, LoadImage, LoadDeferredImages, ScaleBrightness and SetRange in Unicorn vs the port on 700 synthetic animation files; every comparison matches (sequences 2509, images 1396/861/832, SetRange 1748; see contracts for the full table and limits). Five deliberate mutations of the port were caught. `emu.hook_function` gained `pops=True` for functions that return with `RET n`.
+Findings from the vectors: none contradicted the contracts. Still open: the pool (allocator 0040dc10 was replaced by a bump allocator in the test), the player update that advances the counters, callers of ScaleBrightness, where the 5-5-5 flag is set, and everything about the real .DAT.
+
+### Pending renames (engine names kept neutral until a caller confirms)
+Rename in `animbank.{h,cpp}`, the contracts and `tools/drivers/anim_driver.cpp`, then rerun `run_startup_check.sh`.
+| Name now | Likely meaning (legacy engine, unconfirmed) | Evidence needed |
+|---|---|---|
+| `AnimSequence::field0` (file +0, dword) | frame position x, y (two u16) | code that reads record +0/+2 when drawing |
+| `AnimSequence::field0c`, `field10` (file +0xc, +0x10) | hit rectangle x, y, w, h (four u16) | click/hover test that reads them |
+| `AnimSequence::entries` (type 2 and 4) | path points (type 2), floor points x, y (type 4) | callers of the sequence's +0x20 array |
+| `AnimSequence::scales` (type 4) | scale per floor point | callers of the sequence's +0x14 array |
+| `AnimSequence::firstDescent` | index where the points' x stops ascending | code that reads record +0x1e |
+| `AnimBank::headerDword(0..2)` | a 12 byte name | any code that reads player +0x32..+0x3d |
+
+### Phase 4, player update done (29 Oct 2026)
+Contracts, port and validation for `AnimPlayer_Advance` 00401860, `Pause` 00401a50 and `Resume` 00401a70 (`AnimPlayer::advance/pause/resume`, engine builds, uncommitted). Unicorn vectors: advance 1131/1131, pause 276/276, resume 101/101; six mutations caught. Findings: +0x30 is the sequence being played, +0x2c/+0x2e the movement gathered by completed loops, +0x28/+0x2a the movement offset computed each update (interpolated between sequences when header flag 3 is set), +0xc a cycle length used to skip whole cycles. The engine fields were renamed accordingly (`current`, `loopX/Y`, `movementX/Y`, `pausedAt`). Not covered: zero-duration sequences (division by zero or endless loop in the original), resume before any pause (reads an uninitialised field).

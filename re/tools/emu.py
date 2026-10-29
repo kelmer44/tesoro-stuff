@@ -55,13 +55,14 @@ class Emu:
         self.stubs[a] = (fn, nargs); self.uc.mem_write(a, b"\x90")
         self.uc.mem_write(iat_slot, struct.pack("<I", a))
 
-    def hook_function(self, addr, fn, nargs=0):
-        """Replace the code at addr (a cdecl CRT function) by a Python function; the caller cleans the stack."""
+    def hook_function(self, addr, fn, nargs=0, pops=False):
+        """Replace the code at addr by a Python function. Default: cdecl (the caller cleans the stack);
+        pops=True: the callee removes its nargs stack arguments (RET n), as thiscall/stdcall functions do."""
         def h(uc, a, size, _):
             esp = uc.reg_read(UC_X86_REG_ESP); ret = struct.unpack("<I", uc.mem_read(esp, 4))[0]
             args = [struct.unpack("<I", uc.mem_read(esp + 4 + 4 * k, 4))[0] for k in range(nargs)]
             uc.reg_write(UC_X86_REG_EAX, (fn(self, *args) or 0) & 0xffffffff)
-            uc.reg_write(UC_X86_REG_ESP, esp + 4); uc.reg_write(UC_X86_REG_EIP, ret)
+            uc.reg_write(UC_X86_REG_ESP, esp + 4 + (4 * nargs if pops else 0)); uc.reg_write(UC_X86_REG_EIP, ret)
         self.uc.hook_add(UC_HOOK_CODE, h, begin=addr, end=addr)
 
     def read(self, addr, n): return bytes(self.uc.mem_read(addr, n))

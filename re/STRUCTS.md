@@ -60,9 +60,14 @@ Confidence per field: `?` guessed · `r` read-only evidence · `w` written+read 
 | +0x08 | int | start time stamp (game clock) | w |
 | +0x0c | int | accumulated duration | w |
 | +0x14 | int | load mode (2 = deferred images) | c |
-| +0x18 | uint | play flags (bit0 playing, bit2 loop flag param, bit3 from header) | r |
+| +0x18 | uint | play flags (bit0 playing, bit1 paused, bit2 loop, bit3 interpolate movement, from the header) | c |
 | +0x1c | ptr | sequence array (count +0x22, 0x24 bytes each) | c |
 | +0x20 | ushort | image count | c |
 | +0x22 | ushort | sequence count | c |
-| +0x24..0x30 | ushort | current range / frame position fields | r |
+| +0x10 | int | time of the last Pause (uninitialised before) | c |
+| +0x24 | ushort | first sequence of the range | c |
+| +0x26 | ushort | last sequence of the range | c |
+| +0x28, +0x2a | short | movement offset computed by Advance (x, y) | c |
+| +0x2c, +0x2e | short | movement gathered by completed loops (x, y) | c |
+| +0x30 | ushort | sequence being played | c |
 | +0x32,+0x36,+0x3a | uint | three header words copied from the file | r |

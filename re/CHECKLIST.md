@@ -8,35 +8,35 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 234 | 52% |
-| understood or later | 27 | 6% |
-| ported or later | 17 | 3% |
-| emu-compared or later | 11 | 2% |
+| decompiled or later | 235 | 52% |
+| understood or later | 37 | 8% |
+| ported or later | 27 | 6% |
+| emu-compared or later | 19 | 4% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
 ## Game code by cluster
 
-### Cluster 1: 00401000–00401740 (0/7 ported)
+### Cluster 1: 00401000–00401740 (7/7 ported)
 
-- [ ] `00401000` inferred_ReturnThis · depth 0 · 7 lines · **decompiled** — __fastcall returns ecx; used as a vtable slot of the object built by 00401aa0
-- [ ] `00401580` inferred_Copy64Bytes · depth 0 · 14 lines · **decompiled** — thiscall copy of 16 dwords from param into this
-- [ ] `00401010` inferred_AnimBank_ScaleBrightness · depth 1 · 73 lines · **decompiled** — builds channel scale tables from a 16-bit factor (x/256) and rewrites every 16-bit image's pixels; flag at (DAT_00442108+0x67c) picks 5-5-5 vs 5-6-5 handling
-- [ ] `00401740` inferred_AnimPlayer_SetRange · depth 1 · 70 lines · **decompiled** — thiscall(first, last_or_-1, loop_flag, sum_flag): sets play range in sequence table, resets counters, stamps start time from game clock 00413a10
-- [ ] `004015a0` inferred_AnimBank_LoadImage · depth 8 · 82 lines · **decompiled** — reads size, allocates from pool DAT_00442100, reads blob, relocates internal pointers by base; converts pixels 5-6-5 to 5-5-5 when flag set; image type 2 (header +0xc) entries are rewritten as (v&0x1f)<<2, meaning not yet known
-- [ ] `00401160` inferred_AnimBank_Load · depth 9 · 163 lines · **decompiled** — thiscall(entry, pool, mode): opens archive entry+4, reads 0x18 header (images +0x20, sequences +0x22), 0x24-byte sequence records at +0x1c, image pointer array at +0, file offsets at +4; mode 2 defers image loading
-- [ ] `00401510` inferred_AnimBank_LoadDeferredImages · depth 9 · 26 lines · **decompiled** — mode 2 only: seeks to each stored offset (+4 array) and loads the image with 004015a0
+- [x] `00401000` inferred_ReturnThis · depth 0 · 7 lines · **ported** — __fastcall returns ecx; used as a vtable slot of the object built by 00401aa0 | AnimPlayer value copy / default ctor
+- [x] `00401580` inferred_Copy64Bytes · depth 0 · 14 lines · **ported** — thiscall copy of 16 dwords from param into this | AnimPlayer value copy / default ctor
+- [x] `00401010` inferred_AnimBank_ScaleBrightness · depth 1 · 73 lines · **emu-compared** — builds channel scale tables from a 16-bit factor (x/256) and rewrites every 16-bit image's pixels; flag at (DAT_00442108+0x67c) picks 5-5-5 vs 5-6-5 handling | animation vectors 29 Oct
+- [x] `00401740` inferred_AnimPlayer_SetRange · depth 1 · 70 lines · **emu-compared** — thiscall(first, last_or_-1, loop_flag, sum_flag): sets play range in sequence table, resets counters, stamps start time from game clock 00413a10 | animation vectors 29 Oct
+- [x] `004015a0` inferred_AnimBank_LoadImage · depth 8 · 82 lines · **emu-compared** — reads size, allocates from pool DAT_00442100, reads blob, relocates internal pointers by base; converts pixels 5-6-5 to 5-5-5 when flag set; image type 2 (header +0xc) entries are rewritten as (v&0x1f)<<2, meaning not yet known | animation vectors 29 Oct
+- [x] `00401160` inferred_AnimBank_Load · depth 9 · 163 lines · **emu-compared** — thiscall(entry, pool, mode): opens archive entry+4, reads 0x18 header (images +0x20, sequences +0x22), 0x24-byte sequence records at +0x1c, image pointer array at +0, file offsets at +4; mode 2 defers image loading | animation vectors 29 Oct
+- [x] `00401510` inferred_AnimBank_LoadDeferredImages · depth 9 · 26 lines · **emu-compared** — mode 2 only: seeks to each stored offset (+4 array) and loads the image with 004015a0 | animation vectors 29 Oct
 
-### Cluster 2: 00401bc0–00401d60 (0/12 ported)
+### Cluster 2: 00401bc0–00401d60 (3/12 ported)
 
 - [ ] `00401bc0` inferred_Object_BaseCtor · depth 0 · 12 lines · **decompiled** — base game object: vtable 00428000, flags +0x68 |= 6, +0x5e = 5, byte +0x5c = 0
 - [ ] `00401c20` inferred_Noop (vtable) · depth 0 · 7 lines · **decompiled** — empty function; fills vtable slots 0, 1 and 7 of the base classes (also used as the clock destructor) | empty function; fills vtable slots 0, 1 and 7 of the base classes (and was the clock destructor)
 - [ ] `00401c50` inferred_Obj_UpdateBounds (vtable) · depth 0 · 30 lines · **decompiled** — base slot 3: recomputes bounds rect (+0x10..+0x1c) and screen position (+0x20..+0x2c) from the current frame record (0x24-byte entries); calls slot 2 in between
 - [ ] `00401d20` inferred_Obj_Stub_Void_1Arg (vtable) · depth 0 · 7 lines · **decompiled** — base slot 6 default (draw with one argument)
 - [ ] `00401d60` inferred_Obj_SetActive (vtable) · depth 0 · 8 lines · **decompiled** — base slot 8: sets flag bit 1 (+0x68) from argument
-- [ ] `00401860` inferred_AnimPlayer_Advance · depth 1 · 86 lines · **untouched** — advances the animation: reads the game clock, steps frames by their durations, wraps or stops at the range end (86 lines, detail not yet contracted) | name from call sites and a skim; body not yet read
-- [ ] `00401a50` inferred_AnimPlayer_Pause · depth 1 · 12 lines · **decompiled** — flags: clear bit0, set bit1; +0x10 = clock now
-- [ ] `00401a70` inferred_AnimPlayer_Resume · depth 1 · 15 lines · **decompiled** — adds the paused duration to +8, clears +0x10, flags: clear bit1, set bit0
+- [x] `00401860` inferred_AnimPlayer_Advance · depth 1 · 86 lines · **emu-compared** — advances the animation: reads the game clock, steps frames by their durations, wraps or stops at the range end (86 lines, detail not yet contracted) | name from call sites and a skim; body not yet read | player update vectors 29 Oct
+- [x] `00401a50` inferred_AnimPlayer_Pause · depth 1 · 12 lines · **emu-compared** — flags: clear bit0, set bit1; +0x10 = clock now | player update vectors 29 Oct
+- [x] `00401a70` inferred_AnimPlayer_Resume · depth 1 · 15 lines · **emu-compared** — adds the paused duration to +8, clears +0x10, flags: clear bit1, set bit0 | player update vectors 29 Oct
 - [ ] `00401bf0` inferred_Object_AttachToLevel · depth 1 · 16 lines · **decompiled** — sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0
 - [ ] `00401d30` inferred_Obj_SetPosition · depth 1 · 14 lines · **decompiled** — (x, y, flag) sets previous position (+0x54/+0x58), and current (+0x4c/+0x50) when flag set; notifies the level
 - [ ] `00401aa0` inferred_Obj_Kind00_Ctor · depth 2 · 63 lines · **decompiled** — 0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38)
