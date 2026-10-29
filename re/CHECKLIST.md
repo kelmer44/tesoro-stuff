@@ -9,9 +9,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 |---|---|---|
 | untouched or later | 447 | 100% |
 | decompiled or later | 234 | 52% |
-| understood or later | 18 | 4% |
-| ported or later | 0 | 0% |
-| emu-compared or later | 0 | 0% |
+| understood or later | 19 | 4% |
+| ported or later | 9 | 2% |
+| emu-compared or later | 9 | 2% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -415,25 +415,25 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004123e0` inferred_Display_StartEffect · depth 1 · 118 lines · **untouched** — (effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read
 - [ ] `00412e10` inferred_Display_Compose · depth 2 · 263 lines · **untouched** — per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read
 
-### Cluster 33: 004137c0–004139e0 (0/7 ported)
+### Cluster 33: 004137c0–004139e0 (1/7 ported)
 
 - [ ] `004137c0` inferred_TextTable_Sort · depth 0 · 67 lines · **untouched** — sorts 16-byte table records by their 64-bit key | name from call sites and a skim; body not yet read
 - [ ] `004138b0` inferred_TextTable_Lookup · depth 0 · 47 lines · **decompiled** — (key lo, key hi) binary search in the sorted table; returns the record or 0
-- [ ] `004139c0` inferred_Clock_Ctor · depth 0 · 14 lines · **understood** — game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended
+- [x] `004139c0` inferred_Clock_Ctor · depth 0 · 14 lines · **emu-compared** → `core/clock.cpp::GameClock::GameClock` — game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended
 - [ ] `004139e0` inferred_BusyWait · depth 0 · 18 lines · **decompiled** — (ms) spins on GetTickCount until the time has passed
 - [ ] `004132b0` inferred_Movie_Start · depth 11 · 123 lines · **decompiled** — DirectShow setup via CoCreateInstance, builds path c:\INSTALL\BIN\DATA\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed
 - [ ] `00413570` inferred_TextTable_Load · depth 11 · 121 lines · **decompiled** — (archive offset): reads lines of the OBJETOS.TXT-style table and stores records of 16 bytes; first pass counts lines
 - [ ] `00413940` inferred_PhraseLookup · depth 11 · 27 lines · **decompiled** — (name) hashes the name with NameHash64 and searches the four text tables 00442110..0044211c; MessageBox "frase no encontrada" if missing
 
-### Cluster 34: 00413a10–00414560 (0/12 ported)
+### Cluster 34: 00413a10–00414560 (7/12 ported)
 
-- [ ] `00413a10` inferred_Clock_Now · depth 0 · 19 lines · **understood** — adds elapsed GetTickCount delta when below 500 ms (longer gaps are ignored); returns frozen value while frozen
-- [ ] `00413a50` inferred_Clock_Freeze · depth 0 · 18 lines · **understood** — updates accumulation then freezes at the current value (called at start of each frame)
-- [ ] `00413a80` inferred_Clock_Suspend · depth 0 · 8 lines · **understood** — window deactivated: stop accumulating
-- [ ] `00413a90` inferred_Clock_Resume · depth 0 · 12 lines · **understood** — window activated: re-stamp last tick, resume
-- [ ] `00413ab0` inferred_Clock_Unfreeze · depth 0 · 8 lines · **understood** — clears frozen flag (end of frame)
-- [ ] `00413ac0` inferred_RandomRange7 · depth 0 · 11 lines · **decompiled** — second time-driven random function: 7 permuted bits of GetTickCount scaled to (max-min+1), plus min
-- [ ] `00413b00` inferred_RandomRange · depth 0 · 13 lines · **understood** — THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded
+- [x] `00413a10` inferred_Clock_Now · depth 0 · 19 lines · **emu-compared** → `core/clock.cpp::GameClock::now` — adds elapsed GetTickCount delta when below 500 ms (longer gaps are ignored); returns frozen value while frozen
+- [x] `00413a50` inferred_Clock_Freeze · depth 0 · 18 lines · **emu-compared** → `core/clock.cpp::GameClock::freeze` — updates accumulation then freezes at the current value (called at start of each frame)
+- [x] `00413a80` inferred_Clock_Suspend · depth 0 · 8 lines · **emu-compared** → `core/clock.h::GameClock::suspend` — window deactivated: stop accumulating
+- [x] `00413a90` inferred_Clock_Resume · depth 0 · 12 lines · **emu-compared** → `core/clock.cpp::GameClock::resume` — window activated: re-stamp last tick, resume
+- [x] `00413ab0` inferred_Clock_Unfreeze · depth 0 · 8 lines · **emu-compared** → `core/clock.h::GameClock::unfreeze` — clears frozen flag (end of frame)
+- [x] `00413ac0` inferred_RandomRangeAlt · depth 0 · 11 lines · **emu-compared** → `core/random.cpp::randomRangeAlt` — second time-driven random function: fraction = (t&0x78) | ((t>>7)&7) | ((t&7)<<7), scaled like RandomRange
+- [x] `00413b00` inferred_RandomRange · depth 0 · 13 lines · **emu-compared** → `core/random.cpp::randomRange` — THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded
 - [ ] `00413b90` inferred_InitSubsystems · depth 6 · 140 lines · **understood** — builds CD, input, sound, video objects; error dialogs
 - [ ] `004144a0` inferred_Shutdown · depth 7 · 45 lines · **understood** — deletes display, sound, mouse, keyboard, archive, memory pools, clock in that order
 - [ ] `00414420` inferred_RunFrame · depth 10 · 21 lines · **understood** — per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end
@@ -481,10 +481,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00415880` inferred_CreateMainWindow · depth 7 · 37 lines · **understood** — RegisterClass + CreateWindowEx 640x480 (style 0x90000000, ex 8), ShowWindow, ShowCursor(0), sets init flags, calls InitSubsystems
 - [ ] `00415960` inferred_WinMain · depth 17 · 89 lines · **understood** — args: none=CD check+SETUP.EXE; '_$_$_ '+byte=game; 'Uninstall'
 
-### Cluster 38: 00415c30–00416170 (0/12 ported)
+### Cluster 38: 00415c30–00416170 (1/12 ported)
 
 - [ ] `00415c30` inferred_SetInitFlags · depth 0 · 11 lines · **understood** — sets globals 00442208 and 0044221c to 1
-- [ ] `00415c40` inferred_NameHash64 · depth 0 · 44 lines · **understood** — packs up to 12 chars of a name, 5 bits each (chars below '5' get +11), into a 64-bit key; used with level object lookup
+- [x] `00415c40` inferred_NameHash64 · depth 0 · 44 lines · **emu-compared** → `core/namekey.cpp::nameKey64` — packs up to 12 chars of a name, 5 bits each (chars below '5' get +11), into a 64-bit key; used with level object lookup
 - [ ] `00415cb0` inferred_NameHash64_Decode · depth 0 · 55 lines · **decompiled** — (lo, hi, buffer) rebuilds a readable name from a 64-bit key; used for error text
 - [ ] `00415b00` inferred_FindCdAndSetup · depth 10 · 71 lines · **understood** — scans drives for label TESORO, checks SETUP.EXE
 - [ ] `00415d90` inferred_C00429410_UseItem (vtable) · depth 13 · 25 lines · **untouched** — unread; first seen in vtable 00429410 slot 27 (kind 20 subtype 11)

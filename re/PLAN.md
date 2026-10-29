@@ -190,7 +190,7 @@ All 447 game-tier functions and all 256 runtime-tier functions now have a record
 - 18 `understood` (contracts), 216 `decompiled` (read; name backed by reading), 189 `untouched` with a **structure-based name** only (`inferred_C<vtable>_<role>`: first vtable that contains the function and the base-class slot role; bodies unread, listed in `re/names/vtable_slots.tsv`),
   plus 24 more `untouched` with a descriptive name from call sites only (listed in their ledger notes as "body not yet read").
 - `re/vtable_map.json` maps every vtable base to its slot functions (153 bases found by scanning decompiled constructors; one bogus base in the CRT range).
-- Corrections made on the way: `Display_Init` was a mistaken label (00411c00 is a ready-check; the Display constructor does the DirectDraw setup); two time-driven random functions exist (`RandomRange`, `RandomRange7`); a board mini-game (7-column, four-in-a-row style) exists in the 0x418d20 region (hypothesis).
+- Corrections made on the way: `Display_Init` was a mistaken label (00411c00 is a ready-check; the Display constructor does the DirectDraw setup); two time-driven random functions exist (`RandomRange`, `RandomRangeAlt`); a board mini-game (7-column, four-in-a-row style) exists in the 0x418d20 region (hypothesis).
 Remaining naming debt is therefore **quality**, not coverage: semantic names for the 189 structure-named methods require reading them, which is Phase 4 work cluster by cluster.
 
 ### Phase 3, structures and classes (28 Oct 2026)
@@ -215,3 +215,11 @@ Also renamed `004035b0` to `InputDevice_Ctor` (it is the base-class constructor 
 ### Phase 4 planning (29 Oct 2026)
 `re/PHASE4_PLAN.md` written (plan only). Key facts: Gabriel's checkout is a detached HEAD at `b68a4c748e0`; `tesoro-engine` is `98415538c49` (== `my-fork/tesoro-engine`); the codex worktree is on `tesoro-engine-re` at the bare engine skeleton `cd6decf664f`.
 Open decision for Gabriel: base the fresh port on that skeleton (recommended, `codex/fresh-core`) or audit/fix on top of the `tesoro-engine` tip (`codex/fidelity-core`). First increment: GameClock, nameKey64, time-driven random functions and the frame-order skeleton, validated against the original machine code with vectors from `re/tools/check_startup.py`.
+
+### Phase 4, increment 1 done (29 Oct 2026)
+Base A chosen. Engine worktree `/Users/gabriel/Desktop/source/scummvm-tesoro-codex`, branch **`codex/fresh-core`** cut from `cd6decf664f` (the skeleton), all changes **uncommitted**:
+`engines/tesoro/core/{clock,namekey,random}.{h,cpp}`, `module.mk`, and `tesoro.{h,cpp}` (640x480 16-bit setup, `runFrame()` skeleton in the original's order, clock suspend/resume via `pauseEngineIntern`, `gameTime()`, `randomBetween()`). Stale `.o` and `libtesoro.a` from older builds in that directory were deleted before building; the engine builds (`make -j12`).
+Validation: `re/tools/run_startup_check.sh` (vectors from the original code in Unicorn vs the C++ driver): RandomRange 4000/4000, RandomRangeAlt 4000/4000, nameKey64 522/522, clock `now` 4141/4141.
+Ledger: 9 functions `emu-compared` (6 clock, 2 random, name hash). `re/AUDIT.md` started; two divergences with `tesoro-engine` recorded (clock only runs in gameplay there; seeded RNG).
+Renamed `00413ac0` to `RandomRangeAlt`: the earlier name (RandomRange7) and "7 bits" description were wrong (it also uses 10 tick bits).
+Next: increment 2 (archive index and lookup). It needs contracts first for `Archive_ReadIndex`, `Archive_Tell` and `Archive_SeekSavePos`, plus a look at how the data files are laid out (`Tesoro.TRE`/`.DAT`, whose location is outside the files I may read without asking).

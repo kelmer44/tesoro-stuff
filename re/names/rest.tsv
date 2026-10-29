@@ -62,7 +62,7 @@
 004137c0	inferred_TextTable_Sort	decompiled	sorts 16-byte table records by their 64-bit key
 004138b0	inferred_TextTable_Lookup	decompiled	(key lo, key hi) binary search in the sorted table; returns the record or 0
 004139e0	inferred_BusyWait	decompiled	(ms) spins on GetTickCount until the time has passed
-00413ac0	inferred_RandomRange7	decompiled	second time-driven random function: 7 permuted bits of GetTickCount scaled to (max-min+1), plus min
+00413ac0	inferred_RandomRangeAlt	decompiled	second time-driven random function: 10 low tick bits in a different order, scaled to (max-min+1), plus min
 00414560	inferred_Game_StartIntroSequence	decompiled	enters the stage level with Jim, shows him, and starts a dialogue entry by key
 00415200	inferred_List_InsertAtHead	decompiled	allocates a node and links it at the list head
 00415cb0	inferred_NameHash64_Decode	decompiled	(lo, hi, buffer) rebuilds a readable name from a 64-bit key; used for error text

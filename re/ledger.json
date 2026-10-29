@@ -22553,8 +22553,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 33,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/clock.cpp::GameClock::GameClock",
   "notes": "game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended"
  },
  {
@@ -22611,8 +22611,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/clock.cpp::GameClock::now",
   "notes": "adds elapsed GetTickCount delta when below 500 ms (longer gaps are ignored); returns frozen value while frozen"
  },
  {
@@ -22630,8 +22630,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/clock.cpp::GameClock::freeze",
   "notes": "updates accumulation then freezes at the current value (called at start of each frame)"
  },
  {
@@ -22649,8 +22649,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/clock.h::GameClock::suspend",
   "notes": "window deactivated: stop accumulating"
  },
  {
@@ -22668,8 +22668,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/clock.cpp::GameClock::resume",
   "notes": "window activated: re-stamp last tick, resume"
  },
  {
@@ -22687,14 +22687,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/clock.h::GameClock::unfreeze",
   "notes": "clears frozen flag (end of frame)"
  },
  {
   "addr": "00413ac0",
   "ghidra_name": "FUN_00413ac0",
-  "name": "inferred_RandomRange7",
+  "name": "inferred_RandomRangeAlt",
   "tier": "game",
   "lines": 11,
   "decompile_ok": true,
@@ -22708,9 +22708,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "second time-driven random function: 7 permuted bits of GetTickCount scaled to (max-min+1), plus min"
+  "status": "emu-compared",
+  "engine": "core/random.cpp::randomRangeAlt",
+  "notes": "second time-driven random function: fraction = (t&0x78) | ((t>>7)&7) | ((t&7)<<7), scaled like RandomRange"
  },
  {
   "addr": "00413b00",
@@ -22731,8 +22731,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/random.cpp::randomRange",
   "notes": "THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded"
  },
  {
@@ -23930,8 +23930,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 38,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/namekey.cpp::nameKey64",
   "notes": "packs up to 12 chars of a name, 5 bits each (chars below '5' get +11), into a 64-bit key; used with level object lookup"
  },
  {
