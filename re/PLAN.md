@@ -226,3 +226,6 @@ Next: increment 2 (archive index and lookup). It needs contracts first for `Arch
 
 ### Phase 4, increment 2 contracts (29 Oct 2026)
 Contracts written (status `understood`) for the archive cluster: Ctor 00403220, Open 00403250, SeekEntry 004032e0, Tell 00403300, SeekSavePos 00403320, Close 00403360, ReadIndex 00403380, FindEntry 00403500. Finding: the index is sorted **descending** (selection sort, first maximum wins) and FindEntry's binary search is written for that order; the older note said only "sorted by name". Not yet done: C++ port, Unicorn vectors, and the shipped `Tesoro.TRE` has not been read (duplicate names, >2300 entries, meaning of record +4 and of the 4-byte offset skip stay open).
+
+### Phase 4, increment 2 ported (29 Oct 2026)
+`engines/tesoro/core/archiveindex.{h,cpp}` (pure: load + sort + find) and `archive.{h,cpp}` (Common::File wrapper: open, seekEntry, pos, seekSavePos) on `codex/fresh-core`, uncommitted; engine builds. `run_startup_check.sh` now also runs the archive check: original ReadIndex/FindEntry in Unicorn vs `ArchiveIndex` on synthetic .TRE images, 400/400 and 35527/35527. ReadIndex/FindEntry are `emu-compared`; the file wrappers are `ported` only. The real Tesoro.TRE was not read.

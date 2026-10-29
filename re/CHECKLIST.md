@@ -10,8 +10,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 234 | 52% |
 | understood or later | 27 | 6% |
-| ported or later | 9 | 2% |
-| emu-compared or later | 9 | 2% |
+| ported or later | 17 | 3% |
+| emu-compared or later | 11 | 2% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -73,35 +73,35 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004026d0` inferred_Cursor_CaptureThumbnail · depth 3 · 84 lines · **decompiled** — renders the scene without the cursor into the display buffer and copies a 213x160 sample (every third pixel of every third row) to +0x128: a save-game thumbnail (hypothesis from the sampling pattern)
 - [ ] `00402300` inferred_Obj_Kind10_Ctor · depth 4 · 46 lines · **decompiled** — 0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object
 
-### Cluster 6: 00402e50–00403300 (0/12 ported)
+### Cluster 6: 00402e50–00403300 (4/12 ported)
 
 - [ ] `00402e50` inferred_Cursor_IsFlag10 (vtable) · depth 0 · 7 lines · **decompiled** — vtable slot 11 (ret 4): IsHitter(other): returns flag bit 10 (0x400) of this, ignoring the argument. Base default returns false. Level_CollisionPass asks A.slot11(B) then B.slot11(A) to decide which object is the hitter
 - [ ] `00402d80` inferred_C00428038_Draw (vtable) · depth 1 · 24 lines · **untouched** — unread; first seen in vtable 00428038 slot 6
 - [ ] `00402e60` inferred_Cursor_AddCandidate (vtable) · depth 1 · 8 lines · **decompiled** — vtable slot 12 (ret 8: two stack arguments, the decompiler shows one): OnTouched(other, extra). Cursor override appends the touched object (first argument) to candidate list +0x70 and returns 1. Called by Level_CollisionPass flush
 - [ ] `00402e80` inferred_Cursor_ProcessCandidates · depth 1 · 127 lines · **decompiled** — per frame: for each registered candidate, with left button (mouse buttons byte & 8) calls candidate slot 14 with the cursor's current animation index (the verb), with right button (& 0x10) slot 15, otherwise slot 17 (show hover text); candidates that stopped being under the pointer get slot 18 (clear text) and are dropped
 - [ ] `004031a0` inferred_C00428038_SetActive (vtable) · depth 1 · 38 lines · **untouched** — unread; first seen in vtable 00428038 slot 8
-- [ ] `00403220` inferred_Archive_Ctor · depth 1 · 11 lines · **understood** — allocates the index buffer (0xd7a0 bytes, from arena 0) into global 00442068
+- [x] `00403220` inferred_Archive_Ctor · depth 1 · 11 lines · **ported** → `engines/tesoro/core/archive.cpp` — allocates the index buffer (0xd7a0 bytes, from arena 0) into global 00442068
 - [ ] `004029a0` inferred_Interface_ScrollOut · depth 2 · 14 lines · **decompiled** — moves the interface camera +0x285 and runs the display effect (4, 100)
 - [ ] `004030e0` inferred_C00428038_Update2 (vtable) · depth 2 · 35 lines · **untouched** — unread; first seen in vtable 00428038 slot 5
-- [ ] `00403300` inferred_Archive_Tell · depth 4 · 10 lines · **understood** — current position of the archive stream (low dword of fgetpos)
-- [ ] `004032e0` inferred_Archive_SeekEntry · depth 5 · 8 lines · **understood** — fseek the archive handle to offset, returns the FILE*
-- [ ] `00403250` inferred_Archive_Open · depth 10 · 28 lines · **understood** — thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4
+- [x] `00403300` inferred_Archive_Tell · depth 4 · 10 lines · **ported** → `engines/tesoro/core/archive.cpp` — current position of the archive stream (low dword of fgetpos)
+- [x] `004032e0` inferred_Archive_SeekEntry · depth 5 · 8 lines · **ported** → `engines/tesoro/core/archive.cpp` — fseek the archive handle to offset, returns the FILE*
+- [x] `00403250` inferred_Archive_Open · depth 10 · 28 lines · **ported** → `engines/tesoro/core/archive.cpp` — thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4
 - [ ] `004029f0` inferred_Cursor_Update (vtable) · depth 12 · 156 lines · **decompiled** — vtable slot 4: reads the mouse position and buttons and the keyboard state array, handles the interface strip scrolling (shifts by 0x280 = one screen width), then positions the cursor object and its +0x74 companion at the mouse position plus the interface camera offset, and flags the held item
 
-### Cluster 7: 00403500–00403980 (0/12 ported)
+### Cluster 7: 00403500–00403980 (4/12 ported)
 
-- [ ] `00403500` inferred_Archive_FindEntry · depth 0 · 59 lines · **understood** — binary search by name in sorted 0x18-byte index records at 00442068; returns data offset (+0x14) or fails
+- [x] `00403500` inferred_Archive_FindEntry · depth 0 · 59 lines · **emu-compared** → `engines/tesoro/core/archiveindex.cpp::ArchiveIndex::find` — binary search by name in sorted 0x18-byte index records at 00442068; returns data offset (+0x14) or fails
 - [ ] `004036c0` inferred_InputDevice_IsReady · depth 0 · 7 lines · **decompiled** — device ready check | true when the device pointer (+4) and the DirectInput object exist
 - [ ] `004036e0` inferred_InputDevice_SetTimings · depth 0 · 9 lines · **decompiled** — +0xc and +0x10 (200 and 20000 are the values given at start)
 - [ ] `00403700` inferred_Keyboard_UpdateKeyStates · depth 0 · 50 lines · **decompiled** — (new states, count) state machine per key (0,1,2,4,8,0x10,0x20) using GetTickCount and the two timing values (+0xc, +0x10): press, hold, release and repeat
 - [ ] `004037c0` inferred_InputDevice_Dtor · depth 0 · 23 lines · **decompiled** — releases the DirectInput device and the shared DirectInput object when the count reaches zero
 - [ ] `004035b0` inferred_InputDevice_Ctor · depth 1 · 42 lines · **decompiled** — base-class constructor of the DirectInput devices (stores vtable 0042806c, creates the shared DirectInput object once and the device); message "DIRECTINPUT: error al crear el objeto" on failure; reference-counted in 0044207c. Called from Keyboard_Ctor and Mouse ctor
 - [ ] `004038f0` inferred_C00428070_Slot00 (vtable) · depth 1 · 40 lines · **untouched** — unread; first seen in vtable 00428070 slot 0 (non-object class)
-- [ ] `00403320` inferred_Archive_SeekSavePos · depth 5 · 11 lines · **understood** — (offset) returns the previous position and seeks to offset
+- [x] `00403320` inferred_Archive_SeekSavePos · depth 5 · 11 lines · **ported** → `engines/tesoro/core/archive.cpp` — (offset) returns the previous position and seeks to offset
 - [ ] `00403820` inferred_Keyboard_Ctor · depth 5 · 44 lines · **decompiled** — 0x38-byte keyboard device, vtable 00428070, 16-byte state buffer (+0x1c), default timings 200 and 20000
 - [ ] `00403980` inferred_MouseCtor · depth 5 · 46 lines · **decompiled** — DirectInput mouse, range 640x480, starts at (320,240)
-- [ ] `00403360` inferred_Archive_Close · depth 6 · 10 lines · **understood**
-- [ ] `00403380` inferred_Archive_ReadIndex · depth 8 · 109 lines · **understood** — reads 0x1c-byte index records from the .TRE keeping those with flag 4, copies the uppercased name (0x13 bytes) and offset+4 into 0x18-byte entries, then sorts them by name (selection sort); entry count in +0
+- [x] `00403360` inferred_Archive_Close · depth 6 · 10 lines · **ported** → `engines/tesoro/core/archive.cpp`
+- [x] `00403380` inferred_Archive_ReadIndex · depth 8 · 109 lines · **emu-compared** → `engines/tesoro/core/archiveindex.cpp::ArchiveIndex::load` — reads 0x1c-byte index records from the .TRE keeping those with flag 4, copies the uppercased name (0x13 bytes) and offset+4 into 0x18-byte entries, then sorts them by name (selection sort); entry count in +0
 
 ### Cluster 8: 00403a70–004040d0 (0/8 ported)
 

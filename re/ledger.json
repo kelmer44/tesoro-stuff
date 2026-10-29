@@ -8845,8 +8845,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 6,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/archive.cpp",
   "notes": "allocates the index buffer (0xd7a0 bytes, from arena 0) into global 00442068"
  },
  {
@@ -8868,8 +8868,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 6,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/archive.cpp",
   "notes": "thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4"
  },
  {
@@ -8892,8 +8892,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 6,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/archive.cpp",
   "notes": "fseek the archive handle to offset, returns the FILE*"
  },
  {
@@ -8914,8 +8914,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 6,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/archive.cpp",
   "notes": "current position of the archive stream (low dword of fgetpos)"
  },
  {
@@ -8937,8 +8937,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/archive.cpp",
   "notes": "(offset) returns the previous position and seeks to offset"
  },
  {
@@ -8958,8 +8958,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/archive.cpp",
   "notes": ""
  },
  {
@@ -8981,8 +8981,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/archiveindex.cpp::ArchiveIndex::load",
   "notes": "reads 0x1c-byte index records from the .TRE keeping those with flag 4, copies the uppercased name (0x13 bytes) and offset+4 into 0x18-byte entries, then sorts them by name (selection sort); entry count in +0"
  },
  {
@@ -9003,8 +9003,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/archiveindex.cpp::ArchiveIndex::find",
   "notes": "binary search by name in sorted 0x18-byte index records at 00442068; returns data offset (+0x14) or fails"
  },
  {
