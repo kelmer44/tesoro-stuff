@@ -9,9 +9,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 |---|---|---|
 | untouched or later | 447 | 100% |
 | decompiled or later | 236 | 52% |
-| understood or later | 55 | 12% |
-| ported or later | 38 | 8% |
-| emu-compared or later | 30 | 6% |
+| understood or later | 68 | 15% |
+| ported or later | 51 | 11% |
+| emu-compared or later | 40 | 8% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -340,12 +340,12 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040f0d0` inferred_Obj_RunVerb (vtable) · depth 3 · 40 lines · **decompiled** — MidBase slot 13: tells the player object (global 004420fc) to select verb +0x90, then dispatches the verb handler like Interactive_Update
 - [ ] `0040f210` inferred_Obj_Verb0_Default (vtable) · depth 11 · 16 lines · **decompiled** — MidBase slot 20: marks click pending (+0x8c, +0x8d), says phrase key +0x70 if set via GameState_Say, sets cursor busy, inserts object into the main list at priority 5
 
-### Cluster 27: 0040f670–0040f780 (0/11 ported)
+### Cluster 27: 0040f670–0040f780 (4/11 ported)
 
-- [ ] `0040f670` inferred_List_RewindIterator · depth 0 · 12 lines · **decompiled** — resets a list's iterator (current = head, first flag = 1)
-- [ ] `0040f680` inferred_ObjectList_FindByKey · depth 0 · 55 lines · **decompiled** — (key lo, key hi) finds an object in the list by its 64-bit name key at object +0x44; returns 0 when absent
-- [ ] `0040f780` inferred_List_Remove · depth 0 · 49 lines · **decompiled** — removes the node holding the pointer
-- [ ] `0040f590` inferred_List_Ctor · depth 1 · 37 lines · **decompiled** — pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list
+- [x] `0040f670` inferred_List_RewindIterator · depth 0 · 12 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — resets a list's iterator (current = head, first flag = 1)
+- [x] `0040f680` inferred_ObjectList_FindByKey · depth 0 · 55 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — (key lo, key hi) finds an object in the list by its 64-bit name key at object +0x44; returns 0 when absent
+- [x] `0040f780` inferred_List_Remove · depth 0 · 49 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — removes the node holding the pointer
+- [x] `0040f590` inferred_List_Ctor · depth 1 · 37 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list
 - [ ] `0040f650` inferred_Pool_AllocAlignedZero_Global · depth 1 · 8 lines · **decompiled** — wrapper on the global pool
 - [ ] `0040f710` inferred_ObjectList_ForEachAttach · depth 2 · 39 lines · **decompiled** — iterates list and calls 00401bf0(node object, arg)
 - [ ] `0040f280` inferred_Obj_Verb1_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 21 of Kind09-based classes: same pattern with phrase key +0x74 and a default phrase when unset
@@ -354,22 +354,22 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040f400` inferred_Obj_Verb4_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 24: phrase key +0x80
 - [ ] `0040f480` inferred_Obj_UseItem_Default (vtable) · depth 12 · 50 lines · **decompiled** — slot 27: handles using an inventory item on the object: looks the item up in the object's item table (+0xa0 pairs of name keys, +0xa4 responses) else says a default phrase (ICON01T058 or MODELO2)
 
-### Cluster 28: 0040f800–0040fbb0 (0/7 ported)
+### Cluster 28: 0040f800–0040fbb0 (6/7 ported)
 
-- [ ] `0040f800` inferred_List_PushBack · depth 0 · 40 lines · **decompiled** — iterates to the last node and links a new node holding the pointer
-- [ ] `0040f870` inferred_List_Clear · depth 0 · 14 lines · **decompiled** — empties a 2-field-node list
-- [ ] `0040f900` inferred_ObjectList_InsertByPriority · depth 0 · 82 lines · **decompiled** — 12-byte nodes (object, priority): inserts before the first node with a higher priority; main list uses priorities 0x13 (interface level), 100 (top object)
-- [ ] `0040fa10` inferred_ObjectList_InsertByPriorityFront · depth 0 · 82 lines · **decompiled** — like InsertByPriority but inserts before nodes of equal priority
-- [ ] `0040fb20` inferred_ObjectList_RemoveByObject · depth 0 · 58 lines · **decompiled** — removes the node holding the given object from the main list
-- [ ] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **decompiled** — allocates a linked list with capacity param (100 for the main list 00442104)
+- [x] `0040f800` inferred_List_PushBack · depth 0 · 40 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — iterates to the last node and links a new node holding the pointer
+- [x] `0040f870` inferred_List_Clear · depth 0 · 14 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — empties a 2-field-node list
+- [x] `0040f900` inferred_ObjectList_InsertByPriority · depth 0 · 82 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — 12-byte nodes (object, priority): inserts before the first node with a higher priority; main list uses priorities 0x13 (interface level), 100 (top object)
+- [x] `0040fa10` inferred_ObjectList_InsertByPriorityFront · depth 0 · 82 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — like InsertByPriority but inserts before nodes of equal priority
+- [x] `0040fb20` inferred_ObjectList_RemoveByObject · depth 0 · 58 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — removes the node holding the given object from the main list
+- [x] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — allocates a linked list with capacity param (100 for the main list 00442104)
 - [ ] `0040fbb0` inferred_ObjectList_AttachAll · depth 2 · 38 lines · **decompiled** — walks the list calling Object_AttachToLevel on each object
 
-### Cluster 29: 0040fc20–00410330 (0/12 ported)
+### Cluster 29: 0040fc20–00410330 (2/12 ported)
 
 - [ ] `0040fc20` inferred_ObjectList_PassA · depth 0 · 83 lines · **decompiled** — walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1
 - [ ] `0040fd20` inferred_ObjectList_PassB · depth 0 · 83 lines · **decompiled** — same walk calling vtable slot 5
-- [ ] `0040fe20` inferred_ObjectList_Clear · depth 0 · 14 lines · **decompiled** — empties a 3-field-node list (priority lists)
-- [ ] `0040fe40` inferred_ObjectList_EndFrame · depth 0 · 31 lines · **decompiled** — iterator reset helper; its result decides loop continuation
+- [x] `0040fe20` inferred_ObjectList_Clear · depth 0 · 14 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — empties a 3-field-node list (priority lists)
+- [x] `0040fe40` inferred_ObjectList_StartIteration · depth 0 · 31 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — iterator reset helper; its result decides loop continuation
 - [ ] `0040fea0` inferred_Obj_Kind05Base_Ctor · depth 2 · 9 lines · **decompiled** — MidBase default ctor then vtable 0042bb48
 - [ ] `0040ffa0` inferred_Obj_DrawSubtitle · depth 2 · 27 lines · **decompiled** — draws the current phrase text twice (shadow style) at the speaker's position with Display_DrawText, keeping the camera in view
 - [ ] `00410060` inferred_C0042b060_Slot31 (vtable) · depth 2 · 34 lines · **untouched** — unread; first seen in vtable 0042b060 slot 31 (kind 5 subtype 16)
@@ -455,13 +455,13 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00414dc0` inferred_C0042abb0_Slot28 (vtable) · depth 12 · 12 lines · **untouched** — unread; first seen in vtable 0042abb0 slot 28 (kind 6 subtype 1)
 - [ ] `00414be0` inferred_Obj_Kind06_Ctor · depth 13 · 16 lines · **decompiled** — 0xb0 bytes, vtable 0042bce8, extends Kind09; 10 per-subtype vtables chosen by record byte 1
 
-### Cluster 36: 00414e80–00415440 (0/12 ported)
+### Cluster 36: 00414e80–00415440 (1/12 ported)
 
 - [ ] `00414e80` inferred_WalkArea_NextWaypoint (vtable) · depth 0 · 31 lines · **decompiled** — vtable slot 13: runs each time Jim reaches a vertex. Steps the vertex index +0xa0 one towards the destination index +0xa4 and sends Jim to that vertex (Jim slot 32, target = this); when the indices are equal first sends Jim to the real destination (+0xa8,+0xac) with the original target (+0xb0)
 - [ ] `00414f10` inferred_WalkArea_FindPath · depth 0 · 73 lines · **decompiled** — (x, y, target) picks the nearest waypoint of the walk area to the destination and prepares a route; returns whether a route exists | (x, y, target) finds the polyline vertex nearest the destination (+0xa4) and the vertex nearest Jim (+0xa0), stores the destination (+0xa8,+0xac) and target (+0xb0), then sends Jim to his nearest vertex; always returns true when the polyline has vertices. No search algorithm: movement is along the vertex list
 - [ ] `00415120` inferred_C0042bdd0_IsHitter (vtable) · depth 0 · 7 lines · **untouched** — unread; first seen in vtable 0042bdd0 slot 11
 - [ ] `00415130` inferred_C0042bdd0_OnTouched (vtable) · depth 0 · 43 lines · **untouched** — unread; first seen in vtable 0042bdd0 slot 12
-- [ ] `00415200` inferred_List_InsertAtHead · depth 0 · 23 lines · **decompiled** — allocates a node and links it at the list head
+- [x] `00415200` inferred_List_InsertAfterCursor · depth 0 · 23 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — allocates a node and links it at the list head
 - [ ] `00415230` inferred_TopObject_Ctor · depth 1 · 9 lines · **decompiled** — base object with vtable 0042be08, inserted with priority 100 (frontmost)
 - [ ] `00415290` inferred_C0042be40_OnAttach (vtable) · depth 1 · 27 lines · **untouched** — unread; first seen in vtable 0042be40 slot 0
 - [ ] `004150d0` inferred_Obj_Kind14_Ctor · depth 3 · 17 lines · **decompiled** — 0x74 bytes, vtable 0042bdd0, extends Kind00; inserts itself in its room list

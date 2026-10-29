@@ -20811,8 +20811,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 27,
-  "status": "decompiled",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list"
  },
  {
@@ -20856,8 +20856,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 27,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "resets a list's iterator (current = head, first flag = 1)"
  },
  {
@@ -20886,8 +20886,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 27,
-  "status": "decompiled",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "(key lo, key hi) finds an object in the list by its 64-bit name key at object +0x44; returns 0 when absent"
  },
  {
@@ -20927,8 +20927,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 27,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "removes the node holding the pointer"
  },
  {
@@ -20949,8 +20949,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "iterates to the last node and links a new node holding the pointer"
  },
  {
@@ -20968,8 +20968,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "empties a 2-field-node list"
  },
  {
@@ -20989,8 +20989,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "decompiled",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "allocates a linked list with capacity param (100 for the main list 00442104)"
  },
  {
@@ -21018,8 +21018,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "12-byte nodes (object, priority): inserts before the first node with a higher priority; main list uses priorities 0x13 (interface level), 100 (top object)"
  },
  {
@@ -21038,8 +21038,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "like InsertByPriority but inserts before nodes of equal priority"
  },
  {
@@ -21068,8 +21068,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "removes the node holding the given object from the main list"
  },
  {
@@ -21148,14 +21148,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "empties a 3-field-node list (priority lists)"
  },
  {
   "addr": "0040fe40",
   "ghidra_name": "FUN_0040fe40",
-  "name": "inferred_ObjectList_EndFrame",
+  "name": "inferred_ObjectList_StartIteration",
   "tier": "game",
   "lines": 31,
   "decompile_ok": true,
@@ -21167,8 +21167,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "iterator reset helper; its result decides loop continuation"
  },
  {
@@ -23389,7 +23389,7 @@
  {
   "addr": "00415200",
   "ghidra_name": "FUN_00415200",
-  "name": "inferred_List_InsertAtHead",
+  "name": "inferred_List_InsertAfterCursor",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -23401,8 +23401,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 36,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursorlist.h::CursorList",
   "notes": "allocates a node and links it at the list head"
  },
  {

@@ -75,3 +75,19 @@ Confidence per field: `?` guessed · `r` read-only evidence · `w` written+read 
 | +0x2c, +0x2e | short | movement gathered by completed loops (x, y) | c |
 | +0x30 | ushort | sequence being played | c |
 | +0x32,+0x36,+0x3a | uint | three header words copied from the file | r |
+
+## CursorList: `List` and `ObjectList` (pooled singly linked lists with a built-in cursor)
+`List` object = one pointer L to a header; `ObjectList` is the same design with priorities.
+| | List | ObjectList |
+|---|---|---|
+| header size | 0x1c | 0x24 |
+| L+0 | pointer to node block P | same |
+| L+4 | head link (first node, 0 = empty) | same |
+| cursor (node before the current element) | L+0xc | L+0x10 |
+| capacity | L+0x10 | L+0x14 |
+| at-start flag (byte) | L+0x14 | L+0x18 |
+| value slot (last element read) | L+0x18 | L+0x1c |
+| priority slot | none | L+0x20 |
+| node | 8 bytes: next, value | 12 bytes: next, value, priority |
+| block P | P+0 free-list head, P+8 bump pointer (P+0x10 first), capacity + 1 nodes | P+0 free-list head, P+0xc bump pointer (P+0x18 first), capacity + 3 nodes |
+All confirmed (asm of the ten functions). Nodes are taken from the free list first, then the bump pointer; there is no capacity check.

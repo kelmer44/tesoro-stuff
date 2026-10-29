@@ -22,3 +22,8 @@ re/.venv/bin/python re/tools/gen_vectors_anim.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/anim_driver.cpp \
     "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/anim_driver
 local-media/bin/anim_driver local-media/vectors/anim.txt
+
+# Cursor lists: original List / ObjectList code (Unicorn, pool allocator replaced) vs engine CursorList
+re/.venv/bin/python re/tools/gen_vectors_list.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/list_driver.cpp -o local-media/bin/list_driver
+local-media/bin/list_driver local-media/vectors/list.txt

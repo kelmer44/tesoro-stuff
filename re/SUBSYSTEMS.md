@@ -114,6 +114,29 @@ object ticks its current player. An object can set its animation aside while it 
 menu): it remembers which bank it was on and how it was playing, pauses, and afterwards puts it back and
 resumes. Some objects discard the movement the animation produces, so the picture plays in place.
 
+## Object lists ✅
+
+The level keeps its objects in lists, and the game uses one kind of list everywhere. It is a plain chain of
+items with a "finger" (a cursor) that remembers where the last walk stopped.
+
+- Walking the list moves the finger along; almost every operation starts by putting the finger back at the
+  start and ends wherever it stopped, so the finger's position is a by-product, not something to rely on.
+- Inserting puts the new item right after the finger, which is in front of the item the finger is about to reach.
+- Some lists keep their items sorted by a number (the priority, for example the draw order): a new item goes in
+  front of the first item with a bigger number, so items with equal numbers stay in the order they arrived.
+- In the original, removed items' slots go onto a free list and are reused, all slots come from a block reserved
+  when the list is created, and several lists can share one block. That is memory management only, so our version
+  is just an ordered array with a finger position and gives the same results.
+
+```mermaid
+flowchart LR
+    Head["start"] --> A["item A<br/>priority 1"] --> B["item B<br/>priority 3"] --> C["item C<br/>priority 3"]
+    Finger["finger<br/>(sits before the item it will read next)"] -.-> A
+```
+
+One quirk is kept on purpose: right after removing the first item the finger is parked in a state where a
+further step would skip the new first item. Nothing we have read relies on it yet.
+
 ## Game objects 🟡
 
 Everything you see in a level (Jim, other characters, items, doors, scenery) is a game object.
@@ -140,7 +163,7 @@ flowchart LR
     Tick --> Rect["New hit rectangle<br/>and area moved through"]
 ```
 
-*Not done yet:* the level that builds and keeps the objects (and sorts them), the kinds of object
+*Not done yet:* the level that builds the objects and decides which list each one goes in, the kinds of object
 (Jim, items, doors...), saving an object's state, and putting the picture on screen.
 
 ---
