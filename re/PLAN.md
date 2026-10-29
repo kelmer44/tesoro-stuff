@@ -211,3 +211,7 @@ Also renamed `004035b0` to `InputDevice_Ctor` (it is the base-class constructor 
 - **Field names:** added for Keyboard, Mouse, Cursor, script entries (`DlgScriptEntry`), the Kind05 family and Level (`re/field_names.json`).
 - **Plain (non-virtual) classes** are now covered by `re/plain_classes.json` and a section of `STRUCTS_GENERATED.md`: Clock, Pool, Archive, AnimPlayer, Camera, Display, SoundManager, SoundSlot, CdAudio, DialogueTable, TextTable, List, ObjectList. These are derived from hand-listed member functions and are weaker: members that reach fields only through pointer arithmetic (e.g. the dialogue table's entry array at +0x54, the pooled list nodes) are missing; CdAudio has no size. Treat them as lower bound layouts.
 - Still not done: applying the types inside Ghidra (bridge limitation), field names for most subtype classes, and the pooled-list/node layouts.
+
+### Phase 4 planning (29 Oct 2026)
+`re/PHASE4_PLAN.md` written (plan only). Key facts: Gabriel's checkout is a detached HEAD at `b68a4c748e0`; `tesoro-engine` is `98415538c49` (== `my-fork/tesoro-engine`); the codex worktree is on `tesoro-engine-re` at the bare engine skeleton `cd6decf664f`.
+Open decision for Gabriel: base the fresh port on that skeleton (recommended, `codex/fresh-core`) or audit/fix on top of the `tesoro-engine` tip (`codex/fidelity-core`). First increment: GameClock, nameKey64, time-driven random functions and the frame-order skeleton, validated against the original machine code with vectors from `re/tools/check_startup.py`.
