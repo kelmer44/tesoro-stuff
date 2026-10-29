@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 236 | 52% |
-| understood or later | 73 | 16% |
-| ported or later | 57 | 12% |
-| emu-compared or later | 43 | 9% |
+| decompiled or later | 237 | 53% |
+| understood or later | 81 | 18% |
+| ported or later | 66 | 14% |
+| emu-compared or later | 51 | 11% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -53,15 +53,15 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00401e20` inferred_Obj_LoadState (vtable) · depth 8 · 22 lines · **decompiled** — base slot 9: reads from a stream: current bank index (+0x32), per-frame fields of the current sequence (+0x24, +0x26, +0x30, +0x18) and an optional blob of +0x64 bytes at +0x60. Save-game deserialisation
 - [ ] `00401ee0` inferred_Obj_SaveState (vtable) · depth 8 · 18 lines · **decompiled** — base slot 10: mirror of LoadState using fwrite. Save-game serialisation
 
-### Cluster 4: 00401fb0–00402230 (0/7 ported)
+### Cluster 4: 00401fb0–00402230 (7/7 ported)
 
-- [ ] `00401fb0` inferred_Obj_Stub_RetZero (vtable) · depth 0 · 7 lines · **understood** — default for update/draw-style slots: returns 0
-- [ ] `00402110` inferred_Camera_Ctor · depth 0 · 9 lines · **decompiled** — 0x40-byte object at level +0x80; zeroes +0 and +0x10
-- [ ] `00402120` inferred_Camera_SetPositionClamped · depth 0 · 35 lines · **decompiled** — stores x,y (+0x2c,+0x30) clamped to the bounds rect (+0x1c..+0x28) with the 640x480 half extents 0x140/0xf0; returns whether it was inside
-- [ ] `00402200` inferred_Camera_SetBounds · depth 0 · 12 lines · **decompiled** — stores 4 ints at +0x1c..+0x28; Level_Load passes (-320, 239, 319, -240)
-- [ ] `00402230` inferred_Camera_SetValue0 · depth 0 · 8 lines · **decompiled** — stores one dword at +0
-- [ ] `00401fc0` inferred_Camera_UpdateToward · depth 1 · 57 lines · **untouched** — (camera, target) moves the camera toward a target using the game clock; ends in Camera_SetPositionClamped | name from call sites and a skim; body not yet read
-- [ ] `004021a0` inferred_Camera_MoveTo · depth 1 · 22 lines · **decompiled** — duration 0: set position now (00402120); otherwise stores start/target and a start time from the game clock
+- [x] `00401fb0` inferred_Obj_Stub_RetZero (vtable) · depth 0 · 7 lines · **ported** → `engines/tesoro/core/object.h::Object::update/update2 (default 0)` — default for update/draw-style slots: returns 0
+- [x] `00402110` inferred_Camera_Ctor · depth 0 · 9 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::init` — 0x40-byte object at level +0x80; zeroes +0 and +0x10 | camera vectors 1 Nov
+- [x] `00402120` inferred_Camera_SetPositionClamped · depth 0 · 35 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::setPositionClamped` — stores x,y (+0x2c,+0x30) clamped to the bounds rect (+0x1c..+0x28) with the 640x480 half extents 0x140/0xf0; returns whether it was inside | camera vectors 1 Nov
+- [x] `00402200` inferred_Camera_SetBounds · depth 0 · 12 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::setBounds` — stores 4 ints at +0x1c..+0x28; Level_Load passes (-320, 239, 319, -240) | camera vectors 1 Nov
+- [x] `00402230` inferred_Camera_SetTarget · depth 0 · 8 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::setTarget` — stores one dword at +0 | camera vectors 1 Nov
+- [x] `00401fc0` inferred_Camera_UpdateToward · depth 1 · 57 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::updateToward` — (camera, target) moves the camera toward a target using the game clock; ends in Camera_SetPositionClamped | name from call sites and a skim; body not yet read | camera vectors 1 Nov
+- [x] `004021a0` inferred_Camera_MoveTo · depth 1 · 22 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::moveTo` — duration 0: set position now (00402120); otherwise stores start/target and a start time from the game clock | camera vectors 1 Nov
 
 ### Cluster 5: 004023f0–004028c0 (0/7 ported)
 
@@ -347,7 +347,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `0040f780` inferred_List_Remove · depth 0 · 49 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — removes the node holding the pointer
 - [x] `0040f590` inferred_List_Ctor · depth 1 · 37 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list
 - [ ] `0040f650` inferred_Pool_AllocAlignedZero_Global · depth 1 · 8 lines · **decompiled** — wrapper on the global pool
-- [x] `0040f710` inferred_ObjectList_ForEachAttach · depth 2 · 39 lines · **ported** — iterates list and calls 00401bf0(node object, arg)
+- [x] `0040f710` inferred_ObjectList_ForEachAttach · depth 2 · 39 lines · **ported** → `engines/tesoro/core/object.cpp::attachAll` — iterates list and calls 00401bf0(node object, arg)
 - [ ] `0040f280` inferred_Obj_Verb1_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 21 of Kind09-based classes: same pattern with phrase key +0x74 and a default phrase when unset
 - [ ] `0040f300` inferred_Obj_Verb3_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 22: phrase key +0x7c
 - [ ] `0040f380` inferred_Obj_Verb2_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 23: phrase key +0x78
@@ -362,12 +362,12 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `0040fa10` inferred_ObjectList_InsertByPriorityFront · depth 0 · 82 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — like InsertByPriority but inserts before nodes of equal priority
 - [x] `0040fb20` inferred_ObjectList_RemoveByObject · depth 0 · 58 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — removes the node holding the given object from the main list
 - [x] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — allocates a linked list with capacity param (100 for the main list 00442104)
-- [x] `0040fbb0` inferred_ObjectList_AttachAll · depth 2 · 38 lines · **ported** — walks the list calling Object_AttachToLevel on each object
+- [x] `0040fbb0` inferred_ObjectList_AttachAll · depth 2 · 38 lines · **ported** → `engines/tesoro/core/object.cpp::attachAll` — walks the list calling Object_AttachToLevel on each object
 
-### Cluster 29: 0040fc20–00410330 (2/12 ported)
+### Cluster 29: 0040fc20–00410330 (4/12 ported)
 
-- [ ] `0040fc20` inferred_ObjectList_PassA · depth 0 · 83 lines · **decompiled** — walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1
-- [ ] `0040fd20` inferred_ObjectList_PassB · depth 0 · 83 lines · **decompiled** — same walk calling vtable slot 5
+- [x] `0040fc20` inferred_ObjectList_PassA · depth 0 · 83 lines · **emu-compared** → `engines/tesoro/core/object.cpp::runUpdatePass` — walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1 | pass vectors 31 Oct
+- [x] `0040fd20` inferred_ObjectList_PassB · depth 0 · 83 lines · **emu-compared** → `engines/tesoro/core/object.cpp::runUpdate2Pass` — same walk calling vtable slot 5 | pass vectors 31 Oct
 - [x] `0040fe20` inferred_ObjectList_Clear · depth 0 · 14 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — empties a 3-field-node list (priority lists)
 - [x] `0040fe40` inferred_ObjectList_StartIteration · depth 0 · 31 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — iterator reset helper; its result decides loop continuation
 - [ ] `0040fea0` inferred_Obj_Kind05Base_Ctor · depth 2 · 9 lines · **decompiled** — MidBase default ctor then vtable 0042bb48

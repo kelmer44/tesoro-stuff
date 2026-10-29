@@ -137,6 +137,28 @@ flowchart LR
 One quirk is kept on purpose: right after removing the first item the finger is parked in a state where a
 further step would skip the new first item. Nothing we have read relies on it yet.
 
+## The frame loop over the objects ✅
+
+Each frame the game walks the main object list twice: pass A, then pass B (skipped if pass A reported "3", a
+state change or exit request). In a pass every active object gets one turn (A: its update, B: its second update).
+Before a pass all objects are marked "not yet done"; an object that has had its turn is marked done, so it never
+runs twice in a pass. If an object's turn adds or removes objects (a dialogue starting, an item appearing), the
+walk notices that the list changed and starts again from the top, skipping everything already done. One detail
+matters: an object added right behind the one being run does not count as a change, so it waits for the next pass.
+A turn that returns 2 or 3 ends the pass at once with that number; otherwise the pass returns 1. The engine
+functions are `runUpdatePass` and `runUpdate2Pass`. Checked against the original with random lists whose objects
+add and remove other objects during their turn. What 2 and 3 mean to each caller is not read yet.
+
+## The camera ✅
+
+Each level has a camera: a centre point on the level, kept so that the 640x480 view stays inside the level's bounds.
+It can jump to a position or glide there over a given time, and it can follow an object (Jim) in coarse steps: when the
+object walks more than a short distance (75 pixels) past where the camera is aiming, the aim moves 100 pixels toward it
+and the camera glides there over three quarters of a second, as long as the level has room to scroll. Once per
+frame, for each room, the game updates the camera and records its centre scaled by 300 divided by a number stored in the
+room (apparently used to place subtitles; not checked on screen). The engine class is `Camera`. Checked against the
+original with random sequences of moves, bounds, targets and clock steps. Which bound is the top of the screen is not established.
+
 ## Rooms ✅
 
 A level is split into rooms (screens). Each room keeps its own list of the objects standing in it, ordered by
@@ -144,7 +166,7 @@ horizontal position with the rightmost first; an object at the same position as 
 An object joins its room's list when it is attached to the level (if it is a kind that asks for this), and
 leaves it when it moves to another level. Each room also carries a draw-order offset, and the next room's offset
 grows by the size of the one before. The engine class is `Room`. Checked against the original running the same
-random sequences of inserts and removals. Not known: what one number in the room record means, and why the order
+random sequences of inserts and removals. Each room also holds a number the camera uses as a divisor (see the camera). Not known: why the order
 is right-to-left.
 
 ```mermaid

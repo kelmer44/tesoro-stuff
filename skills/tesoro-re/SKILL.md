@@ -142,3 +142,11 @@ driver.cpp <engines/tesoro/*.o except metaengine, detection, console, tesoro.o, 
 lets a driver read members without touching engine code. In zsh keep the object list in an array (no word splitting) and write temporary output in the
 scratchpad. Pairs with a Unicorn harness (`tools/compare_path_route.py` is the smallest example: capture a virtual call by hooking its stub address).
 Pitfall found: a generic point-in-polygon is not a reference for the original's x-monotone test; compare engine and original code, not a third implementation.
+
+## Technique: original code calling back into original code (machine-code stubs)
+To test a function that calls virtual methods (object-list passes), build fake objects in emulated memory whose
+vtable slots point at tiny hand-encoded x86 stubs (`mov ecx,imm; push imm; call rel32; mov eax,imm; ret`). The stubs
+can call other original functions on the same data, so a pass is tested against objects that edit the list they are
+walked from. See `re/tools/gen_vectors_pass.py` (3530/3530 against the engine). Limitation: Unicorn keeps translated
+code, so rewriting a stub at the same address between cases silently runs the old one (symptom: stale return
+values). Give every case fresh stub addresses.

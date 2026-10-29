@@ -14,7 +14,7 @@ void NORETURN_PRE error(const char *s, ...) { fprintf(stderr, "engine error: %s\
 void warning(const char *s, ...) { (void)s; }
 
 static const int kObjs = 7;
-using ObjectList = Tesoro::CursorList<Tesoro::Object *>;
+using Tesoro::ObjectList;
 static ObjectList g_list;
 static std::vector<int> g_trace;
 

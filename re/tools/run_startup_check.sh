@@ -39,3 +39,9 @@ re/.venv/bin/python re/tools/gen_vectors_pass.py
 c++ -std=c++11 -O1 -fno-operator-names -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/pass_driver.cpp \
     "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/pass_driver
 local-media/bin/pass_driver local-media/vectors/pass.txt
+
+# Camera: original Camera_Ctor / SetBounds / SetValue0 / SetPositionClamped / MoveTo / UpdateToward (Unicorn) vs engine Camera
+re/.venv/bin/python re/tools/gen_vectors_camera.py
+c++ -std=c++11 -O1 -fno-operator-names -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/camera_driver.cpp \
+    "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/camera_driver
+local-media/bin/camera_driver local-media/vectors/camera.txt

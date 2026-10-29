@@ -8326,8 +8326,8 @@
   ],
   "data_refs": [],
   "cluster": 4,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/object.h::Object::update/update2 (default 0)",
   "notes": "default for update/draw-style slots: returns 0"
  },
  {
@@ -8349,9 +8349,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 4,
-  "status": "untouched",
-  "engine": "",
-  "notes": "(camera, target) moves the camera toward a target using the game clock; ends in Camera_SetPositionClamped | name from call sites and a skim; body not yet read"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/camera.cpp::updateToward",
+  "notes": "(camera, target) moves the camera toward a target using the game clock; ends in Camera_SetPositionClamped | name from call sites and a skim; body not yet read | camera vectors 1 Nov"
  },
  {
   "addr": "00402110",
@@ -8368,9 +8368,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 4,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "0x40-byte object at level +0x80; zeroes +0 and +0x10"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/camera.cpp::init",
+  "notes": "0x40-byte object at level +0x80; zeroes +0 and +0x10 | camera vectors 1 Nov"
  },
  {
   "addr": "00402120",
@@ -8388,9 +8388,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 4,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "stores x,y (+0x2c,+0x30) clamped to the bounds rect (+0x1c..+0x28) with the 640x480 half extents 0x140/0xf0; returns whether it was inside"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/camera.cpp::setPositionClamped",
+  "notes": "stores x,y (+0x2c,+0x30) clamped to the bounds rect (+0x1c..+0x28) with the 640x480 half extents 0x140/0xf0; returns whether it was inside | camera vectors 1 Nov"
  },
  {
   "addr": "004021a0",
@@ -8411,9 +8411,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 4,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "duration 0: set position now (00402120); otherwise stores start/target and a start time from the game clock"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/camera.cpp::moveTo",
+  "notes": "duration 0: set position now (00402120); otherwise stores start/target and a start time from the game clock | camera vectors 1 Nov"
  },
  {
   "addr": "00402200",
@@ -8431,14 +8431,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 4,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "stores 4 ints at +0x1c..+0x28; Level_Load passes (-320, 239, 319, -240)"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/camera.cpp::setBounds",
+  "notes": "stores 4 ints at +0x1c..+0x28; Level_Load passes (-320, 239, 319, -240) | camera vectors 1 Nov"
  },
  {
   "addr": "00402230",
   "ghidra_name": "FUN_00402230",
-  "name": "inferred_Camera_SetValue0",
+  "name": "inferred_Camera_SetTarget",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -8450,9 +8450,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 4,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "stores one dword at +0"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/camera.cpp::setTarget",
+  "notes": "stores one dword at +0 | camera vectors 1 Nov"
  },
  {
   "addr": "00402240",
@@ -20908,7 +20908,7 @@
   "data_refs": [],
   "cluster": 27,
   "status": "ported",
-  "engine": "",
+  "engine": "engines/tesoro/core/object.cpp::attachAll",
   "notes": "iterates list and calls 00401bf0(node object, arg)"
  },
  {
@@ -21090,7 +21090,7 @@
   "data_refs": [],
   "cluster": 28,
   "status": "ported",
-  "engine": "",
+  "engine": "engines/tesoro/core/object.cpp::attachAll",
   "notes": "walks the list calling Object_AttachToLevel on each object"
  },
  {
@@ -21108,9 +21108,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/object.cpp::runUpdatePass",
+  "notes": "walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1 | pass vectors 31 Oct"
  },
  {
   "addr": "0040fd20",
@@ -21127,9 +21127,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "same walk calling vtable slot 5"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/object.cpp::runUpdate2Pass",
+  "notes": "same walk calling vtable slot 5 | pass vectors 31 Oct"
  },
  {
   "addr": "0040fe20",
