@@ -33,9 +33,13 @@ Confidence per field: `?` guessed · `r` read-only evidence · `w` written+read 
 | Off | Width | Field | Conf |
 |---|---|---|---|
 | +0x00 | vtable | | c |
-| +0x0c | byte | animation "playing" / dirty flag (cleared by SelectAnimBank) | r |
-| +0x10..+0x1c | 4 ints | bounds rect (from the current frame record) | r |
-| +0x20..+0x2c | 4 ints | screen-space rect | r |
+| +0x04 | uint | stashed bank index (Obj_StashAnimState) | c |
+| +0x08 | uint | stashed play flags | c |
+| +0x0c | byte | animation stashed/paused (set by the Jim code, cleared by SelectAnimBank and the restore code) | c |
+| +0x10,+0x14,+0x18,+0x1c | 4 ints | hit rectangle of the shown sequence: x, y, x + width, y - height | c |
+| +0x20,+0x24 | 2 ints | position + movement offset before the tick | c |
+| +0x28,+0x2c | 2 ints | position + movement offset after the tick (previous position if the object moved) | c |
+| +0x30 | ushort | sequence shown before the tick | c |
 | +0x32 | byte | current anim bank index | w |
 | +0x33 | byte | anim bank count | c |
 | +0x34 | ptr | array of AnimPlayer* (one per bank) | c |

@@ -10,6 +10,7 @@ Lines: C <hex dat> <entryOffset> <mode> <is555>   load; then
        R first last loop sum now | startTime totalDuration flags first last loopX loopY current
        A now | movementX movementY current flags startTime total loopX loopY    advance (0x401860)
        Z now | flags startTime pausedAt    pause (0x401a50)      W now | ...   resume (0x401a70)
+       oO n hasAnimation / oSel ... / oT, oU (tick, tick+clear) / oSt, oAp (stash, restore) / oF (stashed flag) / oZ, oW: object animation set, state after each op
        #  end of case
 """
 import os, random, struct, sys
@@ -36,6 +37,9 @@ def alloc(emu, size, align, arena):
 e.hook_function(0x41b4c0, fread, 4); e.hook_function(0x41b490, fgetpos, 2); e.hook_function(0x41b3f0, fseek, 3)
 e.hook_function(0x41b600, fsetpos, 2)
 e.hook_function(0x4032e0, seek_entry, 1, pops=True); e.hook_function(0x40dc10, alloc, 3, pops=True)
+def alloc_zero(emu, size, arena):
+    a = (st["heap"] + 3) // 4 * 4; st["heap"] = a + size; emu.write(a, bytes(size)); return a
+e.hook_function(0x40db40, alloc_zero, 2); e.hook_function(0x40f650, alloc_zero, 2)
 e.hook_function(0x413a10, lambda emu: st["now"])
 e.write(0x442064, struct.pack("<I", ARCH)); e.write(ARCH + 4, struct.pack("<I", FP))
 e.write(0x442100, struct.pack("<I", 0x100300)); e.write(0x442108, struct.pack("<I", DISP))
@@ -158,6 +162,91 @@ for case in range(700):
             else:
                 e.call(0x401a50 if op == "Z" else 0x401a70, [], this=PL); p = e.read(PL, 0x40)
                 out.append(f"{op} {t} | {u32(p,0x18)} {s32(u32(p,8))} {u32(p,0x10)}")
+
+        if rnd.random() < 0.7:
+            # object animation set: players copied from the bank by the original Copy64Bytes, driven by the object methods
+            OBJ, ARR, PBASE = 0x100c00, 0x100e00, 0x101000
+            n = rnd.randint(1, 3); has = rnd.choice([0, 1, 1])
+            P = [PBASE + 0x40 * k for k in range(n)]
+            e.write(OBJ, bytes([0xcd]) * 0x100); e.write(OBJ + 0x68, struct.pack("<I", (0x10 if has else 0) | rnd.choice([0, 2, 6])))
+            for k in range(n):
+                e.write(P[k], bytes([0xcd]) * 0x40); e.call(0x401580, [PL], this=P[k]); e.write(ARR + 4 * k, struct.pack("<I", P[k]))
+            e.write(OBJ + 0x34, struct.pack("<I", ARR)); e.write(OBJ + 0x38, struct.pack("<I", P[0])); e.write(OBJ + 0x32, b"\0")
+            out.append(f"oO {n} {has}")
+            def state():
+                idx = e.read(OBJ + 0x32, 1)[0]; cur = e.u32(OBJ + 0x38); p = e.read(cur, 0x40)
+                return (f"{idx} {e.u32(OBJ + 4)} {e.u32(OBJ + 8)} {e.read(OBJ + 0xc, 1)[0]} {int(idx < n and cur == P[idx])} | {u32(p,0x18)} {s32(u32(p,8))} {u32(p,0xc)} "
+                        f"{u16(p,0x30)} {u16(p,0x2c)} {u16(p,0x2e)} {u16(p,0x24)} {u16(p,0x26)} {u32(p,0x10)}"), p
+            seen_pause = [False] * n; seen_stash = False
+            def sel(bank, t):
+                first = rnd.randint(0, nseq - 1); last = rnd.choice([-1, rnd.randint(first, nseq - 1)]); lp = rnd.choice([0, 1]); sm = rnd.choice([0, 1])
+                st["now"] = t; e.call(0x401de0, [bank, first, last & M, lp, sm], conv="thiscall", this=OBJ); seen_pause[bank] = False
+                out.append(f"oSel {bank} {first} {last} {lp} {sm} {t} | {state()[0]}")
+            for k in range(n): sel(k, t)
+            for _ in range(rnd.randint(1, 12)):
+                op = rnd.choice(["T", "T", "T", "U", "St", "Ap", "F", "Z", "W", "Sel"])
+                t += rnd.choice([0, 1, 5, 17, 100, 333, 1500, 5000]); st["now"] = t
+                idx = e.read(OBJ + 0x32, 1)[0]; cur = e.u32(OBJ + 0x38)
+                if op == "Ap" and not seen_stash: op = "St"
+                if op == "W" and not seen_pause[idx]: op = "Z"
+                if op == "Sel": sel(rnd.randint(0, n - 1), t); continue
+                if op in ("T", "U"):
+                    e.call(0x401c30 if op == "T" else 0x407770, [], this=OBJ); s, p = state()
+                    out.append(f"o{op} {t} | {s} {s16(p,0x28)} {s16(p,0x2a)}")
+                    continue
+                if op == "St": e.call(0x401da0, [], this=OBJ); seen_stash = True
+                elif op == "Ap": e.call(0x401dc0, [], this=OBJ)
+                elif op == "F": e.write(OBJ + 0xc, b"\x01")
+                elif op == "Z": e.call(0x401a50, [], this=cur); seen_pause[idx] = True
+                elif op == "W": e.call(0x401a70, [], this=cur)
+                out.append(f"o{op} {t} | {state()[0]}")
+
+        if rnd.random() < 0.7:
+            # object base: plain constructor, setters, record constructor and UpdateBounds (virtual tick through the real vtable)
+            O2, TBL, REC, ROOM, IDX, TP = 0x101200, 0x101400, 0x101440, 0x101480, 0x1014c0, 0x101500
+            K = rnd.randint(1, 3); T = [TP + 0x40 * k for k in range(K)]
+            for k in range(K):
+                e.write(T[k], bytes([0xcd]) * 0x40); e.call(0x401580, [PL], this=T[k]); e.write(TBL + 4 * k, struct.pack("<I", T[k]))
+            nb = rnd.randint(0, 3) if rnd.random() < 0.2 else rnd.randint(1, 3); idxs = [rnd.randint(0, K - 1) for _ in range(nb)]
+            delta = rnd.randint(0, 8); e.write(IDX, bytes(rnd.getrandbits(8) for _ in range(16))); e.write(IDX + delta, bytes(idxs))
+            ox, oy, so, ro = (rnd.randint(-70000, 70000), rnd.randint(-70000, 70000), rnd.randint(-300, 300), rnd.randint(-300, 300))
+            name = "".join(rnd.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_") for _ in range(rnd.randint(1, 12)))
+            e.write(REC, bytes(0x20)); e.write(REC, struct.pack("<ii", ox, oy)); e.write(REC + 8, struct.pack("<h", so)); e.write(REC + 0xb, bytes([nb]))
+            e.write(REC + 0xc, name.encode() + b"\0"); e.write(REC + 0x1c, struct.pack("<I", IDX))
+            e.write(ROOM, bytes(0x10)); e.write(ROOM + 8, struct.pack("<h", ro))
+            size = rnd.choice([0, 0, 6, 100])
+            e.write(O2, bytes(0x100)); st["now"] = t
+            e.call(0x401aa0, [REC, ROOM, TBL, delta, size], conv="thiscall", this=O2)
+            def ostate():
+                arr = e.u32(O2 + 0x34); cur = e.u32(O2 + 0x38); n = e.read(O2 + 0x33, 1)[0]
+                ptrs = [e.u32(arr + 4 * i) for i in range(n)]
+                s = (f"{e.u32(O2)} {e.u32(O2 + 0x68)} {s16(e.read(O2 + 0x5e, 2), 0)} {e.u32(O2 + 0x44)} {e.u32(O2 + 0x48)} {n} {e.read(O2 + 0x32, 1)[0]} "
+                     f"{int(n > 0 and cur == ptrs[0])} {s32(e.u32(O2 + 0x4c))} {s32(e.u32(O2 + 0x50))} {s32(e.u32(O2 + 0x54))} {s32(e.u32(O2 + 0x58))} "
+                     f"{u16(e.read(O2 + 0x64, 2), 0)} {int(e.u32(O2 + 0x60) != 0)}")
+                for pp in ptrs:
+                    p = e.read(pp, 0x40); s += f" {u32(p,0x18)} {s32(u32(p,8))} {u32(p,0xc)} {u16(p,0x30)} {u16(p,0x24)} {u16(p,0x26)} {u16(p,0x2c)} {u16(p,0x2e)}"
+                return s
+            out.append(f"eK {K} {ox} {oy} {so} {ro} {name} {nb} {size} {','.join(map(str, idxs)) or '-'} | {ostate()}")
+            for _ in range(rnd.randint(1, 8)):
+                op = rnd.choice(["U", "U", "U", "P", "F", "Sa", "Sv"])
+                if op == "P":
+                    vals = [rnd.randint(-5000, 5000) for _ in range(4)]
+                    if rnd.random() < 0.4: vals[2:] = vals[:2]
+                    e.write(O2 + 0x4c, struct.pack("<ii", vals[0], vals[1])); e.write(O2 + 0x54, struct.pack("<ii", vals[2], vals[3]))
+                    out.append("eP " + " ".join(map(str, vals)))
+                elif op == "F":
+                    f = rnd.choice([0x02, 0x12, 0x16, 0x1a, 0x00]); e.write(O2 + 0x68, struct.pack("<I", f)); out.append(f"eF {f}")
+                elif op in ("Sa", "Sv"):
+                    b = rnd.randint(0, 3); e.call(0x401d60 if op == "Sa" else 0x401d80, [b], conv="thiscall", this=O2)
+                    out.append(f"e{op} {b} | {e.u32(O2 + 0x68)}")
+                elif nb > 0:
+                    t += rnd.choice([0, 1, 17, 100, 500, 3000]); st["now"] = t
+                    e.call(0x401c50, [], this=O2)
+                    r = [s32(e.u32(O2 + o)) for o in (0x10, 0x14, 0x18, 0x1c, 0x20, 0x24, 0x28, 0x2c)]
+                    out.append(f"eU {t} | {' '.join(map(str, r))} {u16(e.read(O2 + 0x30, 2), 0)} | {ostate()}")
+            # plain object constructor on garbage memory
+            e.write(O2, bytes([0xcd]) * 0x100); e.call(0x401bc0, [], this=O2)
+            out.append(f"eB | {e.u32(O2 + 0x68)} {s16(e.read(O2 + 0x5e, 2), 0)}")
     out.append("#")
 os.makedirs("local-media/vectors", exist_ok=True)
 open("local-media/vectors/anim.txt", "w").write("\n".join(out) + "\n")

@@ -22,7 +22,7 @@ flowchart TD
     Anim --> Screen["Drawing on screen ❓"]
     Clock --> Random["Random numbers ✅"]
     Names["Name keys ✅"] -.-> Scripts["Scripts and objects ❓"]
-    Anim --> Objects["Game objects ❓<br/>(characters, items, scenery)"]
+    Anim --> Objects["Game objects 🟡<br/>(characters, items, scenery)"]
     Scripts --> Objects
 ```
 
@@ -94,14 +94,61 @@ when the animation asks for it. The result is a small offset (x, y) that says wh
 drawn relative to its place. A player can be paused; on resume the time spent paused is subtracted so
 the animation carries on where it stopped.
 
-*Not done yet:* putting the current picture on screen, and who calls the tick (game objects).
+**Per object (the "animation set").** In the code this group is called an `AnimSet`; the original has no such
+name, it keeps the same pieces inside every object. It is the set of animations that belong to one object:
+
+```mermaid
+flowchart TD
+    Obj["Game object ✅ basics<br/>place, flags, name"] --> Set["Animation set<br/>which animation is current,<br/>and a spot to set it aside"]
+    Set --> P1["Player: idle"]
+    Set --> P2["Player: walking"]
+    Set --> P3["Player: talking"]
+    P1 -- shares --> B1["Bank: idle pictures + steps"]
+    P2 -- shares --> B2["Bank: walking pictures + steps"]
+    P3 -- shares --> B3["Bank: talking pictures + steps"]
+```
+
+ A game object owns one player for each of its animation banks (for example "idle", "walking",
+"talking") and one of them is current. Choosing another bank also says which steps to play. Each frame the
+object ticks its current player. An object can set its animation aside while it is paused (a dialogue, a
+menu): it remembers which bank it was on and how it was playing, pauses, and afterwards puts it back and
+resumes. Some objects discard the movement the animation produces, so the picture plays in place.
+
+## Game objects 🟡
+
+Everything you see in a level (Jim, other characters, items, doors, scenery) is a game object.
+Whatever the kind, an object has:
+- a place (x, y) and the place it is heading to, which it uses to work out the area it moved through;
+- a few on/off switches: active, visible, can be hit, has animation;
+- a name (stored as a short number so it can be compared quickly);
+- a sort number that decides what is drawn in front of what: its own number, plus the number of the
+  room it stands in, plus 5;
+- its animation set (see above);
+- a hit rectangle, taken from the picture it is currently showing, used to see what the mouse or a
+  character touches.
+
+A level file describes each object (place, name, which animations it uses). The level builds the
+object from that description; building it also makes the object's own copy of each animation player.
+Every frame the object ticks its animation and then recomputes its hit rectangle.
+
+```mermaid
+flowchart LR
+    Rec["Level file<br/>description of the object"] --> Build["Build the object"]
+    Bank["Level's animation banks"] --> Build
+    Build --> Obj["Object"]
+    Obj -- every frame --> Tick["Tick animation"]
+    Tick --> Rect["New hit rectangle<br/>and area moved through"]
+```
+
+*Not done yet:* the level that builds and keeps the objects (and sorts them), the kinds of object
+(Jim, items, doors...), saving an object's state, and putting the picture on screen.
 
 ---
 
 ## Still to explore
 
 - Drawing: how pictures end up on the screen, and in which order.
-- Game objects: characters, items, doors, and how each one owns animation players.
+- The level: how it builds and keeps objects in order, and what the other kinds of object do.
 - Scripts: how story events and puzzles are described and run.
 - Levels: how a scene is loaded and which objects it creates.
 - Sound and music.

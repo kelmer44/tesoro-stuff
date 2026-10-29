@@ -20,5 +20,5 @@ local-media/bin/archive_driver local-media/vectors/archive.txt
 # Animation bank: original Load/LoadImage/LoadDeferredImages/ScaleBrightness/SetRange (Unicorn) vs engine AnimPlayer
 re/.venv/bin/python re/tools/gen_vectors_anim.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/anim_driver.cpp \
-    "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" -o local-media/bin/anim_driver
+    "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/anim_driver
 local-media/bin/anim_driver local-media/vectors/anim.txt

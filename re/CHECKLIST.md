@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 235 | 52% |
-| understood or later | 37 | 8% |
-| ported or later | 27 | 6% |
-| emu-compared or later | 19 | 4% |
+| decompiled or later | 236 | 52% |
+| understood or later | 55 | 12% |
+| ported or later | 38 | 8% |
+| emu-compared or later | 30 | 6% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -27,35 +27,35 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00401160` inferred_AnimBank_Load · depth 9 · 163 lines · **emu-compared** — thiscall(entry, pool, mode): opens archive entry+4, reads 0x18 header (images +0x20, sequences +0x22), 0x24-byte sequence records at +0x1c, image pointer array at +0, file offsets at +4; mode 2 defers image loading | animation vectors 29 Oct
 - [x] `00401510` inferred_AnimBank_LoadDeferredImages · depth 9 · 26 lines · **emu-compared** — mode 2 only: seeks to each stored offset (+4 array) and loads the image with 004015a0 | animation vectors 29 Oct
 
-### Cluster 2: 00401bc0–00401d60 (3/12 ported)
+### Cluster 2: 00401bc0–00401d60 (8/12 ported)
 
-- [ ] `00401bc0` inferred_Object_BaseCtor · depth 0 · 12 lines · **decompiled** — base game object: vtable 00428000, flags +0x68 |= 6, +0x5e = 5, byte +0x5c = 0
-- [ ] `00401c20` inferred_Noop (vtable) · depth 0 · 7 lines · **decompiled** — empty function; fills vtable slots 0, 1 and 7 of the base classes (also used as the clock destructor) | empty function; fills vtable slots 0, 1 and 7 of the base classes (and was the clock destructor)
-- [ ] `00401c50` inferred_Obj_UpdateBounds (vtable) · depth 0 · 30 lines · **decompiled** — base slot 3: recomputes bounds rect (+0x10..+0x1c) and screen position (+0x20..+0x2c) from the current frame record (0x24-byte entries); calls slot 2 in between
-- [ ] `00401d20` inferred_Obj_Stub_Void_1Arg (vtable) · depth 0 · 7 lines · **decompiled** — base slot 6 default (draw with one argument)
-- [ ] `00401d60` inferred_Obj_SetActive (vtable) · depth 0 · 8 lines · **decompiled** — base slot 8: sets flag bit 1 (+0x68) from argument
+- [x] `00401bc0` inferred_Object_BaseCtor · depth 0 · 12 lines · **emu-compared** → `engines/tesoro/core/object.cpp::Object::initPlain` — base game object: vtable 00428000, flags +0x68 |= 6, +0x5e = 5, byte +0x5c = 0 | object vectors 29 Oct
+- [ ] `00401c20` inferred_Noop (vtable) · depth 0 · 7 lines · **understood** — empty function; fills vtable slots 0, 1 and 7 of the base classes (also used as the clock destructor) | empty function; fills vtable slots 0, 1 and 7 of the base classes (and was the clock destructor)
+- [x] `00401c50` inferred_Obj_UpdateBounds (vtable) · depth 0 · 30 lines · **emu-compared** → `engines/tesoro/core/object.cpp::Object::updateBounds` — base slot 3: recomputes bounds rect (+0x10..+0x1c) and screen position (+0x20..+0x2c) from the current frame record (0x24-byte entries); calls slot 2 in between | object vectors 29 Oct
+- [ ] `00401d20` inferred_Obj_Stub_Void_1Arg (vtable) · depth 0 · 7 lines · **understood** — base slot 6 default (draw with one argument)
+- [x] `00401d60` inferred_Obj_SetActive (vtable) · depth 0 · 8 lines · **emu-compared** — base slot 8: sets flag bit 1 (+0x68) from argument | object vectors 29 Oct
 - [x] `00401860` inferred_AnimPlayer_Advance · depth 1 · 86 lines · **emu-compared** — advances the animation: reads the game clock, steps frames by their durations, wraps or stops at the range end (86 lines, detail not yet contracted) | name from call sites and a skim; body not yet read | player update vectors 29 Oct
 - [x] `00401a50` inferred_AnimPlayer_Pause · depth 1 · 12 lines · **emu-compared** — flags: clear bit0, set bit1; +0x10 = clock now | player update vectors 29 Oct
 - [x] `00401a70` inferred_AnimPlayer_Resume · depth 1 · 15 lines · **emu-compared** — adds the paused duration to +8, clears +0x10, flags: clear bit1, set bit0 | player update vectors 29 Oct
-- [ ] `00401bf0` inferred_Object_AttachToLevel · depth 1 · 16 lines · **decompiled** — sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0
-- [ ] `00401d30` inferred_Obj_SetPosition · depth 1 · 14 lines · **decompiled** — (x, y, flag) sets previous position (+0x54/+0x58), and current (+0x4c/+0x50) when flag set; notifies the level
-- [ ] `00401aa0` inferred_Obj_Kind00_Ctor · depth 2 · 63 lines · **decompiled** — 0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38)
-- [ ] `00401c30` inferred_Obj_AnimTick (vtable) · depth 2 · 11 lines · **decompiled** — base slot 2: if object has animation (flag bit 4) advance AnimPlayer via 00401860
+- [ ] `00401bf0` inferred_Object_AttachToLevel · depth 1 · 16 lines · **understood** — sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0
+- [ ] `00401d30` inferred_Obj_SetPosition · depth 1 · 14 lines · **understood** — (x, y, flag) sets previous position (+0x54/+0x58), and current (+0x4c/+0x50) when flag set; notifies the level
+- [x] `00401aa0` inferred_Object_AnimatedCtor · depth 2 · 63 lines · **emu-compared** → `engines/tesoro/core/object.cpp::Object::initAnimated` — 0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38) | object vectors 29 Oct
+- [x] `00401c30` inferred_Obj_AnimTick (vtable) · depth 2 · 11 lines · **emu-compared** → `engines/tesoro/core/animset.cpp::AnimSet` — base slot 2: if object has animation (flag bit 4) advance AnimPlayer via 00401860 | AnimSet vectors 29 Oct
 
-### Cluster 3: 00401d80–00401fa0 (0/8 ported)
+### Cluster 3: 00401d80–00401fa0 (4/8 ported)
 
-- [ ] `00401d80` inferred_Obj_SetVisible · depth 0 · 8 lines · **decompiled** — sets flag bit 2 (+0x68) from argument
-- [ ] `00401da0` inferred_Obj_StashAnimState · depth 0 · 9 lines · **decompiled** — copies bank index (+0x32) to +4 and the player's flags (+0x18) to +8; restored by Obj_ApplyPendingAnim
-- [ ] `00401dc0` inferred_Obj_ApplyPendingAnim · depth 0 · 13 lines · **decompiled** — selects bank index +4 and stores +8 as the AnimPlayer start value
-- [ ] `00401f90` inferred_Obj_Stub_RetFalse_1Arg (vtable) · depth 0 · 7 lines · **decompiled** — base slot 11 default (ret 4)
-- [ ] `00401fa0` inferred_Obj_Stub_RetZero_2Args (vtable) · depth 0 · 7 lines · **decompiled** — base slot 12 default (ret 8)
-- [ ] `00401de0` inferred_Object_SelectAnimBank · depth 2 · 15 lines · **decompiled** — picks bank index (byte +0x32), sets +0x38, starts AnimPlayer_SetRange
+- [x] `00401d80` inferred_Obj_SetVisible · depth 0 · 8 lines · **emu-compared** — sets flag bit 2 (+0x68) from argument | object vectors 29 Oct
+- [x] `00401da0` inferred_Obj_StashAnimState · depth 0 · 9 lines · **emu-compared** → `engines/tesoro/core/animset.cpp::AnimSet` — copies bank index (+0x32) to +4 and the player's flags (+0x18) to +8; restored by Obj_ApplyPendingAnim | AnimSet vectors 29 Oct
+- [x] `00401dc0` inferred_Obj_ApplyPendingAnim · depth 0 · 13 lines · **emu-compared** → `engines/tesoro/core/animset.cpp::AnimSet` — selects bank index +4 and stores +8 as the AnimPlayer start value | AnimSet vectors 29 Oct
+- [ ] `00401f90` inferred_Obj_Stub_RetFalse_1Arg (vtable) · depth 0 · 7 lines · **understood** — base slot 11 default (ret 4)
+- [ ] `00401fa0` inferred_Obj_Stub_RetZero_2Args (vtable) · depth 0 · 7 lines · **understood** — base slot 12 default (ret 8)
+- [x] `00401de0` inferred_Object_SelectAnimBank · depth 2 · 15 lines · **emu-compared** → `engines/tesoro/core/animset.cpp::AnimSet` — picks bank index (byte +0x32), sets +0x38, starts AnimPlayer_SetRange | AnimSet vectors 29 Oct
 - [ ] `00401e20` inferred_Obj_LoadState (vtable) · depth 8 · 22 lines · **decompiled** — base slot 9: reads from a stream: current bank index (+0x32), per-frame fields of the current sequence (+0x24, +0x26, +0x30, +0x18) and an optional blob of +0x64 bytes at +0x60. Save-game deserialisation
 - [ ] `00401ee0` inferred_Obj_SaveState (vtable) · depth 8 · 18 lines · **decompiled** — base slot 10: mirror of LoadState using fwrite. Save-game serialisation
 
 ### Cluster 4: 00401fb0–00402230 (0/7 ported)
 
-- [ ] `00401fb0` inferred_Obj_Stub_RetZero (vtable) · depth 0 · 7 lines · **decompiled** — default for update/draw-style slots: returns 0
+- [ ] `00401fb0` inferred_Obj_Stub_RetZero (vtable) · depth 0 · 7 lines · **understood** — default for update/draw-style slots: returns 0
 - [ ] `00402110` inferred_Camera_Ctor · depth 0 · 9 lines · **decompiled** — 0x40-byte object at level +0x80; zeroes +0 and +0x10
 - [ ] `00402120` inferred_Camera_SetPositionClamped · depth 0 · 35 lines · **decompiled** — stores x,y (+0x2c,+0x30) clamped to the bounds rect (+0x1c..+0x28) with the 640x480 half extents 0x140/0xf0; returns whether it was inside
 - [ ] `00402200` inferred_Camera_SetBounds · depth 0 · 12 lines · **decompiled** — stores 4 ints at +0x1c..+0x28; Level_Load passes (-320, 239, 319, -240)
@@ -147,14 +147,14 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00406d50` inferred_C00428b00_SetVerbAndClick (vtable) · depth 12 · 123 lines · **untouched** — unread; first seen in vtable 00428b00 slot 14
 - [ ] `00406190` inferred_DialogueTable_Load · depth 13 · 228 lines · **decompiled** — (archive offset, id): reads entries introduced by '.' bytes; each entry built by 00404810 and registered by kind
 
-### Cluster 12: 004079d0–00407aa0 (0/11 ported)
+### Cluster 12: 004079d0–00407aa0 (1/11 ported)
 
 - [ ] `004079d0` inferred_Jim_IsInPose7 (vtable) · depth 0 · 7 lines · **decompiled** — slot 11: returns (+0x5c == 7)
 - [ ] `00407aa0` inferred_Jim_ResumeFacing · depth 0 · 10 lines · **decompiled** — if walking (+0xd5) applies the stored facing again via slot 29
 - [ ] `00407730` inferred_Jim_UpdateBounds (vtable) · depth 1 · 15 lines · **decompiled** — slot 3: base UpdateBounds then multiplies the four rect values by the perspective scale (+0xfc, 0x100 = 1.0) >> 8
 - [ ] `004079e0` inferred_Jim_ArriveStep (vtable) · depth 1 · 31 lines · **decompiled** — slot 12: called when a walk segment ends: updates previous position, unless the walk-area path search (WalkArea_FindPath) produces a further waypoint, calls slot 29 (face) and the target object's slot 13
 - [ ] `00407600` inferred_Jim_WalkTo (vtable) · depth 2 · 55 lines · **decompiled** — slot 32: (x, y, target object, flag) starts a walk: records target +0x104/+0x108, converts position to fixed point, chooses facing 1..4 from the dominant axis, selects the matching walking animation (table +0xd8); the function always ends by calling the target object's slot 13 (RunVerb), including at walk start, purpose not yet understood
-- [ ] `00407770` inferred_Obj_AnimTickResetOffset (vtable) · depth 2 · 10 lines · **decompiled** — MidBase slots 2 (and 3 in some classes): AnimTick then zero the current sequence's x/y offset (+0x28, +0x2a)
+- [x] `00407770` inferred_Obj_AnimTickResetOffset (vtable) · depth 2 · 10 lines · **emu-compared** → `engines/tesoro/core/animset.cpp::AnimSet` — MidBase slots 2 (and 3 in some classes): AnimTick then zero the current sequence's x/y offset (+0x28, +0x2a) | AnimSet vectors 29 Oct
 - [ ] `00407a80` inferred_Jim_SetFacing (vtable) · depth 4 · 10 lines · **decompiled** — slot 29: clears walking flag, stores direction +0x10c (1..4) and starts the matching animation
 - [ ] `00407510` inferred_Jim_SaveState (vtable) · depth 8 · 12 lines · **decompiled** — slot 10: writes the same fields
 - [ ] `00407580` inferred_Jim_LoadState (vtable) · depth 8 · 14 lines · **decompiled** — slot 9: stops walking, reads position (8 bytes at +0x4c), facing +0x10c, bank index +0x32, +0x110, flags +0x68
@@ -301,14 +301,14 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040da80` inferred_C00428fb0_Verb3 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00428fb0 slot 22 (kind 20 subtype 22)
 - [ ] `0040daf0` inferred_C0042ae80_Verb0 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042ae80 slot 20 (kind 6 subtype 7)
 
-### Cluster 24: 0040e580–0040e720 (0/12 ported)
+### Cluster 24: 0040e580–0040e720 (1/12 ported)
 
 - [ ] `0040e580` inferred_C0042b8e0_SetVerbAndClick (vtable) · depth 0 · 7 lines · **untouched** — unread; first seen in vtable 0042b8e0 slot 14
 - [ ] `0040e590` inferred_C0042b8e0_IsInteractive (vtable) · depth 0 · 7 lines · **untouched** — unread; first seen in vtable 0042b8e0 slot 16
 - [ ] `0040e5a0` inferred_Obj_Kind03Base_DefaultCtor · depth 1 · 9 lines · **decompiled** — base object ctor with vtable 0042b9c0
 - [ ] `0040dfc0` inferred_C0042b950_IsInteractive (vtable) · depth 2 · 12 lines · **untouched** — unread; first seen in vtable 0042b950 slot 16
 - [ ] `0040e560` inferred_C0042b950_ClearHoverText (vtable) · depth 2 · 10 lines · **untouched** — unread; first seen in vtable 0042b950 slot 18
-- [ ] `0040e6a0` inferred_C00428038_AnimTick (vtable) · depth 2 · 8 lines · **untouched** — unread; first seen in vtable 00428038 slot 2
+- [x] `0040e6a0` inferred_C00428038_AnimTick (vtable) · depth 2 · 8 lines · **emu-compared** → `engines/tesoro/core/animset.cpp::AnimSet` — unread; first seen in vtable 00428038 slot 2 | AnimSet vectors 29 Oct
 - [ ] `0040e6b0` inferred_C0042b9c0_Draw (vtable) · depth 2 · 20 lines · **untouched** — unread; first seen in vtable 0042b9c0 slot 6
 - [ ] `0040e5c0` inferred_Obj_Kind03_Ctor · depth 3 · 30 lines · **decompiled** — 0x6c bytes, vtable 0042b9c0, extends Kind00; record byte 1 selects an animation start mode via AnimPlayer_SetRange (0 stay, 1 single frame, 2 loop from, 3 loop with flag)
 - [ ] `0040df70` inferred_Obj_Kind22_Ctor · depth 4 · 12 lines · **decompiled** — 0xa4 bytes, vtable 0042b950, extends MidBase, sort value +0x5e = 1

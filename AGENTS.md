@@ -49,6 +49,10 @@ Codex will implement it together; Codex leads the reverse engineering.
   instrumentation, if needed, stays local and ignored rather than in engine code.
 - Keep executable addresses and reverse-engineering provenance in research notes,
   not in engine source comments. Source comments should explain useful behaviour.
+- Keep [re/SUBSYSTEMS.md](re/SUBSYSTEMS.md) up to date: a plain-language, human-readable map of
+  how the subsystems interact (with Mermaid diagrams). Update it whenever a cluster is read, ported
+  or audited, and whenever a new engine class is introduced (name it and place it in the diagrams).
+  No addresses or jargon; mark what is checked against the original and what is not.
 - Read [skills/tesoro-re/SKILL.md](skills/tesoro-re/SKILL.md) for Tesoro research.
   Capture newly successful reusable research techniques there or in its linked
   references, with commands, evidence and limitations. Untried ideas belong in

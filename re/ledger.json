@@ -238,7 +238,7 @@
  {
   "addr": "00401aa0",
   "ghidra_name": "FUN_00401aa0",
-  "name": "inferred_Obj_Kind00_Ctor",
+  "name": "inferred_Object_AnimatedCtor",
   "tier": "game",
   "lines": 63,
   "decompile_ok": true,
@@ -264,9 +264,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38)"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/object.cpp::Object::initAnimated",
+  "notes": "0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38) | object vectors 29 Oct"
  },
  {
   "addr": "00401bc0",
@@ -286,9 +286,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "base game object: vtable 00428000, flags +0x68 |= 6, +0x5e = 5, byte +0x5c = 0"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/object.cpp::Object::initPlain",
+  "notes": "base game object: vtable 00428000, flags +0x68 |= 6, +0x5e = 5, byte +0x5c = 0 | object vectors 29 Oct"
  },
  {
   "addr": "00401bf0",
@@ -308,7 +308,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0"
  },
@@ -2088,7 +2088,7 @@
   ],
   "data_refs": [],
   "cluster": 2,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "empty function; fills vtable slots 0, 1 and 7 of the base classes (also used as the clock destructor) | empty function; fills vtable slots 0, 1 and 7 of the base classes (and was the clock destructor)"
  },
@@ -2148,9 +2148,9 @@
   ],
   "data_refs": [],
   "cluster": 2,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "base slot 2: if object has animation (flag bit 4) advance AnimPlayer via 00401860"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/animset.cpp::AnimSet",
+  "notes": "base slot 2: if object has animation (flag bit 4) advance AnimPlayer via 00401860 | AnimSet vectors 29 Oct"
  },
  {
   "addr": "00401c50",
@@ -2760,9 +2760,9 @@
   ],
   "data_refs": [],
   "cluster": 2,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "base slot 3: recomputes bounds rect (+0x10..+0x1c) and screen position (+0x20..+0x2c) from the current frame record (0x24-byte entries); calls slot 2 in between"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/object.cpp::Object::updateBounds",
+  "notes": "base slot 3: recomputes bounds rect (+0x10..+0x1c) and screen position (+0x20..+0x2c) from the current frame record (0x24-byte entries); calls slot 2 in between | object vectors 29 Oct"
  },
  {
   "addr": "00401d20",
@@ -2830,7 +2830,7 @@
   ],
   "data_refs": [],
   "cluster": 2,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "base slot 6 default (draw with one argument)"
  },
@@ -2852,7 +2852,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "(x, y, flag) sets previous position (+0x54/+0x58), and current (+0x4c/+0x50) when flag set; notifies the level"
  },
@@ -3408,9 +3408,9 @@
   ],
   "data_refs": [],
   "cluster": 2,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
-  "notes": "base slot 8: sets flag bit 1 (+0x68) from argument"
+  "notes": "base slot 8: sets flag bit 1 (+0x68) from argument | object vectors 29 Oct"
  },
  {
   "addr": "00401d80",
@@ -3443,9 +3443,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 3,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
-  "notes": "sets flag bit 2 (+0x68) from argument"
+  "notes": "sets flag bit 2 (+0x68) from argument | object vectors 29 Oct"
  },
  {
   "addr": "00401da0",
@@ -3462,9 +3462,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 3,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "copies bank index (+0x32) to +4 and the player's flags (+0x18) to +8; restored by Obj_ApplyPendingAnim"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/animset.cpp::AnimSet",
+  "notes": "copies bank index (+0x32) to +4 and the player's flags (+0x18) to +8; restored by Obj_ApplyPendingAnim | AnimSet vectors 29 Oct"
  },
  {
   "addr": "00401dc0",
@@ -3481,9 +3481,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 3,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "selects bank index +4 and stores +8 as the AnimPlayer start value"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/animset.cpp::AnimSet",
+  "notes": "selects bank index +4 and stores +8 as the AnimPlayer start value | AnimSet vectors 29 Oct"
  },
  {
   "addr": "00401de0",
@@ -3526,9 +3526,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 3,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "picks bank index (byte +0x32), sets +0x38, starts AnimPlayer_SetRange"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/animset.cpp::AnimSet",
+  "notes": "picks bank index (byte +0x32), sets +0x38, starts AnimPlayer_SetRange | AnimSet vectors 29 Oct"
  },
  {
   "addr": "00401e20",
@@ -5352,7 +5352,7 @@
   ],
   "data_refs": [],
   "cluster": 3,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "base slot 11 default (ret 4)"
  },
@@ -5954,7 +5954,7 @@
   ],
   "data_refs": [],
   "cluster": 3,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "base slot 12 default (ret 8)"
  },
@@ -8326,7 +8326,7 @@
   ],
   "data_refs": [],
   "cluster": 4,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "default for update/draw-style slots: returns 0"
  },
@@ -11142,9 +11142,9 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "MidBase slots 2 (and 3 in some classes): AnimTick then zero the current sequence's x/y offset (+0x28, +0x2a)"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/animset.cpp::AnimSet",
+  "notes": "MidBase slots 2 (and 3 in some classes): AnimTick then zero the current sequence's x/y offset (+0x28, +0x2a) | AnimSet vectors 29 Oct"
  },
  {
   "addr": "00407790",
@@ -14372,9 +14372,9 @@
   ],
   "data_refs": [],
   "cluster": 24,
-  "status": "untouched",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428038 slot 2"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/animset.cpp::AnimSet",
+  "notes": "unread; first seen in vtable 00428038 slot 2 | AnimSet vectors 29 Oct"
  },
  {
   "addr": "0040e6b0",
