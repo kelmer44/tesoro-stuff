@@ -9654,8 +9654,8 @@
   ],
   "data_refs": [],
   "cluster": 10,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptrunner.cpp::ScriptRunner::tick",
   "notes": "per-frame step of a scripted action list (24-byte steps at +0xbc, current step +0xcc): waits (type 1 until the speaker finishes plus 200 ms, type 2 timed), choice menus (types 5, 6: asks the player object to say the options), cursor show/hide (type 8), type 9 wait for an animation; advances or ends the list (returns 2 or 3) | per-frame step: handles the blocking step types (1 wait for speech +200 ms, 2 timed wait, 5/6 choice menu, 8 cursor, 9 animation wait) and, when the program counter moved, runs RunSteps; returns 2 when finished"
  },
  {
@@ -9693,9 +9693,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 10,
-  "status": "understood",
-  "engine": "",
-  "notes": "executes non-blocking steps from the program counter until a blocking one: say, goto, label/loop, conditional jump on a script variable, event call, actor command (animate, walk, face, activate, show), variable assignment, send message, movie, WAV, CD track"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptrunner.cpp::ScriptRunner::execute",
+  "notes": "executes non-blocking steps from the program counter until a blocking one: say, goto, label/loop, conditional jump on a script variable, event call, actor command (animate, walk, face, activate, show), variable assignment, send message, movie, WAV, CD track | calls to the rest of the game compared, 977 sessions"
  },
  {
   "addr": "00405fd0",
@@ -9825,8 +9825,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 10,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptrunner.cpp::ScriptRunner::start",
   "notes": "(event, key lo, key hi, variables, level): resolves actors in the level, selects the entry point matching the event key, hides the cursor, inserts the script into the main list at priority 0x1e and runs it; returns 3"
  },
  {
@@ -10101,8 +10101,8 @@
   ],
   "data_refs": [],
   "cluster": 10,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptrunner.cpp::ScriptRunner::resume",
   "notes": "removes a helper object from the main list, clears Jim's walking flag, sets facing and advances the program counter"
  },
  {

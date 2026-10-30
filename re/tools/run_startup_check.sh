@@ -147,3 +147,9 @@ re/.venv/bin/python re/tools/gen_vectors_speech.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/speech_driver.cpp \
     "$ENG/engines/tesoro/core/speechtable.cpp" "$ENG/engines/tesoro/core/stdiotext.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/speech_driver
 local-media/bin/speech_driver local-media/vectors/speech.txt
+
+# Script executor: original start 0x405fd0 / tick 0x405850 / executor 0x405a60 / resume 0x406140 vs engine ScriptRunner (every shipped block, random worlds; the calls to the rest of the game are compared)
+re/.venv/bin/python re/tools/gen_vectors_run.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/run_driver.cpp \
+    "$ENG/engines/tesoro/core/scriptrunner.cpp" "$ENG/engines/tesoro/core/scriptblock.cpp" "$ENG/engines/tesoro/core/stdiotext.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/run_driver
+local-media/bin/run_driver local-media/vectors/run.txt local-media/dlg

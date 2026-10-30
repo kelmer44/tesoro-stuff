@@ -31,7 +31,7 @@ flowchart TD
     Collide -->|"touched list"| Cursor
     Cursor -->|"click, hover"| Objects
     Clock --> Random["Random numbers ✅"]
-    Names["Name keys ✅"] -.-> Scripts["Scripts 🟡<br/>read and compiled ✅, run ⬜"]
+    Names["Name keys ✅"] -.-> Scripts["Scripts 🟡<br/>read and compiled ✅, stepping ✅, host ⬜"]
     Archive --> Scripts
     Scripts --> Objects
 ```
@@ -48,11 +48,11 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Input: `InputStates`, `Mouse`, `Cursor` (both pointers), `HoverText`.
 - Collisions: `sweepRects`, `Level::collisionPass`.
 - Spoken lines: `SpeechTables`, `SpeechTable` (the four `*.TXT` files), `WavLookup`; `StdioText` (the reader both text formats use).
-- Scripts: `ScriptLibrary` (all blocks), `ScriptBlock` (one script: characters, commands, labels), `ScriptEntry` (one command), `ScriptLookup` (what a script asks the rest of the game while it is read).
+- Scripts: `ScriptRunner` (runs blocks), `ScriptRun` (what one running block remembers), `ScriptHost` (what a running script asks of the game), `ScriptLibrary` (all blocks), `ScriptBlock` (one script: characters, commands, labels), `ScriptEntry` (one command), `ScriptLookup` (what a script asks the rest of the game while it is read).
 
 **Which classes copy the original and which are only seams of the port.** The original is mostly plain functions on global tables.
 - Mirror an original structure: `ScriptBlock`/`ScriptLibrary` (the script objects and their table), `ScriptEntry` (the 24-byte command), `SpeechTable`/`SpeechTables` (the four tables and their search).
-- Port-only, no original counterpart: `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), `ScriptLookup` and `WavLookup` (let the readers ask for phrase numbers, levels and voice files without depending on the rest of the engine), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
+- Port-only, no original counterpart: `ScriptHost` (the original calls the objects directly), `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), `ScriptLookup` and `WavLookup` (let the readers ask for phrase numbers, levels and voice files without depending on the rest of the engine), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
 - Only behaviour was compared with the original; the class layout was never meant to match.
 
 ---
@@ -458,7 +458,7 @@ object list passes, so there is no cursor drawn, no hover or click on the menu i
 collision pass, the cursor and companion objects (built from the interface level), the kind-2 picture objects the cursor
 uses and the menu item's click code.
 
-## Scripts 🟡 (read and compiled ✅, run ⬜)
+## Scripts 🟡 (read and compiled ✅, run ✅ with a stand-in world, nothing shown yet)
 
 The story is told by **scripts**, and they are plain text. Four files in the archive hold them: `ANIMS.DLG` (cut scenes and the
 menu scripts), `CONVERS.DLG` (conversations), `ICONS.DLG` (what happens when an inventory item is used) and `OBJETOS.DLG`
@@ -475,9 +475,28 @@ walk to a point, look up/down/left/right, show or hide it, switch it on or off. 
 The engine now **reads** all of it: `ScriptLibrary` turns each file into compiled commands (the original's 24-byte layout), and
 a second step (`resolve`) replaces names by positions: jump targets, the chain of choices in a menu, which block a `run` starts.
 This is checked against the original's own reader on all 145 shipped blocks, on invented blocks that use what the shipped scripts
-never do, and on 500 randomly damaged real blocks (the same lines are accepted, rejected or compiled identically). What is
-**not** there: the part that *runs* a script (walks through the commands, waits for speech, animations and timers, shows menus);
-the spoken lines are read (see below) but nothing shows or says them yet; the `DO` routines (one per numbered block, only the menu's is read).
+never do, and on 500 randomly damaged real blocks (the same lines are accepted, rejected or compiled identically).
+
+### Running a script ✅ (the stepping; the world it talks to is not there)
+`ScriptRunner` walks a block's commands. It does one command after another until one has to wait, and then each frame it
+looks whether the wait is over:
+- a spoken line waits until the speaker stops talking and then a fifth of a second more (201 ms);
+- `sleep` waits for its time; a walk waits until the character arrives; an animation order waits only if it asked to wait;
+- `menu` shows the choices once (only those whose variable allows them), Jim says the chosen line, and then the script goes on
+  after that choice. A script can only have one menu open: the lists are shared by every script.
+- `run` starts another block at once; the first one keeps going next to it.
+While any script runs the mouse pointer is switched off; when a script ends it is switched back on and every character the
+script took over is handed back. The runner never touches the world itself. It asks a `ScriptHost` (find an object by name,
+say a line, play an animation, walk, show a menu, play a video, sound or CD track, call the block's own `DO` routine).
+The check swaps a recording stand-in for the real world and compares, on 977 random sessions over every shipped block, the
+order of those requests and their values with what the original's code asked for. So the *stepping* is checked against the
+original; what each request does (walking, drawing text, the menu screen, the `DO` routines) is not.
+Found while reading: the thing the original calls "Jim's input" is the **main cursor**, not Jim; and a menu item reached from
+outside a menu is skipped, not run.
+
+What is **not** there: any real host (nothing shows or says a line yet), the `DO` routines (one per numbered block, only the
+menu's is read), the menu screen and the walking of characters. The spoken lines are read (see below) but are not yet
+connected to the compiler (the phrase numbers come from a stand-in in the check).
 
 ### Spoken lines ✅ (read; not yet shown or played)
 

@@ -10,8 +10,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 257 | 57% |
 | understood or later | 160 | 35% |
-| ported or later | 117 | 26% |
-| emu-compared or later | 97 | 21% |
+| ported or later | 121 | 27% |
+| emu-compared or later | 101 | 22% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -124,17 +124,17 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00404110` inferred_Sound_PlayWav · depth 9 · 46 lines · **decompiled** — (archive offset, ...) reads a RIFF/WAVE header from the archive, fills the next sound slot (DirectSoundBuffer), sets volume and pan, starts playing and returns a new id
 - [ ] `00404210` inferred_Sound_Update · depth 9 · 28 lines · **decompiled** — per-frame: refills streaming buffers (Sound_StreamRefill) and retires finished slots
 
-### Cluster 10: 004060b0–00406140 (5/9 ported)
+### Cluster 10: 004060b0–00406140 (9/9 ported)
 
 - [x] `004060b0` ScriptTable_Ctor · depth 0 · 8 lines · **ported** — 0x2b0-byte table; entry count at +0x2ac set to 0
 - [x] `004060c0` ScriptTable_Find · depth 0 · 22 lines · **ported** → `engines/tesoro/core/scriptblock.cpp::ScriptLibrary::find` — linear search of the table's script entries (pointer array at +0x54) for a 64-bit name key at script +0x44/+0x48
 - [x] `00405630` ScriptBlock_Resolve · depth 1 · 108 lines · **emu-compared** → `engines/tesoro/core/scriptblock.cpp::ScriptLibrary::resolve` — post-load pass over the steps resolving actor keys and jump targets (types 4-7)
 - [x] `00406110` ScriptTable_ResolveAll · depth 2 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptblock.cpp::ScriptLibrary::resolve` — calls 00405630 for each entry
 - [x] `00404810` ScriptBlock_Parse · depth 12 · 691 lines · **emu-compared** → `engines/tesoro/core/scriptblock.cpp::ScriptBlock::parse` — constructor and text parser (691 lines): reads one script block from the stream with a sscanf-based command grammar, compiles it to 24-byte steps (+0xbc, count +0xc0) plus actor key table (+0xc4, 12-byte entries) and variable byte array (+0xd0); reports "ERROR AL LEER COMANDO" on a bad line | parser read: dispatches each line on its first character (space, ., D, _, b, i, j, m, p, r, s, v); see re/SCRIPT_LANGUAGE.md
-- [ ] `00405a60` Script_Execute · depth 13 · 228 lines · **understood** — executes non-blocking steps from the program counter until a blocking one: say, goto, label/loop, conditional jump on a script variable, event call, actor command (animate, walk, face, activate, show), variable assignment, send message, movie, WAV, CD track
-- [ ] `00405fd0` Script_Start · depth 13 · 44 lines · **understood** — (event, key lo, key hi, variables, level): resolves actors in the level, selects the entry point matching the event key, hides the cursor, inserts the script into the main list at priority 0x1e and runs it; returns 3
-- [ ] `00405850` Script_Tick (vtable) · depth 14 · 70 lines · **understood** — per-frame step of a scripted action list (24-byte steps at +0xbc, current step +0xcc): waits (type 1 until the speaker finishes plus 200 ms, type 2 timed), choice menus (types 5, 6: asks the player object to say the options), cursor show/hide (type 8), type 9 wait for an animation; advances or ends the list (returns 2 or 3) | per-frame step: handles the blocking step types (1 wait for speech +200 ms, 2 timed wait, 5/6 choice menu, 8 cursor, 9 animation wait) and, when the program counter moved, runs RunSteps; returns 2 when finished
-- [ ] `00406140` Script_Resume (vtable) · depth 14 · 12 lines · **understood** — removes a helper object from the main list, clears Jim's walking flag, sets facing and advances the program counter
+- [x] `00405a60` Script_Execute · depth 13 · 228 lines · **emu-compared** → `engines/tesoro/core/scriptrunner.cpp::ScriptRunner::execute` — executes non-blocking steps from the program counter until a blocking one: say, goto, label/loop, conditional jump on a script variable, event call, actor command (animate, walk, face, activate, show), variable assignment, send message, movie, WAV, CD track | calls to the rest of the game compared, 977 sessions
+- [x] `00405fd0` Script_Start · depth 13 · 44 lines · **emu-compared** → `engines/tesoro/core/scriptrunner.cpp::ScriptRunner::start` — (event, key lo, key hi, variables, level): resolves actors in the level, selects the entry point matching the event key, hides the cursor, inserts the script into the main list at priority 0x1e and runs it; returns 3
+- [x] `00405850` Script_Tick (vtable) · depth 14 · 70 lines · **emu-compared** → `engines/tesoro/core/scriptrunner.cpp::ScriptRunner::tick` — per-frame step of a scripted action list (24-byte steps at +0xbc, current step +0xcc): waits (type 1 until the speaker finishes plus 200 ms, type 2 timed), choice menus (types 5, 6: asks the player object to say the options), cursor show/hide (type 8), type 9 wait for an animation; advances or ends the list (returns 2 or 3) | per-frame step: handles the blocking step types (1 wait for speech +200 ms, 2 timed wait, 5/6 choice menu, 8 cursor, 9 animation wait) and, when the program counter moved, runs RunSteps; returns 2 when finished
+- [x] `00406140` Script_Resume (vtable) · depth 14 · 12 lines · **emu-compared** → `engines/tesoro/core/scriptrunner.cpp::ScriptRunner::resume` — removes a helper object from the main list, clears Jim's walking flag, sets facing and advances the program counter
 
 ### Cluster 11: 004067a0–00407000 (3/8 ported)
 
