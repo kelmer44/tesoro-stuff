@@ -8575,9 +8575,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 5,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
-  "notes": "shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge"
+  "notes": "shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge | contract read 30 Oct; port blocked on global objects"
  },
  {
   "addr": "004026d0",
@@ -8626,9 +8626,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 5,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
-  "notes": "shifts the interface level camera and its objects by -0x280 (one screen)"
+  "notes": "shifts the interface level camera and its objects by -0x280 (one screen) | contract read 30 Oct; port blocked on global objects"
  },
  {
   "addr": "004029a0",
@@ -8649,9 +8649,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 6,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
-  "notes": "moves the interface camera +0x285 and runs the display effect (4, 100)"
+  "notes": "moves the interface camera +0x285 and runs the display effect (4, 100) | contract read 30 Oct; port blocked on global objects"
  },
  {
   "addr": "004029f0",
@@ -8680,9 +8680,9 @@
   ],
   "data_refs": [],
   "cluster": 6,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
-  "notes": "vtable slot 4: reads the mouse position and buttons and the keyboard state array, handles the interface strip scrolling (shifts by 0x280 = one screen width), then positions the cursor object and its +0x74 companion at the mouse position plus the interface camera offset, and flags the held item"
+  "notes": "vtable slot 4: reads the mouse position and buttons and the keyboard state array, handles the interface strip scrolling (shifts by 0x280 = one screen width), then positions the cursor object and its +0x74 companion at the mouse position plus the interface camera offset, and flags the held item | contract read 30 Oct; port blocked on global objects"
  },
  {
   "addr": "00402d80",
@@ -8800,9 +8800,9 @@
   ],
   "data_refs": [],
   "cluster": 6,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
-  "notes": "unread; first seen in vtable 00428038 slot 5"
+  "notes": "unread; first seen in vtable 00428038 slot 5 | contract read 30 Oct; port blocked on global objects"
  },
  {
   "addr": "004031a0",
@@ -22810,9 +22810,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
-  "notes": "opens archive Tesoro.DAT/Tesoro.TRE, loads TABLA1.TBL, FUENTES.ANM, OBJETOS.TXT/DLG tables, INTERFACE.LVL, CUBIERTA/MAPA/DESPACHO..LVL levels (0x2f slots), PRINCIPAL.LVL, NUEVO.LVL, then starts the first level; SEH frame"
+  "notes": "opens archive Tesoro.DAT/Tesoro.TRE, loads TABLA1.TBL, FUENTES.ANM, OBJETOS.TXT/DLG tables, INTERFACE.LVL, CUBIERTA/MAPA/DESPACHO..LVL levels (0x2f slots), PRINCIPAL.LVL, NUEVO.LVL, then starts the first level; SEH frame | creation order read 30 Oct"
  },
  {
   "addr": "00414420",

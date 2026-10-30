@@ -149,6 +149,17 @@ A turn that returns 2 or 3 ends the pass at once with that number; otherwise the
 functions are `runUpdatePass` and `runUpdate2Pass`. Checked against the original with random lists whose objects
 add and remove other objects during their turn. What 2 and 3 mean to each caller is not read yet.
 
+## The world: levels, Jim and the main list 🟡
+
+At start-up the game loads every level file (47 of them, from the despacho, the port and the ship to the volcano, the final
+scenes and the credits), plus two menu levels (the main menu and the new-game menu) and an interface level (the item strip
+and the save/menu objects). Each level is itself an object in the one main list that the frame loop walks; the interface level is
+walked first and the level Jim is in next. A level, in turn, keeps its own lists of objects, rooms and a camera. Jim is one
+object that moves between levels: entering a level takes him out of his old level's lists, puts him in the new one's and
+makes the new level's camera follow him. The game begins with Jim in the main menu. The cursor lives in the interface level,
+and its companion in whichever level Jim is in. Some objects (a door, a chest, a canoe...) are switched off right at the start.
+Read from the start-up code; the level and Jim classes themselves are not ported yet.
+
 ## The camera ✅
 
 Each level has a camera: a centre point on the level, kept so that the 640x480 view stays inside the level's bounds.

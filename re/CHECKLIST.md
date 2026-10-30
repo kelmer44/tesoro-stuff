@@ -8,8 +8,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 238 | 53% |
-| understood or later | 90 | 20% |
+| decompiled or later | 239 | 53% |
+| understood or later | 96 | 21% |
 | ported or later | 75 | 16% |
 | emu-compared or later | 60 | 13% |
 | original-compared or later | 0 | 0% |
@@ -66,8 +66,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 5: 004023f0–004028c0 (2/7 ported)
 
 - [x] `004023f0` inferred_Cursor_SetText · depth 0 · 43 lines · **emu-compared** → `engines/tesoro/core/hovertext.cpp::HoverText::set` — copies a C string into the cursor's hover-text buffer (+0x78), or clears it; optional ushort at +0x118 | hover text vectors 3 Nov
-- [ ] `004025b0` inferred_Cursor_PageInterfaceRight · depth 1 · 49 lines · **decompiled** — shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge
-- [ ] `004028c0` inferred_Interface_PageLeft · depth 1 · 51 lines · **decompiled** — shifts the interface level camera and its objects by -0x280 (one screen)
+- [ ] `004025b0` inferred_Cursor_PageInterfaceRight · depth 1 · 49 lines · **understood** — shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge | contract read 30 Oct; port blocked on global objects
+- [ ] `004028c0` inferred_Interface_PageLeft · depth 1 · 51 lines · **understood** — shifts the interface level camera and its objects by -0x280 (one screen) | contract read 30 Oct; port blocked on global objects
 - [x] `00402240` inferred_Cursor_Ctor · depth 2 · 42 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::init` — 0x130-byte object, vtable 00428038, base 0040e5a0; creates candidate lists (capacity 0x1e) at +0x6c/+0x70 and a shared list 00442060 | cursor vectors 4 Nov
 - [ ] `00402440` inferred_C00428038_OnAttach (vtable) · depth 2 · 74 lines · **untouched** — unread; first seen in vtable 00428038 slot 0
 - [ ] `004026d0` inferred_Cursor_CaptureThumbnail · depth 3 · 84 lines · **decompiled** — renders the scene without the cursor into the display buffer and copies a 213x160 sample (every third pixel of every third row) to +0x128: a save-game thumbnail (hypothesis from the sampling pattern)
@@ -81,12 +81,12 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00402e80` inferred_Cursor_ProcessCandidates · depth 1 · 127 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::processCandidates` — per frame: for each registered candidate, with left button (mouse buttons byte & 8) calls candidate slot 14 with the cursor's current animation index (the verb), with right button (& 0x10) slot 15, otherwise slot 17 (show hover text); candidates that stopped being under the pointer get slot 18 (clear text) and are dropped | cursor vectors 4 Nov
 - [x] `004031a0` inferred_C00428038_SetActive (vtable) · depth 1 · 38 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::setActive` — unread; first seen in vtable 00428038 slot 8 | cursor vectors 4 Nov
 - [x] `00403220` inferred_Archive_Ctor · depth 1 · 11 lines · **ported** → `engines/tesoro/core/archive.cpp` — allocates the index buffer (0xd7a0 bytes, from arena 0) into global 00442068
-- [ ] `004029a0` inferred_Interface_ScrollOut · depth 2 · 14 lines · **decompiled** — moves the interface camera +0x285 and runs the display effect (4, 100)
-- [ ] `004030e0` inferred_C00428038_Update2 (vtable) · depth 2 · 35 lines · **untouched** — unread; first seen in vtable 00428038 slot 5
+- [ ] `004029a0` inferred_Interface_ScrollOut · depth 2 · 14 lines · **understood** — moves the interface camera +0x285 and runs the display effect (4, 100) | contract read 30 Oct; port blocked on global objects
+- [ ] `004030e0` inferred_C00428038_Update2 (vtable) · depth 2 · 35 lines · **understood** — unread; first seen in vtable 00428038 slot 5 | contract read 30 Oct; port blocked on global objects
 - [x] `00403300` inferred_Archive_Tell · depth 4 · 10 lines · **ported** → `engines/tesoro/core/archive.cpp` — current position of the archive stream (low dword of fgetpos)
 - [x] `004032e0` inferred_Archive_SeekEntry · depth 5 · 8 lines · **ported** → `engines/tesoro/core/archive.cpp` — fseek the archive handle to offset, returns the FILE*
 - [x] `00403250` inferred_Archive_Open · depth 10 · 28 lines · **ported** → `engines/tesoro/core/archive.cpp` — thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4
-- [ ] `004029f0` inferred_Cursor_Update (vtable) · depth 12 · 156 lines · **decompiled** — vtable slot 4: reads the mouse position and buttons and the keyboard state array, handles the interface strip scrolling (shifts by 0x280 = one screen width), then positions the cursor object and its +0x74 companion at the mouse position plus the interface camera offset, and flags the held item
+- [ ] `004029f0` inferred_Cursor_Update (vtable) · depth 12 · 156 lines · **understood** — vtable slot 4: reads the mouse position and buttons and the keyboard state array, handles the interface strip scrolling (shifts by 0x280 = one screen width), then positions the cursor object and its +0x74 companion at the mouse position plus the interface camera offset, and flags the held item | contract read 30 Oct; port blocked on global objects
 
 ### Cluster 7: 00403500–00403980 (4/12 ported)
 
@@ -438,7 +438,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004144a0` inferred_Shutdown · depth 7 · 45 lines · **understood** — deletes display, sound, mouse, keyboard, archive, memory pools, clock in that order
 - [ ] `00414420` inferred_RunFrame · depth 10 · 21 lines · **understood** — per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end
 - [ ] `00414560` inferred_Game_StartIntroSequence · depth 14 · 25 lines · **decompiled** — enters the stage level with Jim, shows him, and starts a dialogue entry by key
-- [ ] `00413e60` inferred_InitGameWorld · depth 16 · 252 lines · **decompiled** — opens archive Tesoro.DAT/Tesoro.TRE, loads TABLA1.TBL, FUENTES.ANM, OBJETOS.TXT/DLG tables, INTERFACE.LVL, CUBIERTA/MAPA/DESPACHO..LVL levels (0x2f slots), PRINCIPAL.LVL, NUEVO.LVL, then starts the first level; SEH frame
+- [ ] `00413e60` inferred_InitGameWorld · depth 16 · 252 lines · **understood** — opens archive Tesoro.DAT/Tesoro.TRE, loads TABLA1.TBL, FUENTES.ANM, OBJETOS.TXT/DLG tables, INTERFACE.LVL, CUBIERTA/MAPA/DESPACHO..LVL levels (0x2f slots), PRINCIPAL.LVL, NUEVO.LVL, then starts the first level; SEH frame | creation order read 30 Oct
 
 ### Cluster 35: 00414740–00414dc0 (0/12 ported)
 

@@ -91,3 +91,22 @@ Confidence per field: `?` guessed · `r` read-only evidence · `w` written+read 
 | node | 8 bytes: next, value | 12 bytes: next, value, priority |
 | block P | P+0 free-list head, P+8 bump pointer (P+0x10 first), capacity + 1 nodes | P+0 free-list head, P+0xc bump pointer (P+0x18 first), capacity + 3 nodes |
 All confirmed (asm of the ten functions). Nodes are taken from the free list first, then the bump pointer; there is no capacity check.
+
+
+## Global objects (provisional names; creation read in InitGameWorld 00413e60, roles inferred)
+| Address | What | Conf |
+|---|---|---|
+| 00442064 | archive (Tesoro.dat / Tesoro.TRE) | c |
+| 00442100 | memory pool | c |
+| 00442104 | main object list (levels and the top object live in it, with priorities 0x13 interface, 0x14 current level, 100 top object) | c |
+| 00442108 | display | c |
+| 00442110 + 4*i | text tables OBJETOS, ANIMS, CONVERS, ICONS | c |
+| 004420b8 | dialogue table (OBJETOS/ANIMS/CONVERS/ICONS .DLG) | c |
+| 00442120 | game clock | c |
+| 00442128 | main cursor | c |
+| 00442130 + 4*i (i = 0..46) | the 47 levels, in the order of the table at 0042d6c8 (index also stored at level +0x98) | c |
+| 004420fc | Jim | c |
+| 004421ec | interface level (INTERFACE.LVL) | c |
+| 004421f0 / 004421f4 | PRINCIPAL.LVL (main menu) / NUEVO.LVL (new-game menu) | c |
+| 004421f8 / 004421fc | top object / interface strip object (+0xa0 child list, +0xa8 child) | w |
+Level +0x98 is the level's index in the table (8 = MAPA, 14 = TABLERO); Jim_EnterLevel sets Jim's hitter flag (0x400) unless the level index is 8.
