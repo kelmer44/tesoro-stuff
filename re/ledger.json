@@ -9257,8 +9257,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/sounddevice.cpp::CdAudio",
   "notes": "(track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)"
  },
  {
@@ -9278,9 +9278,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "decompiled",
+  "status": "replaced",
   "engine": "",
-  "notes": "on MM_MCINOTIFY success restarts the saved track (+0x29)"
+  "notes": "on MM_MCINOTIFY success restarts the saved track (+0x29) | streaming/notify replaced by the ScummVM mixer and the CD manager's loop"
  },
  {
   "addr": "00403e00",
@@ -9339,8 +9339,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/sounddevice.cpp",
   "notes": "finds the active sound slot whose id (+0x2c) matches"
  },
  {
@@ -9365,8 +9365,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/sounddevice.cpp",
   "notes": "(archive offset, ...) reads a RIFF/WAVE header from the archive, fills the next sound slot (DirectSoundBuffer), sets volume and pan, starts playing and returns a new id"
  },
  {
@@ -9387,8 +9387,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/sounddevice.cpp",
   "notes": "per-frame: refills streaming buffers (Sound_StreamRefill) and retires finished slots"
  },
  {
@@ -9430,9 +9430,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "understood",
+  "status": "replaced",
   "engine": "",
-  "notes": "reads the sound data chunk from the archive into the slot | name from call sites and a skim; body not yet read"
+  "notes": "reads the sound data chunk from the archive into the slot | name from call sites and a skim; body not yet read | streaming/notify replaced by the ScummVM mixer and the CD manager's loop"
  },
  {
   "addr": "004043b0",
@@ -9449,8 +9449,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/sounddevice.cpp",
   "notes": "stops the slot's buffer (slot 0x48/0x34 calls) and clears its id"
  },
  {
@@ -9471,9 +9471,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "understood",
+  "status": "replaced",
   "engine": "",
-  "notes": "refills a streaming DirectSound buffer from the archive; returns whether the sound is still active | name from call sites and a skim; body not yet read"
+  "notes": "refills a streaming DirectSound buffer from the archive; returns whether the sound is still active | name from call sites and a skim; body not yet read | streaming/notify replaced by the ScummVM mixer and the CD manager's loop"
  },
  {
   "addr": "00404630",

@@ -177,3 +177,9 @@ re/.venv/bin/python re/tools/gen_vectors_jimwalk.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/jimwalk_driver.cpp \
     "$ENG/engines/tesoro/core/jimwalker.cpp" -o local-media/bin/jimwalk_driver
 local-media/bin/jimwalk_driver local-media/vectors/jimwalk.txt
+
+# Sound device: original play 0x404110 / find 0x4040d0 / stop 0x4043b0 / update 0x404210 vs engine SoundDevice (record bookkeeping; streaming is a hook)
+re/.venv/bin/python re/tools/gen_vectors_sound.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/sound_driver.cpp \
+    "$ENG/engines/tesoro/core/sounddevice.cpp" -o local-media/bin/sound_driver
+local-media/bin/sound_driver local-media/vectors/sound.txt

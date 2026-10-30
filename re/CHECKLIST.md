@@ -9,11 +9,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 |---|---|---|
 | untouched or later | 447 | 100% |
 | decompiled or later | 261 | 58% |
-| understood or later | 196 | 43% |
-| ported or later | 136 | 30% |
-| emu-compared or later | 116 | 25% |
-| original-compared or later | 0 | 0% |
-| replaced by a ScummVM service | 0 | |
+| understood or later | 197 | 44% |
+| ported or later | 144 | 32% |
+| emu-compared or later | 123 | 27% |
+| original-compared or later | 3 | 0% |
+| replaced by a ScummVM service | 3 | |
 
 ## Game code by cluster
 
@@ -103,26 +103,26 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00403360` inferred_Archive_Close · depth 6 · 10 lines · **ported** → `engines/tesoro/core/archive.cpp`
 - [x] `00403380` inferred_Archive_ReadIndex · depth 8 · 109 lines · **emu-compared** → `engines/tesoro/core/archiveindex.cpp::ArchiveIndex::load` — reads 0x1c-byte index records from the .TRE keeping those with flag 4, copies the uppercased name (0x13 bytes) and offset+4 into 0x18-byte entries, then sorts them by name (selection sort); entry count in +0
 
-### Cluster 8: 00403a70–004040d0 (0/8 ported)
+### Cluster 8: 00403a70–004040d0 (3/8 ported)
 
 - [ ] `00403a70` inferred_MouseCenter · depth 0 · 9 lines · **decompiled**
 - [ ] `00403b60` inferred_CdAudioInit · depth 0 · 52 lines · **decompiled** — MCI open cdaudio; track count at +0x1bc, -1 if failed
-- [ ] `00403cb0` inferred_CdAudio_PlayTrack · depth 0 · 51 lines · **understood** — (track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)
+- [x] `00403cb0` inferred_CdAudio_PlayTrack · depth 0 · 51 lines · **ported** → `engines/tesoro/core/sounddevice.cpp::CdAudio` — (track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)
 - [ ] `004040b0` inferred_Sound_IsReady · depth 0 · 7 lines · **decompiled** — returns obj[0]!=0 && obj[1]!=0 | true when the first two fields are set
-- [ ] `004040d0` inferred_Sound_FindById · depth 0 · 22 lines · **understood** — finds the active sound slot whose id (+0x2c) matches
+- [x] `004040d0` inferred_Sound_FindById · depth 0 · 22 lines · **emu-compared** → `engines/tesoro/core/sounddevice.cpp` — finds the active sound slot whose id (+0x2c) matches
 - [ ] `00403aa0` inferred_C00428074_Slot00 (vtable) · depth 1 · 57 lines · **understood** — unread; first seen in vtable 00428074 slot 0 (non-object class)
-- [ ] `00403dc0` inferred_CdAudio_OnNotify · depth 1 · 14 lines · **decompiled** — on MM_MCINOTIFY success restarts the saved track (+0x29)
+- [x] `00403dc0` inferred_CdAudio_OnNotify · depth 1 · 14 lines · **replaced** — on MM_MCINOTIFY success restarts the saved track (+0x29) | streaming/notify replaced by the ScummVM mixer and the CD manager's loop
 - [ ] `00403e00` inferred_DirectSoundInit · depth 5 · 138 lines · **decompiled** — only creates DirectSound if CD track count >= 0
 
-### Cluster 9: 004043b0–00404630 (0/7 ported)
+### Cluster 9: 004043b0–00404630 (5/7 ported)
 
-- [ ] `004043b0` inferred_Sound_Stop · depth 0 · 11 lines · **understood** — stops the slot's buffer (slot 0x48/0x34 calls) and clears its id
+- [x] `004043b0` inferred_Sound_Stop · depth 0 · 11 lines · **emu-compared** → `engines/tesoro/core/sounddevice.cpp` — stops the slot's buffer (slot 0x48/0x34 calls) and clears its id
 - [ ] `00404630` ScriptBlock_CopyCtor2 · depth 2 · 69 lines · **understood** — copy constructor of a script-block entry (vtable 00428078) | same copy as 004067a0 for types 0x12-0x15
 - [ ] `00404260` inferred_Sound_Dtor · depth 5 · 22 lines · **untouched** —  | name from call sites and a skim; body not yet read
-- [ ] `004042c0` inferred_Sound_LoadWavData · depth 8 · 54 lines · **understood** — reads the sound data chunk from the archive into the slot | name from call sites and a skim; body not yet read
-- [ ] `004043e0` inferred_Sound_StreamRefill · depth 8 · 106 lines · **understood** — refills a streaming DirectSound buffer from the archive; returns whether the sound is still active | name from call sites and a skim; body not yet read
-- [ ] `00404110` inferred_Sound_PlayWav · depth 9 · 46 lines · **understood** — (archive offset, ...) reads a RIFF/WAVE header from the archive, fills the next sound slot (DirectSoundBuffer), sets volume and pan, starts playing and returns a new id
-- [ ] `00404210` inferred_Sound_Update · depth 9 · 28 lines · **understood** — per-frame: refills streaming buffers (Sound_StreamRefill) and retires finished slots
+- [x] `004042c0` inferred_Sound_LoadWavData · depth 8 · 54 lines · **replaced** — reads the sound data chunk from the archive into the slot | name from call sites and a skim; body not yet read | streaming/notify replaced by the ScummVM mixer and the CD manager's loop
+- [x] `004043e0` inferred_Sound_StreamRefill · depth 8 · 106 lines · **replaced** — refills a streaming DirectSound buffer from the archive; returns whether the sound is still active | name from call sites and a skim; body not yet read | streaming/notify replaced by the ScummVM mixer and the CD manager's loop
+- [x] `00404110` inferred_Sound_PlayWav · depth 9 · 46 lines · **emu-compared** → `engines/tesoro/core/sounddevice.cpp` — (archive offset, ...) reads a RIFF/WAVE header from the archive, fills the next sound slot (DirectSoundBuffer), sets volume and pan, starts playing and returns a new id
+- [x] `00404210` inferred_Sound_Update · depth 9 · 28 lines · **emu-compared** → `engines/tesoro/core/sounddevice.cpp` — per-frame: refills streaming buffers (Sound_StreamRefill) and retires finished slots
 
 ### Cluster 10: 004060b0–00406140 (9/9 ported)
 
