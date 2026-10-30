@@ -136,3 +136,10 @@ Entry (24 bytes): +0 op, then by op (see contract 00404810): 1 say [+4 phrase, +
 
 ## Speech table (8 bytes; four of them in global 00442110: OBJETOS, ANIMS, CONVERS, ICONS .TXT) — built by 00413570
 +0 ptr lines, +4 count. Line (16 bytes): +0/+4 key (NameHash64 of the ID), +8 data offset of the archive entry ID.WAV (0 if none), +0xc ptr NUL ended text. Sorted by key, largest first, low half compared first. A script's say command holds a pointer to a line. Port: core/speechtable.h (SpeechTables::find gives table << 24 | line, plus one).
+
+
+## Speaker (kind 5 character, 0xd8 bytes; Jim is a 0x114-byte relative with the same fields) — read from 0x410330, 0x4101f0, 0x4102e0, 0x410130, 0x40ffa0
++0xa0/+0xa4 subtitle anchor (screen x, y) set by SetPoseAnim · +0xa8 time of the last mouth change · +0xac bank used for facing frames (0x4103d0) · +0xb0 + 4*pose byte table of pose banks, +0xc0 non-zero when there is one · +0xc4 current Line (speech table entry, 0 when silent) · +0xc8 sound id of its voice (0 = none) · +0xcc text colour argument (≤ 0 for Jim: minus the colour, centred on screen) · +0xd0 u16 text colour (kind 5) · +0xd2 u16 text width (kind 5) · +0xd4 byte speaking · +0xd5 byte (set by the NPC walk stub, cleared by the update; Jim: walking). Jim only: +0xfc scale (0x100 = 1), +0x100 u16 text colour, +0x10c facing 1..4, +0x112 subtitles option byte. Kind 5 vtable 0042bb48: slot 4 update 0x4101f0, 6 draw 0x4102e0, 28 clear speech 0x410400, 29 face 0x4103d0, 30 set pose 0x410130, 31 talk animate 0x410060, 32 walk stub 0x4103f0.
+
+## Sound device (global 00442080) and records — read from 0x404110, 0x4042c0, 0x4043e0, 0x403cb0
+Device: +8 array of record pointers, +0x14 last id, +0x18 active count, +0x1c CD audio object (+0x14 MCI device, +0x24 time-format handle, +0x28/+0x29 flag/track, +0x1bc track count). Record: +0 DirectSound buffer, +4 file position of the data, +8 stream offset, +0xc data size, +0x24 u16 tag, +0x26 byte half toggle, +0x27 byte active, +0x2c id, +0x30 end position (-1 while streaming), +0x20 archive file. WAVs: 44-byte header, PCM, mono, 22050 Hz, 8 bit (all 2,346 shipped).

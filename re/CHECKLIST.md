@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 257 | 57% |
-| understood or later | 160 | 35% |
-| ported or later | 121 | 27% |
-| emu-compared or later | 101 | 22% |
+| decompiled or later | 261 | 58% |
+| understood or later | 189 | 42% |
+| ported or later | 129 | 28% |
+| emu-compared or later | 109 | 24% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -107,22 +107,22 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 - [ ] `00403a70` inferred_MouseCenter · depth 0 · 9 lines · **decompiled**
 - [ ] `00403b60` inferred_CdAudioInit · depth 0 · 52 lines · **decompiled** — MCI open cdaudio; track count at +0x1bc, -1 if failed
-- [ ] `00403cb0` inferred_CdAudio_PlayTrack · depth 0 · 51 lines · **decompiled** — (track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)
+- [ ] `00403cb0` inferred_CdAudio_PlayTrack · depth 0 · 51 lines · **understood** — (track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)
 - [ ] `004040b0` inferred_Sound_IsReady · depth 0 · 7 lines · **decompiled** — returns obj[0]!=0 && obj[1]!=0 | true when the first two fields are set
-- [ ] `004040d0` inferred_Sound_FindById · depth 0 · 22 lines · **decompiled** — finds the active sound slot whose id (+0x2c) matches
+- [ ] `004040d0` inferred_Sound_FindById · depth 0 · 22 lines · **understood** — finds the active sound slot whose id (+0x2c) matches
 - [ ] `00403aa0` inferred_C00428074_Slot00 (vtable) · depth 1 · 57 lines · **understood** — unread; first seen in vtable 00428074 slot 0 (non-object class)
 - [ ] `00403dc0` inferred_CdAudio_OnNotify · depth 1 · 14 lines · **decompiled** — on MM_MCINOTIFY success restarts the saved track (+0x29)
 - [ ] `00403e00` inferred_DirectSoundInit · depth 5 · 138 lines · **decompiled** — only creates DirectSound if CD track count >= 0
 
 ### Cluster 9: 004043b0–00404630 (0/7 ported)
 
-- [ ] `004043b0` inferred_Sound_Stop · depth 0 · 11 lines · **decompiled** — stops the slot's buffer (slot 0x48/0x34 calls) and clears its id
+- [ ] `004043b0` inferred_Sound_Stop · depth 0 · 11 lines · **understood** — stops the slot's buffer (slot 0x48/0x34 calls) and clears its id
 - [ ] `00404630` ScriptBlock_CopyCtor2 · depth 2 · 69 lines · **understood** — copy constructor of a script-block entry (vtable 00428078) | same copy as 004067a0 for types 0x12-0x15
 - [ ] `00404260` inferred_Sound_Dtor · depth 5 · 22 lines · **untouched** —  | name from call sites and a skim; body not yet read
-- [ ] `004042c0` inferred_Sound_LoadWavData · depth 8 · 54 lines · **untouched** — reads the sound data chunk from the archive into the slot | name from call sites and a skim; body not yet read
-- [ ] `004043e0` inferred_Sound_StreamRefill · depth 8 · 106 lines · **untouched** — refills a streaming DirectSound buffer from the archive; returns whether the sound is still active | name from call sites and a skim; body not yet read
-- [ ] `00404110` inferred_Sound_PlayWav · depth 9 · 46 lines · **decompiled** — (archive offset, ...) reads a RIFF/WAVE header from the archive, fills the next sound slot (DirectSoundBuffer), sets volume and pan, starts playing and returns a new id
-- [ ] `00404210` inferred_Sound_Update · depth 9 · 28 lines · **decompiled** — per-frame: refills streaming buffers (Sound_StreamRefill) and retires finished slots
+- [ ] `004042c0` inferred_Sound_LoadWavData · depth 8 · 54 lines · **understood** — reads the sound data chunk from the archive into the slot | name from call sites and a skim; body not yet read
+- [ ] `004043e0` inferred_Sound_StreamRefill · depth 8 · 106 lines · **understood** — refills a streaming DirectSound buffer from the archive; returns whether the sound is still active | name from call sites and a skim; body not yet read
+- [ ] `00404110` inferred_Sound_PlayWav · depth 9 · 46 lines · **understood** — (archive offset, ...) reads a RIFF/WAVE header from the archive, fills the next sound slot (DirectSoundBuffer), sets volume and pan, starts playing and returns a new id
+- [ ] `00404210` inferred_Sound_Update · depth 9 · 28 lines · **understood** — per-frame: refills streaming buffers (Sound_StreamRefill) and retires finished slots
 
 ### Cluster 10: 004060b0–00406140 (9/9 ported)
 
@@ -161,11 +161,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00407790` inferred_Jim_Update (vtable) · depth 11 · 89 lines · **decompiled** — slot 4: per-frame walking step. Position is 24.8 fixed point (+0xe0,+0xe4); the animation's own per-frame offset (+0x28,+0x2a, root motion) scaled by perspective moves Jim; ends when the squared distance reaches zero (arrival), then removes itself from the main list and either calls slot 29 (face) or the target object's slot 13 (RunVerb)
 - [ ] `004070c0` inferred_Jim_Ctor · depth 12 · 282 lines · **decompiled** — 0x114-byte object, vtable 00428b70, base chain Kind05-family ctor 0040fea0 -> 0040ec90. Loads 9 animation files (JIMHABDER, JIMQUIETO, JIMARRIBA, JIMABAJO, JIMIZQUIERDA, JIMDERECHA, JIMHABAR ... .ANM) into bank array +0x34, name key from string at 0042d2a4, start position (0x15e,0x14), sort value 0x23, scale +0xfc = 0x100, speech/idle fields, calls SetFacing(3)
 
-### Cluster 13: 00408440–00408550 (5/12 ported)
+### Cluster 13: 00408440–00408550 (6/12 ported)
 
 - [x] `00408440` inferred_Level_ObjectMoved · depth 0 · 61 lines · **emu-compared** — re-sorts the object in the level's sorted list at +0x7c after it moved
-- [ ] `00407ac0` inferred_Jim_Draw (vtable) · depth 1 · 34 lines · **decompiled** — slot 6: updates talk state then queues the current frame scaled by +0xfc (scaled sprite, 16.16 factor) at screen position relative to the camera
-- [ ] `00407d00` inferred_Dialogue_ChoiceMenu · depth 1 · 71 lines · **decompiled** — lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled
+- [x] `00407ac0` inferred_Jim_Draw (vtable) · depth 1 · 34 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — slot 6: updates talk state then queues the current frame scaled by +0xfc (scaled sprite, 16.16 factor) at screen position relative to the camera
+- [ ] `00407d00` inferred_Dialogue_ChoiceMenu · depth 1 · 71 lines · **understood** — lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled
 - [ ] `00407f30` inferred_Jim_TalkAnimate (vtable) · depth 2 · 37 lines · **decompiled** — slot 31: draws the speaking-mouth animation; while talking picks a random frame (RandomRange) at most every 100 ms of game time, else rests on frame 1
 - [ ] `004080a0` inferred_Jim_UseItemForward (vtable) · depth 2 · 17 lines · **decompiled** — slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27
 - [x] `00408520` inferred_Level_CameraMoveTo · depth 2 · 8 lines · **emu-compared** — forwards (x, y, duration) to the camera at +0x80
@@ -173,7 +173,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00408030` inferred_Jim_SetIdlePose (vtable) · depth 3 · 29 lines · **decompiled** — slot 30: direction 3,4,2,1 -> idle animation index 0,1,2,3 via 00410130, then recomputes speech anchor point +0xa4
 - [x] `00408540` inferred_Level_AttachObjects · depth 3 · 8 lines · **emu-compared** — calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child
 - [ ] `00407b80` inferred_Jim_EnterLevel · depth 11 · 50 lines · **understood** — (level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14
-- [ ] `00407ce0` inferred_Jim_SayLine · depth 11 · 8 lines · **decompiled** — Player_Say with a negative id derived from +0x100 (spoken subtitle line)
+- [ ] `00407ce0` inferred_Jim_SayLine · depth 11 · 8 lines · **understood** — Player_Say with a negative id derived from +0x100 (spoken subtitle line)
 - [x] `004080e0` inferred_Level_Load · depth 15 · 142 lines · **emu-compared** — level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
 
 ### Cluster 14: 00408780–00408890 (3/8 ported)
@@ -318,7 +318,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 25: 0040f020–0040f020 (1/11 ported)
 
-- [ ] `0040f020` inferred_Obj_SetVerbAndClick (vtable) · depth 0 · 10 lines · **decompiled** — MidBase slot 14: stores verb +0x9c then calls slot 19 (OnClick)
+- [ ] `0040f020` inferred_Obj_SetVerbAndClick (vtable) · depth 0 · 10 lines · **understood** — MidBase slot 14: stores verb +0x9c then calls slot 19 (OnClick)
 - [ ] `0040ebd0` inferred_C0042ba30_OnAttach (vtable) · depth 1 · 14 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 0
 - [ ] `0040ec00` inferred_C0042ba30_Draw (vtable) · depth 1 · 24 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 6
 - [ ] `0040ec90` inferred_Obj_MidBase_DefaultCtor · depth 1 · 9 lines · **decompiled** — base object ctor with vtable 0042ba68 only
@@ -328,14 +328,14 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040ecb0` inferred_Obj_MidBase_Ctor · depth 3 · 14 lines · **understood** → `engines/tesoro/core/menuitem.cpp::MenuItem::init` — Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25
 - [ ] `0040ee70` inferred_Obj_Interactive_Update (vtable) · depth 3 · 52 lines · **understood** — MidBase slot 4: when a click is pending (+0x8c), clears it, removes the object from the main list, runs the verb handler for the current verb (index +0x9c, slots 20-26), clears the cursor's target (+0x12c), resets the cursor animation and calls slot 27 with verb-7. Pending flag is cleared at the end
 - [ ] `0040e7e0` inferred_Obj_Kind16_Ctor · depth 4 · 25 lines · **decompiled** — 0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)
-- [ ] `0040ed10` inferred_Obj_Kind09_Ctor · depth 12 · 61 lines · **decompiled** — 0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits
+- [ ] `0040ed10` inferred_Obj_Kind09_Ctor · depth 12 · 61 lines · **understood** — 0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits
 
 ### Cluster 26: 0040f040–0040f270 (1/7 ported)
 
 - [x] `0040f040` inferred_Obj_Slot15_ForwardToSlot14 (vtable) · depth 0 · 9 lines · **emu-compared** → `engines/tesoro/core/menuitem.cpp::MenuItem::rightClick` — MidBase slot 15: calls slot 14 with its argument
 - [ ] `0040f1a0` inferred_Obj_OnClick (vtable) · depth 0 · 18 lines · **understood** — MidBase slot 19: interrupts the player if busy, copies the clicked verb for the player object itself, sets the player's target to the object's approach point (+0x94,+0x98) via player slot 32 (walk), then player slot 4
 - [ ] `0040f270` inferred_Obj_Slot27_Stub (vtable) · depth 0 · 7 lines · **decompiled** — MidBase slot 27 default (ret 4, returns 0)
-- [ ] `0040f050` inferred_Obj_ShowHoverText (vtable) · depth 1 · 15 lines · **decompiled** — MidBase slot 17: puts the object's phrase text (+0x6c record, then the 64-bit name key) into the cursor's hover text via Cursor_SetText
+- [ ] `0040f050` inferred_Obj_ShowHoverText (vtable) · depth 1 · 15 lines · **understood** — MidBase slot 17: puts the object's phrase text (+0x6c record, then the 64-bit name key) into the cursor's hover text via Cursor_SetText
 - [ ] `0040f0b0` inferred_Obj_ClearHoverText (vtable) · depth 1 · 8 lines · **understood** — MidBase slot 18: Cursor_SetText(null)
 - [ ] `0040f0d0` inferred_Obj_RunVerb (vtable) · depth 3 · 40 lines · **understood** — MidBase slot 13: tells the player object (global 004420fc) to select verb +0x90, then dispatches the verb handler like Interactive_Update
 - [ ] `0040f210` inferred_Obj_Verb0_Default (vtable) · depth 11 · 16 lines · **understood** — MidBase slot 20: marks click pending (+0x8c, +0x8d), says phrase key +0x70 if set via GameState_Say, sets cursor busy, inserts object into the main list at priority 5
@@ -348,11 +348,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `0040f590` inferred_List_Ctor · depth 1 · 37 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list
 - [ ] `0040f650` inferred_Pool_AllocAlignedZero_Global · depth 1 · 8 lines · **decompiled** — wrapper on the global pool
 - [x] `0040f710` inferred_ObjectList_ForEachAttach · depth 2 · 39 lines · **ported** → `engines/tesoro/core/object.cpp::attachAll` — iterates list and calls 00401bf0(node object, arg)
-- [ ] `0040f280` inferred_Obj_Verb1_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 21 of Kind09-based classes: same pattern with phrase key +0x74 and a default phrase when unset
-- [ ] `0040f300` inferred_Obj_Verb3_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 22: phrase key +0x7c
-- [ ] `0040f380` inferred_Obj_Verb2_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 23: phrase key +0x78
-- [ ] `0040f400` inferred_Obj_Verb4_Default (vtable) · depth 12 · 25 lines · **decompiled** — slot 24: phrase key +0x80
-- [ ] `0040f480` inferred_Obj_UseItem_Default (vtable) · depth 12 · 50 lines · **decompiled** — slot 27: handles using an inventory item on the object: looks the item up in the object's item table (+0xa0 pairs of name keys, +0xa4 responses) else says a default phrase (ICON01T058 or MODELO2)
+- [ ] `0040f280` inferred_Obj_Verb1_Default (vtable) · depth 12 · 25 lines · **understood** — slot 21 of Kind09-based classes: same pattern with phrase key +0x74 and a default phrase when unset
+- [ ] `0040f300` inferred_Obj_Verb3_Default (vtable) · depth 12 · 25 lines · **understood** — slot 22: phrase key +0x7c
+- [ ] `0040f380` inferred_Obj_Verb2_Default (vtable) · depth 12 · 25 lines · **understood** — slot 23: phrase key +0x78
+- [ ] `0040f400` inferred_Obj_Verb4_Default (vtable) · depth 12 · 25 lines · **understood** — slot 24: phrase key +0x80
+- [ ] `0040f480` inferred_Obj_UseItem_Default (vtable) · depth 12 · 50 lines · **understood** — slot 27: handles using an inventory item on the object: looks the item up in the object's item table (+0xa0 pairs of name keys, +0xa4 responses) else says a default phrase (ICON01T058 or MODELO2)
 
 ### Cluster 28: 0040f800–0040fbb0 (7/7 ported)
 
@@ -364,33 +364,33 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — allocates a linked list with capacity param (100 for the main list 00442104)
 - [x] `0040fbb0` inferred_ObjectList_AttachAll · depth 2 · 38 lines · **ported** → `engines/tesoro/core/object.cpp::attachAll` — walks the list calling Object_AttachToLevel on each object
 
-### Cluster 29: 0040fc20–00410330 (4/12 ported)
+### Cluster 29: 0040fc20–00410330 (8/12 ported)
 
 - [x] `0040fc20` inferred_ObjectList_PassA · depth 0 · 83 lines · **emu-compared** → `engines/tesoro/core/object.cpp::runUpdatePass` — walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1 | pass vectors 31 Oct
 - [x] `0040fd20` inferred_ObjectList_PassB · depth 0 · 83 lines · **emu-compared** → `engines/tesoro/core/object.cpp::runUpdate2Pass` — same walk calling vtable slot 5 | pass vectors 31 Oct
 - [x] `0040fe20` inferred_ObjectList_Clear · depth 0 · 14 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — empties a 3-field-node list (priority lists)
 - [x] `0040fe40` inferred_ObjectList_StartIteration · depth 0 · 31 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — iterator reset helper; its result decides loop continuation
 - [ ] `0040fea0` inferred_Obj_Kind05Base_Ctor · depth 2 · 9 lines · **decompiled** — MidBase default ctor then vtable 0042bb48
-- [ ] `0040ffa0` inferred_Obj_DrawSubtitle · depth 2 · 27 lines · **decompiled** — draws the current phrase text twice (shadow style) at the speaker's position with Display_DrawText, keeping the camera in view
-- [ ] `00410060` inferred_C0042b060_Slot31 (vtable) · depth 2 · 34 lines · **untouched** — unread; first seen in vtable 0042b060 slot 31 (kind 5 subtype 16)
-- [ ] `00410130` inferred_Jim_SetPoseAnim (vtable) · depth 2 · 41 lines · **decompiled** — (direction index) recomputes speech anchor and selects the bank listed in +0xb0..
-- [ ] `004102e0` inferred_Obj_Kind05_Draw (vtable) · depth 3 · 20 lines · **decompiled** — slot 6 of the kind 5 class family: wraps Obj_Draw with slot 31 calls depending on flags +0xd4/+0xc/+0xd5
-- [ ] `004101f0` inferred_Obj_Kind05_Update (vtable) · depth 10 · 46 lines · **decompiled** — slot 4 of the kind 5 class family: runs Interactive_Update unless deferred, polls keyboard/mouse button state and the sound manager to stop a playing sound on input, calls slot 28
-- [ ] `00410330` inferred_Player_Say · depth 10 · 33 lines · **decompiled** — (phrase record, id, flag) on the object in global 004420fc (walks, so probably the player): stores phrase +0xc4 / id +0xcc, busy +0xd4=1, starts the phrase sound (record +8) through the sound manager, slot 30 (0x78) with flag, inserts itself into the main list at priority 6, calls slot 4 | see ledger note
-- [ ] `0040fec0` inferred_Obj_Kind05_Ctor · depth 13 · 40 lines · **decompiled** — 0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags
+- [ ] `0040ffa0` inferred_Obj_DrawSubtitle · depth 2 · 27 lines · **understood** — draws the current phrase text twice (shadow style) at the speaker's position with Display_DrawText, keeping the camera in view
+- [x] `00410060` inferred_C0042b060_Slot31 (vtable) · depth 2 · 34 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — unread; first seen in vtable 0042b060 slot 31 (kind 5 subtype 16)
+- [ ] `00410130` inferred_Jim_SetPoseAnim (vtable) · depth 2 · 41 lines · **understood** — (direction index) recomputes speech anchor and selects the bank listed in +0xb0..
+- [x] `004102e0` inferred_Obj_Kind05_Draw (vtable) · depth 3 · 20 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — slot 6 of the kind 5 class family: wraps Obj_Draw with slot 31 calls depending on flags +0xd4/+0xc/+0xd5
+- [x] `004101f0` inferred_Obj_Kind05_Update (vtable) · depth 10 · 46 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — slot 4 of the kind 5 class family: runs Interactive_Update unless deferred, polls keyboard/mouse button state and the sound manager to stop a playing sound on input, calls slot 28
+- [x] `00410330` inferred_Player_Say · depth 10 · 33 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — (phrase record, id, flag) on the object in global 004420fc (walks, so probably the player): stores phrase +0xc4 / id +0xcc, busy +0xd4=1, starts the phrase sound (record +8) through the sound manager, slot 30 (0x78) with flag, inserts itself into the main list at priority 6, calls slot 4 | see ledger note
+- [ ] `0040fec0` inferred_Obj_Kind05_Ctor · depth 13 · 40 lines · **understood** — 0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags
 
-### Cluster 30: 004103f0–004108a0 (5/8 ported)
+### Cluster 30: 004103f0–004108a0 (6/8 ported)
 
 - [ ] `004103f0` inferred_C0042b060_Slot32 (vtable) · depth 0 · 8 lines · **untouched** — unread; first seen in vtable 0042b060 slot 32 (kind 5 subtype 16)
 - [x] `004104a0` inferred_Room_InsertSorted · depth 0 · 44 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::insertSorted` — inserts object into the room list ordered by object field +0x4c | room vectors 30 Oct
 - [x] `00410530` inferred_Room_RemoveObject · depth 0 · 38 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::removeObject` — room vectors 30 Oct
 - [x] `004105a0` inferred_Display_QueueRow_TypeA · depth 0 · 177 lines · **emu-compared** — AddSprite helper for image type 1: builds per-scanline entries (177 lines) | name from call sites and a skim; body not yet read
 - [x] `004108a0` inferred_Display_Raster_TypeA · depth 0 · 215 lines · **emu-compared** — rasterises queued type-A rows (215 lines) | name from call sites and a skim; body not yet read
-- [ ] `00410400` inferred_Jim_ClearSpeech (vtable) · depth 1 · 10 lines · **decompiled** — slot 28: clears phrase +0xc4 and talking flag +0xd4, removes itself from the main list
+- [x] `00410400` inferred_Jim_ClearSpeech (vtable) · depth 1 · 10 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — slot 28: clears phrase +0xc4 and talking flag +0xd4, removes itself from the main list
 - [x] `00410420` inferred_Room_Ctor · depth 1 · 26 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::init` — 16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list | room vectors 30 Oct
 - [ ] `004103d0` inferred_Obj_SetFacingAnim (vtable) · depth 3 · 9 lines · **decompiled** — selects the bank from +0xac and starts animation index (param-1) with AnimPlayer
 
-### Cluster 31: 00410cc0–00411f80 (3/12 ported)
+### Cluster 31: 00410cc0–00411f80 (4/12 ported)
 
 - [x] `00410cc0` inferred_Display_QueueRow_TypeB · depth 0 · 173 lines · **emu-compared** → `engines/tesoro/core/renderqueue.cpp::RenderQueue` — AddSprite helper for image type 3 | name from call sites and a skim; body not yet read
 - [ ] `00410fb0` inferred_Display_Raster_TypeB · depth 0 · 177 lines · **untouched** — rasterises queued type-B rows | name from call sites and a skim; body not yet read
@@ -399,18 +399,18 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00411be0` inferred_Display_Dtor · depth 0 · 10 lines · **decompiled** — releases the back surface (+0xc), primary surface (+8) and DirectDraw object (+4, slot 0x4c = RestoreDisplayMode)
 - [ ] `00411c00` inferred_Display_IsReady · depth 0 · 7 lines · **decompiled** — returns whether the primary surface pointer (+8) is set (corrected: it is a check, not DirectDraw setup)
 - [ ] `00411c10` inferred_Display_SetFont · depth 0 · 8 lines · **decompiled** — stores pointer at slot (index*4+0x20)
-- [ ] `00411c80` inferred_Display_DrawText · depth 0 · 127 lines · **untouched** — (font, text, colour/limits, x, y, width, ...) renders a string with the game font into the frame | name from call sites and a skim; body not yet read
+- [x] `00411c80` inferred_Display_DrawText · depth 0 · 127 lines · **emu-compared** → `engines/tesoro/core/textqueue.cpp` — (font, text, colour/limits, x, y, width, ...) renders a string with the game font into the frame | name from call sites and a skim; body not yet read
 - [x] `00411f20` inferred_Display_ResetRenderQueue · depth 0 · 30 lines · **emu-compared** → `engines/tesoro/core/renderqueue.cpp::RenderQueue::reset` — clears two arrays of 0x1e0 entries (stride 500 and 200 dwords) and counters
 - [ ] `00411870` inferred_Display_Ctor · depth 1 · 127 lines · **decompiled** — 0x13a4-byte display constructor performing the whole DirectDraw setup: DirectDrawCreate, cooperative level, display mode, primary and back surfaces; each failure shows a DIRECTDRAW message box and returns the half-built object. Flag +0x67c selects 5-5-5 pixel handling
 - [x] `00411f80` inferred_Display_AddSprite · depth 1 · 57 lines · **emu-compared** — (x, y, sort value, image, flag): clips a 640x480 sprite and queues it in the render rows (per-scanline lists) by image type (1 or 3 get extra passes)
 - [ ] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **decompiled** — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set
 
-### Cluster 32: 004120c0–00412e10 (4/7 ported)
+### Cluster 32: 004120c0–00412e10 (5/7 ported)
 
 - [x] `004120c0` inferred_Display_AddSpriteScaled · depth 0 · 21 lines · **emu-compared** — like AddSprite with x/y scale factors (16.16 fixed)
 - [ ] `00412640` inferred_Display_Compose_Background · depth 0 · 282 lines · **understood** — first stage of Display_Compose (282 lines) | name from call sites and a skim; body not yet read
 - [ ] `00412bb0` inferred_Display_ClearAndReset · depth 0 · 34 lines · **understood** — clears surfaces via DirectDraw (slot 0x80/4 and 0x1c Blt) and resets the render queue
-- [ ] `00412c50` inferred_Display_Compose_Overlay · depth 0 · 99 lines · **understood** — later stage of Display_Compose | name from call sites and a skim; body not yet read
+- [x] `00412c50` inferred_Display_Compose_Overlay · depth 0 · 99 lines · **emu-compared** → `engines/tesoro/core/textqueue.cpp` — later stage of Display_Compose | name from call sites and a skim; body not yet read
 - [x] `00412120` inferred_Display_RasterRow · depth 1 · 101 lines · **emu-compared** — rasterises one scanline using the three type rasterisers | name from call sites and a skim; body not yet read
 - [x] `004123e0` inferred_Display_FadeOut · depth 1 · 118 lines · **emu-compared** → `engines/tesoro/core/screendisplay.cpp::ScreenDisplay::fadeOut` — (effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read
 - [x] `00412e10` inferred_Display_Compose · depth 2 · 263 lines · **emu-compared** → `engines/tesoro/core/screendisplay.cpp::ScreenDisplay::compose` — per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read
@@ -421,7 +421,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `004138b0` SpeechTable_Find · depth 0 · 47 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (key lo, key hi) binary search in the sorted table; returns the record or 0
 - [x] `004139c0` inferred_Clock_Ctor · depth 0 · 14 lines · **emu-compared** → `core/clock.cpp::GameClock::GameClock` — game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended
 - [ ] `004139e0` inferred_BusyWait · depth 0 · 18 lines · **decompiled** — (ms) spins on GetTickCount until the time has passed
-- [ ] `004132b0` inferred_Movie_Start · depth 11 · 123 lines · **decompiled** — DirectShow setup via CoCreateInstance, builds path c:\INSTALL\BIN\DATA\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed
+- [ ] `004132b0` inferred_Movie_Start · depth 11 · 123 lines · **understood** — DirectShow setup via CoCreateInstance, builds path c:\INSTALL\BIN\DATA\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed
 - [x] `00413570` SpeechTable_Load · depth 11 · 121 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (archive offset): reads lines of the OBJETOS.TXT-style table and stores records of 16 bytes; first pass counts lines
 - [x] `00413940` Phrase_Find · depth 11 · 27 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (name) hashes the name with NameHash64 and searches the four text tables 00442110..0044211c; MessageBox "frase no encontrada" if missing
 
@@ -603,7 +603,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00419cf0` inferred_C004283c0_Slot28 (vtable) · depth 12 · 16 lines · **untouched** — unread; first seen in vtable 004283c0 slot 28
 - [ ] `00419d40` inferred_C00428348_Slot28 (vtable) · depth 12 · 16 lines · **untouched** — unread; first seen in vtable 00428348 slot 28
 - [ ] `00419d90` inferred_C00428618_Slot28 (vtable) · depth 12 · 74 lines · **untouched** — unread; first seen in vtable 00428618 slot 28
-- [ ] `00419f10` inferred_DlgScript_EnterStageLevel (vtable) · depth 12 · 57 lines · **decompiled** — (0 or 1): moves Jim into a fixed stage level (globals 00442188 / 00442154), repositions the camera and re-resolves the script's actor table there
+- [ ] `00419f10` inferred_DlgScript_EnterStageLevel (vtable) · depth 12 · 57 lines · **understood** — (0 or 1): moves Jim into a fixed stage level (globals 00442188 / 00442154), repositions the camera and re-resolves the script's actor table there
 
 ## Runtime, CRT and import thunks
 

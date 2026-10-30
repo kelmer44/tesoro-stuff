@@ -9257,7 +9257,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "(track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)"
  },
@@ -9339,7 +9339,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "finds the active sound slot whose id (+0x2c) matches"
  },
@@ -9365,7 +9365,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "(archive offset, ...) reads a RIFF/WAVE header from the archive, fills the next sound slot (DirectSoundBuffer), sets volume and pan, starts playing and returns a new id"
  },
@@ -9387,7 +9387,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "per-frame: refills streaming buffers (Sound_StreamRefill) and retires finished slots"
  },
@@ -9430,7 +9430,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "reads the sound data chunk from the archive into the slot | name from call sites and a skim; body not yet read"
  },
@@ -9449,7 +9449,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "stops the slot's buffer (slot 0x48/0x34 calls) and clears its id"
  },
@@ -9471,7 +9471,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "refills a streaming DirectSound buffer from the archive; returns whether the sound is still active | name from call sites and a skim; body not yet read"
  },
@@ -11285,8 +11285,8 @@
   ],
   "data_refs": [],
   "cluster": 13,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/speaker.cpp",
   "notes": "slot 6: updates talk state then queues the current frame scaled by +0xfc (scaled sprite, 16.16 factor) at screen position relative to the camera"
  },
  {
@@ -11361,7 +11361,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "Player_Say with a negative id derived from +0x100 (spoken subtitle line)"
  },
@@ -11384,7 +11384,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled"
  },
@@ -14622,7 +14622,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 25,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits"
  },
@@ -15930,7 +15930,7 @@
   ],
   "data_refs": [],
   "cluster": 25,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "MidBase slot 14: stores verb +0x9c then calls slot 19 (OnClick)"
  },
@@ -16981,7 +16981,7 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "MidBase slot 17: puts the object's phrase text (+0x6c record, then the 64-bit name key) into the cursor's hover text via Cursor_SetText"
  },
@@ -19504,7 +19504,7 @@
   ],
   "data_refs": [],
   "cluster": 27,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "slot 21 of Kind09-based classes: same pattern with phrase key +0x74 and a default phrase when unset"
  },
@@ -19794,7 +19794,7 @@
   ],
   "data_refs": [],
   "cluster": 27,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "slot 22: phrase key +0x7c"
  },
@@ -20108,7 +20108,7 @@
   ],
   "data_refs": [],
   "cluster": 27,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "slot 23: phrase key +0x78"
  },
@@ -20478,7 +20478,7 @@
   ],
   "data_refs": [],
   "cluster": 27,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "slot 24: phrase key +0x80"
  },
@@ -20788,7 +20788,7 @@
   ],
   "data_refs": [],
   "cluster": 27,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "slot 27: handles using an inventory item on the object: looks the item up in the object's item table (+0xa0 pairs of name keys, +0xa4 responses) else says a default phrase (ICON01T058 or MODELO2)"
  },
@@ -21210,7 +21210,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags"
  },
@@ -21232,7 +21232,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "draws the current phrase text twice (shadow style) at the speaker's position with Display_DrawText, keeping the camera in view"
  },
@@ -21323,8 +21323,8 @@
   ],
   "data_refs": [],
   "cluster": 29,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/speaker.cpp",
   "notes": "unread; first seen in vtable 0042b060 slot 31 (kind 5 subtype 16)"
  },
  {
@@ -21410,7 +21410,7 @@
   ],
   "data_refs": [],
   "cluster": 29,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "(direction index) recomputes speech anchor and selects the bank listed in +0xb0.."
  },
@@ -21505,8 +21505,8 @@
   ],
   "data_refs": [],
   "cluster": 29,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/speaker.cpp",
   "notes": "slot 4 of the kind 5 class family: runs Interactive_Update unless deferred, polls keyboard/mouse button state and the sound manager to stop a playing sound on input, calls slot 28"
  },
  {
@@ -21591,8 +21591,8 @@
   ],
   "data_refs": [],
   "cluster": 29,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/speaker.cpp",
   "notes": "slot 6 of the kind 5 class family: wraps Obj_Draw with slot 31 calls depending on flags +0xd4/+0xc/+0xd5"
  },
  {
@@ -21625,8 +21625,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/speaker.cpp",
   "notes": "(phrase record, id, flag) on the object in global 004420fc (walks, so probably the player): stores phrase +0xc4 / id +0xcc, busy +0xd4=1, starts the phrase sound (record +8) through the sound manager, slot 30 (0x78) with flag, inserts itself into the main list at priority 6, calls slot 4 | see ledger note"
  },
  {
@@ -21892,8 +21892,8 @@
   ],
   "data_refs": [],
   "cluster": 30,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/speaker.cpp",
   "notes": "slot 28: clears phrase +0xc4 and talking flag +0xd4, removes itself from the main list"
  },
  {
@@ -22194,8 +22194,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/textqueue.cpp",
   "notes": "(font, text, colour/limits, x, y, width, ...) renders a string with the game font into the frame | name from call sites and a skim; body not yet read"
  },
  {
@@ -22381,8 +22381,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 32,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/textqueue.cpp",
   "notes": "later stage of Display_Compose | name from call sites and a skim; body not yet read"
  },
  {
@@ -22430,7 +22430,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 33,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "DirectShow setup via CoCreateInstance, builds path c:\\INSTALL\\BIN\\DATA\\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed"
  },
@@ -26885,7 +26885,7 @@
   ],
   "data_refs": [],
   "cluster": 47,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "(0 or 1): moves Jim into a fixed stage level (globals 00442188 / 00442154), repositions the camera and re-resolves the script's actor table there"
  },

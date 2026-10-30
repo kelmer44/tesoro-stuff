@@ -43,16 +43,17 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 
 **Engine classes by area** (so each name can be found in the diagrams below):
 - Files and time: `Archive`, `ArchiveIndex`, `GameClock`, name keys, random numbers.
-- Pictures: `AnimBank`, `AnimPlayer`, `AnimImage`, `AnimSet` (animations); `Display` (what objects draw to), `ScreenDisplay`, `RenderQueue` (the screen).
+- Pictures: `TextQueue` (laid-out text lines, drawn by `ScreenDisplay`), `AnimBank`, `AnimPlayer`, `AnimImage`, `AnimSet` (animations); `Display` (what objects draw to), `ScreenDisplay`, `RenderQueue` (the screen).
 - World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `MenuItem` (25), lists `ObjectList`.
 - Input: `InputStates`, `Mouse`, `Cursor` (both pointers), `HoverText`.
 - Collisions: `sweepRects`, `Level::collisionPass`.
+- Speaking: `Speaker` (the speaking rules of a character) and `SpeakerHost` (what it asks of the game).
 - Spoken lines: `SpeechTables`, `SpeechTable` (the four `*.TXT` files), `WavLookup`; `StdioText` (the reader both text formats use).
 - Scripts: `ScriptRunner` (runs blocks), `ScriptRun` (what one running block remembers), `ScriptHost` (what a running script asks of the game), `ScriptLibrary` (all blocks), `ScriptBlock` (one script: characters, commands, labels), `ScriptEntry` (one command), `ScriptLookup` (what a script asks the rest of the game while it is read).
 
 **Which classes copy the original and which are only seams of the port.** The original is mostly plain functions on global tables.
 - Mirror an original structure: `ScriptBlock`/`ScriptLibrary` (the script objects and their table), `ScriptEntry` (the 24-byte command), `SpeechTable`/`SpeechTables` (the four tables and their search).
-- Port-only, no original counterpart: `ScriptHost` (the original calls the objects directly), `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), `ScriptLookup` and `WavLookup` (let the readers ask for phrase numbers, levels and voice files without depending on the rest of the engine), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
+- Port-only, no original counterpart: `SpeakerHost`, `ScriptHost` (the original calls the objects directly), `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), `ScriptLookup` and `WavLookup` (let the readers ask for phrase numbers, levels and voice files without depending on the rest of the engine), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
 - Only behaviour was compared with the original; the class layout was never meant to match.
 
 ---
@@ -497,6 +498,26 @@ outside a menu is skipped, not run.
 What is **not** there: any real host (nothing shows or says a line yet), the `DO` routines (one per numbered block, only the
 menu's is read), the menu screen and the walking of characters. The spoken lines are read (see below) but are not yet
 connected to the compiler (the phrase numbers come from a stand-in in the check).
+
+### Speaking, sound and the choice menu 🟡 (read; text ✅ and the speaking rules ✅ ported, sound, menu and the characters themselves ⬜)
+What a spoken line does once a script asks for it (all read from the original, none of it ported yet):
+- **Starting.** The speaker (a character in the level, or Jim) pauses its animation, starts the line's voice (if the line has a WAV; the audio is plain 8-bit mono 22 kHz), picks a *pose* (the third number on the script line chooses one of the character's pose animations; Jim chooses his idle pose from the way he faces), remembers where its subtitle goes, and joins the list of things updated every frame.
+- **While it lasts.** Each frame the speaker moves its mouth (a random frame about every tenth of a second; **Jim's mouth stays shut when a script makes him speak** (his script lines pass a colour that is not positive), but moves when he answers a verb) and, if the subtitles option is on, queues the text: Jim's is centred on the middle of the screen, a character's grows downwards from a point above its head.
+- **Ending.** When the voice has finished, or the player presses the skip key or the mouse button. **A line with no voice file never ends by itself** (353 of the 2,687 shipped lines have none, 299 of them the object descriptions): it waits for the player. The script then waits 201 ms more.
+- **The choice menu.** Every frame the menu draws the choices as white text, left aligned at the margin, from the bottom up (the block is pushed down so that it ends near the bottom edge), draws the pointer, and turns the choice under the mouse yellow; a left click returns that choice. Jim then says the chosen line, and the script goes on after it.
+- **Other things scripts start.** `play sound` plays a voice file from the archive the same way; `play cd` plays a CD audio track; `play avi` plays a movie from the game disc (`INSTALL\BIN\DATA<number>.BIN`, not in the archive, format unread) until it ends or a key is pressed; `run 'FANMTRONO'` is a scene change to the throne room (label `ir`: Jim hidden) or the village (any other label).
+Ported and checked against the original:
+- **Text** (`TextQueue`, drawn through `ScreenDisplay`): breaks a text into lines, places them (centred or left aligned, kept on screen) and draws the letters of the font (an ordinary animation file: letter *c* is picture *c* - 0x21) over the finished frame. The same lines, positions, colours and pixels as the original on 400 random cases with made-up fonts. A text call also changes the "layer depth" that decides where scaled pictures go for the rest of the frame (the original does; the choice menu uses 5, subtitles 0).
+- **The speaking rules** (`Speaker`): start a line, end it when the voice finishes or the player skips, wait for the player when there is no voice, move the mouth about every tenth of a second, give the line back. Compared with the original on 800 random sessions (calls to the sound, animation and list code are hooks, so what they do inside is not covered).
+Still to be written: the sound device (play the 22 kHz voice files, report when finished), the choice menu, the **characters** (the kind 5 object of the levels, which also needs the interactive object base: hover text, clicks and the verbs), Jim, and a real `SpeakerHost`/`ScriptHost`.
+
+### Interactive objects and verbs 🟡 (read, not ported)
+Most things in a level that the pointer can touch (the kind 5 characters, the kind 9 objects and the doors) share one base. What it does, from the original:
+- **Its record** gives a first animation frame, an *approach point* (where Jim walks to, relative to the object) and the way Jim faces on arrival, an optional line that replaces the object's name on the hover label, and up to six lines for the verbs (look, talk, and so on).
+- **A click** sets the verb on the object, makes Jim walk to the approach point, and when he arrives the handler of that verb runs. An inventory item held on the pointer takes the "use item" path instead.
+- **The default answers** when an object has no line of its own: look says "No veo nada en especial.", talk "No contesta.", the other verbs "No, no tengo ganas."; using an item on something that does not take it says "Yo no pinto ahí que me lo cargo.". Jim speaks them, the pointer is switched off meanwhile, and the object waits in the main list until the line is over.
+- **Kind 5 characters** add a text colour and width, a bank for facing frames (named MIR…) and the speaking poses (named HAB…); 17 subtypes then override the verbs with each character's own behaviour (not read).
+Still to do: port this base (needs Jim's walking and the pointer's verb state), then the kind 5 class on top of `Speaker`.
 
 ### Spoken lines ✅ (read; not yet shown or played)
 
