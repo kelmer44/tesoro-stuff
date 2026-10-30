@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 244 | 54% |
-| understood or later | 121 | 27% |
-| ported or later | 89 | 19% |
-| emu-compared or later | 72 | 16% |
+| decompiled or later | 248 | 55% |
+| understood or later | 128 | 28% |
+| ported or later | 93 | 20% |
+| emu-compared or later | 76 | 17% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -379,18 +379,18 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00410330` inferred_Player_Say · depth 10 · 33 lines · **decompiled** — (phrase record, id, flag) on the object in global 004420fc (walks, so probably the player): stores phrase +0xc4 / id +0xcc, busy +0xd4=1, starts the phrase sound (record +8) through the sound manager, slot 30 (0x78) with flag, inserts itself into the main list at priority 6, calls slot 4 | see ledger note
 - [ ] `0040fec0` inferred_Obj_Kind05_Ctor · depth 13 · 40 lines · **decompiled** — 0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags
 
-### Cluster 30: 004103f0–004108a0 (3/8 ported)
+### Cluster 30: 004103f0–004108a0 (4/8 ported)
 
 - [ ] `004103f0` inferred_C0042b060_Slot32 (vtable) · depth 0 · 8 lines · **untouched** — unread; first seen in vtable 0042b060 slot 32 (kind 5 subtype 16)
 - [x] `004104a0` inferred_Room_InsertSorted · depth 0 · 44 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::insertSorted` — inserts object into the room list ordered by object field +0x4c | room vectors 30 Oct
 - [x] `00410530` inferred_Room_RemoveObject · depth 0 · 38 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::removeObject` — room vectors 30 Oct
-- [ ] `004105a0` inferred_Display_QueueRow_TypeA · depth 0 · 177 lines · **untouched** — AddSprite helper for image type 1: builds per-scanline entries (177 lines) | name from call sites and a skim; body not yet read
+- [x] `004105a0` inferred_Display_QueueRow_TypeA · depth 0 · 177 lines · **emu-compared** — AddSprite helper for image type 1: builds per-scanline entries (177 lines) | name from call sites and a skim; body not yet read
 - [ ] `004108a0` inferred_Display_Raster_TypeA · depth 0 · 215 lines · **untouched** — rasterises queued type-A rows (215 lines) | name from call sites and a skim; body not yet read
 - [ ] `00410400` inferred_Jim_ClearSpeech (vtable) · depth 1 · 10 lines · **decompiled** — slot 28: clears phrase +0xc4 and talking flag +0xd4, removes itself from the main list
 - [x] `00410420` inferred_Room_Ctor · depth 1 · 26 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::init` — 16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list | room vectors 30 Oct
 - [ ] `004103d0` inferred_Obj_SetFacingAnim (vtable) · depth 3 · 9 lines · **decompiled** — selects the bank from +0xac and starts animation index (param-1) with AnimPlayer
 
-### Cluster 31: 00410cc0–00411f80 (0/12 ported)
+### Cluster 31: 00410cc0–00411f80 (2/12 ported)
 
 - [ ] `00410cc0` inferred_Display_QueueRow_TypeB · depth 0 · 173 lines · **untouched** — AddSprite helper for image type 3 | name from call sites and a skim; body not yet read
 - [ ] `00410fb0` inferred_Display_Raster_TypeB · depth 0 · 177 lines · **untouched** — rasterises queued type-B rows | name from call sites and a skim; body not yet read
@@ -400,20 +400,20 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00411c00` inferred_Display_IsReady · depth 0 · 7 lines · **decompiled** — returns whether the primary surface pointer (+8) is set (corrected: it is a check, not DirectDraw setup)
 - [ ] `00411c10` inferred_Display_SetFont · depth 0 · 8 lines · **decompiled** — stores pointer at slot (index*4+0x20)
 - [ ] `00411c80` inferred_Display_DrawText · depth 0 · 127 lines · **untouched** — (font, text, colour/limits, x, y, width, ...) renders a string with the game font into the frame | name from call sites and a skim; body not yet read
-- [ ] `00411f20` inferred_Display_ResetRenderQueue · depth 0 · 30 lines · **decompiled** — clears two arrays of 0x1e0 entries (stride 500 and 200 dwords) and counters
+- [x] `00411f20` inferred_Display_ResetRenderQueue · depth 0 · 30 lines · **emu-compared** → `engines/tesoro/core/renderqueue.cpp::RenderQueue::reset` — clears two arrays of 0x1e0 entries (stride 500 and 200 dwords) and counters
 - [ ] `00411870` inferred_Display_Ctor · depth 1 · 127 lines · **decompiled** — 0x13a4-byte display constructor performing the whole DirectDraw setup: DirectDrawCreate, cooperative level, display mode, primary and back surfaces; each failure shows a DIRECTDRAW message box and returns the half-built object. Flag +0x67c selects 5-5-5 pixel handling
-- [ ] `00411f80` inferred_Display_AddSprite · depth 1 · 57 lines · **decompiled** — (x, y, sort value, image, flag): clips a 640x480 sprite and queues it in the render rows (per-scanline lists) by image type (1 or 3 get extra passes)
+- [x] `00411f80` inferred_Display_AddSprite · depth 1 · 57 lines · **emu-compared** — (x, y, sort value, image, flag): clips a 640x480 sprite and queues it in the render rows (per-scanline lists) by image type (1 or 3 get extra passes)
 - [ ] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **decompiled** — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set
 
-### Cluster 32: 004120c0–00412e10 (0/7 ported)
+### Cluster 32: 004120c0–00412e10 (1/7 ported)
 
 - [ ] `004120c0` inferred_Display_AddSpriteScaled · depth 0 · 21 lines · **decompiled** — like AddSprite with x/y scale factors (16.16 fixed)
-- [ ] `00412640` inferred_Display_Compose_Background · depth 0 · 282 lines · **untouched** — first stage of Display_Compose (282 lines) | name from call sites and a skim; body not yet read
-- [ ] `00412bb0` inferred_Display_ClearAndReset · depth 0 · 34 lines · **decompiled** — clears surfaces via DirectDraw (slot 0x80/4 and 0x1c Blt) and resets the render queue
-- [ ] `00412c50` inferred_Display_Compose_Overlay · depth 0 · 99 lines · **untouched** — later stage of Display_Compose | name from call sites and a skim; body not yet read
+- [ ] `00412640` inferred_Display_Compose_Background · depth 0 · 282 lines · **understood** — first stage of Display_Compose (282 lines) | name from call sites and a skim; body not yet read
+- [ ] `00412bb0` inferred_Display_ClearAndReset · depth 0 · 34 lines · **understood** — clears surfaces via DirectDraw (slot 0x80/4 and 0x1c Blt) and resets the render queue
+- [ ] `00412c50` inferred_Display_Compose_Overlay · depth 0 · 99 lines · **understood** — later stage of Display_Compose | name from call sites and a skim; body not yet read
 - [ ] `00412120` inferred_Display_RasterRow · depth 1 · 101 lines · **untouched** — rasterises one scanline using the three type rasterisers | name from call sites and a skim; body not yet read
 - [ ] `004123e0` inferred_Display_StartEffect · depth 1 · 118 lines · **untouched** — (effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read
-- [ ] `00412e10` inferred_Display_Compose · depth 2 · 263 lines · **untouched** — per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read
+- [x] `00412e10` inferred_Display_Compose · depth 2 · 263 lines · **emu-compared** → `engines/tesoro/core/screendisplay.cpp::ScreenDisplay::compose` — per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read
 
 ### Cluster 33: 004137c0–004139e0 (1/7 ported)
 

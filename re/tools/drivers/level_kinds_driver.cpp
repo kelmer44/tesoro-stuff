@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
 	FILE *tre = fopen((dir + "/TESORO.TRE").c_str(), "rb"), *dat = fopen((dir + "/TESORO.DAT").c_str(), "rb");
 	if (!tre || !dat) return 2;
 	FileStream ds(dat);
-	std::map<std::string, unsigned> all;
+	std::map<std::string, unsigned> all; std::map<unsigned, unsigned> alltypes;
 	unsigned char rec[28];
 	while (fread(rec, 28, 1, tre) == 1) {
 		if (!(rec[8] & 4)) continue;
@@ -57,10 +57,21 @@ int main(int argc, char **argv) {
 		if (!lv.load(ds, off + 4, 0, false, 0)) { printf("%s: load failed\n", nm.c_str()); continue; }
 		printf("%-14s rooms %u banks %u objects %u |", nm.c_str(), lv.roomCount(), lv.bankCount(), (unsigned)lv.objects().count());
 		for (auto &k : lv.kinds) { printf(" k%u:%d", k.first, k.second); all[std::to_string(k.first)] += k.second; }
+		{
+			std::map<unsigned, int> types; unsigned images = 0;
+			for (uint b = 0; b < lv.bankCount(); ++b) {
+				const Tesoro::AnimBank *bk = lv.banks()[b].bank();
+				for (uint i = 0; i < bk->imageCount(); ++i) { ++images; if (bk->image(i).isLoaded()) types[bk->image(i).type()]++; }
+			}
+			printf(" | images %u:", images);
+			for (auto &t : types) printf(" t%u:%d", t.first, t.second);
+			for (auto &t : types) alltypes[t.first] += t.second;
+		}
 		printf("\n");
 	}
 	printf("TOTAL:");
 	for (auto &k : all) printf(" k%s:%u", k.first.c_str(), k.second);
+	printf("\nIMAGE TYPES:"); for (auto &t : alltypes) printf(" t%u:%u", t.first, t.second);
 	printf("\n");
 	return 0;
 }

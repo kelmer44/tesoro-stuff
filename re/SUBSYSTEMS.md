@@ -323,6 +323,20 @@ a click on a menu item prints a warning once and does nothing.
 one kind 3, and two kind 25. All three kinds are now ported, so the menu level can be built; what is missing for a first picture is the screen's image copy, a frame loop and mouse input. The new-game menu
 (`NUEVO`) adds more kind 3 and kind 25 and nothing else.
 
+## The screen: how pictures get drawn (first layer ✅)
+
+The screen does not paint each picture straight away. Each frame, every object hands the screen its picture and a depth
+number (smaller = nearer). For every one of the 480 screen rows the screen keeps a short list of **spans**: stretches of
+the row, each pointing at the pixels that will show there. A new span cuts the ones behind it and is cut by the ones in front,
+so a row ends up as a left-to-right list of visible pieces with nothing overdrawn. Only at the end of the frame, when the frame
+is composed, are the pieces copied into the picture. Scaled pictures, shadow pictures and text take other routes.
+
+What is ported and checked against the original: emptying the lists, adding an ordinary (literal) picture, the span
+cutting (including pictures hanging off any screen edge) and the **compose**, which copies the spans of every row into
+the 640x480 picture, left to right. The new `ScreenDisplay` class owns the queue and the picture. The compose relies on
+the first picture of a frame being a full-screen background, as the game always draws. Not yet: the other two picture kinds,
+scaled pictures (used by characters), shadows, text, the fades, and putting the finished picture on the real screen.
+
 ## Still to explore
 
 - Drawing: how pictures end up on the screen, and in which order.

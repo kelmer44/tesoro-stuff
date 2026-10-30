@@ -21976,7 +21976,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 30,
-  "status": "untouched",
+  "status": "emu-compared",
   "engine": "",
   "notes": "AddSprite helper for image type 1: builds per-scanline entries (177 lines) | name from call sites and a skim; body not yet read"
  },
@@ -22217,8 +22217,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/renderqueue.cpp::RenderQueue::reset",
   "notes": "clears two arrays of 0x1e0 entries (stride 500 and 200 dwords) and counters"
  },
  {
@@ -22243,7 +22243,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "(x, y, sort value, image, flag): clips a 640x480 sprite and queues it in the render rows (per-scanline lists) by image type (1 or 3 get extra passes)"
  },
@@ -22342,7 +22342,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 32,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "first stage of Display_Compose (282 lines) | name from call sites and a skim; body not yet read"
  },
@@ -22362,7 +22362,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 32,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "clears surfaces via DirectDraw (slot 0x80/4 and 0x1c Blt) and resets the render queue"
  },
@@ -22381,7 +22381,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 32,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "later stage of Display_Compose | name from call sites and a skim; body not yet read"
  },
@@ -22406,8 +22406,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 32,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/screendisplay.cpp::ScreenDisplay::compose",
   "notes": "per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read"
  },
  {

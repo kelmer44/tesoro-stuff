@@ -123,3 +123,6 @@ Mid base (vtable 0042ba68, shared by the clickable kinds) fields seen: +0x70 tar
 
 ## Kind 1 object (camera frame, vtable 00428ac8) — built by 00406980, size 0x84
 +0x6c char[12] name of a target object (NUL-terminated by the zero at +0x78 until attach) · +0x78 resolved target object (set by 004069e0) · +0x7d byte (data byte 0xe) · +0x7e u16 (data bytes 0xf-0x10) · +0x80 u16 (data byte 0xd + 1). Vtable: slot 0 OnAttach (004069e0), slot 4 returns 1 (00417b30), the rest base. Level +0x90 points at it.
+
+## Display render queues (global 00442108; cluster 30-32, partly read)
++0x670 ptr main queue: 480 rows x 2000 bytes · +0x674 ptr mask queue: 480 rows x 800 bytes · +0x678 ptr locked frame surface (rows of 1280 bytes, set by Compose) · +0x66c ptr 32 KB shadow lookup table · +0x664 int deferred scaled sprite count (entries of 0x20 bytes from +0x24) · +0x668 u16 · +0x66a byte surface locked · +0x67c byte pixels are 5-5-5 · +0x13a0 int queued text/overlay count (entries of 0x70 bytes from +0x680). Row block: header (head, u16 bump at +0xc, free list at +0x10) then 16-byte span nodes {next, pixels, x0 s16, x1 s16, depth u16, colour u16}. Image: +8 w, +0xa h, +0xc type (1 literal, 3, other = mask), +0x10 rows {items ptr, u16 count}; item {pixels, u16 xoff, u16 len}.

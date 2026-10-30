@@ -81,3 +81,15 @@ re/.venv/bin/python re/tools/gen_vectors_menuitem.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/menuitem_driver.cpp \
     "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/menuitem_driver
 local-media/bin/menuitem_driver local-media/vectors/menuitem.txt
+
+# Render queue: original ResetRenderQueue / AddSprite / QueueRow (literal images; Unicorn) vs engine RenderQueue span lists
+re/.venv/bin/python re/tools/gen_vectors_render.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/render_driver.cpp \
+    "$ENG/engines/tesoro/core/renderqueue.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" -o local-media/bin/render_driver
+local-media/bin/render_driver local-media/vectors/render.txt
+
+# Compose: original Display_Compose (surface pre-locked) on queued literal sprites over a full-screen background vs engine ScreenDisplay::compose
+re/.venv/bin/python re/tools/gen_vectors_compose.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/compose_driver.cpp \
+    "$ENG/engines/tesoro/core/screendisplay.cpp" "$ENG/engines/tesoro/core/renderqueue.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" -lz -o local-media/bin/compose_driver
+local-media/bin/compose_driver local-media/vectors/compose.txt
