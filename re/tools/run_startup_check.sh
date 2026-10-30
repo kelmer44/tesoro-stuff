@@ -135,3 +135,15 @@ re/.venv/bin/python re/tools/gen_vectors_fade.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/fade_driver.cpp \
     "$ENG/engines/tesoro/core/screendisplay.cpp" "$ENG/engines/tesoro/core/renderqueue.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" -lz -o local-media/bin/fade_driver
 local-media/bin/fade_driver local-media/vectors/fade.txt
+
+# Script compiler: original .DLG loader 0x406190 / parser 0x404810 / label resolver 0x406110 vs engine ScriptLibrary (shipped scripts, synthetic and randomly edited blocks)
+re/.venv/bin/python re/tools/gen_vectors_dlg.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/dlg_driver.cpp \
+    "$ENG/engines/tesoro/core/scriptblock.cpp" "$ENG/engines/tesoro/core/stdiotext.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/dlg_driver
+local-media/bin/dlg_driver local-media/vectors/dlg.txt
+
+# Speech tables: original 0x413570 / 0x4137c0 / 0x4138b0 / 0x413940 vs engine SpeechTable / SpeechTables (shipped texts, randomly edited slices, boundary cases)
+re/.venv/bin/python re/tools/gen_vectors_speech.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/speech_driver.cpp \
+    "$ENG/engines/tesoro/core/speechtable.cpp" "$ENG/engines/tesoro/core/stdiotext.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/speech_driver
+local-media/bin/speech_driver local-media/vectors/speech.txt

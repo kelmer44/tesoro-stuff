@@ -31,7 +31,8 @@ flowchart TD
     Collide -->|"touched list"| Cursor
     Cursor -->|"click, hover"| Objects
     Clock --> Random["Random numbers ✅"]
-    Names["Name keys ✅"] -.-> Scripts["Scripts ❓"]
+    Names["Name keys ✅"] -.-> Scripts["Scripts 🟡<br/>read and compiled ✅, run ⬜"]
+    Archive --> Scripts
     Scripts --> Objects
 ```
 
@@ -46,6 +47,13 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `MenuItem` (25), lists `ObjectList`.
 - Input: `InputStates`, `Mouse`, `Cursor` (both pointers), `HoverText`.
 - Collisions: `sweepRects`, `Level::collisionPass`.
+- Spoken lines: `SpeechTables`, `SpeechTable` (the four `*.TXT` files), `WavLookup`; `StdioText` (the reader both text formats use).
+- Scripts: `ScriptLibrary` (all blocks), `ScriptBlock` (one script: characters, commands, labels), `ScriptEntry` (one command), `ScriptLookup` (what a script asks the rest of the game while it is read).
+
+**Which classes copy the original and which are only seams of the port.** The original is mostly plain functions on global tables.
+- Mirror an original structure: `ScriptBlock`/`ScriptLibrary` (the script objects and their table), `ScriptEntry` (the 24-byte command), `SpeechTable`/`SpeechTables` (the four tables and their search).
+- Port-only, no original counterpart: `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), `ScriptLookup` and `WavLookup` (let the readers ask for phrase numbers, levels and voice files without depending on the rest of the engine), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
+- Only behaviour was compared with the original; the class layout was never meant to match.
 
 ---
 
@@ -353,7 +361,7 @@ three small values nobody has been traced reading yet.
 **Kind 25 is ported ✅ except for what a click leads to.** A menu item shows one frame, starts hidden, carries an action number, and
 since it is a hitter target the pointer hovers over it. A click (left, or the alternative, which does the same) acts by number:
 - 0 "Nueva partida": the picture fades to black (4 steps of 100 ms), the player goes into the new-game menu, and the menu script
-  `FANMMENU/nuevo` starts; it ends the pass.
+  `FANMMENU/nuevo` starts (video 1 and a picture, see Scripts); it ends the pass.
 - 1 "Cargar partida": fade, then the saved-game list screen (not read).
 - 2, 3, 4 (easy, regular, hard in the new-game menu): easy and hard start the scripts `FANMMENU/facil` and `FANMMENU/dificil`; regular
   fades and runs a routine that probably starts the game.
@@ -450,12 +458,52 @@ object list passes, so there is no cursor drawn, no hover or click on the menu i
 collision pass, the cursor and companion objects (built from the interface level), the kind-2 picture objects the cursor
 uses and the menu item's click code.
 
+## Scripts 🟡 (read and compiled ✅, run ⬜)
+
+The story is told by **scripts**, and they are plain text. Four files in the archive hold them: `ANIMS.DLG` (cut scenes and the
+menu scripts), `CONVERS.DLG` (conversations), `ICONS.DLG` (what happens when an inventory item is used) and `OBJETOS.DLG`
+(what happens when Jim does something with an object). Together 145 named **blocks**. A block starts with a line `.NAME`, then
+the names of the characters who talk in it, then one command per line, and ends with `.END`. A few blocks carry a number after
+their name: that number says which piece of the game's own code handles the block's `DO` lines (a cut scene that needs
+something no command can express, for instance the fade of the menu).
+
+The commands are few: say a line (the vast majority, `PHRASE, n`), wait some milliseconds, `jmp` to a label, `if vN == V jmp`,
+set a variable, `run` another block at a label, `play avi/cd/sound`, `menu` with its `menuitem` choices, `DO` (call the block's
+own routine), and `sendmessage 'OBJECT' ...`, an order for an object: play an animation (and wait for it, loop it, stop it),
+walk to a point, look up/down/left/right, show or hide it, switch it on or off. Variables are single bytes shared by the whole game.
+
+The engine now **reads** all of it: `ScriptLibrary` turns each file into compiled commands (the original's 24-byte layout), and
+a second step (`resolve`) replaces names by positions: jump targets, the chain of choices in a menu, which block a `run` starts.
+This is checked against the original's own reader on all 145 shipped blocks, on invented blocks that use what the shipped scripts
+never do, and on 500 randomly damaged real blocks (the same lines are accepted, rejected or compiled identically). What is
+**not** there: the part that *runs* a script (walks through the commands, waits for speech, animations and timers, shows menus);
+the spoken lines are read (see below) but nothing shows or says them yet; the `DO` routines (one per numbered block, only the menu's is read).
+
+### Spoken lines ✅ (read; not yet shown or played)
+
+What the characters say is not in the scripts: a script only names a line (`ANM1OFF0`). The text is in four files, `OBJETOS.TXT`,
+`ANIMS.TXT`, `CONVERS.TXT` and `ICONS.TXT`, one line each as `ID, "text"` (2,687 lines in all, in an old DOS code page:
+accents and the opening question and exclamation marks are single bytes above 127). The game reads each file into a table sorted by the name key, and
+remembers where the voice recording `ID.WAV` is in the archive (or that there is none). When a script mentions a line, the four
+tables are searched in that order and the first hit is kept. This is `SpeechTables`, checked against the original's reader, sort
+and search on the shipped files, on damaged copies of them and on texts that end exactly at the original's stopping point.
+The text reader both formats share is `StdioText`, a small copy of the C library behaviour the original relies on (`scanf`
+matching and skipping). Not done: showing the text, playing the sound, the font (`FUENTES.ANM`) and where text is placed.
+
+**What the menu scripts do** (block `FANMMENU`, type 17; read from the commands, the pictures behind the object names are not
+looked at yet): `nuevo` (started by "Nueva partida") plays video 1 and shows the object `CENSURA` for 5.5 seconds, then ends.
+`facil` and `dificil` (started by the "easy" and "hard" signs of the new-game menu) each fade out, play CD track 7 over a black
+background and show a series of objects one after another (easy: `ENHORABUENA`, `CONSEGUISTE`, `HASGANADO`, the last one looping;
+hard: `PLAF`, `AY`, `PUM`, `HASMUERTO`), then an animated text (`TXTFACIL`, `TXTDIFICIL`), fade again and hide them all. By the
+names (congratulations, you won / bang, ouch, you died) they look like gag endings, so only "regular" (action 3) would start the real game.
+This is a reading of the names, not something seen on screen.
+
 ## Still to explore
 
 - The cursor's picture objects and its construction, so that the mouse is visible and the menu items react.
 - Drawing the remaining ways: shadows, scaled pictures (characters), text, fades.
 - The other kinds of object (Jim, items, doors, scenery...) and the shaped (pixel-accurate) part of the collision test.
-- Scripts: how story events and puzzles are described and run.
+- Running scripts: the interpreter, the spoken lines and menus, the sound and video commands, the `DO` routines, Jim.
 - Sound and music.
 - Saving and loading.
 

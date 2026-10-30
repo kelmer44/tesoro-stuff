@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 255 | 57% |
-| understood or later | 143 | 31% |
-| ported or later | 107 | 23% |
-| emu-compared or later | 89 | 19% |
+| decompiled or later | 257 | 57% |
+| understood or later | 160 | 35% |
+| ported or later | 117 | 26% |
+| emu-compared or later | 97 | 21% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -117,35 +117,35 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 9: 004043b0–00404630 (0/7 ported)
 
 - [ ] `004043b0` inferred_Sound_Stop · depth 0 · 11 lines · **decompiled** — stops the slot's buffer (slot 0x48/0x34 calls) and clears its id
-- [ ] `00404630` inferred_DlgEntry_CopyCtorA · depth 2 · 69 lines · **decompiled** — copy constructor of a script-block entry (vtable 00428078)
+- [ ] `00404630` ScriptBlock_CopyCtor2 · depth 2 · 69 lines · **understood** — copy constructor of a script-block entry (vtable 00428078) | same copy as 004067a0 for types 0x12-0x15
 - [ ] `00404260` inferred_Sound_Dtor · depth 5 · 22 lines · **untouched** —  | name from call sites and a skim; body not yet read
 - [ ] `004042c0` inferred_Sound_LoadWavData · depth 8 · 54 lines · **untouched** — reads the sound data chunk from the archive into the slot | name from call sites and a skim; body not yet read
 - [ ] `004043e0` inferred_Sound_StreamRefill · depth 8 · 106 lines · **untouched** — refills a streaming DirectSound buffer from the archive; returns whether the sound is still active | name from call sites and a skim; body not yet read
 - [ ] `00404110` inferred_Sound_PlayWav · depth 9 · 46 lines · **decompiled** — (archive offset, ...) reads a RIFF/WAVE header from the archive, fills the next sound slot (DirectSoundBuffer), sets volume and pan, starts playing and returns a new id
 - [ ] `00404210` inferred_Sound_Update · depth 9 · 28 lines · **decompiled** — per-frame: refills streaming buffers (Sound_StreamRefill) and retires finished slots
 
-### Cluster 10: 004060b0–00406140 (0/9 ported)
+### Cluster 10: 004060b0–00406140 (5/9 ported)
 
-- [ ] `004060b0` inferred_DialogueTable_Ctor · depth 0 · 8 lines · **decompiled** — 0x2b0-byte table; entry count at +0x2ac set to 0
-- [ ] `004060c0` inferred_DialogueTable_FindByKey · depth 0 · 22 lines · **decompiled** — linear search of the table's script entries (pointer array at +0x54) for a 64-bit name key at script +0x44/+0x48
-- [ ] `00405630` inferred_DlgScript_Link · depth 1 · 108 lines · **decompiled** — post-load pass over the steps resolving actor keys and jump targets (types 4-7)
-- [ ] `00406110` inferred_DialogueTable_Finalize · depth 2 · 19 lines · **decompiled** — calls 00405630 for each entry
-- [ ] `00404810` inferred_DlgScript_Load · depth 12 · 691 lines · **decompiled** — constructor and text parser (691 lines): reads one script block from the stream with a sscanf-based command grammar, compiles it to 24-byte steps (+0xbc, count +0xc0) plus actor key table (+0xc4, 12-byte entries) and variable byte array (+0xd0); reports "ERROR AL LEER COMANDO" on a bad line | parser read: dispatches each line on its first character (space, ., D, _, b, i, j, m, p, r, s, v); see re/SCRIPT_LANGUAGE.md
-- [ ] `00405a60` inferred_DlgScript_RunSteps · depth 13 · 228 lines · **decompiled** — executes non-blocking steps from the program counter until a blocking one: say, goto, label/loop, conditional jump on a script variable, event call, actor command (animate, walk, face, activate, show), variable assignment, send message, movie, WAV, CD track
-- [ ] `00405fd0` inferred_DlgScript_Start · depth 13 · 44 lines · **decompiled** — (event, key lo, key hi, variables, level): resolves actors in the level, selects the entry point matching the event key, hides the cursor, inserts the script into the main list at priority 0x1e and runs it; returns 3
-- [ ] `00405850` inferred_DlgScript_Update (vtable) · depth 14 · 70 lines · **decompiled** — per-frame step of a scripted action list (24-byte steps at +0xbc, current step +0xcc): waits (type 1 until the speaker finishes plus 200 ms, type 2 timed), choice menus (types 5, 6: asks the player object to say the options), cursor show/hide (type 8), type 9 wait for an animation; advances or ends the list (returns 2 or 3) | per-frame step: handles the blocking step types (1 wait for speech +200 ms, 2 timed wait, 5/6 choice menu, 8 cursor, 9 animation wait) and, when the program counter moved, runs RunSteps; returns 2 when finished
-- [ ] `00406140` inferred_DlgScript_ResumePlayer (vtable) · depth 14 · 12 lines · **decompiled** — removes a helper object from the main list, clears Jim's walking flag, sets facing and advances the program counter
+- [x] `004060b0` ScriptTable_Ctor · depth 0 · 8 lines · **ported** — 0x2b0-byte table; entry count at +0x2ac set to 0
+- [x] `004060c0` ScriptTable_Find · depth 0 · 22 lines · **ported** → `engines/tesoro/core/scriptblock.cpp::ScriptLibrary::find` — linear search of the table's script entries (pointer array at +0x54) for a 64-bit name key at script +0x44/+0x48
+- [x] `00405630` ScriptBlock_Resolve · depth 1 · 108 lines · **emu-compared** → `engines/tesoro/core/scriptblock.cpp::ScriptLibrary::resolve` — post-load pass over the steps resolving actor keys and jump targets (types 4-7)
+- [x] `00406110` ScriptTable_ResolveAll · depth 2 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptblock.cpp::ScriptLibrary::resolve` — calls 00405630 for each entry
+- [x] `00404810` ScriptBlock_Parse · depth 12 · 691 lines · **emu-compared** → `engines/tesoro/core/scriptblock.cpp::ScriptBlock::parse` — constructor and text parser (691 lines): reads one script block from the stream with a sscanf-based command grammar, compiles it to 24-byte steps (+0xbc, count +0xc0) plus actor key table (+0xc4, 12-byte entries) and variable byte array (+0xd0); reports "ERROR AL LEER COMANDO" on a bad line | parser read: dispatches each line on its first character (space, ., D, _, b, i, j, m, p, r, s, v); see re/SCRIPT_LANGUAGE.md
+- [ ] `00405a60` Script_Execute · depth 13 · 228 lines · **understood** — executes non-blocking steps from the program counter until a blocking one: say, goto, label/loop, conditional jump on a script variable, event call, actor command (animate, walk, face, activate, show), variable assignment, send message, movie, WAV, CD track
+- [ ] `00405fd0` Script_Start · depth 13 · 44 lines · **understood** — (event, key lo, key hi, variables, level): resolves actors in the level, selects the entry point matching the event key, hides the cursor, inserts the script into the main list at priority 0x1e and runs it; returns 3
+- [ ] `00405850` Script_Tick (vtable) · depth 14 · 70 lines · **understood** — per-frame step of a scripted action list (24-byte steps at +0xbc, current step +0xcc): waits (type 1 until the speaker finishes plus 200 ms, type 2 timed), choice menus (types 5, 6: asks the player object to say the options), cursor show/hide (type 8), type 9 wait for an animation; advances or ends the list (returns 2 or 3) | per-frame step: handles the blocking step types (1 wait for speech +200 ms, 2 timed wait, 5/6 choice menu, 8 cursor, 9 animation wait) and, when the program counter moved, runs RunSteps; returns 2 when finished
+- [ ] `00406140` Script_Resume (vtable) · depth 14 · 12 lines · **understood** — removes a helper object from the main list, clears Jim's walking flag, sets facing and advances the program counter
 
-### Cluster 11: 004067a0–00407000 (2/8 ported)
+### Cluster 11: 004067a0–00407000 (3/8 ported)
 
-- [ ] `004067a0` inferred_DlgEntry_CopyCtorB · depth 0 · 67 lines · **decompiled** — field-by-field copy of an entry (used by DialogueTable_Load for kind 1)
+- [ ] `004067a0` ScriptBlock_CopyCtor · depth 0 · 67 lines · **understood** — field-by-field copy of an entry (used by DialogueTable_Load for kind 1)
 - [ ] `00406c50` inferred_Obj_Kind13_Update (vtable) · depth 1 · 44 lines · **decompiled** — slot 4 of kind 13: same pending-click dispatch as Interactive_Update, with an extra item-use path when no verb handler applies (calls the hovered object's slot 27)
 - [x] `004069e0` inferred_Obj_Kind01_OnAttach (vtable) · depth 2 · 35 lines · **emu-compared** — vtable slot 0 of kind 1 (run by Object_AttachToLevel): resolves the walk area object by the name at +0x6c in the level's object list (+0x78), sets the camera bounds to the first frame's rectangle and moves the camera to the object's position
 - [x] `00406980` inferred_Obj_Kind01_Ctor · depth 3 · 16 lines · **emu-compared** — 0x84 bytes, vtable 00428ac8, extends Kind00; Level_CreateObject stores the instance at level +0x90 (single special object per level)
 - [ ] `00407000` inferred_Item_SetHeld (vtable) · depth 3 · 30 lines · **decompiled** — kind 13 method (flag): when set, makes this object the carried item (cursor +0x12c) and switches the cursor animation to item id + 7; when cleared, drops it. Verb indices 7 and above are therefore carried inventory items
 - [ ] `00406a90` inferred_Obj_Kind13_Ctor · depth 12 · 88 lines · **decompiled** — 0xac bytes, extends MidBase; 14 per-subtype vtables selected by record byte 1; increments global instance counter 004420f8; phrase key lookup
 - [ ] `00406d50` inferred_C00428b00_SetVerbAndClick (vtable) · depth 12 · 123 lines · **untouched** — unread; first seen in vtable 00428b00 slot 14
-- [ ] `00406190` inferred_DialogueTable_Load · depth 13 · 228 lines · **decompiled** — (archive offset, id): reads entries introduced by '.' bytes; each entry built by 00404810 and registered by kind
+- [x] `00406190` ScriptFile_Load · depth 13 · 228 lines · **emu-compared** → `engines/tesoro/core/scriptblock.cpp::ScriptLibrary::load` — (archive offset, id): reads entries introduced by '.' bytes; each entry built by 00404810 and registered by kind
 
 ### Cluster 12: 004079d0–00407aa0 (1/11 ported)
 
@@ -415,15 +415,15 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `004123e0` inferred_Display_FadeOut · depth 1 · 118 lines · **emu-compared** → `engines/tesoro/core/screendisplay.cpp::ScreenDisplay::fadeOut` — (effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read
 - [x] `00412e10` inferred_Display_Compose · depth 2 · 263 lines · **emu-compared** → `engines/tesoro/core/screendisplay.cpp::ScreenDisplay::compose` — per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read
 
-### Cluster 33: 004137c0–004139e0 (1/7 ported)
+### Cluster 33: 004137c0–004139e0 (5/7 ported)
 
-- [ ] `004137c0` inferred_TextTable_Sort · depth 0 · 67 lines · **untouched** — sorts 16-byte table records by their 64-bit key | name from call sites and a skim; body not yet read
-- [ ] `004138b0` inferred_TextTable_Lookup · depth 0 · 47 lines · **decompiled** — (key lo, key hi) binary search in the sorted table; returns the record or 0
+- [x] `004137c0` SpeechTable_Sort · depth 0 · 67 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — sorts 16-byte table records by their 64-bit key | name from call sites and a skim; body not yet read
+- [x] `004138b0` SpeechTable_Find · depth 0 · 47 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (key lo, key hi) binary search in the sorted table; returns the record or 0
 - [x] `004139c0` inferred_Clock_Ctor · depth 0 · 14 lines · **emu-compared** → `core/clock.cpp::GameClock::GameClock` — game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended
 - [ ] `004139e0` inferred_BusyWait · depth 0 · 18 lines · **decompiled** — (ms) spins on GetTickCount until the time has passed
 - [ ] `004132b0` inferred_Movie_Start · depth 11 · 123 lines · **decompiled** — DirectShow setup via CoCreateInstance, builds path c:\INSTALL\BIN\DATA\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed
-- [ ] `00413570` inferred_TextTable_Load · depth 11 · 121 lines · **decompiled** — (archive offset): reads lines of the OBJETOS.TXT-style table and stores records of 16 bytes; first pass counts lines
-- [ ] `00413940` inferred_PhraseLookup · depth 11 · 27 lines · **decompiled** — (name) hashes the name with NameHash64 and searches the four text tables 00442110..0044211c; MessageBox "frase no encontrada" if missing
+- [x] `00413570` SpeechTable_Load · depth 11 · 121 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (archive offset): reads lines of the OBJETOS.TXT-style table and stores records of 16 bytes; first pass counts lines
+- [x] `00413940` Phrase_Find · depth 11 · 27 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (name) hashes the name with NameHash64 and searches the four text tables 00442110..0044211c; MessageBox "frase no encontrada" if missing
 
 ### Cluster 34: 00413a10–00414560 (7/12 ported)
 
@@ -539,7 +539,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 - [ ] `00417b30` inferred_Obj_RetTrue (vtable) · depth 0 · 7 lines · **understood** — MidBase slot 16: returns 1 (is interactive/enabled default)
 - [ ] `004179b0` inferred_C0042bc08_RunVerb (vtable) · depth 2 · 41 lines · **untouched** — unread; first seen in vtable 0042bc08 slot 13
-- [ ] `00417c80` inferred_C004282d0_Slot28 (vtable) · depth 2 · 10 lines · **untouched** — unread; first seen in vtable 004282d0 slot 28
+- [ ] `00417c80` ScriptFANMMENU_Do (vtable) · depth 2 · 10 lines · **understood** — unread; first seen in vtable 004282d0 slot 28
 - [x] `00417ad0` inferred_Obj_Kind25_Ctor · depth 4 · 12 lines · **emu-compared** — 0xa4 bytes, vtable 0042c000, extends MidBase
 - [ ] `00417ca0` inferred_C004295d0_UseItem (vtable) · depth 13 · 21 lines · **untouched** — unread; first seen in vtable 004295d0 slot 27 (kind 20 subtype 7)
 - [ ] `00417d00` inferred_C00429560_UseItem (vtable) · depth 13 · 31 lines · **untouched** — unread; first seen in vtable 00429560 slot 27 (kind 20 subtype 8)
