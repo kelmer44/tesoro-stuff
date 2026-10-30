@@ -19,6 +19,8 @@
 
 void NORETURN_PRE error(const char *s, ...) { va_list ap; va_start(ap, s); fprintf(stderr, "engine error: "); vfprintf(stderr, s, ap); fprintf(stderr, "\n"); va_end(ap); exit(3); }
 
+void warning(const char *s, ...) { (void)s; }
+
 using namespace Tesoro;
 
 struct Lookup : ScriptLookup {

@@ -11384,8 +11384,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptrunner.cpp::ChoiceMenu::run",
   "notes": "lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled"
  },
  {

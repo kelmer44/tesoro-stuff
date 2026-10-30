@@ -49,13 +49,14 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Collisions: `sweepRects`, `Level::collisionPass`.
 - Walking: `WalkArea` (shape, scale and route), `JimWalker` (Jim's walk), `WalkTarget` (told on arrival), `Walker` and `JimWalkerHost` (what they ask of the game).
 - Sound: `SoundDevice` (voices), `CdAudio` (music), `VoiceBackend` and `CdBackend` (what they play through; `MixerVoiceBackend`, `ScummCdBackend`).
+- Menu: `ChoiceMenu` (one frame of the list of choices) and `ChoiceMenuHost` (pointer, label, mouse).
 - Speaking: `Speaker` (the speaking rules of a character) and `SpeakerHost` (what it asks of the game).
 - Spoken lines: `SpeechTables`, `SpeechTable` (the four `*.TXT` files), `WavLookup`; `StdioText` (the reader both text formats use).
 - Scripts: `ScriptRunner` (runs blocks), `ScriptRun` (what one running block remembers), `ScriptHost` (what a running script asks of the game), `ScriptLibrary` (all blocks), `ScriptBlock` (one script: characters, commands, labels), `ScriptEntry` (one command), `ScriptLookup` (what a script asks the rest of the game while it is read).
 
 **Which classes copy the original and which are only seams of the port.** The original is mostly plain functions on global tables.
 - Mirror an original structure: `ScriptBlock`/`ScriptLibrary` (the script objects and their table), `ScriptEntry` (the 24-byte command), `SpeechTable`/`SpeechTables` (the four tables and their search).
-- Port-only, no original counterpart: `VoiceBackend`, `CdBackend`, `JimWalkerHost`, `SpeakerHost`, `ScriptHost` (the original calls the objects directly), `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), `ScriptLookup` and `WavLookup` (let the readers ask for phrase numbers, levels and voice files without depending on the rest of the engine), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
+- Port-only, no original counterpart: `ChoiceMenuHost`, `VoiceBackend`, `CdBackend`, `JimWalkerHost`, `SpeakerHost`, `ScriptHost` (the original calls the objects directly), `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), `ScriptLookup` and `WavLookup` (let the readers ask for phrase numbers, levels and voice files without depending on the rest of the engine), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
 - Only behaviour was compared with the original; the class layout was never meant to match.
 
 ---
@@ -512,7 +513,8 @@ Ported and checked against the original:
 - **Text** (`TextQueue`, drawn through `ScreenDisplay`): breaks a text into lines, places them (centred or left aligned, kept on screen) and draws the letters of the font (an ordinary animation file: letter *c* is picture *c* - 0x21) over the finished frame. The same lines, positions, colours and pixels as the original on 400 random cases with made-up fonts. A text call also changes the "layer depth" that decides where scaled pictures go for the rest of the frame (the original does; the choice menu uses 5, subtitles 0).
 - **The speaking rules** (`Speaker`): start a line, end it when the voice finishes or the player skips, wait for the player when there is no voice, move the mouth about every tenth of a second, give the line back. Compared with the original on 800 random sessions (calls to the sound, animation and list code are hooks, so what they do inside is not covered).
 Also ported: **the sound device** (`SoundDevice`: three voice records, the 44-byte WAV check, ids, the active list that is tidied once a frame; compared with the original on 800 sessions, with the mixer standing in for DirectSound) and the **music** (`CdAudio`: one track at a time, looping). `MixerVoiceBackend` and `ScummCdBackend` connect them to ScummVM. Not checked: how long a voice lasts exactly (the mixer decides), and which CD track number means which file.
-Still to be written: the choice menu, the **characters** (the kind 5 object of the levels, which also needs the interactive object base: hover text, clicks and the verbs), Jim, and a real `SpeakerHost`/`ScriptHost`.
+Also ported: **the choice menu** (`ChoiceMenu`: lays the choices out and bottom-aligns them, tracks the one under the mouse, answers a click; 9,152 runs identical to the original with its own text layout).
+Still to be written: the **characters** (the kind 5 object of the levels, which also needs the interactive object base: hover text, clicks and the verbs), Jim, and a real `SpeakerHost`/`ScriptHost`.
 
 ### Jim and walking 🟡 (read; walking ✅ and the walk area ✅ ported, Jim himself ⬜)
 Jim is a character like the others (he speaks through the same `Speaker` rules) with nine animation files: four walking directions, a standing one (`QUIETO`) whose frames show which way he faces, and four speaking ones. What the original does:

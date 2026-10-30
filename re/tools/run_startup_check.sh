@@ -151,7 +151,7 @@ local-media/bin/speech_driver local-media/vectors/speech.txt
 # Script executor: original start 0x405fd0 / tick 0x405850 / executor 0x405a60 / resume 0x406140 vs engine ScriptRunner (every shipped block, random worlds; the calls to the rest of the game are compared)
 re/.venv/bin/python re/tools/gen_vectors_run.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/run_driver.cpp \
-    "$ENG/engines/tesoro/core/scriptrunner.cpp" "$ENG/engines/tesoro/core/scriptblock.cpp" "$ENG/engines/tesoro/core/stdiotext.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/run_driver
+    "$ENG/engines/tesoro/core/scriptrunner.cpp" "$ENG/engines/tesoro/core/scriptblock.cpp" "$ENG/engines/tesoro/core/stdiotext.cpp" "$ENG/engines/tesoro/core/namekey.cpp" "$ENG/engines/tesoro/core/screendisplay.cpp" "$ENG/engines/tesoro/core/textqueue.cpp" "$ENG/engines/tesoro/core/renderqueue.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" -lz -o local-media/bin/run_driver
 local-media/bin/run_driver local-media/vectors/run.txt local-media/dlg
 
 # Text: original Display_DrawText 0x411c80 (layout) and Compose's text overlay 0x412c50 vs engine TextQueue through ScreenDisplay (synthetic fonts, random texts, boundary cases)
@@ -183,3 +183,9 @@ re/.venv/bin/python re/tools/gen_vectors_sound.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/sound_driver.cpp \
     "$ENG/engines/tesoro/core/sounddevice.cpp" -o local-media/bin/sound_driver
 local-media/bin/sound_driver local-media/vectors/sound.txt
+
+# Choice menu: original Dialogue_ChoiceMenu 0x407d00 with the original text layout vs engine ChoiceMenu (bands scanned with the mouse, edges, button up/down)
+re/.venv/bin/python re/tools/gen_vectors_choice.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/choice_driver.cpp \
+    "$ENG/engines/tesoro/core/scriptrunner.cpp" "$ENG/engines/tesoro/core/scriptblock.cpp" "$ENG/engines/tesoro/core/stdiotext.cpp" "$ENG/engines/tesoro/core/namekey.cpp" "$ENG/engines/tesoro/core/screendisplay.cpp" "$ENG/engines/tesoro/core/textqueue.cpp" "$ENG/engines/tesoro/core/renderqueue.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" -lz -o local-media/bin/choice_driver
+local-media/bin/choice_driver local-media/vectors/choice.txt

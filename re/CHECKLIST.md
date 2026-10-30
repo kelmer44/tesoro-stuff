@@ -10,8 +10,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 261 | 58% |
 | understood or later | 197 | 44% |
-| ported or later | 144 | 32% |
-| emu-compared or later | 123 | 27% |
+| ported or later | 145 | 32% |
+| emu-compared or later | 124 | 27% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -161,11 +161,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00407790` inferred_Jim_Update (vtable) · depth 11 · 89 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp` — slot 4: per-frame walking step. Position is 24.8 fixed point (+0xe0,+0xe4); the animation's own per-frame offset (+0x28,+0x2a, root motion) scaled by perspective moves Jim; ends when the squared distance reaches zero (arrival), then removes itself from the main list and either calls slot 29 (face) or the target object's slot 13 (RunVerb)
 - [ ] `004070c0` inferred_Jim_Ctor · depth 12 · 282 lines · **decompiled** — 0x114-byte object, vtable 00428b70, base chain Kind05-family ctor 0040fea0 -> 0040ec90. Loads 9 animation files (JIMHABDER, JIMQUIETO, JIMARRIBA, JIMABAJO, JIMIZQUIERDA, JIMDERECHA, JIMHABAR ... .ANM) into bank array +0x34, name key from string at 0042d2a4, start position (0x15e,0x14), sort value 0x23, scale +0xfc = 0x100, speech/idle fields, calls SetFacing(3)
 
-### Cluster 13: 00408440–00408550 (6/12 ported)
+### Cluster 13: 00408440–00408550 (7/12 ported)
 
 - [x] `00408440` inferred_Level_ObjectMoved · depth 0 · 61 lines · **emu-compared** — re-sorts the object in the level's sorted list at +0x7c after it moved
 - [x] `00407ac0` inferred_Jim_Draw (vtable) · depth 1 · 34 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — slot 6: updates talk state then queues the current frame scaled by +0xfc (scaled sprite, 16.16 factor) at screen position relative to the camera
-- [ ] `00407d00` inferred_Dialogue_ChoiceMenu · depth 1 · 71 lines · **understood** — lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled
+- [x] `00407d00` inferred_Dialogue_ChoiceMenu · depth 1 · 71 lines · **emu-compared** → `engines/tesoro/core/scriptrunner.cpp::ChoiceMenu::run` — lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled
 - [ ] `00407f30` inferred_Jim_TalkAnimate (vtable) · depth 2 · 37 lines · **decompiled** — slot 31: draws the speaking-mouth animation; while talking picks a random frame (RandomRange) at most every 100 ms of game time, else rests on frame 1
 - [ ] `004080a0` inferred_Jim_UseItemForward (vtable) · depth 2 · 17 lines · **decompiled** — slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27
 - [x] `00408520` inferred_Level_CameraMoveTo · depth 2 · 8 lines · **emu-compared** — forwards (x, y, duration) to the camera at +0x80
