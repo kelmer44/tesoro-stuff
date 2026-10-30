@@ -4138,9 +4138,9 @@
   ],
   "data_refs": [],
   "cluster": 3,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "base slot 9: reads from a stream: current bank index (+0x32), per-frame fields of the current sequence (+0x24, +0x26, +0x30, +0x18) and an optional blob of +0x64 bytes at +0x60. Save-game deserialisation"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/object.cpp::Object::loadState",
+  "notes": "base slot 9: reads from a stream: current bank index (+0x32), per-frame fields of the current sequence (+0x24, +0x26, +0x30, +0x18) and an optional blob of +0x64 bytes at +0x60. Save-game deserialisation | state vectors 2 Nov"
  },
  {
   "addr": "00401ee0",
@@ -4750,9 +4750,9 @@
   ],
   "data_refs": [],
   "cluster": 3,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "base slot 10: mirror of LoadState using fwrite. Save-game serialisation"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/object.cpp::Object::saveState",
+  "notes": "base slot 10: mirror of LoadState using fwrite. Save-game serialisation | state vectors 2 Nov"
  },
  {
   "addr": "00401f90",
@@ -8473,9 +8473,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 5,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "0x130-byte object, vtable 00428038, base 0040e5a0; creates candidate lists (capacity 0x1e) at +0x6c/+0x70 and a shared list 00442060"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursor.cpp::init",
+  "notes": "0x130-byte object, vtable 00428038, base 0040e5a0; creates candidate lists (capacity 0x1e) at +0x6c/+0x70 and a shared list 00442060 | cursor vectors 4 Nov"
  },
  {
   "addr": "00402300",
@@ -8525,9 +8525,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 5,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "copies a C string into the cursor's hover-text buffer (+0x78), or clears it; optional ushort at +0x118"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/hovertext.cpp::HoverText::set",
+  "notes": "copies a C string into the cursor's hover-text buffer (+0x78), or clears it; optional ushort at +0x118 | hover text vectors 3 Nov"
  },
  {
   "addr": "00402440",
@@ -8712,7 +8712,7 @@
  {
   "addr": "00402e50",
   "ghidra_name": "FUN_00402e50",
-  "name": "inferred_Cursor_IsFlag10",
+  "name": "inferred_Cursor_IsHitter",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -8727,14 +8727,14 @@
   ],
   "data_refs": [],
   "cluster": 6,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "vtable slot 11 (ret 4): IsHitter(other): returns flag bit 10 (0x400) of this, ignoring the argument. Base default returns false. Level_CollisionPass asks A.slot11(B) then B.slot11(A) to decide which object is the hitter"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursor.cpp::isHitter",
+  "notes": "vtable slot 11 (ret 4): IsHitter(other): returns flag bit 10 (0x400) of this, ignoring the argument. Base default returns false. Level_CollisionPass asks A.slot11(B) then B.slot11(A) to decide which object is the hitter | cursor vectors 4 Nov"
  },
  {
   "addr": "00402e60",
   "ghidra_name": "FUN_00402e60",
-  "name": "inferred_Cursor_AddCandidate",
+  "name": "inferred_Cursor_OnTouched",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -8751,9 +8751,9 @@
   ],
   "data_refs": [],
   "cluster": 6,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "vtable slot 12 (ret 8: two stack arguments, the decompiler shows one): OnTouched(other, extra). Cursor override appends the touched object (first argument) to candidate list +0x70 and returns 1. Called by Level_CollisionPass flush"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursor.cpp::onTouched",
+  "notes": "vtable slot 12 (ret 8: two stack arguments, the decompiler shows one): OnTouched(other, extra). Cursor override appends the touched object (first argument) to candidate list +0x70 and returns 1. Called by Level_CollisionPass flush | cursor vectors 4 Nov"
  },
  {
   "addr": "00402e80",
@@ -8775,9 +8775,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 6,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "per frame: for each registered candidate, with left button (mouse buttons byte & 8) calls candidate slot 14 with the cursor's current animation index (the verb), with right button (& 0x10) slot 15, otherwise slot 17 (show hover text); candidates that stopped being under the pointer get slot 18 (clear text) and are dropped"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursor.cpp::processCandidates",
+  "notes": "per frame: for each registered candidate, with left button (mouse buttons byte & 8) calls candidate slot 14 with the cursor's current animation index (the verb), with right button (& 0x10) slot 15, otherwise slot 17 (show hover text); candidates that stopped being under the pointer get slot 18 (clear text) and are dropped | cursor vectors 4 Nov"
  },
  {
   "addr": "004030e0",
@@ -8824,9 +8824,9 @@
   ],
   "data_refs": [],
   "cluster": 6,
-  "status": "untouched",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428038 slot 8"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursor.cpp::setActive",
+  "notes": "unread; first seen in vtable 00428038 slot 8 | cursor vectors 4 Nov"
  },
  {
   "addr": "00403220",
@@ -14315,9 +14315,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 24,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "base object ctor with vtable 0042b9c0"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursor.cpp::init",
+  "notes": "base object ctor with vtable 0042b9c0 | cursor vectors 4 Nov"
  },
  {
   "addr": "0040e5c0",

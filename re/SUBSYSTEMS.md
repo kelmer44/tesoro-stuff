@@ -159,6 +159,30 @@ frame, for each room, the game updates the camera and records its centre scaled 
 room (apparently used to place subtitles; not checked on screen). The engine class is `Camera`. Checked against the
 original with random sequences of moves, bounds, targets and clock steps. Which bound is the top of the screen is not established.
 
+## Saving an object's state ✅
+
+The level can write each object's state to a stream and read it back (apparently for save games, but the only caller found is not read yet, so it could also be a state kept while you are in another level). Each object writes a small record and reads it back: if it has animations, which animation bank is
+current and the current bank's range and playing state (first and last step, and one byte each for the step being
+played and the play flags, so only the low bytes survive a save); then, for objects that carry their own saved data, its
+size and its bytes. Kinds that need more can add to this (not read yet). The engine functions are `saveState` and
+`loadState` on the object. Checked against the original with random objects and streams, including cut-off streams.
+
+## The pointer (cursor) 🟡
+
+The mouse pointer is itself a game object. It takes part in the ordinary collision pass as the "hitter": whenever its shape
+overlaps another object, the object is added to a "touched this frame" list. Once a frame the cursor works through that list:
+- an object that was not under the pointer last frame gets the pointer's attention if it accepts it, and is asked to show its
+  name next to the pointer; only the first such object is served, because showing the name reports "handled";
+- an object that stays under the pointer gets the click: left button runs the current verb on it, right button the alternative;
+- an object that is no longer touched has its name hidden.
+The previous frame's list is shared by the level's cursor and its companion, a second, plain cursor object for the interface
+strip. The name shown is held in a small text buffer with a colour (white), `HoverText`; clearing it only marks it empty.
+Switching the cursor off hides the name of everything it was hovering over. Engine classes: `Cursor`, `HoverText`.
+Checked against the original with random frames of touches and clicks, using stub objects for the click handlers.
+Not ported yet: reading the mouse and keyboard each frame and scrolling the interface strip, the main cursor's own
+construction (it creates the companion), the per-frame update that also walks Jim to a left click, drawing, and the thumbnail
+capture. The verb used for a click is the cursor's current animation; how the companion gets its verb is not read yet.
+
 ## Rooms ✅
 
 A level is split into rooms (screens). Each room keeps its own list of the objects standing in it, ordered by

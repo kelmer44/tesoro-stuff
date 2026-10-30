@@ -45,3 +45,21 @@ re/.venv/bin/python re/tools/gen_vectors_camera.py
 c++ -std=c++11 -O1 -fno-operator-names -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/camera_driver.cpp \
     "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/camera_driver
 local-media/bin/camera_driver local-media/vectors/camera.txt
+
+# Object save state: original Obj_SaveState / Obj_LoadState (Unicorn, fread/fwrite replaced) vs engine Object::saveState / loadState
+re/.venv/bin/python re/tools/gen_vectors_state.py
+c++ -std=c++11 -O1 -fno-operator-names -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/state_driver.cpp \
+    "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/state_driver
+local-media/bin/state_driver local-media/vectors/state.txt
+
+# Hover label: original Cursor_SetText (Unicorn) vs engine HoverText
+re/.venv/bin/python re/tools/gen_vectors_hovertext.py
+c++ -std=c++11 -O1 -fno-operator-names -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/hovertext_driver.cpp \
+    "$ENG/engines/tesoro/core/hovertext.cpp" -o local-media/bin/hovertext_driver
+local-media/bin/hovertext_driver local-media/vectors/hovertext.txt
+
+# Cursor: original Cursor_Ctor / ProcessCandidates (Unicorn, candidate verbs are stubs) vs engine Cursor
+re/.venv/bin/python re/tools/gen_vectors_cursor.py
+c++ -std=c++11 -O1 -fno-operator-names -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/cursor_driver.cpp \
+    "$ENG/engines/tesoro/core/cursor.cpp" "$ENG/engines/tesoro/core/hovertext.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/cursor_driver
+local-media/bin/cursor_driver local-media/vectors/cursor.txt

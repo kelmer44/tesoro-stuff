@@ -34,10 +34,22 @@ for case in range(600):
     if have: e.call(0x402230, [TGT], conv="thiscall", this=CAM)
     out += [f"st {int(have)}", state()]
     for _ in range(rnd.randint(3, 40)):
-        op = rnd.choice(["tm", "tm", "tx", "sp", "mv", "ut", "ut", "ut", "ut", "tx_edge", "tm_edge", "sb_edge"])
+        op = rnd.choice(["tm", "tm", "tx", "sp", "mv", "ut", "ut", "ut", "ut", "tx_edge", "tm_edge", "sb_edge", "combo"])
         if op == "tm":
             clock["t"] = (clock["t"] + rnd.choice([0, 16, 50, 300, 800, 2000, 2**31 - 1])) & 0xffffffff
             clock["t"] = s32(clock["t"]) & 0xffffffff; out.append(f"tm {s32(clock['t'])}")
+        elif op == "combo":
+            # glide to an out-of-bounds goal, let it finish, then make the target scroll the camera
+            x, y, d = pos(0), rnd.choice([-3000, -900, 900, 3000]), rnd.choice([100, 750])
+            e.call(0x4021a0, [x, y, d], conv="thiscall", this=CAM); out.append(f"mv {x} {y} {d}"); out.append(state())
+            clock["t"] = (s32(u32(CAM + 0xc)) + d + 1) & 0xffffffff; out += [f"tm {s32(clock['t'])}"]; out.append(state())
+            e.call(0x401fc0, [300], conv="thiscall", this=CAM); out += ["ut 300", state()]
+            if rnd.random() < 0.7:   # widen the bounds, so a goal that was left outside them would now count
+                b = (-5000, 5000, 5000, -5000); e.call(0x402200, list(b), conv="thiscall", this=CAM); out += ["sb %d %d %d %d" % b, state()]
+            g = s32(u32(CAM + 0x14)); xx = g + rnd.choice([-90, 90]); w32(TGT + 0x4c, xx); out += [f"tx {xx}", state()]
+            e.call(0x401fc0, [300], conv="thiscall", this=CAM); out += ["ut 300", state()]
+            clock["t"] = (clock["t"] + 400) & 0xffffffff; out += [f"tm {s32(clock['t'])}", state()]
+            e.call(0x401fc0, [300], conv="thiscall", this=CAM); out.append("ut 300")
         elif op == "tx_edge":
             g = s32(u32(CAM + 0x14)); x = g + rnd.choice([-77, -76, -75, -74, 74, 75, 76, 77]); w32(TGT + 0x4c, x); out.append(f"tx {x}")
         elif op == "tm_edge":
