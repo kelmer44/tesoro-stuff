@@ -63,3 +63,9 @@ re/.venv/bin/python re/tools/gen_vectors_cursor.py
 c++ -std=c++11 -O1 -fno-operator-names -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/cursor_driver.cpp \
     "$ENG/engines/tesoro/core/cursor.cpp" "$ENG/engines/tesoro/core/hovertext.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/cursor_driver
 local-media/bin/cursor_driver local-media/vectors/cursor.txt
+
+# Level: original Level_Load / AttachObjects / ObjectMoved / FindObjectByKey / CameraMoveTo / UpdateRoomCameras (Unicorn, CRT and pool replaced) vs engine Level
+re/.venv/bin/python re/tools/gen_vectors_level.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/level_driver.cpp \
+    "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/level_driver
+local-media/bin/level_driver local-media/vectors/level.txt

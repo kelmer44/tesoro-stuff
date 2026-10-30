@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 239 | 53% |
-| understood or later | 96 | 21% |
-| ported or later | 75 | 16% |
-| emu-compared or later | 60 | 13% |
+| decompiled or later | 241 | 53% |
+| understood or later | 105 | 23% |
+| ported or later | 82 | 18% |
+| emu-compared or later | 66 | 14% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -161,31 +161,31 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00407790` inferred_Jim_Update (vtable) · depth 11 · 89 lines · **decompiled** — slot 4: per-frame walking step. Position is 24.8 fixed point (+0xe0,+0xe4); the animation's own per-frame offset (+0x28,+0x2a, root motion) scaled by perspective moves Jim; ends when the squared distance reaches zero (arrival), then removes itself from the main list and either calls slot 29 (face) or the target object's slot 13 (RunVerb)
 - [ ] `004070c0` inferred_Jim_Ctor · depth 12 · 282 lines · **decompiled** — 0x114-byte object, vtable 00428b70, base chain Kind05-family ctor 0040fea0 -> 0040ec90. Loads 9 animation files (JIMHABDER, JIMQUIETO, JIMARRIBA, JIMABAJO, JIMIZQUIERDA, JIMDERECHA, JIMHABAR ... .ANM) into bank array +0x34, name key from string at 0042d2a4, start position (0x15e,0x14), sort value 0x23, scale +0xfc = 0x100, speech/idle fields, calls SetFacing(3)
 
-### Cluster 13: 00408440–00408550 (0/12 ported)
+### Cluster 13: 00408440–00408550 (5/12 ported)
 
-- [ ] `00408440` inferred_Level_ObjectMoved · depth 0 · 61 lines · **decompiled** — re-sorts the object in the level's sorted list at +0x7c after it moved
+- [x] `00408440` inferred_Level_ObjectMoved · depth 0 · 61 lines · **emu-compared** — re-sorts the object in the level's sorted list at +0x7c after it moved
 - [ ] `00407ac0` inferred_Jim_Draw (vtable) · depth 1 · 34 lines · **decompiled** — slot 6: updates talk state then queues the current frame scaled by +0xfc (scaled sprite, 16.16 factor) at screen position relative to the camera
 - [ ] `00407d00` inferred_Dialogue_ChoiceMenu · depth 1 · 71 lines · **decompiled** — lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled
 - [ ] `00407f30` inferred_Jim_TalkAnimate (vtable) · depth 2 · 37 lines · **decompiled** — slot 31: draws the speaking-mouth animation; while talking picks a random frame (RandomRange) at most every 100 ms of game time, else rests on frame 1
 - [ ] `004080a0` inferred_Jim_UseItemForward (vtable) · depth 2 · 17 lines · **decompiled** — slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27
-- [ ] `00408520` inferred_Level_CameraMoveTo · depth 2 · 8 lines · **decompiled** — forwards (x, y, duration) to the camera at +0x80
-- [ ] `00408550` inferred_Level_UpdateRoomCameras · depth 2 · 52 lines · **untouched** — for every room, moves the camera toward the room's focus point and re-sorts its objects | name from call sites and a skim; body not yet read
+- [x] `00408520` inferred_Level_CameraMoveTo · depth 2 · 8 lines · **emu-compared** — forwards (x, y, duration) to the camera at +0x80
+- [x] `00408550` inferred_Level_UpdateRoomCameras · depth 2 · 52 lines · **emu-compared** — for every room, moves the camera toward the room's focus point and re-sorts its objects | name from call sites and a skim; body not yet read
 - [ ] `00408030` inferred_Jim_SetIdlePose (vtable) · depth 3 · 29 lines · **decompiled** — slot 30: direction 3,4,2,1 -> idle animation index 0,1,2,3 via 00410130, then recomputes speech anchor point +0xa4
-- [ ] `00408540` inferred_Level_AttachObjects · depth 3 · 8 lines · **decompiled** — calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child
+- [x] `00408540` inferred_Level_AttachObjects · depth 3 · 8 lines · **emu-compared** — calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child
 - [ ] `00407b80` inferred_Jim_EnterLevel · depth 11 · 50 lines · **decompiled** — (level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14
 - [ ] `00407ce0` inferred_Jim_SayLine · depth 11 · 8 lines · **decompiled** — Player_Say with a negative id derived from +0x100 (spoken subtitle line)
-- [ ] `004080e0` inferred_Level_Load · depth 15 · 142 lines · **decompiled** — level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
+- [x] `004080e0` inferred_Level_Load · depth 15 · 142 lines · **emu-compared** — level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
 
-### Cluster 14: 00408780–00408890 (0/8 ported)
+### Cluster 14: 00408780–00408890 (2/8 ported)
 
-- [ ] `00408780` inferred_Level_FindObjectByKey · depth 1 · 8 lines · **decompiled** — forwards to the object list at +0x74 with the 64-bit key
+- [x] `00408780` inferred_Level_FindObjectByKey · depth 1 · 8 lines · **emu-compared** — forwards to the object list at +0x74 with the 64-bit key
 - [ ] `00408840` inferred_C00428bf8_RunVerb (vtable) · depth 1 · 14 lines · **untouched** — unread; first seen in vtable 00428bf8 slot 13
 - [ ] `00408890` inferred_Level_CollisionPass · depth 2 · 200 lines · **decompiled** — per-frame pass over the level's object list (+0x7c): for each pair of objects with flags 8 (collidable) and 2 (active) in the same room, asks A.slot11(B) then runs ResolveOverlap; afterwards sends queued position notifications (+0x78 list of object,x,y) through object slot 12
-- [ ] `004087a0` inferred_Level_UpdateOrCollide (vtable) · depth 3 · 17 lines · **decompiled** — level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true
-- [ ] `004087d0` inferred_C00428bf8_Update2 (vtable) · depth 3 · 10 lines · **untouched** — unread; first seen in vtable 00428bf8 slot 5
+- [ ] `004087a0` inferred_Level_UpdateOrCollide (vtable) · depth 3 · 17 lines · **understood** — level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true
+- [ ] `004087d0` inferred_C00428bf8_Update2 (vtable) · depth 3 · 10 lines · **understood** — unread; first seen in vtable 00428bf8 slot 5
 - [ ] `00408620` inferred_Level_SaveState · depth 8 · 77 lines · **untouched** — writes the object keys and flags and calls each object's SaveState (slot 10) via fwrite | name from call sites and a skim; body not yet read
 - [ ] `00408710` inferred_Level_LoadState · depth 8 · 20 lines · **decompiled** — reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object
-- [ ] `00408800` inferred_Level_ReloadDeferredAnims · depth 10 · 18 lines · **decompiled** — rewinds pool arena 2, reloads the deferred animation images of every bank and sets +0x94
+- [x] `00408800` inferred_Level_ReloadDeferredAnims · depth 10 · 18 lines · **ported** → `engines/tesoro/core/level.cpp::Level::reloadDeferredAnims` — rewinds pool arena 2, reloads the deferred animation images of every bank and sets +0x94
 
 ### Cluster 15: 00409280–0040c040 (0/7 ported)
 

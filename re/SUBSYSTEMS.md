@@ -158,7 +158,52 @@ walked first and the level Jim is in next. A level, in turn, keeps its own lists
 object that moves between levels: entering a level takes him out of his old level's lists, puts him in the new one's and
 makes the new level's camera follow him. The game begins with Jim in the main menu. The cursor lives in the interface level,
 and its companion in whichever level Jim is in. Some objects (a door, a chest, a canoe...) are switched off right at the start.
-Read from the start-up code; the level and Jim classes themselves are not ported yet.
+Read from the start-up code; the level class is ported (see Levels), Jim is not.
+
+## Levels ✅ (loading and the bookkeeping; the collision pass and drawing are not ported)
+
+A level file holds three things in this order: the level's animation banks, then its rooms, and in each room the objects
+standing in it. Loading a level reads all of that, builds each object, and adds it to the level's one list of objects, in
+file order. The objects are not yet in their rooms: a second step ("attach") gives each object its level and, for the kinds
+that ask for it, sorts it into its room. A level also keeps a short list of the collidable objects that moved, which the
+collision pass will use, a camera with fixed bounds, the time it was loaded, and a pointer to its single "special" object if
+the file has one (an object of kind 1). The engine class is `Level`; it is itself an `Object`, so it can sit in the main list.
+
+Each frame the second pass calls the level to update its cameras: for each room the camera moves towards that room's focus,
+then every visible, active, not-yet-processed object of the room recomputes its hit rectangle and is told where the camera
+is. Checked against the original on synthetic level files (load, attach, moved-list, lookup by name, camera move, room
+camera update). Only objects of kind 0, the plain animated object, are built so far: other kinds are skipped with a warning
+until their classes are ported, so a real level loads with most of its objects missing. Not checked: kind 1, real level
+files from the archive.
+
+```mermaid
+flowchart TD
+    File["Level file"] --> Banks["Animation banks"]
+    File --> Rooms["Rooms (focus number, draw-order size)"]
+    File --> Recs["Object descriptions, room by room"]
+    Recs --> Factory{"Kind"}
+    Factory -->|"0: plain animated"| Obj["Object"]
+    Factory -->|"others"| Skip["Skipped for now (warning)"]
+    Banks --> Obj
+    Obj --> List["Level's object list (file order)"]
+    List -->|"attach"| RoomList["Room lists (rightmost first)"]
+    RoomList -->|"every frame"| Cam["Camera + hit rectangles"]
+```
+
+## Level, room and scene: what the words mean
+
+| Word | What it is | In the engine |
+|---|---|---|
+| **Level** | One scene file (`.LVL`) loaded into memory: the despacho, the port, the main menu, the interface strip. There are 47 game levels plus the main menu, the new-game menu and the interface. It owns the animation banks, the rooms, the object list and the camera. It is also an object itself, so it sits in the main list. | `Level` |
+| **Room** | One screen-sized section inside a level. A level has one or more. A room keeps the list of the objects standing in it (rightmost first), a draw-order offset and the number the camera divides by. It is not an object and has no behaviour of its own. | `Room` (a plain struct inside the level) |
+| **Scene** | Not a class. It is the everyday word for "a place in the game" and means the same thing as a level. The older prototype and its notes call a level a scene. | none, use *level* |
+
+How they nest: the game has many levels; Jim is in one at a time; a level has rooms; a room lists its objects.
+Every object also stays in the level's own list, in file order, which is what the frame passes and the lookup by name use.
+
+Two things that are easy to mix up with a room:
+- the **special object** of a level (kind 1, at most one per level) is a real object. The older notes sometimes call it the "room object". It is not a `Room`;
+- the **camera** belongs to the level, not to a room. Each room only supplies the divisor the camera uses while that room is being updated.
 
 ## The camera ✅
 
@@ -237,17 +282,35 @@ flowchart LR
     Tick --> Rect["New hit rectangle<br/>and area moved through"]
 ```
 
-*Not done yet:* the level that builds the objects and decides which list each one goes in, the kinds of object
-(Jim, items, doors...), saving an object's state, and putting the picture on screen.
+*Not done yet:* the kinds of object other than the plain animated one (Jim, items, doors...), and putting the picture on screen.
 
 ---
+
+## What the levels contain (counted, not yet ported)
+
+Counted from the shipped game files with `re/tools/drivers/level_kinds_driver.cpp` (the engine's own level loader, read-only).
+Fifty levels in all. Only one object in the whole game is the plain animated kind we have ported (kind 0, in the interface strip).
+
+| Kind | How many | Where |
+|---|---|---|
+| 3 | 217 | every level; the commonest object |
+| 9 | 124 | most rooms of the story |
+| 6 | 75 | numbered levels and most rooms |
+| 20 | 44 | rooms with scenery |
+| 7, 8 | 38, 39 | one of each in most rooms |
+| 13 | 46 | interface strip only |
+| 1 | 50 | exactly one per level (the special object) |
+| 25 | 5 | main menu (2) and the new-game menu (3) |
+
+**The main menu** (`PRINCIPAL`) is the smallest level: one room, two animation banks, four objects: the special object (kind 1),
+one kind 3, and two kind 25. So the first picture needs only those three kinds, plus the draw path. The new-game menu
+(`NUEVO`) adds more kind 3 and kind 25 and nothing else.
 
 ## Still to explore
 
 - Drawing: how pictures end up on the screen, and in which order.
-- The level: how it builds and keeps objects in order, and what the other kinds of object do.
+- The other kinds of object (Jim, items, doors, scenery...) and the level's collision pass.
 - Scripts: how story events and puzzles are described and run.
-- Levels: how a scene is loaded and which objects it creates.
 - Sound and music.
 - Saving and loading.
 

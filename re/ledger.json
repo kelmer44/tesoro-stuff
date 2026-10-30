@@ -11496,7 +11496,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting"
  },
@@ -11515,7 +11515,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "re-sorts the object in the level's sorted list at +0x7c after it moved"
  },
@@ -11543,7 +11543,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "forwards (x, y, duration) to the camera at +0x80"
  },
@@ -11564,7 +11564,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child"
  },
@@ -11588,7 +11588,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "untouched",
+  "status": "emu-compared",
   "engine": "",
   "notes": "for every room, moves the camera toward the room's focus point and re-sorts its objects | name from call sites and a skim; body not yet read"
  },
@@ -11740,7 +11740,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 14,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "forwards to the object list at +0x74 with the 64-bit key"
  },
@@ -11776,7 +11776,7 @@
   ],
   "data_refs": [],
   "cluster": 14,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true"
  },
@@ -11810,7 +11810,7 @@
   ],
   "data_refs": [],
   "cluster": 14,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "unread; first seen in vtable 00428bf8 slot 5"
  },
@@ -11832,8 +11832,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 14,
-  "status": "decompiled",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/level.cpp::Level::reloadDeferredAnims",
   "notes": "rewinds pool arena 2, reloads the deferred animation images of every bank and sets +0x94"
  },
  {

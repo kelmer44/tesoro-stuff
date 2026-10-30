@@ -110,3 +110,7 @@ All confirmed (asm of the ten functions). Nodes are taken from the free list fir
 | 004421f0 / 004421f4 | PRINCIPAL.LVL (main menu) / NUEVO.LVL (new-game menu) | c |
 | 004421f8 / 004421fc | top object / interface strip object (+0xa0 child list, +0xa8 child) | w |
 Level +0x98 is the level's index in the table (8 = MAPA, 14 = TABLERO); Jim_EnterLevel sets Jim's hitter flag (0x400) unless the level index is 8.
+
+## Level (0x98+ bytes, vtable 00428bf8, extends Object; built by 004080e0)
++0x6c bank array (AnimPlayer*, one per bank) · +0x70 room array (Room, 0x10 each) · +0x74 handle of the object list (file order) · +0x78 0x34-byte list (collision pairs, capacity 0x32) · +0x7c list of collidable objects that moved (capacity 0x14) · +0x80 camera (0x40 bytes) · +0x84 room count · +0x88 bank count · +0x8c load time · +0x90 the kind 1 object · +0x94 byte "images were reloaded" flag · +0x98 index in the level table (set by InitGameWorld). Vtable: slot 4 Level_UpdateOrCollide, slot 5 Level_Update2, slot 13 RunVerb; the rest are the Object defaults.
+Level file: header {rooms, banks, objects}; banks; per room a 0x28 record {+0x20 u16 objects, +0x22 u16 extent, +0x24 u32 camera divisor} then per object a 0x20 record {x, y, i16 sort, +0xb bank count, +0xc name[12], +0x18 kind, +0x1c data size} + data + bank indices.
