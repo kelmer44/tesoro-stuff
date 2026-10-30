@@ -165,3 +165,15 @@ re/.venv/bin/python re/tools/gen_vectors_speaker.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/speaker_driver.cpp \
     "$ENG/engines/tesoro/core/speaker.cpp" -o local-media/bin/speaker_driver
 local-media/bin/speaker_driver local-media/vectors/speaker.txt
+
+# Walk area: original ScaleAt 0x414740 / FindPath 0x414f10 / NextWaypoint 0x414e80 vs engine WalkArea (random polylines, corner and tie cases)
+re/.venv/bin/python re/tools/gen_vectors_walkarea.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/walkarea_driver.cpp \
+    "$ENG/engines/tesoro/core/walkarea.cpp" -o local-media/bin/walkarea_driver
+local-media/bin/walkarea_driver local-media/vectors/walkarea.txt
+
+# Jim's walking: original walk order 0x407600 / update 0x407790 / collision callback 0x4079e0 / set facing 0x407a80 vs engine JimWalker (callees are logging hooks)
+re/.venv/bin/python re/tools/gen_vectors_jimwalk.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/jimwalk_driver.cpp \
+    "$ENG/engines/tesoro/core/jimwalker.cpp" -o local-media/bin/jimwalk_driver
+local-media/bin/jimwalk_driver local-media/vectors/jimwalk.txt

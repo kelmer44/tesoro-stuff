@@ -10558,8 +10558,8 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/jimwalker.cpp",
   "notes": "slot 32: (x, y, target object, flag) starts a walk: records target +0x104/+0x108, converts position to fixed point, chooses facing 1..4 from the dominant axis, selects the matching walking animation (table +0xd8); the function always ends by calling the target object's slot 13 (RunVerb), including at walk start, purpose not yet understood"
  },
  {
@@ -11170,8 +11170,8 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/jimwalker.cpp",
   "notes": "slot 4: per-frame walking step. Position is 24.8 fixed point (+0xe0,+0xe4); the animation's own per-frame offset (+0x28,+0x2a, root motion) scaled by perspective moves Jim; ends when the squared distance reaches zero (arrival), then removes itself from the main list and either calls slot 29 (face) or the target object's slot 13 (RunVerb)"
  },
  {
@@ -11217,8 +11217,8 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/jimwalker.cpp",
   "notes": "slot 12: called when a walk segment ends: updates previous position, unless the walk-area path search (WalkArea_FindPath) produces a further waypoint, calls slot 29 (face) and the target object's slot 13"
  },
  {
@@ -11241,8 +11241,8 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/jimwalker.cpp",
   "notes": "slot 29: clears walking flag, stores direction +0x10c (1..4) and starts the matching animation"
  },
  {
@@ -23023,8 +23023,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 35,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/walkarea.cpp",
   "notes": "(x, y) piecewise interpolation of a perspective scale (default 0x100) from the walk-area edge table in the current frame record | (x, y) perspective scale 0x100 = 1.0: finds the polyline edges spanning x, interpolates their y and per-vertex scale, then interpolates the scale vertically between the edge above and the edge below the point; 0x100 when no edge pair brackets the point"
  },
  {
@@ -23297,8 +23297,8 @@
   ],
   "data_refs": [],
   "cluster": 36,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/walkarea.cpp",
   "notes": "vtable slot 13: runs each time Jim reaches a vertex. Steps the vertex index +0xa0 one towards the destination index +0xa4 and sends Jim to that vertex (Jim slot 32, target = this); when the indices are equal first sends Jim to the real destination (+0xa8,+0xac) with the original target (+0xb0)"
  },
  {
@@ -23316,8 +23316,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 36,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/walkarea.cpp",
   "notes": "(x, y, target) picks the nearest waypoint of the walk area to the destination and prepares a route; returns whether a route exists | (x, y, target) finds the polyline vertex nearest the destination (+0xa4) and the vertex nearest Jim (+0xa0), stores the destination (+0xa8,+0xac) and target (+0xb0), then sends Jim to his nearest vertex; always returns true when the polyline has vertices. No search algorithm: movement is along the vertex list"
  },
  {
