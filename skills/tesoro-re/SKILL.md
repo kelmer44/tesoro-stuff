@@ -170,3 +170,8 @@ the 0x7f0xxxxx range belongs to `Emu` import stubs). Install Python callbacks th
 `emu.uc.reg_read(UC_X86_REG_ECX)`. The callbacks log calls and answer from a scripted table; the engine side subclasses `Level` (createObject) and `Object` with the same script.
 See `re/tools/gen_vectors_collide.py` and `drivers/collide_driver.cpp`. Zero the pool heap between cases (stale words leak into fields the loader leaves unset).
 Limit: the real UpdateBounds is not exercised (the stub only logs), shaped objects are excluded.
+
+## Trap: decompiled `param_1` of a thiscall method can be the stack argument (found 30 October 2026)
+Ghidra showed Cursor_IsHitter as `fastcall(param_1)` reading `param_1+0x68`; the assembly (`MOV EAX,[ESP+4]`, `RET 4`) shows it reads its stack argument (the other
+object) and never touches `this`. A wrong calling convention hides which object a field belongs to. For any method with a stack argument and a RET n, check the first
+instructions of the asm for ESP-relative reads before porting, and give the emulator a test where this and the argument differ (the old cursor test never did).

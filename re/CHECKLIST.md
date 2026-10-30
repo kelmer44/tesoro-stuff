@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 254 | 56% |
-| understood or later | 141 | 31% |
-| ported or later | 104 | 23% |
-| emu-compared or later | 86 | 19% |
+| decompiled or later | 255 | 57% |
+| understood or later | 143 | 31% |
+| ported or later | 107 | 23% |
+| emu-compared or later | 89 | 19% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -172,7 +172,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00408550` inferred_Level_UpdateRoomCameras · depth 2 · 52 lines · **emu-compared** — for every room, moves the camera toward the room's focus point and re-sorts its objects | name from call sites and a skim; body not yet read
 - [ ] `00408030` inferred_Jim_SetIdlePose (vtable) · depth 3 · 29 lines · **decompiled** — slot 30: direction 3,4,2,1 -> idle animation index 0,1,2,3 via 00410130, then recomputes speech anchor point +0xa4
 - [x] `00408540` inferred_Level_AttachObjects · depth 3 · 8 lines · **emu-compared** — calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child
-- [ ] `00407b80` inferred_Jim_EnterLevel · depth 11 · 50 lines · **decompiled** — (level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14
+- [ ] `00407b80` inferred_Jim_EnterLevel · depth 11 · 50 lines · **understood** — (level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14
 - [ ] `00407ce0` inferred_Jim_SayLine · depth 11 · 8 lines · **decompiled** — Player_Say with a negative id derived from +0x100 (spoken subtitle line)
 - [x] `004080e0` inferred_Level_Load · depth 15 · 142 lines · **emu-compared** — level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
 
@@ -330,9 +330,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040e7e0` inferred_Obj_Kind16_Ctor · depth 4 · 25 lines · **decompiled** — 0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)
 - [ ] `0040ed10` inferred_Obj_Kind09_Ctor · depth 12 · 61 lines · **decompiled** — 0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits
 
-### Cluster 26: 0040f040–0040f270 (0/7 ported)
+### Cluster 26: 0040f040–0040f270 (1/7 ported)
 
-- [ ] `0040f040` inferred_Obj_Slot15_ForwardToSlot14 (vtable) · depth 0 · 9 lines · **understood** — MidBase slot 15: calls slot 14 with its argument
+- [x] `0040f040` inferred_Obj_Slot15_ForwardToSlot14 (vtable) · depth 0 · 9 lines · **emu-compared** → `engines/tesoro/core/menuitem.cpp::MenuItem::rightClick` — MidBase slot 15: calls slot 14 with its argument
 - [ ] `0040f1a0` inferred_Obj_OnClick (vtable) · depth 0 · 18 lines · **understood** — MidBase slot 19: interrupts the player if busy, copies the clicked verb for the player object itself, sets the player's target to the object's approach point (+0x94,+0x98) via player slot 32 (walk), then player slot 4
 - [ ] `0040f270` inferred_Obj_Slot27_Stub (vtable) · depth 0 · 7 lines · **decompiled** — MidBase slot 27 default (ret 4, returns 0)
 - [ ] `0040f050` inferred_Obj_ShowHoverText (vtable) · depth 1 · 15 lines · **decompiled** — MidBase slot 17: puts the object's phrase text (+0x6c record, then the 64-bit name key) into the cursor's hover text via Cursor_SetText
@@ -405,14 +405,14 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00411f80` inferred_Display_AddSprite · depth 1 · 57 lines · **emu-compared** — (x, y, sort value, image, flag): clips a 640x480 sprite and queues it in the render rows (per-scanline lists) by image type (1 or 3 get extra passes)
 - [ ] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **decompiled** — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set
 
-### Cluster 32: 004120c0–00412e10 (3/7 ported)
+### Cluster 32: 004120c0–00412e10 (4/7 ported)
 
 - [x] `004120c0` inferred_Display_AddSpriteScaled · depth 0 · 21 lines · **emu-compared** — like AddSprite with x/y scale factors (16.16 fixed)
 - [ ] `00412640` inferred_Display_Compose_Background · depth 0 · 282 lines · **understood** — first stage of Display_Compose (282 lines) | name from call sites and a skim; body not yet read
 - [ ] `00412bb0` inferred_Display_ClearAndReset · depth 0 · 34 lines · **understood** — clears surfaces via DirectDraw (slot 0x80/4 and 0x1c Blt) and resets the render queue
 - [ ] `00412c50` inferred_Display_Compose_Overlay · depth 0 · 99 lines · **understood** — later stage of Display_Compose | name from call sites and a skim; body not yet read
 - [x] `00412120` inferred_Display_RasterRow · depth 1 · 101 lines · **emu-compared** — rasterises one scanline using the three type rasterisers | name from call sites and a skim; body not yet read
-- [ ] `004123e0` inferred_Display_StartEffect · depth 1 · 118 lines · **untouched** — (effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read
+- [x] `004123e0` inferred_Display_FadeOut · depth 1 · 118 lines · **emu-compared** → `engines/tesoro/core/screendisplay.cpp::ScreenDisplay::fadeOut` — (effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read
 - [x] `00412e10` inferred_Display_Compose · depth 2 · 263 lines · **emu-compared** → `engines/tesoro/core/screendisplay.cpp::ScreenDisplay::compose` — per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read
 
 ### Cluster 33: 004137c0–004139e0 (1/7 ported)
@@ -535,7 +535,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00417640` inferred_C0042afe8_Slot28 (vtable) · depth 14 · 44 lines · **untouched** — unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)
 - [ ] `004178b0` inferred_C0042bf90_SetVerbAndClick (vtable) · depth 14 · 37 lines · **untouched** — unread; first seen in vtable 0042bf90 slot 14
 
-### Cluster 42: 00417b30–00417d00 (1/7 ported)
+### Cluster 42: 00417b30–00417d00 (2/7 ported)
 
 - [ ] `00417b30` inferred_Obj_RetTrue (vtable) · depth 0 · 7 lines · **understood** — MidBase slot 16: returns 1 (is interactive/enabled default)
 - [ ] `004179b0` inferred_C0042bc08_RunVerb (vtable) · depth 2 · 41 lines · **untouched** — unread; first seen in vtable 0042bc08 slot 13
@@ -543,7 +543,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00417ad0` inferred_Obj_Kind25_Ctor · depth 4 · 12 lines · **emu-compared** — 0xa4 bytes, vtable 0042c000, extends MidBase
 - [ ] `00417ca0` inferred_C004295d0_UseItem (vtable) · depth 13 · 21 lines · **untouched** — unread; first seen in vtable 004295d0 slot 27 (kind 20 subtype 7)
 - [ ] `00417d00` inferred_C00429560_UseItem (vtable) · depth 13 · 31 lines · **untouched** — unread; first seen in vtable 00429560 slot 27 (kind 20 subtype 8)
-- [ ] `00417b40` inferred_C0042c000_SetVerbAndClick (vtable) · depth 15 · 49 lines · **understood** — unread; first seen in vtable 0042c000 slot 14
+- [x] `00417b40` inferred_Obj_Kind25_Click (vtable) · depth 15 · 49 lines · **emu-compared** → `engines/tesoro/core/menuitem.cpp::MenuItem::setVerbAndClick` — unread; first seen in vtable 0042c000 slot 14
 
 ### Cluster 43: 00417dd0–00418560 (0/12 ported)
 

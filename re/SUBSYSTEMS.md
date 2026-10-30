@@ -262,14 +262,15 @@ Once a frame the pointers work through those lists:
 - an object that is no longer touched has its name hidden.
 The previous frame's list is shared by both pointers and the whole game. Engine classes: `Cursor` (both pointers; derives from
 `SpriteObject`), `HoverText`, `Mouse`, `InputStates`. Checked against the original: the click/hover logic with stub objects, the
-pointer's draw (533 draws) and the move-to-position routine (918 calls); the frame placement and the second-pass wrapper are
+pointer's draw (533 draws), the hitter test (2000 cases) and the move-to-position routine (918 calls); the frame placement and the second-pass wrapper are
 ported from reading and not compared as a whole.
 
-**Open question: the pointer never becomes a "hitter".** The collision pass only records a touch when one of the two objects
-says "I am the hitter for you", and the pointer says so only if its flag 0x400 is set. Reading every function of the program finds
-no code that sets that flag on a pointer (Jim's constructor sets it, doors and similar objects set it for themselves, Jim sets it
-when entering a level). So the pointer should touch nothing, which cannot be right for a menu where you click. Something outside
-the pointer's own code must set it; this is the next thing to find before hover and click can work in the engine.
+**How the pointer touches things.** The collision pass records a touch when one object says "I am the hitter for you". For the
+pointer that answer is simply "you are marked as a hitter": the pointer looks at the *other* object's flag, so it touches Jim, the
+clickable scenery and the menu items, and nothing else. (An earlier version of the port had this backwards, checking the pointer's
+own flag, because the decompiler hid a detail of the call; it is fixed and checked against the original.) The companion borrows the
+main pointer's animation frame for its hit rectangle, so hovering works in the level the player is in. With the real menu,
+a pointer over "Nueva partida" or "Cargar partida" touches that item and starts hovering, and off the items it touches nothing.
 
 Not ported yet: leaving a menu with the key, scrolling the interface strip, the thumbnail capture, walking Jim to a left click on
 empty ground, drawing the hover text, the save-file scan at start, registering the pointer in the main list (the engine keeps it
@@ -349,11 +350,16 @@ one, and when the level attaches its objects the frame sets the area the camera 
 puts the camera on its own position. It also names another object of the level, which it looks up at that moment, and keeps
 three small values nobody has been traced reading yet.
 
-**Kind 25 is half ported ✅/⬜.** A menu item: it shows one frame, starts hidden, and carries a number saying what a
-click does (start the game, easy, hard, and two more commands). Its construction, per-frame animation and drawing are
-ported and checked against the original. What happens on a click, and the per-frame step that notices a click, are read
-(see the contracts) but not ported: they need the screen fades, the script runner and the cursor/Jim globals. Until then
-a click on a menu item prints a warning once and does nothing.
+**Kind 25 is ported ✅ except for what a click leads to.** A menu item shows one frame, starts hidden, carries an action number, and
+since it is a hitter target the pointer hovers over it. A click (left, or the alternative, which does the same) acts by number:
+- 0 "Nueva partida": the picture fades to black (4 steps of 100 ms), the player goes into the new-game menu, and the menu script
+  `FANMMENU/nuevo` starts; it ends the pass.
+- 1 "Cargar partida": fade, then the saved-game list screen (not read).
+- 2, 3, 4 (easy, regular, hard in the new-game menu): easy and hard start the scripts `FANMMENU/facil` and `FANMMENU/dificil`; regular
+  fades and runs a routine that probably starts the game.
+The click, the fade and the level change are ported and checked against the original (click call sequence 18/18, fade 74 frames);
+the scripts, the saved-game screen and the start routine are reported as not ported. In the engine, clicking "Nueva partida"
+fades out and shows the new-game menu; the rest warns.
 
 **The main menu** (`PRINCIPAL`) is the smallest level: one room, two animation banks, four objects: the special object (kind 1),
 one kind 3, and two kind 25. All three kinds are ported and the menu level is drawn in the window; what is missing is the cursor and the click code. The new-game menu
@@ -417,6 +423,15 @@ Checked against the original with scripted objects on synthetic levels (590 pass
 second, pixel-accurate test that is read but not ported (it walks the movement a pixel at a time and compares outlines); the
 port uses their rectangles and warns. Not checked: bounds worked out by the real `updateBounds` during a pass (scripted in the
 test), a very long touch list. Also not ported: the one-shot verb the level runs instead of the pass after a picture reload.
+
+## The fade and entering a level ✅ / 🟡
+
+Leaving a menu fades the last picture to black: four steps, each rewriting every pixel with its red, green and blue scaled down
+(192/256, 128/256, 64/256, 0) and holding it for 100 ms; the game stands still while it runs. This is `ScreenDisplay::fadeOut`, checked
+against the original frame by frame. Entering a level is, in the original, Jim being moved into it: out of the old level's lists and
+the main list, into the new one's, the camera put on him and set to follow him, the level's pictures reloaded, then Jim placed. Jim is
+not ported, so the engine's `enterLevel` only makes the level current and puts its camera on the origin (which is where the menus' camera
+belongs, since their scroll range is a single point).
 
 ## The frame loop and the mouse (stand-in ✅ / ⬜)
 

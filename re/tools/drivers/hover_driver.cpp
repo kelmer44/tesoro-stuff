@@ -21,6 +21,7 @@
 #include "tesoro/core/cursor.h"
 #include "tesoro/core/level.h"
 #include "tesoro/core/mouse.h"
+#include "tesoro/core/menuitem.h"
 
 void NORETURN_PRE error(const char *s, ...) { fprintf(stderr, "engine error: %s\n", s); exit(3); }
 void warning(const char *s, ...) { (void)s; }
@@ -72,6 +73,17 @@ static std::string slurp(const std::string &path) {
 	fclose(f); return r;
 }
 
+struct Fade : Tesoro::FadePresenter {
+	int shown = 0; void beginStep() override {} void show(const uint16 *) override { ++shown; } void endStep(int) override {}
+};
+struct Host : Tesoro::MenuHost {
+	Tesoro::ScreenDisplay *screen = nullptr; Tesoro::Level *current = nullptr, *nuevo = nullptr; Tesoro::Cursor *cursor = nullptr; Tesoro::Mouse *mouse = nullptr;
+	void fadeOut(int steps, int delay) override { Fade f; screen->fadeOut(steps, delay, f); printf("  host: fade %d x %dms (%d frames shown)\n", steps, delay, f.shown); }
+	void enterLevel(const char *name) override { printf("  host: enter %s\n", name); current = nuevo; current->cameraMoveTo(0, 0, 0, 0); cursor->setSurroundings(mouse, current); }
+	void startScript(const char *b, const char *l) override { printf("  host: script %s/%s (not ported)\n", b, l); }
+	void notPorted(const char *w) override { printf("  host: %s (not ported)\n", w); }
+};
+
 int main(int argc, char **argv) {
 	if (argc < 4) return 1;
 	const std::string dir = argv[1]; const bool is555 = false; const bool withMouse = argc > 5;
@@ -91,6 +103,10 @@ int main(int argc, char **argv) {
 	iface.load(stream, io, 0, is555, 0); iface.attachObjects();
 	for (uint i = 0; i < iface.objects().count(); ++i)
 		if (iface.objects().valueAt(i)->kindId() == 10) cursor = static_cast<Tesoro::Cursor *>(iface.objects().valueAt(i));
+	Tesoro::Level nuevoLevel; { const uint32 no = index.find("NUEVO.LVL"); nuevoLevel.load(stream, no, 0, is555, 0); nuevoLevel.attachObjects(); }
+	Tesoro::ScreenDisplay screen; Host host; host.screen = &screen; host.current = &level; host.nuevo = &nuevoLevel; host.cursor = cursor; host.mouse = &mouse;
+	for (Tesoro::Level *lv : { &level, &nuevoLevel }) for (uint i = 0; i < lv->objects().count(); ++i) if (lv->objects().valueAt(i)->kindId() == 25) static_cast<Tesoro::MenuItem *>(lv->objects().valueAt(i))->setHost(&host);
+	level.cameraMoveTo(0, 0, 0, 0); nuevoLevel.cameraMoveTo(0, 0, 0, 0);
 	cursor->configureMouse(mouse); cursor->setSurroundings(&mouse, &level);
 	// Items of the level, with their hit rectangles
 	for (uint i = 0; i < level.objects().count(); ++i) {
@@ -101,12 +117,12 @@ int main(int argc, char **argv) {
 	for (int frame = 0; frame < 4; ++frame) {
 		bool down[3] = { frame == 2, false, false };
 		mouse.moveTo(mx - 320, my - 240); mouse.update(down, tick += 40);
-		cursor->update(); iface.setFrameTime(tick); iface.update(); level.setFrameTime(tick); level.update();
+		Tesoro::Level &cur = *host.current; cursor->update(); iface.setFrameTime(tick); iface.update(); cur.setFrameTime(tick); cur.update();
 		const uint touched = cursor->companion()->touched().count();
 		const int r = cursor->update2();
 		printf("frame %d: left state %u, companion touched %u, hovered %u, update2 -> %d\n", frame, mouse.buttonState(Tesoro::Mouse::kLeft), touched, cursor->companion()->hovered().count(), r);
 	}
-	Tesoro::ScreenDisplay screen; screen.startFrame(); level.updateRoomCameras(0, screen); screen.compose();
+	screen.startFrame(); host.current->updateRoomCameras(0, screen); screen.compose();
 	FILE *out = fopen(argv[3], "wb");
 	fprintf(out, "P6\n640 480\n255\n");
 	for (uint i = 0; i < 640 * 480; ++i) {

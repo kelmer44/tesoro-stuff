@@ -123,3 +123,15 @@ re/.venv/bin/python re/tools/gen_vectors_hitter.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/hitter_driver.cpp \
     "$ENG/engines/tesoro/core/cursor.cpp" "$ENG/engines/tesoro/core/hovertext.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/collision.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" "$ENG/engines/tesoro/core/mouse.cpp" "$ENG/engines/tesoro/core/inputstate.cpp" -o local-media/bin/hitter_driver
 local-media/bin/hitter_driver local-media/vectors/hitter.txt
+
+# Menu item click: original 0x417b40 / 0x40f040 (the calls a click makes are logged by hooks) vs engine MenuItem::setVerbAndClick / rightClick
+re/.venv/bin/python re/tools/gen_vectors_click.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/click_driver.cpp \
+    "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/collision.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" "$ENG/engines/tesoro/core/cursor.cpp" "$ENG/engines/tesoro/core/hovertext.cpp" "$ENG/engines/tesoro/core/mouse.cpp" "$ENG/engines/tesoro/core/inputstate.cpp" -o local-media/bin/click_driver
+local-media/bin/click_driver local-media/vectors/click.txt
+
+# Fade to black: original Display_StartEffect (DirectDraw calls hooked) vs engine ScreenDisplay::fadeOut (about a minute: the emulator runs millions of instructions per step)
+re/.venv/bin/python re/tools/gen_vectors_fade.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/fade_driver.cpp \
+    "$ENG/engines/tesoro/core/screendisplay.cpp" "$ENG/engines/tesoro/core/renderqueue.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" -lz -o local-media/bin/fade_driver
+local-media/bin/fade_driver local-media/vectors/fade.txt

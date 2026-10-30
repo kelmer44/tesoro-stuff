@@ -11340,7 +11340,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "(level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14"
  },
@@ -16440,8 +16440,8 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/menuitem.cpp::MenuItem::rightClick",
   "notes": "MidBase slot 15: calls slot 14 with its argument"
  },
  {
@@ -22295,7 +22295,7 @@
  {
   "addr": "004123e0",
   "ghidra_name": "FUN_004123e0",
-  "name": "inferred_Display_StartEffect",
+  "name": "inferred_Display_FadeOut",
   "tier": "game",
   "lines": 118,
   "decompile_ok": true,
@@ -22323,8 +22323,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 32,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/screendisplay.cpp::ScreenDisplay::fadeOut",
   "notes": "(effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read"
  },
  {
@@ -25594,7 +25594,7 @@
  {
   "addr": "00417b40",
   "ghidra_name": "FUN_00417b40",
-  "name": "inferred_C0042c000_SetVerbAndClick",
+  "name": "inferred_Obj_Kind25_Click",
   "tier": "game",
   "lines": 49,
   "decompile_ok": true,
@@ -25617,8 +25617,8 @@
   ],
   "data_refs": [],
   "cluster": 42,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/menuitem.cpp::MenuItem::setVerbAndClick",
   "notes": "unread; first seen in vtable 0042c000 slot 14"
  },
  {
