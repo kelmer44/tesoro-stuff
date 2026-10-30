@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
 	if (!f) { fprintf(stderr, "no vectors\n"); return 2; }
 	static char buf[1 << 22];
 	TestLevel *lv = nullptr; VecStream *stream = nullptr;
-	int caseNo = 0, passes = 0, badEvents = 0, badState = 0, touches = 0;
+	int caseNo = 0, checks = 0, passes = 0, badEvents = 0, badState = 0, touches = 0;
 	std::string wantEvents;
 	auto state = [&]() {
 		std::ostringstream o;
@@ -119,6 +119,7 @@ int main(int argc, char **argv) {
 		else if (op == "P") { int i; in >> i; lv->setPlayer(i >= 0 ? script.objects[i] : nullptr); }
 		else if (op == "A") lv->attachObjects();
 		else if (op == "M") { unsigned i; in >> i; lv->objectMoved(script.objects[i]); }
+		else if (op == "N") { unsigned i; int x, y, sc; in >> i >> x >> y >> sc; script.objects[i]->moveTo(x, y, sc != 0); }
 		else if (op == "R") {
 			int now; in >> now; script.events.clear(); lv->collisionPass(now); ++passes;
 		} else if (op == "E") {
@@ -128,10 +129,11 @@ int main(int argc, char **argv) {
 			if (got != want) { ++badEvents; if (badEvents < 6) printf("mismatch events case %d\n want %s\n got  %s\n", caseNo, want.c_str(), got.c_str()); }
 		} else if (op == "=") {
 			std::string got = state(), want = line.substr(2);
+			++checks;
 			if (got != want) { ++badState; if (badState < 6) printf("mismatch state case %d\n want %s\n got  %s\n", caseNo, want.c_str(), got.c_str()); }
 		}
 	}
 	printf("%-28s %d/%d match (%d touches)\n", "collision pass events", passes - badEvents, passes, touches);
-	printf("%-28s %d/%d match\n", "collision pass state", passes - badState, passes);
+	printf("%-28s %d/%d match\n", "collision pass state", checks - badState, checks);
 	return (badEvents || badState) ? 1 : 0;
 }

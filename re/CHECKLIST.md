@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 250 | 55% |
-| understood or later | 135 | 30% |
-| ported or later | 98 | 21% |
-| emu-compared or later | 81 | 18% |
+| decompiled or later | 254 | 56% |
+| understood or later | 141 | 31% |
+| ported or later | 104 | 23% |
+| emu-compared or later | 86 | 19% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -27,7 +27,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00401160` inferred_AnimBank_Load · depth 9 · 163 lines · **emu-compared** — thiscall(entry, pool, mode): opens archive entry+4, reads 0x18 header (images +0x20, sequences +0x22), 0x24-byte sequence records at +0x1c, image pointer array at +0, file offsets at +4; mode 2 defers image loading | animation vectors 29 Oct
 - [x] `00401510` inferred_AnimBank_LoadDeferredImages · depth 9 · 26 lines · **emu-compared** — mode 2 only: seeks to each stored offset (+4 array) and loads the image with 004015a0 | animation vectors 29 Oct
 
-### Cluster 2: 00401bc0–00401d60 (9/12 ported)
+### Cluster 2: 00401bc0–00401d60 (10/12 ported)
 
 - [x] `00401bc0` inferred_Object_BaseCtor · depth 0 · 12 lines · **emu-compared** → `engines/tesoro/core/object.cpp::Object::initPlain` — base game object: vtable 00428000, flags +0x68 |= 6, +0x5e = 5, byte +0x5c = 0 | object vectors 29 Oct
 - [ ] `00401c20` inferred_Noop (vtable) · depth 0 · 7 lines · **understood** — empty function; fills vtable slots 0, 1 and 7 of the base classes (also used as the clock destructor) | empty function; fills vtable slots 0, 1 and 7 of the base classes (and was the clock destructor)
@@ -38,7 +38,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00401a50` inferred_AnimPlayer_Pause · depth 1 · 12 lines · **emu-compared** — flags: clear bit0, set bit1; +0x10 = clock now | player update vectors 29 Oct
 - [x] `00401a70` inferred_AnimPlayer_Resume · depth 1 · 15 lines · **emu-compared** — adds the paused duration to +8, clears +0x10, flags: clear bit1, set bit0 | player update vectors 29 Oct
 - [x] `00401bf0` inferred_Object_AttachToLevel · depth 1 · 16 lines · **ported** → `engines/tesoro/core/object.cpp::Object::attachToLevel` — sets owner +0x40, inserts into the room list if flag 0x100 set, then calls vtable slot 0 | room-list insertion (004104a0) not ported; warns
-- [ ] `00401d30` inferred_Obj_SetPosition · depth 1 · 14 lines · **understood** — (x, y, flag) sets previous position (+0x54/+0x58), and current (+0x4c/+0x50) when flag set; notifies the level
+- [x] `00401d30` inferred_Obj_SetPosition · depth 1 · 14 lines · **emu-compared** → `engines/tesoro/core/object.cpp::Object::moveTo` — (x, y, flag) sets previous position (+0x54/+0x58), and current (+0x4c/+0x50) when flag set; notifies the level
 - [x] `00401aa0` inferred_Object_AnimatedCtor · depth 2 · 63 lines · **emu-compared** → `engines/tesoro/core/object.cpp::Object::initAnimated` — 0x6c bytes, vtable 00428000. Shared base of most kinds: position +0x4c/+0x50 from record, room +0x3c, sort value +0x5e = record short + room short + 5, 64-bit name key +0x44, anim bank pointers (+0x34 array, +0x33 count, current +0x38) | object vectors 29 Oct
 - [x] `00401c30` inferred_Obj_AnimTick (vtable) · depth 2 · 11 lines · **emu-compared** → `engines/tesoro/core/animset.cpp::AnimSet` — base slot 2: if object has animation (flag bit 4) advance AnimPlayer via 00401860 | AnimSet vectors 29 Oct
 
@@ -63,20 +63,20 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00401fc0` inferred_Camera_UpdateToward · depth 1 · 57 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::updateToward` — (camera, target) moves the camera toward a target using the game clock; ends in Camera_SetPositionClamped | name from call sites and a skim; body not yet read | camera vectors 1 Nov
 - [x] `004021a0` inferred_Camera_MoveTo · depth 1 · 22 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::moveTo` — duration 0: set position now (00402120); otherwise stores start/target and a start time from the game clock | camera vectors 1 Nov
 
-### Cluster 5: 004023f0–004028c0 (2/7 ported)
+### Cluster 5: 004023f0–004028c0 (3/7 ported)
 
 - [x] `004023f0` inferred_Cursor_SetText · depth 0 · 43 lines · **emu-compared** → `engines/tesoro/core/hovertext.cpp::HoverText::set` — copies a C string into the cursor's hover-text buffer (+0x78), or clears it; optional ushort at +0x118 | hover text vectors 3 Nov
 - [ ] `004025b0` inferred_Cursor_PageInterfaceRight · depth 1 · 49 lines · **understood** — shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge | contract read 30 Oct; port blocked on global objects
 - [ ] `004028c0` inferred_Interface_PageLeft · depth 1 · 51 lines · **understood** — shifts the interface level camera and its objects by -0x280 (one screen) | contract read 30 Oct; port blocked on global objects
 - [x] `00402240` inferred_Cursor_Ctor · depth 2 · 42 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::init` — 0x130-byte object, vtable 00428038, base 0040e5a0; creates candidate lists (capacity 0x1e) at +0x6c/+0x70 and a shared list 00442060 | cursor vectors 4 Nov
-- [ ] `00402440` inferred_C00428038_OnAttach (vtable) · depth 2 · 74 lines · **untouched** — unread; first seen in vtable 00428038 slot 0
+- [ ] `00402440` inferred_Cursor_OnAttach (vtable) · depth 2 · 74 lines · **understood** → `engines/tesoro/core/cursor.cpp::Cursor::onAttach` — unread; first seen in vtable 00428038 slot 0
 - [ ] `004026d0` inferred_Cursor_CaptureThumbnail · depth 3 · 84 lines · **decompiled** — renders the scene without the cursor into the display buffer and copies a 213x160 sample (every third pixel of every third row) to +0x128: a save-game thumbnail (hypothesis from the sampling pattern)
-- [ ] `00402300` inferred_Obj_Kind10_Ctor · depth 4 · 46 lines · **decompiled** — 0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object
+- [x] `00402300` inferred_Obj_Kind10_Ctor · depth 4 · 46 lines · **ported** → `engines/tesoro/core/cursor.cpp::Cursor::initMain` — 0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object
 
-### Cluster 6: 00402e50–00403300 (8/12 ported)
+### Cluster 6: 00402e50–00403300 (9/12 ported)
 
 - [x] `00402e50` inferred_Cursor_IsHitter (vtable) · depth 0 · 7 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::isHitter` — vtable slot 11 (ret 4): IsHitter(other): returns flag bit 10 (0x400) of this, ignoring the argument. Base default returns false. Level_CollisionPass asks A.slot11(B) then B.slot11(A) to decide which object is the hitter | cursor vectors 4 Nov
-- [ ] `00402d80` inferred_C00428038_Draw (vtable) · depth 1 · 24 lines · **untouched** — unread; first seen in vtable 00428038 slot 6
+- [x] `00402d80` inferred_Cursor_Draw (vtable) · depth 1 · 24 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::Cursor::draw` — unread; first seen in vtable 00428038 slot 6
 - [x] `00402e60` inferred_Cursor_OnTouched (vtable) · depth 1 · 8 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::onTouched` — vtable slot 12 (ret 8: two stack arguments, the decompiler shows one): OnTouched(other, extra). Cursor override appends the touched object (first argument) to candidate list +0x70 and returns 1. Called by Level_CollisionPass flush | cursor vectors 4 Nov
 - [x] `00402e80` inferred_Cursor_ProcessCandidates · depth 1 · 127 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::processCandidates` — per frame: for each registered candidate, with left button (mouse buttons byte & 8) calls candidate slot 14 with the cursor's current animation index (the verb), with right button (& 0x10) slot 15, otherwise slot 17 (show hover text); candidates that stopped being under the pointer get slot 18 (clear text) and are dropped | cursor vectors 4 Nov
 - [x] `004031a0` inferred_C00428038_SetActive (vtable) · depth 1 · 38 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::setActive` — unread; first seen in vtable 00428038 slot 8 | cursor vectors 4 Nov
@@ -379,13 +379,13 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00410330` inferred_Player_Say · depth 10 · 33 lines · **decompiled** — (phrase record, id, flag) on the object in global 004420fc (walks, so probably the player): stores phrase +0xc4 / id +0xcc, busy +0xd4=1, starts the phrase sound (record +8) through the sound manager, slot 30 (0x78) with flag, inserts itself into the main list at priority 6, calls slot 4 | see ledger note
 - [ ] `0040fec0` inferred_Obj_Kind05_Ctor · depth 13 · 40 lines · **decompiled** — 0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags
 
-### Cluster 30: 004103f0–004108a0 (4/8 ported)
+### Cluster 30: 004103f0–004108a0 (5/8 ported)
 
 - [ ] `004103f0` inferred_C0042b060_Slot32 (vtable) · depth 0 · 8 lines · **untouched** — unread; first seen in vtable 0042b060 slot 32 (kind 5 subtype 16)
 - [x] `004104a0` inferred_Room_InsertSorted · depth 0 · 44 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::insertSorted` — inserts object into the room list ordered by object field +0x4c | room vectors 30 Oct
 - [x] `00410530` inferred_Room_RemoveObject · depth 0 · 38 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::removeObject` — room vectors 30 Oct
 - [x] `004105a0` inferred_Display_QueueRow_TypeA · depth 0 · 177 lines · **emu-compared** — AddSprite helper for image type 1: builds per-scanline entries (177 lines) | name from call sites and a skim; body not yet read
-- [ ] `004108a0` inferred_Display_Raster_TypeA · depth 0 · 215 lines · **untouched** — rasterises queued type-A rows (215 lines) | name from call sites and a skim; body not yet read
+- [x] `004108a0` inferred_Display_Raster_TypeA · depth 0 · 215 lines · **emu-compared** — rasterises queued type-A rows (215 lines) | name from call sites and a skim; body not yet read
 - [ ] `00410400` inferred_Jim_ClearSpeech (vtable) · depth 1 · 10 lines · **decompiled** — slot 28: clears phrase +0xc4 and talking flag +0xd4, removes itself from the main list
 - [x] `00410420` inferred_Room_Ctor · depth 1 · 26 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::init` — 16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list | room vectors 30 Oct
 - [ ] `004103d0` inferred_Obj_SetFacingAnim (vtable) · depth 3 · 9 lines · **decompiled** — selects the bank from +0xac and starts animation index (param-1) with AnimPlayer
@@ -405,13 +405,13 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00411f80` inferred_Display_AddSprite · depth 1 · 57 lines · **emu-compared** — (x, y, sort value, image, flag): clips a 640x480 sprite and queues it in the render rows (per-scanline lists) by image type (1 or 3 get extra passes)
 - [ ] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **decompiled** — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set
 
-### Cluster 32: 004120c0–00412e10 (1/7 ported)
+### Cluster 32: 004120c0–00412e10 (3/7 ported)
 
-- [ ] `004120c0` inferred_Display_AddSpriteScaled · depth 0 · 21 lines · **decompiled** — like AddSprite with x/y scale factors (16.16 fixed)
+- [x] `004120c0` inferred_Display_AddSpriteScaled · depth 0 · 21 lines · **emu-compared** — like AddSprite with x/y scale factors (16.16 fixed)
 - [ ] `00412640` inferred_Display_Compose_Background · depth 0 · 282 lines · **understood** — first stage of Display_Compose (282 lines) | name from call sites and a skim; body not yet read
 - [ ] `00412bb0` inferred_Display_ClearAndReset · depth 0 · 34 lines · **understood** — clears surfaces via DirectDraw (slot 0x80/4 and 0x1c Blt) and resets the render queue
 - [ ] `00412c50` inferred_Display_Compose_Overlay · depth 0 · 99 lines · **understood** — later stage of Display_Compose | name from call sites and a skim; body not yet read
-- [ ] `00412120` inferred_Display_RasterRow · depth 1 · 101 lines · **untouched** — rasterises one scanline using the three type rasterisers | name from call sites and a skim; body not yet read
+- [x] `00412120` inferred_Display_RasterRow · depth 1 · 101 lines · **emu-compared** — rasterises one scanline using the three type rasterisers | name from call sites and a skim; body not yet read
 - [ ] `004123e0` inferred_Display_StartEffect · depth 1 · 118 lines · **untouched** — (effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read
 - [x] `00412e10` inferred_Display_Compose · depth 2 · 263 lines · **emu-compared** → `engines/tesoro/core/screendisplay.cpp::ScreenDisplay::compose` — per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read
 

@@ -2852,8 +2852,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 2,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/object.cpp::Object::moveTo",
   "notes": "(x, y, flag) sets previous position (+0x54/+0x58), and current (+0x4c/+0x50) when flag set; notifies the level"
  },
  {
@@ -8500,8 +8500,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 5,
-  "status": "decompiled",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/cursor.cpp::Cursor::initMain",
   "notes": "0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object"
  },
  {
@@ -8532,7 +8532,7 @@
  {
   "addr": "00402440",
   "ghidra_name": "FUN_00402440",
-  "name": "inferred_C00428038_OnAttach",
+  "name": "inferred_Cursor_OnAttach",
   "tier": "game",
   "lines": 74,
   "decompile_ok": true,
@@ -8552,8 +8552,8 @@
   ],
   "data_refs": [],
   "cluster": 5,
-  "status": "untouched",
-  "engine": "",
+  "status": "understood",
+  "engine": "engines/tesoro/core/cursor.cpp::Cursor::onAttach",
   "notes": "unread; first seen in vtable 00428038 slot 0"
  },
  {
@@ -8687,7 +8687,7 @@
  {
   "addr": "00402d80",
   "ghidra_name": "FUN_00402d80",
-  "name": "inferred_C00428038_Draw",
+  "name": "inferred_Cursor_Draw",
   "tier": "game",
   "lines": 24,
   "decompile_ok": true,
@@ -8705,8 +8705,8 @@
   ],
   "data_refs": [],
   "cluster": 6,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/cursor.cpp::Cursor::draw",
   "notes": "unread; first seen in vtable 00428038 slot 6"
  },
  {
@@ -21995,7 +21995,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 30,
-  "status": "untouched",
+  "status": "emu-compared",
   "engine": "",
   "notes": "rasterises queued type-A rows (215 lines) | name from call sites and a skim; body not yet read"
  },
@@ -22265,7 +22265,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 32,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "like AddSprite with x/y scale factors (16.16 fixed)"
  },
@@ -22288,7 +22288,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 32,
-  "status": "untouched",
+  "status": "emu-compared",
   "engine": "",
   "notes": "rasterises one scanline using the three type rasterisers | name from call sites and a skim; body not yet read"
  },

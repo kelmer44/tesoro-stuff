@@ -8,7 +8,7 @@ It grows as we recover more of the original. Written for people, not for the deb
 - 🟡 Recovered, but not yet checked or only partly understood
 - ❓ Seen from the outside only, not read yet
 
-Last updated: 29 October 2026.
+Last updated: 30 October 2026.
 
 ---
 
@@ -18,17 +18,34 @@ Last updated: 29 October 2026.
 flowchart TD
     Disk["Game files on disk<br/>(Tesoro.DAT + Tesoro.TRE)"] --> Archive["Archive<br/>finds things by name ✅"]
     Archive --> Anim["Animations<br/>pictures + steps ✅"]
+    Archive --> Level["Level ✅<br/>banks, rooms, objects, camera"]
     Clock["Game clock ✅"] --> Anim
-    Anim --> Screen["Drawing on screen ❓"]
+    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 25 ported"]
+    Level --> Objects
+    Objects -->|"picture + depth"| Queue["Screen queue ✅<br/>RenderQueue: spans per row"]
+    Queue --> Compose["Compose ✅<br/>ScreenDisplay: spans to pixels"]
+    Compose --> Window["The window (ScummVM)"]
+    Mouse["Mouse ✅<br/>position + button states"] --> Cursor["Cursor 🟡<br/>main pointer + companion"]
+    Cursor --> Collide["Collision pass ✅<br/>who touches whom"]
+    Objects --> Collide
+    Collide -->|"touched list"| Cursor
+    Cursor -->|"click, hover"| Objects
     Clock --> Random["Random numbers ✅"]
-    Names["Name keys ✅"] -.-> Scripts["Scripts and objects ❓"]
-    Anim --> Objects["Game objects 🟡<br/>(characters, items, scenery)"]
+    Names["Name keys ✅"] -.-> Scripts["Scripts ❓"]
     Scripts --> Objects
 ```
 
-Read it top to bottom: the files feed the archive, the archive feeds the animations,
-and animations are what game objects show on screen. The clock decides *when* things happen.
-Boxes with a question mark are the parts we have not opened yet.
+Read it top to bottom: the files feed the archive; the archive feeds the animations and the levels; a level builds its
+game objects; the objects hand their pictures to the screen queue, which is composed into the window every frame. The mouse
+moves the cursor, the collision pass tells the cursor what is under it, and the cursor clicks or hovers over those objects.
+The clock decides *when* things happen. Boxes with a question mark are the parts we have not opened yet.
+
+**Engine classes by area** (so each name can be found in the diagrams below):
+- Files and time: `Archive`, `ArchiveIndex`, `GameClock`, name keys, random numbers.
+- Pictures: `AnimBank`, `AnimPlayer`, `AnimImage`, `AnimSet` (animations); `Display` (what objects draw to), `ScreenDisplay`, `RenderQueue` (the screen).
+- World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `MenuItem` (25), lists `ObjectList`.
+- Input: `InputStates`, `Mouse`, `Cursor` (both pointers), `HoverText`.
+- Collisions: `sweepRects`, `Level::collisionPass`.
 
 ---
 
@@ -160,21 +177,21 @@ makes the new level's camera follow him. The game begins with Jim in the main me
 and its companion in whichever level Jim is in. Some objects (a door, a chest, a canoe...) are switched off right at the start.
 Read from the start-up code; the level class is ported (see Levels), Jim is not.
 
-## Levels ✅ (loading and the bookkeeping; the collision pass and drawing are not ported)
+## Levels ✅ (loading, bookkeeping, the collision pass; shaped collisions and the rest of the kinds are not ported)
 
 A level file holds three things in this order: the level's animation banks, then its rooms, and in each room the objects
 standing in it. Loading a level reads all of that, builds each object, and adds it to the level's one list of objects, in
 file order. The objects are not yet in their rooms: a second step ("attach") gives each object its level and, for the kinds
 that ask for it, sorts it into its room. A level also keeps a short list of the collidable objects that moved, which the
-collision pass will use, a camera with fixed bounds, the time it was loaded, and a pointer to its single "special" object if
+collision pass uses (see Collisions), a camera with fixed bounds, the time it was loaded, and a pointer to its single "special" object if
 the file has one (an object of kind 1). The engine class is `Level`; it is itself an `Object`, so it can sit in the main list.
 
 Each frame the second pass calls the level to update its cameras: for each room the camera moves towards that room's focus,
 then every visible, active, not-yet-processed object of the room recomputes its hit rectangle and is told where the camera
 is. Checked against the original on synthetic level files (load, attach, moved-list, lookup by name, camera move, room
-camera update). Only objects of kind 0, the plain animated object, are built so far: other kinds are skipped with a warning
-until their classes are ported, so a real level loads with most of its objects missing. Not checked: kind 1, real level
-files from the archive.
+camera update, and the collision pass). Kinds 0, 1, 3 and 25 are built; other kinds are skipped with a warning until their
+classes are ported, so most real levels still load with objects missing (the main menu and the new-game menu load whole).
+Real level files were loaded and drawn (menus) but only compared through those pictures, not byte by byte with the original.
 
 ```mermaid
 flowchart TD
@@ -183,11 +200,16 @@ flowchart TD
     File --> Recs["Object descriptions, room by room"]
     Recs --> Factory{"Kind"}
     Factory -->|"0: plain animated"| Obj["Object"]
+    Factory -->|"1: camera frame"| Obj
+    Factory -->|"3: sprite"| Obj
+    Factory -->|"25: menu item"| Obj
     Factory -->|"others"| Skip["Skipped for now (warning)"]
     Banks --> Obj
     Obj --> List["Level's object list (file order)"]
     List -->|"attach"| RoomList["Room lists (rightmost first)"]
     RoomList -->|"every frame"| Cam["Camera + hit rectangles"]
+    List -->|"moved objects"| Moved["Moved list"]
+    Moved -->|"every frame"| Coll["Collision pass"]
 ```
 
 ## Level, room and scene: what the words mean
@@ -225,19 +247,33 @@ size and its bytes. Kinds that need more can add to this (not read yet). The eng
 
 ## The pointer (cursor) 🟡
 
-The mouse pointer is itself a game object. It takes part in the ordinary collision pass as the "hitter": whenever its shape
-overlaps another object, the object is added to a "touched this frame" list. Once a frame the cursor works through that list:
+The mouse pointer is itself a game object, and there are two of them. The **main pointer** (object kind 10) lives in the interface
+level: it is an animated picture (its current animation frame is the "verb": walk, look, use...), drawn on top of everything
+through the screen's scaled-picture path. The **companion** is a plain object with no picture that stands in whichever level
+the player is in and does the touching there. Both are placed at the mouse every frame: main at (mouse x + the interface camera x,
+camera y − mouse y), companion the same relative to the player's level camera. The mouse itself counts from the middle of the
+window (−320..319, −240..239), which the main pointer's construction sets up.
+
+Both pointers take part in the ordinary collision pass; whatever their shapes overlap is added to a "touched this frame" list.
+Once a frame the pointers work through those lists:
 - an object that was not under the pointer last frame gets the pointer's attention if it accepts it, and is asked to show its
   name next to the pointer; only the first such object is served, because showing the name reports "handled";
-- an object that stays under the pointer gets the click: left button runs the current verb on it, right button the alternative;
+- an object that stays under the pointer gets the click: left button runs the current verb on it, a re-press the alternative;
 - an object that is no longer touched has its name hidden.
-The previous frame's list is shared by the level's cursor and its companion, a second, plain cursor object for the interface
-strip. The name shown is held in a small text buffer with a colour (white), `HoverText`; clearing it only marks it empty.
-Switching the cursor off hides the name of everything it was hovering over. Engine classes: `Cursor`, `HoverText`.
-Checked against the original with random frames of touches and clicks, using stub objects for the click handlers.
-Not ported yet: reading the mouse and keyboard each frame and scrolling the interface strip, the main cursor's own
-construction (it creates the companion), the per-frame update that also walks Jim to a left click, drawing, and the thumbnail
-capture. The verb used for a click is the cursor's current animation; how the companion gets its verb is not read yet.
+The previous frame's list is shared by both pointers and the whole game. Engine classes: `Cursor` (both pointers; derives from
+`SpriteObject`), `HoverText`, `Mouse`, `InputStates`. Checked against the original: the click/hover logic with stub objects, the
+pointer's draw (533 draws) and the move-to-position routine (918 calls); the frame placement and the second-pass wrapper are
+ported from reading and not compared as a whole.
+
+**Open question: the pointer never becomes a "hitter".** The collision pass only records a touch when one of the two objects
+says "I am the hitter for you", and the pointer says so only if its flag 0x400 is set. Reading every function of the program finds
+no code that sets that flag on a pointer (Jim's constructor sets it, doors and similar objects set it for themselves, Jim sets it
+when entering a level). So the pointer should touch nothing, which cannot be right for a menu where you click. Something outside
+the pointer's own code must set it; this is the next thing to find before hover and click can work in the engine.
+
+Not ported yet: leaving a menu with the key, scrolling the interface strip, the thumbnail capture, walking Jim to a left click on
+empty ground, drawing the hover text, the save-file scan at start, registering the pointer in the main list (the engine keeps it
+itself for now).
 
 ## Rooms ✅
 
@@ -282,14 +318,15 @@ flowchart LR
     Tick --> Rect["New hit rectangle<br/>and area moved through"]
 ```
 
-*Not done yet:* the kinds of object other than the plain animated one (Jim, items, doors...), and putting the picture on screen.
+*Ported kinds:* the plain animated object (kind 0), the camera frame (1), the sprite (3) and the menu item (25), as `Object`, `CameraFrame`, `SpriteObject`, `MenuItem`. Each draws through the `Display` interface; the object's hit rectangle and its movement feed the collision pass.
+*Not done yet:* the other kinds (Jim, items, doors, the interface strip's objects, the cursor's picture objects...).
 
 ---
 
 ## What the levels contain (counted, not yet ported)
 
 Counted from the shipped game files with `re/tools/drivers/level_kinds_driver.cpp` (the engine's own level loader, read-only).
-Fifty levels in all. Only one object in the whole game is the plain animated kind we have ported (kind 0, in the interface strip).
+Fifty levels in all. Only one object in the whole game is the plain animated kind (kind 0, in the interface strip); the commonest are kinds 3, 9 and 6.
 
 | Kind | How many | Where |
 |---|---|---|
@@ -305,8 +342,7 @@ Fifty levels in all. Only one object in the whole game is the plain animated kin
 **Kind 3 is ported ✅ (checked against the original's code).** It is an animated picture: it starts one run of animation
 frames chosen by two bytes in the level file (hold one frame, hidden or shown, or play on to the next gap, optionally looping),
 puts itself into its room's list when the level attaches its objects, ticks its animation every frame, and each frame asks
-the screen (the new `Display` interface) to draw its current frame at a position worked out from the camera. The screen
-itself (clipping and the three ways of copying pixels) is not ported yet, so nothing appears so far.
+the screen (the `Display` interface) to draw its current frame at a position worked out from the camera.
 
 **Kind 1 is ported ✅ (checked against the original).** The "special object" is really a camera frame: each level has
 one, and when the level attaches its objects the frame sets the area the camera may show (its first frame's rectangle) and
@@ -320,7 +356,7 @@ ported and checked against the original. What happens on a click, and the per-fr
 a click on a menu item prints a warning once and does nothing.
 
 **The main menu** (`PRINCIPAL`) is the smallest level: one room, two animation banks, four objects: the special object (kind 1),
-one kind 3, and two kind 25. All three kinds are now ported, so the menu level can be built; what is missing for a first picture is the screen's image copy, a frame loop and mouse input. The new-game menu
+one kind 3, and two kind 25. All three kinds are ported and the menu level is drawn in the window; what is missing is the cursor and the click code. The new-game menu
 (`NUEVO`) adds more kind 3 and kind 25 and nothing else.
 
 ## The screen: how pictures get drawn (first layer ✅)
@@ -348,14 +384,39 @@ menu items are hidden as the original starts them.
 
 ## Collisions: who touches whom ✅ (rectangles) / ⬜ (shapes)
 
-Whenever an object moves it is put on the level's list of **moved objects**. Once per frame the collision pass takes that list:
-it works out each moved object's hit rectangle and, for the others in the same room, brings theirs up to date; then for every
-pair where one object is a "hitter" for the other (the cursor over a menu item or hotspot, Jim against a door) it sweeps the
-hitter's rectangle along its movement against the other's and notes the moment of first touch. The touches are sorted (earliest
-first; Jim's go ahead of ties) and each hitter is told what it touched. Finally the moved objects go back to where they were and
-the list is emptied. This is ported and checked against the original with scripted objects. Objects with detailed outlines
-(shape entries in their animation) have a second, pixel-accurate test that is read but not ported: the port uses their
-rectangles and warns.
+Whenever an object moves it is put on the level's list of **moved objects** (`Level::objectMoved`; only objects that can be hit
+are accepted, each once). Once per frame, in the first pass, the level runs the **collision pass** (`Level::collisionPass`):
+
+1. **Bounds.** Every moved object works out its hit rectangle and the area it moved through; the other hittable, active objects
+   in the same rooms do the same (an object is refreshed once per moved object in its room: the original does not mark them).
+2. **Pairs.** For each moved object and each hittable, active neighbour in its room, the game asks "is one of you a hitter for
+   the other?" (the cursor is a hitter for everything it can click; Jim is a hitter for doors; most scenery is neither).
+3. **Sweep.** For a hitter and its target the hitter's hit rectangle is swept along its movement relative to the target
+   (`sweepRects`): the answer is "already overlapping", "never touches", or the fraction of the movement at which it first
+   touches. (Objects with outlines also get a pixel-accurate test, see below.)
+4. **Sorting.** Each touch is filed in a list ordered by that moment, earliest first; touches at the same moment are ordered by
+   depth (the larger of the two objects' sort numbers; touches involving Jim use 100).
+5. **Telling.** In order, each hitter is told which object it touched and when (`onTouched`). This is how the cursor builds its
+   "touched this frame" list.
+6. **Reset.** The touch list is emptied, every moved object is put back at its previous position, and the moved list is emptied.
+
+```mermaid
+flowchart TD
+    Move["An object moves"] --> Moved["Moved list"]
+    Moved --> Bounds["1. Refresh hit rectangles<br/>(moved objects + room neighbours)"]
+    Bounds --> Pairs["2. Hitter / target pairs<br/>in the same room"]
+    Pairs --> Sweep["3. Sweep the rectangle<br/>along the movement"]
+    Sweep -->|"touch"| Sort["4. Sort by time, then depth"]
+    Sort --> Tell["5. Tell each hitter<br/>what it touched"]
+    Tell --> Cursor["Cursor builds its touched list"]
+    Tell --> Reset["6. Back to previous positions,<br/>empty the lists"]
+```
+
+Checked against the original with scripted objects on synthetic levels (590 passes, 941 touches in order) and the sweep test on
+120000 random rectangle pairs. **Not ported:** objects with shape entries in their animation (types 2 and 4 sequences) get a
+second, pixel-accurate test that is read but not ported (it walks the movement a pixel at a time and compares outlines); the
+port uses their rectangles and warns. Not checked: bounds worked out by the real `updateBounds` during a pass (scripted in the
+test), a very long touch list. Also not ported: the one-shot verb the level runs instead of the pass after a picture reload.
 
 ## The frame loop and the mouse (stand-in ✅ / ⬜)
 
@@ -376,8 +437,9 @@ uses and the menu item's click code.
 
 ## Still to explore
 
-- Drawing: how pictures end up on the screen, and in which order.
-- The other kinds of object (Jim, items, doors, scenery...) and the level's collision pass.
+- The cursor's picture objects and its construction, so that the mouse is visible and the menu items react.
+- Drawing the remaining ways: shadows, scaled pictures (characters), text, fades.
+- The other kinds of object (Jim, items, doors, scenery...) and the shaped (pixel-accurate) part of the collision test.
 - Scripts: how story events and puzzles are described and run.
 - Sound and music.
 - Saving and loading.

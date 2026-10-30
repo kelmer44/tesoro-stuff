@@ -6,6 +6,7 @@ Output: local-media/vectors/compose.txt (ignored). Consumed by re/tools/drivers/
 Lines: C <hex dat> <entry>      bank file (image 0 = background, others small literal images)
        Z                         reset (0x411f20)
        S <image> <x> <y> <depth> add a sprite
+       Q <image> <x> <y> <depth> <scaleX> <scaleY> <shear>   scaled sprite (0x4120c0)      L <layer depth>   (display +0x668)
        K then F <crc of row 0> ... <crc of row 479>   compose and dump
        #                         end of case
 """
@@ -30,18 +31,19 @@ def make_image():
     for _ in range(H):
         items = []; x = 0
         for _ in range(rnd.choice([0, 1, 1, 2, 3, 4])):
-            gap, ln = rnd.randint(0, 6), rnd.randint(1, 12); items.append((gap, ln)); x += gap + ln
+            gap, ln = rnd.randint(0, 6), rnd.randint(1, 12) if rnd.random() < 0.7 else rnd.randint(20, 70); items.append((gap, ln)); x += gap + ln
         rows.append(items); end = max(end, x)
     W = end + rnd.choice([0, 0, 3])
-    nitems = sum(len(r) for r in rows); pix = 2 * rnd.randint(20, 50)
+    nitems = sum(len(r) for r in rows); pix = 2 * rnd.randint(100, 150)
     head = 0x10 + 8 * H; itoff = head; pixoff = head + 8 * nitems; size = pixoff + pix
     b = bytearray(size)
+    for i in range(pixoff, size): b[i] = rnd.getrandbits(8)       # the pixels must differ, or a wrong source offset shows nothing
     struct.pack_into("<IIHHHH", b, 0, pixoff, pix, W, H, 3 if solid else 1, 0)
     o = itoff
     for r, items in enumerate(rows):
         struct.pack_into("<IHH", b, 0x10 + 8 * r, o, len(items), 0)
         for gap, ln in items:
-            struct.pack_into("<IHH", b, o, rnd.getrandbits(32) if solid else pixoff + 2 * rnd.randint(0, pix // 2 - 14), gap, ln); o += 8
+            struct.pack_into("<IHH", b, o, rnd.getrandbits(32) if solid else pixoff + 2 * rnd.randint(0, pix // 2 - 74), gap, ln); o += 8
     return bytes(b)
 
 def make_background():
@@ -80,6 +82,8 @@ for case in range(300):
     out.append(f"C {st['data'].hex()} {entry}")
     e.call(0x411f20, [], this=DISP); out.append("Z")
     e.call(0x411f80, [0, 0, 65535, bases[0], 0], conv="thiscall", this=DISP); out.append("S 0 0 0 65535")
+    qcount = 0
+    layer = rnd.choice([0, 0, 0, 1, 2, 4]); e.write(DISP + 0x668, struct.pack("<H", layer)); out.append(f"L {layer}")
     for batch in range(rnd.randint(1, 3)):
         for _ in range(rnd.randint(1, 14)):
             k = rnd.randrange(1, nimg)
@@ -88,6 +92,20 @@ for case in range(300):
             depth = rnd.choice([0, 1, 2, 3, 3, 5, 65535, rnd.getrandbits(16)])
             e.call(0x411f80, [x & 0xffffffff, y & 0xffffffff, depth, bases[k], 0], conv="thiscall", this=DISP)
             out.append(f"S {k} {x} {y} {depth}")
+            for _rep in range(rnd.choice([1, 1, 2, 3])):
+              if rnd.random() < 0.6 and qcount < 40:
+                # a scaled sprite too: it is drawn straight into the frame when composed
+                k2 = rnd.randrange(1, nimg); h2 = u16(e.read(bases[k2] + 10, 2), 0)
+                sx = rnd.choice([0x10000] * 4 + [0x8000, 0xc000, 0x18000, 0x20000, 0x14000, rnd.randint(0x4000, 0x30000)])
+                sy = rnd.choice([0x10000] * 3 + [0x8000, 0xc000, 0x18000, 0x20000, -0x10000, -0x20000, rnd.randint(0x4000, 0x30000)])       # upside down only by whole factors: other values make the original start below the image
+                shear = 0        # the original's use of a shear breaks (see RenderQueue::rasterImage)
+                if h2 >= 2 and abs(((h2 - 1) * sy)) >> 16 >= 1 and u16(e.read(bases[k2] + 12, 2), 0) == 1:       # scaled solid images are not ported
+                    x2 = rnd.choice([rnd.randint(-40, 80), rnd.randint(560, 680), rnd.randint(0, 600)]); y2 = rnd.choice([rnd.randint(-8, 10), rnd.randint(440, 490), rnd.randint(0, 470)])
+                    cluster = rnd.random() < 0.6
+                    if cluster: x2, y2 = rnd.randint(0, 30) + 300, rnd.randint(100, 110)
+                    d2 = rnd.choice([0, 1, 2]) if cluster else rnd.choice([0, 0, 1, 2, 3, 5, 65535])
+                    e.call(0x4120c0, [x2 & 0xffffffff, y2 & 0xffffffff, d2, bases[k2], sx & 0xffffffff, sy & 0xffffffff, shear & 0xffffffff, 0], conv="thiscall", this=DISP)
+                    out.append(f"Q {k2} {x2} {y2} {d2} {sx} {sy} {shear}"); qcount += 1
         out.append("K"); out.append(crcs())
     out.append("#")
 os.makedirs("local-media/vectors", exist_ok=True)

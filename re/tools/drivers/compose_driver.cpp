@@ -48,7 +48,12 @@ static std::string unhex(const std::string &s) {
 	return r;
 }
 
+#include <csignal>
+static char gLast[256]; static int gCase;
+static void onCrash(int) { fprintf(stderr, "crash in case %d after: %s\n", gCase, gLast); _exit(4); }
+
 int main(int argc, char **argv) {
+	signal(SIGSEGV, onCrash); signal(SIGBUS, onCrash);
 	FILE *f = fopen(argv[1], "r");
 	if (!f) { fprintf(stderr, "no vectors\n"); return 2; }
 	static char buf[1 << 20];
@@ -60,6 +65,7 @@ int main(int argc, char **argv) {
 	while (fgets(buf, sizeof buf, f)) {
 		std::string line(buf); while (!line.empty() && line.back() == '\n') line.pop_back();
 		std::istringstream in(line); std::string op; in >> op;
+		if (op != "C") strncpy(gLast, line.c_str(), 255); gCase = caseNo;
 		if (op == "F") {
 			want.clear(); unsigned long c; while (in >> c) want.push_back(c);
 			++frames; bool ok = want.size() == 480;
@@ -79,9 +85,15 @@ int main(int argc, char **argv) {
 		} else if (op == "S") {
 			unsigned k; int x, y; unsigned depth; in >> k >> x >> y >> depth;
 			screen->drawImage(x, y, (uint16)depth, player.bank()->image(k), 0);
+		} else if (op == "Q") {
+			unsigned k; int x, y; unsigned depth; int sx, sy, shear; in >> k >> x >> y >> depth >> sx >> sy >> shear;
+			screen->drawImageScaled(x, y, (uint16)depth, player.bank()->image(k), sx, sy, shear, 0);
+		} else if (op == "L") {
+			unsigned layer; in >> layer; screen->setLayerDepth((uint16)layer);
 		} else if (op == "K") {
 			for (uint i = 0; i < screen->_frame.size(); ++i) screen->_frame[i] = 0xabab;
 			screen->compose();
+			if (getenv("DUMPFRAME")) { FILE *df = fopen(getenv("DUMPFRAME"), "wb"); fwrite(screen->frame(), 2, 640 * 480, df); fclose(df); }
 		}
 	}
 	printf("%-28s %d/%d match\n", "composed frames", frames - badFrames, frames);

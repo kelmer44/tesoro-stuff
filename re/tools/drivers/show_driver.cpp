@@ -1,5 +1,6 @@
 // Loads a level of the shipped game with the engine classes, runs one frame and writes it as a PPM picture.
-// Usage: show_driver <TESORO dir> <LEVEL.LVL> <out.ppm> [555]   (read-only on the game files). Build/run: re/tools/run_startup_check.sh
+// Usage: show_driver <TESORO dir> <LEVEL.LVL> <out.ppm> [mouseX mouseY]   (read-only on the game files; the mouse position, in
+// window pixels, also loads INTERFACE.LVL and draws the pointer there). Build/run: re/tools/run_startup_check.sh
 #define FORBIDDEN_SYMBOL_ALLOW_ALL
 #include <cstdarg>
 #include <cstdio>
@@ -17,7 +18,9 @@
 #include "tesoro/core/screendisplay.h"
 #undef private
 #include "tesoro/core/archiveindex.h"
+#include "tesoro/core/cursor.h"
 #include "tesoro/core/level.h"
+#include "tesoro/core/mouse.h"
 
 void NORETURN_PRE error(const char *s, ...) { fprintf(stderr, "engine error: %s\n", s); exit(3); }
 void warning(const char *s, ...) { (void)s; }
@@ -71,7 +74,7 @@ static std::string slurp(const std::string &path) {
 
 int main(int argc, char **argv) {
 	if (argc < 4) return 1;
-	const std::string dir = argv[1]; const bool is555 = argc > 4;
+	const std::string dir = argv[1]; const bool is555 = false; const bool withMouse = argc > 5;
 	std::string tre = slurp(dir + "/TESORO.TRE");
 	Tesoro::ArchiveIndex index; index.load((const byte *)tre.data(), (uint32)tre.size());
 	std::string name = argv[2]; for (auto &c : name) c = (char)toupper((unsigned char)c);
@@ -83,9 +86,25 @@ int main(int argc, char **argv) {
 	if (!level.load(stream, offset, 0, is555, 0)) { fprintf(stderr, "load failed\n"); return 3; }
 	printf("%s: %u rooms, %u banks, %u objects\n", name.c_str(), level.roomCount(), level.bankCount(), (unsigned)level.objects().count());
 	level.attachObjects();
+	Tesoro::Level iface; Tesoro::Cursor *cursor = nullptr; Tesoro::Mouse mouse;
+	if (withMouse) {
+		const uint32 io = index.find("INTERFACE.LVL");
+		if (!io || !iface.load(stream, io, 0, is555, 0)) { fprintf(stderr, "interface load failed\n"); return 4; }
+		iface.attachObjects();
+		for (uint i = 0; i < iface.objects().count(); ++i)
+			if (iface.objects().valueAt(i)->kindId() == 10) cursor = static_cast<Tesoro::Cursor *>(iface.objects().valueAt(i));
+		if (!cursor) { fprintf(stderr, "no cursor in the interface level\n"); return 5; }
+		cursor->configureMouse(mouse);
+		cursor->setSurroundings(&mouse, &level);
+		mouse.moveTo(atoi(argv[4]) - 320, atoi(argv[5]) - 240);
+		cursor->update();
+		iface.setFrameTime(0); iface.update(); level.setFrameTime(0); level.update();
+		cursor->update2();
+	}
 	Tesoro::ScreenDisplay screen;
 	screen.startFrame();
 	level.updateRoomCameras(0, screen);
+	if (withMouse) iface.updateRoomCameras(0, screen);
 	screen.compose();
 	FILE *out = fopen(argv[3], "wb");
 	fprintf(out, "P6\n640 480\n255\n");

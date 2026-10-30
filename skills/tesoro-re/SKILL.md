@@ -162,3 +162,11 @@ From the engine worktree after `make`: `./scummvm --config=<local ini> --add --p
 ScummVM config untouched), then `SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy timeout 8 ./scummvm --config=<local ini> --gfx-mode=surfacesdl tesoro-win-es`.
 Exit status 124 (timeout) means it kept running its frame loop; warnings print to stdout. The default OpenGL mode fails under the dummy driver.
 This checks that the engine starts, loads the archive and loops without crashing; it does not capture the picture (use show_driver for that).
+
+## Technique: scripted object methods in the emulator (demonstrated 30 October 2026)
+To test a pass that calls object virtuals (the collision pass), build a real level with the original loader, then overwrite every object's vtable pointer with a
+fake table (copy of the base vtable 0x428000) whose chosen slots point at addresses in a page mapped r-x outside the stub range (`e.uc.mem_map(0x6f000000, 0x1000, 5)`;
+the 0x7f0xxxxx range belongs to `Emu` import stubs). Install Python callbacks there with `Emu.hook_function(addr, fn, nargs, pops)`; read the receiver with
+`emu.uc.reg_read(UC_X86_REG_ECX)`. The callbacks log calls and answer from a scripted table; the engine side subclasses `Level` (createObject) and `Object` with the same script.
+See `re/tools/gen_vectors_collide.py` and `drivers/collide_driver.cpp`. Zero the pool heap between cases (stale words leak into fields the loader leaves unset).
+Limit: the real UpdateBounds is not exercised (the stub only logs), shaped objects are excluded.

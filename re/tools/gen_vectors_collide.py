@@ -7,6 +7,7 @@ Consumed by re/tools/drivers/collide_driver.cpp.
 Lines: C <hex> <entry> <mode> <is555> <now>   level file
        F <i> <flags>      G <i> <hit x1 y1 x2 y2> <moved x1 y1 x2 y2> <x y> <prevx prevy> <sort>     object state
        H <n*n bits>       isHitter(i, j) table        P <i|-1> player object        A attach     M <i> ObjectMoved
+       N <i> <x> <y> <setCurrent>   Obj_SetPosition (0x401d30), then = <state>
        R <now>            run the pass, then  E <events>  and  = <state>
        #                  end of case
 Events: B<i> UpdateBounds of object i; T<i>:<j>:<time> object i told that it touches j.
@@ -90,6 +91,9 @@ for case in range(300):
         pl = rnd.choice([-1, -1] + list(range(n))); e.write(0x4420fc, struct.pack("<I", objs[pl] if pl >= 0 else 0)); out.append(f"P {pl}")
         for _ in range(rnd.randint(0, 2 * n)):
             i = rnd.randrange(n); e.call(0x408440, [objs[i]], conv="thiscall", this=LV); out.append(f"M {i}")
+        for _ in range(rnd.randint(0, 3)):
+            i = rnd.randrange(n); nx, ny, sc = rnd.randint(-50, 50), rnd.randint(-50, 50), rnd.choice([0, 1])
+            e.call(0x401d30, [nx & 0xffffffff, ny & 0xffffffff, sc], conv="thiscall", this=objs[i]); out.append(f"N {i} {nx} {ny} {sc}"); out.append("= " + snap(objs))
         now += rnd.choice([0, 17, 500]); st["now"] = now
         events.clear(); e.call(0x408890, [], this=LV)
         out.append(f"R {now}"); out.append("E " + (" ".join(events) or "-")); out.append("= " + snap(objs))
