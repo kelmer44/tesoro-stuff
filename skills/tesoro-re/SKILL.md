@@ -150,3 +150,15 @@ can call other original functions on the same data, so a pass is tested against 
 walked from. See `re/tools/gen_vectors_pass.py` (3530/3530 against the engine). Limitation: Unicorn keeps translated
 code, so rewriting a stub at the same address between cases silently runs the old one (symptom: stale return
 values). Give every case fresh stub addresses.
+
+## Technique: render a shipped level with the engine classes (demonstrated 30 October 2026)
+`re/tools/drivers/show_driver.cpp` (build like the other drivers, plus `archiveindex level cameraframe spriteobject menuitem screendisplay renderqueue`)
+reads `TESORO.TRE`/`TESORO.DAT` from the original folder (read-only), loads `<NAME>.LVL`, attaches its objects, runs
+`updateRoomCameras` and `compose` once and writes a PPM (`sips -s format png` converts it on macOS). Third argument `555` selects 5-5-5 pixels.
+Limits: one frame at time 0, only the object kinds and image types ported so far (kinds 0, 1, 3, 25; literal images); other kinds warn and are skipped.
+
+## Technique: run the engine headless (demonstrated 30 October 2026)
+From the engine worktree after `make`: `./scummvm --config=<local ini> --add --path=/Users/gabriel/Desktop/ags/TESORO` (a project-local ini keeps the user's own
+ScummVM config untouched), then `SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy timeout 8 ./scummvm --config=<local ini> --gfx-mode=surfacesdl tesoro-win-es`.
+Exit status 124 (timeout) means it kept running its frame loop; warnings print to stdout. The default OpenGL mode fails under the dummy driver.
+This checks that the engine starts, loads the archive and loops without crashing; it does not capture the picture (use show_driver for that).

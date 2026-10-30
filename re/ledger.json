@@ -9070,7 +9070,7 @@
  {
   "addr": "00403700",
   "ghidra_name": "FUN_00403700",
-  "name": "inferred_Keyboard_UpdateKeyStates",
+  "name": "inferred_InputDevice_UpdateStates",
   "tier": "game",
   "lines": 50,
   "decompile_ok": true,
@@ -9083,8 +9083,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inputstate.cpp::InputStates",
   "notes": "(new states, count) state machine per key (0,1,2,4,8,0x10,0x20) using GetTickCount and the two timing values (+0xc, +0x10): press, hold, release and repeat"
  },
  {
@@ -9173,7 +9173,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "DirectInput mouse, range 640x480, starts at (320,240)"
  },
@@ -9216,7 +9216,7 @@
   ],
   "data_refs": [],
   "cluster": 8,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "unread; first seen in vtable 00428074 slot 0 (non-object class)"
  },
@@ -11884,7 +11884,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 14,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "per-frame pass over the level's object list (+0x7c): for each pair of objects with flags 8 (collidable) and 2 (active) in the same room, asks A.slot11(B) then runs ResolveOverlap; afterwards sends queued position notifications (+0x78 list of object,x,y) through object slot 12"
  },
@@ -11908,14 +11908,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 15,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "(A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls"
  },
  {
   "addr": "00409280",
   "ghidra_name": "FUN_00409280",
-  "name": "inferred_Rect_SweepTime",
+  "name": "inferred_SweepRects",
   "tier": "game",
   "lines": 124,
   "decompile_ok": true,
@@ -11927,8 +11927,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 15,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/collision.cpp::sweepRects",
   "notes": "(rect A, rect B, dx, dy): earliest contact of two moving rectangles as a 16.16 fraction, -1 when they never touch. Name from use in ResolveOverlap, unverified"
  },
  {
@@ -22014,8 +22014,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/renderqueue.cpp::RenderQueue",
   "notes": "AddSprite helper for image type 3 | name from call sites and a skim; body not yet read"
  },
  {

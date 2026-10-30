@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 248 | 55% |
-| understood or later | 128 | 28% |
-| ported or later | 93 | 20% |
-| emu-compared or later | 76 | 17% |
+| decompiled or later | 250 | 55% |
+| understood or later | 135 | 30% |
+| ported or later | 98 | 21% |
+| emu-compared or later | 81 | 18% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -88,18 +88,18 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00403250` inferred_Archive_Open · depth 10 · 28 lines · **ported** → `engines/tesoro/core/archive.cpp` — thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4
 - [ ] `004029f0` inferred_Cursor_Update (vtable) · depth 12 · 156 lines · **understood** — vtable slot 4: reads the mouse position and buttons and the keyboard state array, handles the interface strip scrolling (shifts by 0x280 = one screen width), then positions the cursor object and its +0x74 companion at the mouse position plus the interface camera offset, and flags the held item | contract read 30 Oct; port blocked on global objects
 
-### Cluster 7: 00403500–00403980 (4/12 ported)
+### Cluster 7: 00403500–00403980 (5/12 ported)
 
 - [x] `00403500` inferred_Archive_FindEntry · depth 0 · 59 lines · **emu-compared** → `engines/tesoro/core/archiveindex.cpp::ArchiveIndex::find` — binary search by name in sorted 0x18-byte index records at 00442068; returns data offset (+0x14) or fails
 - [ ] `004036c0` inferred_InputDevice_IsReady · depth 0 · 7 lines · **decompiled** — device ready check | true when the device pointer (+4) and the DirectInput object exist
 - [ ] `004036e0` inferred_InputDevice_SetTimings · depth 0 · 9 lines · **decompiled** — +0xc and +0x10 (200 and 20000 are the values given at start)
-- [ ] `00403700` inferred_Keyboard_UpdateKeyStates · depth 0 · 50 lines · **decompiled** — (new states, count) state machine per key (0,1,2,4,8,0x10,0x20) using GetTickCount and the two timing values (+0xc, +0x10): press, hold, release and repeat
+- [x] `00403700` inferred_InputDevice_UpdateStates · depth 0 · 50 lines · **emu-compared** → `engines/tesoro/core/inputstate.cpp::InputStates` — (new states, count) state machine per key (0,1,2,4,8,0x10,0x20) using GetTickCount and the two timing values (+0xc, +0x10): press, hold, release and repeat
 - [ ] `004037c0` inferred_InputDevice_Dtor · depth 0 · 23 lines · **decompiled** — releases the DirectInput device and the shared DirectInput object when the count reaches zero
 - [ ] `004035b0` inferred_InputDevice_Ctor · depth 1 · 42 lines · **decompiled** — base-class constructor of the DirectInput devices (stores vtable 0042806c, creates the shared DirectInput object once and the device); message "DIRECTINPUT: error al crear el objeto" on failure; reference-counted in 0044207c. Called from Keyboard_Ctor and Mouse ctor
 - [ ] `004038f0` inferred_C00428070_Slot00 (vtable) · depth 1 · 40 lines · **untouched** — unread; first seen in vtable 00428070 slot 0 (non-object class)
 - [x] `00403320` inferred_Archive_SeekSavePos · depth 5 · 11 lines · **ported** → `engines/tesoro/core/archive.cpp` — (offset) returns the previous position and seeks to offset
 - [ ] `00403820` inferred_Keyboard_Ctor · depth 5 · 44 lines · **decompiled** — 0x38-byte keyboard device, vtable 00428070, 16-byte state buffer (+0x1c), default timings 200 and 20000
-- [ ] `00403980` inferred_MouseCtor · depth 5 · 46 lines · **decompiled** — DirectInput mouse, range 640x480, starts at (320,240)
+- [ ] `00403980` inferred_MouseCtor · depth 5 · 46 lines · **understood** — DirectInput mouse, range 640x480, starts at (320,240)
 - [x] `00403360` inferred_Archive_Close · depth 6 · 10 lines · **ported** → `engines/tesoro/core/archive.cpp`
 - [x] `00403380` inferred_Archive_ReadIndex · depth 8 · 109 lines · **emu-compared** → `engines/tesoro/core/archiveindex.cpp::ArchiveIndex::load` — reads 0x1c-byte index records from the .TRE keeping those with flag 4, copies the uppercased name (0x13 bytes) and offset+4 into 0x18-byte entries, then sorts them by name (selection sort); entry count in +0
 
@@ -110,7 +110,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00403cb0` inferred_CdAudio_PlayTrack · depth 0 · 51 lines · **decompiled** — (track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)
 - [ ] `004040b0` inferred_Sound_IsReady · depth 0 · 7 lines · **decompiled** — returns obj[0]!=0 && obj[1]!=0 | true when the first two fields are set
 - [ ] `004040d0` inferred_Sound_FindById · depth 0 · 22 lines · **decompiled** — finds the active sound slot whose id (+0x2c) matches
-- [ ] `00403aa0` inferred_C00428074_Slot00 (vtable) · depth 1 · 57 lines · **untouched** — unread; first seen in vtable 00428074 slot 0 (non-object class)
+- [ ] `00403aa0` inferred_C00428074_Slot00 (vtable) · depth 1 · 57 lines · **understood** — unread; first seen in vtable 00428074 slot 0 (non-object class)
 - [ ] `00403dc0` inferred_CdAudio_OnNotify · depth 1 · 14 lines · **decompiled** — on MM_MCINOTIFY success restarts the saved track (+0x29)
 - [ ] `00403e00` inferred_DirectSoundInit · depth 5 · 138 lines · **decompiled** — only creates DirectSound if CD track count >= 0
 
@@ -176,24 +176,24 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00407ce0` inferred_Jim_SayLine · depth 11 · 8 lines · **decompiled** — Player_Say with a negative id derived from +0x100 (spoken subtitle line)
 - [x] `004080e0` inferred_Level_Load · depth 15 · 142 lines · **emu-compared** — level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
 
-### Cluster 14: 00408780–00408890 (2/8 ported)
+### Cluster 14: 00408780–00408890 (3/8 ported)
 
 - [x] `00408780` inferred_Level_FindObjectByKey · depth 1 · 8 lines · **emu-compared** — forwards to the object list at +0x74 with the 64-bit key
 - [ ] `00408840` inferred_C00428bf8_RunVerb (vtable) · depth 1 · 14 lines · **untouched** — unread; first seen in vtable 00428bf8 slot 13
-- [ ] `00408890` inferred_Level_CollisionPass · depth 2 · 200 lines · **decompiled** — per-frame pass over the level's object list (+0x7c): for each pair of objects with flags 8 (collidable) and 2 (active) in the same room, asks A.slot11(B) then runs ResolveOverlap; afterwards sends queued position notifications (+0x78 list of object,x,y) through object slot 12
+- [x] `00408890` inferred_Level_CollisionPass · depth 2 · 200 lines · **emu-compared** — per-frame pass over the level's object list (+0x7c): for each pair of objects with flags 8 (collidable) and 2 (active) in the same room, asks A.slot11(B) then runs ResolveOverlap; afterwards sends queued position notifications (+0x78 list of object,x,y) through object slot 12
 - [ ] `004087a0` inferred_Level_UpdateOrCollide (vtable) · depth 3 · 17 lines · **understood** — level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true
 - [ ] `004087d0` inferred_C00428bf8_Update2 (vtable) · depth 3 · 10 lines · **understood** — unread; first seen in vtable 00428bf8 slot 5
 - [ ] `00408620` inferred_Level_SaveState · depth 8 · 77 lines · **untouched** — writes the object keys and flags and calls each object's SaveState (slot 10) via fwrite | name from call sites and a skim; body not yet read
 - [ ] `00408710` inferred_Level_LoadState · depth 8 · 20 lines · **decompiled** — reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object
 - [x] `00408800` inferred_Level_ReloadDeferredAnims · depth 10 · 18 lines · **ported** → `engines/tesoro/core/level.cpp::Level::reloadDeferredAnims` — rewinds pool arena 2, reloads the deferred animation images of every bank and sets +0x94
 
-### Cluster 15: 00409280–0040c040 (0/7 ported)
+### Cluster 15: 00409280–0040c040 (2/7 ported)
 
-- [ ] `00409280` inferred_Rect_SweepTime · depth 0 · 124 lines · **decompiled** — (rect A, rect B, dx, dy): earliest contact of two moving rectangles as a 16.16 fraction, -1 when they never touch. Name from use in ResolveOverlap, unverified
+- [x] `00409280` inferred_SweepRects · depth 0 · 124 lines · **emu-compared** → `engines/tesoro/core/collision.cpp::sweepRects` — (rect A, rect B, dx, dy): earliest contact of two moving rectangles as a 16.16 fraction, -1 when they never touch. Name from use in ResolveOverlap, unverified
 - [ ] `00409560` inferred_Polygon_ContainsPoint · depth 0 · 142 lines · **decompiled** — (polygon, x, y): even-odd edge crossing test over the shape's vertex list (count at +0, vertex array pointer at +4, vertices are short pairs); returns bool. Read partially
 - [ ] `00409790` inferred_Polygon_Overlaps · depth 0 · 255 lines · **decompiled** — (polygon A, polygon B): edge/vertex overlap test between two shapes; called in both orders by ResolveOverlap. Not read in detail
 - [ ] `00409c10` inferred_Polygon_ClipToRect · depth 0 · 113 lines · **decompiled** — (polygon, rect x0,y0,x1,y1, out polygon, rect of other object): produces the part of a shape inside a rectangle. Name from argument list only, unverified
-- [ ] `00408c50` inferred_Level_ResolveOverlap · depth 1 · 256 lines · **decompiled** — (A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls
+- [x] `00408c50` inferred_Level_ResolveOverlap · depth 1 · 256 lines · **emu-compared** — (A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls
 - [ ] `00409e50` inferred_Level_CreateObject · depth 14 · 1145 lines · **decompiled** — factory: switch on kind (record +0x18) allocating the right object class (sizes 0x6c, 0x84, 0x78, 0x6c, 0x74, 0xd8 ... kind 5 has a sub-switch on record byte +5); adds objects of kind 1 to level +0x90
 - [ ] `0040c040` inferred_C0042a600_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a600 slot 21 (kind 13 subtype 16)
 
@@ -390,9 +390,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00410420` inferred_Room_Ctor · depth 1 · 26 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::init` — 16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list | room vectors 30 Oct
 - [ ] `004103d0` inferred_Obj_SetFacingAnim (vtable) · depth 3 · 9 lines · **decompiled** — selects the bank from +0xac and starts animation index (param-1) with AnimPlayer
 
-### Cluster 31: 00410cc0–00411f80 (2/12 ported)
+### Cluster 31: 00410cc0–00411f80 (3/12 ported)
 
-- [ ] `00410cc0` inferred_Display_QueueRow_TypeB · depth 0 · 173 lines · **untouched** — AddSprite helper for image type 3 | name from call sites and a skim; body not yet read
+- [x] `00410cc0` inferred_Display_QueueRow_TypeB · depth 0 · 173 lines · **emu-compared** → `engines/tesoro/core/renderqueue.cpp::RenderQueue` — AddSprite helper for image type 3 | name from call sites and a skim; body not yet read
 - [ ] `00410fb0` inferred_Display_Raster_TypeB · depth 0 · 177 lines · **untouched** — rasterises queued type-B rows | name from call sites and a skim; body not yet read
 - [ ] `004112d0` inferred_Display_QueueRow_Mask · depth 0 · 159 lines · **untouched** — AddSprite helper writing the second row buffer (+0x674) | name from call sites and a skim; body not yet read
 - [ ] `00411580` inferred_Display_Raster_Mask · depth 0 · 164 lines · **untouched** — rasterises the mask rows | name from call sites and a skim; body not yet read

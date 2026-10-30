@@ -334,8 +334,45 @@ is composed, are the pieces copied into the picture. Scaled pictures, shadow pic
 What is ported and checked against the original: emptying the lists, adding an ordinary (literal) picture, the span
 cutting (including pictures hanging off any screen edge) and the **compose**, which copies the spans of every row into
 the 640x480 picture, left to right. The new `ScreenDisplay` class owns the queue and the picture. The compose relies on
-the first picture of a frame being a full-screen background, as the game always draws. Not yet: the other two picture kinds,
+the first picture of a frame being a full-screen background, as the game always draws. Not yet: the shadow picture kind,
 scaled pictures (used by characters), shadows, text, the fades, and putting the finished picture on the real screen.
+
+The second kind of picture, solid colour runs (the "type 3" images), is now ported too and checked the same way; the
+difficulty menu (`NUEVO`) renders with it: three wooden-sign lines for easy, regular and hard.
+
+**First picture (30 October 2026).** `re/tools/drivers/show_driver.cpp` loads a level from the shipped game with the
+fresh classes (archive index, level, the three object kinds, camera, render queue, compose) and writes one frame as a picture.
+`PRINCIPAL` (the main menu) comes out right: the wooden sign with its chains and the two lines of lettering, in 5-6-5
+colours. This is a one-off check, not the engine's frame loop: nothing runs per frame yet, there is no mouse, and the two
+menu items are hidden as the original starts them.
+
+## Collisions: who touches whom ✅ (rectangles) / ⬜ (shapes)
+
+Whenever an object moves it is put on the level's list of **moved objects**. Once per frame the collision pass takes that list:
+it works out each moved object's hit rectangle and, for the others in the same room, brings theirs up to date; then for every
+pair where one object is a "hitter" for the other (the cursor over a menu item or hotspot, Jim against a door) it sweeps the
+hitter's rectangle along its movement against the other's and notes the moment of first touch. The touches are sorted (earliest
+first; Jim's go ahead of ties) and each hitter is told what it touched. Finally the moved objects go back to where they were and
+the list is emptied. This is ported and checked against the original with scripted objects. Objects with detailed outlines
+(shape entries in their animation) have a second, pixel-accurate test that is read but not ported: the port uses their
+rectangles and warns.
+
+## The frame loop and the mouse (stand-in ✅ / ⬜)
+
+The original runs one **frame** about as often as the window refreshes: read the keyboard and mouse, freeze the game clock,
+update sound, empty the screen's lists, run the first pass over the main object list (every object's update, the level's
+collision pass), run the second pass (the level draws and composes, then shows the finished picture), unfreeze the clock.
+
+The **mouse** keeps a position in the 640x480 window (clamped to the edges) and the state of its three buttons. Each button
+goes through a small state machine: up, pressed this frame, held, held long enough to repeat, released this frame, releasing,
+pressed again while releasing. The game reads these states instead of tracking presses itself. That state machine
+(`InputStates`) is checked against the original's code; the host supplies the position directly instead of movement.
+
+The engine now runs a **reduced frame** inside ScummVM: events become mouse position and buttons, the clock freezes, the
+main menu level draws through the screen queue, the composed picture is copied to the window. It does not yet have the
+object list passes, so there is no cursor drawn, no hover or click on the menu items, and no sound. Those need the level's
+collision pass, the cursor and companion objects (built from the interface level), the kind-2 picture objects the cursor
+uses and the menu item's click code.
 
 ## Still to explore
 

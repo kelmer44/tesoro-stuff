@@ -67,19 +67,19 @@ local-media/bin/cursor_driver local-media/vectors/cursor.txt
 # Level: original Level_Load / AttachObjects / ObjectMoved / FindObjectByKey / CameraMoveTo / UpdateRoomCameras (Unicorn, CRT and pool replaced) vs engine Level
 re/.venv/bin/python re/tools/gen_vectors_level.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/level_driver.cpp \
-    "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/level_driver
+    "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/collision.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/level_driver
 local-media/bin/level_driver local-media/vectors/level.txt
 
 # Sprite object (kind 3): original constructor / tick / draw (Unicorn, image blit recorded) vs engine SpriteObject
 re/.venv/bin/python re/tools/gen_vectors_sprite.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/sprite_driver.cpp \
-    "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/sprite_driver
+    "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/collision.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/sprite_driver
 local-media/bin/sprite_driver local-media/vectors/sprite.txt
 
 # Menu item (kind 25): original constructor / tick-and-clear / draw (Unicorn, image blit recorded) vs engine MenuItem
 re/.venv/bin/python re/tools/gen_vectors_menuitem.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/menuitem_driver.cpp \
-    "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/menuitem_driver
+    "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/collision.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/menuitem_driver
 local-media/bin/menuitem_driver local-media/vectors/menuitem.txt
 
 # Render queue: original ResetRenderQueue / AddSprite / QueueRow (literal images; Unicorn) vs engine RenderQueue span lists
@@ -93,3 +93,21 @@ re/.venv/bin/python re/tools/gen_vectors_compose.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/compose_driver.cpp \
     "$ENG/engines/tesoro/core/screendisplay.cpp" "$ENG/engines/tesoro/core/renderqueue.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" -lz -o local-media/bin/compose_driver
 local-media/bin/compose_driver local-media/vectors/compose.txt
+
+# Input state machine: original InputDevice state update (GetTickCount replaced) vs engine InputStates
+re/.venv/bin/python re/tools/gen_vectors_input.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/input_driver.cpp \
+    "$ENG/engines/tesoro/core/inputstate.cpp" -o local-media/bin/input_driver
+local-media/bin/input_driver local-media/vectors/input.txt
+
+# Swept rectangle test: original 0x409280 (Unicorn) vs engine sweepRects
+re/.venv/bin/python re/tools/gen_vectors_sweep.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/sweep_driver.cpp \
+    "$ENG/engines/tesoro/core/collision.cpp" -o local-media/bin/sweep_driver
+local-media/bin/sweep_driver local-media/vectors/sweep.txt
+
+# Collision pass: original 0x408890 / 0x408c50 on synthetic levels with scripted object methods vs engine Level::collisionPass
+re/.venv/bin/python re/tools/gen_vectors_collide.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/collide_driver.cpp \
+    "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/collision.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" -o local-media/bin/collide_driver
+local-media/bin/collide_driver local-media/vectors/collide.txt

@@ -54,7 +54,8 @@ static std::string describe(const Tesoro::RenderQueue &queue, const Tesoro::Anim
 	for (int n = row.head(); n && count < 200; n = row.span(n).next, ++count) {
 		const Tesoro::RenderQueue::Span &sp = row.span(n);
 		std::ostringstream src;
-		if (sp.pixels < 2) src << sp.pixels;
+		if (sp.pixels == 1) src << "1:" << sp.colour;
+		else if (sp.pixels < 2) src << sp.pixels;
 		else {
 			bool found = false;
 			for (uint k = 0; k < bank.imageCount() && !found; ++k) {

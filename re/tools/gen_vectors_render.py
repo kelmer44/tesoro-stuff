@@ -6,7 +6,7 @@ Output: local-media/vectors/render.txt (ignored). Consumed by re/tools/drivers/r
 Lines: C <hex dat> <entry>      bank file with literal images (loaded in mode 0, 5-6-5)
        Z                         reset (0x411f20)
        S <image> <x> <y> <depth> add a sprite
-       D then R <y> <bump> <free chain length> : x0,x1,depth,src;...   (src: 0, 1 or image:offset)   rows that are not empty
+       D then R <y> <bump> <free chain length> : x0,x1,depth,src;...   (src: 0, 1:colour or image:offset)   rows that are not empty
        #                         end of case
 """
 import os, random, struct, sys
@@ -25,6 +25,7 @@ exec(src[src.index("def u16"):src.index("def make_blob")])
 e.write(DISP + 0x670, struct.pack("<I", ROWS)); e.write(DISP + 0x674, struct.pack("<I", ROWS + 240000 * 4))
 
 def make_image():
+    solid = rnd.random() < 0.4
     H = rnd.randint(1, 8); rows = []; end = 0
     for _ in range(H):
         items = []; x = 0
@@ -35,12 +36,12 @@ def make_image():
     nitems = sum(len(r) for r in rows); pix = 2 * rnd.randint(20, 50)
     head = 0x10 + 8 * H; itoff = head; pixoff = head + 8 * nitems; size = pixoff + pix
     b = bytearray(size)
-    struct.pack_into("<IIHHHH", b, 0, pixoff, pix, W, H, 1, 0)
+    struct.pack_into("<IIHHHH", b, 0, pixoff, pix, W, H, 3 if solid else 1, 0)
     o = itoff
     for r, items in enumerate(rows):
         struct.pack_into("<IHH", b, 0x10 + 8 * r, o, len(items), 0)
         for gap, ln in items:
-            struct.pack_into("<IHH", b, o, pixoff + 2 * rnd.randint(0, pix // 2 - 14), gap, ln); o += 8
+            struct.pack_into("<IHH", b, o, rnd.getrandbits(32) if solid else pixoff + 2 * rnd.randint(0, pix // 2 - 14), gap, ln); o += 8
     return bytes(b)
 
 def make_bank(nimg):
@@ -60,7 +61,7 @@ def dump(imgs, sizes):
         spans = []; node = head
         while node and len(spans) < 200:
             x0, x1, d = s16(e.read(node + 8, 2), 0), s16(e.read(node + 10, 2), 0), u16(e.read(node + 12, 2), 0)
-            p = e.u32(node + 4); desc = str(p)
+            p = e.u32(node + 4); desc = str(p) if p != 1 else f"1:{u16(e.read(node + 14, 2), 0)}"
             if p >= 2:
                 for k, (base, size) in enumerate(zip(imgs, sizes)):
                     if base <= p <= base + size: desc = f"{k}:{p - base}"; break

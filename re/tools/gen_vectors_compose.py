@@ -25,6 +25,7 @@ exec(src[src.index("def u16"):src.index("def make_blob")])
 e.write(DISP + 0x670, struct.pack("<I", ROWS)); e.write(DISP + 0x674, struct.pack("<I", ROWS + 240000 * 4))
 
 def make_image():
+    solid = rnd.random() < 0.4
     H = rnd.randint(1, 8); rows = []; end = 0
     for _ in range(H):
         items = []; x = 0
@@ -35,12 +36,12 @@ def make_image():
     nitems = sum(len(r) for r in rows); pix = 2 * rnd.randint(20, 50)
     head = 0x10 + 8 * H; itoff = head; pixoff = head + 8 * nitems; size = pixoff + pix
     b = bytearray(size)
-    struct.pack_into("<IIHHHH", b, 0, pixoff, pix, W, H, 1, 0)
+    struct.pack_into("<IIHHHH", b, 0, pixoff, pix, W, H, 3 if solid else 1, 0)
     o = itoff
     for r, items in enumerate(rows):
         struct.pack_into("<IHH", b, 0x10 + 8 * r, o, len(items), 0)
         for gap, ln in items:
-            struct.pack_into("<IHH", b, o, pixoff + 2 * rnd.randint(0, pix // 2 - 14), gap, ln); o += 8
+            struct.pack_into("<IHH", b, o, rnd.getrandbits(32) if solid else pixoff + 2 * rnd.randint(0, pix // 2 - 14), gap, ln); o += 8
     return bytes(b)
 
 def make_background():
