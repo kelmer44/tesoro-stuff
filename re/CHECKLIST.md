@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 243 | 54% |
-| understood or later | 108 | 24% |
-| ported or later | 85 | 19% |
-| emu-compared or later | 68 | 15% |
+| decompiled or later | 244 | 54% |
+| understood or later | 121 | 27% |
+| ported or later | 89 | 19% |
+| emu-compared or later | 72 | 16% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -136,12 +136,12 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00405850` inferred_DlgScript_Update (vtable) · depth 14 · 70 lines · **decompiled** — per-frame step of a scripted action list (24-byte steps at +0xbc, current step +0xcc): waits (type 1 until the speaker finishes plus 200 ms, type 2 timed), choice menus (types 5, 6: asks the player object to say the options), cursor show/hide (type 8), type 9 wait for an animation; advances or ends the list (returns 2 or 3) | per-frame step: handles the blocking step types (1 wait for speech +200 ms, 2 timed wait, 5/6 choice menu, 8 cursor, 9 animation wait) and, when the program counter moved, runs RunSteps; returns 2 when finished
 - [ ] `00406140` inferred_DlgScript_ResumePlayer (vtable) · depth 14 · 12 lines · **decompiled** — removes a helper object from the main list, clears Jim's walking flag, sets facing and advances the program counter
 
-### Cluster 11: 004067a0–00407000 (0/8 ported)
+### Cluster 11: 004067a0–00407000 (2/8 ported)
 
 - [ ] `004067a0` inferred_DlgEntry_CopyCtorB · depth 0 · 67 lines · **decompiled** — field-by-field copy of an entry (used by DialogueTable_Load for kind 1)
 - [ ] `00406c50` inferred_Obj_Kind13_Update (vtable) · depth 1 · 44 lines · **decompiled** — slot 4 of kind 13: same pending-click dispatch as Interactive_Update, with an extra item-use path when no verb handler applies (calls the hovered object's slot 27)
-- [ ] `004069e0` inferred_Obj_Kind01_OnAttach (vtable) · depth 2 · 35 lines · **decompiled** — vtable slot 0 of kind 1 (run by Object_AttachToLevel): resolves the walk area object by the name at +0x6c in the level's object list (+0x78), sets the camera bounds to the first frame's rectangle and moves the camera to the object's position
-- [ ] `00406980` inferred_Obj_Kind01_Ctor · depth 3 · 16 lines · **decompiled** — 0x84 bytes, vtable 00428ac8, extends Kind00; Level_CreateObject stores the instance at level +0x90 (single special object per level)
+- [x] `004069e0` inferred_Obj_Kind01_OnAttach (vtable) · depth 2 · 35 lines · **emu-compared** — vtable slot 0 of kind 1 (run by Object_AttachToLevel): resolves the walk area object by the name at +0x6c in the level's object list (+0x78), sets the camera bounds to the first frame's rectangle and moves the camera to the object's position
+- [x] `00406980` inferred_Obj_Kind01_Ctor · depth 3 · 16 lines · **emu-compared** — 0x84 bytes, vtable 00428ac8, extends Kind00; Level_CreateObject stores the instance at level +0x90 (single special object per level)
 - [ ] `00407000` inferred_Item_SetHeld (vtable) · depth 3 · 30 lines · **decompiled** — kind 13 method (flag): when set, makes this object the carried item (cursor +0x12c) and switches the cursor animation to item id + 7; when cleared, drops it. Verb indices 7 and above are therefore carried inventory items
 - [ ] `00406a90` inferred_Obj_Kind13_Ctor · depth 12 · 88 lines · **decompiled** — 0xac bytes, extends MidBase; 14 per-subtype vtables selected by record byte 1; increments global instance counter 004420f8; phrase key lookup
 - [ ] `00406d50` inferred_C00428b00_SetVerbAndClick (vtable) · depth 12 · 123 lines · **untouched** — unread; first seen in vtable 00428b00 slot 14
@@ -316,29 +316,29 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040ddc0` inferred_C0042b8e0_Draw (vtable) · depth 14 · 73 lines · **untouched** — unread; first seen in vtable 0042b8e0 slot 6
 - [ ] `0040e000` inferred_C0042b950_SetVerbAndClick (vtable) · depth 15 · 142 lines · **untouched** — unread; first seen in vtable 0042b950 slot 14
 
-### Cluster 25: 0040f020–0040f020 (0/11 ported)
+### Cluster 25: 0040f020–0040f020 (1/11 ported)
 
 - [ ] `0040f020` inferred_Obj_SetVerbAndClick (vtable) · depth 0 · 10 lines · **decompiled** — MidBase slot 14: stores verb +0x9c then calls slot 19 (OnClick)
 - [ ] `0040ebd0` inferred_C0042ba30_OnAttach (vtable) · depth 1 · 14 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 0
 - [ ] `0040ec00` inferred_C0042ba30_Draw (vtable) · depth 1 · 24 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 6
 - [ ] `0040ec90` inferred_Obj_MidBase_DefaultCtor · depth 1 · 9 lines · **decompiled** — base object ctor with vtable 0042ba68 only
 - [ ] `0040e760` inferred_C0042b9f8_Draw (vtable) · depth 2 · 22 lines · **untouched** — unread; first seen in vtable 0042b9f8 slot 6
-- [ ] `0040efa0` inferred_Obj_Draw (vtable) · depth 2 · 24 lines · **decompiled** — MidBase slot 6: converts world position to screen (camera at argument, +0x140/+0xf0 centre) and queues the current frame's image through Display_AddSprite with the object's sort value (+0x5e)
+- [x] `0040efa0` inferred_MidBase_Draw (vtable) · depth 2 · 24 lines · **emu-compared** — MidBase slot 6: converts world position to screen (camera at argument, +0x140/+0xf0 centre) and queues the current frame's image through Display_AddSprite with the object's sort value (+0x5e)
 - [ ] `0040e890` inferred_C0042ba30_AnimTick (vtable) · depth 3 · 103 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 2
-- [ ] `0040ecb0` inferred_Obj_MidBase_Ctor · depth 3 · 14 lines · **decompiled** — Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25
-- [ ] `0040ee70` inferred_Obj_Interactive_Update (vtable) · depth 3 · 52 lines · **decompiled** — MidBase slot 4: when a click is pending (+0x8c), clears it, removes the object from the main list, runs the verb handler for the current verb (index +0x9c, slots 20-26), clears the cursor's target (+0x12c), resets the cursor animation and calls slot 27 with verb-7. Pending flag is cleared at the end
+- [ ] `0040ecb0` inferred_Obj_MidBase_Ctor · depth 3 · 14 lines · **understood** → `engines/tesoro/core/menuitem.cpp::MenuItem::init` — Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25
+- [ ] `0040ee70` inferred_Obj_Interactive_Update (vtable) · depth 3 · 52 lines · **understood** — MidBase slot 4: when a click is pending (+0x8c), clears it, removes the object from the main list, runs the verb handler for the current verb (index +0x9c, slots 20-26), clears the cursor's target (+0x12c), resets the cursor animation and calls slot 27 with verb-7. Pending flag is cleared at the end
 - [ ] `0040e7e0` inferred_Obj_Kind16_Ctor · depth 4 · 25 lines · **decompiled** — 0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)
 - [ ] `0040ed10` inferred_Obj_Kind09_Ctor · depth 12 · 61 lines · **decompiled** — 0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits
 
 ### Cluster 26: 0040f040–0040f270 (0/7 ported)
 
-- [ ] `0040f040` inferred_Obj_Slot15_ForwardToSlot14 (vtable) · depth 0 · 9 lines · **decompiled** — MidBase slot 15: calls slot 14 with its argument
-- [ ] `0040f1a0` inferred_Obj_OnClick (vtable) · depth 0 · 18 lines · **decompiled** — MidBase slot 19: interrupts the player if busy, copies the clicked verb for the player object itself, sets the player's target to the object's approach point (+0x94,+0x98) via player slot 32 (walk), then player slot 4
+- [ ] `0040f040` inferred_Obj_Slot15_ForwardToSlot14 (vtable) · depth 0 · 9 lines · **understood** — MidBase slot 15: calls slot 14 with its argument
+- [ ] `0040f1a0` inferred_Obj_OnClick (vtable) · depth 0 · 18 lines · **understood** — MidBase slot 19: interrupts the player if busy, copies the clicked verb for the player object itself, sets the player's target to the object's approach point (+0x94,+0x98) via player slot 32 (walk), then player slot 4
 - [ ] `0040f270` inferred_Obj_Slot27_Stub (vtable) · depth 0 · 7 lines · **decompiled** — MidBase slot 27 default (ret 4, returns 0)
 - [ ] `0040f050` inferred_Obj_ShowHoverText (vtable) · depth 1 · 15 lines · **decompiled** — MidBase slot 17: puts the object's phrase text (+0x6c record, then the 64-bit name key) into the cursor's hover text via Cursor_SetText
-- [ ] `0040f0b0` inferred_Obj_ClearHoverText (vtable) · depth 1 · 8 lines · **decompiled** — MidBase slot 18: Cursor_SetText(null)
-- [ ] `0040f0d0` inferred_Obj_RunVerb (vtable) · depth 3 · 40 lines · **decompiled** — MidBase slot 13: tells the player object (global 004420fc) to select verb +0x90, then dispatches the verb handler like Interactive_Update
-- [ ] `0040f210` inferred_Obj_Verb0_Default (vtable) · depth 11 · 16 lines · **decompiled** — MidBase slot 20: marks click pending (+0x8c, +0x8d), says phrase key +0x70 if set via GameState_Say, sets cursor busy, inserts object into the main list at priority 5
+- [ ] `0040f0b0` inferred_Obj_ClearHoverText (vtable) · depth 1 · 8 lines · **understood** — MidBase slot 18: Cursor_SetText(null)
+- [ ] `0040f0d0` inferred_Obj_RunVerb (vtable) · depth 3 · 40 lines · **understood** — MidBase slot 13: tells the player object (global 004420fc) to select verb +0x90, then dispatches the verb handler like Interactive_Update
+- [ ] `0040f210` inferred_Obj_Verb0_Default (vtable) · depth 11 · 16 lines · **understood** — MidBase slot 20: marks click pending (+0x8c, +0x8d), says phrase key +0x70 if set via GameState_Say, sets cursor busy, inserts object into the main list at priority 5
 
 ### Cluster 27: 0040f670–0040f780 (5/11 ported)
 
@@ -535,15 +535,15 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00417640` inferred_C0042afe8_Slot28 (vtable) · depth 14 · 44 lines · **untouched** — unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)
 - [ ] `004178b0` inferred_C0042bf90_SetVerbAndClick (vtable) · depth 14 · 37 lines · **untouched** — unread; first seen in vtable 0042bf90 slot 14
 
-### Cluster 42: 00417b30–00417d00 (0/7 ported)
+### Cluster 42: 00417b30–00417d00 (1/7 ported)
 
-- [ ] `00417b30` inferred_Obj_RetTrue (vtable) · depth 0 · 7 lines · **decompiled** — MidBase slot 16: returns 1 (is interactive/enabled default)
+- [ ] `00417b30` inferred_Obj_RetTrue (vtable) · depth 0 · 7 lines · **understood** — MidBase slot 16: returns 1 (is interactive/enabled default)
 - [ ] `004179b0` inferred_C0042bc08_RunVerb (vtable) · depth 2 · 41 lines · **untouched** — unread; first seen in vtable 0042bc08 slot 13
 - [ ] `00417c80` inferred_C004282d0_Slot28 (vtable) · depth 2 · 10 lines · **untouched** — unread; first seen in vtable 004282d0 slot 28
-- [ ] `00417ad0` inferred_Obj_Kind25_Ctor · depth 4 · 12 lines · **decompiled** — 0xa4 bytes, vtable 0042c000, extends MidBase
+- [x] `00417ad0` inferred_Obj_Kind25_Ctor · depth 4 · 12 lines · **emu-compared** — 0xa4 bytes, vtable 0042c000, extends MidBase
 - [ ] `00417ca0` inferred_C004295d0_UseItem (vtable) · depth 13 · 21 lines · **untouched** — unread; first seen in vtable 004295d0 slot 27 (kind 20 subtype 7)
 - [ ] `00417d00` inferred_C00429560_UseItem (vtable) · depth 13 · 31 lines · **untouched** — unread; first seen in vtable 00429560 slot 27 (kind 20 subtype 8)
-- [ ] `00417b40` inferred_C0042c000_SetVerbAndClick (vtable) · depth 15 · 49 lines · **untouched** — unread; first seen in vtable 0042c000 slot 14
+- [ ] `00417b40` inferred_C0042c000_SetVerbAndClick (vtable) · depth 15 · 49 lines · **understood** — unread; first seen in vtable 0042c000 slot 14
 
 ### Cluster 43: 00417dd0–00418560 (0/12 ported)
 

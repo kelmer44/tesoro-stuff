@@ -68,17 +68,23 @@ def make_bank():
 
 def make_level(entry):
     nbank = rnd.choice([0, 1, 2, 3, 4]); nroom = rnd.choice([0, 1, 2, 3])
-    banks = [make_bank() for _ in range(nbank)]
+    banks = [make_bank() for _ in range(nbank)]; names = []
     rooms = []; total = 0
     for r in range(nroom):
         nobj = rnd.randint(0, 5) if total < 8 else 0; total += nobj
         rec = bytearray(rb(0x28)); struct.pack_into("<HHI", rec, 0x20, nobj, rnd.randint(0, 60), rnd.choice([rnd.randint(1, 900), (rnd.randint(-900, -1) & 0xffffffff), rnd.getrandbits(32) | 1]))
         objs = bytearray()
         for _ in range(nobj):
-            kind = rnd.choice([0, 0, 0, 0, 0x12, 0x1a, 0x30, 0x100, 0xffff])
+            kind = rnd.choice([0, 0, 0, 0, 0x12, 0x1a, 0x30, 0x100, 0xffff] + ([1, 1] if nbank else []))
             nb = rnd.randint(0, 3) if nbank else 0
             name = "".join(rnd.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_") for _ in range(rnd.randint(1, 11)))
             extra = rb(rnd.randint(0, 20))
+            if kind == 1:      # camera frame: needs a bank; data = name of another object (or none), then three more values
+                nb = max(nb, 1)
+                pick = rnd.random()
+                ref = b"" if pick < 0.2 else (rnd.choice(names).encode() if names and pick < 0.8 else rb(rnd.randint(1, 12)).replace(b"\0", b"A"))
+                extra = ref.ljust(12, b"\0") + rb(5) + rb(rnd.randint(0, 6))
+            names.append(name)
             orec = struct.pack("<iihBB12sII", rnd.randint(-700, 700), rnd.randint(-500, 500), rnd.randint(-40, 40), rnd.getrandbits(8), nb,
                                name.encode(), kind, len(extra))
             objs += orec + extra + bytes(rnd.randint(0, nbank - 1) for _ in range(nb))
@@ -109,11 +115,13 @@ def state(with_bounds=False):
     for b in range(e.u32(LV + 0x88)):
         p = e.read(e.u32(banks + 4 * b), 0x40); s += f" | bank {u16(p,0x22)} {u16(p,0x20)} {u32(p,0x18)}"
     for a in objs:
-        o = e.read(a, 0x70); n = o[0x33]; arr = u32(o, 0x34)
+        o = e.read(a, 0x84); n = o[0x33]; arr = u32(o, 0x34)
         s += (f" | obj {u32(o,0x44)} {u32(o,0x48)} {o[0x5c]} {s32(u32(o,0x4c))} {s32(u32(o,0x50))} {s16(o,0x5e)} {n} {u32(o,0x68)} "
               f"{(u32(o,0x3c) - rooms) // 0x10} {s32(u32(o,0x54))} {s32(u32(o,0x58))}")
         for k in range(n):
             p = e.read(e.u32(arr + 4 * k), 0x40); s += f" {u16(p,0x22)}.{u16(p,0x20)}.{u32(p,0x18)}"
+        if o[0x5c] == 1:
+            s += f" k1 {o[0x6c:0x78].hex()} {oid.get(u32(o,0x78), -1)} {o[0x7d]} {u16(o,0x7e)} {u16(o,0x80)}"
         if with_bounds:
             s += " b " + " ".join(str(s32(u32(o, x))) for x in (0x10, 0x14, 0x18, 0x1c, 0x20, 0x24, 0x28, 0x2c)) + f" {u16(o,0x30)}"
     return s

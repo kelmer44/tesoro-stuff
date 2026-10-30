@@ -13,6 +13,7 @@
 #include "common/array.h"
 #include "common/stream.h"
 #define private public
+#include "tesoro/core/cameraframe.h"
 #include "tesoro/core/display.h"
 #include "tesoro/core/level.h"
 #undef private
@@ -85,6 +86,11 @@ static std::string stateOf(Tesoro::Level &lv, bool withBounds) {
 		for (uint k = 0; k < obj->animation().bankCount(); ++k) {
 			Tesoro::AnimPlayer &p = obj->animation().player(k);
 			o << " " << p.bank()->sequenceCount() << "." << p.bank()->imageCount() << "." << p.flags();
+		}
+		if (obj->kindId() == 1) {
+			const Tesoro::CameraFrame *cf = static_cast<const Tesoro::CameraFrame *>(obj);
+			char hex[32]; for (int b = 0; b < 12; ++b) snprintf(hex + 2 * b, 3, "%02x", (byte)cf->targetName()[b]);
+			o << " k1 " << hex << " " << id(cf->target()) << " " << (int)cf->flag() << " " << cf->value() << " " << cf->count();
 		}
 		if (withBounds) {
 			const Tesoro::ObjectRect &h = obj->hitRect(), &m = obj->movedArea();

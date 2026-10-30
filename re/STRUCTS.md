@@ -117,3 +117,9 @@ Level file: header {rooms, banks, objects}; banks; per room a 0x28 record {+0x20
 
 ## Kind 3 object (sprite object, vtable 0042b9c0) — built by 0040e5c0, extends Object
 No fields beyond the base (size 0x6c). Level data: byte 0 = first sequence, byte 1 = mode (0 hold hidden, 1 hold, 2 play to next image-less sequence, 3 loop that run); the bank indices follow the data. Vtable differences from the base: slot 0 inserts into the room list (004157b0), slot 2 ticks unconditionally (0040e6a0), slot 6 draws (0040e6b0). Draw position: x = objX − camScaledX + moveX + 320 + imageX, y = camScaledY − objY − imageY − moveY + 240.
+
+## Kind 25 object (menu item, vtable 0042c000) — built by 00417ad0 over the mid base 0040ecb0, size 0xa4
+Mid base (vtable 0042ba68, shared by the clickable kinds) fields seen: +0x70 target/carried item pointer (?), +0x8c byte pending, +0x8d byte, +0x90 (?), +0x94/+0x98 position to walk to (?), +0x9c int mode. Kind 25 adds +0xa0 = action number (level data byte 2). Level data: byte 0 = shown sequence, byte 2 = action. Flags after construction: 0x508 (collidable, in room list, hitter), not visible.
+
+## Kind 1 object (camera frame, vtable 00428ac8) — built by 00406980, size 0x84
++0x6c char[12] name of a target object (NUL-terminated by the zero at +0x78 until attach) · +0x78 resolved target object (set by 004069e0) · +0x7d byte (data byte 0xe) · +0x7e u16 (data bytes 0xf-0x10) · +0x80 u16 (data byte 0xd + 1). Vtable: slot 0 OnAttach (004069e0), slot 4 returns 1 (00417b30), the rest base. Level +0x90 points at it.

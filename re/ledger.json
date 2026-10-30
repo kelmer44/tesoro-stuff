@@ -10170,7 +10170,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 11,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "0x84 bytes, vtable 00428ac8, extends Kind00; Level_CreateObject stores the instance at level +0x90 (single special object per level)"
  },
@@ -10197,7 +10197,7 @@
   ],
   "data_refs": [],
   "cluster": 11,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "vtable slot 0 of kind 1 (run by Object_AttachToLevel): resolves the walk area object by the name at +0x6c in the level's object list (+0x78), sets the camera bounds to the first frame's rectangle and moves the camera to the object's position"
  },
@@ -14596,8 +14596,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 25,
-  "status": "decompiled",
-  "engine": "",
+  "status": "understood",
+  "engine": "engines/tesoro/core/menuitem.cpp::MenuItem::init",
   "notes": "Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25"
  },
  {
@@ -14969,14 +14969,14 @@
   ],
   "data_refs": [],
   "cluster": 25,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "MidBase slot 4: when a click is pending (+0x8c), clears it, removes the object from the main list, runs the verb handler for the current verb (index +0x9c, slots 20-26), clears the cursor's target (+0x12c), resets the cursor animation and calls slot 27 with verb-7. Pending flag is cleared at the end"
  },
  {
   "addr": "0040efa0",
   "ghidra_name": "FUN_0040efa0",
-  "name": "inferred_Obj_Draw",
+  "name": "inferred_MidBase_Draw",
   "tier": "game",
   "lines": 24,
   "decompile_ok": true,
@@ -15456,7 +15456,7 @@
   ],
   "data_refs": [],
   "cluster": 25,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "MidBase slot 6: converts world position to screen (camera at argument, +0x140/+0xf0 centre) and queues the current frame's image through Display_AddSprite with the object's sort value (+0x5e)"
  },
@@ -16440,7 +16440,7 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "MidBase slot 15: calls slot 14 with its argument"
  },
@@ -17529,7 +17529,7 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "MidBase slot 18: Cursor_SetText(null)"
  },
@@ -17997,7 +17997,7 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "MidBase slot 13: tells the player object (global 004420fc) to select verb +0x90, then dispatches the verb handler like Interactive_Update"
  },
@@ -18555,7 +18555,7 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "MidBase slot 19: interrupts the player if busy, copies the clicked verb for the player object itself, sets the player's target to the object's approach point (+0x94,+0x98) via player slot 32 (walk), then player slot 4"
  },
@@ -19044,7 +19044,7 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "MidBase slot 20: marks click pending (+0x8c, +0x8d), says phrase key +0x70 if set via GameState_Say, sets cursor busy, inserts object into the main list at priority 5"
  },
@@ -25017,7 +25017,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 42,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "0xa4 bytes, vtable 0042c000, extends MidBase"
  },
@@ -25587,7 +25587,7 @@
   ],
   "data_refs": [],
   "cluster": 42,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "MidBase slot 16: returns 1 (is interactive/enabled default)"
  },
@@ -25617,7 +25617,7 @@
   ],
   "data_refs": [],
   "cluster": 42,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "unread; first seen in vtable 0042c000 slot 14"
  },

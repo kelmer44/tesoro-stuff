@@ -308,8 +308,19 @@ puts itself into its room's list when the level attaches its objects, ticks its 
 the screen (the new `Display` interface) to draw its current frame at a position worked out from the camera. The screen
 itself (clipping and the three ways of copying pixels) is not ported yet, so nothing appears so far.
 
+**Kind 1 is ported ✅ (checked against the original).** The "special object" is really a camera frame: each level has
+one, and when the level attaches its objects the frame sets the area the camera may show (its first frame's rectangle) and
+puts the camera on its own position. It also names another object of the level, which it looks up at that moment, and keeps
+three small values nobody has been traced reading yet.
+
+**Kind 25 is half ported ✅/⬜.** A menu item: it shows one frame, starts hidden, and carries a number saying what a
+click does (start the game, easy, hard, and two more commands). Its construction, per-frame animation and drawing are
+ported and checked against the original. What happens on a click, and the per-frame step that notices a click, are read
+(see the contracts) but not ported: they need the screen fades, the script runner and the cursor/Jim globals. Until then
+a click on a menu item prints a warning once and does nothing.
+
 **The main menu** (`PRINCIPAL`) is the smallest level: one room, two animation banks, four objects: the special object (kind 1),
-one kind 3, and two kind 25. So the first picture needs only those three kinds, plus the draw path. The new-game menu
+one kind 3, and two kind 25. All three kinds are now ported, so the menu level can be built; what is missing for a first picture is the screen's image copy, a frame loop and mouse input. The new-game menu
 (`NUEVO`) adds more kind 3 and kind 25 and nothing else.
 
 ## Still to explore
