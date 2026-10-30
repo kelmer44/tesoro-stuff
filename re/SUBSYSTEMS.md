@@ -511,6 +511,14 @@ Ported and checked against the original:
 - **The speaking rules** (`Speaker`): start a line, end it when the voice finishes or the player skips, wait for the player when there is no voice, move the mouth about every tenth of a second, give the line back. Compared with the original on 800 random sessions (calls to the sound, animation and list code are hooks, so what they do inside is not covered).
 Still to be written: the sound device (play the 22 kHz voice files, report when finished), the choice menu, the **characters** (the kind 5 object of the levels, which also needs the interactive object base: hover text, clicks and the verbs), Jim, and a real `SpeakerHost`/`ScriptHost`.
 
+### Jim and walking 🟡 (read, not ported)
+Jim is a character like the others (he speaks through the same `Speaker` rules) with nine animation files: four walking directions, a standing one (`QUIETO`) whose frames show which way he faces, and four speaking ones. What the original does:
+- **Walking to a point.** A walk order gives a destination, the object to tell on arrival (or nobody) and whether to go straight. Jim faces the way the longer side of the trip points (left/right when the trip is wider than tall, otherwise up/down), starts that direction's walk loop, and each frame moves by exactly what the animation moves (so feet do not slide), stretched by his current size and corrected along the other axis so he follows the straight line.
+- **Size.** Jim shrinks with distance: the level's walk area gives a scale from the shape of its edges (1:1 is 0x100), and his hit rectangle is scaled with him.
+- **Obstacles.** A straight walk that touches the walk area's edge is turned into a route along the area's corner points: first to the corner nearest him, then corner by corner, then to the real destination. The route is not a search, just "nearest corner to nearest corner".
+- **Arriving.** On arrival he stands facing the last direction, leaves the update list, and if somebody was waiting (a clickable object, or the next corner) it is told, which is what makes a click run the verb.
+Still to do: the walk area class, Jim himself, and the collision that triggers the route (which object touches Jim there is inferred, not confirmed).
+
 ### Interactive objects and verbs 🟡 (read, not ported)
 Most things in a level that the pointer can touch (the kind 5 characters, the kind 9 objects and the doors) share one base. What it does, from the original:
 - **Its record** gives a first animation frame, an *approach point* (where Jim walks to, relative to the object) and the way Jim faces on arrival, an optional line that replaces the object's name on the hover label, and up to six lines for the verbs (look, talk, and so on).

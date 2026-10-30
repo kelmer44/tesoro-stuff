@@ -143,3 +143,7 @@ Entry (24 bytes): +0 op, then by op (see contract 00404810): 1 say [+4 phrase, +
 
 ## Sound device (global 00442080) and records — read from 0x404110, 0x4042c0, 0x4043e0, 0x403cb0
 Device: +8 array of record pointers, +0x14 last id, +0x18 active count, +0x1c CD audio object (+0x14 MCI device, +0x24 time-format handle, +0x28/+0x29 flag/track, +0x1bc track count). Record: +0 DirectSound buffer, +4 file position of the data, +8 stream offset, +0xc data size, +0x24 u16 tag, +0x26 byte half toggle, +0x27 byte active, +0x2c id, +0x30 end position (-1 while streaming), +0x20 archive file. WAVs: 44-byte header, PCM, mono, 22050 Hz, 8 bit (all 2,346 shipped).
+
+
+## Jim, walking fields (read from 0x4070c0, 0x407600, 0x407790) — extends the Speaker table above
++0xd0 u16 text colour for verb answers (0xffc0) · +0xd2 u16 text width (300) · +0xd8 ptr to the walking banks (index facing 1..4 = up, down, left, right) · +0xe0/+0xe4 position in 24.8 fixed point · +0xe8/+0xec animation movement already applied · +0xf0 byte walk straight · +0xf4 ptr object to tell on arrival · +0xfc scale (0x100 = 1) · +0x100 u16 text colour for script lines (0x1f) · +0x104/+0x108 destination · +0x10c facing · +0x110 saved value · +0x112 subtitles option byte. Banks: 0 HABIZ, 1 HABDER, 2 QUIETO, 3 ARRIBA, 4 ABAJO, 5 IZQUIERDA, 6 DERECHA, 7 HABAB, 8 HABAR; pose table {0, 1, 7, 8}. Walk area (kind 8): +0xa0 current vertex, +0xa4 last vertex, +0xa8/+0xac destination, +0xb0 target; polyline = point list of its current sequence.
