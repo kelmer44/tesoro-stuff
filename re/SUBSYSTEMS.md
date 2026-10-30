@@ -302,6 +302,12 @@ Fifty levels in all. Only one object in the whole game is the plain animated kin
 | 1 | 50 | exactly one per level (the special object) |
 | 25 | 5 | main menu (2) and the new-game menu (3) |
 
+**Kind 3 is ported ✅ (checked against the original's code).** It is an animated picture: it starts one run of animation
+frames chosen by two bytes in the level file (hold one frame, hidden or shown, or play on to the next gap, optionally looping),
+puts itself into its room's list when the level attaches its objects, ticks its animation every frame, and each frame asks
+the screen (the new `Display` interface) to draw its current frame at a position worked out from the camera. The screen
+itself (clipping and the three ways of copying pixels) is not ported yet, so nothing appears so far.
+
 **The main menu** (`PRINCIPAL`) is the smallest level: one room, two animation banks, four objects: the special object (kind 1),
 one kind 3, and two kind 25. So the first picture needs only those three kinds, plus the draw path. The new-game menu
 (`NUEVO`) adds more kind 3 and kind 25 and nothing else.

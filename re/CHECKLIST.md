@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 241 | 53% |
-| understood or later | 105 | 23% |
-| ported or later | 82 | 18% |
-| emu-compared or later | 66 | 14% |
+| decompiled or later | 243 | 54% |
+| understood or later | 108 | 24% |
+| ported or later | 85 | 19% |
+| emu-compared or later | 68 | 15% |
 | original-compared or later | 0 | 0% |
 | replaced by a ScummVM service | 0 | |
 
@@ -301,7 +301,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040da80` inferred_C00428fb0_Verb3 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00428fb0 slot 22 (kind 20 subtype 22)
 - [ ] `0040daf0` inferred_C0042ae80_Verb0 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042ae80 slot 20 (kind 6 subtype 7)
 
-### Cluster 24: 0040e580–0040e720 (2/12 ported)
+### Cluster 24: 0040e580–0040e720 (4/12 ported)
 
 - [ ] `0040e580` inferred_C0042b8e0_SetVerbAndClick (vtable) · depth 0 · 7 lines · **untouched** — unread; first seen in vtable 0042b8e0 slot 14
 - [ ] `0040e590` inferred_C0042b8e0_IsInteractive (vtable) · depth 0 · 7 lines · **untouched** — unread; first seen in vtable 0042b8e0 slot 16
@@ -309,8 +309,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040dfc0` inferred_C0042b950_IsInteractive (vtable) · depth 2 · 12 lines · **untouched** — unread; first seen in vtable 0042b950 slot 16
 - [ ] `0040e560` inferred_C0042b950_ClearHoverText (vtable) · depth 2 · 10 lines · **untouched** — unread; first seen in vtable 0042b950 slot 18
 - [x] `0040e6a0` inferred_C00428038_AnimTick (vtable) · depth 2 · 8 lines · **emu-compared** → `engines/tesoro/core/animset.cpp::AnimSet` — unread; first seen in vtable 00428038 slot 2 | AnimSet vectors 29 Oct
-- [ ] `0040e6b0` inferred_C0042b9c0_Draw (vtable) · depth 2 · 20 lines · **untouched** — unread; first seen in vtable 0042b9c0 slot 6
-- [ ] `0040e5c0` inferred_Obj_Kind03_Ctor · depth 3 · 30 lines · **decompiled** — 0x6c bytes, vtable 0042b9c0, extends Kind00; record byte 1 selects an animation start mode via AnimPlayer_SetRange (0 stay, 1 single frame, 2 loop from, 3 loop with flag)
+- [x] `0040e6b0` inferred_Obj_Kind03_Draw (vtable) · depth 2 · 20 lines · **emu-compared** — unread; first seen in vtable 0042b9c0 slot 6 | kind 3; sprite vectors 30 Oct
+- [x] `0040e5c0` inferred_Obj_Kind03_Ctor · depth 3 · 30 lines · **emu-compared** — 0x6c bytes, vtable 0042b9c0, extends Kind00; record byte 1 selects an animation start mode via AnimPlayer_SetRange (0 stay, 1 single frame, 2 loop from, 3 loop with flag) | kind 3; sprite vectors 30 Oct
 - [ ] `0040df70` inferred_Obj_Kind22_Ctor · depth 4 · 12 lines · **decompiled** — 0xa4 bytes, vtable 0042b950, extends MidBase, sort value +0x5e = 1
 - [ ] `0040e720` inferred_Obj_Kind04_Ctor · depth 4 · 10 lines · **decompiled** — 0x74 bytes, vtable 0042b9f8, extends Kind03
 - [ ] `0040ddc0` inferred_C0042b8e0_Draw (vtable) · depth 14 · 73 lines · **untouched** — unread; first seen in vtable 0042b8e0 slot 6
@@ -470,10 +470,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00414e00` inferred_WalkArea_Ctor · depth 4 · 13 lines · **decompiled** — 0xb4 bytes, vtable 0042bd60, extends Obj_MidBase | kind 8, 0xb4 bytes, vtable 0042bd60 (only slot 13 overridden), extends MidBase; starts the single-frame animation whose frame record holds the vertex list. Rename of inferred_Obj_Kind08_Ctor
 - [ ] `00415250` inferred_Obj_Kind11_Ctor · depth 4 · 10 lines · **decompiled** — 0xbc bytes, vtable 0042be40, extends MidBase
 
-### Cluster 37: 004157c0–00415960 (0/8 ported)
+### Cluster 37: 004157c0–00415960 (1/8 ported)
 
 - [ ] `004157c0` inferred_C0042beb0_SetVerbAndClick (vtable) · depth 0 · 7 lines · **untouched** — unread; first seen in vtable 0042beb0 slot 14
-- [ ] `004157b0` inferred_C0042b9c0_OnAttach (vtable) · depth 1 · 8 lines · **untouched** — unread; first seen in vtable 0042b9c0 slot 0
+- [x] `004157b0` inferred_Obj_Kind03_OnAttach (vtable) · depth 1 · 8 lines · **ported** → `engines/tesoro/core/spriteobject.cpp::SpriteObject::onAttach` — unread; first seen in vtable 0042b9c0 slot 0
 - [ ] `004157d0` inferred_MainWndProc · depth 2 · 34 lines · **understood** — WM_ACTIVATEAPP (0x1c): clock suspend/resume and restores the two display surfaces via vtable +0x6c; MM_MCINOTIFY (0x3b9) success: CD audio notify handler 00403dc0
 - [ ] `00415490` inferred_C0042be40_ShowHoverText (vtable) · depth 3 · 85 lines · **untouched** — unread; first seen in vtable 0042be40 slot 17
 - [ ] `00415640` inferred_C0042be40_ClearHoverText (vtable) · depth 3 · 64 lines · **untouched** — unread; first seen in vtable 0042be40 slot 18

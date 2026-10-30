@@ -14340,9 +14340,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 24,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
-  "notes": "0x6c bytes, vtable 0042b9c0, extends Kind00; record byte 1 selects an animation start mode via AnimPlayer_SetRange (0 stay, 1 single frame, 2 loop from, 3 loop with flag)"
+  "notes": "0x6c bytes, vtable 0042b9c0, extends Kind00; record byte 1 selects an animation start mode via AnimPlayer_SetRange (0 stay, 1 single frame, 2 loop from, 3 loop with flag) | kind 3; sprite vectors 30 Oct"
  },
  {
   "addr": "0040e6a0",
@@ -14379,7 +14379,7 @@
  {
   "addr": "0040e6b0",
   "ghidra_name": "FUN_0040e6b0",
-  "name": "inferred_C0042b9c0_Draw",
+  "name": "inferred_Obj_Kind03_Draw",
   "tier": "game",
   "lines": 20,
   "decompile_ok": true,
@@ -14396,9 +14396,9 @@
   ],
   "data_refs": [],
   "cluster": 24,
-  "status": "untouched",
+  "status": "emu-compared",
   "engine": "",
-  "notes": "unread; first seen in vtable 0042b9c0 slot 6"
+  "notes": "unread; first seen in vtable 0042b9c0 slot 6 | kind 3; sprite vectors 30 Oct"
  },
  {
   "addr": "0040e720",
@@ -23594,7 +23594,7 @@
  {
   "addr": "004157b0",
   "ghidra_name": "FUN_004157b0",
-  "name": "inferred_C0042b9c0_OnAttach",
+  "name": "inferred_Obj_Kind03_OnAttach",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -23619,8 +23619,8 @@
   ],
   "data_refs": [],
   "cluster": 37,
-  "status": "untouched",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/spriteobject.cpp::SpriteObject::onAttach",
   "notes": "unread; first seen in vtable 0042b9c0 slot 0"
  },
  {

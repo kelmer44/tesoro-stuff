@@ -13,8 +13,13 @@
 #include "common/array.h"
 #include "common/stream.h"
 #define private public
+#include "tesoro/core/display.h"
 #include "tesoro/core/level.h"
 #undef private
+
+namespace Tesoro {
+struct NullDisplay : Display { void drawImage(int32, int32, uint16, const AnimImage &, uint32) override {} };
+}
 
 void NORETURN_PRE error(const char *s, ...) { fprintf(stderr, "engine error: %s\n", s); exit(3); }
 void warning(const char *s, ...) { (void)s; }
@@ -120,7 +125,7 @@ int main(int argc, char **argv) {
 			auto &c = byOp[lastOp]; ++c.first; if (!same) { ++c.second; ++bad; if (bad < 10) printf("mismatch find case %d: want %s got %d\n", caseNo, want.c_str(), idx); } else ++ok;
 		}
 		else if (op == "G") { int x, y, d, now; in >> x >> y >> d >> now; lv->cameraMoveTo(x, y, d, now); lastOp = "cameraMoveTo"; }
-		else if (op == "U") { int now; in >> now; lv->updateRoomCameras(now); lastOp = "updateRoomCameras"; withBounds = true; }
+		else if (op == "U") { int now; in >> now; Tesoro::NullDisplay nd; lv->updateRoomCameras(now, nd); lastOp = "updateRoomCameras"; withBounds = true; }
 		else if (op == "=") {
 			std::string want(buf + 2); while (!want.empty() && (want.back() == '\n')) want.pop_back();
 			const std::string got = loaded ? stateOf(*lv, withBounds) : "load failed";
