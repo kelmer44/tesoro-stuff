@@ -631,8 +631,7 @@ Ported and checked against the original: `WalkArea` (scale, route, corner steppi
 native code at their `DO` lines, and nearly all of them are scene changes: fade, put Jim into another level at a fixed spot (or
 beside a named object), move the camera there, show or hide him, and re-find the block's characters in the new level. A few also
 switch objects on or off or choose an animation (the boat, the sky, the doors of the ship). Two run the board game (above). Two
-types (the conversations 34 and 36) have none. Not compared with the original; the level names behind the numbers are not
-looked up yet.
+types (the conversations 34 and 36) have none. Not compared with the original. The level numbers in the contracts are table positions; their names (DESPACHO, PUERTO, PLAYA, MAPA, POBLADO, TABLERO and so on) are listed in `STRUCTS.md`.
 
 ### Spoken lines ✅ (read; not yet shown or played)
 
@@ -686,6 +685,10 @@ returns "moved". One destination (level 15, the sacred island) first checks the 
 0 the script `FMAPA` at label `tsagrada` runs instead, so the place cannot be reached yet. Destinations below 7 are
 refused. **Kind 24** is an object whose look and use verbs (verbs 1 and 3) start the script `FNOTALAB` at `mirar`, handing it the
 object's own data byte so the script knows which object it was. Not compared with the original.
+
+### Groups of objects (kind 2) and level hooks 🟡 (read, not ported)
+
+**Kind 2** is a named list of other objects of the same level (the strip's `ICONOS` is one): it keeps the names from the level file and, when the level is attached, finds each object and keeps the list. **Levels** have a hook that runs for them: the base one starts the level's music track (a number in the camera-frame object's data) and the map level (`MAPA`) uses it for story switches: when four things are done in the village, the canoe appears on the beach and the volcano's and swamp's characters are switched. Not compared with the original.
 
 ### Save/load menu objects (kinds 22 and 23) 🟡 (read, not ported)
 

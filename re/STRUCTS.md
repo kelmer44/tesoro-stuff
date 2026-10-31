@@ -153,3 +153,6 @@ Device: +8 array of record pointers, +0x14 last id, +0x18 active count, +0x1c CD
 
 ## Kind 5 record data (character)
 The kind data starts with u16 text colour and u16 text width; the interactive object's data follows at +4 (so its byte 0 is at +4, the subtype the factory reads is its byte 1 = +5). Object: +0xac face bank index (animation file tagged MIR), +0xb0 + 4n pose bank indices (files tagged HAB, n < 4), +0xc0 pose count. The tag is the first three bytes of the animation file's first header word (player +0x32).
+
+## Level table (global 00442130 + 4 × slot; names from the loader at 0042d6c8)
+0 DESPACHO; 1 PUERTO; 2 TABERNA; 3 CUBIERTA; 4 CAMAROTE; 5 ALMACEN; 6 COCINA; 7 PLAYA; 8 MAPA; 9 POBLADO; 10 PANTANO; 11 CAMPAMENTO; 12 VOLCAN; 13 ARMARIO; 14 TABLERO; 15 TIERRA; 16 RISCO; 17 CUBIERTA2; 18 CAMAROTE2; 19 ALMACEN2; 20 COCINA2; 21 LUCHA; 22 TRONO; 23 ENTRADA; 24..43 the levels `1` to `20`; 44 RISCOFINAL; 45 FINAL; 46 CREDITOS. INTERFACE (004421ec), PRINCIPAL (004421f0) and NUEVO (004421f4) are separate globals. The level's slot number is stored at level +0x98.

@@ -11839,7 +11839,7 @@
  {
   "addr": "00408840",
   "ghidra_name": "FUN_00408840",
-  "name": "inferred_C00428bf8_RunVerb",
+  "name": "inferred_Level_PlayMusicCue",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -11862,7 +11862,7 @@
   ],
   "data_refs": [],
   "cluster": 14,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "unread; first seen in vtable 00428bf8 slot 13"
  },
@@ -22898,7 +22898,7 @@
  {
   "addr": "004145f0",
   "ghidra_name": "FUN_004145f0",
-  "name": "inferred_C0042bc40_Update2",
+  "name": "inferred_InterfaceLevel_Update2",
   "tier": "game",
   "lines": 8,
   "decompile_ok": true,
@@ -22915,7 +22915,7 @@
   ],
   "data_refs": [],
   "cluster": 35,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "unread; first seen in vtable 0042bc40 slot 5"
  },
@@ -23030,7 +23030,7 @@
  {
   "addr": "00414930",
   "ghidra_name": "FUN_00414930",
-  "name": "inferred_Obj_Kind02_Ctor",
+  "name": "inferred_Obj_ItemGroup_Ctor",
   "tier": "game",
   "lines": 81,
   "decompile_ok": true,
@@ -23046,14 +23046,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 35,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record"
  },
  {
   "addr": "00414a90",
   "ghidra_name": "FUN_00414a90",
-  "name": "inferred_C0042bcb0_OnAttach",
+  "name": "inferred_ItemGroup_OnAttach",
   "tier": "game",
   "lines": 92,
   "decompile_ok": true,
@@ -23072,7 +23072,7 @@
   ],
   "data_refs": [],
   "cluster": 35,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "unread; first seen in vtable 0042bcb0 slot 0"
  },
@@ -24977,7 +24977,7 @@
  {
   "addr": "004179b0",
   "ghidra_name": "FUN_004179b0",
-  "name": "inferred_C0042bc08_RunVerb",
+  "name": "inferred_MapLevel_StoryUpdate",
   "tier": "game",
   "lines": 41,
   "decompile_ok": true,
@@ -24995,7 +24995,7 @@
   ],
   "data_refs": [],
   "cluster": 42,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "unread; first seen in vtable 0042bc08 slot 13"
  },
