@@ -48,6 +48,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `WalkFloor` (7), `PathObject` (8), `MenuItem` (25), lists `ObjectList`. Small helpers: `ObjectRecord` (one object description of the level file), `ObjectRect`, `AnimSequence`, `BrightnessTable`. `MenuHost` is what a menu item asks of the game.
 - Input: `InputStates`, `Mouse`, `Cursor` (both pointers), `HoverText`.
 - Collisions: `sweepRects`, `Level::collisionPass`.
+- Exits: `ExitDoor` (an exit between levels), `ExitHost` (what it asks of the game).
 - Items: `InventoryItem` (things Jim carries), `ItemHost` (what it asks of the game).
 - Props: `ScriptedProp` (story props of kinds 12, 17 and 20), `PropHost` (what it asks of the game).
 - Characters: `Character` (a clickable, speaking person of a level), `CharacterHost` (what it asks of the game, on top of `InteractiveHost`).
@@ -530,7 +531,7 @@ Most clickable things in a level share one base, `InteractiveObject`. It is a sc
 - **Hover label.** The label shows the object's hover-name line if the level gives one, otherwise its own name spelled from its key.
 - **What it asks of the game** is one interface, `InteractiveHost` (Jim, the pointer, the main list, the carried item, the phrases). The characters, doors and props that override verbs are not ported yet.
 Checked against the original on 500 random sessions (constructor, click, update, arrival, hover and the answers; every call to the rest of the game identical). One thing found: the click and the arrival both put the carried item back before asking the object to use it, so an item's own reply table is only reached when something calls the use directly.
-- **Kind 9 is the base itself**: the level factory builds it with no state and no overrides, and only stores the subtype byte (the second data byte) in the object. So the plain clickable props are already ported. The kinds that override verbs on top of the same base are 12, 17 and 20 (scripted props, ported, see below), 13 (items you carry, ported, see below), 6 (exits and doors) and the kind 5 characters (`Character`, ported, see below).
+- **Kind 9 is the base itself**: the level factory builds it with no state and no overrides, and only stores the subtype byte (the second data byte) in the object. So the plain clickable props are already ported. The kinds that override verbs on top of the same base are 12, 17 and 20 (scripted props, ported, see below), 13 (items you carry, ported, see below), 6 (exits and doors, ported, see below) and the kind 5 characters (`Character`, ported, see below).
 
 ### Characters (the people of a level) 🟡 (base kind ✅ and the story subtypes ✅ ported; the factory, door and kind 9 objects ⬜)
 A person of a level is a clickable object (`InteractiveObject`) that also speaks (`Speaker`): `Character`. What the original does when it builds one:
@@ -560,6 +561,15 @@ Kind 13 of the level files are the objects of the inventory page of the interfac
 - **Pending click.** Like the other clickable things, the click waits in the main list until Jim has finished speaking, then runs.
 - **What it asks of the game:** `ItemHost` on top of `PropHost`: the carried item, the pointer's picture, how far the interface is scrolled, turning a page, a frame of another object, and the item counter.
 Checked against the original on 1,400 random sessions over all subtypes: every call, result and state field identical; 41 deliberate bugs caught (two cannot change anything). Not checked: the click and arrival the item shares with other clickable things (never reached by its own data), and what happens when something is used with nothing carried (the original would crash; the port warns).
+
+### Exits and doors 🟡 (ported and checked; the level change itself is a host call)
+Kind 6 of the level files are the exits of a level: `ExitDoor`, on the clickable base. Its data names the level it leads to, the object there that Jim comes out next to, and the way Jim faces when he arrives; the subtype (second data byte) adds what the story needs at ten of them.
+- **Going through** (verb 0, once Jim has reached the exit and is not held by a scene): Jim turns to the exit's facing, the screen is cleared and faded (effect 4, speed 100) with a 300 ms pause, then Jim is put into the other level at the other object's approach point, turned to the arrival facing, and the other object gets told that Jim came out next to it (`exitArrival`).
+- **Right click** with verb 0 skips the walk in the first 23 levels: Jim is put at the exit's approach point and the arrival runs at once.
+- **The arrival slot.** Most exits do the same: when Jim is in the level at place 16 and has not been there before, a movie (number 9) starts. The cabin exit (subtype 3) sets up the cabin scene (frames of the walk-area object and the one it leads to, a random state, a script); the laboratory exit (subtype 10) starts a script chosen by the level Jim is in (three levels); one exit (subtype 6) does nothing.
+- **Subtypes** override going through: some start a script first or instead (the tavern, the beach, the cave, the cabin, the first time only), one is a switch that hides and shows the exit (subtype 8: while off it cannot be clicked, even with the right button), one chooses its script by which jar of the inventory Jim has.
+- **What it asks of the game:** `ExitHost` on top of `PropHost`: object lookup by key, scripts in a given level, Jim's phase and "entered" bytes and his level, his position, and the steps of the level change (reset the queued pictures, bring the cameras up to date, compose, clear, fade, wait, movie).
+Checked against the original on 1,300 random sessions over all subtypes: every call, result and state field identical; 36 deliberate bugs caught (three have no visible effect). Not checked: what the level change steps do inside (they are hooks; the screen routines are checked on their own), and the cabin's two frame changes, which act on objects the port only reaches through the host.
 
 ### Jim and walking 🟡 (read; walking ✅, the walk area ✅ and Jim as an object ✅ ported; the world around him ⬜)
 Jim is a character like the others (he speaks through the same `Speaker` rules) with nine animation files: four walking directions, a standing one (`QUIETO`) whose frames show which way he faces, and four speaking ones. What the original does:

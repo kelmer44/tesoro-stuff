@@ -12576,8 +12576,8 @@
   ],
   "data_refs": [],
   "cluster": 18,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042aef8 slot 20 (kind 6 subtype 8)"
  },
  {
@@ -12600,8 +12600,8 @@
   ],
   "data_refs": [],
   "cluster": 18,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042aef8 slot 24 (kind 6 subtype 8)"
  },
  {
@@ -12624,8 +12624,8 @@
   ],
   "data_refs": [],
   "cluster": 18,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042aef8 slot 15 (kind 6 subtype 8)"
  },
  {
@@ -13252,8 +13252,8 @@
   ],
   "data_refs": [],
   "cluster": 20,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042ad18 slot 20 (kind 6 subtype 4)"
  },
  {
@@ -13905,8 +13905,8 @@
   ],
   "data_refs": [],
   "cluster": 23,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042ae80 slot 20 (kind 6 subtype 7)"
  },
  {
@@ -23094,8 +23094,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 35,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "0xb0 bytes, vtable 0042bce8, extends Kind09; 10 per-subtype vtables chosen by record byte 1"
  },
  {
@@ -23139,8 +23139,8 @@
   ],
   "data_refs": [],
   "cluster": 35,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "kind 6/other exit-style handler: when Jim is idle, resets display queues, looks up the destination level in the level table 00442130 by index (+0xa0) and name key (+0xa4,+0xa8), and moves Jim there with Jim_EnterLevel"
  },
  {
@@ -23201,8 +23201,8 @@
   ],
   "data_refs": [],
   "cluster": 35,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042abb0 slot 15 (kind 6 subtype 1)"
  },
  {
@@ -23253,8 +23253,8 @@
   ],
   "data_refs": [],
   "cluster": 35,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042abb0 slot 28 (kind 6 subtype 1)"
  },
  {
@@ -23977,8 +23977,8 @@
   ],
   "data_refs": [],
   "cluster": 38,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042af70 slot 20 (kind 6 subtype 9)"
  },
  {
@@ -24115,8 +24115,8 @@
   ],
   "data_refs": [],
   "cluster": 38,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042aca0 slot 20 (kind 6 subtype 3)"
  },
  {
@@ -24144,8 +24144,8 @@
   ],
   "data_refs": [],
   "cluster": 38,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042aca0 slot 28 (kind 6 subtype 3)"
  },
  {
@@ -24917,8 +24917,8 @@
   ],
   "data_refs": [],
   "cluster": 41,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)"
  },
  {
@@ -25717,8 +25717,8 @@
   ],
   "data_refs": [],
   "cluster": 43,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042ae08 slot 20 (kind 6 subtype 6)"
  },
  {
@@ -25800,8 +25800,8 @@
   ],
   "data_refs": [],
   "cluster": 43,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042ad90 slot 20 (kind 6 subtype 5)"
  },
  {
@@ -26016,8 +26016,8 @@
   ],
   "data_refs": [],
   "cluster": 43,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042ac28 slot 20 (kind 6 subtype 2)"
  },
  {
@@ -26233,8 +26233,8 @@
   ],
   "data_refs": [],
   "cluster": 44,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042abb0 slot 20 (kind 6 subtype 1)"
  },
  {
