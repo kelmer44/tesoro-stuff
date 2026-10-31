@@ -662,6 +662,15 @@ choosing one of the anchor's paths at random. The distance it has moved is read 
 changes along the path from a table of scales. One oddity of the original: the wait is compared with the clock minus a thousandth of
 the start time, which looks like a slip and leaves only a short moment each time in which it can set off. Not compared with the original.
 
+### The inventory strip (kind 11) 🟡 (read, not ported)
+
+The strip of carried things at the bottom of the screen is one object of the interface level (kind 11) together with four
+named neighbours: `ICONOS` (the row of item pictures), `CUADRADO` (the highlight square), `CURSOR` and `TEXTOICONOS` (where the item's
+name goes). While the pointer is away the pictures sit below the screen. When the pointer comes over the strip they rise by 85
+pixels (not on the board game's screen and two other levels); the item whose picture is within 35 pixels of the pointer's
+position lights up and the one left behind is dimmed. Moving away lowers them again. Clicking an item makes the pointer take its
+picture (and puts back what the pointer carried before). Not compared with the original.
+
 ### Save/load menu objects (kinds 22 and 23) 🟡 (read, not ported)
 
 Two kinds of the interface level make up the save/load screen. Kind 22 is a **button**; its first data byte says what it does:
