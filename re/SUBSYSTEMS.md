@@ -653,6 +653,15 @@ hard: `PLAF`, `AY`, `PUM`, `HASMUERTO`), then an animated text (`TXTFACIL`, `TXT
 names (congratulations, you won / bang, ouch, you died) they look like gag endings, so only "regular" (action 3) would start the real game.
 This is a reading of the names, not something seen on screen.
 
+### Shadows and wandering sprites (kinds 4 and 16) 🟡 (read, not ported)
+
+**Kind 4** is a sprite whose only job is to draw its picture when that picture is of the shadow type (type 2), through the second
+queue of the screen; the level file gives it one extra number that goes with the picture. **Kind 16** is an animated sprite that
+waits a random while and then travels along a path taken from another object's animation (a named anchor object in the same level),
+choosing one of the anchor's paths at random. The distance it has moved is read from its own animation's movement, and its size
+changes along the path from a table of scales. One oddity of the original: the wait is compared with the clock minus a thousandth of
+the start time, which looks like a slip and leaves only a short moment each time in which it can set off. Not compared with the original.
+
 ### Save/load menu objects (kinds 22 and 23) 🟡 (read, not ported)
 
 Two kinds of the interface level make up the save/load screen. Kind 22 is a **button**; its first data byte says what it does:
