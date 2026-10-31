@@ -195,3 +195,6 @@ When one original function is called both on an object you want to run for real 
 
 ## Done means documented in `re/SUBSYSTEMS.md`
 A cluster, port or audit is not finished until `re/SUBSYSTEMS.md` has a plain-language entry for it: what it does for the game, which engine classes are involved (and where they sit in the diagrams), what was checked against the original and what was not. Also update it when the level factory or the frame loop gains wiring (kinds built, what a frame runs), and fix any older section that your result makes false. No addresses or jargon; the technical evidence belongs in the contracts and notes.
+
+## Done also means the checklist is current
+`re/CHECKLIST.md` is generated from `re/ledger.json`. Whenever a function changes status (decompiled, understood, ported, emu-compared, original-compared), gets a name, or gets an engine port, record it with `re/.venv/bin/python re/tools/mark.py <addr> <status> [--name ..] [--engine ..]`, which regenerates the checklist. After any direct ledger edit run `re/tools/make_checklist.py`. Never edit the checklist by hand, and check `git diff re/CHECKLIST.md` before finishing a cluster.

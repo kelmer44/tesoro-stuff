@@ -54,6 +54,9 @@ Codex will implement it together; Codex leads the reverse engineering.
   or audited, whenever a new engine class is introduced (name it and place it in the diagrams), and
   whenever the level factory or the frame loop gains wiring (which kinds are built, what the frame runs).
   No addresses or jargon; mark what is checked against the original and what is not.
+- Keep [re/CHECKLIST.md](re/CHECKLIST.md) current in the same change: it is generated from `re/ledger.json`, so
+  record every status, name or port change with `re/tools/mark.py` (never edit the checklist by hand), and run
+  `re/tools/make_checklist.py` after any direct ledger edit. Do not finish a cluster with the checklist stale.
 - Read [skills/tesoro-re/SKILL.md](skills/tesoro-re/SKILL.md) for Tesoro research.
   Capture newly successful reusable research techniques there or in its linked
   references, with commands, evidence and limitations. Untried ideas belong in

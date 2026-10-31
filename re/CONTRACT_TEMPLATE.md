@@ -13,3 +13,4 @@ Status: <ledger status> · Cluster: N · Depth: N · Convention: <cdecl/stdcall/
 **Validation:** method (emulator / trace / original) · inputs covered · result · what it does *not* cover.
 **Open questions:**
 **Subsystems doc:** [ ] `re/SUBSYSTEMS.md` updated in plain language (what it does, classes, checked vs not checked; no addresses).
+**Checklist:** [ ] ledger status/name/engine recorded with `re/tools/mark.py` (regenerates `re/CHECKLIST.md`).

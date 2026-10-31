@@ -671,6 +671,14 @@ pixels (not on the board game's screen and two other levels); the item whose pic
 position lights up and the one left behind is dimmed. Moving away lowers them again. Clicking an item makes the pointer take its
 picture (and puts back what the pointer carried before). Not compared with the original.
 
+### Depth zones and click catchers (kinds 14 and 15) 🟡 (read, not ported)
+
+**Kind 14** is an invisible zone around a piece of scenery. When Jim touches it, his drawing order is set to the zone's order plus
+a number that depends on which side of the zone's box he was on (above, below, left, right or inside), so he walks in front of or behind
+it. It only takes part when its own state byte is 255; nothing read so far sets that, so it is not yet clear how a level turns one on.
+**Kind 15** is a region the pointer can see but that does nothing when clicked and shows no text, so it simply stops the click.
+Not compared with the original.
+
 ### Save/load menu objects (kinds 22 and 23) 🟡 (read, not ported)
 
 Two kinds of the interface level make up the save/load screen. Kind 22 is a **button**; its first data byte says what it does:
