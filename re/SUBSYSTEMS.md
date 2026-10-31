@@ -690,6 +690,16 @@ object's own data byte so the script knows which object it was. Not compared wit
 
 **Kind 2** is a named list of other objects of the same level (the strip's `ICONOS` is one): it keeps the names from the level file and, when the level is attached, finds each object and keeps the list. **Levels** have a hook that runs for them: the base one starts the level's music track (a number in the camera-frame object's data) and the map level (`MAPA`) uses it for story switches: when four things are done in the village, the canoe appears on the beach and the volcano's and swamp's characters are switched. Not compared with the original.
 
+### Saved games 🟡 (read, not ported)
+
+A saved game is one file named `isla` plus a four-digit number. In order it holds: the small picture shown in the list (a
+screenshot taken when the menu opened), the number of the level Jim is in, Jim's own state, then every existing level in table
+order (its own state, then one record per object: name, flags, state; Jim himself is left out), and last the interface level's
+objects. The two menu levels are not saved. Loading reads it back in the same order, finds each object again by its name (an object
+that has disappeared makes the rest of that level's records unreadable, because the original does not skip it), puts Jim into the
+saved level at his saved spot and turns him as he was. What each object's own state holds is already read and checked (animation
+position, flags and the small block of story bytes); the loader and the level loop are not compared with the original.
+
 ### Save/load menu objects (kinds 22 and 23) 🟡 (read, not ported)
 
 Two kinds of the interface level make up the save/load screen. Kind 22 is a **button**; its first data byte says what it does:
@@ -715,6 +725,6 @@ constructor, and the kinds with subtypes (5, 6, 12, 13, 17, 20) swap in a class 
 - The object kinds read but not yet built (2, 4, 11, 14, 15, 16, 19, 21 to 24; kind 2's own methods are still unread) and the rest of the interface strip.
 - The board game's screen and clicks, the movies, the inventory page, the skip key and a subtitles option.
 - The shaped (pixel-accurate) part of the collision test, shadows, and the companion pointer.
-- Sound and movies checked end to end, the saved-game list, saving and loading.
+- Sound and movies checked end to end, the saved-game list, and porting saving and loading (read, see above).
 
 Each time we finish one of these, its section above gets filled in and the diagram is updated.

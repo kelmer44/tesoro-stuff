@@ -11609,7 +11609,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 14,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "writes the object keys and flags and calls each object's SaveState (slot 10) via fwrite | name from call sites and a skim; body not yet read"
  },
@@ -11631,7 +11631,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 14,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object"
  },
