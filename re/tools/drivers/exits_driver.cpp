@@ -146,7 +146,7 @@ struct World : ExitHost {
 	int jimPhase() override { return jphase; }
 	bool jimEntered() override { return jenter; }
 	void setJimEntered(bool e) override { jenter = e; }
-	uint32 randomNumber(uint32 lo, uint32 hi) override { ++rcalls; log.push_back("random " + std::to_string(lo) + " " + std::to_string(hi)); return lo + (rcalls * 5) % (hi - lo + 1); }
+	uint32 randomAlt(uint32 lo, uint32 hi) override { ++rcalls; log.push_back("random " + std::to_string(lo) + " " + std::to_string(hi)); return lo + (rcalls * 5) % (hi - lo + 1); }
 	void jimShow(bool) override {}
 	void jimEnterLevel(Level *level, int32 x, int32 y) override { log.push_back("enter " + std::to_string(levelIndex(level)) + " " + std::to_string(x) + " " + std::to_string(y)); }
 	void jimMoveTo(int32 x, int32 y) override { jx = x; jy = y; }

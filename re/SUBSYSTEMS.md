@@ -48,6 +48,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `WalkFloor` (7), `PathObject` (8), `MenuItem` (25), lists `ObjectList`. Small helpers: `ObjectRecord` (one object description of the level file), `ObjectRect`, `AnimSequence`, `BrightnessTable`. `MenuHost` is what a menu item asks of the game.
 - Input: `InputStates`, `Mouse`, `Cursor` (both pointers), `HoverText`.
 - Collisions: `sweepRects`, `Level::collisionPass`.
+- The world: `World` (answers every host for real), `WorldLevel` (a level that builds the clickable kinds).
 - Exits: `ExitDoor` (an exit between levels), `ExitHost` (what it asks of the game).
 - Items: `InventoryItem` (things Jim carries), `ItemHost` (what it asks of the game).
 - Props: `ScriptedProp` (story props of kinds 12, 17 and 20), `PropHost` (what it asks of the game).
@@ -192,7 +193,37 @@ walked first and the level Jim is in next. A level, in turn, keeps its own lists
 object that moves between levels: entering a level takes him out of his old level's lists, puts him in the new one's and
 makes the new level's camera follow him. The game begins with Jim in the main menu. The cursor lives in the interface level,
 and its companion in whichever level Jim is in. Some objects (a door, a chest, a canoe...) are switched off right at the start.
-Read from the start-up code; the level class and Jim are ported (see Levels and Jim and walking), but the engine does not yet run this start-up: it stands in with the main menu.
+
+### The world class (`World`) 🟡 (the engine's side of every host; scripts, movies and the inventory page are still missing)
+Every ported object class asks "the rest of the game" for things through a small interface (a *host*: see below). `World` is the one class
+that answers all of them for real, from the game's actual state:
+- **Levels.** The table of the 47 levels in the game's own order (the numbers scripts and objects use). A level is read from the archive the first
+  time something asks for it (the original reads them all at start-up; only the load time differs), with its pictures left unloaded until Jim
+  enters. Its objects are built by the level reader: the plain ones as before, and now also the **characters (kind 5), exits (6), plain clickable
+  things (9), scripted props (12, 17, 20) and items (13)**, each handed `World` as its host. Kinds still not built: 2, 11, 14, 15, 16, 19, 21, 22, 23, 24.
+- **Spoken lines.** The four text files (`OBJETOS`, `ANIMS`, `CONVERS`, `ICONS`) are read from the archive and searched in the game's order; a
+  line's voice is its sound file in the archive. Voices play on ScummVM's mixer through the ported sound device.
+- **Jim.** Made on first use from his nine animation files and the line "JIM"; `World` puts him into a level (his first room), answers his walking
+  questions from the level's walk area (the floor object and its route), draws his subtitles, and keeps his story bytes (the step the scripts move
+  on, the byte beside it, the "has entered" flag).
+- **The pointer and what it carries.** The carried item, the pointer's picture (item number plus seven while carried), the hover label, switching the
+  pointer on and off while Jim answers.
+- **The main list.** The one list of things that get a turn every frame (speakers waiting for their line to end, clicks waiting for Jim): inserted by
+  priority, removed by object.
+- **Changing level.** The steps of the original's scene change (forget the queued pictures, bring the cameras up to date, compose, clear, fade, wait) are
+  there for the exits; the movie that starts when Jim first reaches the risco warns and does nothing.
+**Not there yet (they warn when reached):** running a script (the script runner is ported, but its own host, the routines behind the numbered
+blocks and the walking and animating of characters by scripts, is not); the movies; turning a page of the inventory; the two frame changes of the
+cabin's walk-area objects; Jim's use of item 37; the skip key (any mouse button skips a line for now); a subtitles option (always on).
+**Seen working:** the engine reads all 47 levels with these objects, puts Jim in the despacho and draws the room with the captain in his chair, Jim
+standing in front and the items of the room, with no warnings. Not checked against the original (the hosts are the engine's own decisions, not
+ported functions).
+
+### What "host" means here
+A class never reaches into the rest of the game by itself. It calls a *host*: a small list of questions and orders ("is Jim speaking?", "put Jim
+in that level", "find this object", "start this script"). In the checks against the original, a stand-in host logged every call so the port's calls
+could be compared one by one. `World` is the real host. The interfaces: `InteractiveHost` (clickable things), `CharacterHost`, `PropHost`,
+`ItemHost`, `ExitHost`, and `JimWorld` (Jim); they share one base so one `World` answers them all.
 
 ## Levels ✅ (loading, bookkeeping, the collision pass; shaped collisions and some kinds are not built yet)
 

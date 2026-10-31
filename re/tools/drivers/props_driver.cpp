@@ -135,7 +135,7 @@ struct World : PropHost {
 	Level *jimLevel() override { return levelAt(jlevel); }
 	byte jimStep() override { return (byte)jstep; }
 	void setJimStep(byte step) override { jbyte0 = 0; jstep = step; }
-	uint32 randomNumber(uint32 lo, uint32 hi) override { ++rcalls; log.push_back("random " + std::to_string(lo) + " " + std::to_string(hi)); return lo + (rcalls * 5) % (hi - lo + 1); }
+	uint32 randomAlt(uint32 lo, uint32 hi) override { ++rcalls; log.push_back("random " + std::to_string(lo) + " " + std::to_string(hi)); return lo + (rcalls * 5) % (hi - lo + 1); }
 	void jimShow(bool visible) override { jflags = (jflags & ~4) | (visible ? 4 : 0); }
 	void jimEnterLevel(Level *level, int32 x, int32 y) override {
 		log.push_back("enter " + std::to_string((int)((uintptr_t)level - 0x1000)) + " " + std::to_string(x) + " " + std::to_string(y));

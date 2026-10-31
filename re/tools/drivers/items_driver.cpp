@@ -145,7 +145,7 @@ struct World : ItemHost {
 	Level *jimLevel() override { return levelAt(jlevel); }
 	byte jimStep() override { return (byte)jstep; }
 	void setJimStep(byte step) override { jbyte0 = 0; jstep = step; }
-	uint32 randomNumber(uint32, uint32) override { return 0; }
+	uint32 randomAlt(uint32, uint32) override { return 0; }
 	void jimShow(bool visible) override { jflags = (jflags & ~4) | (visible ? 4 : 0); }
 	void jimEnterLevel(Level *, int32, int32) override {}
 
