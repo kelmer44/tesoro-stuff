@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 363 | 81% |
-| understood or later | 312 | 69% |
-| ported or later | 279 | 62% |
-| emu-compared or later | 248 | 55% |
+| decompiled or later | 379 | 84% |
+| understood or later | 332 | 74% |
+| ported or later | 300 | 67% |
+| emu-compared or later | 270 | 60% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -55,7 +55,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 4: 00401fb0–00402230 (7/7 ported)
 
-- [x] `00401fb0` inferred_Obj_Stub_RetZero (vtable) · depth 0 · 7 lines · **ported** → `engines/tesoro/core/object.h::Object::update/update2 (default 0)` — default for update/draw-style slots: returns 0
+- [x] `00401fb0` inferred_Obj_Stub_RetZero (vtable) · depth 0 · 7 lines · **emu-compared** → `engines/tesoro/core/object.h::Object::update/update2 (default 0)` — default for update/draw-style slots: returns 0
 - [x] `00402110` inferred_Camera_Ctor · depth 0 · 9 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::init` — 0x40-byte object at level +0x80; zeroes +0 and +0x10 | camera vectors 1 Nov
 - [x] `00402120` inferred_Camera_SetPositionClamped · depth 0 · 35 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::setPositionClamped` — stores x,y (+0x2c,+0x30) clamped to the bounds rect (+0x1c..+0x28) with the 640x480 half extents 0x140/0xf0; returns whether it was inside | camera vectors 1 Nov
 - [x] `00402200` inferred_Camera_SetBounds · depth 0 · 12 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::setBounds` — stores 4 ints at +0x1c..+0x28; Level_Load passes (-320, 239, 319, -240) | camera vectors 1 Nov
@@ -136,15 +136,15 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00405850` Script_Tick (vtable) · depth 14 · 70 lines · **emu-compared** → `engines/tesoro/core/scriptrunner.cpp::ScriptRunner::tick` — per-frame step of a scripted action list (24-byte steps at +0xbc, current step +0xcc): waits (type 1 until the speaker finishes plus 200 ms, type 2 timed), choice menus (types 5, 6: asks the player object to say the options), cursor show/hide (type 8), type 9 wait for an animation; advances or ends the list (returns 2 or 3) | per-frame step: handles the blocking step types (1 wait for speech +200 ms, 2 timed wait, 5/6 choice menu, 8 cursor, 9 animation wait) and, when the program counter moved, runs RunSteps; returns 2 when finished
 - [x] `00406140` Script_Resume (vtable) · depth 14 · 12 lines · **emu-compared** → `engines/tesoro/core/scriptrunner.cpp::ScriptRunner::resume` — removes a helper object from the main list, clears Jim's walking flag, sets facing and advances the program counter
 
-### Cluster 11: 004067a0–00407000 (3/8 ported)
+### Cluster 11: 004067a0–00407000 (7/8 ported)
 
 - [ ] `004067a0` ScriptBlock_CopyCtor · depth 0 · 67 lines · **understood** — field-by-field copy of an entry (used by DialogueTable_Load for kind 1)
-- [ ] `00406c50` inferred_Obj_Kind13_Update (vtable) · depth 1 · 44 lines · **decompiled** — slot 4 of kind 13: same pending-click dispatch as Interactive_Update, with an extra item-use path when no verb handler applies (calls the hovered object's slot 27)
+- [x] `00406c50` inferred_Obj_Kind13_Update (vtable) · depth 1 · 44 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — slot 4 of kind 13: same pending-click dispatch as Interactive_Update, with an extra item-use path when no verb handler applies (calls the hovered object's slot 27)
 - [x] `004069e0` inferred_Obj_Kind01_OnAttach (vtable) · depth 2 · 35 lines · **emu-compared** — vtable slot 0 of kind 1 (run by Object_AttachToLevel): resolves the walk area object by the name at +0x6c in the level's object list (+0x78), sets the camera bounds to the first frame's rectangle and moves the camera to the object's position
 - [x] `00406980` inferred_Obj_Kind01_Ctor · depth 3 · 16 lines · **emu-compared** — 0x84 bytes, vtable 00428ac8, extends Kind00; Level_CreateObject stores the instance at level +0x90 (single special object per level)
-- [ ] `00407000` inferred_Item_SetHeld (vtable) · depth 3 · 30 lines · **decompiled** — kind 13 method (flag): when set, makes this object the carried item (cursor +0x12c) and switches the cursor animation to item id + 7; when cleared, drops it. Verb indices 7 and above are therefore carried inventory items
-- [ ] `00406a90` inferred_Obj_Kind13_Ctor · depth 12 · 88 lines · **decompiled** — 0xac bytes, extends MidBase; 14 per-subtype vtables selected by record byte 1; increments global instance counter 004420f8; phrase key lookup
-- [ ] `00406d50` inferred_C00428b00_SetVerbAndClick (vtable) · depth 12 · 123 lines · **untouched** — unread; first seen in vtable 00428b00 slot 14
+- [x] `00407000` inferred_Item_SetHeld (vtable) · depth 3 · 30 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — kind 13 method (flag): when set, makes this object the carried item (cursor +0x12c) and switches the cursor animation to item id + 7; when cleared, drops it. Verb indices 7 and above are therefore carried inventory items
+- [x] `00406a90` inferred_Obj_Kind13_Ctor · depth 12 · 88 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — 0xac bytes, extends MidBase; 14 per-subtype vtables selected by record byte 1; increments global instance counter 004420f8; phrase key lookup
+- [x] `00406d50` inferred_C00428b00_SetVerbAndClick (vtable) · depth 12 · 123 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 00428b00 slot 14
 - [x] `00406190` ScriptFile_Load · depth 13 · 228 lines · **emu-compared** → `engines/tesoro/core/scriptblock.cpp::ScriptLibrary::load` — (archive offset, id): reads entries introduced by '.' bytes; each entry built by 00404810 and registered by kind
 
 ### Cluster 12: 004079d0–00407aa0 (11/11 ported)
@@ -187,7 +187,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00408710` inferred_Level_LoadState · depth 8 · 20 lines · **decompiled** — reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object
 - [x] `00408800` inferred_Level_ReloadDeferredAnims · depth 10 · 18 lines · **ported** → `engines/tesoro/core/level.cpp::Level::reloadDeferredAnims` — rewinds pool arena 2, reloads the deferred animation images of every bank and sets +0x94
 
-### Cluster 15: 00409280–0040c040 (2/7 ported)
+### Cluster 15: 00409280–0040c040 (3/7 ported)
 
 - [x] `00409280` inferred_SweepRects · depth 0 · 124 lines · **emu-compared** → `engines/tesoro/core/collision.cpp::sweepRects` — (rect A, rect B, dx, dy): earliest contact of two moving rectangles as a 16.16 fraction, -1 when they never touch. Name from use in ResolveOverlap, unverified
 - [ ] `00409560` inferred_Polygon_ContainsPoint · depth 0 · 142 lines · **decompiled** — (polygon, x, y): even-odd edge crossing test over the shape's vertex list (count at +0, vertex array pointer at +4, vertices are short pairs); returns bool. Read partially
@@ -195,17 +195,17 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00409c10` inferred_Polygon_ClipToRect · depth 0 · 113 lines · **decompiled** — (polygon, rect x0,y0,x1,y1, out polygon, rect of other object): produces the part of a shape inside a rectangle. Name from argument list only, unverified
 - [x] `00408c50` inferred_Level_ResolveOverlap · depth 1 · 256 lines · **emu-compared** — (A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls
 - [ ] `00409e50` inferred_Level_CreateObject · depth 14 · 1145 lines · **decompiled** — factory: switch on kind (record +0x18) allocating the right object class (sizes 0x6c, 0x84, 0x78, 0x6c, 0x74, 0xd8 ... kind 5 has a sub-switch on record byte +5); adds objects of kind 1 to level +0x90
-- [ ] `0040c040` inferred_C0042a600_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a600 slot 21 (kind 13 subtype 16)
+- [x] `0040c040` inferred_C0042a600_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a600 slot 21 (kind 13 subtype 16)
 
-### Cluster 16: 0040c0e0–0040c4d0 (5/12 ported)
+### Cluster 16: 0040c0e0–0040c4d0 (12/12 ported)
 
-- [ ] `0040c0e0` inferred_C0042a4b0_Verb4 (vtable) · depth 0 · 8 lines · **untouched** — unread; first seen in vtable 0042a4b0 slot 24 (kind 13 subtype 15)
-- [ ] `0040c1f0` inferred_C0042a3d0_Verb4 (vtable) · depth 0 · 8 lines · **untouched** — unread; first seen in vtable 0042a3d0 slot 24 (kind 13 subtype 19)
-- [ ] `0040c090` inferred_C0042a590_Verb4 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a590 slot 24 (kind 13 subtype 10)
-- [ ] `0040c0f0` inferred_C0042a440_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a440 slot 21 (kind 13 subtype 28)
-- [ ] `0040c140` inferred_C0042a3d0_Verb1 (vtable) · depth 14 · 35 lines · **untouched** — unread; first seen in vtable 0042a3d0 slot 21 (kind 13 subtype 19)
-- [ ] `0040c200` inferred_C0042a280_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a280 slot 21 (kind 13 subtype 44)
-- [ ] `0040c250` inferred_C0042a1a0_Verb4 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 0042a1a0 slot 24 (kind 13 subtype 29)
+- [x] `0040c0e0` inferred_C0042a4b0_Verb4 (vtable) · depth 0 · 8 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a4b0 slot 24 (kind 13 subtype 15)
+- [x] `0040c1f0` inferred_C0042a3d0_Verb4 (vtable) · depth 0 · 8 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a3d0 slot 24 (kind 13 subtype 19)
+- [x] `0040c090` inferred_C0042a590_Verb4 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a590 slot 24 (kind 13 subtype 10)
+- [x] `0040c0f0` inferred_C0042a440_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a440 slot 21 (kind 13 subtype 28)
+- [x] `0040c140` inferred_C0042a3d0_Verb1 (vtable) · depth 14 · 35 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a3d0 slot 21 (kind 13 subtype 19)
+- [x] `0040c200` inferred_C0042a280_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a280 slot 21 (kind 13 subtype 44)
+- [x] `0040c250` inferred_C0042a1a0_Verb4 (vtable) · depth 14 · 24 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a1a0 slot 24 (kind 13 subtype 29)
 - [x] `0040c2c0` inferred_C0042a6e0_Verb3 (vtable) · depth 14 · 31 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a6e0 slot 22 (kind 12 subtype 10)
 - [x] `0040c370` inferred_C0042a910_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a910 slot 21 (kind 12 subtype 5)
 - [x] `0040c3c0` inferred_C0042a910_Verb3 (vtable) · depth 14 · 31 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a910 slot 22 (kind 12 subtype 5)
@@ -316,7 +316,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040ddc0` inferred_C0042b8e0_Draw (vtable) · depth 14 · 73 lines · **untouched** — unread; first seen in vtable 0042b8e0 slot 6
 - [ ] `0040e000` inferred_C0042b950_SetVerbAndClick (vtable) · depth 15 · 142 lines · **untouched** — unread; first seen in vtable 0042b950 slot 14
 
-### Cluster 25: 0040f020–0040f020 (4/11 ported)
+### Cluster 25: 0040f020–0040f020 (5/11 ported)
 
 - [x] `0040f020` inferred_Obj_SetVerbAndClick (vtable) · depth 0 · 10 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 14: stores verb +0x9c then calls slot 19 (OnClick)
 - [ ] `0040ebd0` inferred_C0042ba30_OnAttach (vtable) · depth 1 · 14 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 0
@@ -325,16 +325,16 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040e760` inferred_C0042b9f8_Draw (vtable) · depth 2 · 22 lines · **untouched** — unread; first seen in vtable 0042b9f8 slot 6
 - [x] `0040efa0` inferred_MidBase_Draw (vtable) · depth 2 · 24 lines · **emu-compared** — MidBase slot 6: converts world position to screen (camera at argument, +0x140/+0xf0 centre) and queues the current frame's image through Display_AddSprite with the object's sort value (+0x5e)
 - [ ] `0040e890` inferred_C0042ba30_AnimTick (vtable) · depth 3 · 103 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 2
-- [ ] `0040ecb0` inferred_Obj_MidBase_Ctor · depth 3 · 14 lines · **understood** → `engines/tesoro/core/menuitem.cpp::MenuItem::init` — Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25
+- [x] `0040ecb0` inferred_Obj_MidBase_Ctor · depth 3 · 14 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25
 - [x] `0040ee70` inferred_Obj_Interactive_Update (vtable) · depth 3 · 52 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 4: when a click is pending (+0x8c), clears it, removes the object from the main list, runs the verb handler for the current verb (index +0x9c, slots 20-26), clears the cursor's target (+0x12c), resets the cursor animation and calls slot 27 with verb-7. Pending flag is cleared at the end
 - [ ] `0040e7e0` inferred_Obj_Kind16_Ctor · depth 4 · 25 lines · **decompiled** — 0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)
 - [x] `0040ed10` inferred_Obj_Kind09_Ctor · depth 12 · 61 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — 0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits
 
-### Cluster 26: 0040f040–0040f270 (6/7 ported)
+### Cluster 26: 0040f040–0040f270 (7/7 ported)
 
 - [x] `0040f040` inferred_Obj_Slot15_ForwardToSlot14 (vtable) · depth 0 · 9 lines · **emu-compared** → `engines/tesoro/core/menuitem.cpp::MenuItem::rightClick` — MidBase slot 15: calls slot 14 with its argument
 - [x] `0040f1a0` inferred_Obj_OnClick (vtable) · depth 0 · 18 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 19: interrupts the player if busy, copies the clicked verb for the player object itself, sets the player's target to the object's approach point (+0x94,+0x98) via player slot 32 (walk), then player slot 4
-- [ ] `0040f270` inferred_Obj_Slot27_Stub (vtable) · depth 0 · 7 lines · **decompiled** — MidBase slot 27 default (ret 4, returns 0)
+- [x] `0040f270` inferred_Obj_Slot27_Stub (vtable) · depth 0 · 7 lines · **emu-compared** — MidBase slot 27 default (ret 4, returns 0)
 - [x] `0040f050` inferred_Obj_ShowHoverText (vtable) · depth 1 · 15 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 17: puts the object's phrase text (+0x6c record, then the 64-bit name key) into the cursor's hover text via Cursor_SetText
 - [x] `0040f0b0` inferred_Obj_ClearHoverText (vtable) · depth 1 · 8 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 18: Cursor_SetText(null)
 - [x] `0040f0d0` inferred_Obj_RunVerb (vtable) · depth 3 · 40 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 13: tells the player object (global 004420fc) to select verb +0x90, then dispatches the verb handler like Interactive_Update
@@ -511,7 +511,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00416800` inferred_C0042bbd0_RunVerb (vtable) · depth 14 · 43 lines · **untouched** — unread; first seen in vtable 0042bbd0 slot 13
 - [x] `00416910` inferred_C0042b6c0_UseItem (vtable) · depth 14 · 31 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b6c0 slot 27 (kind 5 subtype 5)
 
-### Cluster 40: 00416b50–00417250 (3/9 ported)
+### Cluster 40: 00416b50–00417250 (6/9 ported)
 
 - [ ] `00416b50` inferred_C004280f0_Slot28 (vtable) · depth 2 · 15 lines · **untouched** — unread; first seen in vtable 004280f0 slot 28
 - [ ] `00416b80` inferred_C00428258_Slot28 (vtable) · depth 12 · 45 lines · **untouched** — unread; first seen in vtable 00428258 slot 28
@@ -519,18 +519,18 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00416a20` inferred_C0042b280_Verb2 (vtable) · depth 14 · 26 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b280 slot 23 (kind 5 subtype 0)
 - [x] `00416ac0` inferred_C0042b280_UseItem (vtable) · depth 14 · 27 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b280 slot 27 (kind 5 subtype 0)
 - [x] `00416e30` inferred_C00428d10_UseItem (vtable) · depth 14 · 35 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428d10 slot 27 (kind 20 subtype 28)
-- [ ] `00416ee0` inferred_C0042a600_UseItem (vtable) · depth 14 · 106 lines · **untouched** — unread; first seen in vtable 0042a600 slot 27 (kind 13 subtype 16)
-- [ ] `00417180` inferred_C0042a520_Verb4 (vtable) · depth 14 · 34 lines · **untouched** — unread; first seen in vtable 0042a520 slot 24 (kind 13 subtype 9)
-- [ ] `00417250` inferred_C0042a440_UseItem (vtable) · depth 14 · 47 lines · **untouched** — unread; first seen in vtable 0042a440 slot 27 (kind 13 subtype 28)
+- [x] `00416ee0` inferred_C0042a600_UseItem (vtable) · depth 14 · 106 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a600 slot 27 (kind 13 subtype 16)
+- [x] `00417180` inferred_C0042a520_Verb4 (vtable) · depth 14 · 34 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a520 slot 24 (kind 13 subtype 9)
+- [x] `00417250` inferred_C0042a440_UseItem (vtable) · depth 14 · 47 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a440 slot 27 (kind 13 subtype 28)
 
-### Cluster 41: 00417360–004178b0 (0/9 ported)
+### Cluster 41: 00417360–004178b0 (4/9 ported)
 
-- [ ] `00417360` inferred_C0042a360_UseItem (vtable) · depth 2 · 22 lines · **untouched** — unread; first seen in vtable 0042a360 slot 27 (kind 13 subtype 36)
-- [ ] `004174b0` inferred_C0042a210_UseItem (vtable) · depth 2 · 22 lines · **untouched** — unread; first seen in vtable 0042a210 slot 27 (kind 13 subtype 33)
-- [ ] `00417530` inferred_C0042a130_UseItem (vtable) · depth 2 · 22 lines · **untouched** — unread; first seen in vtable 0042a130 slot 27 (kind 13 subtype 42)
+- [x] `00417360` inferred_C0042a360_UseItem (vtable) · depth 2 · 22 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a360 slot 27 (kind 13 subtype 36)
+- [x] `004174b0` inferred_C0042a210_UseItem (vtable) · depth 2 · 22 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a210 slot 27 (kind 13 subtype 33)
+- [x] `00417530` inferred_C0042a130_UseItem (vtable) · depth 2 · 22 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a130 slot 27 (kind 13 subtype 42)
 - [ ] `00417720` inferred_Obj_Kind19_Ctor · depth 12 · 63 lines · **decompiled** — 0xa4 bytes, vtable 0042bf90; builds a temporary Kind00 and copies it field by field into this
 - [ ] `004175b0` inferred_Obj_Kind24_Ctor · depth 13 · 10 lines · **decompiled** — 0xa4 bytes, vtable 0042bf20, extends Kind09
-- [ ] `004173e0` inferred_C0042a2f0_UseItem (vtable) · depth 14 · 35 lines · **untouched** — unread; first seen in vtable 0042a2f0 slot 27 (kind 13 subtype 37)
+- [x] `004173e0` inferred_C0042a2f0_UseItem (vtable) · depth 14 · 35 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a2f0 slot 27 (kind 13 subtype 37)
 - [ ] `004175f0` inferred_C0042bf20_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042bf20 slot 21
 - [ ] `00417640` inferred_C0042afe8_Slot28 (vtable) · depth 14 · 44 lines · **untouched** — unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)
 - [ ] `004178b0` inferred_C0042bf90_SetVerbAndClick (vtable) · depth 14 · 37 lines · **untouched** — unread; first seen in vtable 0042bf90 slot 14

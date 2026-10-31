@@ -8,7 +8,7 @@ It grows as we recover more of the original. Written for people, not for the deb
 - 🟡 Recovered, but not yet checked or only partly understood
 - ❓ Seen from the outside only, not read yet
 
-Last updated: 31 October 2026.
+Last updated: 31 October 2026 (full review against the codex branch).
 
 ---
 
@@ -20,7 +20,7 @@ flowchart TD
     Archive --> Anim["Animations<br/>pictures + steps ✅"]
     Archive --> Level["Level ✅<br/>banks, rooms, objects, camera"]
     Clock["Game clock ✅"] --> Anim
-    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 25 ported"]
+    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 7, 8, 10, 25 built by levels;<br/>5, 9, 12, 17, 20 and Jim ported, not yet built"]
     Level --> Objects
     Objects -->|"picture + depth"| Queue["Screen queue ✅<br/>RenderQueue: spans per row"]
     Queue --> Compose["Compose ✅<br/>ScreenDisplay: spans to pixels"]
@@ -43,10 +43,12 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 
 **Engine classes by area** (so each name can be found in the diagrams below):
 - Files and time: `Archive`, `ArchiveIndex`, `GameClock`, name keys, random numbers.
-- Pictures: `TextQueue` (laid-out text lines, drawn by `ScreenDisplay`), `AnimBank`, `AnimPlayer`, `AnimImage`, `AnimSet` (animations); `Display` (what objects draw to), `ScreenDisplay`, `RenderQueue` (the screen).
-- World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `MenuItem` (25), lists `ObjectList`.
+- Lists: `CursorList` (the ordered list with a finger that levels, rooms and passes use).
+- Pictures: `TextQueue` (laid-out text lines, drawn by `ScreenDisplay`), `AnimBank`, `AnimPlayer`, `AnimImage`, `AnimSet` (animations); `Display` (what objects draw to), `ScreenDisplay`, `RenderQueue` (the screen), `FadePresenter` (shows the steps of a fade in the window).
+- World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `WalkFloor` (7), `PathObject` (8), `MenuItem` (25), lists `ObjectList`. Small helpers: `ObjectRecord` (one object description of the level file), `ObjectRect`, `AnimSequence`, `BrightnessTable`. `MenuHost` is what a menu item asks of the game.
 - Input: `InputStates`, `Mouse`, `Cursor` (both pointers), `HoverText`.
 - Collisions: `sweepRects`, `Level::collisionPass`.
+- Items: `InventoryItem` (things Jim carries), `ItemHost` (what it asks of the game).
 - Props: `ScriptedProp` (story props of kinds 12, 17 and 20), `PropHost` (what it asks of the game).
 - Characters: `Character` (a clickable, speaking person of a level), `CharacterHost` (what it asks of the game, on top of `InteractiveHost`).
 - Walking: `Jim` (the player's object), `JimWorld` (what he asks of the game), `WalkArea` (shape, scale and route), `InteractiveObject` (clickable base) and `InteractiveHost` (what it asks of the game), `JimWalker` (Jim's walk), `WalkTarget` (told on arrival), `Walker` and `JimWalkerHost` (what they ask of the game).
@@ -75,7 +77,7 @@ When the game wants something (say an animation called `JIM`), it:
 
 Everything else in the game that loads data goes through this.
 
-*Open question:* we have not looked at the real files yet, only at the code that reads them.
+The real files are read: the index and the levels of the shipped game load through it.
 
 ## Clock and random numbers ✅
 
@@ -189,9 +191,9 @@ walked first and the level Jim is in next. A level, in turn, keeps its own lists
 object that moves between levels: entering a level takes him out of his old level's lists, puts him in the new one's and
 makes the new level's camera follow him. The game begins with Jim in the main menu. The cursor lives in the interface level,
 and its companion in whichever level Jim is in. Some objects (a door, a chest, a canoe...) are switched off right at the start.
-Read from the start-up code; the level class is ported (see Levels), Jim is not.
+Read from the start-up code; the level class and Jim are ported (see Levels and Jim and walking), but the engine does not yet run this start-up: it stands in with the main menu.
 
-## Levels ✅ (loading, bookkeeping, the collision pass; shaped collisions and the rest of the kinds are not ported)
+## Levels ✅ (loading, bookkeeping, the collision pass; shaped collisions and some kinds are not built yet)
 
 A level file holds three things in this order: the level's animation banks, then its rooms, and in each room the objects
 standing in it. Loading a level reads all of that, builds each object, and adds it to the level's one list of objects, in
@@ -203,8 +205,8 @@ the file has one (an object of kind 1). The engine class is `Level`; it is itsel
 Each frame the second pass calls the level to update its cameras: for each room the camera moves towards that room's focus,
 then every visible, active, not-yet-processed object of the room recomputes its hit rectangle and is told where the camera
 is. Checked against the original on synthetic level files (load, attach, moved-list, lookup by name, camera move, room
-camera update, and the collision pass). Kinds 0, 1, 3 and 25 are built; other kinds are skipped with a warning until their
-classes are ported, so most real levels still load with objects missing (the main menu and the new-game menu load whole).
+camera update, and the collision pass). Kinds 0, 1, 3, 7, 8, 10 and 25 are built; other kinds are skipped with a warning (the classes for 5, 9, 12, 17 and 20 exist but the
+level does not build them yet), so most real levels still load with objects missing (the main menu and the new-game menu load whole).
 Real level files were loaded and drawn (menus) but only compared through those pictures, not byte by byte with the original.
 
 ```mermaid
@@ -216,7 +218,7 @@ flowchart TD
     Factory -->|"0: plain animated"| Obj["Object"]
     Factory -->|"1: camera frame"| Obj
     Factory -->|"3: sprite"| Obj
-    Factory -->|"25: menu item"| Obj
+    Factory -->|"7 floor, 8 route,<br/>10 pointer, 25 menu item"| Obj
     Factory -->|"others"| Skip["Skipped for now (warning)"]
     Banks --> Obj
     Obj --> List["Level's object list (file order)"]
@@ -333,12 +335,13 @@ flowchart LR
     Tick --> Rect["New hit rectangle<br/>and area moved through"]
 ```
 
-*Ported kinds:* the plain animated object (kind 0), the camera frame (1), the sprite (3) and the menu item (25), as `Object`, `CameraFrame`, `SpriteObject`, `MenuItem`. Each draws through the `Display` interface; the object's hit rectangle and its movement feed the collision pass.
-*Not done yet:* the other kinds (Jim, items, doors, the interface strip's objects, the cursor's picture objects...).
+*Built by the level:* the plain animated object (kind 0), the camera frame (1), the sprite (3), the floor (7), the route (8), the pointer (10) and the menu item (25), as `Object`, `CameraFrame`, `SpriteObject`, `WalkFloor`, `PathObject`, `Cursor`, `MenuItem`. Each draws through the `Display` interface; the object's hit rectangle and its movement feed the collision pass.
+*Ported but not yet built by the level:* the plain clickable (9), the characters (5), the scripted props (12, 17, 20) and Jim (see their sections).
+*Not done yet:* items (13), doors and exits (6), the other interface-strip objects, the factory entries for the above.
 
 ---
 
-## What the levels contain (counted, not yet ported)
+## What the levels contain (counted; the ported kinds are marked)
 
 Counted from the shipped game files with `re/tools/drivers/level_kinds_driver.cpp` (the engine's own level loader, read-only).
 Fifty levels in all. Only one object in the whole game is the plain animated kind (kind 0, in the interface strip); the commonest are kinds 3, 9 and 6.
@@ -354,7 +357,7 @@ Fifty levels in all. Only one object in the whole game is the plain animated kin
 | 1 | 50 | exactly one per level (the special object) |
 | 25 | 5 | main menu (2) and the new-game menu (3) |
 
-**Kind 3 is ported ✅ (checked against the original's code).** It is an animated picture: it starts one run of animation
+**Kind 3 is ported and built ✅ (checked against the original's code).** It is an animated picture: it starts one run of animation
 frames chosen by two bytes in the level file (hold one frame, hidden or shown, or play on to the next gap, optionally looping),
 puts itself into its room's list when the level attaches its objects, ticks its animation every frame, and each frame asks
 the screen (the `Display` interface) to draw its current frame at a position worked out from the camera.
@@ -443,8 +446,8 @@ test), a very long touch list. Also not ported: the one-shot verb the level runs
 Leaving a menu fades the last picture to black: four steps, each rewriting every pixel with its red, green and blue scaled down
 (192/256, 128/256, 64/256, 0) and holding it for 100 ms; the game stands still while it runs. This is `ScreenDisplay::fadeOut`, checked
 against the original frame by frame. Entering a level is, in the original, Jim being moved into it: out of the old level's lists and
-the main list, into the new one's, the camera put on him and set to follow him, the level's pictures reloaded, then Jim placed. Jim is
-not ported, so the engine's `enterLevel` only makes the level current and puts its camera on the origin (which is where the menus' camera
+the main list, into the new one's, the camera put on him and set to follow him, the level's pictures reloaded, then Jim placed. `Jim::enterLevel` is ported (see Jim and walking), but the
+engine does not use him yet, so its own `enterLevel` only makes the level current and puts its camera on the origin (which is where the menus' camera
 belongs, since their scroll range is a single point).
 
 ## The frame loop and the mouse (stand-in ✅ / ⬜)
@@ -458,11 +461,12 @@ goes through a small state machine: up, pressed this frame, held, held long enou
 pressed again while releasing. The game reads these states instead of tracking presses itself. That state machine
 (`InputStates`) is checked against the original's code; the host supplies the position directly instead of movement.
 
-The engine now runs a **reduced frame** inside ScummVM: events become mouse position and buttons, the clock freezes, the
-main menu level draws through the screen queue, the composed picture is copied to the window. It does not yet have the
-object list passes, so there is no cursor drawn, no hover or click on the menu items, and no sound. Those need the level's
-collision pass, the cursor and companion objects (built from the interface level), the kind-2 picture objects the cursor
-uses and the menu item's click code.
+The engine runs a **reduced frame** inside ScummVM: events become mouse position and buttons, the clock freezes, the pointer, the
+interface level and the current menu level each get their update, the cameras are updated, the screen is composed and copied to
+the window. The pointer is found in the interface level and menu items are hooked to the engine, so hover and the click on
+"Nueva partida" (fade, then the new-game menu) are wired. It is still not the original's frame: there is no main list holding
+levels and Jim, no companion pointer in the player's level, no sound, the scripts a click starts only warn, and the other
+menu actions are not ported. Not compared against the original as a whole.
 
 ## Scripts 🟡 (read and compiled ✅, run ✅ with a stand-in world, nothing shown yet)
 
@@ -526,7 +530,7 @@ Most clickable things in a level share one base, `InteractiveObject`. It is a sc
 - **Hover label.** The label shows the object's hover-name line if the level gives one, otherwise its own name spelled from its key.
 - **What it asks of the game** is one interface, `InteractiveHost` (Jim, the pointer, the main list, the carried item, the phrases). The characters, doors and props that override verbs are not ported yet.
 Checked against the original on 500 random sessions (constructor, click, update, arrival, hover and the answers; every call to the rest of the game identical). One thing found: the click and the arrival both put the carried item back before asking the object to use it, so an item's own reply table is only reached when something calls the use directly.
-- **Kind 9 is the base itself**: the level factory builds it with no state and no overrides, and only stores the subtype byte (the second data byte) in the object. So the plain clickable props are already ported. The kinds that override verbs on top of the same base are 12, 17 and 20 (scripted props, ported, see below), 13 (items you can pick up), 6 (exits and doors) and the kind 5 characters (`Character`, ported, see below).
+- **Kind 9 is the base itself**: the level factory builds it with no state and no overrides, and only stores the subtype byte (the second data byte) in the object. So the plain clickable props are already ported. The kinds that override verbs on top of the same base are 12, 17 and 20 (scripted props, ported, see below), 13 (items you carry, ported, see below), 6 (exits and doors) and the kind 5 characters (`Character`, ported, see below).
 
 ### Characters (the people of a level) 🟡 (base kind ✅ and the story subtypes ✅ ported; the factory, door and kind 9 objects ⬜)
 A person of a level is a clickable object (`InteractiveObject`) that also speaks (`Speaker`): `Character`. What the original does when it builds one:
@@ -547,6 +551,15 @@ Three kinds of the level files (12, 17 and 20; 12, 17 and 30 subtypes) are click
 - **A scene change** (subtype 11 of kind 20) shows Jim, moves the prop into another level and puts Jim at that level's floor, facing right, letting go of the carried item.
 - **What it asks of the game:** `PropHost`: find an object by name in a level of the game, start a script, the level Jim is in, Jim's story step, a random number, Jim's scene entry and letting go of the carried item.
 Checked against the original on 1,500 random sessions covering all 59 subtypes: every call to the rest of the game, every result and every state byte of the prop, Jim and the objects it reads identical; 38 deliberate bugs caught (three have no visible effect). Not checked: the scripts themselves, how much a lookup that finds nothing matters (the original would crash; the port warns), and the kinds 13 (items) and 6 (doors), which are not read yet.
+
+### Items you carry (the inventory) 🟡 (ported and checked; the interface page and the pointer around them ⬜)
+Kind 13 of the level files are the objects of the inventory page of the interface: `InventoryItem`, on the clickable base. The data's second byte is the item's number and also picks the subtype (13 items have story behaviour, the rest are plain).
+- **Click with a verb.** If the item has a line for that verb Jim says it. Otherwise verb 0 picks the item up; any other verb first asks the item's own handler (looking at the recipe book, opening the pot...), and if that does nothing, picks it up.
+- **Picking up** makes the pointer show the item's picture (its number plus seven) and hides the item on its page (when the page is scrolled to the right); putting it back does the opposite.
+- **An item used on another** looks in this item's list of combinations for the one the pointer carries, then in the carried item's list for this one (each combination names an object of the interface and what Jim says about the pair); the interface then turns a page. If neither has one, the items' own use handlers get a go (some subtypes turn one item into another, switching interface objects on and off, or start a script), and failing that Jim says "No, no tengo ganas.". 
+- **Pending click.** Like the other clickable things, the click waits in the main list until Jim has finished speaking, then runs.
+- **What it asks of the game:** `ItemHost` on top of `PropHost`: the carried item, the pointer's picture, how far the interface is scrolled, turning a page, a frame of another object, and the item counter.
+Checked against the original on 1,400 random sessions over all subtypes: every call, result and state field identical; 41 deliberate bugs caught (two cannot change anything). Not checked: the click and arrival the item shares with other clickable things (never reached by its own data), and what happens when something is used with nothing carried (the original would crash; the port warns).
 
 ### Jim and walking 🟡 (read; walking ✅, the walk area ✅ and Jim as an object ✅ ported; the world around him ⬜)
 Jim is a character like the others (he speaks through the same `Speaker` rules) with nine animation files: four walking directions, a standing one (`QUIETO`) whose frames show which way he faces, and four speaking ones. What the original does:
@@ -580,11 +593,10 @@ This is a reading of the names, not something seen on screen.
 
 ## Still to explore
 
-- The cursor's picture objects and its construction, so that the mouse is visible and the menu items react.
-- Drawing the remaining ways: shadows, scaled pictures (characters), text, fades.
-- The other kinds of object (Jim, items, doors, scenery...) and the shaped (pixel-accurate) part of the collision test.
-- Running scripts: the interpreter, the spoken lines and menus, the sound and video commands, the `DO` routines, Jim.
-- Sound and music.
-- Saving and loading.
+- The factory entries for the ported kinds (5, 9, 12, 17, 20) and the kinds still unread: items (13), doors and exits (6).
+- A real `JimWorld` (main list, level, sound), the start-up that builds the main list, and the companion pointer.
+- The shaped (pixel-accurate) part of the collision test, shadows, and drawing the hover text.
+- Running scripts for real: a real `ScriptHost`/`SpeakerHost`, the `DO` routines, video, the menu screen.
+- The saved-game list, saving and loading.
 
 Each time we finish one of these, its section above gets filled in and the diagram is updated.

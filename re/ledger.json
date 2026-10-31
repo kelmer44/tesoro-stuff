@@ -8326,7 +8326,7 @@
   ],
   "data_refs": [],
   "cluster": 4,
-  "status": "ported",
+  "status": "emu-compared",
   "engine": "engines/tesoro/core/object.h::Object::update/update2 (default 0)",
   "notes": "default for update/draw-style slots: returns 0"
  },
@@ -10222,8 +10222,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 11,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "0xac bytes, extends MidBase; 14 per-subtype vtables selected by record byte 1; increments global instance counter 004420f8; phrase key lookup"
  },
  {
@@ -10298,8 +10298,8 @@
   ],
   "data_refs": [],
   "cluster": 11,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "slot 4 of kind 13: same pending-click dispatch as Interactive_Update, with an extra item-use path when no verb handler applies (calls the hovered object's slot 27)"
  },
  {
@@ -10378,8 +10378,8 @@
   ],
   "data_refs": [],
   "cluster": 11,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 00428b00 slot 14"
  },
  {
@@ -10454,8 +10454,8 @@
   ],
   "data_refs": [],
   "cluster": 11,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "kind 13 method (flag): when set, makes this object the carried item (cursor +0x12c) and switches the cursor animation to item id + 7; when cleared, drops it. Verb indices 7 and above are therefore carried inventory items"
  },
  {
@@ -12054,8 +12054,8 @@
   ],
   "data_refs": [],
   "cluster": 15,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a600 slot 21 (kind 13 subtype 16)"
  },
  {
@@ -12080,8 +12080,8 @@
   ],
   "data_refs": [],
   "cluster": 16,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a590 slot 24 (kind 13 subtype 10)"
  },
  {
@@ -12102,8 +12102,8 @@
   ],
   "data_refs": [],
   "cluster": 16,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a4b0 slot 24 (kind 13 subtype 15)"
  },
  {
@@ -12128,8 +12128,8 @@
   ],
   "data_refs": [],
   "cluster": 16,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a440 slot 21 (kind 13 subtype 28)"
  },
  {
@@ -12156,8 +12156,8 @@
   ],
   "data_refs": [],
   "cluster": 16,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a3d0 slot 21 (kind 13 subtype 19)"
  },
  {
@@ -12178,8 +12178,8 @@
   ],
   "data_refs": [],
   "cluster": 16,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a3d0 slot 24 (kind 13 subtype 19)"
  },
  {
@@ -12204,8 +12204,8 @@
   ],
   "data_refs": [],
   "cluster": 16,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a280 slot 21 (kind 13 subtype 44)"
  },
  {
@@ -12231,8 +12231,8 @@
   ],
   "data_refs": [],
   "cluster": 16,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a1a0 slot 24 (kind 13 subtype 29)"
  },
  {
@@ -14596,8 +14596,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 25,
-  "status": "understood",
-  "engine": "engines/tesoro/core/menuitem.cpp::MenuItem::init",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25"
  },
  {
@@ -19214,7 +19214,7 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "decompiled",
+  "status": "emu-compared",
   "engine": "",
   "notes": "MidBase slot 27 default (ret 4, returns 0)"
  },
@@ -24683,8 +24683,8 @@
   ],
   "data_refs": [],
   "cluster": 40,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a600 slot 27 (kind 13 subtype 16)"
  },
  {
@@ -24710,8 +24710,8 @@
   ],
   "data_refs": [],
   "cluster": 40,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a520 slot 24 (kind 13 subtype 9)"
  },
  {
@@ -24738,8 +24738,8 @@
   ],
   "data_refs": [],
   "cluster": 40,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a440 slot 27 (kind 13 subtype 28)"
  },
  {
@@ -24763,8 +24763,8 @@
   ],
   "data_refs": [],
   "cluster": 41,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a360 slot 27 (kind 13 subtype 36)"
  },
  {
@@ -24790,8 +24790,8 @@
   ],
   "data_refs": [],
   "cluster": 41,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a2f0 slot 27 (kind 13 subtype 37)"
  },
  {
@@ -24815,8 +24815,8 @@
   ],
   "data_refs": [],
   "cluster": 41,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a210 slot 27 (kind 13 subtype 33)"
  },
  {
@@ -24840,8 +24840,8 @@
   ],
   "data_refs": [],
   "cluster": 41,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a130 slot 27 (kind 13 subtype 42)"
  },
  {
