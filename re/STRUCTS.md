@@ -49,7 +49,7 @@ Confidence per field: `?` guessed · `r` read-only evidence · `w` written+read 
 | +0x44 | uint64 | name key (NameHash64) | c |
 | +0x4c,+0x50 | int | position x, y (world, y up) | c |
 | +0x54,+0x58 | int | previous position | w |
-| +0x5c | byte | state byte (Jim: 7 = special pose) | r |
+| +0x5c | byte | kind number stored by the level loader (kind 11 and kind 14 test it); Jim: 7 | r |
 | +0x5d | byte | | ? |
 | +0x5e | short | sort value (draw order / contact priority) | c |
 | +0x60/+0x64 | ptr/ushort | optional state blob and its size (saved) | r |

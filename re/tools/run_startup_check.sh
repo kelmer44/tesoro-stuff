@@ -241,3 +241,8 @@ local-media/bin/exits_driver local-media/vectors/exits.txt
 re/.venv/bin/python re/tools/gen_vectors_connect.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/connect_driver.cpp "$ENG/engines/tesoro/core/connectfour.cpp" -o local-media/bin/connect_driver
 local-media/bin/connect_driver local-media/vectors/connect.txt
+# Path sprite (kind 16): the original constructor, attach and tick against the engine's PathSprite
+re/.venv/bin/python re/tools/gen_vectors_pathsprite.py 200
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/pathsprite_driver.cpp \
+    "$ENG/engines/tesoro/core/pathsprite.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/walkfloor.cpp" "$ENG/engines/tesoro/core/pathobject.cpp" "$ENG/engines/tesoro/core/walkarea.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/collision.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/cursor.cpp" "$ENG/engines/tesoro/core/hovertext.cpp" "$ENG/engines/tesoro/core/mouse.cpp" "$ENG/engines/tesoro/core/inputstate.cpp" -o local-media/bin/pathsprite_driver
+local-media/bin/pathsprite_driver local-media/vectors/pathsprite.txt

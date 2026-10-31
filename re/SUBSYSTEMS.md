@@ -20,7 +20,7 @@ flowchart TD
     Archive --> Anim["Animations<br/>pictures + steps ✅"]
     Archive --> Level["Level ✅<br/>banks, rooms, objects, camera"]
     Clock["Game clock ✅"] --> Anim
-    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 7, 8, 10, 25 built by levels;<br/>5, 6, 9, 12, 13, 17, 20 built through World;<br/>Jim made by World"]
+    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 7, 8, 10, 25 built by levels;<br/>2, 4, 5, 6, 9, 12 to 17, 20 built through World;<br/>Jim made by World"]
     Level --> Objects
     Objects -->|"picture + depth"| Queue["Screen queue ✅<br/>RenderQueue: spans per row"]
     Queue --> Compose["Compose ✅<br/>ScreenDisplay: spans to pixels"]
@@ -52,6 +52,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Exits: `ExitDoor` (an exit between levels), `ExitHost` (what it asks of the game).
 - Board game: `ConnectFour` (the thinking of the "Conecta" game) and `ConnectFourHost` (what it asks of the game).
 - Items: `InventoryItem` (things Jim carries), `ItemHost` (what it asks of the game).
+- Groups, shadows and wanderers: `ItemGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14, with `DepthZoneHost`), `ClickCatcher` (15), `PathSprite` (16, with `PathSpriteHost`).
 - Props: `ScriptedProp` (story props of kinds 12, 17 and 20), `PropHost` (what it asks of the game).
 - Characters: `Character` (a clickable, speaking person of a level), `CharacterHost` (what it asks of the game, on top of `InteractiveHost`).
 - Walking: `Jim` (the player's object), `JimWorld` (what he asks of the game), `WalkArea` (shape, scale and route), `InteractiveObject` (clickable base) and `InteractiveHost` (what it asks of the game), `JimWalker` (Jim's walk), `WalkTarget` (told on arrival), `Walker` and `JimWalkerHost` (what they ask of the game).
@@ -652,7 +653,7 @@ hard: `PLAF`, `AY`, `PUM`, `HASMUERTO`), then an animated text (`TXTFACIL`, `TXT
 names (congratulations, you won / bang, ouch, you died) they look like gag endings, so only "regular" (action 3) would start the real game.
 This is a reading of the names, not something seen on screen.
 
-### Shadows and wandering sprites (kinds 4 and 16) 🟡 (read, not ported)
+### Shadows and wandering sprites (kinds 4 and 16) 🟡 (kind 16 ported and ✅ checked against the original; kind 4 ported, never built by a shipped level)
 
 **Kind 4** is a sprite whose only job is to draw its picture when that picture is of the shadow type (type 2), through the second
 queue of the screen; the level file gives it one extra number that goes with the picture. **Kind 16** is an animated sprite that
@@ -668,13 +669,17 @@ named neighbours: `ICONOS` (the row of item pictures), `CUADRADO` (the highlight
 name goes). While the pointer is away the pictures sit below the screen. When the pointer comes over the strip they rise by 85
 pixels (not on the board game's screen and two other levels); the item whose picture is within 35 pixels of the pointer's
 position lights up and the one left behind is dimmed. Moving away lowers them again. Clicking an item makes the pointer take its
-picture (and puts back what the pointer carried before). Not compared with the original.
+picture (and puts back what the pointer carried before). Kind 4 occurs in none of the shipped levels; kind 16 only in the tavern (three of them). The wanderer's waiting, setting off, walking
+along the path, resizing and arriving were run through the original code and the port together on 200 invented pairs of animation
+files (over 200,000 frames, every random choice replayed): the results are identical, and eleven deliberate mistakes in the port were all
+found. Not checked: drawing it, an anchor missing from the level, and paths the original itself would misread. With a real frame time
+(40 ms or more) the wanderer sets off now and then, not on a regular schedule, which is how the original behaves too.
 
-### Depth zones and click catchers (kinds 14 and 15) 🟡 (read, not ported)
+### Depth zones and click catchers (kinds 14 and 15) 🟡 (ported; only built, not compared)
 
 **Kind 14** is an invisible zone around a piece of scenery. When Jim touches it, his drawing order is set to the zone's order plus
 a number that depends on which side of the zone's box he was on (above, below, left, right or inside), so he walks in front of or behind
-it. It only takes part when its own state byte is 255; nothing read so far sets that, so it is not yet clear how a level turns one on.
+it. It only takes part when its kind number reads 255, which a built one never does, and no shipped level has one, so it is dead code in the original; it is ported anyway.
 **Kind 15** is a region the pointer can see but that does nothing when clicked and shows no text, so it simply stops the click.
 Not compared with the original.
 
@@ -686,7 +691,7 @@ returns "moved". One destination (level 15, the sacred island) first checks the 
 refused. **Kind 24** is an object whose look and use verbs (verbs 1 and 3) start the script `FNOTALAB` at `mirar`, handing it the
 object's own data byte so the script knows which object it was. Not compared with the original.
 
-### Groups of objects (kind 2) and level hooks 🟡 (read, not ported)
+### Groups of objects (kind 2) and level hooks 🟡 (kind 2 ported; the level hooks read, not ported)
 
 **Kind 2** is a named list of other objects of the same level (the strip's `ICONOS` is one): it keeps the names from the level file and, when the level is attached, finds each object and keeps the list. **Levels** have a hook that runs for them: the base one starts the level's music track (a number in the camera-frame object's data) and the map level (`MAPA`) uses it for story switches: when four things are done in the village, the canoe appears on the beach and the volcano's and swamp's characters are switched. Not compared with the original.
 

@@ -14417,8 +14417,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 24,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "core/ShadowSprite::init",
   "notes": "0x74 bytes, vtable 0042b9f8, extends Kind03"
  },
  {
@@ -14441,8 +14441,8 @@
   ],
   "data_refs": [],
   "cluster": 25,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "core/ShadowSprite::draw",
   "notes": "unread; first seen in vtable 0042b9f8 slot 6"
  },
  {
@@ -14464,8 +14464,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 25,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/PathSprite::init",
   "notes": "0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)"
  },
  {
@@ -14493,8 +14493,8 @@
   ],
   "data_refs": [],
   "cluster": 25,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/PathSprite::updateAnimation",
   "notes": "unread; first seen in vtable 0042ba30 slot 2"
  },
  {
@@ -14519,8 +14519,8 @@
   ],
   "data_refs": [],
   "cluster": 25,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/PathSprite::onAttach",
   "notes": "unread; first seen in vtable 0042ba30 slot 0"
  },
  {
@@ -14543,8 +14543,8 @@
   ],
   "data_refs": [],
   "cluster": 25,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "core/PathSprite::draw",
   "notes": "unread; first seen in vtable 0042ba30 slot 6"
  },
  {
@@ -23046,8 +23046,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 35,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "core/ItemGroup::init",
   "notes": "0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record"
  },
  {
@@ -23072,8 +23072,8 @@
   ],
   "data_refs": [],
   "cluster": 35,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "core/ItemGroup::onAttach",
   "notes": "unread; first seen in vtable 0042bcb0 slot 0"
  },
  {
@@ -23338,8 +23338,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 36,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "core/DepthZone::init",
   "notes": "0x74 bytes, vtable 0042bdd0, extends Kind00; inserts itself in its room list"
  },
  {
@@ -23360,8 +23360,8 @@
   ],
   "data_refs": [],
   "cluster": 36,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "core/DepthZone::isHitter",
   "notes": "unread; first seen in vtable 0042bdd0 slot 11"
  },
  {
@@ -23382,8 +23382,8 @@
   ],
   "data_refs": [],
   "cluster": 36,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "core/DepthZone::onTouched",
   "notes": "unread; first seen in vtable 0042bdd0 slot 12"
  },
  {
@@ -23587,8 +23587,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 37,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "core/ClickCatcher::init",
   "notes": "0xa0 bytes, vtable 0042beb0, extends MidBase, sort value +0x5e = 0x32"
  },
  {
@@ -23641,8 +23641,8 @@
   ],
   "data_refs": [],
   "cluster": 37,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "core/ClickCatcher::setVerbAndClick",
   "notes": "unread; first seen in vtable 0042beb0 slot 14"
  },
  {
