@@ -20,6 +20,7 @@ struct Host : Tesoro::MenuHost {
 	void fadeOut(int steps, int delay) override { events.push_back("fade " + std::to_string(steps) + " " + std::to_string(delay)); }
 	void enterLevel(const char *level) override { events.push_back(std::string("enter ") + level); }
 	void startScript(const char *block, const char *label) override { events.push_back(std::string("script ") + block + " " + label); }
+	void startGame() override { events.push_back("unported start"); }
 	void notPorted(const char *what) override { events.push_back(strstr(what, "thumbnail") ? "unported thumbnail" : strstr(what, "start") ? "unported start" : std::string("unported ") + what); }
 };
 
