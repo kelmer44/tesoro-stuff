@@ -8,9 +8,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 261 | 58% |
-| understood or later | 205 | 45% |
-| ported or later | 154 | 34% |
+| decompiled or later | 262 | 58% |
+| understood or later | 210 | 46% |
+| ported or later | 161 | 36% |
 | emu-compared or later | 130 | 29% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
@@ -147,10 +147,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00406d50` inferred_C00428b00_SetVerbAndClick (vtable) · depth 12 · 123 lines · **untouched** — unread; first seen in vtable 00428b00 slot 14
 - [x] `00406190` ScriptFile_Load · depth 13 · 228 lines · **emu-compared** → `engines/tesoro/core/scriptblock.cpp::ScriptLibrary::load` — (archive offset, id): reads entries introduced by '.' bytes; each entry built by 00404810 and registered by kind
 
-### Cluster 12: 004079d0–00407aa0 (10/11 ported)
+### Cluster 12: 004079d0–00407aa0 (11/11 ported)
 
 - [x] `004079d0` inferred_Jim_IsInPose7 (vtable) · depth 0 · 7 lines · **ported** → `engines/tesoro/core/jimwalker.cpp::Jim` — slot 11: returns (+0x5c == 7)
-- [ ] `00407aa0` inferred_Jim_ResumeFacing · depth 0 · 10 lines · **decompiled** — if walking (+0xd5) applies the stored facing again via slot 29
+- [x] `00407aa0` inferred_Jim_ResumeFacing · depth 0 · 10 lines · **ported** → `engines/tesoro/core/jimwalker.h::Jim::resumeFacing` — if walking (+0xd5) applies the stored facing again via slot 29 | ported 31 Oct, from reading
 - [x] `00407730` inferred_Jim_UpdateBounds (vtable) · depth 1 · 15 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp::Jim` — slot 3: base UpdateBounds then multiplies the four rect values by the perspective scale (+0xfc, 0x100 = 1.0) >> 8
 - [x] `004079e0` inferred_Jim_ArriveStep (vtable) · depth 1 · 31 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp` — slot 12: called when a walk segment ends: updates previous position, unless the walk-area path search (WalkArea_FindPath) produces a further waypoint, calls slot 29 (face) and the target object's slot 13
 - [x] `00407600` inferred_Jim_WalkTo (vtable) · depth 2 · 55 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp` — slot 32: (x, y, target object, flag) starts a walk: records target +0x104/+0x108, converts position to fixed point, chooses facing 1..4 from the dominant axis, selects the matching walking animation (table +0xd8); the function always ends by calling the target object's slot 13 (RunVerb), including at walk start, purpose not yet understood
@@ -161,19 +161,19 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00407790` inferred_Jim_Update (vtable) · depth 11 · 89 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp` — slot 4: per-frame walking step. Position is 24.8 fixed point (+0xe0,+0xe4); the animation's own per-frame offset (+0x28,+0x2a, root motion) scaled by perspective moves Jim; ends when the squared distance reaches zero (arrival), then removes itself from the main list and either calls slot 29 (face) or the target object's slot 13 (RunVerb)
 - [x] `004070c0` inferred_Jim_Ctor · depth 12 · 282 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp::Jim` — 0x114-byte object, vtable 00428b70, base chain Kind05-family ctor 0040fea0 -> 0040ec90. Loads 9 animation files (JIMHABDER, JIMQUIETO, JIMARRIBA, JIMABAJO, JIMIZQUIERDA, JIMDERECHA, JIMHABAR ... .ANM) into bank array +0x34, name key from string at 0042d2a4, start position (0x15e,0x14), sort value 0x23, scale +0xfc = 0x100, speech/idle fields, calls SetFacing(3)
 
-### Cluster 13: 00408440–00408550 (9/12 ported)
+### Cluster 13: 00408440–00408550 (12/12 ported)
 
 - [x] `00408440` inferred_Level_ObjectMoved · depth 0 · 61 lines · **emu-compared** — re-sorts the object in the level's sorted list at +0x7c after it moved
 - [x] `00407ac0` inferred_Jim_Draw (vtable) · depth 1 · 34 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — slot 6: updates talk state then queues the current frame scaled by +0xfc (scaled sprite, 16.16 factor) at screen position relative to the camera
 - [x] `00407d00` inferred_Dialogue_ChoiceMenu · depth 1 · 71 lines · **emu-compared** → `engines/tesoro/core/scriptrunner.cpp::ChoiceMenu::run` — lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled
 - [x] `00407f30` inferred_Jim_TalkAnimate (vtable) · depth 2 · 37 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp::Jim` — slot 31: draws the speaking-mouth animation; while talking picks a random frame (RandomRange) at most every 100 ms of game time, else rests on frame 1
-- [ ] `004080a0` inferred_Jim_UseItemForward (vtable) · depth 2 · 17 lines · **decompiled** — slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27
+- [x] `004080a0` inferred_Jim_UseItemForward (vtable) · depth 2 · 17 lines · **ported** → `engines/tesoro/core/jimwalker.h::Jim::useItem` — slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27 | ported 31 Oct; the interface object's slot 27 is behind JimWorld::useItemOnInterface (not read)
 - [x] `00408520` inferred_Level_CameraMoveTo · depth 2 · 8 lines · **emu-compared** — forwards (x, y, duration) to the camera at +0x80
 - [x] `00408550` inferred_Level_UpdateRoomCameras · depth 2 · 52 lines · **emu-compared** — for every room, moves the camera toward the room's focus point and re-sorts its objects | name from call sites and a skim; body not yet read
 - [x] `00408030` inferred_Jim_SetIdlePose (vtable) · depth 3 · 29 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp::Jim` — slot 30: direction 3,4,2,1 -> idle animation index 0,1,2,3 via 00410130, then recomputes speech anchor point +0xa4
 - [x] `00408540` inferred_Level_AttachObjects · depth 3 · 8 lines · **emu-compared** — calls 0040f710 on the level's object list (+0x74), which calls 00401bf0(child, level) for every child
-- [ ] `00407b80` inferred_Jim_EnterLevel · depth 11 · 50 lines · **understood** — (level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14
-- [ ] `00407ce0` inferred_Jim_SayLine · depth 11 · 8 lines · **understood** — Player_Say with a negative id derived from +0x100 (spoken subtitle line)
+- [x] `00407b80` inferred_Jim_EnterLevel · depth 11 · 50 lines · **ported** → `engines/tesoro/core/jimwalker.cpp::Jim::enterLevel` — (level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14 | ported 31 Oct; call order and effects checked with enterlevel_driver (stub world), not against the original code
+- [x] `00407ce0` inferred_Jim_SayLine · depth 11 · 8 lines · **ported** → `engines/tesoro/core/jimwalker.h::Jim::sayScriptLine` — Player_Say with a negative id derived from +0x100 (spoken subtitle line) | already present as sayScriptLine; marked 31 Oct
 - [x] `004080e0` inferred_Level_Load · depth 15 · 142 lines · **emu-compared** — level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
 
 ### Cluster 14: 00408780–00408890 (3/8 ported)
@@ -440,22 +440,22 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00414560` inferred_Game_StartIntroSequence · depth 14 · 25 lines · **decompiled** — enters the stage level with Jim, shows him, and starts a dialogue entry by key
 - [ ] `00413e60` inferred_InitGameWorld · depth 16 · 252 lines · **understood** — opens archive Tesoro.DAT/Tesoro.TRE, loads TABLA1.TBL, FUENTES.ANM, OBJETOS.TXT/DLG tables, INTERFACE.LVL, CUBIERTA/MAPA/DESPACHO..LVL levels (0x2f slots), PRINCIPAL.LVL, NUEVO.LVL, then starts the first level; SEH frame | creation order read 30 Oct
 
-### Cluster 35: 00414740–00414dc0 (1/12 ported)
+### Cluster 35: 00414740–00414dc0 (3/12 ported)
 
 - [x] `00414740` inferred_WalkArea_ScaleAt · depth 0 · 86 lines · **emu-compared** → `engines/tesoro/core/walkarea.cpp` — (x, y) piecewise interpolation of a perspective scale (default 0x100) from the walk-area edge table in the current frame record | (x, y) perspective scale 0x100 = 1.0: finds the polyline edges spanning x, interpolates their y and per-vertex scale, then interpolates the scale vertically between the edge above and the edge below the point; 0x100 when no edge pair brackets the point
 - [ ] `00414600` inferred_Keyboard_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428070
 - [ ] `00414610` inferred_Mouse_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428074
-- [ ] `004146b0` inferred_C0042bc78_OnAttach (vtable) · depth 1 · 23 lines · **untouched** — unread; first seen in vtable 0042bc78 slot 0
+- [x] `004146b0` WalkFloor_OnAttach (vtable) · depth 1 · 23 lines · **ported** → `engines/tesoro/core/walkfloor.cpp::WalkFloor::onAttach` — unread; first seen in vtable 0042bc78 slot 0 | ported 31 Oct except the shared-level animation borrow
 - [ ] `00414a90` inferred_C0042bcb0_OnAttach (vtable) · depth 1 · 92 lines · **untouched** — unread; first seen in vtable 0042bcb0 slot 0
 - [ ] `00414d50` inferred_C0042abb0_Slot15 (vtable) · depth 1 · 18 lines · **untouched** — unread; first seen in vtable 0042abb0 slot 15 (kind 6 subtype 1)
 - [ ] `004145f0` inferred_C0042bc40_Update2 (vtable) · depth 3 · 8 lines · **untouched** — unread; first seen in vtable 0042bc40 slot 5
-- [ ] `00414620` inferred_Obj_Kind07_Ctor · depth 3 · 19 lines · **decompiled** — 0x7c bytes, vtable 0042bc78, extends Kind00
+- [x] `00414620` WalkFloor_Ctor · depth 3 · 19 lines · **ported** → `engines/tesoro/core/walkfloor.cpp::WalkFloor::init` — 0x7c bytes, vtable 0042bc78, extends Kind00 | ported 31 Oct; the kind 7 floor (SUELO)
 - [ ] `00414930` inferred_Obj_Kind02_Ctor · depth 3 · 81 lines · **decompiled** — 0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record
 - [ ] `00414c40` inferred_Exit_Activate (vtable) · depth 12 · 27 lines · **decompiled** — kind 6/other exit-style handler: when Jim is idle, resets display queues, looks up the destination level in the level table 00442130 by index (+0xa0) and name key (+0xa4,+0xa8), and moves Jim there with Jim_EnterLevel
 - [ ] `00414dc0` inferred_C0042abb0_Slot28 (vtable) · depth 12 · 12 lines · **untouched** — unread; first seen in vtable 0042abb0 slot 28 (kind 6 subtype 1)
 - [ ] `00414be0` inferred_Obj_Kind06_Ctor · depth 13 · 16 lines · **decompiled** — 0xb0 bytes, vtable 0042bce8, extends Kind09; 10 per-subtype vtables chosen by record byte 1
 
-### Cluster 36: 00414e80–00415440 (3/12 ported)
+### Cluster 36: 00414e80–00415440 (4/12 ported)
 
 - [x] `00414e80` inferred_WalkArea_NextWaypoint (vtable) · depth 0 · 31 lines · **emu-compared** → `engines/tesoro/core/walkarea.cpp` — vtable slot 13: runs each time Jim reaches a vertex. Steps the vertex index +0xa0 one towards the destination index +0xa4 and sends Jim to that vertex (Jim slot 32, target = this); when the indices are equal first sends Jim to the real destination (+0xa8,+0xac) with the original target (+0xb0)
 - [x] `00414f10` inferred_WalkArea_FindPath · depth 0 · 73 lines · **emu-compared** → `engines/tesoro/core/walkarea.cpp` — (x, y, target) picks the nearest waypoint of the walk area to the destination and prepares a route; returns whether a route exists | (x, y, target) finds the polyline vertex nearest the destination (+0xa4) and the vertex nearest Jim (+0xa0), stores the destination (+0xa8,+0xac) and target (+0xb0), then sends Jim to his nearest vertex; always returns true when the polyline has vertices. No search algorithm: movement is along the vertex list
@@ -467,7 +467,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004150d0` inferred_Obj_Kind14_Ctor · depth 3 · 17 lines · **decompiled** — 0x74 bytes, vtable 0042bdd0, extends Kind00; inserts itself in its room list
 - [ ] `00415350` inferred_C0042be40_IsInteractive (vtable) · depth 3 · 40 lines · **untouched** — unread; first seen in vtable 0042be40 slot 16
 - [ ] `00415440` inferred_C0042be40_SetVerbAndClick (vtable) · depth 3 · 17 lines · **untouched** — unread; first seen in vtable 0042be40 slot 14
-- [ ] `00414e00` inferred_WalkArea_Ctor · depth 4 · 13 lines · **decompiled** — 0xb4 bytes, vtable 0042bd60, extends Obj_MidBase | kind 8, 0xb4 bytes, vtable 0042bd60 (only slot 13 overridden), extends MidBase; starts the single-frame animation whose frame record holds the vertex list. Rename of inferred_Obj_Kind08_Ctor
+- [x] `00414e00` PathObject_Ctor · depth 4 · 13 lines · **ported** → `engines/tesoro/core/pathobject.cpp::PathObject::init` — 0xb4 bytes, vtable 0042bd60, extends Obj_MidBase | kind 8, 0xb4 bytes, vtable 0042bd60 (only slot 13 overridden), extends MidBase; starts the single-frame animation whose frame record holds the vertex list. Rename of inferred_Obj_Kind08_Ctor | ported 31 Oct; shipped levels load and link, not emu-compared
 - [ ] `00415250` inferred_Obj_Kind11_Ctor · depth 4 · 10 lines · **decompiled** — 0xbc bytes, vtable 0042be40, extends MidBase
 
 ### Cluster 37: 004157c0–00415960 (1/8 ported)

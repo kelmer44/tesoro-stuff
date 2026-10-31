@@ -60,10 +60,21 @@ struct Target : WalkTarget {
 	int arrived() override { log->push_back("arrived"); return ret; }
 };
 
+struct EmptyStream : Common::SeekableReadStream {
+	bool eos() const override { return true; }
+	uint32 read(void *, uint32) override { return 0; }
+	int64 pos() const override { return 0; }
+	int64 size() const override { return 0; }
+	bool seek(int64, int) override { return true; }
+	char *readLine(char *, size_t, bool = true) override { return nullptr; }
+	Common::String readLine(bool = true) override { return Common::String(); }
+};
+
 struct World : JimWorld {
 	std::vector<std::string> log;
 	std::map<const AnimImage *, std::string> imageName;
 	SpeechTable::Line lines[6];
+	EmptyStream stream;
 	int32 time = 0; int skip = 0, subs = 0, base = 0, scale = 0x100, fp = 0, ret = 1, has = 1, ohas = 1, ids = 0, rcalls = 0; unsigned voices = 0;
 
 	int32 now() override { return time; }
@@ -75,6 +86,9 @@ struct World : JimWorld {
 	bool subtitlesOn() override { return subs; }
 	void insertInMainList(Object *, int p) override { log.push_back(fmt("insert %d", p)); }
 	void removeFromMainList(Object *) override { log.push_back("remove"); }
+	Common::SeekableReadStream &archiveStream() override { return stream; }
+	bool is555() override { return false; }
+	int useItemOnInterface() override { log.push_back("interface"); return 9; }
 	bool hasWalkArea() override { return has; }
 	int32 scaleAt(int32 x, int32 y) override { log.push_back(fmt("scale %d %d", x, y)); return scale; }
 	bool findPath(int32 dx, int32 dy, WalkTarget *t) override { log.push_back(fmt("findpath %d %d %s", dx, dy, t ? "tgt" : "none")); return fp; }

@@ -8,7 +8,7 @@ It grows as we recover more of the original. Written for people, not for the deb
 - 🟡 Recovered, but not yet checked or only partly understood
 - ❓ Seen from the outside only, not read yet
 
-Last updated: 30 October 2026.
+Last updated: 31 October 2026.
 
 ---
 
@@ -523,7 +523,9 @@ Jim is a character like the others (he speaks through the same `Speaker` rules) 
 - **Obstacles.** A straight walk that touches the walk area's edge is turned into a route along the area's corner points: first to the corner nearest him, then corner by corner, then to the real destination. The route is not a search, just "nearest corner to nearest corner".
 - **Arriving.** On arrival he stands facing the last direction, leaves the update list, and if somebody was waiting (a clickable object, or the next corner) it is told, which is what makes a click run the verb.
 Ported and checked against the original: `WalkArea` (scale, route, corner stepping; 1,200 random shapes) and `JimWalker` (walk order, per-frame step, arrival, touch; 1,000 random sessions, with the calls to animation, list and speaker hooked). **Jim as an object** (`Jim`) is ported too: he is built from his nine animation banks, speaks through a `Speaker` and walks through a `JimWalker`, draws himself scaled with distance, scales his hit rectangle, and answers the touch. Compared with the original on 400 sessions: its own constructor builds him from nine made-up animation files and the original methods run on the real players; the calls, results, his fields and all nine players agree. Things found on the way: when a line starts while he is walking, the walking step runs too (starting a line runs the object's own update); the speaking and walking code share one byte; his talk draw draws the body from the first frame of the speaking bank and the mouth frame on top; walking switches animation without clearing the "held" flag. Not checked: saving and loading him.
-Still to do: the object kind 8 that holds the walk area (and its `setShape`/`setPosition`), a real `JimWorld` (main list, sound, level, walk area), and the collision that triggers the route (which object touches Jim there is inferred, not confirmed).
+**Entering a level** (`Jim::enterLevel`) is ported from reading: Jim leaves the old level (its lists, its room, its place in the main list), joins the new level and room, the new level's camera starts on his old spot and then follows him, the level goes into the main list, the pictures that were left unloaded are loaded and brightened to the level's setting, and he is put at the new spot (he can only be hit by other objects except on the map). Checked for order and effects with a stand-in world, not against the original code. The small Jim methods that resume his facing and forward item 37 to the interface level are ported too (the interface object's answer is not read yet).
+**The floor of a level** is two objects, read from the shipped data: the *floor* (`WalkFloor`, kind 7, named SUELO in every level) whose outline gives the size of things at each place and which the level's camera-frame object points at, and the *route* (`PathObject`, kind 8, named PATH) whose corners Jim walks round obstacles by; the floor names its route. Both are ported and every one of the 38 shipped levels that has a floor finds its route (not compared with the original code; 12 levels, menus and the like, have none). One thing not ported: in the island levels the floor borrows its animation from the floor of another level.
+Still to do: a real `JimWorld` (main list, sound, level, walk area), and the collision that triggers the route (which object touches Jim there is inferred, not confirmed).
 
 ### Interactive objects and verbs 🟡 (read, not ported)
 Most things in a level that the pointer can touch (the kind 5 characters, the kind 9 objects and the doors) share one base. What it does, from the original:

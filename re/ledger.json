@@ -11261,9 +11261,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 12,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "if walking (+0xd5) applies the stored facing again via slot 29"
+  "status": "ported",
+  "engine": "engines/tesoro/core/jimwalker.h::Jim::resumeFacing",
+  "notes": "if walking (+0xd5) applies the stored facing again via slot 29 | ported 31 Oct, from reading"
  },
  {
   "addr": "00407ac0",
@@ -11340,9 +11340,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "understood",
-  "engine": "",
-  "notes": "(level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14"
+  "status": "ported",
+  "engine": "engines/tesoro/core/jimwalker.cpp::Jim::enterLevel",
+  "notes": "(level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14 | ported 31 Oct; call order and effects checked with enterlevel_driver (stub world), not against the original code"
  },
  {
   "addr": "00407ce0",
@@ -11361,9 +11361,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 13,
-  "status": "understood",
-  "engine": "",
-  "notes": "Player_Say with a negative id derived from +0x100 (spoken subtitle line)"
+  "status": "ported",
+  "engine": "engines/tesoro/core/jimwalker.h::Jim::sayScriptLine",
+  "notes": "Player_Say with a negative id derived from +0x100 (spoken subtitle line) | already present as sayScriptLine; marked 31 Oct"
  },
  {
   "addr": "00407d00",
@@ -11461,9 +11461,9 @@
   ],
   "data_refs": [],
   "cluster": 13,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27"
+  "status": "ported",
+  "engine": "engines/tesoro/core/jimwalker.h::Jim::useItem",
+  "notes": "slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27 | ported 31 Oct; the interface object's slot 27 is behind JimWorld::useItemOnInterface (not read)"
  },
  {
   "addr": "004080e0",
@@ -22964,7 +22964,7 @@
  {
   "addr": "00414620",
   "ghidra_name": "FUN_00414620",
-  "name": "inferred_Obj_Kind07_Ctor",
+  "name": "WalkFloor_Ctor",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -22979,14 +22979,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 35,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "0x7c bytes, vtable 0042bc78, extends Kind00"
+  "status": "ported",
+  "engine": "engines/tesoro/core/walkfloor.cpp::WalkFloor::init",
+  "notes": "0x7c bytes, vtable 0042bc78, extends Kind00 | ported 31 Oct; the kind 7 floor (SUELO)"
  },
  {
   "addr": "004146b0",
   "ghidra_name": "FUN_004146b0",
-  "name": "inferred_C0042bc78_OnAttach",
+  "name": "WalkFloor_OnAttach",
   "tier": "game",
   "lines": 23,
   "decompile_ok": true,
@@ -23004,9 +23004,9 @@
   ],
   "data_refs": [],
   "cluster": 35,
-  "status": "untouched",
-  "engine": "",
-  "notes": "unread; first seen in vtable 0042bc78 slot 0"
+  "status": "ported",
+  "engine": "engines/tesoro/core/walkfloor.cpp::WalkFloor::onAttach",
+  "notes": "unread; first seen in vtable 0042bc78 slot 0 | ported 31 Oct except the shared-level animation borrow"
  },
  {
   "addr": "00414740",
@@ -23260,7 +23260,7 @@
  {
   "addr": "00414e00",
   "ghidra_name": "FUN_00414e00",
-  "name": "inferred_WalkArea_Ctor",
+  "name": "PathObject_Ctor",
   "tier": "game",
   "lines": 13,
   "decompile_ok": true,
@@ -23275,9 +23275,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 36,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "0xb4 bytes, vtable 0042bd60, extends Obj_MidBase | kind 8, 0xb4 bytes, vtable 0042bd60 (only slot 13 overridden), extends MidBase; starts the single-frame animation whose frame record holds the vertex list. Rename of inferred_Obj_Kind08_Ctor"
+  "status": "ported",
+  "engine": "engines/tesoro/core/pathobject.cpp::PathObject::init",
+  "notes": "0xb4 bytes, vtable 0042bd60, extends Obj_MidBase | kind 8, 0xb4 bytes, vtable 0042bd60 (only slot 13 overridden), extends MidBase; starts the single-frame animation whose frame record holds the vertex list. Rename of inferred_Obj_Kind08_Ctor | ported 31 Oct; shipped levels load and link, not emu-compared"
  },
  {
   "addr": "00414e80",
