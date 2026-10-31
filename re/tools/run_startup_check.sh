@@ -175,7 +175,7 @@ local-media/bin/walkarea_driver local-media/vectors/walkarea.txt
 # Jim's walking: original walk order 0x407600 / update 0x407790 / collision callback 0x4079e0 / set facing 0x407a80 vs engine JimWalker (callees are logging hooks)
 re/.venv/bin/python re/tools/gen_vectors_jimwalk.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/jimwalk_driver.cpp \
-    "$ENG/engines/tesoro/core/jimwalker.cpp" -o local-media/bin/jimwalk_driver
+    "$ENG/engines/tesoro/core/jimwalker.cpp" "$ENG/engines/tesoro/core/speaker.cpp" "$ENG/engines/tesoro/core/walkarea.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/namekey.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/cursor.cpp" "$ENG/engines/tesoro/core/hovertext.cpp" "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/collision.cpp" "$ENG/engines/tesoro/core/mouse.cpp" "$ENG/engines/tesoro/core/inputstate.cpp" -lz -o local-media/bin/jimwalk_driver
 local-media/bin/jimwalk_driver local-media/vectors/jimwalk.txt
 
 # Sound device: original play 0x404110 / find 0x4040d0 / stop 0x4043b0 / update 0x404210 vs engine SoundDevice (record bookkeeping; streaming is a hook)
@@ -189,3 +189,9 @@ re/.venv/bin/python re/tools/gen_vectors_choice.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/choice_driver.cpp \
     "$ENG/engines/tesoro/core/scriptrunner.cpp" "$ENG/engines/tesoro/core/scriptblock.cpp" "$ENG/engines/tesoro/core/stdiotext.cpp" "$ENG/engines/tesoro/core/namekey.cpp" "$ENG/engines/tesoro/core/screendisplay.cpp" "$ENG/engines/tesoro/core/textqueue.cpp" "$ENG/engines/tesoro/core/renderqueue.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" -lz -o local-media/bin/choice_driver
 local-media/bin/choice_driver local-media/vectors/choice.txt
+
+# Jim as an object: original constructor 0x4070c0 and methods on real animation players vs engine Jim (constructor state, speaking, walking, drawing, bounds)
+re/.venv/bin/python re/tools/gen_vectors_jim.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/jim_driver.cpp \
+    "$ENG/engines/tesoro/core/jimwalker.cpp" "$ENG/engines/tesoro/core/speaker.cpp" "$ENG/engines/tesoro/core/walkarea.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/namekey.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/cursor.cpp" "$ENG/engines/tesoro/core/hovertext.cpp" "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/collision.cpp" "$ENG/engines/tesoro/core/mouse.cpp" "$ENG/engines/tesoro/core/inputstate.cpp" -lz -o local-media/bin/jim_driver
+local-media/bin/jim_driver local-media/vectors/jim.txt

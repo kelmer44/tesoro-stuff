@@ -13,6 +13,8 @@
 
 void NORETURN_PRE error(const char *s, ...) { fprintf(stderr, "engine error: %s\n", s); exit(3); }
 
+void warning(const char *s, ...) { (void)s; }
+
 using namespace Tesoro;
 
 static std::string fmt(const char *f, ...) {
@@ -31,10 +33,10 @@ struct World : JimWalkerHost {
 	int cur = 0; unsigned mask = 0;
 	Target target;
 
-	int32 x() override { return px; }
-	int32 y() override { return py; }
-	void setPosition(int32 x, int32 y) override { px = x; py = y; }
-	void moveTo(int32 x, int32 y) override { log.push_back(fmt("move %d %d", x, y)); prevX = x; prevY = y; }
+	int32 positionX() override { return px; }
+	int32 positionY() override { return py; }
+	void placeAt(int32 x, int32 y) override { px = x; py = y; }
+	void headTo(int32 x, int32 y) override { log.push_back(fmt("move %d %d", x, y)); prevX = x; prevY = y; }
 	void stopAtCurrentPosition() override { prevX = px; prevY = py; }
 	bool hasWalkArea() override { return has; }
 	int32 scaleAt(int32 x, int32 y) override { log.push_back(fmt("scale %d %d", x, y)); return scale; }

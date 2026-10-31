@@ -47,7 +47,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `MenuItem` (25), lists `ObjectList`.
 - Input: `InputStates`, `Mouse`, `Cursor` (both pointers), `HoverText`.
 - Collisions: `sweepRects`, `Level::collisionPass`.
-- Walking: `WalkArea` (shape, scale and route), `JimWalker` (Jim's walk), `WalkTarget` (told on arrival), `Walker` and `JimWalkerHost` (what they ask of the game).
+- Walking: `Jim` (the player's object), `JimWorld` (what he asks of the game), `WalkArea` (shape, scale and route), `JimWalker` (Jim's walk), `WalkTarget` (told on arrival), `Walker` and `JimWalkerHost` (what they ask of the game).
 - Sound: `SoundDevice` (voices), `CdAudio` (music), `VoiceBackend` and `CdBackend` (what they play through; `MixerVoiceBackend`, `ScummCdBackend`).
 - Menu: `ChoiceMenu` (one frame of the list of choices) and `ChoiceMenuHost` (pointer, label, mouse).
 - Speaking: `Speaker` (the speaking rules of a character) and `SpeakerHost` (what it asks of the game).
@@ -56,7 +56,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 
 **Which classes copy the original and which are only seams of the port.** The original is mostly plain functions on global tables.
 - Mirror an original structure: `ScriptBlock`/`ScriptLibrary` (the script objects and their table), `ScriptEntry` (the 24-byte command), `SpeechTable`/`SpeechTables` (the four tables and their search).
-- Port-only, no original counterpart: `ChoiceMenuHost`, `VoiceBackend`, `CdBackend`, `JimWalkerHost`, `SpeakerHost`, `ScriptHost` (the original calls the objects directly), `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), `ScriptLookup` and `WavLookup` (let the readers ask for phrase numbers, levels and voice files without depending on the rest of the engine), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
+- Port-only, no original counterpart: `JimWorld`, `ChoiceMenuHost`, `VoiceBackend`, `CdBackend`, `JimWalkerHost`, `SpeakerHost`, `ScriptHost` (the original calls the objects directly), `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), `ScriptLookup` and `WavLookup` (let the readers ask for phrase numbers, levels and voice files without depending on the rest of the engine), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
 - Only behaviour was compared with the original; the class layout was never meant to match.
 
 ---
@@ -516,13 +516,14 @@ Also ported: **the sound device** (`SoundDevice`: three voice records, the 44-by
 Also ported: **the choice menu** (`ChoiceMenu`: lays the choices out and bottom-aligns them, tracks the one under the mouse, answers a click; 9,152 runs identical to the original with its own text layout).
 Still to be written: the **characters** (the kind 5 object of the levels, which also needs the interactive object base: hover text, clicks and the verbs), Jim, and a real `SpeakerHost`/`ScriptHost`.
 
-### Jim and walking 🟡 (read; walking ✅ and the walk area ✅ ported, Jim himself ⬜)
+### Jim and walking 🟡 (read; walking ✅, the walk area ✅ and Jim as an object ✅ ported; the world around him ⬜)
 Jim is a character like the others (he speaks through the same `Speaker` rules) with nine animation files: four walking directions, a standing one (`QUIETO`) whose frames show which way he faces, and four speaking ones. What the original does:
 - **Walking to a point.** A walk order gives a destination, the object to tell on arrival (or nobody) and whether to go straight. Jim faces the way the longer side of the trip points (left/right when the trip is wider than tall, otherwise up/down), starts that direction's walk loop, and each frame moves by exactly what the animation moves (so feet do not slide), stretched by his current size and corrected along the other axis so he follows the straight line.
 - **Size.** Jim shrinks with distance: the level's walk area gives a scale from the shape of its edges (1:1 is 0x100), and his hit rectangle is scaled with him.
 - **Obstacles.** A straight walk that touches the walk area's edge is turned into a route along the area's corner points: first to the corner nearest him, then corner by corner, then to the real destination. The route is not a search, just "nearest corner to nearest corner".
 - **Arriving.** On arrival he stands facing the last direction, leaves the update list, and if somebody was waiting (a clickable object, or the next corner) it is told, which is what makes a click run the verb.
-Ported and checked against the original: `WalkArea` (scale, route, corner stepping; 1,200 random shapes) and `JimWalker` (walk order, per-frame step, arrival, touch; 1,000 random sessions, with the calls to animation, list and speaker hooked). Still to do: Jim as an object (his constructor and nine animations, wiring `Speaker`, `JimWalker`, the level's walk area), the object kind 8 that holds the area, and the collision that triggers the route (which object touches Jim there is inferred, not confirmed).
+Ported and checked against the original: `WalkArea` (scale, route, corner stepping; 1,200 random shapes) and `JimWalker` (walk order, per-frame step, arrival, touch; 1,000 random sessions, with the calls to animation, list and speaker hooked). **Jim as an object** (`Jim`) is ported too: he is built from his nine animation banks, speaks through a `Speaker` and walks through a `JimWalker`, draws himself scaled with distance, scales his hit rectangle, and answers the touch. Compared with the original on 400 sessions: its own constructor builds him from nine made-up animation files and the original methods run on the real players; the calls, results, his fields and all nine players agree. Things found on the way: when a line starts while he is walking, the walking step runs too (starting a line runs the object's own update); the speaking and walking code share one byte; his talk draw draws the body from the first frame of the speaking bank and the mouth frame on top; walking switches animation without clearing the "held" flag. Not checked: saving and loading him.
+Still to do: the object kind 8 that holds the walk area (and its `setShape`/`setPosition`), a real `JimWorld` (main list, sound, level, walk area), and the collision that triggers the route (which object touches Jim there is inferred, not confirmed).
 
 ### Interactive objects and verbs 🟡 (read, not ported)
 Most things in a level that the pointer can touch (the kind 5 characters, the kind 9 objects and the doors) share one base. What it does, from the original:

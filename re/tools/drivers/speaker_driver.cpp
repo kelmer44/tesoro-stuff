@@ -20,8 +20,11 @@ static std::string fmt(const char *f, ...) {
 }
 
 struct World : SpeakerHost {
+	Speaker *self = nullptr;
+	int objectUpdate() override { return self->update(); }
 	std::vector<std::string> log;
 	SpeechTable::Line lines[5];
+	bool held = false, pendingByte = false;
 	int32 time = 0; int skip = 0, subs = 0, base = 0, count = 4, ids = 0, rcalls = 0; unsigned long long active = 0;
 
 	int32 now() override { return time; }
@@ -41,13 +44,17 @@ struct World : SpeakerHost {
 	void queueFrame() override { log.push_back("queue"); }
 	void setFrameRange(uint16 first, int32 last) override { log.push_back(fmt("range %u %d 0 0", first, last)); }
 	uint32 frameCount() override { return count; }
+	bool animationHeld() override { return held; }
+	void setAnimationHeld(bool h) override { held = h; }
+	bool pending() override { return pendingByte; }
+	void setPending(bool p) override { pendingByte = p; }
 	int interactiveUpdate() override { log.push_back("iupdate"); return base; }
 	void interactiveDraw() override { log.push_back("idraw"); }
 	void drawSubtitle(const SpeechTable::Line &line) override { log.push_back(fmt("subtitle %d", int(&line - lines))); }
 };
 
 static std::string stateOf(const Speaker &s, const World &w) {
-	return fmt("%d %d %d %d %u %d %d", s.speaking(), s.animationHeld(), s.pending(), s.line() ? int(s.line() - w.lines) : -1, s.voiceId(), s.colour(), s.talkTime());
+	return fmt("%d %d %d %d %u %d %d", s.speaking(), w.held, w.pendingByte, s.line() ? int(s.line() - w.lines) : -1, s.voiceId(), s.colour(), s.talkTime());
 }
 
 int main(int argc, char **argv) {
@@ -71,7 +78,7 @@ int main(int argc, char **argv) {
 		}
 		delete speaker; world = World(); world.count = count;
 		for (int i = 0; i < 5; ++i) world.lines[i].wavOffset = wav[i];
-		speaker = new Speaker(world);
+		speaker = new Speaker(world); world.self = speaker;
 		++sessions; bool badSession = false;
 		for (const Op &op : script) {
 			world.log.clear();
@@ -85,8 +92,8 @@ int main(int argc, char **argv) {
 				speaker->say(world.lines[ln], colour, pose);
 			} else if (kind == 'U') got = fmt("%d", speaker->update());
 			else if (kind == 'D') { if (op.text[2] == '0') speaker->drawCharacter(); else speaker->drawJim(); }
-			else if (kind == 'P') speaker->setPending(op.text[2] == '1');
-			else if (kind == 'H') speaker->setAnimationHeld(op.text[2] == '1');
+			else if (kind == 'P') world.pendingByte = op.text[2] == '1';
+			else if (kind == 'H') world.held = op.text[2] == '1';
 			else if (kind == 'C') speaker->clearSpeech();
 			++ops; calls += (int)op.log.size();
 			const std::string st = kind == 'E' ? "-" : stateOf(*speaker, world);

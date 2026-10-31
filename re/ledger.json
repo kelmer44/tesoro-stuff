@@ -10483,8 +10483,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 12,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
   "notes": "0x114-byte object, vtable 00428b70, base chain Kind05-family ctor 0040fea0 -> 0040ec90. Loads 9 animation files (JIMHABDER, JIMQUIETO, JIMARRIBA, JIMABAJO, JIMIZQUIERDA, JIMDERECHA, JIMHABAR ... .ANM) into bank array +0x34, name key from string at 0042d2a4, start position (0x15e,0x14), sort value 0x23, scale +0xfc = 0x100, speech/idle fields, calls SetFacing(3)"
  },
  {
@@ -10507,8 +10507,8 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "decompiled",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
   "notes": "slot 10: writes the same fields"
  },
  {
@@ -10532,8 +10532,8 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "decompiled",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
   "notes": "slot 9: stops walking, reads position (8 bytes at +0x4c), facing +0x10c, bank index +0x32, +0x110, flags +0x68"
  },
  {
@@ -10582,8 +10582,8 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
   "notes": "slot 3: base UpdateBounds then multiplies the four rect values by the perspective scale (+0xfc, 0x100 = 1.0) >> 8"
  },
  {
@@ -11192,8 +11192,8 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "decompiled",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
   "notes": "slot 11: returns (+0x5c == 7)"
  },
  {
@@ -11412,8 +11412,8 @@
   ],
   "data_refs": [],
   "cluster": 13,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
   "notes": "slot 31: draws the speaking-mouth animation; while talking picks a random frame (RandomRange) at most every 100 ms of game time, else rests on frame 1"
  },
  {
@@ -11436,8 +11436,8 @@
   ],
   "data_refs": [],
   "cluster": 13,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
   "notes": "slot 30: direction 3,4,2,1 -> idle animation index 0,1,2,3 via 00410130, then recomputes speech anchor point +0xa4"
  },
  {
@@ -21410,8 +21410,8 @@
   ],
   "data_refs": [],
   "cluster": 29,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
   "notes": "(direction index) recomputes speech anchor and selects the bank listed in +0xb0.."
  },
  {
@@ -21716,8 +21716,8 @@
   ],
   "data_refs": [],
   "cluster": 30,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
   "notes": "selects the bank from +0xac and starts animation index (param-1) with AnimPlayer"
  },
  {
