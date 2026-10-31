@@ -659,7 +659,9 @@ the exact file layout and a few return values are still open (see the contract o
 
 Each column of the "Conecta" board is a clickable object named `OBJCOL1`, `OBJCOL2`, and so on. Clicking one does nothing while a
 move is still playing out. Otherwise, if the column is not full (seven pieces), it puts the player's piece on top, remembers the
-column and the time, and starts the board's update (blinking and the reply move, not read yet). Not compared with the original.
+column and the time, and starts the board's update. Not compared with the original.
+
+**The game around it** (read, not ported): a conversation block (CONV33) starts it: Jim moves to the board's level, the pointer is shown, the board is emptied and the story block FCONECTA runs. While that block waits, its own routine plays the turns: 1.5 seconds after the player's piece the machine answers at once (the choosing is the ported `ConnectFour`); when someone wins or the board is full it waits 3 seconds, the four winning pieces blink every 0.2 seconds, then the pointer hides and a result byte is left for the script. Leaving the block puts Jim back in the room. The 49 piece objects (named FICHA) are shown or hidden and given their colour from the board every update.
 
 **The level factory** (the code that turns each record of a level file into an object) is read: each kind picks a size and a
 constructor, and the kinds with subtypes (5, 6, 12, 13, 17, 20) swap in a class per subtype. Kind 18 has no case, so a record of that kind builds nothing.

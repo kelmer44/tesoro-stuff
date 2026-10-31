@@ -26364,7 +26364,7 @@
  {
   "addr": "00418e90",
   "ghidra_name": "FUN_00418e90",
-  "name": "inferred_BoardGame_BlinkUpdate",
+  "name": "inferred_BoardGame_UpdatePieces",
   "tier": "game",
   "lines": 97,
   "decompile_ok": true,
@@ -26383,7 +26383,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 45,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "toggles a blink flag every 200 ms of game time and updates board objects; hypothesis | name from call sites and a skim; body not yet read"
  },
@@ -26481,7 +26481,7 @@
  {
   "addr": "004193b0",
   "ghidra_name": "FUN_004193b0",
-  "name": "inferred_C00428438_Slot28",
+  "name": "inferred_DoFCONECTA_Turn",
   "tier": "game",
   "lines": 69,
   "decompile_ok": true,
@@ -26501,14 +26501,14 @@
   ],
   "data_refs": [],
   "cluster": 46,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "unread; first seen in vtable 00428438 slot 28"
  },
  {
   "addr": "00419530",
   "ghidra_name": "FUN_00419530",
-  "name": "inferred_C00428708_Slot28",
+  "name": "inferred_DoCONV33_StartBoardGame",
   "tier": "game",
   "lines": 43,
   "decompile_ok": true,
@@ -26529,7 +26529,7 @@
   ],
   "data_refs": [],
   "cluster": 46,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "unread; first seen in vtable 00428708 slot 28"
  },
