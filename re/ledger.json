@@ -14104,8 +14104,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 23,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/MenuButton+SlotLabel",
   "notes": "0xa4 bytes, vtable 0042b8e0, extends MidBase, sort value +0x5e = 2 (0 when flag byte set)"
  },
  {
@@ -14131,8 +14131,8 @@
   ],
   "data_refs": [],
   "cluster": 24,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/MenuButton+SlotLabel",
   "notes": "unread; first seen in vtable 0042b8e0 slot 6"
  },
  {
@@ -14152,8 +14152,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 24,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/MenuButton+SlotLabel",
   "notes": "0xa4 bytes, vtable 0042b950, extends MidBase, sort value +0x5e = 1"
  },
  {
@@ -14177,8 +14177,8 @@
   ],
   "data_refs": [],
   "cluster": 24,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/MenuButton+SlotLabel",
   "notes": "unread; first seen in vtable 0042b950 slot 16"
  },
  {
@@ -14214,8 +14214,8 @@
   ],
   "data_refs": [],
   "cluster": 24,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "core/MenuButton::setVerbAndClick",
   "notes": "unread; first seen in vtable 0042b950 slot 14"
  },
  {
@@ -14238,8 +14238,8 @@
   ],
   "data_refs": [],
   "cluster": 24,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/MenuButton+SlotLabel",
   "notes": "unread; first seen in vtable 0042b950 slot 18"
  },
  {
@@ -14264,8 +14264,8 @@
   ],
   "data_refs": [],
   "cluster": 24,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/MenuButton+SlotLabel",
   "notes": "unread; first seen in vtable 0042b8e0 slot 14"
  },
  {
@@ -14294,8 +14294,8 @@
   ],
   "data_refs": [],
   "cluster": 24,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/MenuButton+SlotLabel",
   "notes": "unread; first seen in vtable 0042b8e0 slot 16"
  },
  {

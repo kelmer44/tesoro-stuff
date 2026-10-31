@@ -10,8 +10,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 441 | 98% |
 | understood or later | 410 | 91% |
-| ported or later | 339 | 75% |
-| emu-compared or later | 302 | 67% |
+| ported or later | 347 | 77% |
+| emu-compared or later | 309 | 69% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -286,7 +286,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `0040d950` inferred_C00429170_Verb3 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429170 slot 22 (kind 20 subtype 18)
 - [x] `0040d9a0` inferred_C00428e60_Verb1 (vtable) · depth 14 · 27 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428e60 slot 21 (kind 20 subtype 25)
 
-### Cluster 23: 0040db40–0040dd40 (3/12 ported)
+### Cluster 23: 0040db40–0040dd40 (4/12 ported)
 
 - [ ] `0040db40` inferred_Pool_AllocZero · depth 0 · 38 lines · **understood** — bump-allocates size bytes (4-aligned) zeroed from arena index in global pool 00442100; returns 0 when full
 - [ ] `0040dc00` inferred_Pool_IsValid · depth 0 · 7 lines · **decompiled**
@@ -294,27 +294,27 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040dc70` inferred_Pool_AllocAlignedZero · depth 0 · 36 lines · **decompiled** — thiscall(size, align, arena) zeroed
 - [ ] `0040dcf0` inferred_Pool_SetArena · depth 0 · 20 lines · **decompiled** — carves arena N of given size out after the previous one (sizes 0x17a6b0, 3000000, 9600000, 650000 for arenas 0-3)
 - [ ] `0040dd30` inferred_Pool_ResetArena · depth 0 · 8 lines · **understood** — rewinds arena bump pointer to its start
-- [ ] `0040dd40` inferred_Obj_SaveSlotLabel_Ctor · depth 4 · 20 lines · **understood** — 0xa4 bytes, vtable 0042b8e0, extends MidBase, sort value +0x5e = 2 (0 when flag byte set)
+- [x] `0040dd40` inferred_Obj_SaveSlotLabel_Ctor · depth 4 · 20 lines · **emu-compared** → `core/MenuButton+SlotLabel` — 0xa4 bytes, vtable 0042b8e0, extends MidBase, sort value +0x5e = 2 (0 when flag byte set)
 - [ ] `0040dbc0` inferred_Pool_Ctor · depth 5 · 11 lines · **decompiled** — allocates param*1000 bytes (called with 0x39d0 = about 14.8 MB)
 - [ ] `0040dbf0` inferred_Pool_Dtor · depth 5 · 8 lines · **decompiled**
 - [x] `0040da30` inferred_C00428df0_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428df0 slot 21 (kind 20 subtype 26)
 - [x] `0040da80` inferred_C00428fb0_Verb3 (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428fb0 slot 22 (kind 20 subtype 22)
 - [x] `0040daf0` inferred_C0042ae80_Verb0 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042ae80 slot 20 (kind 6 subtype 7)
 
-### Cluster 24: 0040e580–0040e720 (5/12 ported)
+### Cluster 24: 0040e580–0040e720 (12/12 ported)
 
-- [ ] `0040e580` inferred_SaveSlotLabel_SetVerbAndClick (vtable) · depth 0 · 7 lines · **understood** — unread; first seen in vtable 0042b8e0 slot 14
-- [ ] `0040e590` inferred_SaveSlotLabel_IsInteractive (vtable) · depth 0 · 7 lines · **understood** — unread; first seen in vtable 0042b8e0 slot 16
+- [x] `0040e580` inferred_SaveSlotLabel_SetVerbAndClick (vtable) · depth 0 · 7 lines · **emu-compared** → `core/MenuButton+SlotLabel` — unread; first seen in vtable 0042b8e0 slot 14
+- [x] `0040e590` inferred_SaveSlotLabel_IsInteractive (vtable) · depth 0 · 7 lines · **emu-compared** → `core/MenuButton+SlotLabel` — unread; first seen in vtable 0042b8e0 slot 16
 - [x] `0040e5a0` inferred_Obj_Kind03Base_DefaultCtor · depth 1 · 9 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::init` — base object ctor with vtable 0042b9c0 | cursor vectors 4 Nov
-- [ ] `0040dfc0` inferred_MenuButton_IsInteractive (vtable) · depth 2 · 12 lines · **understood** — unread; first seen in vtable 0042b950 slot 16
-- [ ] `0040e560` inferred_MenuButton_ClearHoverText (vtable) · depth 2 · 10 lines · **understood** — unread; first seen in vtable 0042b950 slot 18
+- [x] `0040dfc0` inferred_MenuButton_IsInteractive (vtable) · depth 2 · 12 lines · **emu-compared** → `core/MenuButton+SlotLabel` — unread; first seen in vtable 0042b950 slot 16
+- [x] `0040e560` inferred_MenuButton_ClearHoverText (vtable) · depth 2 · 10 lines · **emu-compared** → `core/MenuButton+SlotLabel` — unread; first seen in vtable 0042b950 slot 18
 - [x] `0040e6a0` inferred_C00428038_AnimTick (vtable) · depth 2 · 8 lines · **emu-compared** → `engines/tesoro/core/animset.cpp::AnimSet` — unread; first seen in vtable 00428038 slot 2 | AnimSet vectors 29 Oct
 - [x] `0040e6b0` inferred_Obj_Kind03_Draw (vtable) · depth 2 · 20 lines · **emu-compared** — unread; first seen in vtable 0042b9c0 slot 6 | kind 3; sprite vectors 30 Oct
 - [x] `0040e5c0` inferred_Obj_Kind03_Ctor · depth 3 · 30 lines · **emu-compared** — 0x6c bytes, vtable 0042b9c0, extends Kind00; record byte 1 selects an animation start mode via AnimPlayer_SetRange (0 stay, 1 single frame, 2 loop from, 3 loop with flag) | kind 3; sprite vectors 30 Oct
-- [ ] `0040df70` inferred_Obj_MenuButton_Ctor · depth 4 · 12 lines · **understood** — 0xa4 bytes, vtable 0042b950, extends MidBase, sort value +0x5e = 1
+- [x] `0040df70` inferred_Obj_MenuButton_Ctor · depth 4 · 12 lines · **emu-compared** → `core/MenuButton+SlotLabel` — 0xa4 bytes, vtable 0042b950, extends MidBase, sort value +0x5e = 1
 - [x] `0040e720` inferred_Obj_ShadowSprite_Ctor · depth 4 · 10 lines · **ported** → `core/ShadowSprite::init` — 0x74 bytes, vtable 0042b9f8, extends Kind03
-- [ ] `0040ddc0` inferred_SaveSlotLabel_Draw (vtable) · depth 14 · 73 lines · **understood** — unread; first seen in vtable 0042b8e0 slot 6
-- [ ] `0040e000` inferred_MenuButton_SetVerbAndClick (vtable) · depth 15 · 142 lines · **understood** — unread; first seen in vtable 0042b950 slot 14
+- [x] `0040ddc0` inferred_SaveSlotLabel_Draw (vtable) · depth 14 · 73 lines · **emu-compared** → `core/MenuButton+SlotLabel` — unread; first seen in vtable 0042b8e0 slot 6
+- [x] `0040e000` inferred_MenuButton_SetVerbAndClick (vtable) · depth 15 · 142 lines · **ported** → `core/MenuButton::setVerbAndClick` — unread; first seen in vtable 0042b950 slot 14
 
 ### Cluster 25: 0040f020–0040f020 (10/11 ported)
 

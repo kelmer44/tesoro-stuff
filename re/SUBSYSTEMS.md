@@ -20,7 +20,7 @@ flowchart TD
     Archive --> Anim["Animations<br/>pictures + steps ✅"]
     Archive --> Level["Level ✅<br/>banks, rooms, objects, camera"]
     Clock["Game clock ✅"] --> Anim
-    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 7, 8, 10, 25 built by levels;<br/>2, 4, 5, 6, 9, 11 to 17, 20 built through World;<br/>Jim made by World"]
+    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 7, 8, 10, 25 built by levels;<br/>2, 4, 5, 6, 9, 11 to 17, 20, 22, 23 built through World;<br/>Jim made by World"]
     Level --> Objects
     Objects -->|"picture + depth"| Queue["Screen queue ✅<br/>RenderQueue: spans per row"]
     Queue --> Compose["Compose ✅<br/>ScreenDisplay: spans to pixels"]
@@ -52,6 +52,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Exits: `ExitDoor` (an exit between levels), `ExitHost` (what it asks of the game).
 - Board game: `ConnectFour` (the thinking of the "Conecta" game) and `ConnectFourHost` (what it asks of the game).
 - Items: `InventoryItem` (things Jim carries), `ItemHost` (what it asks of the game).
+- Save and load screen: `MenuButton` (kind 22, with `MenuButtonHost`), `SlotLabel` (23, with `SlotLabelHost`).
 - Inventory strip: `InventoryStrip` (kind 11, with `StripHost`).
 - Groups, shadows and wanderers: `ItemGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14, with `DepthZoneHost`), `ClickCatcher` (15), `PathSprite` (16, with `PathSpriteHost`).
 - Props: `ScriptedProp` (story props of kinds 12, 17 and 20), `PropHost` (what it asks of the game).
@@ -705,14 +706,14 @@ that has disappeared makes the rest of that level's records unreadable, because 
 saved level at his saved spot and turns him as he was. What each object's own state holds is already read and checked (animation
 position, flags and the small block of story bytes); the loader and the level loop are not compared with the original.
 
-### Save/load menu objects (kinds 22 and 23) 🟡 (read, not ported)
+### Save/load menu objects (kinds 22 and 23) 🟡 (the two objects ported and ✅ checked against the original, except what the buttons do with files; saved games themselves not ported)
 
 Two kinds of the interface level make up the save/load screen. Kind 22 is a **button**; its first data byte says what it does:
 previous or next saved game, load, save, new-game fade, scroll the strip away, or the subtitles on/off switch. The slot buttons
 show a small saved picture of the selected game; a save file is named `isla` plus a four-digit number. Loading restores Jim,
 then every level, then the interface level, and puts Jim back into his level. Kind 23 is the **caption** under the picture: it
 shows "POSICION VACIA" when no game is selected, otherwise the slot number and the save's date. Not compared with the original;
-the exact file layout and a few return values are still open (see the contract of the button click).
+the exact file layout and a few return values are still open (see the contract of the button click). The objects are `MenuButton` and `SlotLabel` (with `MenuButtonHost` and `SlotLabelHost`, answered by `World`). The subtitles switch, the new-game button (fade and end of the frame) and the hover pictures work and were run through the original code and the port together (1,345 button operations and 818 caption drawings identical, 21 deliberate mistakes found); choosing, loading and saving a game, and scrolling the interface out, warn that they are not ported yet, and the caption always reads "POSICION VACIA" for now.
 
 ### The board's column buttons (kind 21) 🟡 (read, not ported)
 
