@@ -627,6 +627,13 @@ Ported and checked against the original: `WalkArea` (scale, route, corner steppi
 **The floor of a level** is two objects, read from the shipped data: the *floor* (`WalkFloor`, kind 7, named SUELO in every level) whose outline gives the size of things at each place and which the level's camera-frame object points at, and the *route* (`PathObject`, kind 8, named PATH) whose corners Jim walks round obstacles by; the floor names its route. Both are ported and every one of the 38 shipped levels that has a floor finds its route (not compared with the original code; 12 levels, menus and the like, have none). One thing not ported: in the island levels the floor borrows its animation from the floor of another level.
 `World` is the real `JimWorld` now. Still to do: the collision that triggers the route (which object touches Jim there is inferred, not confirmed).
 
+**What each block's own routine does** (read, not ported): the blocks that carry a type number (see above) run a small piece of
+native code at their `DO` lines, and nearly all of them are scene changes: fade, put Jim into another level at a fixed spot (or
+beside a named object), move the camera there, show or hide him, and re-find the block's characters in the new level. A few also
+switch objects on or off or choose an animation (the boat, the sky, the doors of the ship). Two run the board game (above). Two
+types (the conversations 34 and 36) have none. Not compared with the original; the level names behind the numbers are not
+looked up yet.
+
 ### Spoken lines ✅ (read; not yet shown or played)
 
 What the characters say is not in the scripts: a script only names a line (`ANM1OFF0`). The text is in four files, `OBJETOS.TXT`,
