@@ -11,7 +11,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | decompiled or later | 441 | 98% |
 | understood or later | 410 | 91% |
 | ported or later | 339 | 75% |
-| emu-compared or later | 300 | 67% |
+| emu-compared or later | 302 | 67% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -472,12 +472,12 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 37: 004157c0–00415960 (5/8 ported)
 
-- [x] `004157c0` inferred_ClickCatcher_SetVerbAndClick (vtable) · depth 0 · 7 lines · **ported** → `core/ClickCatcher::setVerbAndClick` — unread; first seen in vtable 0042beb0 slot 14
+- [x] `004157c0` inferred_ClickCatcher_SetVerbAndClick (vtable) · depth 0 · 7 lines · **emu-compared** → `core/ClickCatcher::setVerbAndClick` — unread; first seen in vtable 0042beb0 slot 14
 - [x] `004157b0` inferred_Obj_Kind03_OnAttach (vtable) · depth 1 · 8 lines · **ported** → `engines/tesoro/core/spriteobject.cpp::SpriteObject::onAttach` — unread; first seen in vtable 0042b9c0 slot 0
 - [ ] `004157d0` inferred_MainWndProc · depth 2 · 34 lines · **understood** — WM_ACTIVATEAPP (0x1c): clock suspend/resume and restores the two display surfaces via vtable +0x6c; MM_MCINOTIFY (0x3b9) success: CD audio notify handler 00403dc0
 - [x] `00415490` inferred_InventoryStrip_ShowHoverText (vtable) · depth 3 · 85 lines · **emu-compared** → `core/InventoryStrip::showHoverText` — unread; first seen in vtable 0042be40 slot 17
 - [x] `00415640` inferred_InventoryStrip_ClearHoverText (vtable) · depth 3 · 64 lines · **emu-compared** → `core/InventoryStrip::clearHoverText` — unread; first seen in vtable 0042be40 slot 18
-- [x] `00415770` inferred_Obj_ClickCatcher_Ctor · depth 4 · 11 lines · **ported** → `core/ClickCatcher::init` — 0xa0 bytes, vtable 0042beb0, extends MidBase, sort value +0x5e = 0x32
+- [x] `00415770` inferred_Obj_ClickCatcher_Ctor · depth 4 · 11 lines · **emu-compared** → `core/ClickCatcher::init` — 0xa0 bytes, vtable 0042beb0, extends MidBase, sort value +0x5e = 0x32
 - [ ] `00415880` inferred_CreateMainWindow · depth 7 · 37 lines · **understood** — RegisterClass + CreateWindowEx 640x480 (style 0x90000000, ex 8), ShowWindow, ShowCursor(0), sets init flags, calls InitSubsystems
 - [ ] `00415960` inferred_WinMain · depth 17 · 89 lines · **understood** — args: none=CD check+SETUP.EXE; '_$_$_ '+byte=game; 'Uninstall'
 

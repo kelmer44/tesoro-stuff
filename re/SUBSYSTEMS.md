@@ -676,13 +676,12 @@ files (over 200,000 frames, every random choice replayed): the results are ident
 found. Not checked: drawing it, an anchor missing from the level, and paths the original itself would misread. With a real frame time
 (40 ms or more) the wanderer sets off now and then, not on a regular schedule, which is how the original behaves too.
 
-### Depth zones and click catchers (kinds 14 and 15) 🟡 (ported; only built, not compared)
+### Depth zones and click catchers (kinds 14 and 15) 🟡 (kind 15 ported and ✅ checked against the original; kind 14 ported, in no shipped level)
 
 **Kind 14** is an invisible zone around a piece of scenery. When Jim touches it, his drawing order is set to the zone's order plus
 a number that depends on which side of the zone's box he was on (above, below, left, right or inside), so he walks in front of or behind
 it. It only takes part when its kind number reads 255, which a built one never does, and no shipped level has one, so it is dead code in the original; it is ported anyway.
-**Kind 15** is a region the pointer can see but that does nothing when clicked and shows no text, so it simply stops the click.
-Not compared with the original.
+**Kind 15** is a region the pointer can see but that does nothing when clicked and shows no text, so it simply stops the click. It does not read the approach point or lines of the other clickable kinds. It was run through the original code and the port together on 200 invented objects: identical (the first run found the port reading data the original ignores, now fixed).
 
 ### Map places and note objects (kinds 19 and 24) 🟡 (read, not ported)
 
