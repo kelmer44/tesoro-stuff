@@ -20,7 +20,7 @@ flowchart TD
     Archive --> Anim["Animations<br/>pictures + steps ✅"]
     Archive --> Level["Level ✅<br/>banks, rooms, objects, camera"]
     Clock["Game clock ✅"] --> Anim
-    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 7, 8, 10, 25 built by levels;<br/>2, 4, 5, 6, 9, 12 to 17, 20 built through World;<br/>Jim made by World"]
+    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 7, 8, 10, 25 built by levels;<br/>2, 4, 5, 6, 9, 11 to 17, 20 built through World;<br/>Jim made by World"]
     Level --> Objects
     Objects -->|"picture + depth"| Queue["Screen queue ✅<br/>RenderQueue: spans per row"]
     Queue --> Compose["Compose ✅<br/>ScreenDisplay: spans to pixels"]
@@ -52,6 +52,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Exits: `ExitDoor` (an exit between levels), `ExitHost` (what it asks of the game).
 - Board game: `ConnectFour` (the thinking of the "Conecta" game) and `ConnectFourHost` (what it asks of the game).
 - Items: `InventoryItem` (things Jim carries), `ItemHost` (what it asks of the game).
+- Inventory strip: `InventoryStrip` (kind 11, with `StripHost`).
 - Groups, shadows and wanderers: `ItemGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14, with `DepthZoneHost`), `ClickCatcher` (15), `PathSprite` (16, with `PathSpriteHost`).
 - Props: `ScriptedProp` (story props of kinds 12, 17 and 20), `PropHost` (what it asks of the game).
 - Characters: `Character` (a clickable, speaking person of a level), `CharacterHost` (what it asks of the game, on top of `InteractiveHost`).
@@ -662,7 +663,7 @@ choosing one of the anchor's paths at random. The distance it has moved is read 
 changes along the path from a table of scales. One oddity of the original: the wait is compared with the clock minus a thousandth of
 the start time, which looks like a slip and leaves only a short moment each time in which it can set off. Not compared with the original.
 
-### The inventory strip (kind 11) 🟡 (read, not ported)
+### The inventory strip (kind 11) 🟡 (ported and ✅ checked against the original; the stand-alone constructor and the drawing are not)
 
 The strip of carried things at the bottom of the screen is one object of the interface level (kind 11) together with four
 named neighbours: `ICONOS` (the row of item pictures), `CUADRADO` (the highlight square), `CURSOR` and `TEXTOICONOS` (where the item's
@@ -691,9 +692,9 @@ returns "moved". One destination (level 15, the sacred island) first checks the 
 refused. **Kind 24** is an object whose look and use verbs (verbs 1 and 3) start the script `FNOTALAB` at `mirar`, handing it the
 object's own data byte so the script knows which object it was. Not compared with the original.
 
-### Groups of objects (kind 2) and level hooks 🟡 (kind 2 ported; the level hooks read, not ported)
+### Groups of objects (kind 2) and level hooks 🟡 (kind 2 ported and ✅ checked against the original; the level hooks read, not ported)
 
-**Kind 2** is a named list of other objects of the same level (the strip's `ICONOS` is one): it keeps the names from the level file and, when the level is attached, finds each object and keeps the list. **Levels** have a hook that runs for them: the base one starts the level's music track (a number in the camera-frame object's data) and the map level (`MAPA`) uses it for story switches: when four things are done in the village, the canoe appears on the beach and the volcano's and swamp's characters are switched. Not compared with the original.
+**Kind 2** is a named list of other objects of the same level (the strip's `ICONOS` is one): it keeps the names from the level file and, when the level is attached, finds each object and keeps the list (a name that is not found stays as an empty place, so the order always follows the level file). The group was run through the original code and the port together on 300 invented groups, up to 260 names: identical; seven deliberate mistakes were all found. **Levels** have a hook that runs for them: the base one starts the level's music track (a number in the camera-frame object's data) and the map level (`MAPA`) uses it for story switches: when four things are done in the village, the canoe appears on the beach and the volcano's and swamp's characters are switched. Not compared with the original.
 
 ### Saved games 🟡 (read, not ported)
 

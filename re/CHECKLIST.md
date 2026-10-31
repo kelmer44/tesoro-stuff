@@ -10,8 +10,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 441 | 98% |
 | understood or later | 410 | 91% |
-| ported or later | 333 | 74% |
-| emu-compared or later | 293 | 65% |
+| ported or later | 339 | 75% |
+| emu-compared or later | 300 | 67% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -446,16 +446,16 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00414600` inferred_Keyboard_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428070
 - [ ] `00414610` inferred_Mouse_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428074
 - [x] `004146b0` WalkFloor_OnAttach (vtable) · depth 1 · 23 lines · **ported** → `engines/tesoro/core/walkfloor.cpp::WalkFloor::onAttach` — unread; first seen in vtable 0042bc78 slot 0 | ported 31 Oct except the shared-level animation borrow
-- [x] `00414a90` inferred_ItemGroup_OnAttach (vtable) · depth 1 · 92 lines · **ported** → `core/ItemGroup::onAttach` — unread; first seen in vtable 0042bcb0 slot 0
+- [x] `00414a90` inferred_ItemGroup_OnAttach (vtable) · depth 1 · 92 lines · **emu-compared** → `core/ItemGroup::onAttach` — unread; first seen in vtable 0042bcb0 slot 0
 - [x] `00414d50` inferred_C0042abb0_Slot15 (vtable) · depth 1 · 18 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042abb0 slot 15 (kind 6 subtype 1)
 - [ ] `004145f0` inferred_InterfaceLevel_Update2 (vtable) · depth 3 · 8 lines · **understood** — unread; first seen in vtable 0042bc40 slot 5
 - [x] `00414620` WalkFloor_Ctor · depth 3 · 19 lines · **ported** → `engines/tesoro/core/walkfloor.cpp::WalkFloor::init` — 0x7c bytes, vtable 0042bc78, extends Kind00 | ported 31 Oct; the kind 7 floor (SUELO)
-- [x] `00414930` inferred_Obj_ItemGroup_Ctor · depth 3 · 81 lines · **ported** → `core/ItemGroup::init` — 0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record
+- [x] `00414930` inferred_Obj_ItemGroup_Ctor · depth 3 · 81 lines · **emu-compared** → `core/ItemGroup::init` — 0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record
 - [x] `00414c40` inferred_Exit_Activate (vtable) · depth 12 · 27 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — kind 6/other exit-style handler: when Jim is idle, resets display queues, looks up the destination level in the level table 00442130 by index (+0xa0) and name key (+0xa4,+0xa8), and moves Jim there with Jim_EnterLevel
 - [x] `00414dc0` inferred_C0042abb0_Slot28 (vtable) · depth 12 · 12 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042abb0 slot 28 (kind 6 subtype 1)
 - [x] `00414be0` inferred_Obj_Kind06_Ctor · depth 13 · 16 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — 0xb0 bytes, vtable 0042bce8, extends Kind09; 10 per-subtype vtables chosen by record byte 1
 
-### Cluster 36: 00414e80–00415440 (7/12 ported)
+### Cluster 36: 00414e80–00415440 (11/12 ported)
 
 - [x] `00414e80` inferred_WalkArea_NextWaypoint (vtable) · depth 0 · 31 lines · **emu-compared** → `engines/tesoro/core/walkarea.cpp` — vtable slot 13: runs each time Jim reaches a vertex. Steps the vertex index +0xa0 one towards the destination index +0xa4 and sends Jim to that vertex (Jim slot 32, target = this); when the indices are equal first sends Jim to the real destination (+0xa8,+0xac) with the original target (+0xb0)
 - [x] `00414f10` inferred_WalkArea_FindPath · depth 0 · 73 lines · **emu-compared** → `engines/tesoro/core/walkarea.cpp` — (x, y, target) picks the nearest waypoint of the walk area to the destination and prepares a route; returns whether a route exists | (x, y, target) finds the polyline vertex nearest the destination (+0xa4) and the vertex nearest Jim (+0xa0), stores the destination (+0xa8,+0xac) and target (+0xb0), then sends Jim to his nearest vertex; always returns true when the polyline has vertices. No search algorithm: movement is along the vertex list
@@ -463,20 +463,20 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00415130` inferred_DepthZone_OnTouched (vtable) · depth 0 · 43 lines · **ported** → `core/DepthZone::onTouched` — unread; first seen in vtable 0042bdd0 slot 12
 - [x] `00415200` inferred_List_InsertAfterCursor · depth 0 · 23 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — allocates a node and links it at the list head
 - [ ] `00415230` inferred_TopObject_Ctor · depth 1 · 9 lines · **understood** — base object with vtable 0042be08, inserted with priority 100 (frontmost)
-- [ ] `00415290` inferred_InventoryStrip_OnAttach (vtable) · depth 1 · 27 lines · **understood** — unread; first seen in vtable 0042be40 slot 0
+- [x] `00415290` inferred_InventoryStrip_OnAttach (vtable) · depth 1 · 27 lines · **emu-compared** → `core/InventoryStrip::onAttach` — unread; first seen in vtable 0042be40 slot 0
 - [x] `004150d0` inferred_Obj_DepthZone_Ctor · depth 3 · 17 lines · **ported** → `core/DepthZone::init` — 0x74 bytes, vtable 0042bdd0, extends Kind00; inserts itself in its room list
-- [ ] `00415350` inferred_InventoryStrip_IsInteractive (vtable) · depth 3 · 40 lines · **understood** — unread; first seen in vtable 0042be40 slot 16
-- [ ] `00415440` inferred_InventoryStrip_SetVerbAndClick (vtable) · depth 3 · 17 lines · **understood** — unread; first seen in vtable 0042be40 slot 14
+- [x] `00415350` inferred_InventoryStrip_IsInteractive (vtable) · depth 3 · 40 lines · **emu-compared** → `core/InventoryStrip::acceptsPointer` — unread; first seen in vtable 0042be40 slot 16
+- [x] `00415440` inferred_InventoryStrip_SetVerbAndClick (vtable) · depth 3 · 17 lines · **emu-compared** → `core/InventoryStrip::setVerbAndClick` — unread; first seen in vtable 0042be40 slot 14
 - [x] `00414e00` PathObject_Ctor · depth 4 · 13 lines · **ported** → `engines/tesoro/core/pathobject.cpp::PathObject::init` — 0xb4 bytes, vtable 0042bd60, extends Obj_MidBase | kind 8, 0xb4 bytes, vtable 0042bd60 (only slot 13 overridden), extends MidBase; starts the single-frame animation whose frame record holds the vertex list. Rename of inferred_Obj_Kind08_Ctor | ported 31 Oct; shipped levels load and link, not emu-compared
-- [ ] `00415250` inferred_Obj_InventoryStrip_Ctor · depth 4 · 10 lines · **understood** — 0xbc bytes, vtable 0042be40, extends MidBase
+- [x] `00415250` inferred_Obj_InventoryStrip_Ctor · depth 4 · 10 lines · **ported** → `core/InventoryStrip::init` — 0xbc bytes, vtable 0042be40, extends MidBase
 
-### Cluster 37: 004157c0–00415960 (3/8 ported)
+### Cluster 37: 004157c0–00415960 (5/8 ported)
 
 - [x] `004157c0` inferred_ClickCatcher_SetVerbAndClick (vtable) · depth 0 · 7 lines · **ported** → `core/ClickCatcher::setVerbAndClick` — unread; first seen in vtable 0042beb0 slot 14
 - [x] `004157b0` inferred_Obj_Kind03_OnAttach (vtable) · depth 1 · 8 lines · **ported** → `engines/tesoro/core/spriteobject.cpp::SpriteObject::onAttach` — unread; first seen in vtable 0042b9c0 slot 0
 - [ ] `004157d0` inferred_MainWndProc · depth 2 · 34 lines · **understood** — WM_ACTIVATEAPP (0x1c): clock suspend/resume and restores the two display surfaces via vtable +0x6c; MM_MCINOTIFY (0x3b9) success: CD audio notify handler 00403dc0
-- [ ] `00415490` inferred_InventoryStrip_ShowHoverText (vtable) · depth 3 · 85 lines · **understood** — unread; first seen in vtable 0042be40 slot 17
-- [ ] `00415640` inferred_InventoryStrip_ClearHoverText (vtable) · depth 3 · 64 lines · **understood** — unread; first seen in vtable 0042be40 slot 18
+- [x] `00415490` inferred_InventoryStrip_ShowHoverText (vtable) · depth 3 · 85 lines · **emu-compared** → `core/InventoryStrip::showHoverText` — unread; first seen in vtable 0042be40 slot 17
+- [x] `00415640` inferred_InventoryStrip_ClearHoverText (vtable) · depth 3 · 64 lines · **emu-compared** → `core/InventoryStrip::clearHoverText` — unread; first seen in vtable 0042be40 slot 18
 - [x] `00415770` inferred_Obj_ClickCatcher_Ctor · depth 4 · 11 lines · **ported** → `core/ClickCatcher::init` — 0xa0 bytes, vtable 0042beb0, extends MidBase, sort value +0x5e = 0x32
 - [ ] `00415880` inferred_CreateMainWindow · depth 7 · 37 lines · **understood** — RegisterClass + CreateWindowEx 640x480 (style 0x90000000, ex 8), ShowWindow, ShowCursor(0), sets init flags, calls InitSubsystems
 - [ ] `00415960` inferred_WinMain · depth 17 · 89 lines · **understood** — args: none=CD check+SETUP.EXE; '_$_$_ '+byte=game; 'Uninstall'

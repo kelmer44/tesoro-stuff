@@ -23046,7 +23046,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 35,
-  "status": "ported",
+  "status": "emu-compared",
   "engine": "core/ItemGroup::init",
   "notes": "0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record"
  },
@@ -23072,7 +23072,7 @@
   ],
   "data_refs": [],
   "cluster": 35,
-  "status": "ported",
+  "status": "emu-compared",
   "engine": "core/ItemGroup::onAttach",
   "notes": "unread; first seen in vtable 0042bcb0 slot 0"
  },
@@ -23443,8 +23443,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 36,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "core/InventoryStrip::init",
   "notes": "0xbc bytes, vtable 0042be40, extends MidBase"
  },
  {
@@ -23469,8 +23469,8 @@
   ],
   "data_refs": [],
   "cluster": 36,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/InventoryStrip::onAttach",
   "notes": "unread; first seen in vtable 0042be40 slot 0"
  },
  {
@@ -23494,8 +23494,8 @@
   ],
   "data_refs": [],
   "cluster": 36,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/InventoryStrip::acceptsPointer",
   "notes": "unread; first seen in vtable 0042be40 slot 16"
  },
  {
@@ -23518,8 +23518,8 @@
   ],
   "data_refs": [],
   "cluster": 36,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/InventoryStrip::setVerbAndClick",
   "notes": "unread; first seen in vtable 0042be40 slot 14"
  },
  {
@@ -23542,8 +23542,8 @@
   ],
   "data_refs": [],
   "cluster": 37,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/InventoryStrip::showHoverText",
   "notes": "unread; first seen in vtable 0042be40 slot 17"
  },
  {
@@ -23566,8 +23566,8 @@
   ],
   "data_refs": [],
   "cluster": 37,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "core/InventoryStrip::clearHoverText",
   "notes": "unread; first seen in vtable 0042be40 slot 18"
  },
  {

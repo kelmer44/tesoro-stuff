@@ -49,6 +49,17 @@ class Emu:
 
     def _stop(self, uc, addr, size, _): uc.emu_stop()
 
+    def set_fs(self, base=0x1f0000):
+        """Gives FS a flat segment at base (for functions that install an SEH frame through FS:[0]); 0x1f0000 is the GDT."""
+        gdt = base - 0x100
+        d = struct.pack("<HHBBBB", 0xfff, base & 0xffff, (base >> 16) & 0xff, 0x92, 0x40, (base >> 24) & 0xff)
+        flat = struct.pack("<HHBBBB", 0xffff, 0, 0, 0x92, 0xcf, 0)   # flat 4 GB data segment for SS, DS, ES
+        self.uc.mem_write(gdt, bytes(0x40)); self.uc.mem_write(gdt + 0x10, flat); self.uc.mem_write(gdt + 0x28, d)
+        self.uc.mem_write(base, bytes(0x40))
+        self.uc.reg_write(UC_X86_REG_GDTR, (0, gdt, 0x3f, 0))
+        for reg in (UC_X86_REG_SS, UC_X86_REG_DS, UC_X86_REG_ES): self.uc.reg_write(reg, 0x10)
+        self.uc.reg_write(UC_X86_REG_FS, 0x28)
+
     def stub_import(self, iat_slot, fn, nargs=0):
         """Point the IAT slot at a fake stdcall function implemented in Python."""
         a = STUB_BASE + 0x10 * (len(self.stubs) + 1)
