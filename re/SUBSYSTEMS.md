@@ -646,6 +646,24 @@ hard: `PLAF`, `AY`, `PUM`, `HASMUERTO`), then an animated text (`TXTFACIL`, `TXT
 names (congratulations, you won / bang, ouch, you died) they look like gag endings, so only "regular" (action 3) would start the real game.
 This is a reading of the names, not something seen on screen.
 
+### Save/load menu objects (kinds 22 and 23) 🟡 (read, not ported)
+
+Two kinds of the interface level make up the save/load screen. Kind 22 is a **button**; its first data byte says what it does:
+previous or next saved game, load, save, new-game fade, scroll the strip away, or the subtitles on/off switch. The slot buttons
+show a small saved picture of the selected game; a save file is named `isla` plus a four-digit number. Loading restores Jim,
+then every level, then the interface level, and puts Jim back into his level. Kind 23 is the **caption** under the picture: it
+shows "POSICION VACIA" when no game is selected, otherwise the slot number and the save's date. Not compared with the original;
+the exact file layout and a few return values are still open (see the contract of the button click).
+
+### The board's column buttons (kind 21) 🟡 (read, not ported)
+
+Each column of the "Conecta" board is a clickable object named `OBJCOL1`, `OBJCOL2`, and so on. Clicking one does nothing while a
+move is still playing out. Otherwise, if the column is not full (seven pieces), it puts the player's piece on top, remembers the
+column and the time, and starts the board's update (blinking and the reply move, not read yet). Not compared with the original.
+
+**The level factory** (the code that turns each record of a level file into an object) is read: each kind picks a size and a
+constructor, and the kinds with subtypes (5, 6, 12, 13, 17, 20) swap in a class per subtype. Kind 18 has no case, so a record of that kind builds nothing.
+
 ## Still to explore
 
 - The object kinds still not built (2, 11, 14, 15, 16, 19, 21 to 24) and the rest of the interface strip.
