@@ -212,9 +212,15 @@ that answers all of them for real, from the game's actual state:
   priority, removed by object.
 - **Changing level.** The steps of the original's scene change (forget the queued pictures, bring the cameras up to date, compose, clear, fade, wait) are
   there for the exits; the movie that starts when Jim first reaches the risco warns and does nothing.
-**Not there yet (they warn when reached):** running a script (the script runner is ported, but its own host, the routines behind the numbered
-blocks and the walking and animating of characters by scripts, is not); the movies; turning a page of the inventory; the two frame changes of the
-cabin's walk-area objects; Jim's use of item 37; the skip key (any mouse button skips a line for now); a subtitles option (always on).
+**Scripts run.** `World` reads the four script files and answers everything a running script asks: finding objects, characters speaking (through
+the same speaking rules, with the character's own colour and pose), Jim's script lines, walking Jim (the script is told when he arrives), animations,
+looking, showing and switching objects, the choice menu (the pointer's picture is put aside and restored), sounds and music tracks. A running script is
+an entry in the main list; a click or a menu item can start one. The one with a numbered type also has a scene routine behind its `DO` lines: only
+type 21 (the captain's block: Jim leaves through the despacho door) is ported, the other 18 warn. When a script finishes, a character it held for
+speaking is let go and its held flag cleared (found by running it: the animation otherwise kept being reset). Seen working: the captain's talk
+script plays Jim's and the captain's lines with subtitles and ends with Jim walking out of the despacho into the port.
+**Not there yet (they warn when reached):** the other 18 scene routines (cut scenes: fades, level changes, special animations); the movies; turning a page of the inventory; the two frame changes of the
+cabin's walk-area objects; Jim's use of item 37; the skip key (any mouse button skips a line for now); the sound has only been run with a silent audio driver here; a subtitles option (always on).
 **Seen working:** the engine reads all 47 levels with these objects, puts Jim in the despacho and draws the room with the captain in his chair, Jim
 standing in front and the items of the room, with no warnings. Not checked against the original (the hosts are the engine's own decisions, not
 ported functions).
