@@ -19,6 +19,7 @@
 #include "tesoro/core/character.h"
 #include "tesoro/core/camera.h"
 #include "tesoro/core/display.h"
+#include "tesoro/core/room.h"
 #undef private
 #undef protected
 
@@ -112,7 +113,11 @@ struct World : CharacterHost {
 	void stopVoice(uint32) override { log.push_back("stop"); log.push_back("reap"); }
 	bool skipPressed() override { return skip; }
 	bool subtitlesOn() override { return subs; }
-	void drawSubtitle(Character &, const SpeechTable::Line &l) override { log.push_back("subtitle " + nameOf(&l)); }
+	Camera *cam = nullptr;
+	Camera &updateCamera(int32 d) override { log.push_back("toward " + std::to_string(d)); return *cam; }
+	void drawText(const byte *t, uint32 colour, int32 x, int32 y, int32 w) override {
+		log.push_back("text " + std::string((const char *)t) + " " + std::to_string(colour & 0xffff) + " 0 " + std::to_string(x) + " " + std::to_string(y) + " " + std::to_string(w) + " 0 1 0");
+	}
 };
 
 struct Screen : Display {
@@ -138,7 +143,7 @@ int main(int argc, char **argv) {
 	if (!f) { fprintf(stderr, "no vectors\n"); return 2; }
 	static char buf[1 << 20];
 	AnimPlayer player; VecStream *stream = nullptr; std::string dat;
-	Character *obj = nullptr; World world; Tally tally; Screen screen; screen.world = &world; Camera cam; cam._scaledX = cam._scaledY = 0;
+	Character *obj = nullptr; World world; Tally tally; Screen screen; screen.world = &world; Camera cam; cam._scaledX = cam._scaledY = 0; world.cam = &cam; Room room;
 	int caseNo = 0; bool loaded = false;
 	const long long U32 = 0xcdcdcdcdLL, U16 = 0xcdcd;
 	struct Block { std::string op, result, state; std::vector<std::string> log; };
@@ -191,6 +196,7 @@ int main(int argc, char **argv) {
 				world.reset(); screen.world = &world;
 				obj = new Character(); world.self = obj;
 				obj->init(r, (int16)num(head[5]), table, (int32)num(head[9]), world, 0);
+				room.init(0, (int32)num(head[14]), 0, 0); obj->setRoom(&room);
 			} else if (!obj) {
 				continue;
 			} else if (ot[0] == "E") {

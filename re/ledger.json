@@ -21232,8 +21232,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/character.cpp::Character::drawSubtitle",
   "notes": "draws the current phrase text twice (shadow style) at the speaker's position with Display_DrawText, keeping the camera in view"
  },
  {

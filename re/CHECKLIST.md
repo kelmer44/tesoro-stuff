@@ -10,8 +10,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 263 | 58% |
 | understood or later | 212 | 47% |
-| ported or later | 178 | 39% |
-| emu-compared or later | 146 | 32% |
+| ported or later | 179 | 40% |
+| emu-compared or later | 147 | 32% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -364,14 +364,14 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — allocates a linked list with capacity param (100 for the main list 00442104)
 - [x] `0040fbb0` inferred_ObjectList_AttachAll · depth 2 · 38 lines · **ported** → `engines/tesoro/core/object.cpp::attachAll` — walks the list calling Object_AttachToLevel on each object
 
-### Cluster 29: 0040fc20–00410330 (10/12 ported)
+### Cluster 29: 0040fc20–00410330 (11/12 ported)
 
 - [x] `0040fc20` inferred_ObjectList_PassA · depth 0 · 83 lines · **emu-compared** → `engines/tesoro/core/object.cpp::runUpdatePass` — walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1 | pass vectors 31 Oct
 - [x] `0040fd20` inferred_ObjectList_PassB · depth 0 · 83 lines · **emu-compared** → `engines/tesoro/core/object.cpp::runUpdate2Pass` — same walk calling vtable slot 5 | pass vectors 31 Oct
 - [x] `0040fe20` inferred_ObjectList_Clear · depth 0 · 14 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — empties a 3-field-node list (priority lists)
 - [x] `0040fe40` inferred_ObjectList_StartIteration · depth 0 · 31 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — iterator reset helper; its result decides loop continuation
 - [ ] `0040fea0` inferred_Obj_Kind05Base_Ctor · depth 2 · 9 lines · **decompiled** — MidBase default ctor then vtable 0042bb48
-- [ ] `0040ffa0` inferred_Obj_DrawSubtitle · depth 2 · 27 lines · **understood** — draws the current phrase text twice (shadow style) at the speaker's position with Display_DrawText, keeping the camera in view
+- [x] `0040ffa0` inferred_Obj_DrawSubtitle · depth 2 · 27 lines · **emu-compared** → `engines/tesoro/core/character.cpp::Character::drawSubtitle` — draws the current phrase text twice (shadow style) at the speaker's position with Display_DrawText, keeping the camera in view
 - [x] `00410060` inferred_C0042b060_Slot31 (vtable) · depth 2 · 34 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — unread; first seen in vtable 0042b060 slot 31 (kind 5 subtype 16)
 - [x] `00410130` inferred_Jim_SetPoseAnim (vtable) · depth 2 · 41 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp::Jim` — (direction index) recomputes speech anchor and selects the bank listed in +0xb0..
 - [x] `004102e0` inferred_Obj_Kind05_Draw (vtable) · depth 3 · 20 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — slot 6 of the kind 5 class family: wraps Obj_Draw with slot 31 calls depending on flags +0xd4/+0xc/+0xd5

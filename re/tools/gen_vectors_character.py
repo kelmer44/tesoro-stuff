@@ -82,7 +82,8 @@ e.hook_function(0x404210, lambda emu: log.append("reap"), 0)
 def rnd_hook(emu, lo, hi):
     world["rcalls"] += 1; v = lo + (world["rcalls"] * 7) % (hi - lo + 1); log.append(f"random {lo} {hi}"); return v
 e.hook_function(0x413b00, rnd_hook, 2, pops=True)
-e.hook_function(0x40ffa0, lambda emu, ln: log.append(f"subtitle {pname(ln)}"), 1, pops=True)
+e.hook_function(0x411c80, lambda emu, t, col, font, x, y, w, tag, cen, lh: log.append(f"text {cstr(t)} {col & 0xffff} {i32(font)} {i32(x)} {i32(y)} {i32(w)} {tag & 0xffff} {cen & 0xff} {i32(lh)}"), 9, pops=True)
+e.hook_function(0x401fc0, lambda emu, d: log.append(f"toward {i32(d)}"), 1, pops=True)
 e.hook_function(0x411f80, lambda emu, x, y, d, img, extra: log.append(f"queue {i32(x)} {i32(y)} {d & 0xffff}"), 5, pops=True)
 def cur_slot8(emu, on): log.append(f"pointer {on & 0xff}")
 vt0 = e.read(0x42bad8, 4 * 28)
@@ -182,7 +183,8 @@ for sid in range(1, 601):
     e.write(IDX, bytes(rnd.getrandbits(8) for _ in range(0x100))); e.write(IDX, cdata + bytes(idxs))
     e.write(REC, bytes(0x20)); e.write(REC, struct.pack("<ii", ox, oy)); e.write(REC + 8, struct.pack("<h", so)); e.write(REC + 0xb, bytes([nb]))
     e.write(REC + 0xc, name.encode() + b"\0"); e.write(REC + 0x1c, struct.pack("<I", len(data)))
-    e.write(ROOM, bytes(0x10)); e.write(ROOM + 8, struct.pack("<h", ro))
+    div = rnd.randint(1, 600)
+    e.write(ROOM, bytes(0x10)); e.write(ROOM + 4, struct.pack("<i", div)); e.write(ROOM + 8, struct.pack("<h", ro))
     e.write(OBJ, bytes(0xe0)); e.write(JIMO + 0xd4, bytes(0x40)); e.write(CUR + 0x12c, struct.pack('<I', 0))
     world.update(ids=0, rcalls=0, active=0)
     del log[:]
@@ -190,7 +192,7 @@ for sid in range(1, 601):
     ctor_log = list(log)
     e.write(OBJ + 0x40, struct.pack("<I", LEVEL)); e.write(LEVEL + 0x80, struct.pack("<I", CAM)); e.write(CAM, bytes(0x100))
     heldset["on"] = False
-    out.append(f"eK {K} {ox} {oy} {so} {ro} {name} {nb} {len(cdata)} {t0} {','.join(map(str, idxs))} {cdata.hex()} {','.join(t.hex() for t in tags)} {entry}")
+    out.append(f"eK {K} {ox} {oy} {so} {ro} {name} {nb} {len(cdata)} {t0} {','.join(map(str, idxs))} {cdata.hex()} {','.join(t.hex() for t in tags)} {entry} {div}")
     out.append("o K"); out.append("r -"); out.append("s " + state()); out.extend(". " + l for l in ctor_log)
     w = dict(now=t0, held=0, facing=1, item=0, replies=[], skip=0, active=0, subs=1, camx=0, camy=0)
     apply_world(w)
