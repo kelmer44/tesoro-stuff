@@ -679,6 +679,14 @@ it. It only takes part when its own state byte is 255; nothing read so far sets 
 **Kind 15** is a region the pointer can see but that does nothing when clicked and shows no text, so it simply stops the click.
 Not compared with the original.
 
+### Map places and note objects (kinds 19 and 24) 🟡 (read, not ported)
+
+**Kind 19** is a place on the map: clicking it takes Jim to the level named in its data, next to that level's `SALIDA` object, and
+returns "moved". One destination (level 15, the sacred island) first checks the canoe object of level 7: while its state byte is
+0 the script `FMAPA` at label `tsagrada` runs instead, so the place cannot be reached yet. Destinations below 7 are
+refused. **Kind 24** is an object whose look and use verbs (verbs 1 and 3) start the script `FNOTALAB` at `mirar`, handing it the
+object's own data byte so the script knows which object it was. Not compared with the original.
+
 ### Save/load menu objects (kinds 22 and 23) 🟡 (read, not ported)
 
 Two kinds of the interface level make up the save/load screen. Kind 22 is a **button**; its first data byte says what it does:
@@ -701,7 +709,7 @@ constructor, and the kinds with subtypes (5, 6, 12, 13, 17, 20) swap in a class 
 
 ## Still to explore
 
-- The object kinds still not built (2, 11, 14, 15, 16, 19, 21 to 24) and the rest of the interface strip.
+- The object kinds read but not yet built (2, 4, 11, 14, 15, 16, 19, 21 to 24; kind 2's own methods are still unread) and the rest of the interface strip.
 - The board game's screen and clicks, the movies, the inventory page, the skip key and a subtitles option.
 - The shaped (pixel-accurate) part of the collision test, shadows, and the companion pointer.
 - Sound and movies checked end to end, the saved-game list, saving and loading.

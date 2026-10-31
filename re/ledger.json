@@ -24847,7 +24847,7 @@
  {
   "addr": "004175b0",
   "ghidra_name": "FUN_004175b0",
-  "name": "inferred_Obj_Kind24_Ctor",
+  "name": "inferred_Obj_NoteObject_Ctor",
   "tier": "game",
   "lines": 10,
   "decompile_ok": true,
@@ -24861,14 +24861,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 41,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "0xa4 bytes, vtable 0042bf20, extends Kind09"
  },
  {
   "addr": "004175f0",
   "ghidra_name": "FUN_004175f0",
-  "name": "inferred_C0042bf20_Verb1",
+  "name": "inferred_NoteObject_Verb1Verb3",
   "tier": "game",
   "lines": 19,
   "decompile_ok": true,
@@ -24891,7 +24891,7 @@
   ],
   "data_refs": [],
   "cluster": 41,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "unread; first seen in vtable 0042bf20 slot 21"
  },
@@ -24924,7 +24924,7 @@
  {
   "addr": "00417720",
   "ghidra_name": "FUN_00417720",
-  "name": "inferred_Obj_Kind19_Ctor",
+  "name": "inferred_Obj_MapPlace_Ctor",
   "tier": "game",
   "lines": 63,
   "decompile_ok": true,
@@ -24941,14 +24941,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 41,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "0xa4 bytes, vtable 0042bf90; builds a temporary Kind00 and copies it field by field into this"
  },
  {
   "addr": "004178b0",
   "ghidra_name": "FUN_004178b0",
-  "name": "inferred_C0042bf90_SetVerbAndClick",
+  "name": "inferred_MapPlace_SetVerbAndClick",
   "tier": "game",
   "lines": 37,
   "decompile_ok": true,
@@ -24970,7 +24970,7 @@
   ],
   "data_refs": [],
   "cluster": 41,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
   "notes": "unread; first seen in vtable 0042bf90 slot 14"
  },
