@@ -47,7 +47,8 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `MenuItem` (25), lists `ObjectList`.
 - Input: `InputStates`, `Mouse`, `Cursor` (both pointers), `HoverText`.
 - Collisions: `sweepRects`, `Level::collisionPass`.
-- Walking: `Jim` (the player's object), `JimWorld` (what he asks of the game), `WalkArea` (shape, scale and route), `JimWalker` (Jim's walk), `WalkTarget` (told on arrival), `Walker` and `JimWalkerHost` (what they ask of the game).
+- Characters: `Character` (a clickable, speaking person of a level), `CharacterHost` (what it asks of the game, on top of `InteractiveHost`).
+- Walking: `Jim` (the player's object), `JimWorld` (what he asks of the game), `WalkArea` (shape, scale and route), `InteractiveObject` (clickable base) and `InteractiveHost` (what it asks of the game), `JimWalker` (Jim's walk), `WalkTarget` (told on arrival), `Walker` and `JimWalkerHost` (what they ask of the game).
 - Sound: `SoundDevice` (voices), `CdAudio` (music), `VoiceBackend` and `CdBackend` (what they play through; `MixerVoiceBackend`, `ScummCdBackend`).
 - Menu: `ChoiceMenu` (one frame of the list of choices) and `ChoiceMenuHost` (pointer, label, mouse).
 - Speaking: `Speaker` (the speaking rules of a character) and `SpeakerHost` (what it asks of the game).
@@ -514,7 +515,26 @@ Ported and checked against the original:
 - **The speaking rules** (`Speaker`): start a line, end it when the voice finishes or the player skips, wait for the player when there is no voice, move the mouth about every tenth of a second, give the line back. Compared with the original on 800 random sessions (calls to the sound, animation and list code are hooks, so what they do inside is not covered).
 Also ported: **the sound device** (`SoundDevice`: three voice records, the 44-byte WAV check, ids, the active list that is tidied once a frame; compared with the original on 800 sessions, with the mixer standing in for DirectSound) and the **music** (`CdAudio`: one track at a time, looping). `MixerVoiceBackend` and `ScummCdBackend` connect them to ScummVM. Not checked: how long a voice lasts exactly (the mixer decides), and which CD track number means which file.
 Also ported: **the choice menu** (`ChoiceMenu`: lays the choices out and bottom-aligns them, tracks the one under the mouse, answers a click; 9,152 runs identical to the original with its own text layout).
-Still to be written: the **characters** (the kind 5 object of the levels, which also needs the interactive object base: hover text, clicks and the verbs), Jim, and a real `SpeakerHost`/`ScriptHost`.
+Still to be written: a real `SpeakerHost`/`ScriptHost`, and where the subtitle text goes on screen (the placement is read, not ported).
+
+### Interactive objects (things you click) 🟡 (base ✅ ported; the kinds on top ⬜)
+Most clickable things in a level share one base, `InteractiveObject`. It is a scene object (`Object`) that also takes the pointer and acts as the place Jim walks to.
+- **Click.** The pointer tells the object which verb it carries. The object stops Jim if he is speaking, makes him forget his line, and sends him to its *approach point* (a spot given in the level data), with itself as the thing to tell when he gets there.
+- **Arrival.** Jim turns to the facing the level data names and the object runs the verb: look, talk and the others each make Jim say the object's own line for that verb, or a stock answer ("No veo nada en especial.", "No contesta.", "No, no tengo ganas."). Using an inventory item gets "Yo no pinto ahí que me lo cargo." for item 0 and nothing visible for others. Verb 0 has no stock answer and the last two verbs do nothing.
+- **Waiting.** After Jim starts the line the object marks itself *pending*, switches the pointer off and joins the main list; once Jim is free again it switches the pointer back on and drops out of the list.
+- **Hover label.** The label shows the object's hover-name line if the level gives one, otherwise its own name spelled from its key.
+- **What it asks of the game** is one interface, `InteractiveHost` (Jim, the pointer, the main list, the carried item, the phrases). The characters, doors and props that override verbs are not ported yet.
+Checked against the original on 500 random sessions (constructor, click, update, arrival, hover and the answers; every call to the rest of the game identical). One thing found: the click and the arrival both put the carried item back before asking the object to use it, so an item's own reply table is only reached when something calls the use directly.
+- **Kind 5 characters** (`Character`, ported, see below). The kind 9 objects and the doors are the kinds still to port on top of the base.
+
+### Characters (the people of a level) 🟡 (base kind ✅ ported; the 17 subtypes ⬜)
+A person of a level is a clickable object (`InteractiveObject`) that also speaks (`Speaker`): `Character`. What the original does when it builds one:
+- **Its record** starts with two numbers, the text colour and the text width, then the clickable object's own data (approach point, verb lines).
+- **Its animations are told apart by a tag at the start of each animation file**, not by anything in the level: a file tagged `MIR` holds the standing frames that show which way it faces (frame 1 up, 2 down, 3 left, 4 right); files tagged `HAB` are the poses it speaks in, in file order (a script's say command picks one by number; with none, it speaks in whatever animation it is showing). Room for four poses; more than four would overwrite the object's own pose count in the original, so the port warns.
+- **Saying a line** works as for Jim (the speaking rules, `Speaker`): pause and set aside the current animation, start the voice, take the pose, join the main list; the subtitle goes above the head. While it speaks the mouth frame changes about every tenth of a second; when it is quiet but still holding a speaking pose the mouth is shut.
+- **Walking** is not done for the plain character: the walk order only marks that it was asked, and the next frame the object skips its usual update once. (Jim's walk is the real one.)
+- **Verbs** are the clickable object's own answers; the subtypes that behave differently (talk, give, pick up and so on) are the 17 classes still to read.
+Checked against the original on 600 random sessions (the original builds the object from synthetic animation files with tags, then say, update, draw, face, pose, click, arrival and hover all run for real; every call to the rest of the game, every result and every field identical; 27 of 29 deliberate bugs caught, the other two have no visible effect because a character's animation movement is cleared every frame). Not checked: the subtitle text itself, and the 17 subtypes.
 
 ### Jim and walking 🟡 (read; walking ✅, the walk area ✅ and Jim as an object ✅ ported; the world around him ⬜)
 Jim is a character like the others (he speaks through the same `Speaker` rules) with nine animation files: four walking directions, a standing one (`QUIETO`) whose frames show which way he faces, and four speaking ones. What the original does:
@@ -526,14 +546,6 @@ Ported and checked against the original: `WalkArea` (scale, route, corner steppi
 **Entering a level** (`Jim::enterLevel`) is ported from reading: Jim leaves the old level (its lists, its room, its place in the main list), joins the new level and room, the new level's camera starts on his old spot and then follows him, the level goes into the main list, the pictures that were left unloaded are loaded and brightened to the level's setting, and he is put at the new spot (he can only be hit by other objects except on the map). Checked for order and effects with a stand-in world, not against the original code. The small Jim methods that resume his facing and forward item 37 to the interface level are ported too (the interface object's answer is not read yet).
 **The floor of a level** is two objects, read from the shipped data: the *floor* (`WalkFloor`, kind 7, named SUELO in every level) whose outline gives the size of things at each place and which the level's camera-frame object points at, and the *route* (`PathObject`, kind 8, named PATH) whose corners Jim walks round obstacles by; the floor names its route. Both are ported and every one of the 38 shipped levels that has a floor finds its route (not compared with the original code; 12 levels, menus and the like, have none). One thing not ported: in the island levels the floor borrows its animation from the floor of another level.
 Still to do: a real `JimWorld` (main list, sound, level, walk area), and the collision that triggers the route (which object touches Jim there is inferred, not confirmed).
-
-### Interactive objects and verbs 🟡 (read, not ported)
-Most things in a level that the pointer can touch (the kind 5 characters, the kind 9 objects and the doors) share one base. What it does, from the original:
-- **Its record** gives a first animation frame, an *approach point* (where Jim walks to, relative to the object) and the way Jim faces on arrival, an optional line that replaces the object's name on the hover label, and up to six lines for the verbs (look, talk, and so on).
-- **A click** sets the verb on the object, makes Jim walk to the approach point, and when he arrives the handler of that verb runs. An inventory item held on the pointer takes the "use item" path instead.
-- **The default answers** when an object has no line of its own: look says "No veo nada en especial.", talk "No contesta.", the other verbs "No, no tengo ganas."; using an item on something that does not take it says "Yo no pinto ahí que me lo cargo.". Jim speaks them, the pointer is switched off meanwhile, and the object waits in the main list until the line is over.
-- **Kind 5 characters** add a text colour and width, a bank for facing frames (named MIR…) and the speaking poses (named HAB…); 17 subtypes then override the verbs with each character's own behaviour (not read).
-Still to do: port this base (needs Jim's walking and the pointer's verb state), then the kind 5 class on top of `Speaker`.
 
 ### Spoken lines ✅ (read; not yet shown or played)
 

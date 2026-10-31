@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 262 | 58% |
-| understood or later | 210 | 46% |
-| ported or later | 161 | 36% |
-| emu-compared or later | 130 | 29% |
+| decompiled or later | 263 | 58% |
+| understood or later | 212 | 47% |
+| ported or later | 178 | 39% |
+| emu-compared or later | 146 | 32% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -316,9 +316,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040ddc0` inferred_C0042b8e0_Draw (vtable) · depth 14 · 73 lines · **untouched** — unread; first seen in vtable 0042b8e0 slot 6
 - [ ] `0040e000` inferred_C0042b950_SetVerbAndClick (vtable) · depth 15 · 142 lines · **untouched** — unread; first seen in vtable 0042b950 slot 14
 
-### Cluster 25: 0040f020–0040f020 (1/11 ported)
+### Cluster 25: 0040f020–0040f020 (4/11 ported)
 
-- [ ] `0040f020` inferred_Obj_SetVerbAndClick (vtable) · depth 0 · 10 lines · **understood** — MidBase slot 14: stores verb +0x9c then calls slot 19 (OnClick)
+- [x] `0040f020` inferred_Obj_SetVerbAndClick (vtable) · depth 0 · 10 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 14: stores verb +0x9c then calls slot 19 (OnClick)
 - [ ] `0040ebd0` inferred_C0042ba30_OnAttach (vtable) · depth 1 · 14 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 0
 - [ ] `0040ec00` inferred_C0042ba30_Draw (vtable) · depth 1 · 24 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 6
 - [ ] `0040ec90` inferred_Obj_MidBase_DefaultCtor · depth 1 · 9 lines · **decompiled** — base object ctor with vtable 0042ba68 only
@@ -326,21 +326,21 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `0040efa0` inferred_MidBase_Draw (vtable) · depth 2 · 24 lines · **emu-compared** — MidBase slot 6: converts world position to screen (camera at argument, +0x140/+0xf0 centre) and queues the current frame's image through Display_AddSprite with the object's sort value (+0x5e)
 - [ ] `0040e890` inferred_C0042ba30_AnimTick (vtable) · depth 3 · 103 lines · **untouched** — unread; first seen in vtable 0042ba30 slot 2
 - [ ] `0040ecb0` inferred_Obj_MidBase_Ctor · depth 3 · 14 lines · **understood** → `engines/tesoro/core/menuitem.cpp::MenuItem::init` — Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25
-- [ ] `0040ee70` inferred_Obj_Interactive_Update (vtable) · depth 3 · 52 lines · **understood** — MidBase slot 4: when a click is pending (+0x8c), clears it, removes the object from the main list, runs the verb handler for the current verb (index +0x9c, slots 20-26), clears the cursor's target (+0x12c), resets the cursor animation and calls slot 27 with verb-7. Pending flag is cleared at the end
+- [x] `0040ee70` inferred_Obj_Interactive_Update (vtable) · depth 3 · 52 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 4: when a click is pending (+0x8c), clears it, removes the object from the main list, runs the verb handler for the current verb (index +0x9c, slots 20-26), clears the cursor's target (+0x12c), resets the cursor animation and calls slot 27 with verb-7. Pending flag is cleared at the end
 - [ ] `0040e7e0` inferred_Obj_Kind16_Ctor · depth 4 · 25 lines · **decompiled** — 0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)
-- [ ] `0040ed10` inferred_Obj_Kind09_Ctor · depth 12 · 61 lines · **understood** — 0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits
+- [x] `0040ed10` inferred_Obj_Kind09_Ctor · depth 12 · 61 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — 0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits
 
-### Cluster 26: 0040f040–0040f270 (1/7 ported)
+### Cluster 26: 0040f040–0040f270 (6/7 ported)
 
 - [x] `0040f040` inferred_Obj_Slot15_ForwardToSlot14 (vtable) · depth 0 · 9 lines · **emu-compared** → `engines/tesoro/core/menuitem.cpp::MenuItem::rightClick` — MidBase slot 15: calls slot 14 with its argument
-- [ ] `0040f1a0` inferred_Obj_OnClick (vtable) · depth 0 · 18 lines · **understood** — MidBase slot 19: interrupts the player if busy, copies the clicked verb for the player object itself, sets the player's target to the object's approach point (+0x94,+0x98) via player slot 32 (walk), then player slot 4
+- [x] `0040f1a0` inferred_Obj_OnClick (vtable) · depth 0 · 18 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 19: interrupts the player if busy, copies the clicked verb for the player object itself, sets the player's target to the object's approach point (+0x94,+0x98) via player slot 32 (walk), then player slot 4
 - [ ] `0040f270` inferred_Obj_Slot27_Stub (vtable) · depth 0 · 7 lines · **decompiled** — MidBase slot 27 default (ret 4, returns 0)
-- [ ] `0040f050` inferred_Obj_ShowHoverText (vtable) · depth 1 · 15 lines · **understood** — MidBase slot 17: puts the object's phrase text (+0x6c record, then the 64-bit name key) into the cursor's hover text via Cursor_SetText
-- [ ] `0040f0b0` inferred_Obj_ClearHoverText (vtable) · depth 1 · 8 lines · **understood** — MidBase slot 18: Cursor_SetText(null)
-- [ ] `0040f0d0` inferred_Obj_RunVerb (vtable) · depth 3 · 40 lines · **understood** — MidBase slot 13: tells the player object (global 004420fc) to select verb +0x90, then dispatches the verb handler like Interactive_Update
-- [ ] `0040f210` inferred_Obj_Verb0_Default (vtable) · depth 11 · 16 lines · **understood** — MidBase slot 20: marks click pending (+0x8c, +0x8d), says phrase key +0x70 if set via GameState_Say, sets cursor busy, inserts object into the main list at priority 5
+- [x] `0040f050` inferred_Obj_ShowHoverText (vtable) · depth 1 · 15 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 17: puts the object's phrase text (+0x6c record, then the 64-bit name key) into the cursor's hover text via Cursor_SetText
+- [x] `0040f0b0` inferred_Obj_ClearHoverText (vtable) · depth 1 · 8 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 18: Cursor_SetText(null)
+- [x] `0040f0d0` inferred_Obj_RunVerb (vtable) · depth 3 · 40 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 13: tells the player object (global 004420fc) to select verb +0x90, then dispatches the verb handler like Interactive_Update
+- [x] `0040f210` inferred_Obj_Verb0_Default (vtable) · depth 11 · 16 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 20: marks click pending (+0x8c, +0x8d), says phrase key +0x70 if set via GameState_Say, sets cursor busy, inserts object into the main list at priority 5
 
-### Cluster 27: 0040f670–0040f780 (5/11 ported)
+### Cluster 27: 0040f670–0040f780 (10/11 ported)
 
 - [x] `0040f670` inferred_List_RewindIterator · depth 0 · 12 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — resets a list's iterator (current = head, first flag = 1)
 - [x] `0040f680` inferred_ObjectList_FindByKey · depth 0 · 55 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — (key lo, key hi) finds an object in the list by its 64-bit name key at object +0x44; returns 0 when absent
@@ -348,11 +348,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `0040f590` inferred_List_Ctor · depth 1 · 37 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list
 - [ ] `0040f650` inferred_Pool_AllocAlignedZero_Global · depth 1 · 8 lines · **decompiled** — wrapper on the global pool
 - [x] `0040f710` inferred_ObjectList_ForEachAttach · depth 2 · 39 lines · **ported** → `engines/tesoro/core/object.cpp::attachAll` — iterates list and calls 00401bf0(node object, arg)
-- [ ] `0040f280` inferred_Obj_Verb1_Default (vtable) · depth 12 · 25 lines · **understood** — slot 21 of Kind09-based classes: same pattern with phrase key +0x74 and a default phrase when unset
-- [ ] `0040f300` inferred_Obj_Verb3_Default (vtable) · depth 12 · 25 lines · **understood** — slot 22: phrase key +0x7c
-- [ ] `0040f380` inferred_Obj_Verb2_Default (vtable) · depth 12 · 25 lines · **understood** — slot 23: phrase key +0x78
-- [ ] `0040f400` inferred_Obj_Verb4_Default (vtable) · depth 12 · 25 lines · **understood** — slot 24: phrase key +0x80
-- [ ] `0040f480` inferred_Obj_UseItem_Default (vtable) · depth 12 · 50 lines · **understood** — slot 27: handles using an inventory item on the object: looks the item up in the object's item table (+0xa0 pairs of name keys, +0xa4 responses) else says a default phrase (ICON01T058 or MODELO2)
+- [x] `0040f280` inferred_Obj_Verb1_Default (vtable) · depth 12 · 25 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — slot 21 of Kind09-based classes: same pattern with phrase key +0x74 and a default phrase when unset
+- [x] `0040f300` inferred_Obj_Verb3_Default (vtable) · depth 12 · 25 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — slot 22: phrase key +0x7c
+- [x] `0040f380` inferred_Obj_Verb2_Default (vtable) · depth 12 · 25 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — slot 23: phrase key +0x78
+- [x] `0040f400` inferred_Obj_Verb4_Default (vtable) · depth 12 · 25 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — slot 24: phrase key +0x80
+- [x] `0040f480` inferred_Obj_UseItem_Default (vtable) · depth 12 · 50 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — slot 27: handles using an inventory item on the object: looks the item up in the object's item table (+0xa0 pairs of name keys, +0xa4 responses) else says a default phrase (ICON01T058 or MODELO2)
 
 ### Cluster 28: 0040f800–0040fbb0 (7/7 ported)
 
@@ -364,7 +364,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — allocates a linked list with capacity param (100 for the main list 00442104)
 - [x] `0040fbb0` inferred_ObjectList_AttachAll · depth 2 · 38 lines · **ported** → `engines/tesoro/core/object.cpp::attachAll` — walks the list calling Object_AttachToLevel on each object
 
-### Cluster 29: 0040fc20–00410330 (9/12 ported)
+### Cluster 29: 0040fc20–00410330 (10/12 ported)
 
 - [x] `0040fc20` inferred_ObjectList_PassA · depth 0 · 83 lines · **emu-compared** → `engines/tesoro/core/object.cpp::runUpdatePass` — walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1 | pass vectors 31 Oct
 - [x] `0040fd20` inferred_ObjectList_PassB · depth 0 · 83 lines · **emu-compared** → `engines/tesoro/core/object.cpp::runUpdate2Pass` — same walk calling vtable slot 5 | pass vectors 31 Oct
@@ -377,11 +377,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `004102e0` inferred_Obj_Kind05_Draw (vtable) · depth 3 · 20 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — slot 6 of the kind 5 class family: wraps Obj_Draw with slot 31 calls depending on flags +0xd4/+0xc/+0xd5
 - [x] `004101f0` inferred_Obj_Kind05_Update (vtable) · depth 10 · 46 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — slot 4 of the kind 5 class family: runs Interactive_Update unless deferred, polls keyboard/mouse button state and the sound manager to stop a playing sound on input, calls slot 28
 - [x] `00410330` inferred_Player_Say · depth 10 · 33 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — (phrase record, id, flag) on the object in global 004420fc (walks, so probably the player): stores phrase +0xc4 / id +0xcc, busy +0xd4=1, starts the phrase sound (record +8) through the sound manager, slot 30 (0x78) with flag, inserts itself into the main list at priority 6, calls slot 4 | see ledger note
-- [ ] `0040fec0` inferred_Obj_Kind05_Ctor · depth 13 · 40 lines · **understood** — 0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags
+- [x] `0040fec0` inferred_Obj_Kind05_Ctor · depth 13 · 40 lines · **emu-compared** → `engines/tesoro/core/character.cpp::Character::init` — 0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags | character harness 600 sessions, 30 Oct+1: gen_vectors_character.py
 
-### Cluster 30: 004103f0–004108a0 (7/8 ported)
+### Cluster 30: 004103f0–004108a0 (8/8 ported)
 
-- [ ] `004103f0` inferred_C0042b060_Slot32 (vtable) · depth 0 · 8 lines · **untouched** — unread; first seen in vtable 0042b060 slot 32 (kind 5 subtype 16)
+- [x] `004103f0` inferred_C0042b060_Slot32 (vtable) · depth 0 · 8 lines · **emu-compared** → `engines/tesoro/core/character.h::Character::startWalk` — unread; first seen in vtable 0042b060 slot 32 (kind 5 subtype 16)
 - [x] `004104a0` inferred_Room_InsertSorted · depth 0 · 44 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::insertSorted` — inserts object into the room list ordered by object field +0x4c | room vectors 30 Oct
 - [x] `00410530` inferred_Room_RemoveObject · depth 0 · 38 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::removeObject` — room vectors 30 Oct
 - [x] `004105a0` inferred_Display_QueueRow_TypeA · depth 0 · 177 lines · **emu-compared** — AddSprite helper for image type 1: builds per-scanline entries (177 lines) | name from call sites and a skim; body not yet read
@@ -481,11 +481,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00415880` inferred_CreateMainWindow · depth 7 · 37 lines · **understood** — RegisterClass + CreateWindowEx 640x480 (style 0x90000000, ex 8), ShowWindow, ShowCursor(0), sets init flags, calls InitSubsystems
 - [ ] `00415960` inferred_WinMain · depth 17 · 89 lines · **understood** — args: none=CD check+SETUP.EXE; '_$_$_ '+byte=game; 'Uninstall'
 
-### Cluster 38: 00415c30–00416170 (1/12 ported)
+### Cluster 38: 00415c30–00416170 (2/12 ported)
 
 - [ ] `00415c30` inferred_SetInitFlags · depth 0 · 11 lines · **understood** — sets globals 00442208 and 0044221c to 1
 - [x] `00415c40` inferred_NameHash64 · depth 0 · 44 lines · **emu-compared** → `core/namekey.cpp::nameKey64` — packs up to 12 chars of a name, 5 bits each (chars below '5' get +11), into a 64-bit key; used with level object lookup
-- [ ] `00415cb0` inferred_NameHash64_Decode · depth 0 · 55 lines · **decompiled** — (lo, hi, buffer) rebuilds a readable name from a 64-bit key; used for error text
+- [x] `00415cb0` inferred_NameHash64_Decode · depth 0 · 55 lines · **emu-compared** → `engines/tesoro/core/namekey.cpp::nameFromKey` — (lo, hi, buffer) rebuilds a readable name from a 64-bit key; used for error text
 - [ ] `00415b00` inferred_FindCdAndSetup · depth 10 · 71 lines · **understood** — scans drives for label TESORO, checks SETUP.EXE
 - [ ] `00415d90` inferred_C00429410_UseItem (vtable) · depth 13 · 25 lines · **untouched** — unread; first seen in vtable 00429410 slot 27 (kind 20 subtype 11)
 - [ ] `00415d20` inferred_C0042af70_Verb0 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 0042af70 slot 20 (kind 6 subtype 9)
@@ -535,9 +535,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00417640` inferred_C0042afe8_Slot28 (vtable) · depth 14 · 44 lines · **untouched** — unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)
 - [ ] `004178b0` inferred_C0042bf90_SetVerbAndClick (vtable) · depth 14 · 37 lines · **untouched** — unread; first seen in vtable 0042bf90 slot 14
 
-### Cluster 42: 00417b30–00417d00 (2/7 ported)
+### Cluster 42: 00417b30–00417d00 (3/7 ported)
 
-- [ ] `00417b30` inferred_Obj_RetTrue (vtable) · depth 0 · 7 lines · **understood** — MidBase slot 16: returns 1 (is interactive/enabled default)
+- [x] `00417b30` inferred_Obj_RetTrue (vtable) · depth 0 · 7 lines · **ported** → `engines/tesoro/core/interactive.h` — MidBase slot 16: returns 1 (is interactive/enabled default)
 - [ ] `004179b0` inferred_C0042bc08_RunVerb (vtable) · depth 2 · 41 lines · **untouched** — unread; first seen in vtable 0042bc08 slot 13
 - [ ] `00417c80` ScriptFANMMENU_Do (vtable) · depth 2 · 10 lines · **understood** — unread; first seen in vtable 004282d0 slot 28
 - [x] `00417ad0` inferred_Obj_Kind25_Ctor · depth 4 · 12 lines · **emu-compared** — 0xa4 bytes, vtable 0042c000, extends MidBase

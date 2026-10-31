@@ -14622,8 +14622,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 25,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits"
  },
  {
@@ -14969,8 +14969,8 @@
   ],
   "data_refs": [],
   "cluster": 25,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "MidBase slot 4: when a click is pending (+0x8c), clears it, removes the object from the main list, runs the verb handler for the current verb (index +0x9c, slots 20-26), clears the cursor's target (+0x12c), resets the cursor animation and calls slot 27 with verb-7. Pending flag is cleared at the end"
  },
  {
@@ -15930,8 +15930,8 @@
   ],
   "data_refs": [],
   "cluster": 25,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "MidBase slot 14: stores verb +0x9c then calls slot 19 (OnClick)"
  },
  {
@@ -16981,8 +16981,8 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "MidBase slot 17: puts the object's phrase text (+0x6c record, then the 64-bit name key) into the cursor's hover text via Cursor_SetText"
  },
  {
@@ -17529,8 +17529,8 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "MidBase slot 18: Cursor_SetText(null)"
  },
  {
@@ -17997,8 +17997,8 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "MidBase slot 13: tells the player object (global 004420fc) to select verb +0x90, then dispatches the verb handler like Interactive_Update"
  },
  {
@@ -18555,8 +18555,8 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "MidBase slot 19: interrupts the player if busy, copies the clicked verb for the player object itself, sets the player's target to the object's approach point (+0x94,+0x98) via player slot 32 (walk), then player slot 4"
  },
  {
@@ -19044,8 +19044,8 @@
   ],
   "data_refs": [],
   "cluster": 26,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "MidBase slot 20: marks click pending (+0x8c, +0x8d), says phrase key +0x70 if set via GameState_Say, sets cursor busy, inserts object into the main list at priority 5"
  },
  {
@@ -19504,8 +19504,8 @@
   ],
   "data_refs": [],
   "cluster": 27,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "slot 21 of Kind09-based classes: same pattern with phrase key +0x74 and a default phrase when unset"
  },
  {
@@ -19794,8 +19794,8 @@
   ],
   "data_refs": [],
   "cluster": 27,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "slot 22: phrase key +0x7c"
  },
  {
@@ -20108,8 +20108,8 @@
   ],
   "data_refs": [],
   "cluster": 27,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "slot 23: phrase key +0x78"
  },
  {
@@ -20478,8 +20478,8 @@
   ],
   "data_refs": [],
   "cluster": 27,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "slot 24: phrase key +0x80"
  },
  {
@@ -20788,8 +20788,8 @@
   ],
   "data_refs": [],
   "cluster": 27,
-  "status": "understood",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/interactive.cpp",
   "notes": "slot 27: handles using an inventory item on the object: looks the item up in the object's item table (+0xa0 pairs of name keys, +0xa4 responses) else says a default phrase (ICON01T058 or MODELO2)"
  },
  {
@@ -21210,9 +21210,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 29,
-  "status": "understood",
-  "engine": "",
-  "notes": "0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/character.cpp::Character::init",
+  "notes": "0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags | character harness 600 sessions, 30 Oct+1: gen_vectors_character.py"
  },
  {
   "addr": "0040ffa0",
@@ -21802,8 +21802,8 @@
   ],
   "data_refs": [],
   "cluster": 30,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/character.h::Character::startWalk",
   "notes": "unread; first seen in vtable 0042b060 slot 32 (kind 5 subtype 16)"
  },
  {
@@ -23950,8 +23950,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 38,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/namekey.cpp::nameFromKey",
   "notes": "(lo, hi, buffer) rebuilds a readable name from a 64-bit key; used for error text"
  },
  {
@@ -25587,8 +25587,8 @@
   ],
   "data_refs": [],
   "cluster": 42,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/interactive.h",
   "notes": "MidBase slot 16: returns 1 (is interactive/enabled default)"
  },
  {
