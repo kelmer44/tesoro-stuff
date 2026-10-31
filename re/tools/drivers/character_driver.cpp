@@ -113,6 +113,8 @@ struct World : CharacterHost {
 	void stopVoice(uint32) override { log.push_back("stop"); log.push_back("reap"); }
 	bool skipPressed() override { return skip; }
 	bool subtitlesOn() override { return subs; }
+	Object *findObject(int, const char *) override { return nullptr; }
+	int startScript(Character &, const char *, const char *, byte *) override { return 0; }
 	Camera *cam = nullptr;
 	Camera &updateCamera(int32 d) override { log.push_back("toward " + std::to_string(d)); return *cam; }
 	void drawText(const byte *t, uint32 colour, int32 x, int32 y, int32 w) override {

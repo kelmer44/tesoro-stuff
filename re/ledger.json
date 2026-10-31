@@ -12650,8 +12650,8 @@
   ],
   "data_refs": [],
   "cluster": 18,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b390 slot 23 (kind 5 subtype 3)"
  },
  {
@@ -12963,8 +12963,8 @@
   ],
   "data_refs": [],
   "cluster": 19,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b6c0 slot 23 (kind 5 subtype 5)"
  },
  {
@@ -12990,8 +12990,8 @@
   ],
   "data_refs": [],
   "cluster": 19,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b638 slot 23 (kind 5 subtype 6)"
  },
  {
@@ -13381,8 +13381,8 @@
   ],
   "data_refs": [],
   "cluster": 21,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b170 slot 21 (kind 5 subtype 14)"
  },
  {
@@ -13408,8 +13408,8 @@
   ],
   "data_refs": [],
   "cluster": 21,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b170 slot 23 (kind 5 subtype 14)"
  },
  {
@@ -24280,8 +24280,8 @@
   ],
   "data_refs": [],
   "cluster": 39,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b5b0 slot 23 (kind 5 subtype 7)"
  },
  {
@@ -24308,8 +24308,8 @@
   ],
   "data_refs": [],
   "cluster": 39,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b5b0 slot 27 (kind 5 subtype 7)"
  },
  {
@@ -24335,8 +24335,8 @@
   ],
   "data_refs": [],
   "cluster": 39,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b528 slot 27 (kind 5 subtype 8)"
  },
  {
@@ -24361,8 +24361,8 @@
   ],
   "data_refs": [],
   "cluster": 39,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b528 slot 23 (kind 5 subtype 8)"
  },
  {
@@ -24387,8 +24387,8 @@
   ],
   "data_refs": [],
   "cluster": 39,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b528 slot 21 (kind 5 subtype 8)"
  },
  {
@@ -24470,8 +24470,8 @@
   ],
   "data_refs": [],
   "cluster": 39,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b6c0 slot 27 (kind 5 subtype 5)"
  },
  {
@@ -24522,8 +24522,8 @@
   ],
   "data_refs": [],
   "cluster": 40,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b280 slot 23 (kind 5 subtype 0)"
  },
  {
@@ -24550,8 +24550,8 @@
   ],
   "data_refs": [],
   "cluster": 40,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b280 slot 27 (kind 5 subtype 0)"
  },
  {
@@ -25880,8 +25880,8 @@
   ],
   "data_refs": [],
   "cluster": 43,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b170 slot 27 (kind 5 subtype 14)"
  },
  {
@@ -25907,8 +25907,8 @@
   ],
   "data_refs": [],
   "cluster": 43,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b1f8 slot 27 (kind 5 subtype 13)"
  },
  {
@@ -25962,8 +25962,8 @@
   ],
   "data_refs": [],
   "cluster": 43,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b1f8 slot 23 (kind 5 subtype 13)"
  },
  {
@@ -25989,8 +25989,8 @@
   ],
   "data_refs": [],
   "cluster": 43,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b1f8 slot 21 (kind 5 subtype 13)"
  },
  {
@@ -26043,8 +26043,8 @@
   ],
   "data_refs": [],
   "cluster": 44,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b4a0 slot 23 (kind 5 subtype 1)"
  },
  {
@@ -26071,8 +26071,8 @@
   ],
   "data_refs": [],
   "cluster": 44,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b4a0 slot 27 (kind 5 subtype 1)"
  },
  {
@@ -26125,8 +26125,8 @@
   ],
   "data_refs": [],
   "cluster": 44,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b308 slot 23 (kind 5 subtype 2)"
  },
  {
@@ -26152,8 +26152,8 @@
   ],
   "data_refs": [],
   "cluster": 44,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b308 slot 27 (kind 5 subtype 2)"
  },
  {
@@ -26179,8 +26179,8 @@
   ],
   "data_refs": [],
   "cluster": 44,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b418 slot 23 (kind 5 subtype 4)"
  },
  {
@@ -26205,8 +26205,8 @@
   ],
   "data_refs": [],
   "cluster": 44,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b418 slot 27 (kind 5 subtype 4)"
  },
  {
@@ -26257,8 +26257,8 @@
   ],
   "data_refs": [],
   "cluster": 45,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b390 slot 6 (kind 5 subtype 3)"
  },
  {
@@ -26284,8 +26284,8 @@
   ],
   "data_refs": [],
   "cluster": 45,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b390 slot 30 (kind 5 subtype 3)"
  },
  {
@@ -26311,8 +26311,8 @@
   ],
   "data_refs": [],
   "cluster": 45,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b390 slot 28 (kind 5 subtype 3)"
  },
  {
@@ -26556,8 +26556,8 @@
   ],
   "data_refs": [],
   "cluster": 46,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b060 slot 23 (kind 5 subtype 16)"
  },
  {
@@ -26583,8 +26583,8 @@
   ],
   "data_refs": [],
   "cluster": 46,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b0e8 slot 23 (kind 5 subtype 15)"
  },
  {
