@@ -215,15 +215,17 @@ that answers all of them for real, from the game's actual state:
 **Scripts run.** `World` reads the four script files and answers everything a running script asks: finding objects, characters speaking (through
 the same speaking rules, with the character's own colour and pose), Jim's script lines, walking Jim (the script is told when he arrives), animations,
 looking, showing and switching objects, the choice menu (the pointer's picture is put aside and restored), sounds and music tracks. A running script is
-an entry in the main list; a click or a menu item can start one. The one with a numbered type also has a scene routine behind its `DO` lines: three
-are ported: type 21 (the captain's block: Jim leaves through the despacho door), type 17 (the menu's blocks: the fades) and type 1 (the opening
-scene: black screen, the ship appearing, Jim shown, Jim going into the despacho); the other 16 warn. When a script finishes, a character it held for
+an entry in the main list; a click or a menu item can start one. The one with a numbered type also has a scene routine behind its `DO` lines: 17 of the 19
+are ported: the opening scene (type 1), the menu's fades (17), the captain's exit (21), the throne-room trips (20, also what a script's "run FANMTRONO"
+does) and all the ones that only move Jim to another level and set the scene there (2 to 7, 9, 10, 12, 15, 16, 18, 19: where he appears, whether he
+is shown, which objects are switched on or off, the fade and pause). The two left warn: types 8 and 14 (the rope-connecting puzzle, which keeps
+its own game state). When a script finishes, a character it held for
 speaking is let go and its held flag cleared (found by running it: the animation otherwise kept being reset). Seen working: the captain's talk
 script plays Jim's and the captain's lines with subtitles and ends with Jim walking out of the despacho into the port.
 **Starting the game.** "Nueva partida" now fades to the new-game menu and plays its script; the start button puts Jim in the port, shows him and
 starts the opening script, which runs through the ship arriving and Jim walking into the despacho (the screen follows Jim into each level). Seen
 running from the start button's code path; the two movies of the intro are skipped with a warning.
-**Not there yet (they warn when reached):** the other 16 scene routines (cut scenes: fades, level changes, special animations); the movies; turning a page of the inventory; the two frame changes of the
+**Not there yet (they warn when reached):** the rope-connecting puzzle's two routines (types 8 and 14); the movies; turning a page of the inventory; the two frame changes of the
 cabin's walk-area objects; Jim's use of item 37; the skip key (any mouse button skips a line for now); the sound has only been run with a silent audio driver here; a subtitles option (always on).
 **Seen working:** the engine reads all 47 levels with these objects, puts Jim in the despacho and draws the room with the captain in his chair, Jim
 standing in front and the items of the room, with no warnings. Not checked against the original (the hosts are the engine's own decisions, not
