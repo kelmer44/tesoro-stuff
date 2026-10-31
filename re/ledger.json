@@ -12258,8 +12258,8 @@
   ],
   "data_refs": [],
   "cluster": 16,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a6e0 slot 22 (kind 12 subtype 10)"
  },
  {
@@ -12284,8 +12284,8 @@
   ],
   "data_refs": [],
   "cluster": 16,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a910 slot 21 (kind 12 subtype 5)"
  },
  {
@@ -12312,8 +12312,8 @@
   ],
   "data_refs": [],
   "cluster": 16,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a910 slot 22 (kind 12 subtype 5)"
  },
  {
@@ -12338,8 +12338,8 @@
   ],
   "data_refs": [],
   "cluster": 16,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a910 slot 24 (kind 12 subtype 5)"
  },
  {
@@ -12365,8 +12365,8 @@
   ],
   "data_refs": [],
   "cluster": 16,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042aa60 slot 21 (kind 12 subtype 2)"
  },
  {
@@ -12392,8 +12392,8 @@
   ],
   "data_refs": [],
   "cluster": 17,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042ab40 slot 22 (kind 12 subtype 0)"
  },
  {
@@ -12419,8 +12419,8 @@
   ],
   "data_refs": [],
   "cluster": 17,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042ab40 slot 26 (kind 12 subtype 0)"
  },
  {
@@ -12446,8 +12446,8 @@
   ],
   "data_refs": [],
   "cluster": 17,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a9f0 slot 24 (kind 12 subtype 3)"
  },
  {
@@ -12472,8 +12472,8 @@
   ],
   "data_refs": [],
   "cluster": 17,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a980 slot 21 (kind 12 subtype 4)"
  },
  {
@@ -12498,8 +12498,8 @@
   ],
   "data_refs": [],
   "cluster": 17,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042aad0 slot 21 (kind 12 subtype 1)"
  },
  {
@@ -12525,8 +12525,8 @@
   ],
   "data_refs": [],
   "cluster": 17,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a8a0 slot 22 (kind 12 subtype 6)"
  },
  {
@@ -12552,8 +12552,8 @@
   ],
   "data_refs": [],
   "cluster": 17,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a670 slot 20 (kind 12 subtype 11)"
  },
  {
@@ -12676,8 +12676,8 @@
   ],
   "data_refs": [],
   "cluster": 18,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a830 slot 21 (kind 12 subtype 7)"
  },
  {
@@ -12702,8 +12702,8 @@
   ],
   "data_refs": [],
   "cluster": 18,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a830 slot 23 (kind 12 subtype 7)"
  },
  {
@@ -12727,8 +12727,8 @@
   ],
   "data_refs": [],
   "cluster": 18,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a7c0 slot 22 (kind 12 subtype 9)"
  },
  {
@@ -12753,8 +12753,8 @@
   ],
   "data_refs": [],
   "cluster": 18,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a750 slot 21 (kind 12 subtype 8)"
  },
  {
@@ -12779,8 +12779,8 @@
   ],
   "data_refs": [],
   "cluster": 18,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a750 slot 23 (kind 12 subtype 8)"
  },
  {
@@ -12805,8 +12805,8 @@
   ],
   "data_refs": [],
   "cluster": 19,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429fe0 slot 21 (kind 17 subtype 1)"
  },
  {
@@ -12832,8 +12832,8 @@
   ],
   "data_refs": [],
   "cluster": 19,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429f70 slot 21 (kind 17 subtype 2)"
  },
  {
@@ -12858,8 +12858,8 @@
   ],
   "data_refs": [],
   "cluster": 19,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429d40 slot 22 (kind 17 subtype 13)"
  },
  {
@@ -12884,8 +12884,8 @@
   ],
   "data_refs": [],
   "cluster": 19,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429f00 slot 22 (kind 17 subtype 3)"
  },
  {
@@ -12911,8 +12911,8 @@
   ],
   "data_refs": [],
   "cluster": 19,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429e90 slot 21 (kind 17 subtype 4)"
  },
  {
@@ -12937,8 +12937,8 @@
   ],
   "data_refs": [],
   "cluster": 19,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429e20 slot 21 (kind 17 subtype 5)"
  },
  {
@@ -13015,8 +13015,8 @@
   ],
   "data_refs": [],
   "cluster": 20,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429a30 slot 22 (kind 17 subtype 14)"
  },
  {
@@ -13041,8 +13041,8 @@
   ],
   "data_refs": [],
   "cluster": 20,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429b80 slot 22 (kind 17 subtype 10)"
  },
  {
@@ -13067,8 +13067,8 @@
   ],
   "data_refs": [],
   "cluster": 20,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429b10 slot 23 (kind 17 subtype 11)"
  },
  {
@@ -13093,8 +13093,8 @@
   ],
   "data_refs": [],
   "cluster": 20,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429aa0 slot 22 (kind 17 subtype 12)"
  },
  {
@@ -13120,8 +13120,8 @@
   ],
   "data_refs": [],
   "cluster": 20,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429cd0 slot 22 (kind 17 subtype 7)"
  },
  {
@@ -13145,8 +13145,8 @@
   ],
   "data_refs": [],
   "cluster": 20,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 004299c0 slot 22 (kind 17 subtype 15)"
  },
  {
@@ -13171,8 +13171,8 @@
   ],
   "data_refs": [],
   "cluster": 20,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429c60 slot 21 (kind 17 subtype 8)"
  },
  {
@@ -13197,8 +13197,8 @@
   ],
   "data_refs": [],
   "cluster": 20,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429c60 slot 22 (kind 17 subtype 8)"
  },
  {
@@ -13224,8 +13224,8 @@
   ],
   "data_refs": [],
   "cluster": 20,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429bf0 slot 22 (kind 17 subtype 9)"
  },
  {
@@ -13277,8 +13277,8 @@
   ],
   "data_refs": [],
   "cluster": 21,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00428c30 slot 20 (kind 20 subtype 30)"
  },
  {
@@ -13303,8 +13303,8 @@
   ],
   "data_refs": [],
   "cluster": 21,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 004298e0 slot 23 (kind 20 subtype 0)"
  },
  {
@@ -13330,8 +13330,8 @@
   ],
   "data_refs": [],
   "cluster": 21,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429090 slot 20 (kind 20 subtype 20)"
  },
  {
@@ -13355,8 +13355,8 @@
   ],
   "data_refs": [],
   "cluster": 21,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00428d80 slot 22 (kind 20 subtype 27)"
  },
  {
@@ -13435,8 +13435,8 @@
   ],
   "data_refs": [],
   "cluster": 21,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429720 slot 21 (kind 20 subtype 4)"
  },
  {
@@ -13461,8 +13461,8 @@
   ],
   "data_refs": [],
   "cluster": 21,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429790 slot 21 (kind 20 subtype 3)"
  },
  {
@@ -13488,8 +13488,8 @@
   ],
   "data_refs": [],
   "cluster": 21,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429790 slot 20 (kind 20 subtype 3)"
  },
  {
@@ -13515,8 +13515,8 @@
   ],
   "data_refs": [],
   "cluster": 21,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 004296b0 slot 20 (kind 20 subtype 5)"
  },
  {
@@ -13540,8 +13540,8 @@
   ],
   "data_refs": [],
   "cluster": 22,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429640 slot 22 (kind 20 subtype 6)"
  },
  {
@@ -13566,8 +13566,8 @@
   ],
   "data_refs": [],
   "cluster": 22,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 004294f0 slot 23 (kind 20 subtype 9)"
  },
  {
@@ -13592,8 +13592,8 @@
   ],
   "data_refs": [],
   "cluster": 22,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 004294f0 slot 22 (kind 20 subtype 9)"
  },
  {
@@ -13618,8 +13618,8 @@
   ],
   "data_refs": [],
   "cluster": 22,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429330 slot 21 (kind 20 subtype 13)"
  },
  {
@@ -13644,8 +13644,8 @@
   ],
   "data_refs": [],
   "cluster": 22,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 004293a0 slot 21 (kind 20 subtype 12)"
  },
  {
@@ -13671,8 +13671,8 @@
   ],
   "data_refs": [],
   "cluster": 22,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 004293a0 slot 22 (kind 20 subtype 12)"
  },
  {
@@ -13696,8 +13696,8 @@
   ],
   "data_refs": [],
   "cluster": 22,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429480 slot 22 (kind 20 subtype 10)"
  },
  {
@@ -13722,8 +13722,8 @@
   ],
   "data_refs": [],
   "cluster": 22,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00428ca0 slot 21 (kind 20 subtype 29)"
  },
  {
@@ -13748,8 +13748,8 @@
   ],
   "data_refs": [],
   "cluster": 22,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00428f40 slot 21 (kind 20 subtype 24)"
  },
  {
@@ -13773,8 +13773,8 @@
   ],
   "data_refs": [],
   "cluster": 22,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00428ed0 slot 22 (kind 20 subtype 23)"
  },
  {
@@ -13799,8 +13799,8 @@
   ],
   "data_refs": [],
   "cluster": 22,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429170 slot 22 (kind 20 subtype 18)"
  },
  {
@@ -13826,8 +13826,8 @@
   ],
   "data_refs": [],
   "cluster": 22,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00428e60 slot 21 (kind 20 subtype 25)"
  },
  {
@@ -13852,8 +13852,8 @@
   ],
   "data_refs": [],
   "cluster": 23,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00428df0 slot 21 (kind 20 subtype 26)"
  },
  {
@@ -13879,8 +13879,8 @@
   ],
   "data_refs": [],
   "cluster": 23,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00428fb0 slot 22 (kind 20 subtype 22)"
  },
  {
@@ -24006,8 +24006,8 @@
   ],
   "data_refs": [],
   "cluster": 38,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429410 slot 27 (kind 20 subtype 11)"
  },
  {
@@ -24033,8 +24033,8 @@
   ],
   "data_refs": [],
   "cluster": 38,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429100 slot 27 (kind 20 subtype 19)"
  },
  {
@@ -24060,8 +24060,8 @@
   ],
   "data_refs": [],
   "cluster": 38,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a050 slot 21 (kind 17 subtype 0)"
  },
  {
@@ -24087,8 +24087,8 @@
   ],
   "data_refs": [],
   "cluster": 38,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a050 slot 22 (kind 17 subtype 0)"
  },
  {
@@ -24170,8 +24170,8 @@
   ],
   "data_refs": [],
   "cluster": 38,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429950 slot 24 (kind 17 subtype 16)"
  },
  {
@@ -24197,8 +24197,8 @@
   ],
   "data_refs": [],
   "cluster": 39,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429950 slot 27 (kind 17 subtype 16)"
  },
  {
@@ -24224,8 +24224,8 @@
   ],
   "data_refs": [],
   "cluster": 39,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429db0 slot 20 (kind 17 subtype 6)"
  },
  {
@@ -24414,8 +24414,8 @@
   ],
   "data_refs": [],
   "cluster": 39,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429b10 slot 27 (kind 17 subtype 11)"
  },
  {
@@ -24656,8 +24656,8 @@
   ],
   "data_refs": [],
   "cluster": 40,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00428d10 slot 27 (kind 20 subtype 28)"
  },
  {
@@ -25587,8 +25587,8 @@
   ],
   "data_refs": [],
   "cluster": 42,
-  "status": "ported",
-  "engine": "engines/tesoro/core/interactive.h",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "MidBase slot 16: returns 1 (is interactive/enabled default)"
  },
  {
@@ -25667,8 +25667,8 @@
   ],
   "data_refs": [],
   "cluster": 42,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 004295d0 slot 27 (kind 20 subtype 7)"
  },
  {
@@ -25693,8 +25693,8 @@
   ],
   "data_refs": [],
   "cluster": 42,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429560 slot 27 (kind 20 subtype 8)"
  },
  {
@@ -25745,8 +25745,8 @@
   ],
   "data_refs": [],
   "cluster": 43,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 004298e0 slot 27 (kind 20 subtype 0)"
  },
  {
@@ -25773,8 +25773,8 @@
   ],
   "data_refs": [],
   "cluster": 43,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429800 slot 27 (kind 20 subtype 2)"
  },
  {
@@ -25826,8 +25826,8 @@
   ],
   "data_refs": [],
   "cluster": 43,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429870 slot 27 (kind 20 subtype 1)"
  },
  {
@@ -25852,8 +25852,8 @@
   ],
   "data_refs": [],
   "cluster": 43,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 004292c0 slot 27 (kind 20 subtype 16)"
  },
  {
@@ -25935,8 +25935,8 @@
   ],
   "data_refs": [],
   "cluster": 43,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429250 slot 27 (kind 20 subtype 14)"
  },
  {
@@ -26098,8 +26098,8 @@
   ],
   "data_refs": [],
   "cluster": 44,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 00429020 slot 27 (kind 20 subtype 21)"
  },
  {
@@ -26337,8 +26337,8 @@
   ],
   "data_refs": [],
   "cluster": 45,
-  "status": "untouched",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scriptedprop.cpp::ScriptedProp",
   "notes": "unread; first seen in vtable 0042a750 slot 27 (kind 12 subtype 8)"
  },
  {

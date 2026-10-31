@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+"""Condensed view of the scripted-prop handlers: decompiled C with name keys replaced by their strings, level globals by level numbers and the script start/table calls by names.
+Usage: pretty_handlers.py <kind> (12, 17, 20, 13, 6) -> prints every overriding function of that kind's subtypes."""
+import json, re, struct, sys
+d = open('/Users/gabriel/Desktop/ags/TESORO/TESORO.EXE', 'rb').read()
+pe = struct.unpack_from('<I', d, 0x3c)[0]; n = struct.unpack_from('<H', d, pe + 6)[0]; so = struct.unpack_from('<H', d, pe + 20)[0]
+secs = [(0x400000 + va, vs, ra) for va, vs, ra in (struct.unpack_from('<III', d, pe + 24 + so + 40 * i + 12 - 4)[0:3] for i in range(n))]
+secs = []
+for i in range(n):
+    o = pe + 24 + so + 40 * i; vs, va, rs, ra = struct.unpack_from('<IIII', d, o + 8); secs.append((0x400000 + va, vs, ra))
+def cstr(a):
+    for b, vs, ra in secs:
+        if b <= a < b + vs:
+            o = a - b + ra; return d[o:d.index(b'\0', o)].decode('latin1')
+LV = {0x442130 + 4 * i: i for i in range(47)}; LV[0x4421ec] = 'IFACE'
+def pretty(t):
+    t = re.sub(r'FUN_00415c40\((?:\(int\))?(0x[0-9a-f]+)\)', lambda m: 'K"%s"' % cstr(int(m.group(1), 16)), t)
+    t = re.sub(r's_([A-Z0-9]+)_[0-9a-f]{8}', r'"\1"', t)
+    t = re.sub(r'DAT_00([0-9a-f]{6})', lambda m: 'L%s' % LV.get(int(m.group(1), 16), m.group(1)), t)
+    t = t.replace('FUN_00408780', 'find').replace('FUN_004060c0', 'findscript').replace('FUN_00405fd0', 'start')
+    t = re.sub(r'\*\(int \*\)\(param_1 \+ 0x60\)', 'S', t)
+    return t
+v = json.load(open('re/vtable_map.json')); k = json.load(open('re/object_kinds.json'))
+base = v['0042bad8']; seen = set()
+for sub, b in sorted(k[sys.argv[1]]['sub'].items(), key=lambda x: (len(x[0]), x[0])):
+    a = b.get('vtable')
+    if not a: continue
+    for i, (f, g) in enumerate(zip(v[a], base)):
+        if f != g and f not in seen:
+            seen.add(f); body = open(f're/export/{f}.c').read()
+            body = '\n'.join(l for l in body.split('\n') if l.strip() and not re.match(r'^  [a-z]+ [*a-zA-Z0-9_]+;$', l))
+            print(f'### {f} kind {sys.argv[1]} subtype {sub} slot {i}'); print(pretty(body))

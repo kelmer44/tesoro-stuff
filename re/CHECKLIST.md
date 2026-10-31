@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 291 | 65% |
-| understood or later | 240 | 53% |
-| ported or later | 207 | 46% |
-| emu-compared or later | 175 | 39% |
+| decompiled or later | 363 | 81% |
+| understood or later | 312 | 69% |
+| ported or later | 279 | 62% |
+| emu-compared or later | 248 | 55% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -197,7 +197,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00409e50` inferred_Level_CreateObject · depth 14 · 1145 lines · **decompiled** — factory: switch on kind (record +0x18) allocating the right object class (sizes 0x6c, 0x84, 0x78, 0x6c, 0x74, 0xd8 ... kind 5 has a sub-switch on record byte +5); adds objects of kind 1 to level +0x90
 - [ ] `0040c040` inferred_C0042a600_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a600 slot 21 (kind 13 subtype 16)
 
-### Cluster 16: 0040c0e0–0040c4d0 (0/12 ported)
+### Cluster 16: 0040c0e0–0040c4d0 (5/12 ported)
 
 - [ ] `0040c0e0` inferred_C0042a4b0_Verb4 (vtable) · depth 0 · 8 lines · **untouched** — unread; first seen in vtable 0042a4b0 slot 24 (kind 13 subtype 15)
 - [ ] `0040c1f0` inferred_C0042a3d0_Verb4 (vtable) · depth 0 · 8 lines · **untouched** — unread; first seen in vtable 0042a3d0 slot 24 (kind 13 subtype 19)
@@ -206,87 +206,87 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040c140` inferred_C0042a3d0_Verb1 (vtable) · depth 14 · 35 lines · **untouched** — unread; first seen in vtable 0042a3d0 slot 21 (kind 13 subtype 19)
 - [ ] `0040c200` inferred_C0042a280_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a280 slot 21 (kind 13 subtype 44)
 - [ ] `0040c250` inferred_C0042a1a0_Verb4 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 0042a1a0 slot 24 (kind 13 subtype 29)
-- [ ] `0040c2c0` inferred_C0042a6e0_Verb3 (vtable) · depth 14 · 31 lines · **untouched** — unread; first seen in vtable 0042a6e0 slot 22 (kind 12 subtype 10)
-- [ ] `0040c370` inferred_C0042a910_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a910 slot 21 (kind 12 subtype 5)
-- [ ] `0040c3c0` inferred_C0042a910_Verb3 (vtable) · depth 14 · 31 lines · **untouched** — unread; first seen in vtable 0042a910 slot 22 (kind 12 subtype 5)
-- [ ] `0040c480` inferred_C0042a910_Verb4 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a910 slot 24 (kind 12 subtype 5)
-- [ ] `0040c4d0` inferred_C0042aa60_Verb1 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 0042aa60 slot 21 (kind 12 subtype 2)
+- [x] `0040c2c0` inferred_C0042a6e0_Verb3 (vtable) · depth 14 · 31 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a6e0 slot 22 (kind 12 subtype 10)
+- [x] `0040c370` inferred_C0042a910_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a910 slot 21 (kind 12 subtype 5)
+- [x] `0040c3c0` inferred_C0042a910_Verb3 (vtable) · depth 14 · 31 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a910 slot 22 (kind 12 subtype 5)
+- [x] `0040c480` inferred_C0042a910_Verb4 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a910 slot 24 (kind 12 subtype 5)
+- [x] `0040c4d0` inferred_C0042aa60_Verb1 (vtable) · depth 14 · 27 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042aa60 slot 21 (kind 12 subtype 2)
 
-### Cluster 17: 0040c560–0040c810 (0/7 ported)
+### Cluster 17: 0040c560–0040c810 (7/7 ported)
 
-- [ ] `0040c560` inferred_C0042ab40_Verb3 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 0042ab40 slot 22 (kind 12 subtype 0)
-- [ ] `0040c5d0` inferred_C0042ab40_Verb6 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 0042ab40 slot 26 (kind 12 subtype 0)
-- [ ] `0040c640` inferred_C0042a9f0_Verb4 (vtable) · depth 14 · 30 lines · **untouched** — unread; first seen in vtable 0042a9f0 slot 24 (kind 12 subtype 3)
-- [ ] `0040c6d0` inferred_C0042a980_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a980 slot 21 (kind 12 subtype 4)
-- [ ] `0040c720` inferred_C0042aad0_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042aad0 slot 21 (kind 12 subtype 1)
-- [ ] `0040c770` inferred_C0042a8a0_Verb3 (vtable) · depth 14 · 30 lines · **untouched** — unread; first seen in vtable 0042a8a0 slot 22 (kind 12 subtype 6)
-- [ ] `0040c810` inferred_C0042a670_Verb0 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 0042a670 slot 20 (kind 12 subtype 11)
+- [x] `0040c560` inferred_C0042ab40_Verb3 (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042ab40 slot 22 (kind 12 subtype 0)
+- [x] `0040c5d0` inferred_C0042ab40_Verb6 (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042ab40 slot 26 (kind 12 subtype 0)
+- [x] `0040c640` inferred_C0042a9f0_Verb4 (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a9f0 slot 24 (kind 12 subtype 3)
+- [x] `0040c6d0` inferred_C0042a980_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a980 slot 21 (kind 12 subtype 4)
+- [x] `0040c720` inferred_C0042aad0_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042aad0 slot 21 (kind 12 subtype 1)
+- [x] `0040c770` inferred_C0042a8a0_Verb3 (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a8a0 slot 22 (kind 12 subtype 6)
+- [x] `0040c810` inferred_C0042a670_Verb0 (vtable) · depth 14 · 27 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a670 slot 20 (kind 12 subtype 11)
 
-### Cluster 18: 0040c8a0–0040ca60 (1/9 ported)
+### Cluster 18: 0040c8a0–0040ca60 (6/9 ported)
 
 - [ ] `0040c8a0` inferred_C0042aef8_Verb4 (vtable) · depth 1 · 9 lines · **untouched** — unread; first seen in vtable 0042aef8 slot 24 (kind 6 subtype 8)
 - [ ] `0040c8d0` inferred_C0042aef8_Slot15 (vtable) · depth 2 · 13 lines · **untouched** — unread; first seen in vtable 0042aef8 slot 15 (kind 6 subtype 8)
-- [ ] `0040c9e0` inferred_C0042a7c0_Verb3 (vtable) · depth 2 · 14 lines · **untouched** — unread; first seen in vtable 0042a7c0 slot 22 (kind 12 subtype 9)
+- [x] `0040c9e0` inferred_C0042a7c0_Verb3 (vtable) · depth 2 · 14 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a7c0 slot 22 (kind 12 subtype 9)
 - [ ] `0040c880` inferred_C0042aef8_Verb0 (vtable) · depth 13 · 13 lines · **untouched** — unread; first seen in vtable 0042aef8 slot 20 (kind 6 subtype 8)
 - [x] `0040c8f0` inferred_C0042b390_Verb2 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b390 slot 23 (kind 5 subtype 3)
-- [ ] `0040c940` inferred_C0042a830_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a830 slot 21 (kind 12 subtype 7)
-- [ ] `0040c990` inferred_C0042a830_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a830 slot 23 (kind 12 subtype 7)
-- [ ] `0040ca10` inferred_C0042a750_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a750 slot 21 (kind 12 subtype 8)
-- [ ] `0040ca60` inferred_C0042a750_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042a750 slot 23 (kind 12 subtype 8)
+- [x] `0040c940` inferred_C0042a830_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a830 slot 21 (kind 12 subtype 7)
+- [x] `0040c990` inferred_C0042a830_Verb2 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a830 slot 23 (kind 12 subtype 7)
+- [x] `0040ca10` inferred_C0042a750_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a750 slot 21 (kind 12 subtype 8)
+- [x] `0040ca60` inferred_C0042a750_Verb2 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a750 slot 23 (kind 12 subtype 8)
 
-### Cluster 19: 0040cab0–0040cd60 (2/8 ported)
+### Cluster 19: 0040cab0–0040cd60 (8/8 ported)
 
-- [ ] `0040cab0` inferred_C00429fe0_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429fe0 slot 21 (kind 17 subtype 1)
-- [ ] `0040cb00` inferred_C00429f70_Verb1 (vtable) · depth 14 · 22 lines · **untouched** — unread; first seen in vtable 00429f70 slot 21 (kind 17 subtype 2)
-- [ ] `0040cb60` inferred_C00429d40_Verb3 (vtable) · depth 14 · 20 lines · **untouched** — unread; first seen in vtable 00429d40 slot 22 (kind 17 subtype 13)
-- [ ] `0040cbd0` inferred_C00429f00_Verb3 (vtable) · depth 14 · 20 lines · **untouched** — unread; first seen in vtable 00429f00 slot 22 (kind 17 subtype 3)
-- [ ] `0040cc40` inferred_C00429e90_Verb1 (vtable) · depth 14 · 25 lines · **untouched** — unread; first seen in vtable 00429e90 slot 21 (kind 17 subtype 4)
-- [ ] `0040ccc0` inferred_C00429e20_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429e20 slot 21 (kind 17 subtype 5)
+- [x] `0040cab0` inferred_C00429fe0_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429fe0 slot 21 (kind 17 subtype 1)
+- [x] `0040cb00` inferred_C00429f70_Verb1 (vtable) · depth 14 · 22 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429f70 slot 21 (kind 17 subtype 2)
+- [x] `0040cb60` inferred_C00429d40_Verb3 (vtable) · depth 14 · 20 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429d40 slot 22 (kind 17 subtype 13)
+- [x] `0040cbd0` inferred_C00429f00_Verb3 (vtable) · depth 14 · 20 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429f00 slot 22 (kind 17 subtype 3)
+- [x] `0040cc40` inferred_C00429e90_Verb1 (vtable) · depth 14 · 25 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429e90 slot 21 (kind 17 subtype 4)
+- [x] `0040ccc0` inferred_C00429e20_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429e20 slot 21 (kind 17 subtype 5)
 - [x] `0040cd10` inferred_C0042b6c0_Verb2 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b6c0 slot 23 (kind 5 subtype 5)
 - [x] `0040cd60` inferred_C0042b638_Verb2 (vtable) · depth 14 · 28 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b638 slot 23 (kind 5 subtype 6)
 
-### Cluster 20: 0040cdf0–0040d1a0 (0/10 ported)
+### Cluster 20: 0040cdf0–0040d1a0 (9/10 ported)
 
-- [ ] `0040cdf0` inferred_C00429a30_Verb3 (vtable) · depth 2 · 13 lines · **untouched** — unread; first seen in vtable 00429a30 slot 22 (kind 17 subtype 14)
-- [ ] `0040cfd0` inferred_C004299c0_Verb3 (vtable) · depth 2 · 13 lines · **untouched** — unread; first seen in vtable 004299c0 slot 22 (kind 17 subtype 15)
-- [ ] `0040ce20` inferred_C00429b80_Verb3 (vtable) · depth 14 · 20 lines · **untouched** — unread; first seen in vtable 00429b80 slot 22 (kind 17 subtype 10)
-- [ ] `0040ce90` inferred_C00429b10_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429b10 slot 23 (kind 17 subtype 11)
-- [ ] `0040cee0` inferred_C00429aa0_Verb3 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429aa0 slot 22 (kind 17 subtype 12)
-- [ ] `0040cf30` inferred_C00429cd0_Verb3 (vtable) · depth 14 · 34 lines · **untouched** — unread; first seen in vtable 00429cd0 slot 22 (kind 17 subtype 7)
-- [ ] `0040d000` inferred_C00429c60_Verb1 (vtable) · depth 14 · 20 lines · **untouched** — unread; first seen in vtable 00429c60 slot 21 (kind 17 subtype 8)
-- [ ] `0040d070` inferred_C00429c60_Verb3 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 00429c60 slot 22 (kind 17 subtype 8)
-- [ ] `0040d100` inferred_C00429bf0_Verb3 (vtable) · depth 14 · 29 lines · **untouched** — unread; first seen in vtable 00429bf0 slot 22 (kind 17 subtype 9)
+- [x] `0040cdf0` inferred_C00429a30_Verb3 (vtable) · depth 2 · 13 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429a30 slot 22 (kind 17 subtype 14)
+- [x] `0040cfd0` inferred_C004299c0_Verb3 (vtable) · depth 2 · 13 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 004299c0 slot 22 (kind 17 subtype 15)
+- [x] `0040ce20` inferred_C00429b80_Verb3 (vtable) · depth 14 · 20 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429b80 slot 22 (kind 17 subtype 10)
+- [x] `0040ce90` inferred_C00429b10_Verb2 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429b10 slot 23 (kind 17 subtype 11)
+- [x] `0040cee0` inferred_C00429aa0_Verb3 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429aa0 slot 22 (kind 17 subtype 12)
+- [x] `0040cf30` inferred_C00429cd0_Verb3 (vtable) · depth 14 · 34 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429cd0 slot 22 (kind 17 subtype 7)
+- [x] `0040d000` inferred_C00429c60_Verb1 (vtable) · depth 14 · 20 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429c60 slot 21 (kind 17 subtype 8)
+- [x] `0040d070` inferred_C00429c60_Verb3 (vtable) · depth 14 · 24 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429c60 slot 22 (kind 17 subtype 8)
+- [x] `0040d100` inferred_C00429bf0_Verb3 (vtable) · depth 14 · 29 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429bf0 slot 22 (kind 17 subtype 9)
 - [ ] `0040d1a0` inferred_C0042ad18_Verb0 (vtable) · depth 14 · 37 lines · **untouched** — unread; first seen in vtable 0042ad18 slot 20 (kind 6 subtype 4)
 
-### Cluster 21: 0040d240–0040d5a0 (2/10 ported)
+### Cluster 21: 0040d240–0040d5a0 (10/10 ported)
 
-- [ ] `0040d240` inferred_C00428c30_Verb0 (vtable) · depth 2 · 14 lines · **untouched** — unread; first seen in vtable 00428c30 slot 20 (kind 20 subtype 30)
-- [ ] `0040d330` inferred_C00428d80_Verb3 (vtable) · depth 2 · 16 lines · **untouched** — unread; first seen in vtable 00428d80 slot 22 (kind 20 subtype 27)
-- [ ] `0040d270` inferred_C004298e0_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 004298e0 slot 23 (kind 20 subtype 0)
-- [ ] `0040d2c0` inferred_C00429090_Verb0 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00429090 slot 20 (kind 20 subtype 20)
+- [x] `0040d240` inferred_C00428c30_Verb0 (vtable) · depth 2 · 14 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428c30 slot 20 (kind 20 subtype 30)
+- [x] `0040d330` inferred_C00428d80_Verb3 (vtable) · depth 2 · 16 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428d80 slot 22 (kind 20 subtype 27)
+- [x] `0040d270` inferred_C004298e0_Verb2 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 004298e0 slot 23 (kind 20 subtype 0)
+- [x] `0040d2c0` inferred_C00429090_Verb0 (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429090 slot 20 (kind 20 subtype 20)
 - [x] `0040d380` inferred_C0042b170_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b170 slot 21 (kind 5 subtype 14)
 - [x] `0040d3d0` inferred_C0042b170_Verb2 (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b170 slot 23 (kind 5 subtype 14)
-- [ ] `0040d450` inferred_C00429720_Verb1 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 00429720 slot 21 (kind 20 subtype 4)
-- [ ] `0040d4e0` inferred_C00429790_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429790 slot 21 (kind 20 subtype 3)
-- [ ] `0040d530` inferred_C00429790_Verb0 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00429790 slot 20 (kind 20 subtype 3)
-- [ ] `0040d5a0` inferred_C004296b0_Verb0 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 004296b0 slot 20 (kind 20 subtype 5)
+- [x] `0040d450` inferred_C00429720_Verb1 (vtable) · depth 14 · 27 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429720 slot 21 (kind 20 subtype 4)
+- [x] `0040d4e0` inferred_C00429790_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429790 slot 21 (kind 20 subtype 3)
+- [x] `0040d530` inferred_C00429790_Verb0 (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429790 slot 20 (kind 20 subtype 3)
+- [x] `0040d5a0` inferred_C004296b0_Verb0 (vtable) · depth 14 · 24 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 004296b0 slot 20 (kind 20 subtype 5)
 
-### Cluster 22: 0040d620–0040d9a0 (0/12 ported)
+### Cluster 22: 0040d620–0040d9a0 (12/12 ported)
 
-- [ ] `0040d620` inferred_C00429640_Verb3 (vtable) · depth 2 · 14 lines · **untouched** — unread; first seen in vtable 00429640 slot 22 (kind 20 subtype 6)
-- [ ] `0040d820` inferred_C00429480_Verb3 (vtable) · depth 2 · 16 lines · **untouched** — unread; first seen in vtable 00429480 slot 22 (kind 20 subtype 10)
-- [ ] `0040d910` inferred_C00428ed0_Verb3 (vtable) · depth 2 · 14 lines · **untouched** — unread; first seen in vtable 00428ed0 slot 22 (kind 20 subtype 23)
-- [ ] `0040d650` inferred_C004294f0_Verb2 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 004294f0 slot 23 (kind 20 subtype 9)
-- [ ] `0040d6a0` inferred_C004294f0_Verb3 (vtable) · depth 14 · 20 lines · **untouched** — unread; first seen in vtable 004294f0 slot 22 (kind 20 subtype 9)
-- [ ] `0040d6f0` inferred_C00429330_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429330 slot 21 (kind 20 subtype 13)
-- [ ] `0040d740` inferred_C004293a0_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 004293a0 slot 21 (kind 20 subtype 12)
-- [ ] `0040d790` inferred_C004293a0_Verb3 (vtable) · depth 14 · 26 lines · **untouched** — unread; first seen in vtable 004293a0 slot 22 (kind 20 subtype 12)
-- [ ] `0040d870` inferred_C00428ca0_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00428ca0 slot 21 (kind 20 subtype 29)
-- [ ] `0040d8c0` inferred_C00428f40_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00428f40 slot 21 (kind 20 subtype 24)
-- [ ] `0040d950` inferred_C00429170_Verb3 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00429170 slot 22 (kind 20 subtype 18)
-- [ ] `0040d9a0` inferred_C00428e60_Verb1 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 00428e60 slot 21 (kind 20 subtype 25)
+- [x] `0040d620` inferred_C00429640_Verb3 (vtable) · depth 2 · 14 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429640 slot 22 (kind 20 subtype 6)
+- [x] `0040d820` inferred_C00429480_Verb3 (vtable) · depth 2 · 16 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429480 slot 22 (kind 20 subtype 10)
+- [x] `0040d910` inferred_C00428ed0_Verb3 (vtable) · depth 2 · 14 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428ed0 slot 22 (kind 20 subtype 23)
+- [x] `0040d650` inferred_C004294f0_Verb2 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 004294f0 slot 23 (kind 20 subtype 9)
+- [x] `0040d6a0` inferred_C004294f0_Verb3 (vtable) · depth 14 · 20 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 004294f0 slot 22 (kind 20 subtype 9)
+- [x] `0040d6f0` inferred_C00429330_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429330 slot 21 (kind 20 subtype 13)
+- [x] `0040d740` inferred_C004293a0_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 004293a0 slot 21 (kind 20 subtype 12)
+- [x] `0040d790` inferred_C004293a0_Verb3 (vtable) · depth 14 · 26 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 004293a0 slot 22 (kind 20 subtype 12)
+- [x] `0040d870` inferred_C00428ca0_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428ca0 slot 21 (kind 20 subtype 29)
+- [x] `0040d8c0` inferred_C00428f40_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428f40 slot 21 (kind 20 subtype 24)
+- [x] `0040d950` inferred_C00429170_Verb3 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429170 slot 22 (kind 20 subtype 18)
+- [x] `0040d9a0` inferred_C00428e60_Verb1 (vtable) · depth 14 · 27 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428e60 slot 21 (kind 20 subtype 25)
 
-### Cluster 23: 0040db40–0040dd40 (0/12 ported)
+### Cluster 23: 0040db40–0040dd40 (2/12 ported)
 
 - [ ] `0040db40` inferred_Pool_AllocZero · depth 0 · 38 lines · **understood** — bump-allocates size bytes (4-aligned) zeroed from arena index in global pool 00442100; returns 0 when full
 - [ ] `0040dc00` inferred_Pool_IsValid · depth 0 · 7 lines · **decompiled**
@@ -297,8 +297,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `0040dd40` inferred_Obj_Kind23_Ctor · depth 4 · 20 lines · **decompiled** — 0xa4 bytes, vtable 0042b8e0, extends MidBase, sort value +0x5e = 2 (0 when flag byte set)
 - [ ] `0040dbc0` inferred_Pool_Ctor · depth 5 · 11 lines · **decompiled** — allocates param*1000 bytes (called with 0x39d0 = about 14.8 MB)
 - [ ] `0040dbf0` inferred_Pool_Dtor · depth 5 · 8 lines · **decompiled**
-- [ ] `0040da30` inferred_C00428df0_Verb1 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 00428df0 slot 21 (kind 20 subtype 26)
-- [ ] `0040da80` inferred_C00428fb0_Verb3 (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00428fb0 slot 22 (kind 20 subtype 22)
+- [x] `0040da30` inferred_C00428df0_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428df0 slot 21 (kind 20 subtype 26)
+- [x] `0040da80` inferred_C00428fb0_Verb3 (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428fb0 slot 22 (kind 20 subtype 22)
 - [ ] `0040daf0` inferred_C0042ae80_Verb0 (vtable) · depth 14 · 19 lines · **untouched** — unread; first seen in vtable 0042ae80 slot 20 (kind 6 subtype 7)
 
 ### Cluster 24: 0040e580–0040e720 (4/12 ported)
@@ -481,44 +481,44 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00415880` inferred_CreateMainWindow · depth 7 · 37 lines · **understood** — RegisterClass + CreateWindowEx 640x480 (style 0x90000000, ex 8), ShowWindow, ShowCursor(0), sets init flags, calls InitSubsystems
 - [ ] `00415960` inferred_WinMain · depth 17 · 89 lines · **understood** — args: none=CD check+SETUP.EXE; '_$_$_ '+byte=game; 'Uninstall'
 
-### Cluster 38: 00415c30–00416170 (2/12 ported)
+### Cluster 38: 00415c30–00416170 (7/12 ported)
 
 - [ ] `00415c30` inferred_SetInitFlags · depth 0 · 11 lines · **understood** — sets globals 00442208 and 0044221c to 1
 - [x] `00415c40` inferred_NameHash64 · depth 0 · 44 lines · **emu-compared** → `core/namekey.cpp::nameKey64` — packs up to 12 chars of a name, 5 bits each (chars below '5' get +11), into a 64-bit key; used with level object lookup
 - [x] `00415cb0` inferred_NameHash64_Decode · depth 0 · 55 lines · **emu-compared** → `engines/tesoro/core/namekey.cpp::nameFromKey` — (lo, hi, buffer) rebuilds a readable name from a 64-bit key; used for error text
 - [ ] `00415b00` inferred_FindCdAndSetup · depth 10 · 71 lines · **understood** — scans drives for label TESORO, checks SETUP.EXE
-- [ ] `00415d90` inferred_C00429410_UseItem (vtable) · depth 13 · 25 lines · **untouched** — unread; first seen in vtable 00429410 slot 27 (kind 20 subtype 11)
+- [x] `00415d90` inferred_C00429410_UseItem (vtable) · depth 13 · 25 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429410 slot 27 (kind 20 subtype 11)
 - [ ] `00415d20` inferred_C0042af70_Verb0 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 0042af70 slot 20 (kind 6 subtype 9)
-- [ ] `00415e30` inferred_C00429100_UseItem (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00429100 slot 27 (kind 20 subtype 19)
-- [ ] `00415e90` inferred_C0042a050_Verb1 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 0042a050 slot 21 (kind 17 subtype 0)
-- [ ] `00415f10` inferred_C0042a050_Verb3 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 0042a050 slot 22 (kind 17 subtype 0)
+- [x] `00415e30` inferred_C00429100_UseItem (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429100 slot 27 (kind 20 subtype 19)
+- [x] `00415e90` inferred_C0042a050_Verb1 (vtable) · depth 14 · 24 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a050 slot 21 (kind 17 subtype 0)
+- [x] `00415f10` inferred_C0042a050_Verb3 (vtable) · depth 14 · 24 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a050 slot 22 (kind 17 subtype 0)
 - [ ] `00415f90` inferred_C0042aca0_Verb0 (vtable) · depth 14 · 32 lines · **untouched** — unread; first seen in vtable 0042aca0 slot 20 (kind 6 subtype 3)
 - [ ] `00416030` inferred_C0042aca0_Slot28 (vtable) · depth 14 · 42 lines · **untouched** — unread; first seen in vtable 0042aca0 slot 28 (kind 6 subtype 3)
-- [ ] `00416170` inferred_C00429950_Verb4 (vtable) · depth 14 · 30 lines · **untouched** — unread; first seen in vtable 00429950 slot 24 (kind 17 subtype 16)
+- [x] `00416170` inferred_C00429950_Verb4 (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429950 slot 24 (kind 17 subtype 16)
 
-### Cluster 39: 00416300–004169a0 (6/12 ported)
+### Cluster 39: 00416300–004169a0 (9/12 ported)
 
 - [ ] `00416300` inferred_C004289d8_Slot28 (vtable) · depth 12 · 86 lines · **untouched** — unread; first seen in vtable 004289d8 slot 28
 - [ ] `004169a0` inferred_C004288e8_Slot28 (vtable) · depth 12 · 33 lines · **untouched** — unread; first seen in vtable 004288e8 slot 28
-- [ ] `00416220` inferred_C00429950_UseItem (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00429950 slot 27 (kind 17 subtype 16)
-- [ ] `00416280` inferred_C00429db0_Verb0 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 00429db0 slot 20 (kind 17 subtype 6)
+- [x] `00416220` inferred_C00429950_UseItem (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429950 slot 27 (kind 17 subtype 16)
+- [x] `00416280` inferred_C00429db0_Verb0 (vtable) · depth 14 · 24 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429db0 slot 20 (kind 17 subtype 6)
 - [x] `00416540` inferred_C0042b5b0_Verb2 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b5b0 slot 23 (kind 5 subtype 7)
 - [x] `00416590` inferred_C0042b5b0_UseItem (vtable) · depth 14 · 41 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b5b0 slot 27 (kind 5 subtype 7)
 - [x] `00416680` inferred_C0042b528_UseItem (vtable) · depth 14 · 31 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b528 slot 27 (kind 5 subtype 8)
 - [x] `00416700` inferred_C0042b528_Verb2 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b528 slot 23 (kind 5 subtype 8)
 - [x] `00416750` inferred_C0042b528_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b528 slot 21 (kind 5 subtype 8)
-- [ ] `004167a0` inferred_C00429b10_UseItem (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00429b10 slot 27 (kind 17 subtype 11)
+- [x] `004167a0` inferred_C00429b10_UseItem (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429b10 slot 27 (kind 17 subtype 11)
 - [ ] `00416800` inferred_C0042bbd0_RunVerb (vtable) · depth 14 · 43 lines · **untouched** — unread; first seen in vtable 0042bbd0 slot 13
 - [x] `00416910` inferred_C0042b6c0_UseItem (vtable) · depth 14 · 31 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b6c0 slot 27 (kind 5 subtype 5)
 
-### Cluster 40: 00416b50–00417250 (2/9 ported)
+### Cluster 40: 00416b50–00417250 (3/9 ported)
 
 - [ ] `00416b50` inferred_C004280f0_Slot28 (vtable) · depth 2 · 15 lines · **untouched** — unread; first seen in vtable 004280f0 slot 28
 - [ ] `00416b80` inferred_C00428258_Slot28 (vtable) · depth 12 · 45 lines · **untouched** — unread; first seen in vtable 00428258 slot 28
 - [ ] `00416c80` inferred_C004281e0_Slot28 (vtable) · depth 12 · 71 lines · **untouched** — unread; first seen in vtable 004281e0 slot 28
 - [x] `00416a20` inferred_C0042b280_Verb2 (vtable) · depth 14 · 26 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b280 slot 23 (kind 5 subtype 0)
 - [x] `00416ac0` inferred_C0042b280_UseItem (vtable) · depth 14 · 27 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b280 slot 27 (kind 5 subtype 0)
-- [ ] `00416e30` inferred_C00428d10_UseItem (vtable) · depth 14 · 35 lines · **untouched** — unread; first seen in vtable 00428d10 slot 27 (kind 20 subtype 28)
+- [x] `00416e30` inferred_C00428d10_UseItem (vtable) · depth 14 · 35 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428d10 slot 27 (kind 20 subtype 28)
 - [ ] `00416ee0` inferred_C0042a600_UseItem (vtable) · depth 14 · 106 lines · **untouched** — unread; first seen in vtable 0042a600 slot 27 (kind 13 subtype 16)
 - [ ] `00417180` inferred_C0042a520_Verb4 (vtable) · depth 14 · 34 lines · **untouched** — unread; first seen in vtable 0042a520 slot 24 (kind 13 subtype 9)
 - [ ] `00417250` inferred_C0042a440_UseItem (vtable) · depth 14 · 47 lines · **untouched** — unread; first seen in vtable 0042a440 slot 27 (kind 13 subtype 28)
@@ -535,43 +535,43 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00417640` inferred_C0042afe8_Slot28 (vtable) · depth 14 · 44 lines · **untouched** — unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)
 - [ ] `004178b0` inferred_C0042bf90_SetVerbAndClick (vtable) · depth 14 · 37 lines · **untouched** — unread; first seen in vtable 0042bf90 slot 14
 
-### Cluster 42: 00417b30–00417d00 (3/7 ported)
+### Cluster 42: 00417b30–00417d00 (5/7 ported)
 
-- [x] `00417b30` inferred_Obj_RetTrue (vtable) · depth 0 · 7 lines · **ported** → `engines/tesoro/core/interactive.h` — MidBase slot 16: returns 1 (is interactive/enabled default)
+- [x] `00417b30` inferred_Obj_RetTrue (vtable) · depth 0 · 7 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — MidBase slot 16: returns 1 (is interactive/enabled default)
 - [ ] `004179b0` inferred_C0042bc08_RunVerb (vtable) · depth 2 · 41 lines · **untouched** — unread; first seen in vtable 0042bc08 slot 13
 - [ ] `00417c80` ScriptFANMMENU_Do (vtable) · depth 2 · 10 lines · **understood** — unread; first seen in vtable 004282d0 slot 28
 - [x] `00417ad0` inferred_Obj_Kind25_Ctor · depth 4 · 12 lines · **emu-compared** — 0xa4 bytes, vtable 0042c000, extends MidBase
-- [ ] `00417ca0` inferred_C004295d0_UseItem (vtable) · depth 13 · 21 lines · **untouched** — unread; first seen in vtable 004295d0 slot 27 (kind 20 subtype 7)
-- [ ] `00417d00` inferred_C00429560_UseItem (vtable) · depth 13 · 31 lines · **untouched** — unread; first seen in vtable 00429560 slot 27 (kind 20 subtype 8)
+- [x] `00417ca0` inferred_C004295d0_UseItem (vtable) · depth 13 · 21 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 004295d0 slot 27 (kind 20 subtype 7)
+- [x] `00417d00` inferred_C00429560_UseItem (vtable) · depth 13 · 31 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429560 slot 27 (kind 20 subtype 8)
 - [x] `00417b40` inferred_Obj_Kind25_Click (vtable) · depth 15 · 49 lines · **emu-compared** → `engines/tesoro/core/menuitem.cpp::MenuItem::setVerbAndClick` — unread; first seen in vtable 0042c000 slot 14
 
-### Cluster 43: 00417dd0–00418560 (4/12 ported)
+### Cluster 43: 00417dd0–00418560 (9/12 ported)
 
 - [ ] `00417dd0` inferred_C0042ae08_Verb0 (vtable) · depth 13 · 10 lines · **untouched** — unread; first seen in vtable 0042ae08 slot 20 (kind 6 subtype 6)
-- [ ] `004180b0` inferred_C00429870_UseItem (vtable) · depth 13 · 21 lines · **untouched** — unread; first seen in vtable 00429870 slot 27 (kind 20 subtype 1)
-- [ ] `00418110` inferred_C004292c0_UseItem (vtable) · depth 13 · 31 lines · **untouched** — unread; first seen in vtable 004292c0 slot 27 (kind 20 subtype 16)
-- [ ] `00417de0` inferred_C004298e0_UseItem (vtable) · depth 14 · 32 lines · **untouched** — unread; first seen in vtable 004298e0 slot 27 (kind 20 subtype 0)
-- [ ] `00417e90` inferred_C00429800_UseItem (vtable) · depth 14 · 69 lines · **untouched** — unread; first seen in vtable 00429800 slot 27 (kind 20 subtype 2)
+- [x] `004180b0` inferred_C00429870_UseItem (vtable) · depth 13 · 21 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429870 slot 27 (kind 20 subtype 1)
+- [x] `00418110` inferred_C004292c0_UseItem (vtable) · depth 13 · 31 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 004292c0 slot 27 (kind 20 subtype 16)
+- [x] `00417de0` inferred_C004298e0_UseItem (vtable) · depth 14 · 32 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 004298e0 slot 27 (kind 20 subtype 0)
+- [x] `00417e90` inferred_C00429800_UseItem (vtable) · depth 14 · 69 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429800 slot 27 (kind 20 subtype 2)
 - [ ] `00418050` inferred_C0042ad90_Verb0 (vtable) · depth 14 · 24 lines · **untouched** — unread; first seen in vtable 0042ad90 slot 20 (kind 6 subtype 5)
 - [x] `004181e0` inferred_C0042b170_UseItem (vtable) · depth 14 · 35 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b170 slot 27 (kind 5 subtype 14)
 - [x] `004182c0` inferred_C0042b1f8_UseItem (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b1f8 slot 27 (kind 5 subtype 13)
-- [ ] `00418320` inferred_C00429250_UseItem (vtable) · depth 14 · 33 lines · **untouched** — unread; first seen in vtable 00429250 slot 27 (kind 20 subtype 14)
+- [x] `00418320` inferred_C00429250_UseItem (vtable) · depth 14 · 33 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429250 slot 27 (kind 20 subtype 14)
 - [x] `004183e0` inferred_C0042b1f8_Verb2 (vtable) · depth 14 · 40 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b1f8 slot 23 (kind 5 subtype 13)
 - [x] `004184e0` inferred_C0042b1f8_Verb1 (vtable) · depth 14 · 25 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b1f8 slot 21 (kind 5 subtype 13)
 - [ ] `00418560` inferred_C0042ac28_Verb0 (vtable) · depth 14 · 27 lines · **untouched** — unread; first seen in vtable 0042ac28 slot 20 (kind 6 subtype 2)
 
-### Cluster 44: 004185c0–00418b80 (6/8 ported)
+### Cluster 44: 004185c0–00418b80 (7/8 ported)
 
 - [x] `004185c0` inferred_C0042b4a0_Verb2 (vtable) · depth 14 · 34 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b4a0 slot 23 (kind 5 subtype 1)
 - [x] `00418670` inferred_C0042b4a0_UseItem (vtable) · depth 14 · 54 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b4a0 slot 27 (kind 5 subtype 1)
-- [ ] `00418780` inferred_C00429020_UseItem (vtable) · depth 14 · 23 lines · **untouched** — unread; first seen in vtable 00429020 slot 27 (kind 20 subtype 21)
+- [x] `00418780` inferred_C00429020_UseItem (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429020 slot 27 (kind 20 subtype 21)
 - [x] `004187e0` inferred_C0042b308_Verb2 (vtable) · depth 14 · 25 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b308 slot 23 (kind 5 subtype 2)
 - [x] `00418860` inferred_C0042b308_UseItem (vtable) · depth 14 · 50 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b308 slot 27 (kind 5 subtype 2)
 - [x] `00418990` inferred_C0042b418_Verb2 (vtable) · depth 14 · 38 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b418 slot 23 (kind 5 subtype 4)
 - [x] `00418aa0` inferred_C0042b418_UseItem (vtable) · depth 14 · 44 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b418 slot 27 (kind 5 subtype 4)
 - [ ] `00418b80` inferred_C0042abb0_Verb0 (vtable) · depth 14 · 34 lines · **untouched** — unread; first seen in vtable 0042abb0 slot 20 (kind 6 subtype 1)
 
-### Cluster 45: 00418d20–00419050 (3/7 ported)
+### Cluster 45: 00418d20–00419050 (4/7 ported)
 
 - [ ] `00418d20` inferred_Connect4_ScoreMove · depth 0 · 76 lines · **untouched** — scores a move on a 7-column board (columns hold up to 7 pieces, lines of 4): hypothesis for a board mini-game | name from call sites and a skim; body not yet read
 - [ ] `00419050` inferred_Connect4_FindBestMoves · depth 1 · 74 lines · **untouched** — tries each non-full column, collects the best-scoring columns | name from call sites and a skim; body not yet read
@@ -579,7 +579,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00418c50` inferred_C0042b390_Slot30 (vtable) · depth 3 · 16 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b390 slot 30 (kind 5 subtype 3)
 - [ ] `00418e90` inferred_BoardGame_BlinkUpdate · depth 3 · 97 lines · **untouched** — toggles a blink flag every 200 ms of game time and updates board objects; hypothesis | name from call sites and a skim; body not yet read
 - [x] `00418c30` inferred_C0042b390_Draw (vtable) · depth 4 · 10 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b390 slot 6 (kind 5 subtype 3)
-- [ ] `00418cb0` inferred_C0042a750_UseItem (vtable) · depth 14 · 30 lines · **untouched** — unread; first seen in vtable 0042a750 slot 27 (kind 12 subtype 8)
+- [x] `00418cb0` inferred_C0042a750_UseItem (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a750 slot 27 (kind 12 subtype 8)
 
 ### Cluster 46: 004191c0–00419ac0 (2/12 ported)
 
