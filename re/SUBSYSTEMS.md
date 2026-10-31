@@ -20,7 +20,7 @@ flowchart TD
     Archive --> Anim["Animations<br/>pictures + steps ✅"]
     Archive --> Level["Level ✅<br/>banks, rooms, objects, camera"]
     Clock["Game clock ✅"] --> Anim
-    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 7, 8, 10, 25 built by levels;<br/>5, 9, 12, 17, 20 and Jim ported, not yet built"]
+    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 7, 8, 10, 25 built by levels;<br/>5, 6, 9, 12, 13, 17, 20 built through World;<br/>Jim made by World"]
     Level --> Objects
     Objects -->|"picture + depth"| Queue["Screen queue ✅<br/>RenderQueue: spans per row"]
     Queue --> Compose["Compose ✅<br/>ScreenDisplay: spans to pixels"]
@@ -50,6 +50,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Collisions: `sweepRects`, `Level::collisionPass`.
 - The world: `World` (answers every host for real), `WorldLevel` (a level that builds the clickable kinds).
 - Exits: `ExitDoor` (an exit between levels), `ExitHost` (what it asks of the game).
+- Board game: `ConnectFour` (the thinking of the "Conecta" game) and `ConnectFourHost` (what it asks of the game).
 - Items: `InventoryItem` (things Jim carries), `ItemHost` (what it asks of the game).
 - Props: `ScriptedProp` (story props of kinds 12, 17 and 20), `PropHost` (what it asks of the game).
 - Characters: `Character` (a clickable, speaking person of a level), `CharacterHost` (what it asks of the game, on top of `InteractiveHost`).
@@ -218,15 +219,17 @@ looking, showing and switching objects, the choice menu (the pointer's picture i
 an entry in the main list; a click or a menu item can start one. The one with a numbered type also has a scene routine behind its `DO` lines: 17 of the 19
 are ported: the opening scene (type 1), the menu's fades (17), the captain's exit (21), the throne-room trips (20, also what a script's "run FANMTRONO"
 does) and all the ones that only move Jim to another level and set the scene there (2 to 7, 9, 10, 12, 15, 16, 18, 19: where he appears, whether he
-is shown, which objects are switched on or off, the fade and pause). The two left warn: types 8 and 14 (the rope-connecting puzzle, which keeps
-its own game state). When a script finishes, a character it held for
+is shown, which objects are switched on or off, the fade and pause). The two left warn: types 8 and 14 (the board game "Conecta" in the fisherman's hut). Its thinking is ported and checked: `ConnectFour` (seven columns of
+seven, lines of four; scores the last piece's lines, searches the best columns, avoids moves that let the player win at once, picks at random among equals,
+and takes its turn after the player's: win, loss, draw or a move) matches the original on 1,200 random boards. What is not ported is the game's own
+screen and state (the pieces' pictures, the blink of the winning line, the click that drops a piece, the timing). When a script finishes, a character it held for
 speaking is let go and its held flag cleared (found by running it: the animation otherwise kept being reset). Seen working: the captain's talk
 script plays Jim's and the captain's lines with subtitles and ends with Jim walking out of the despacho into the port.
 **Starting the game.** "Nueva partida" now fades to the new-game menu and plays its script; the start button puts Jim in the port, shows him and
 starts the opening script, which runs through the ship arriving and Jim walking into the despacho (the screen follows Jim into each level). Seen
 running from the start button's code path; the two movies of the intro are skipped with a warning.
-**Not there yet (they warn when reached):** the rope-connecting puzzle's two routines (types 8 and 14); the movies; turning a page of the inventory; the two frame changes of the
-cabin's walk-area objects; Jim's use of item 37; the skip key (any mouse button skips a line for now); the sound has only been run with a silent audio driver here; a subtitles option (always on).
+**Not there yet (they warn when reached):** the board game's screen, clicks and its two scene routines (types 8 and 14); the movies; turning a page of the inventory; the two frame changes of the
+cabin's walk-area objects; Jim's use of item 37; the skip key (any mouse button skips a line for now); the voices start and finish on the mixer (checked with a silent audio driver: the captain's talk now ends by its voices, with no skipping), but nobody has listened to them yet; a subtitles option (always on).
 **Seen working:** the engine reads all 47 levels with these objects, puts Jim in the despacho and draws the room with the captain in his chair, Jim
 standing in front and the items of the room, with no warnings. Not checked against the original (the hosts are the engine's own decisions, not
 ported functions).
@@ -380,8 +383,8 @@ flowchart LR
 ```
 
 *Built by the level:* the plain animated object (kind 0), the camera frame (1), the sprite (3), the floor (7), the route (8), the pointer (10) and the menu item (25), as `Object`, `CameraFrame`, `SpriteObject`, `WalkFloor`, `PathObject`, `Cursor`, `MenuItem`. Each draws through the `Display` interface; the object's hit rectangle and its movement feed the collision pass.
-*Ported but not yet built by the level:* the plain clickable (9), the characters (5), the scripted props (12, 17, 20) and Jim (see their sections).
-*Not done yet:* items (13), doors and exits (6), the other interface-strip objects, the factory entries for the above.
+*Built when `World` reads a level:* the characters (5), exits (6), the plain clickable (9), the scripted props (12, 17, 20) and items (13) (see their sections); Jim is made by `World` on first use.
+*Not built yet:* kinds 2, 11, 14, 15, 16, 19, 21, 22, 23 and 24, and some of the interface strip's objects.
 
 ---
 
@@ -417,13 +420,12 @@ since it is a hitter target the pointer hovers over it. A click (left, or the al
   `FANMMENU/nuevo` starts (video 1 and a picture, see Scripts); it ends the pass.
 - 1 "Cargar partida": fade, then the saved-game list screen (not read).
 - 2, 3, 4 (easy, regular, hard in the new-game menu): easy and hard start the scripts `FANMMENU/facil` and `FANMMENU/dificil`; regular
-  fades and runs a routine that probably starts the game.
+  fades and runs the routine that starts the game.
 The click, the fade and the level change are ported and checked against the original (click call sequence 18/18, fade 74 frames);
-the scripts, the saved-game screen and the start routine are reported as not ported. In the engine, clicking "Nueva partida"
-fades out and shows the new-game menu; the rest warns.
+the saved-game screen is not ported. In the engine, "Nueva partida" fades out, shows the new-game menu and plays its script, and the start button puts Jim in the port and starts the opening script (see The world class); the other actions warn.
 
 **The main menu** (`PRINCIPAL`) is the smallest level: one room, two animation banks, four objects: the special object (kind 1),
-one kind 3, and two kind 25. All three kinds are ported and the menu level is drawn in the window; what is missing is the cursor and the click code. The new-game menu
+one kind 3, and two kind 25. All three kinds are ported and the menu level is drawn in the window; the cursor and the click code are wired in the engine (see the frame loop). The new-game menu
 (`NUEVO`) adds more kind 3 and kind 25 and nothing else.
 
 ## The screen: how pictures get drawn (first layer ✅)
@@ -508,9 +510,9 @@ pressed again while releasing. The game reads these states instead of tracking p
 The engine runs a **reduced frame** inside ScummVM: events become mouse position and buttons, the clock freezes, the pointer, the
 interface level and the current menu level each get their update, the cameras are updated, the screen is composed and copied to
 the window. The pointer is found in the interface level and menu items are hooked to the engine, so hover and the click on
-"Nueva partida" (fade, then the new-game menu) are wired. It is still not the original's frame: there is no main list holding
-levels and Jim, no companion pointer in the player's level, no sound, the scripts a click starts only warn, and the other
-menu actions are not ported. Not compared against the original as a whole.
+"Nueva partida" (fade, then the new-game menu) are wired, and a click can start scripts and the game through `World`. It is still not the
+original's frame as a whole: the engine's own loop calls the passes it needs, and the sound, movies and some menu actions are missing. Not compared
+against the original as a whole.
 
 ## Scripts 🟡 (read and compiled ✅, run ✅ with a stand-in world, nothing shown yet)
 
@@ -548,9 +550,9 @@ original; what each request does (walking, drawing text, the menu screen, the `D
 Found while reading: the thing the original calls "Jim's input" is the **main cursor**, not Jim; and a menu item reached from
 outside a menu is skipped, not run.
 
-What is **not** there: any real host (nothing shows or says a line yet), the `DO` routines (one per numbered block, only the
-menu's is read), the menu screen and the walking of characters. The spoken lines are read (see below) but are not yet
-connected to the compiler (the phrase numbers come from a stand-in in the check).
+What the **check** does not cover: the real hosts. `World` now answers them for real (see The world class), so lines are shown and said and
+characters walk, but that part is the engine's own decision, not compared with the original. The `DO` routines are mostly ported (two
+warn, see above); the menu screen is not.
 
 ### Speaking, sound and the choice menu 🟡 (read; text ✅ and the speaking rules ✅ ported, sound, menu and the characters themselves ⬜)
 What a spoken line does once a script asks for it (all read from the original, none of it ported yet):
@@ -564,7 +566,7 @@ Ported and checked against the original:
 - **The speaking rules** (`Speaker`): start a line, end it when the voice finishes or the player skips, wait for the player when there is no voice, move the mouth about every tenth of a second, give the line back. Compared with the original on 800 random sessions (calls to the sound, animation and list code are hooks, so what they do inside is not covered).
 Also ported: **the sound device** (`SoundDevice`: three voice records, the 44-byte WAV check, ids, the active list that is tidied once a frame; compared with the original on 800 sessions, with the mixer standing in for DirectSound) and the **music** (`CdAudio`: one track at a time, looping). `MixerVoiceBackend` and `ScummCdBackend` connect them to ScummVM. Not checked: how long a voice lasts exactly (the mixer decides), and which CD track number means which file.
 Also ported: **the choice menu** (`ChoiceMenu`: lays the choices out and bottom-aligns them, tracks the one under the mouse, answers a click; 9,152 runs identical to the original with its own text layout).
-Still to be written: a real `SpeakerHost`/`ScriptHost`, and moving Jim's own subtitle onto the same placement code as the characters'.
+The real `SpeakerHost`/`ScriptHost` now live in `World`. Still to do: moving Jim's own subtitle onto the same placement code as the characters'.
 
 ### Interactive objects (things you click) 🟡 (base ✅ ported; the kinds on top ⬜)
 Most clickable things in a level share one base, `InteractiveObject`. It is a scene object (`Object`) that also takes the pointer and acts as the place Jim walks to.
@@ -572,7 +574,7 @@ Most clickable things in a level share one base, `InteractiveObject`. It is a sc
 - **Arrival.** Jim turns to the facing the level data names and the object runs the verb: look, talk and the others each make Jim say the object's own line for that verb, or a stock answer ("No veo nada en especial.", "No contesta.", "No, no tengo ganas."). Using an inventory item gets "Yo no pinto ahí que me lo cargo." for item 0 and nothing visible for others. Verb 0 has no stock answer and the last two verbs do nothing.
 - **Waiting.** After Jim starts the line the object marks itself *pending*, switches the pointer off and joins the main list; once Jim is free again it switches the pointer back on and drops out of the list.
 - **Hover label.** The label shows the object's hover-name line if the level gives one, otherwise its own name spelled from its key.
-- **What it asks of the game** is one interface, `InteractiveHost` (Jim, the pointer, the main list, the carried item, the phrases). The characters, doors and props that override verbs are not ported yet.
+- **What it asks of the game** is one interface, `InteractiveHost` (Jim, the pointer, the main list, the carried item, the phrases). The characters, props, items and exits that override verbs are ported on top of it (see their sections).
 Checked against the original on 500 random sessions (constructor, click, update, arrival, hover and the answers; every call to the rest of the game identical). One thing found: the click and the arrival both put the carried item back before asking the object to use it, so an item's own reply table is only reached when something calls the use directly.
 - **Kind 9 is the base itself**: the level factory builds it with no state and no overrides, and only stores the subtype byte (the second data byte) in the object. So the plain clickable props are already ported. The kinds that override verbs on top of the same base are 12, 17 and 20 (scripted props, ported, see below), 13 (items you carry, ported, see below), 6 (exits and doors, ported, see below) and the kind 5 characters (`Character`, ported, see below).
 
@@ -623,7 +625,7 @@ Jim is a character like the others (he speaks through the same `Speaker` rules) 
 Ported and checked against the original: `WalkArea` (scale, route, corner stepping; 1,200 random shapes) and `JimWalker` (walk order, per-frame step, arrival, touch; 1,000 random sessions, with the calls to animation, list and speaker hooked). **Jim as an object** (`Jim`) is ported too: he is built from his nine animation banks, speaks through a `Speaker` and walks through a `JimWalker`, draws himself scaled with distance, scales his hit rectangle, and answers the touch. Compared with the original on 400 sessions: its own constructor builds him from nine made-up animation files and the original methods run on the real players; the calls, results, his fields and all nine players agree. Things found on the way: when a line starts while he is walking, the walking step runs too (starting a line runs the object's own update); the speaking and walking code share one byte; his talk draw draws the body from the first frame of the speaking bank and the mouth frame on top; walking switches animation without clearing the "held" flag. Not checked: saving and loading him.
 **Entering a level** (`Jim::enterLevel`) is ported from reading: Jim leaves the old level (its lists, its room, its place in the main list), joins the new level and room, the new level's camera starts on his old spot and then follows him, the level goes into the main list, the pictures that were left unloaded are loaded and brightened to the level's setting, and he is put at the new spot (he can only be hit by other objects except on the map). Checked for order and effects with a stand-in world, not against the original code. The small Jim methods that resume his facing and forward item 37 to the interface level are ported too (the interface object's answer is not read yet).
 **The floor of a level** is two objects, read from the shipped data: the *floor* (`WalkFloor`, kind 7, named SUELO in every level) whose outline gives the size of things at each place and which the level's camera-frame object points at, and the *route* (`PathObject`, kind 8, named PATH) whose corners Jim walks round obstacles by; the floor names its route. Both are ported and every one of the 38 shipped levels that has a floor finds its route (not compared with the original code; 12 levels, menus and the like, have none). One thing not ported: in the island levels the floor borrows its animation from the floor of another level.
-Still to do: a real `JimWorld` (main list, sound, level, walk area), and the collision that triggers the route (which object touches Jim there is inferred, not confirmed).
+`World` is the real `JimWorld` now. Still to do: the collision that triggers the route (which object touches Jim there is inferred, not confirmed).
 
 ### Spoken lines ✅ (read; not yet shown or played)
 
@@ -634,7 +636,7 @@ remembers where the voice recording `ID.WAV` is in the archive (or that there is
 tables are searched in that order and the first hit is kept. This is `SpeechTables`, checked against the original's reader, sort
 and search on the shipped files, on damaged copies of them and on texts that end exactly at the original's stopping point.
 The text reader both formats share is `StdioText`, a small copy of the C library behaviour the original relies on (`scanf`
-matching and skipping). Not done: showing the text, playing the sound, the font (`FUENTES.ANM`) and where text is placed.
+matching and skipping). Showing the text, playing the voice and the font (`FUENTES.ANM`) now work through `World`; not compared with the original.
 
 **What the menu scripts do** (block `FANMMENU`, type 17; read from the commands, the pictures behind the object names are not
 looked at yet): `nuevo` (started by "Nueva partida") plays video 1 and shows the object `CENSURA` for 5.5 seconds, then ends.
@@ -646,10 +648,9 @@ This is a reading of the names, not something seen on screen.
 
 ## Still to explore
 
-- The factory entries for the ported kinds (5, 9, 12, 17, 20) and the kinds still unread: items (13), doors and exits (6).
-- A real `JimWorld` (main list, level, sound), the start-up that builds the main list, and the companion pointer.
-- The shaped (pixel-accurate) part of the collision test, shadows, and drawing the hover text.
-- Running scripts for real: a real `ScriptHost`/`SpeakerHost`, the `DO` routines, video, the menu screen.
-- The saved-game list, saving and loading.
+- The object kinds still not built (2, 11, 14, 15, 16, 19, 21 to 24) and the rest of the interface strip.
+- The board game's screen and clicks, the movies, the inventory page, the skip key and a subtitles option.
+- The shaped (pixel-accurate) part of the collision test, shadows, and the companion pointer.
+- Sound and movies checked end to end, the saved-game list, saving and loading.
 
 Each time we finish one of these, its section above gets filled in and the diagram is updated.
