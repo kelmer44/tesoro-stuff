@@ -51,7 +51,8 @@ Codex will implement it together; Codex leads the reverse engineering.
   not in engine source comments. Source comments should explain useful behaviour.
 - Keep [re/SUBSYSTEMS.md](re/SUBSYSTEMS.md) up to date: a plain-language, human-readable map of
   how the subsystems interact (with Mermaid diagrams). Update it whenever a cluster is read, ported
-  or audited, and whenever a new engine class is introduced (name it and place it in the diagrams).
+  or audited, whenever a new engine class is introduced (name it and place it in the diagrams), and
+  whenever the level factory or the frame loop gains wiring (which kinds are built, what the frame runs).
   No addresses or jargon; mark what is checked against the original and what is not.
 - Read [skills/tesoro-re/SKILL.md](skills/tesoro-re/SKILL.md) for Tesoro research.
   Capture newly successful reusable research techniques there or in its linked

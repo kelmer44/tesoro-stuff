@@ -12,3 +12,4 @@ Status: <ledger status> · Cluster: N · Depth: N · Convention: <cdecl/stdcall/
 **Port:** engine file::function (branch/commit) · Deviations from original (if any, with reason).
 **Validation:** method (emulator / trace / original) · inputs covered · result · what it does *not* cover.
 **Open questions:**
+**Subsystems doc:** [ ] `re/SUBSYSTEMS.md` updated in plain language (what it does, classes, checked vs not checked; no addresses).
