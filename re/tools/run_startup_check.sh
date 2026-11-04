@@ -311,3 +311,9 @@ re/.venv/bin/python re/tools/gen_vectors_outline.py
 c++ -std=c++11 -O1 -fno-operator-names -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/outline_driver.cpp \
     "$ENG/engines/tesoro/core/outline.cpp" -o local-media/bin/outline_driver
 local-media/bin/outline_driver local-media/vectors/outline.txt
+
+# Scene routines: the original DO routines of the numbered script blocks (Unicorn, callees recorded) vs engine SceneRoutines
+re/.venv/bin/python re/tools/gen_vectors_scenes.py
+c++ -std=c++11 -O1 -fno-operator-names -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/scenes_driver.cpp \
+    "$ENG/engines/tesoro/core/scenes.cpp" -o local-media/bin/scenes_driver
+local-media/bin/scenes_driver local-media/vectors/scenes.txt

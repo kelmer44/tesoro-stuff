@@ -55,3 +55,5 @@ Divergences:
 
 ## Scene routines (5 Nov 2026)
 Checked the engine's sixteen non-board-game scene routines (script block types 1-7, 9, 10, 12, 15-19, 21 and the menu fades, 17) against the fresh contracts, the decompiles and, where the decompile drops an argument, the disassembly. Agreements: every level slot, position, fade, wait, camera move, object key and animation-bank argument. Divergence found and fixed: type 12 (CONV35) switched ORZOGUEI the wrong way round (original: phase 0 on, phase 1 off; the decompile hides the pushed 0/1). Contracts 00419b90, 00419d90 (hidden argument) and 004198d0 (camera position wording) corrected. Not run against the original machine code.
+
+Follow-up (5 Nov 2026): the sixteen routines were then moved into `SceneRoutines` (core/scenes.cpp, host `SceneHost`) and compared with the original routines run in Unicorn (380 cases, calls and final state identical; 4 mutations caught). The ORZOGUEI defect would have been caught by this driver.
