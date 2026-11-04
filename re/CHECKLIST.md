@@ -149,7 +149,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 12: 004079d0–00407aa0 (11/11 ported)
 
-- [x] `004079d0` inferred_Jim_IsInPose7 (vtable) · depth 0 · 7 lines · **ported** → `engines/tesoro/core/jimwalker.cpp::Jim` — slot 11: returns (+0x5c == 7)
+- [x] `004079d0` inferred_Jim_IsHitter (vtable) · depth 0 · 7 lines · **ported** → `engines/tesoro/core/jimwalker.cpp::Jim` — slot 11: returns (+0x5c == 7) | fixed 4 Nov: other kind == 7, was a Jim field in the port
 - [x] `00407aa0` inferred_Jim_ResumeFacing · depth 0 · 10 lines · **ported** → `engines/tesoro/core/jimwalker.h::Jim::resumeFacing` — if walking (+0xd5) applies the stored facing again via slot 29 | ported 31 Oct, from reading
 - [x] `00407730` inferred_Jim_UpdateBounds (vtable) · depth 1 · 15 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp::Jim` — slot 3: base UpdateBounds then multiplies the four rect values by the perspective scale (+0xfc, 0x100 = 1.0) >> 8
 - [x] `004079e0` inferred_Jim_ArriveStep (vtable) · depth 1 · 31 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp` — slot 12: called when a walk segment ends: updates previous position, unless the walk-area path search (WalkArea_FindPath) produces a further waypoint, calls slot 29 (face) and the target object's slot 13

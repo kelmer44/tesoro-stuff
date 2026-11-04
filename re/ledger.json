@@ -11177,7 +11177,7 @@
  {
   "addr": "004079d0",
   "ghidra_name": "FUN_004079d0",
-  "name": "inferred_Jim_IsInPose7",
+  "name": "inferred_Jim_IsHitter",
   "tier": "game",
   "lines": 7,
   "decompile_ok": true,
@@ -11194,7 +11194,7 @@
   "cluster": 12,
   "status": "ported",
   "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
-  "notes": "slot 11: returns (+0x5c == 7)"
+  "notes": "slot 11: returns (+0x5c == 7) | fixed 4 Nov: other kind == 7, was a Jim field in the port"
  },
  {
   "addr": "004079e0",
