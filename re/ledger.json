@@ -24995,9 +24995,9 @@
   ],
   "data_refs": [],
   "cluster": 42,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 0042bc08 slot 13"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::WorldLevel::mapEvents",
+  "notes": "unread; first seen in vtable 0042bc08 slot 13 | original checked with stubbed lookups 4 Nov"
  },
  {
   "addr": "00417ad0",

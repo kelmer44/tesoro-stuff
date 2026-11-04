@@ -10,7 +10,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 447 | 100% |
 | understood or later | 430 | 96% |
-| ported or later | 380 | 85% |
+| ported or later | 381 | 85% |
 | emu-compared or later | 328 | 73% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
@@ -535,10 +535,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00417640` inferred_C0042afe8_Slot28 (vtable) · depth 14 · 44 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)
 - [x] `004178b0` inferred_MapPlace_SetVerbAndClick (vtable) · depth 14 · 37 lines · **emu-compared** → `core/MapPlace::setVerbAndClick` — unread; first seen in vtable 0042bf90 slot 14 | mapplace vectors 4 Nov: lookups, script, level entry, facing, result identical; contract corrected (facing is opposite of SALIDA's)
 
-### Cluster 42: 00417b30–00417d00 (5/7 ported)
+### Cluster 42: 00417b30–00417d00 (6/7 ported)
 
 - [x] `00417b30` inferred_Obj_RetTrue (vtable) · depth 0 · 7 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — MidBase slot 16: returns 1 (is interactive/enabled default)
-- [ ] `004179b0` inferred_MapLevel_StoryUpdate (vtable) · depth 2 · 41 lines · **understood** — unread; first seen in vtable 0042bc08 slot 13
+- [x] `004179b0` inferred_MapLevel_StoryUpdate (vtable) · depth 2 · 41 lines · **ported** → `engines/tesoro/world.cpp::WorldLevel::mapEvents` — unread; first seen in vtable 0042bc08 slot 13 | original checked with stubbed lookups 4 Nov
 - [ ] `00417c80` ScriptFANMMENU_Do (vtable) · depth 2 · 10 lines · **understood** — unread; first seen in vtable 004282d0 slot 28
 - [x] `00417ad0` inferred_Obj_Kind25_Ctor · depth 4 · 12 lines · **emu-compared** — 0xa4 bytes, vtable 0042c000, extends MidBase
 - [x] `00417ca0` inferred_C004295d0_UseItem (vtable) · depth 13 · 21 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 004295d0 slot 27 (kind 20 subtype 7)
