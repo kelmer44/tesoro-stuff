@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Vectors for the outline routines: runs the ORIGINAL 00409560 (contains point), 00409c10 (clip to columns) and 00409790 (overlap test)
-in Unicorn on random convex outlines (hull split into a left-to-right and a right-to-left chain, as the animation files store them)
+in Unicorn on random convex outlines, random x-monotone non-convex outlines and the outlines of the shipped levels (hull split into a left-to-right and a right-to-left chain, as the animation files store them)
 and on raw monotone chains. Cases where the original faults (division by zero on a vertical edge) or runs away are dropped.
 Output local-media/vectors/outline.txt (ignored), consumed by drivers/outline_driver.cpp.
   C n m pts.. | px py = r           contains          K n m pts.. | bx1 bx2 cx1 cx2 = n' m' pts'..     clip          O n m pts.. | n m pts.. = r   overlap
@@ -43,7 +43,28 @@ def hull(pts):
         up.append(p)
     return lo, up                              # lo: left to right, up: right to left (starts at the rightmost point)
 
+# Every multi-point outline of the shipped levels (local-media/vectors/shipped_outlines.txt, written by drivers/outlinescan_driver.cpp):
+# chain split index and points. About a third are not convex, a few are degenerate; they are used as they are.
+import os
+SHIPPED = []
+if os.path.exists("local-media/vectors/shipped_outlines.txt"):
+    for line in open("local-media/vectors/shipped_outlines.txt"):
+        head, pts = line.split(":", 1)
+        SHIPPED.append((int(head.split()[-1]), [tuple(map(int, t.split(":"))) for t in pts.split()]))
+def monotone(span):
+    """x-monotone outline, not necessarily convex: a chain left to right, then a chain back, as the animation files store them."""
+    while True:
+        a = sorted(set(rnd.randint(-span, span) for _ in range(rnd.randint(2, 6))))
+        b = sorted(set(rnd.randint(-span, span) for _ in range(rnd.randint(1, 5))), reverse=True)
+        if len(a) < 2: continue
+        top = [(x, rnd.randint(-span // 2, span // 2)) for x in a]
+        bot = [(x, rnd.randint(-span // 2, span // 2)) for x in b if a[0] <= x <= a[-1] or rnd.random() < .3]
+        return top + bot, len(top) - 1
 def shape(span=300):
+    r0 = rnd.random()
+    if r0 < .3: return monotone(rnd.choice([20, 100, span]))
+    if r0 < .5 and SHIPPED:
+        m, pts = rnd.choice(SHIPPED); return list(pts), m
     while True:
         k = rnd.randint(3, 9); r = rnd.choice([6, 40, span])
         h = hull([(rnd.randint(-r, r), rnd.randint(-r, r)) for _ in range(k)])

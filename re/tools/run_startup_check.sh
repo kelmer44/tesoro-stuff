@@ -6,6 +6,13 @@ ENG=${1:-/Users/gabriel/Desktop/source/scummvm-tesoro-codex}
 cd "$(dirname "$0")/../.."
 re/.venv/bin/python re/tools/gen_vectors_startup.py
 mkdir -p local-media/bin
+
+# Outlines of the shipped levels (read-only scan of the game's data): feeds the outline and collision generators below
+mkdir -p local-media/vectors
+C="$ENG/engines/tesoro/core"
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/outlinescan_driver.cpp \
+    $C/level.cpp $C/outline.cpp $C/walkfloor.cpp $C/pathobject.cpp $C/walkarea.cpp $C/cameraframe.cpp $C/menuitem.cpp $C/collision.cpp $C/camera.cpp $C/object.cpp $C/room.cpp $C/animbank.cpp $C/animimage.cpp $C/animset.cpp $C/namekey.cpp $C/cursor.cpp $C/hovertext.cpp $C/spriteobject.cpp $C/mouse.cpp $C/inputstate.cpp -o local-media/bin/outlinescan_driver
+local-media/bin/outlinescan_driver "${TESORO_DIR:-/Users/gabriel/Desktop/ags/TESORO}" v | tee /dev/stderr | grep '^shape' > local-media/vectors/shipped_outlines.txt
 c++ -std=c++11 -O1 -fno-operator-names -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/startup_driver.cpp \
     "$ENG/engines/tesoro/core/clock.cpp" "$ENG/engines/tesoro/core/namekey.cpp" "$ENG/engines/tesoro/core/random.cpp" \
     -o local-media/bin/startup_driver

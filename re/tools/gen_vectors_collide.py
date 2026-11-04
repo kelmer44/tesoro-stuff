@@ -2,7 +2,7 @@
 """Vectors for the level's collision pass: builds synthetic levels with the ORIGINAL Level_Load (0x4080e0) and Level_AttachObjects (0x408540),
 gives every object a fake vtable whose slots 3 (UpdateBounds), 11 (IsHitter) and 12 (OnTouched) are Python hooks that log their calls,
 then runs the ORIGINAL collision pass (0x408890) with ResolveOverlap (0x408c50) and the swept rectangle test (0x409280) in Unicorn.
-Objects have no shape entries (the pixel-accurate part is not covered). Output: local-media/vectors/collide.txt (ignored).
+Objects carry shape entries (convex, shipped and x-monotone non-convex outlines). Output: local-media/vectors/collide.txt (ignored).
 Consumed by re/tools/drivers/collide_driver.cpp.
 Lines: C <hex> <entry> <mode> <is555> <now>   level file
        F <i> <flags>      G <i> <hit x1 y1 x2 y2> <moved x1 y1 x2 y2> <x y> <prevx prevy> <sort>     object state
@@ -35,9 +35,22 @@ def hull(pts):
         up.append(p)
     return lo, up
 
+import os
+SHIPPED = []     # the multi-point outlines of the shipped levels (written by drivers/outlinescan_driver.cpp); about a third are not convex
+if os.path.exists("local-media/vectors/shipped_outlines.txt"):
+    for line in open("local-media/vectors/shipped_outlines.txt"):
+        SHIPPED.append([tuple(map(int, t.split(":"))) for t in line.split(":", 1)[1].split()])
+
 def make_shape():
-    """A convex outline as the animation files store it: left-to-right chain, then right-to-left chain (maybe closed)."""
+    """An outline as the animation files store it: left-to-right chain, then right-to-left chain (maybe closed); mostly convex, some from the shipped data or x-monotone and not convex."""
     if rnd.random() < .2: return [(rnd.randint(-20, 20), rnd.randint(-20, 20))]       # a single point
+    r0 = rnd.random()
+    if r0 < .2 and SHIPPED:
+        k = rnd.choice([1, 4, 8]); return [(x // k, y // k) for x, y in rnd.choice(SHIPPED)]
+    if r0 < .4:
+        r = rnd.choice([6, 20, 60]); a = sorted(set(rnd.randint(-r, r) for _ in range(rnd.randint(2, 6))))
+        b = sorted(set(rnd.randint(-r, r) for _ in range(rnd.randint(1, 5))), reverse=True)
+        if len(a) >= 2: return [(x, rnd.randint(-r // 2, r // 2)) for x in a] + [(x, rnd.randint(-r // 2, r // 2)) for x in b if a[0] <= x <= a[-1]]
     while True:
         r = rnd.choice([6, 20, 60]); h = hull([(rnd.randint(-r, r), rnd.randint(-r, r)) for _ in range(rnd.randint(1, 9))])
         if h:
