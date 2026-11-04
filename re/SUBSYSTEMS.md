@@ -21,7 +21,7 @@ Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function
 | Ported to C++ | 386 | 86% |
 | Run against the original machine code and matched | 328 | 73% |
 | Replaced by a ScummVM service (DirectDraw, DirectSound, input and similar) | 3 | |
-| Seen in the running original | 0 | 0% (no reference environment is authorised) |
+| Seen in the running original | 0 | 0% (the DOSBox-X reference environment is authorised and boots Windows 95; nothing is captured from the game yet) |
 
 - **What is left unread** is small and not the story: the memory pool, the display's constructor and its two mask and second-row raster routines, the window and start-up code.
   Most of these are replaced by ScummVM (window, input, sound, memory). The polygon routines are read and ported (see Outlines below).
@@ -810,6 +810,6 @@ Ordered by what blocks the most (the full list of open functions is in `CHECKLIS
 - **Shaped collision in play**: the shaped test is ported and checked against the original, but it only matters for the few objects whose pictures carry outlines (see Outlines); nobody has seen it decide a touch in a running game.
 - **The frame loop as a whole**: the engine's frame now follows the original's order (see The frame loop and the mouse), but it has not been run side by side with the original's frame, and nobody has played a whole session with the new order. Since 5 November the engine reads the game's five keys and ends the game when the main list is emptied (as the original's frame does), which is what Escape in the main menu does.
 - **The save screen's picture, seen on screen**: the scene picture is now stored in every save and drawn into the screen's picture object (PLANTILLA1) when a game is chosen, loaded or saved, and emptied when the screen opens; nobody has looked at it in a running game, and builds before 5 Nov wrote saves without it (those are refused).
-- **Observing the running original**: everything above is "compared with the original's code", never "seen on screen"; that waits for an authorised reference environment.
+- **Observing the running original**: everything above is "compared with the original's code", never "seen on screen"; that waits for captures from the DOSBox-X reference environment (`reference/README.md`).
 
 Each time we finish one of these, its section above gets filled in and the diagram is updated.

@@ -20,8 +20,8 @@ A disagreement is a finding to resolve with evidence, not something to paper ove
 ## Status values (a function only advances with evidence)
 `untouched` → `decompiled` (read, signature fixed) → `understood` (contract written)
 → `ported` (C++ exists) → `emu-compared` (original machine code vs port, matched inputs)
-→ `original-compared` (observed in the running original; blocked until a reference
-environment is authorised). Pure runtime/CRT functions: `replaced` (with the ScummVM service).
+→ `original-compared` (observed in the running original, in the DOSBox-X reference
+environment of `reference/README.md`). Pure runtime/CRT functions: `replaced` (with the ScummVM service).
 
 ## Session protocol (every new conversation)
 1. Read this file, `STRUCTS.md`, and the ledger rows + contracts of the cluster and of its callees.
