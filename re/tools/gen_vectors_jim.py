@@ -6,7 +6,7 @@ verb answer (0x410330 with Jim's colour), update (0x407790), walk order (0x40760
 the target, the position move and the scaled picture. After every operation Jim's fields and the state of all nine players are dumped.
 Not covered: saving and loading, what the hooked calls do inside.
 Usage: gen_vectors_jim.py (from the repository root). Output: local-media/vectors/jim.txt (ignored), read by drivers/jim_driver.cpp.
-Lines: S <id> <hex file> | then  o <op> | r <result> | s <state> | . <log> ...  | #   Ops: I (constructed) | E <now> <skip> <voices> <subs> <base> <scale> <findpath> <ret> <hasArea> <otherHasArea> <mx> <my> <camX> <camY>
+Lines: S <id> <hex file> | then  o <op> | r <result> | s <state> | . <log> ...  | #   Ops: G <word> (save-game bytes, result = hex) | I (constructed) | E <now> <skip> <voices> <subs> <base> <scale> <findpath> <ret> <hasArea> <otherHasArea> <mx> <my> <camX> <camY>
 | Y <line> (script line) | A <line> (verb answer) | U | W <x> <y> <target> <direct> | X | F <facing> | D | B"""
 import os, random, struct, sys
 sys.path.insert(0, __file__.rsplit("/", 1)[0])
@@ -102,6 +102,15 @@ def op(text, addr, args, ret=True):
     del log[:]
     r = e.call(addr, args, conv="thiscall", this=JIM, max_insns=3_000_000)
     out.append("o " + text); out.append("r " + (str(r & 0xffffffff) if ret else "-")); out.append("s " + state()); out.extend(". " + l for l in log)
+wr = []
+e.hook_function(0x41b620, lambda emu, buf, size, count, f: wr.append(e.read(buf, size * count)) or count, 4)
+def save_op(word):
+    """The save-game write (0x407510): the bytes the original writes, with the four bytes at +0x110 set to word for the call."""
+    del log[:], wr[:]
+    old = e.read(JIM + 0x110, 4); e.write(JIM + 0x110, struct.pack("<I", word))
+    e.call(0x407510, [0x1234], conv="thiscall", this=JIM, max_insns=1_000_000)
+    e.write(JIM + 0x110, old)
+    out.append(f"o G {word}"); out.append("r " + b"".join(wr).hex()); out.append("s " + state()); out.extend(". " + l for l in log)
 def note(text): out.append("o " + text); out.append("r -"); out.append("s " + state())
 for sid in range(1, 401):
     st["heap"] = HEAP; world.update(now=0, ids=0, rcalls=0, skip=0, voices=0, subs=0, base=0, scale=0x100, fp=0, ret=1, has=1, ohas=1, mx=0, my=0, camx=0, camy=0)
@@ -146,6 +155,7 @@ for sid in range(1, 401):
             op(f"W {dx} {dy} {t} {d}", 0x407600, [dx & 0xffffffff, dy & 0xffffffff, TGT if t else 0, d])
         elif r < 0.7: op("X", 0x4079e0, [OTHER])
         elif r < 0.76: f = rnd.randint(1, 4); op(f"F {f}", 0x407a80, [f], ret=False)
+        elif r < 0.84: save_op(rnd.getrandbits(32))
         elif r < 0.9: op("D", 0x407ac0, [CAM], ret=False)
         else: op("B", 0x407730, [], ret=False)
     out.append("#")

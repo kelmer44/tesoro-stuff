@@ -11,7 +11,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | decompiled or later | 447 | 100% |
 | understood or later | 431 | 96% |
 | ported or later | 404 | 90% |
-| emu-compared or later | 345 | 77% |
+| emu-compared or later | 346 | 77% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -156,7 +156,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00407600` inferred_Jim_WalkTo (vtable) · depth 2 · 55 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp` — slot 32: (x, y, target object, flag) starts a walk: records target +0x104/+0x108, converts position to fixed point, chooses facing 1..4 from the dominant axis, selects the matching walking animation (table +0xd8); the function always ends by calling the target object's slot 13 (RunVerb), including at walk start, purpose not yet understood
 - [x] `00407770` inferred_Obj_AnimTickResetOffset (vtable) · depth 2 · 10 lines · **emu-compared** → `engines/tesoro/core/animset.cpp::AnimSet` — MidBase slots 2 (and 3 in some classes): AnimTick then zero the current sequence's x/y offset (+0x28, +0x2a) | AnimSet vectors 29 Oct
 - [x] `00407a80` inferred_Jim_SetFacing (vtable) · depth 4 · 10 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp` — slot 29: clears walking flag, stores direction +0x10c (1..4) and starts the matching animation
-- [x] `00407510` inferred_Jim_SaveState (vtable) · depth 8 · 12 lines · **ported** → `engines/tesoro/core/jimwalker.cpp::Jim` — slot 10: writes the same fields
+- [x] `00407510` inferred_Jim_SaveState (vtable) · depth 8 · 12 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp::Jim` — slot 10: writes the same fields | save bytes compared 5 Nov (Jim vectors op G)
 - [x] `00407580` inferred_Jim_LoadState (vtable) · depth 8 · 14 lines · **ported** → `engines/tesoro/core/jimwalker.cpp::Jim` — slot 9: stops walking, reads position (8 bytes at +0x4c), facing +0x10c, bank index +0x32, +0x110, flags +0x68
 - [x] `00407790` inferred_Jim_Update (vtable) · depth 11 · 89 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp` — slot 4: per-frame walking step. Position is 24.8 fixed point (+0xe0,+0xe4); the animation's own per-frame offset (+0x28,+0x2a, root motion) scaled by perspective moves Jim; ends when the squared distance reaches zero (arrival), then removes itself from the main list and either calls slot 29 (face) or the target object's slot 13 (RunVerb)
 - [x] `004070c0` inferred_Jim_Ctor · depth 12 · 282 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp::Jim` — 0x114-byte object, vtable 00428b70, base chain Kind05-family ctor 0040fea0 -> 0040ec90. Loads 9 animation files (JIMHABDER, JIMQUIETO, JIMARRIBA, JIMABAJO, JIMIZQUIERDA, JIMDERECHA, JIMHABAR ... .ANM) into bank array +0x34, name key from string at 0042d2a4, start position (0x15e,0x14), sort value 0x23, scale +0xfc = 0x100, speech/idle fields, calls SetFacing(3)

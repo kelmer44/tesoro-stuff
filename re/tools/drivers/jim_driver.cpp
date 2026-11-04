@@ -60,6 +60,12 @@ struct Target : WalkTarget {
 	int arrived() override { log->push_back("arrived"); return ret; }
 };
 
+struct BytesOut : Common::WriteStream {
+	std::string data;
+	uint32 write(const void *p, uint32 n) override { data.append((const char *)p, n); return n; }
+	int64 pos() const override { return (int64)data.size(); }
+};
+
 struct EmptyStream : Common::SeekableReadStream {
 	bool eos() const override { return true; }
 	uint32 read(void *, uint32) override { return 0; }
@@ -84,6 +90,9 @@ struct World : JimWorld {
 	void stopVoice(uint32) override { log.push_back("stop"); log.push_back("reap"); }
 	bool skipPressed() override { return skip; }
 	bool subtitlesOn() override { return subs; }
+	uint32 prog = 0;
+	uint32 progressBytes() override { return prog; }
+	void setProgressBytes(uint32 v) override { prog = v; }
 	void insertInMainList(Object *, int p) override { log.push_back(fmt("insert %d", p)); }
 	void removeFromMainList(Object *) override { log.push_back("remove"); }
 	Common::SeekableReadStream &archiveStream() override { return stream; }
@@ -188,9 +197,14 @@ int main(int argc, char **argv) {
 			else if (kind == 'F') { int fc; sscanf(a, "%d", &fc); jim.setFacing(fc); }
 			else if (kind == 'D') jim.draw(cam, screen);
 			else if (kind == 'B') jim.updateBounds(world.time);
+			else if (kind == 'G') {
+				unsigned word; sscanf(a, "%u", &word); world.prog = word;
+				BytesOut out; jim.saveState(out);
+				got.clear(); for (unsigned char c : out.data) got += fmt("%02x", c);
+			}
 			++ops; calls += (int)world.log.size();
 			const std::string st = stateOf(jim, world);
-			const bool resultCompared = kind == 'U' || kind == 'W' || kind == 'X';
+			const bool resultCompared = kind == 'U' || kind == 'W' || kind == 'X' || kind == 'G';
 			if ((resultCompared && got != op.result) || world.log != op.log || st != op.state) {
 				badSession = true;
 				if (shown++ < 4) {

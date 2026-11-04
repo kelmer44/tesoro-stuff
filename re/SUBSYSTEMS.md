@@ -30,7 +30,7 @@ Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function
 - **The scene routines** behind the numbered script blocks (the `DO` lines): the engine has all of them. The two board-game routines (types 8 and 14) and the other seventeen are ported *and compared* with the original by emulation (5 Nov: 400 runs of the original routines from random starts; the port made the same calls in the same order and left the same state). Reading them first found one real defect, now fixed: in the CONV35 scene (type 12) the harbour guard ORZOGUEI was switched on and off the wrong way round. They live in their own class, `SceneRoutines`, which asks the game through `SceneHost` (answered by `World`).
 - **Still warning when reached:** turning a page of the inventory, scrolling the interface out,
   and the verb run after a picture reload (the pixel-accurate collision is ported, see Outlines).
-  The subtitles option is only the on/off button. Skipping a line follows the original: Escape or the right button, when it goes up (the left button does not skip); since 5 Nov, read from the original's speaker step, not run against it with real input.
+  The subtitles option is the original's own on/off switch (one byte of Jim's progress, kept in saves since 5 Nov). Skipping a line follows the original: Escape or the right button, when it goes up (the left button does not skip); since 5 Nov, read from the original's speaker step, not run against it with real input.
 - **Still the honest limit:** "compared" means the original's machine code was run next to the port on invented or real inputs. Nothing has been observed in the real game running, so
   no part of this map is checked against what the original *shows on screen*, and the voices were never listened to.
 
@@ -258,7 +258,7 @@ script plays Jim's and the captain's lines with subtitles and ends with Jim walk
 - **Starting the game.** "Nueva partida" now fades to the new-game menu and plays its script; the start button puts Jim in the port, shows him and
 starts the opening script, which runs through the ship arriving and Jim walking into the despacho (the screen follows Jim into each level). Seen
 running from the start button's code path; the introduction movie plays first (see The movies).
-- **Not there yet:** the voices start and finish on the mixer (checked with a silent audio driver: the captain's talk now ends by its voices, with no skipping), but nobody has listened to them yet; a subtitles option (always on).
+- **Not there yet:** the voices start and finish on the mixer (checked with a silent audio driver: the captain's talk now ends by its voices, with no skipping), but nobody has listened to them yet.
 - **Seen working:** the engine reads all 47 levels with these objects, puts Jim in the despacho and draws the room with the captain in his chair, Jim
 standing in front and the items of the room, with no warnings. Not checked against the original (the hosts are the engine's own decisions, not
 ported functions).
@@ -775,7 +775,7 @@ order (its own state, then one record per object: name, flags, state; Jim himsel
 objects. The two menu levels are not saved. Loading reads it back in the same order, finds each object again by its name (an object
 that has disappeared makes the rest of that level's records unreadable, because the original does not skip it), puts Jim into the
 saved level at his saved spot and turns him as he was. The engine writes the same order (level number, Jim, visited levels with their objects, the interface) into ScummVM's save files; a level never visited is not saved, and a damaged file is refused instead of read on. The file is the port's own, not the original's. Saving every shipped level's objects and loading them back gives the same result, except in the harbour, where two objects share a name and the original's format cannot tell them apart either. What each object's own state holds is already read and checked (animation
-position, flags and the small block of story bytes); the loader and the level loop are not compared with the original.
+position, flags and the small block of story bytes); the loader and the level loop are not compared with the original. **Fixed 5 Nov:** Jim's part holds four progress bytes (scene phase, story step, the subtitles setting and one more) and the number of the bank he last chose; the engine used to write zeros for the first and the playing bank for the second, so a loaded game lost the story step, the scene phase and the subtitles setting. The bytes Jim writes are now compared with the original's save routine (identical); his loading is not.
 
 ### Save/load menu objects (kinds 22 and 23) 🟡 (the two objects ported and ✅ checked against the original, except what the buttons do with files; saved games themselves not ported)
 
@@ -810,7 +810,7 @@ Ordered by what blocks the most (the full list of open functions is in `CHECKLIS
 - **Seeing a movie play**: the player is ported and the format is known (see The movies), but nobody has watched one play in the engine yet; the original's wait for completion and its repeated blits of the screen (read, not reproduced) are the part to check.
 - **Shaped collision in play**: the shaped test is ported and checked against the original, but it only matters for the few objects whose pictures carry outlines (see Outlines); nobody has seen it decide a touch in a running game.
 - **The frame loop as a whole**: the engine's frame now follows the original's order (see The frame loop and the mouse), but it has not been run side by side with the original's frame, and nobody has played a whole session with the new order. Since 5 November the engine reads the game's five keys and ends the game when the main list is emptied (as the original's frame does), which is what Escape in the main menu does.
-- **A real subtitles option.** The small picture of the scene is taken when the save screen opens but is not yet stored in the save file (the original's file starts with it).
+- **The scene picture in the save file**: it is taken when the save screen opens but not yet stored in the save file (the original's file starts with it). Also open: the two walking-update mismatches noted in the Jim update contract.
 - **Observing the running original**: everything above is "compared with the original's code", never "seen on screen"; that waits for an authorised reference environment.
 
 Each time we finish one of these, its section above gets filled in and the diagram is updated.

@@ -37,6 +37,8 @@ struct World : JimWorld {
 	void stopVoice(uint32) override {}
 	bool skipPressed() override { return false; }
 	bool subtitlesOn() override { return false; }
+	uint32 progressBytes() override { return 0; }
+	void setProgressBytes(uint32) override {}
 	void insertInMainList(Object *o, int p) override { log.push_back("insert " + std::to_string(p) + (o == lvl ? " level" : " other")); }
 	void removeFromMainList(Object *o) override { log.push_back(std::string("remove") + (o == lvl ? " level" : " other")); }
 	Common::SeekableReadStream &archiveStream() override { return stream; }

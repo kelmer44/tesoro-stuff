@@ -10507,9 +10507,9 @@
   ],
   "data_refs": [],
   "cluster": 12,
-  "status": "ported",
+  "status": "emu-compared",
   "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
-  "notes": "slot 10: writes the same fields"
+  "notes": "slot 10: writes the same fields | save bytes compared 5 Nov (Jim vectors op G)"
  },
  {
   "addr": "00407580",
