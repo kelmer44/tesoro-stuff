@@ -33,6 +33,7 @@ struct Host : SceneHost {
 		blockLevel = level; jimLevel = level; jx = x; jy = y;
 	}
 	void enterLevel(int level, int32 x, int32 y) override { enter(level, x, y); }
+	void enterLevelAtJim(int level) override { enter(level, jx, jy); }
 	void enterLevelAtFloor(int level) override { enter(level, 1000 + level, 2000 + level); }
 	void enterLevelAtObject(int level, const char *name) override { find(level, name); enter(level, objX(level, name), objY(level, name)); }
 	void rebindCharacters() override { find(blockLevel, "AAA"); find(blockLevel, "BBB"); }

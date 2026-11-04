@@ -26885,9 +26885,9 @@
   ],
   "data_refs": [],
   "cluster": 47,
-  "status": "understood",
-  "engine": "",
-  "notes": "(0 or 1): moves Jim into a fixed stage level (globals 00442188 / 00442154), repositions the camera and re-resolves the script's actor table there"
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/scenes.cpp::SceneRoutines::run (type 20)",
+  "notes": "(0 or 1): moves Jim into a fixed stage level (globals 00442188 / 00442154), repositions the camera and re-resolves the script's actor table there | scene vectors 5 Nov (throne room)"
  },
  {
   "addr": "0041a070",

@@ -16,14 +16,14 @@ from unicorn.x86_const import UC_X86_REG_EIP
 ARENA = 0x03000000
 rnd = random.Random(20261105)
 e = Emu(); e.uc.mem_map(ARENA, 0x100000, 7)
-allowed, stray = [], [False]      # a read outside the points (and 16 entries around them) drops the case: the port could not see the same bytes
+allowed, stray = [], [False]      # a read outside the points drops the case: the port could not see the same bytes
 def on_read(uc, access, addr, size, value, _):
     if not any(lo <= addr < hi for lo, hi in allowed): stray[0] = True
 e.uc.hook_add(UC_HOOK_MEM_READ, on_read, begin=ARENA, end=ARENA + 0xfffff)
 def s16(v): return v - 65536 if v & 0x8000 else v
 def put(base, n, m, pts):
     ptr = base + 0x100                       # zero padding on both sides of the points
-    allowed.append((base, base + 8)); allowed.append((ptr - 64, ptr + 4 * n + 64))
+    allowed.append((base, base + 8)); allowed.append((ptr, ptr + 4 * n))
     e.write(base - 0x200, bytes(0x800))
     e.write(base, struct.pack("<HHI", n, m, ptr))
     e.write(ptr, b"".join(struct.pack("<hh", x, y) for x, y in pts))

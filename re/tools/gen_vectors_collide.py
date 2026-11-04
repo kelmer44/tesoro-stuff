@@ -103,15 +103,17 @@ def poly_ranges(a):
 def enter(nargs):
     def h(uc, addr, size, _):
         esp = uc.reg_read(UC_X86_REG_ESP); ret = e.u32(esp); args = [e.u32(esp + 4 + 4 * k) for k in range(nargs)]
-        guard["ok"] = []; guard["on"] = True; guard["shaped"] += 1
+        guard["ok"] = []; guard["arrays"] = []; guard["on"] = True; guard["shaped"] += 1
         for a in args:
-            if HEAP <= a < HEAP + 0x400000:
+            if HEAP <= a < HEAP + 0x400000 or 0x100000 <= a < 0x200000:     # the cut copy lives on the stack
                 r, arr = poly_ranges(a); guard["ok"] += r; guard["arrays"].append(arr)
         def leave(uc2, a2, s2, _2): guard["on"] = False
         hk = uc.hook_add(UC_HOOK_CODE, leave, begin=ret, end=ret)
     return h
 def on_read(uc, access, addr, size, value, _):
-    if guard["on"] and HEAP <= addr < HEAP + 0x400000 and not any(lo <= addr and addr + size <= hi for lo, hi in guard["ok"]): guard["stray"] = True
+    if not guard["on"] or any(lo <= addr and addr + size <= hi for lo, hi in guard["ok"]): return
+    # a read in the words next to a points array (before its first or after its last point) finds memory the shape does not own
+    if HEAP <= addr < HEAP + 0x400000 or any(lo - 8 <= addr < lo or hi <= addr < hi + 8 for lo, hi in guard["arrays"]): guard["stray"] = True
 for fn, na in ((0x409560, 1), (0x409790, 2), (0x409c10, 1)): e.uc.hook_add(UC_HOOK_CODE, enter(na), begin=fn, end=fn)
 e.uc.hook_add(UC_HOOK_MEM_READ, on_read)
 class Drop(Exception): pass

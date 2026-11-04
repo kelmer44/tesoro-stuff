@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Vectors for the scene routines (the native routines behind the DO lines of the numbered script blocks): runs the ORIGINAL routines
-(FANPRESENT 0x4197a0 ... FCAPITAN 0x416b50, 18 of them, see ROUTINES) in Unicorn for every line, from random starting states, with the callees replaced
+(FANPRESENT 0x4197a0 ... FCAPITAN 0x416b50, 17 of them, the throne room's included, see ROUTINES) in Unicorn for every line, from random starting states, with the callees replaced
 by recorders (object lookup by name, set visible / active, select animation bank, Jim entering a level, camera move, fade, wait, render
 queue reset, clearing the main list, the door's slot 20). Name keys are faked (a recorded string per key). The board game's two routines
-and the throne room's are not here (the first are checked by gen_vectors_boardgame.py).
+are not here (they are checked by gen_vectors_boardgame.py).
 Output: local-media/vectors/scenes.txt (ignored), read by drivers/scenes_driver.cpp. One line per run:
   V <type> <ordinal> <jimX> <jimY> <jimLevel> <blockLevel> <phase> <step> <pointerHeld> | <events> | <final state>
 Objects are placed by formula (x = 300+10*level+len(name), y = -(50+7*level+len(name))), the floor of level n at (1000+n, 2000+n).
@@ -74,7 +74,7 @@ for o in (JIM, POINTER): e.write(o, struct.pack("<I", VT))
 ROUTINES = [("FANPRESENT", 0x4197a0, 1, 6), ("FANCAMAROTE", 0x416300, 2, 10), ("FANEMBARKE", 0x4198d0, 3, 3), ("FANMOTIN", 0x4169a0, 4, 3),
             ("FANMLGISLA", 0x4199a0, 5, 1), ("FANPLAYA", 0x419a10, 6, 1), ("FEXPLOSION", 0x419ac0, 7, 1), ("FSALPANTA", 0x419b30, 9, 2),
             ("CONV31", 0x419d90, 10, 4), ("CONV35", 0x419b90, 12, 2), ("FIXCUERDA", 0x419cf0, 15, 1), ("FBARCO", 0x419d40, 16, 1),
-            ("FANMMENU", 0x417c80, 17, 4), ("FANLUCHDICK", 0x416b80, 18, 2), ("FFINAL", 0x416c80, 19, 5), ("FCAPITAN", 0x416b50, 21, 1)]
+            ("FANMMENU", 0x417c80, 17, 4), ("FANLUCHDICK", 0x416b80, 18, 2), ("FFINAL", 0x416c80, 19, 5), ("FCAPITAN", 0x416b50, 21, 1), ("FANMTRONO", 0x419f10, 20, 2)]
 chp, keyp = A + 0x600, A + 0x700
 LV = list(levels)
 out = []

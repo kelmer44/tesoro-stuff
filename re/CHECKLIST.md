@@ -10,8 +10,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 447 | 100% |
 | understood or later | 431 | 96% |
-| ported or later | 403 | 90% |
-| emu-compared or later | 344 | 76% |
+| ported or later | 404 | 90% |
+| emu-compared or later | 345 | 77% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -596,14 +596,14 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00419620` inferred_C0042b060_Verb2 (vtable) · depth 14 · 29 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b060 slot 23 (kind 5 subtype 16)
 - [x] `004196c0` inferred_C0042b0e8_Verb2 (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b0e8 slot 23 (kind 5 subtype 15)
 
-### Cluster 47: 00419b30–00419f10 (5/6 ported)
+### Cluster 47: 00419b30–00419f10 (6/6 ported)
 
 - [x] `00419b30` inferred_DoFSALPANTA (vtable) · depth 12 · 17 lines · **emu-compared** → `engines/tesoro/core/scenes.cpp::SceneRoutines::run` — unread; first seen in vtable 00428690 slot 28 | read against decompile and disassembly 5 Nov; not compared | compared with the original routine, 380 runs, 5 Nov
 - [x] `00419b90` inferred_DoCONV35 (vtable) · depth 12 · 68 lines · **emu-compared** → `engines/tesoro/core/scenes.cpp::SceneRoutines::run` — unread; first seen in vtable 00428528 slot 28 | read against decompile and disassembly 5 Nov; not compared | compared with the original routine, 380 runs, 5 Nov
 - [x] `00419cf0` inferred_DoFIXCUERDA (vtable) · depth 12 · 16 lines · **emu-compared** → `engines/tesoro/core/scenes.cpp::SceneRoutines::run` — unread; first seen in vtable 004283c0 slot 28 | read against decompile and disassembly 5 Nov; not compared | compared with the original routine, 380 runs, 5 Nov
 - [x] `00419d40` inferred_DoFBARCO (vtable) · depth 12 · 16 lines · **emu-compared** → `engines/tesoro/core/scenes.cpp::SceneRoutines::run` — unread; first seen in vtable 00428348 slot 28 | read against decompile and disassembly 5 Nov; not compared | compared with the original routine, 380 runs, 5 Nov
 - [x] `00419d90` inferred_DoCONV31 (vtable) · depth 12 · 74 lines · **emu-compared** → `engines/tesoro/core/scenes.cpp::SceneRoutines::run` — unread; first seen in vtable 00428618 slot 28 | read against decompile and disassembly 5 Nov; not compared | compared with the original routine, 380 runs, 5 Nov
-- [ ] `00419f10` inferred_DlgScript_EnterStageLevel (vtable) · depth 12 · 57 lines · **understood** — (0 or 1): moves Jim into a fixed stage level (globals 00442188 / 00442154), repositions the camera and re-resolves the script's actor table there
+- [x] `00419f10` inferred_DlgScript_EnterStageLevel (vtable) · depth 12 · 57 lines · **emu-compared** → `engines/tesoro/core/scenes.cpp::SceneRoutines::run (type 20)` — (0 or 1): moves Jim into a fixed stage level (globals 00442188 / 00442154), repositions the camera and re-resolves the script's actor table there | scene vectors 5 Nov (throne room)
 
 ## Runtime, CRT and import thunks
 
