@@ -8,9 +8,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 446 | 99% |
-| understood or later | 429 | 95% |
-| ported or later | 377 | 84% |
+| decompiled or later | 447 | 100% |
+| understood or later | 430 | 96% |
+| ported or later | 380 | 85% |
 | emu-compared or later | 328 | 73% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
@@ -176,12 +176,12 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00407ce0` inferred_Jim_SayLine · depth 11 · 8 lines · **ported** → `engines/tesoro/core/jimwalker.h::Jim::sayScriptLine` — Player_Say with a negative id derived from +0x100 (spoken subtitle line) | already present as sayScriptLine; marked 31 Oct
 - [x] `004080e0` inferred_Level_Load · depth 15 · 142 lines · **emu-compared** — level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
 
-### Cluster 14: 00408780–00408890 (5/8 ported)
+### Cluster 14: 00408780–00408890 (7/8 ported)
 
 - [x] `00408780` inferred_Level_FindObjectByKey · depth 1 · 8 lines · **emu-compared** — forwards to the object list at +0x74 with the 64-bit key
-- [ ] `00408840` inferred_Level_PlayMusicCue (vtable) · depth 1 · 14 lines · **understood** — unread; first seen in vtable 00428bf8 slot 13
+- [x] `00408840` inferred_Level_PicturesReloaded (vtable) · depth 1 · 14 lines · **ported** → `engines/tesoro/world.cpp::WorldLevel::picturesReloaded` — unread; first seen in vtable 00428bf8 slot 13
 - [x] `00408890` inferred_Level_CollisionPass · depth 2 · 200 lines · **emu-compared** — per-frame pass over the level's object list (+0x7c): for each pair of objects with flags 8 (collidable) and 2 (active) in the same room, asks A.slot11(B) then runs ResolveOverlap; afterwards sends queued position notifications (+0x78 list of object,x,y) through object slot 12
-- [ ] `004087a0` inferred_Level_UpdateOrCollide (vtable) · depth 3 · 17 lines · **understood** — level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true
+- [x] `004087a0` inferred_Level_UpdateOrCollide (vtable) · depth 3 · 17 lines · **ported** → `engines/tesoro/core/level.cpp::Level::update` — level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true
 - [ ] `004087d0` inferred_C00428bf8_Update2 (vtable) · depth 3 · 10 lines · **understood** — unread; first seen in vtable 00428bf8 slot 5
 - [x] `00408620` inferred_Level_SaveState · depth 8 · 77 lines · **ported** — writes the object keys and flags and calls each object's SaveState (slot 10) via fwrite | name from call sites and a skim; body not yet read
 - [x] `00408710` inferred_Level_LoadState · depth 8 · 20 lines · **ported** — reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object
@@ -496,7 +496,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00416030` inferred_C0042aca0_Slot28 (vtable) · depth 14 · 42 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042aca0 slot 28 (kind 6 subtype 3)
 - [x] `00416170` inferred_C00429950_Verb4 (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429950 slot 24 (kind 17 subtype 16)
 
-### Cluster 39: 00416300–004169a0 (9/12 ported)
+### Cluster 39: 00416300–004169a0 (10/12 ported)
 
 - [ ] `00416300` inferred_DoFANCAMAROTE (vtable) · depth 12 · 86 lines · **understood** — unread; first seen in vtable 004289d8 slot 28
 - [ ] `004169a0` inferred_DoFANMOTIN (vtable) · depth 12 · 33 lines · **understood** — unread; first seen in vtable 004288e8 slot 28
@@ -508,7 +508,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00416700` inferred_C0042b528_Verb2 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b528 slot 23 (kind 5 subtype 8)
 - [x] `00416750` inferred_C0042b528_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b528 slot 21 (kind 5 subtype 8)
 - [x] `004167a0` inferred_C00429b10_UseItem (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429b10 slot 27 (kind 17 subtype 11)
-- [ ] `00416800` inferred_C0042bbd0_RunVerb (vtable) · depth 14 · 43 lines · **untouched** — unread; first seen in vtable 0042bbd0 slot 13
+- [x] `00416800` inferred_DeckLevel_PicturesReloaded (vtable) · depth 14 · 43 lines · **ported** → `engines/tesoro/world.cpp::WorldLevel::picturesReloaded + deckEvents` — the deck level (class 0042bbd0) slot 13: base music cue, then step-driven story events (track 8 to 9, FANMOTIN script after step 2, fisherman state 2 to 3) | read 4 Nov; original checked with stubbed callees
 - [x] `00416910` inferred_C0042b6c0_UseItem (vtable) · depth 14 · 31 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b6c0 slot 27 (kind 5 subtype 5)
 
 ### Cluster 40: 00416b50–00417250 (6/9 ported)
@@ -609,7 +609,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 259 functions (C runtime, SEH helpers, import stubs). They are not ported one by one; mark `replaced` when a ScummVM service covers them or `understood` when the game depends on their behaviour.
 
-- [ ] `0041a070` DirectDrawCreate · import-thunk · **untouched**
+- [x] `0041a070` DirectDrawCreate · import-thunk · **replaced**
 - [x] `0041a076` DirectInputCreateA · import-thunk · **replaced**
 - [x] `0041b3b0` DirectSoundCreate · import-thunk · **replaced**
 - [x] `0041b3c0` __chkstk · runtime · **replaced**

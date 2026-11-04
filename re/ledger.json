@@ -11776,8 +11776,8 @@
   ],
   "data_refs": [],
   "cluster": 14,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/level.cpp::Level::update",
   "notes": "level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true"
  },
  {
@@ -11839,7 +11839,7 @@
  {
   "addr": "00408840",
   "ghidra_name": "FUN_00408840",
-  "name": "inferred_Level_PlayMusicCue",
+  "name": "inferred_Level_PicturesReloaded",
   "tier": "game",
   "lines": 14,
   "decompile_ok": true,
@@ -11862,8 +11862,8 @@
   ],
   "data_refs": [],
   "cluster": 14,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::WorldLevel::picturesReloaded",
   "notes": "unread; first seen in vtable 00428bf8 slot 13"
  },
  {
@@ -24421,7 +24421,7 @@
  {
   "addr": "00416800",
   "ghidra_name": "FUN_00416800",
-  "name": "inferred_C0042bbd0_RunVerb",
+  "name": "inferred_DeckLevel_PicturesReloaded",
   "tier": "game",
   "lines": 43,
   "decompile_ok": true,
@@ -24443,9 +24443,9 @@
   ],
   "data_refs": [],
   "cluster": 39,
-  "status": "untouched",
-  "engine": "",
-  "notes": "unread; first seen in vtable 0042bbd0 slot 13"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::WorldLevel::picturesReloaded + deckEvents",
+  "notes": "the deck level (class 0042bbd0) slot 13: base music cue, then step-driven story events (track 8 to 9, FANMOTIN script after step 2, fisherman state 2 to 3) | read 4 Nov; original checked with stubbed callees"
  },
  {
   "addr": "00416910",
@@ -26892,7 +26892,7 @@
  {
   "addr": "0041a070",
   "ghidra_name": "DirectDrawCreate",
-  "name": "",
+  "name": "DirectDrawCreate",
   "tier": "import-thunk",
   "lines": 10,
   "decompile_ok": true,
@@ -26904,9 +26904,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": null,
-  "status": "untouched",
+  "status": "replaced",
   "engine": "",
-  "notes": ""
+  "notes": "import thunk; ScummVM graphics replace DirectDraw"
  },
  {
   "addr": "0041a076",
