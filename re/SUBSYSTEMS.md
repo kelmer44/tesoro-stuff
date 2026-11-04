@@ -81,6 +81,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Items: `InventoryItem` (things Jim carries), `ItemHost` (what it asks of the game).
 - Board columns and pieces: `BoardColumn` (kind 21, with `BoardColumnHost`), `BoardPieces` (shows the 49 piece objects and blinks the winning four), `BoardGame` (the board, whose turn it is and the game's start and turn loop; `BoardGameHost`).
 - Notes and map places: `NoteObject` (kind 24, with `NoteHost`), `MapPlace` (kind 19, with `MapPlaceHost`).
+- The pointer's frame step: `Cursor` with `CursorHost` (Escape, the interface pages, the menu opening); keys: `InputStates` in the engine.
 - Save and load screen: `MenuButton` (kind 22, with `MenuButtonHost`), `SlotLabel` (23, with `SlotLabelHost`).
 - Inventory strip: `InventoryStrip` (kind 11, with `StripHost`).
 - Groups, shadows and wanderers: `ItemGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14, with `DepthZoneHost`), `ClickCatcher` (15), `PathSprite` (16, with `PathSpriteHost`).
@@ -366,9 +367,18 @@ own flag, because the decompiler hid a detail of the call; it is fixed and check
 main pointer's animation frame for its hit rectangle, so hovering works in the level the player is in. With the real menu,
 a pointer over "Nueva partida" or "Cargar partida" touches that item and starts hovering, and off the items it touches nothing.
 
-Not ported yet: leaving a menu with the key, scrolling the interface strip, the thumbnail capture, walking Jim to a left click on
-empty ground, drawing the hover text, the save-file scan at start, registering the pointer in the main list (the engine keeps it
-itself for now).
+**The pointer's frame step ✅ (5 November 2026; compared with the original).** The interface is a strip of screens that slides sideways:
+page 0 is the strip of carried things at the bottom, a page beyond the right edge holds the item pictures, and the save screen
+waits to the left. **Escape** (the first of the five keys the game's keyboard watches: Escape, Return, Space, S, L) and the
+right mouse button turn the pages: in the main menu Escape fades out and empties the main list, which ends the game; in the
+new-game menu it goes back to the main menu; in the game it opens the save screen (not on the board game's level): the pointer
+lets go of what it carries, the save button is switched on in the first 23 levels, the subtitle switch shows its setting, a small
+picture of the scene (every third pixel of every third row, 213x160, taken without the pointer) is kept, and the interface slides to the
+save screen. Escape again slides it back; the right button on page 0 slides the strip out. The class is `Cursor` with `CursorHost`
+(answered by `World`, with the keys kept by the engine). Compared with the original code on 500 sessions (every page, key state,
+right-button value and place; the pointer's and the companion's places, the strip, its square and pictures, the held item, the
+label, the sample's checksum): identical; all but one of 51 deliberate mistakes found (the other changes nothing). Not ported: the
+picture of the chosen saved game, writing the sampled scene into the save file, walking Jim to a click on empty ground, drawing the hover text.
 
 ## Rooms ✅
 
@@ -777,7 +787,7 @@ Ordered by what blocks the most (the full list of open functions is in `CHECKLIS
 - **The inventory page and the interface strip's motion**: turning a page, scrolling the interface out, Jim's use of item 37 (all three warn).
 - **The movies**: the player is read but not ported; the files are on the game disc, not in the archive, and their format is unread.
 - **The shaped (pixel-accurate) part of the collision test**, which probably needs the three polygon routines, shadows, and the companion pointer.
-- **The frame loop as a whole**: the engine runs a reduced frame; the original's frame (keyboard and mouse update, the passes, the sound update) is read but not compared as one.
+- **The frame loop as a whole**: the engine runs a reduced frame; the original's frame (keyboard and mouse update, the passes, the sound update) is read but not compared as one. Since 5 November the engine reads the game's five keys and ends the game when the main list is emptied (as the original's frame does), which is what Escape in the main menu does.
 - **The skip key and a real subtitles option**, the thumbnail capture for the saved-game list, and the kind-18 gap.
 - **Observing the running original**: everything above is "compared with the original's code", never "seen on screen"; that waits for an authorised reference environment.
 

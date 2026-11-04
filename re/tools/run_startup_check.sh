@@ -299,3 +299,9 @@ re/.venv/bin/python re/tools/gen_vectors_shadow.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/shadow_driver.cpp \
     "$ENG/engines/tesoro/core/screendisplay.cpp" "$ENG/engines/tesoro/core/textqueue.cpp" "$ENG/engines/tesoro/core/renderqueue.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" -lz -o local-media/bin/shadow_driver
 local-media/bin/shadow_driver local-media/vectors/shadow.txt
+
+# Pointer frame step (Cursor_Update with the menu key, the interface pages and the menu opening) vs the engine's Cursor::update
+re/.venv/bin/python re/tools/gen_vectors_cursorupdate.py
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/cursorupdate_driver.cpp \
+    "$ENG/engines/tesoro/core/inventorystrip.cpp" "$ENG/engines/tesoro/core/itemgroup.cpp" "$ENG/engines/tesoro/core/interactive.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/walkfloor.cpp" "$ENG/engines/tesoro/core/pathobject.cpp" "$ENG/engines/tesoro/core/walkarea.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/collision.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/cursor.cpp" "$ENG/engines/tesoro/core/hovertext.cpp" "$ENG/engines/tesoro/core/mouse.cpp" "$ENG/engines/tesoro/core/inputstate.cpp" -o local-media/bin/cursorupdate_driver
+local-media/bin/cursorupdate_driver local-media/vectors/cursorupdate.txt

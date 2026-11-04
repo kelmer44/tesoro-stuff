@@ -8575,14 +8575,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 5,
-  "status": "understood",
-  "engine": "",
-  "notes": "shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge | contract read 30 Oct; port blocked on global objects"
+  "status": "emu-compared",
+  "engine": "core/Cursor::pageRight",
+  "notes": "shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge | contract read 30 Oct; port blocked on global objects | compared inside Cursor_Update"
  },
  {
   "addr": "004026d0",
   "ghidra_name": "FUN_004026d0",
-  "name": "inferred_Cursor_CaptureThumbnail",
+  "name": "Cursor_OpenMenu",
   "tier": "game",
   "lines": 84,
   "decompile_ok": true,
@@ -8603,9 +8603,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 5,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "renders the scene without the cursor into the display buffer and copies a 213x160 sample (every third pixel of every third row) to +0x128: a save-game thumbnail (hypothesis from the sampling pattern)"
+  "status": "emu-compared",
+  "engine": "core/Cursor::openMenu + World::captureThumbnail",
+  "notes": "renders the scene without the cursor into the display buffer and copies a 213x160 sample (every third pixel of every third row) to +0x128: a save-game thumbnail (hypothesis from the sampling pattern) | compared inside Cursor_Update; the scene sample is Cursor::sampleScene (CRC compared)"
  },
  {
   "addr": "004028c0",
@@ -8626,9 +8626,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 5,
-  "status": "understood",
-  "engine": "",
-  "notes": "shifts the interface level camera and its objects by -0x280 (one screen) | contract read 30 Oct; port blocked on global objects"
+  "status": "emu-compared",
+  "engine": "core/Cursor::pageLeft",
+  "notes": "shifts the interface level camera and its objects by -0x280 (one screen) | contract read 30 Oct; port blocked on global objects | the function is never called; its sequence inlined in Cursor_Update is compared"
  },
  {
   "addr": "004029a0",
@@ -8649,9 +8649,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 6,
-  "status": "understood",
-  "engine": "",
-  "notes": "moves the interface camera +0x285 and runs the display effect (4, 100) | contract read 30 Oct; port blocked on global objects"
+  "status": "emu-compared",
+  "engine": "core/Cursor::scrollOut",
+  "notes": "moves the interface camera +0x285 and runs the display effect (4, 100) | contract read 30 Oct; port blocked on global objects | the function is never called; its sequence inlined in Cursor_Update is compared"
  },
  {
   "addr": "004029f0",
@@ -8680,9 +8680,9 @@
   ],
   "data_refs": [],
   "cluster": 6,
-  "status": "understood",
-  "engine": "",
-  "notes": "vtable slot 4: reads the mouse position and buttons and the keyboard state array, handles the interface strip scrolling (shifts by 0x280 = one screen width), then positions the cursor object and its +0x74 companion at the mouse position plus the interface camera offset, and flags the held item | contract read 30 Oct; port blocked on global objects"
+  "status": "emu-compared",
+  "engine": "core/Cursor::update",
+  "notes": "vtable slot 4: reads the mouse position and buttons and the keyboard state array, handles the interface strip scrolling (shifts by 0x280 = one screen width), then positions the cursor object and its +0x74 companion at the mouse position plus the interface camera offset, and flags the held item | contract read 30 Oct; port blocked on global objects | cursorupdate vectors 5 Nov: 500 sessions identical (key, pages, menu opening)"
  },
  {
   "addr": "00402d80",
