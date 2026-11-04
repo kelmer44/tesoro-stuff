@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 441 | 98% |
-| understood or later | 410 | 91% |
-| ported or later | 358 | 80% |
-| emu-compared or later | 316 | 70% |
+| decompiled or later | 442 | 98% |
+| understood or later | 412 | 92% |
+| ported or later | 361 | 80% |
+| emu-compared or later | 318 | 71% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -390,11 +390,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00410420` inferred_Room_Ctor · depth 1 · 26 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::init` — 16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list | room vectors 30 Oct
 - [x] `004103d0` inferred_Obj_SetFacingAnim (vtable) · depth 3 · 9 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp::Jim` — selects the bank from +0xac and starts animation index (param-1) with AnimPlayer
 
-### Cluster 31: 00410cc0–00411f80 (4/12 ported)
+### Cluster 31: 00410cc0–00411f80 (6/12 ported)
 
 - [x] `00410cc0` inferred_Display_QueueRow_TypeB · depth 0 · 173 lines · **emu-compared** → `engines/tesoro/core/renderqueue.cpp::RenderQueue` — AddSprite helper for image type 3 | name from call sites and a skim; body not yet read
 - [ ] `00410fb0` inferred_Display_Raster_TypeB · depth 0 · 177 lines · **untouched** — rasterises queued type-B rows | name from call sites and a skim; body not yet read
-- [ ] `004112d0` inferred_Display_QueueRow_Mask · depth 0 · 159 lines · **untouched** — AddSprite helper writing the second row buffer (+0x674) | name from call sites and a skim; body not yet read
+- [x] `004112d0` Display_QueueRow_Mask · depth 0 · 159 lines · **emu-compared** → `core/RenderQueue::queueMaskRows` — AddSprite helper writing the second row buffer (+0x674) | name from call sites and a skim; body not yet read | shadow vectors 5 Nov: mask rows identical (298,080 rows)
 - [ ] `00411580` inferred_Display_Raster_Mask · depth 0 · 164 lines · **untouched** — rasterises the mask rows | name from call sites and a skim; body not yet read
 - [ ] `00411be0` inferred_Display_Dtor · depth 0 · 10 lines · **decompiled** — releases the back surface (+0xc), primary surface (+8) and DirectDraw object (+4, slot 0x4c = RestoreDisplayMode)
 - [ ] `00411c00` inferred_Display_IsReady · depth 0 · 7 lines · **decompiled** — returns whether the primary surface pointer (+8) is set (corrected: it is a check, not DirectDraw setup)
@@ -403,12 +403,12 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00411f20` inferred_Display_ResetRenderQueue · depth 0 · 30 lines · **emu-compared** → `engines/tesoro/core/renderqueue.cpp::RenderQueue::reset` — clears two arrays of 0x1e0 entries (stride 500 and 200 dwords) and counters
 - [ ] `00411870` inferred_Display_Ctor · depth 1 · 127 lines · **decompiled** — 0x13a4-byte display constructor performing the whole DirectDraw setup: DirectDrawCreate, cooperative level, display mode, primary and back surfaces; each failure shows a DIRECTDRAW message box and returns the half-built object. Flag +0x67c selects 5-5-5 pixel handling
 - [x] `00411f80` inferred_Display_AddSprite · depth 1 · 57 lines · **emu-compared** — (x, y, sort value, image, flag): clips a 640x480 sprite and queues it in the render rows (per-scanline lists) by image type (1 or 3 get extra passes)
-- [ ] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **decompiled** — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set
+- [x] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **ported** → `World::loadSpeech (TABLA1.TBL into ScreenDisplay::setShadeTable)` — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set | 5-6-5 table kept as it is; the 5-5-5 conversion is not needed
 
-### Cluster 32: 004120c0–00412e10 (5/7 ported)
+### Cluster 32: 004120c0–00412e10 (6/7 ported)
 
 - [x] `004120c0` inferred_Display_AddSpriteScaled · depth 0 · 21 lines · **emu-compared** — like AddSprite with x/y scale factors (16.16 fixed)
-- [ ] `00412640` inferred_Display_Compose_Background · depth 0 · 282 lines · **understood** — first stage of Display_Compose (282 lines) | name from call sites and a skim; body not yet read
+- [x] `00412640` Display_Compose_MergeMask · depth 0 · 282 lines · **emu-compared** → `core/RenderQueue::mergeMask` — first stage of Display_Compose (282 lines) | name from call sites and a skim; body not yet read | shadow vectors 5 Nov: 456 composed frames identical; new nodes come from the main row's pool
 - [ ] `00412bb0` inferred_Display_ClearAndReset · depth 0 · 34 lines · **understood** — clears surfaces via DirectDraw (slot 0x80/4 and 0x1c Blt) and resets the render queue
 - [x] `00412c50` inferred_Display_Compose_Overlay · depth 0 · 99 lines · **emu-compared** → `engines/tesoro/core/textqueue.cpp` — later stage of Display_Compose | name from call sites and a skim; body not yet read
 - [x] `00412120` inferred_Display_RasterRow · depth 1 · 101 lines · **emu-compared** — rasterises one scanline using the three type rasterisers | name from call sites and a skim; body not yet read

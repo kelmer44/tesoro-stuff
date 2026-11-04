@@ -22040,7 +22040,7 @@
  {
   "addr": "004112d0",
   "ghidra_name": "FUN_004112d0",
-  "name": "inferred_Display_QueueRow_Mask",
+  "name": "Display_QueueRow_Mask",
   "tier": "game",
   "lines": 159,
   "decompile_ok": true,
@@ -22052,9 +22052,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "untouched",
-  "engine": "",
-  "notes": "AddSprite helper writing the second row buffer (+0x674) | name from call sites and a skim; body not yet read"
+  "status": "emu-compared",
+  "engine": "core/RenderQueue::queueMaskRows",
+  "notes": "AddSprite helper writing the second row buffer (+0x674) | name from call sites and a skim; body not yet read | shadow vectors 5 Nov: mask rows identical (298,080 rows)"
  },
  {
   "addr": "00411580",
@@ -22172,9 +22172,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set"
+  "status": "ported",
+  "engine": "World::loadSpeech (TABLA1.TBL into ScreenDisplay::setShadeTable)",
+  "notes": "reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set | 5-6-5 table kept as it is; the 5-5-5 conversion is not needed"
  },
  {
   "addr": "00411c80",
@@ -22330,7 +22330,7 @@
  {
   "addr": "00412640",
   "ghidra_name": "FUN_00412640",
-  "name": "inferred_Display_Compose_Background",
+  "name": "Display_Compose_MergeMask",
   "tier": "game",
   "lines": 282,
   "decompile_ok": true,
@@ -22342,9 +22342,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 32,
-  "status": "understood",
-  "engine": "",
-  "notes": "first stage of Display_Compose (282 lines) | name from call sites and a skim; body not yet read"
+  "status": "emu-compared",
+  "engine": "core/RenderQueue::mergeMask",
+  "notes": "first stage of Display_Compose (282 lines) | name from call sites and a skim; body not yet read | shadow vectors 5 Nov: 456 composed frames identical; new nodes come from the main row's pool"
  },
  {
   "addr": "00412bb0",
