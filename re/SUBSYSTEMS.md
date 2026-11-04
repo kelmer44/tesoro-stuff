@@ -25,12 +25,12 @@ Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function
 
 - **What is left unread** is small and not the story: the memory pool, the display's constructor and its two mask and second-row raster routines, the window and start-up code.
   Most of these are replaced by ScummVM (window, input, sound, memory). The polygon routines are read and ported (see Outlines below).
-- **Every object kind of the level files is now built** by the engine (see the table of kinds): 0 to 17 and 19 to 25. Kind 18 has no case in the original's factory, so a record of that kind builds nothing.
+- **Every object kind of the level files is now built** by the engine (see the table of kinds): 0 to 17 and 19 to 25. Kind 18 has no case in the original's factory, so a record of that kind builds nothing, and no shipped level has one (counted over all levels, 5 Nov).
   The engine's `Level` alone still builds only 0, 1, 3, 7, 8, 10 and 25 (the menus load whole with it); `World` supplies the rest.
 - **The scene routines** behind the numbered script blocks (the `DO` lines): the engine has all of them. The two board-game routines (types 8 and 14) and the other seventeen are ported *and compared* with the original by emulation (5 Nov: 400 runs of the original routines from random starts; the port made the same calls in the same order and left the same state). Reading them first found one real defect, now fixed: in the CONV35 scene (type 12) the harbour guard ORZOGUEI was switched on and off the wrong way round. They live in their own class, `SceneRoutines`, which asks the game through `SceneHost` (answered by `World`).
 - **Still warning when reached:** turning a page of the inventory, scrolling the interface out,
   and the verb run after a picture reload (the pixel-accurate collision is ported, see Outlines).
-  The skip key is not there either (any mouse button skips a line) and the subtitles option is only the on/off button.
+  The subtitles option is only the on/off button. Skipping a line follows the original: Escape or the right button, when it goes up (the left button does not skip); since 5 Nov, read from the original's speaker step, not run against it with real input.
 - **Still the honest limit:** "compared" means the original's machine code was run next to the port on invented or real inputs. Nothing has been observed in the real game running, so
   no part of this map is checked against what the original *shows on screen*, and the voices were never listened to.
 
@@ -258,7 +258,7 @@ script plays Jim's and the captain's lines with subtitles and ends with Jim walk
 - **Starting the game.** "Nueva partida" now fades to the new-game menu and plays its script; the start button puts Jim in the port, shows him and
 starts the opening script, which runs through the ship arriving and Jim walking into the despacho (the screen follows Jim into each level). Seen
 running from the start button's code path; the introduction movie plays first (see The movies).
-- **Not there yet (they warn when reached):** turning a page of the inventory; scrolling the interface out; the skip key (any mouse button skips a line for now); the voices start and finish on the mixer (checked with a silent audio driver: the captain's talk now ends by its voices, with no skipping), but nobody has listened to them yet; a subtitles option (always on).
+- **Not there yet:** the voices start and finish on the mixer (checked with a silent audio driver: the captain's talk now ends by its voices, with no skipping), but nobody has listened to them yet; a subtitles option (always on).
 - **Seen working:** the engine reads all 47 levels with these objects, puts Jim in the despacho and draws the room with the captain in his chair, Jim
 standing in front and the items of the room, with no warnings. Not checked against the original (the hosts are the engine's own decisions, not
 ported functions).
@@ -423,7 +423,7 @@ flowchart LR
 *Built by the level:* the plain animated object (kind 0), the camera frame (1), the sprite (3), the floor (7), the route (8), the pointer (10) and the menu item (25), as `Object`, `CameraFrame`, `SpriteObject`, `WalkFloor`, `PathObject`, `Cursor`, `MenuItem`. Each draws through the `Display` interface; the object's hit rectangle and its movement feed the collision pass.
 *Built when `World` reads a level:* the characters (5), exits (6), the plain clickable (9), the scripted props (12, 17, 20) and items (13) (see their sections); Jim is made by `World` on first use.
 *Also built by `World`:* the groups (2), shadows (4), strip (11), depth zones (14), click catchers (15), wanderers (16), save menu objects (22, 23) note objects (24), map places (19) and board columns (21).
-*Not built:* kind 18 only: the original's factory has no case for it, so a record of that kind builds nothing.
+*Not built:* kind 18 only: the original's factory has no case for it, so a record of that kind builds nothing; no shipped level contains one.
 
 ---
 
@@ -616,7 +616,7 @@ warn, see above); the menu screen is not.
 What a spoken line does once a script asks for it (all read from the original, none of it ported yet):
 - **Starting.** The speaker (a character in the level, or Jim) pauses its animation, starts the line's voice (if the line has a WAV; the audio is plain 8-bit mono 22 kHz), picks a *pose* (the third number on the script line chooses one of the character's pose animations; Jim chooses his idle pose from the way he faces), remembers where its subtitle goes, and joins the list of things updated every frame.
 - **While it lasts.** Each frame the speaker moves its mouth (a random frame about every tenth of a second; **Jim's mouth stays shut when a script makes him speak** (his script lines pass a colour that is not positive), but moves when he answers a verb) and, if the subtitles option is on, queues the text: Jim's is centred on the middle of the screen, a character's grows downwards from a point above its head.
-- **Ending.** When the voice has finished, or the player presses the skip key or the mouse button. **A line with no voice file never ends by itself** (353 of the 2,687 shipped lines have none, 299 of them the object descriptions): it waits for the player. The script then waits 201 ms more.
+- **Ending.** When the voice has finished, or the player lets go of Escape or the right mouse button (the left button does nothing). **A line with no voice file never ends by itself** (353 of the 2,687 shipped lines have none, 299 of them the object descriptions): it waits for the player. The script then waits 201 ms more.
 - **The choice menu.** Every frame the menu draws the choices as white text, left aligned at the margin, from the bottom up (the block is pushed down so that it ends near the bottom edge), draws the pointer, and turns the choice under the mouse yellow; a left click returns that choice. Jim then says the chosen line, and the script goes on after it.
 - **Other things scripts start.** `play sound` plays a voice file from the archive the same way; `play cd` plays a CD audio track; `play avi` plays a movie from the game disc (`INSTALL\BIN\DATA<number>.BIN`, not in the archive; plain AVI files with Indeo 5 video) until it ends or a key is pressed; `run 'FANMTRONO'` is a scene change to the throne room (label `ir`: Jim hidden) or the village (any other label).
 Ported and checked against the original:
@@ -810,7 +810,7 @@ Ordered by what blocks the most (the full list of open functions is in `CHECKLIS
 - **Seeing a movie play**: the player is ported and the format is known (see The movies), but nobody has watched one play in the engine yet; the original's wait for completion and its repeated blits of the screen (read, not reproduced) are the part to check.
 - **Shaped collision in play**: the shaped test is ported and checked against the original, but it only matters for the few objects whose pictures carry outlines (see Outlines); nobody has seen it decide a touch in a running game.
 - **The frame loop as a whole**: the engine's frame now follows the original's order (see The frame loop and the mouse), but it has not been run side by side with the original's frame, and nobody has played a whole session with the new order. Since 5 November the engine reads the game's five keys and ends the game when the main list is emptied (as the original's frame does), which is what Escape in the main menu does.
-- **The skip key and a real subtitles option**, and the kind-18 gap. The small picture of the scene is taken when the save screen opens but is not yet stored in the save file (the original's file starts with it).
+- **A real subtitles option.** The small picture of the scene is taken when the save screen opens but is not yet stored in the save file (the original's file starts with it).
 - **Observing the running original**: everything above is "compared with the original's code", never "seen on screen"; that waits for an authorised reference environment.
 
 Each time we finish one of these, its section above gets filled in and the diagram is updated.
