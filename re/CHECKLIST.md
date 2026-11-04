@@ -10,7 +10,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 441 | 98% |
 | understood or later | 410 | 91% |
-| ported or later | 356 | 79% |
+| ported or later | 358 | 80% |
 | emu-compared or later | 316 | 70% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
@@ -581,18 +581,18 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00418c30` inferred_C0042b390_Draw (vtable) · depth 4 · 10 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b390 slot 6 (kind 5 subtype 3)
 - [x] `00418cb0` inferred_C0042a750_UseItem (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a750 slot 27 (kind 12 subtype 8)
 
-### Cluster 46: 004191c0–00419ac0 (5/12 ported)
+### Cluster 46: 004191c0–00419ac0 (7/12 ported)
 
 - [x] `004191c0` inferred_Connect4_ChooseMove · depth 2 · 46 lines · **emu-compared** → `engines/tesoro/core/connectfour.cpp::ConnectFour` — picks a column (checks for immediate win/loss first, then best-scoring, using RandomRange to break ties) | name from call sites and a skim; body not yet read
 - [x] `00419340` inferred_BoardColumn_SetVerbAndClick (vtable) · depth 4 · 23 lines · **emu-compared** → `core/BoardColumn::setVerbAndClick` — unread; first seen in vtable 0042c070 slot 14 | boardcol vectors 4 Nov: busy, full column, drop, order of calls identical
 - [x] `004192c0` inferred_Obj_BoardColumn_Ctor · depth 12 · 24 lines · **emu-compared** → `core/BoardColumn::init` — 0xa4 bytes, vtable 0042c070, extends MidBase; builds a phrase key from a base string plus a digit from the record | boardcol vectors 4 Nov: 300 sessions identical
-- [ ] `004193b0` inferred_DoFCONECTA_Turn (vtable) · depth 12 · 69 lines · **understood** — unread; first seen in vtable 00428438 slot 28
+- [x] `004193b0` inferred_DoFCONECTA_Turn (vtable) · depth 12 · 69 lines · **ported** → `core/BoardGame::turn + World script routine (type 14)` — unread; first seen in vtable 00428438 slot 28 | boardgame vectors 4 Nov: BoardGame::turn identical (1,226 turns); phase 1 level change is World wiring, not compared
 - [ ] `004197a0` inferred_DoFANPRESENT (vtable) · depth 12 · 51 lines · **understood** — unread; first seen in vtable 00428a50 slot 28
 - [ ] `004198d0` inferred_DoFANEMBARKE (vtable) · depth 12 · 37 lines · **understood** — unread; first seen in vtable 00428960 slot 28
 - [ ] `004199a0` inferred_DoFANMLGISLA (vtable) · depth 12 · 21 lines · **understood** — unread; first seen in vtable 00428870 slot 28
 - [ ] `00419a10` inferred_DoFANPLAYA (vtable) · depth 12 · 31 lines · **understood** — unread; first seen in vtable 004287f8 slot 28
 - [ ] `00419ac0` inferred_DoFEXPLOSION (vtable) · depth 12 · 20 lines · **understood** — unread; first seen in vtable 00428780 slot 28
-- [ ] `00419530` inferred_DoCONV33_StartBoardGame (vtable) · depth 14 · 43 lines · **understood** — unread; first seen in vtable 00428708 slot 28
+- [x] `00419530` inferred_DoCONV33_StartBoardGame (vtable) · depth 14 · 43 lines · **ported** → `core/BoardGame::start + World script routine (type 8)` — unread; first seen in vtable 00428708 slot 28 | boardgame vectors 4 Nov: BoardGame::start identical (300 sessions); level change, Jim and script start are World wiring, not compared
 - [x] `00419620` inferred_C0042b060_Verb2 (vtable) · depth 14 · 29 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b060 slot 23 (kind 5 subtype 16)
 - [x] `004196c0` inferred_C0042b0e8_Verb2 (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b0e8 slot 23 (kind 5 subtype 15)
 

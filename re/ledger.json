@@ -26501,9 +26501,9 @@
   ],
   "data_refs": [],
   "cluster": 46,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428438 slot 28"
+  "status": "ported",
+  "engine": "core/BoardGame::turn + World script routine (type 14)",
+  "notes": "unread; first seen in vtable 00428438 slot 28 | boardgame vectors 4 Nov: BoardGame::turn identical (1,226 turns); phase 1 level change is World wiring, not compared"
  },
  {
   "addr": "00419530",
@@ -26529,9 +26529,9 @@
   ],
   "data_refs": [],
   "cluster": 46,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428708 slot 28"
+  "status": "ported",
+  "engine": "core/BoardGame::start + World script routine (type 8)",
+  "notes": "unread; first seen in vtable 00428708 slot 28 | boardgame vectors 4 Nov: BoardGame::start identical (300 sessions); level change, Jim and script start are World wiring, not compared"
  },
  {
   "addr": "00419620",
