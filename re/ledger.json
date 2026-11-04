@@ -11810,9 +11810,9 @@
   ],
   "data_refs": [],
   "cluster": 14,
-  "status": "understood",
+  "status": "ported",
   "engine": "",
-  "notes": "unread; first seen in vtable 00428bf8 slot 5"
+  "notes": "unread; first seen in vtable 00428bf8 slot 5 | frame wiring in TesoroEngine::runFrame, 4 Nov"
  },
  {
   "addr": "00408800",
@@ -22915,9 +22915,9 @@
   ],
   "data_refs": [],
   "cluster": 35,
-  "status": "understood",
+  "status": "ported",
   "engine": "",
-  "notes": "unread; first seen in vtable 0042bc40 slot 5"
+  "notes": "unread; first seen in vtable 0042bc40 slot 5 | frame wiring in TesoroEngine::runFrame, 4 Nov"
  },
  {
   "addr": "00414600",

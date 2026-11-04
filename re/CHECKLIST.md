@@ -10,7 +10,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 447 | 100% |
 | understood or later | 431 | 96% |
-| ported or later | 384 | 85% |
+| ported or later | 386 | 86% |
 | emu-compared or later | 328 | 73% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
@@ -176,13 +176,13 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00407ce0` inferred_Jim_SayLine · depth 11 · 8 lines · **ported** → `engines/tesoro/core/jimwalker.h::Jim::sayScriptLine` — Player_Say with a negative id derived from +0x100 (spoken subtitle line) | already present as sayScriptLine; marked 31 Oct
 - [x] `004080e0` inferred_Level_Load · depth 15 · 142 lines · **emu-compared** — level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
 
-### Cluster 14: 00408780–00408890 (7/8 ported)
+### Cluster 14: 00408780–00408890 (8/8 ported)
 
 - [x] `00408780` inferred_Level_FindObjectByKey · depth 1 · 8 lines · **emu-compared** — forwards to the object list at +0x74 with the 64-bit key
 - [x] `00408840` inferred_Level_PicturesReloaded (vtable) · depth 1 · 14 lines · **ported** → `engines/tesoro/world.cpp::WorldLevel::picturesReloaded` — unread; first seen in vtable 00428bf8 slot 13
 - [x] `00408890` inferred_Level_CollisionPass · depth 2 · 200 lines · **emu-compared** — per-frame pass over the level's object list (+0x7c): for each pair of objects with flags 8 (collidable) and 2 (active) in the same room, asks A.slot11(B) then runs ResolveOverlap; afterwards sends queued position notifications (+0x78 list of object,x,y) through object slot 12
 - [x] `004087a0` inferred_Level_UpdateOrCollide (vtable) · depth 3 · 17 lines · **ported** → `engines/tesoro/core/level.cpp::Level::update` — level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true
-- [ ] `004087d0` inferred_C00428bf8_Update2 (vtable) · depth 3 · 10 lines · **understood** — unread; first seen in vtable 00428bf8 slot 5
+- [x] `004087d0` inferred_C00428bf8_Update2 (vtable) · depth 3 · 10 lines · **ported** — unread; first seen in vtable 00428bf8 slot 5 | frame wiring in TesoroEngine::runFrame, 4 Nov
 - [x] `00408620` inferred_Level_SaveState · depth 8 · 77 lines · **ported** — writes the object keys and flags and calls each object's SaveState (slot 10) via fwrite | name from call sites and a skim; body not yet read
 - [x] `00408710` inferred_Level_LoadState · depth 8 · 20 lines · **ported** — reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object
 - [x] `00408800` inferred_Level_ReloadDeferredAnims · depth 10 · 18 lines · **ported** → `engines/tesoro/core/level.cpp::Level::reloadDeferredAnims` — rewinds pool arena 2, reloads the deferred animation images of every bank and sets +0x94
@@ -440,7 +440,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00414560` inferred_Game_StartIntroSequence · depth 14 · 25 lines · **ported** → `engines/tesoro/world.cpp::World::startGame` — enters the stage level with Jim, shows him, and starts a dialogue entry by key | read against engine 4 Nov; not compared
 - [ ] `00413e60` inferred_InitGameWorld · depth 16 · 252 lines · **understood** — opens archive Tesoro.DAT/Tesoro.TRE, loads TABLA1.TBL, FUENTES.ANM, OBJETOS.TXT/DLG tables, INTERFACE.LVL, CUBIERTA/MAPA/DESPACHO..LVL levels (0x2f slots), PRINCIPAL.LVL, NUEVO.LVL, then starts the first level; SEH frame | creation order read 30 Oct
 
-### Cluster 35: 00414740–00414dc0 (9/12 ported)
+### Cluster 35: 00414740–00414dc0 (10/12 ported)
 
 - [x] `00414740` inferred_WalkArea_ScaleAt · depth 0 · 86 lines · **emu-compared** → `engines/tesoro/core/walkarea.cpp` — (x, y) piecewise interpolation of a perspective scale (default 0x100) from the walk-area edge table in the current frame record | (x, y) perspective scale 0x100 = 1.0: finds the polyline edges spanning x, interpolates their y and per-vertex scale, then interpolates the scale vertically between the edge above and the edge below the point; 0x100 when no edge pair brackets the point
 - [ ] `00414600` inferred_Keyboard_Dtor · depth 1 · 9 lines · **decompiled** — vtable 00428070
@@ -448,7 +448,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `004146b0` WalkFloor_OnAttach (vtable) · depth 1 · 23 lines · **ported** → `engines/tesoro/core/walkfloor.cpp::WalkFloor::onAttach` — unread; first seen in vtable 0042bc78 slot 0 | ported 31 Oct except the shared-level animation borrow
 - [x] `00414a90` inferred_ItemGroup_OnAttach (vtable) · depth 1 · 92 lines · **emu-compared** → `core/ItemGroup::onAttach` — unread; first seen in vtable 0042bcb0 slot 0
 - [x] `00414d50` inferred_C0042abb0_Slot15 (vtable) · depth 1 · 18 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042abb0 slot 15 (kind 6 subtype 1)
-- [ ] `004145f0` inferred_InterfaceLevel_Update2 (vtable) · depth 3 · 8 lines · **understood** — unread; first seen in vtable 0042bc40 slot 5
+- [x] `004145f0` inferred_InterfaceLevel_Update2 (vtable) · depth 3 · 8 lines · **ported** — unread; first seen in vtable 0042bc40 slot 5 | frame wiring in TesoroEngine::runFrame, 4 Nov
 - [x] `00414620` WalkFloor_Ctor · depth 3 · 19 lines · **ported** → `engines/tesoro/core/walkfloor.cpp::WalkFloor::init` — 0x7c bytes, vtable 0042bc78, extends Kind00 | ported 31 Oct; the kind 7 floor (SUELO)
 - [x] `00414930` inferred_Obj_ItemGroup_Ctor · depth 3 · 81 lines · **emu-compared** → `core/ItemGroup::init` — 0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record
 - [x] `00414c40` inferred_Exit_Activate (vtable) · depth 12 · 27 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — kind 6/other exit-style handler: when Jim is idle, resets display queues, looks up the destination level in the level table 00442130 by index (+0xa0) and name key (+0xa4,+0xa8), and moves Jim there with Jim_EnterLevel
