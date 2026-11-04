@@ -23,12 +23,12 @@ Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function
 | Replaced by a ScummVM service (DirectDraw, DirectSound, input and similar) | 3 | |
 | Seen in the running original | 0 | 0% (no reference environment is authorised) |
 
-- **What is left unread** is small and not the story: the memory pool, the display's constructor and its two mask and second-row raster routines, the movie player, the thumbnail capture, the window and start-up code.
+- **What is left unread** is small and not the story: the memory pool, the display's constructor and its two mask and second-row raster routines, the thumbnail capture, the window and start-up code.
   Most of these are replaced by ScummVM (window, input, sound, memory). The polygon routines are read and ported (see Outlines below).
 - **Every object kind of the level files is now built** by the engine (see the table of kinds): 0 to 17 and 19 to 25. Kind 18 has no case in the original's factory, so a record of that kind builds nothing.
   The engine's `Level` alone still builds only 0, 1, 3, 7, 8, 10 and 25 (the menus load whole with it); `World` supplies the rest.
 - **The scene routines** behind the numbered script blocks (the `DO` lines): the engine has all of them. The two board-game routines (types 8 and 14) and the other sixteen are ported *and compared* with the original by emulation (5 Nov: 380 runs of the original routines from random starts; the port made the same calls in the same order and left the same state). Reading them first found one real defect, now fixed: in the CONV35 scene (type 12) the harbour guard ORZOGUEI was switched on and off the wrong way round. They live in their own class, `SceneRoutines`, which asks the game through `SceneHost` (answered by `World`).
-- **Still warning when reached:** movies (the intro's two, the one an exit starts when Jim first reaches place 16, the one at the risco), turning a page of the inventory, scrolling the interface out,
+- **Still warning when reached:** turning a page of the inventory, scrolling the interface out,
   the verb run after a picture reload, and the pixel-accurate collision of two shaped objects.
   The skip key is not there either (any mouse button skips a line) and the subtitles option is only the on/off button.
 - **Still the honest limit:** "compared" means the original's machine code was run next to the port on invented or real inputs. Nothing has been observed in the real game running, so
@@ -226,7 +226,7 @@ object that moves between levels: entering a level takes him out of his old leve
 makes the new level's camera follow him. The game begins with Jim in the main menu. The cursor lives in the interface level,
 and its companion in whichever level Jim is in. Some objects (a door, a chest, a canoe...) are switched off right at the start.
 
-### The world class (`World`) 🟡 (the engine's side of every host; scripts, movies and the inventory page are still missing)
+### The world class (`World`) 🟡 (the engine's side of every host; the inventory page is still missing; scripts and movies are there)
 Every ported object class asks "the rest of the game" for things through a small interface (a *host*: see below). `World` is the one class
 that answers all of them for real, from the game's actual state:
 - **Levels.** The table of the 47 levels in the game's own order (the numbers scripts and objects use). A level is read from the archive the first
@@ -242,7 +242,7 @@ that answers all of them for real, from the game's actual state:
   pointer on and off while Jim answers.
 - **The main list.** The one list of things that get a turn every frame (speakers waiting for their line to end, clicks waiting for Jim): inserted by
   priority, removed by object.
-- **Changing level.** The steps of the original's scene change (forget the queued pictures, bring the cameras up to date, compose, clear, fade, wait) are there for the exits; the movie that starts when Jim first reaches the risco warns and does nothing.
+- **Changing level.** The steps of the original's scene change (forget the queued pictures, bring the cameras up to date, compose, clear, fade, wait) are there for the exits; the movie that starts when Jim first reaches place 16 plays through `World::startMovie` (see The movies).
 - **Scripts run.** `World` reads the four script files and answers everything a running script asks: finding objects, characters speaking (through
 the same speaking rules, with the character's own colour and pose), Jim's script lines, walking Jim (the script is told when he arrives), animations,
 looking, showing and switching objects, the choice menu (the pointer's picture is put aside and restored), sounds and music tracks. A running script is
@@ -257,8 +257,8 @@ speaking is let go and its held flag cleared (found by running it: the animation
 script plays Jim's and the captain's lines with subtitles and ends with Jim walking out of the despacho into the port.
 - **Starting the game.** "Nueva partida" now fades to the new-game menu and plays its script; the start button puts Jim in the port, shows him and
 starts the opening script, which runs through the ship arriving and Jim walking into the despacho (the screen follows Jim into each level). Seen
-running from the start button's code path; the two movies of the intro are skipped with a warning.
-- **Not there yet (they warn when reached):** the movies; turning a page of the inventory; scrolling the interface out; the skip key (any mouse button skips a line for now); the voices start and finish on the mixer (checked with a silent audio driver: the captain's talk now ends by its voices, with no skipping), but nobody has listened to them yet; a subtitles option (always on).
+running from the start button's code path; the introduction movie plays first (see The movies).
+- **Not there yet (they warn when reached):** turning a page of the inventory; scrolling the interface out; the skip key (any mouse button skips a line for now); the voices start and finish on the mixer (checked with a silent audio driver: the captain's talk now ends by its voices, with no skipping), but nobody has listened to them yet; a subtitles option (always on).
 - **Seen working:** the engine reads all 47 levels with these objects, puts Jim in the despacho and draws the room with the captain in his chair, Jim
 standing in front and the items of the room, with no warnings. Not checked against the original (the hosts are the engine's own decisions, not
 ported functions).
@@ -575,7 +575,7 @@ The engine runs a **reduced frame** inside ScummVM: events become mouse position
 interface level and the current menu level each get their update, the cameras are updated, the screen is composed and copied to
 the window. The pointer is found in the interface level and menu items are hooked to the engine, so hover and the click on
 "Nueva partida" (fade, then the new-game menu) are wired, and a click can start scripts and the game through `World`. It is still not the
-original's frame as a whole: the engine's own loop calls the passes it needs, and the sound, movies and some menu actions are missing. Not compared
+original's frame as a whole: the engine's own loop calls the passes it needs, and the sound and some menu actions are missing (movies play through `World`, outside the frame). Not compared
 against the original as a whole.
 
 ## Scripts 🟡 (read and compiled ✅, stepping ✅ checked with a stand-in world; the real world, `World`, answers for them in the engine and is not compared)
@@ -805,11 +805,15 @@ column and the time, and starts the board's update. **Ported** as `BoardColumn` 
 **The level factory** (the code that turns each record of a level file into an object) is read: each kind picks a size and a
 constructor, and the kinds with subtypes (5, 6, 12, 13, 17, 20) swap in a class per subtype. Kind 18 has no case, so a record of that kind builds nothing.
 
+## The movies 🟡 (format read on all 13 files, player ported; playback not seen)
+The game's movies are not in the archive: they are 13 files, `data00.bin` to `data12.bin`, in the `bin` folder of the game disc. Checked on 5 Nov 2026 with a media probe: every one is a plain AVI with Intel Indeo 5 video at 640x480 (12 frames a second, or 23.98 for 00, 05, 06 and 08), and six carry uncompressed sound at 22 kHz (00, 02 and 08 are 16-bit stereo, 12 is 16-bit mono, 03 is 8-bit mono, 04 is 8-bit stereo); the rest are silent. They run from 1 to 147 seconds (data02, 147 s, is the longest). Three places start one: the game's start-up (movie 0, the introduction), a script's `play avi` line (the number is in the script) and the exit arrival of the first visit to place 16 (movie 9).
+The original builds a DirectShow graph for the file, plays it full screen and loops, polling the keyboard and re-drawing the screen, until the movie ends or the skip key's first state bit is set; it then drops the graph, waits for the mouse buttons to come up and sleeps half a second. The engine plays the file with ScummVM's AVI decoder (the Indeo 4/5 component is switched on for the engine), centred in the 640x480 window, until it ends or Escape is let go, then waits for the buttons and half a second too (`World::startMovie`, `TesoroEngine::releaseInputAfterMovie`). A missing or undecodable file warns and the script goes on, as in the original (which returns "false"). **Checked:** the file facts above (read from the shipped files). **Not checked:** the playback itself (a run with the dummy video and audio drivers printed no warning, but whether the file was opened and shown could not be observed), the exact skip-key timing, and the sound through the mixer.
+
 ## Still to explore
 
 Ordered by what blocks the most (the full list of open functions is in `CHECKLIST.md`):
 - **The inventory page and the interface strip's motion**: turning a page and scrolling the interface out (check whether they still warn; Jim's use of item 37 is ported since 5 Nov).
-- **The movies**: the player is read but not ported; the files are on the game disc, not in the archive, and their format is unread.
+- **Seeing a movie play**: the player is ported and the format is known (see The movies), but nobody has watched one play in the engine yet; the original's wait for completion and its repeated blits of the screen (read, not reproduced) are the part to check.
 - **The shaped (pixel-accurate) part of the collision test**, which probably needs the three polygon routines, shadows, and the companion pointer.
 - **The frame loop as a whole**: the engine runs a reduced frame; the original's frame (keyboard and mouse update, the passes, the sound update) is read but not compared as one. Since 5 November the engine reads the game's five keys and ends the game when the main list is emptied (as the original's frame does), which is what Escape in the main menu does.
 - **The skip key and a real subtitles option**, the thumbnail capture for the saved-game list, and the kind-18 gap.

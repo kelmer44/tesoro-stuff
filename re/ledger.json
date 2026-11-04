@@ -22432,7 +22432,7 @@
   "cluster": 33,
   "status": "ported",
   "engine": "engines/tesoro/world.cpp::World::startMovie",
-  "notes": "DirectShow setup via CoCreateInstance, builds path c:\\INSTALL\\BIN\\DATA\\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed | plays the AVI (Indeo 5) disc movies with Video::AVIDecoder; built, not seen running"
+  "notes": "DirectShow setup via CoCreateInstance, builds path c:\\INSTALL\\BIN\\DATA\\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed | plays the AVI (Indeo 5) disc movies with Video::AVIDecoder; built, not seen running | format of all 13 movie files probed 5 Nov; playback not observed"
  },
  {
   "addr": "00413570",
