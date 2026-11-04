@@ -22891,9 +22891,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "decompiled",
-  "engine": "",
-  "notes": "enters the stage level with Jim, shows him, and starts a dialogue entry by key"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::startGame",
+  "notes": "enters the stage level with Jim, shows him, and starts a dialogue entry by key | read against engine 4 Nov; not compared"
  },
  {
   "addr": "004145f0",

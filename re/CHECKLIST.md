@@ -9,8 +9,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 |---|---|---|
 | untouched or later | 447 | 100% |
 | decompiled or later | 447 | 100% |
-| understood or later | 430 | 96% |
-| ported or later | 383 | 85% |
+| understood or later | 431 | 96% |
+| ported or later | 384 | 85% |
 | emu-compared or later | 328 | 73% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
@@ -425,7 +425,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00413570` SpeechTable_Load · depth 11 · 121 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (archive offset): reads lines of the OBJETOS.TXT-style table and stores records of 16 bytes; first pass counts lines
 - [x] `00413940` Phrase_Find · depth 11 · 27 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (name) hashes the name with NameHash64 and searches the four text tables 00442110..0044211c; MessageBox "frase no encontrada" if missing
 
-### Cluster 34: 00413a10–00414560 (7/12 ported)
+### Cluster 34: 00413a10–00414560 (8/12 ported)
 
 - [x] `00413a10` inferred_Clock_Now · depth 0 · 19 lines · **emu-compared** → `core/clock.cpp::GameClock::now` — adds elapsed GetTickCount delta when below 500 ms (longer gaps are ignored); returns frozen value while frozen
 - [x] `00413a50` inferred_Clock_Freeze · depth 0 · 18 lines · **emu-compared** → `core/clock.cpp::GameClock::freeze` — updates accumulation then freezes at the current value (called at start of each frame)
@@ -437,7 +437,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00413b90` inferred_InitSubsystems · depth 6 · 140 lines · **understood** — builds CD, input, sound, video objects; error dialogs
 - [ ] `004144a0` inferred_Shutdown · depth 7 · 45 lines · **understood** — deletes display, sound, mouse, keyboard, archive, memory pools, clock in that order
 - [ ] `00414420` inferred_RunFrame · depth 10 · 21 lines · **understood** — per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end
-- [ ] `00414560` inferred_Game_StartIntroSequence · depth 14 · 25 lines · **decompiled** — enters the stage level with Jim, shows him, and starts a dialogue entry by key
+- [x] `00414560` inferred_Game_StartIntroSequence · depth 14 · 25 lines · **ported** → `engines/tesoro/world.cpp::World::startGame` — enters the stage level with Jim, shows him, and starts a dialogue entry by key | read against engine 4 Nov; not compared
 - [ ] `00413e60` inferred_InitGameWorld · depth 16 · 252 lines · **understood** — opens archive Tesoro.DAT/Tesoro.TRE, loads TABLA1.TBL, FUENTES.ANM, OBJETOS.TXT/DLG tables, INTERFACE.LVL, CUBIERTA/MAPA/DESPACHO..LVL levels (0x2f slots), PRINCIPAL.LVL, NUEVO.LVL, then starts the first level; SEH frame | creation order read 30 Oct
 
 ### Cluster 35: 00414740–00414dc0 (9/12 ported)

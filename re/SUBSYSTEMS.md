@@ -17,8 +17,8 @@ Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function
 | Stage | Functions | Share |
 |---|---|---|
 | Read (decompiled) | 447 | 100% |
-| Understood (contract written) | 430 | 96% |
-| Ported to C++ | 381 | 85% |
+| Understood (contract written) | 431 | 96% |
+| Ported to C++ | 384 | 85% |
 | Run against the original machine code and matched | 328 | 73% |
 | Replaced by a ScummVM service (DirectDraw, DirectSound, input and similar) | 3 | |
 | Seen in the running original | 0 | 0% (no reference environment is authorised) |
