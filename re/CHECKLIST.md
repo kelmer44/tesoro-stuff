@@ -10,7 +10,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 447 | 100% |
 | understood or later | 430 | 96% |
-| ported or later | 381 | 85% |
+| ported or later | 382 | 85% |
 | emu-compared or later | 328 | 73% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
@@ -73,7 +73,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `004026d0` Cursor_OpenMenu · depth 3 · 84 lines · **emu-compared** → `core/Cursor::openMenu + World::captureThumbnail` — renders the scene without the cursor into the display buffer and copies a 213x160 sample (every third pixel of every third row) to +0x128: a save-game thumbnail (hypothesis from the sampling pattern) | compared inside Cursor_Update; the scene sample is Cursor::sampleScene (CRC compared)
 - [x] `00402300` inferred_Obj_Kind10_Ctor · depth 4 · 46 lines · **ported** → `engines/tesoro/core/cursor.cpp::Cursor::initMain` — 0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object
 
-### Cluster 6: 00402e50–00403300 (11/12 ported)
+### Cluster 6: 00402e50–00403300 (12/12 ported)
 
 - [x] `00402e50` inferred_Cursor_IsHitter (vtable) · depth 0 · 7 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::isHitter` — vtable slot 11 (ret 4): IsHitter(other): returns flag bit 10 (0x400) of this, ignoring the argument. Base default returns false. Level_CollisionPass asks A.slot11(B) then B.slot11(A) to decide which object is the hitter | cursor vectors 4 Nov
 - [x] `00402d80` inferred_Cursor_Draw (vtable) · depth 1 · 24 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::Cursor::draw` — unread; first seen in vtable 00428038 slot 6
@@ -82,7 +82,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `004031a0` inferred_C00428038_SetActive (vtable) · depth 1 · 38 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::setActive` — unread; first seen in vtable 00428038 slot 8 | cursor vectors 4 Nov
 - [x] `00403220` inferred_Archive_Ctor · depth 1 · 11 lines · **ported** → `engines/tesoro/core/archive.cpp` — allocates the index buffer (0xd7a0 bytes, from arena 0) into global 00442068
 - [x] `004029a0` inferred_Interface_ScrollOut · depth 2 · 14 lines · **emu-compared** → `core/Cursor::scrollOut` — moves the interface camera +0x285 and runs the display effect (4, 100) | contract read 30 Oct; port blocked on global objects | the function is never called; its sequence inlined in Cursor_Update is compared
-- [ ] `004030e0` inferred_C00428038_Update2 (vtable) · depth 2 · 35 lines · **understood** — unread; first seen in vtable 00428038 slot 5 | contract read 30 Oct; port blocked on global objects
+- [x] `004030e0` inferred_Cursor_Update2 (vtable) · depth 2 · 35 lines · **ported** → `engines/tesoro/core/cursor.cpp::Cursor::update2 + World::walkJimToPointer` — unread; first seen in vtable 00428038 slot 5 | contract read 30 Oct; port blocked on global objects | click-to-walk ported 4 Nov
 - [x] `00403300` inferred_Archive_Tell · depth 4 · 10 lines · **ported** → `engines/tesoro/core/archive.cpp` — current position of the archive stream (low dword of fgetpos)
 - [x] `004032e0` inferred_Archive_SeekEntry · depth 5 · 8 lines · **ported** → `engines/tesoro/core/archive.cpp` — fseek the archive handle to offset, returns the FILE*
 - [x] `00403250` inferred_Archive_Open · depth 10 · 28 lines · **ported** → `engines/tesoro/core/archive.cpp` — thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4

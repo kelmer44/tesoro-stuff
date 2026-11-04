@@ -8782,7 +8782,7 @@
  {
   "addr": "004030e0",
   "ghidra_name": "FUN_004030e0",
-  "name": "inferred_C00428038_Update2",
+  "name": "inferred_Cursor_Update2",
   "tier": "game",
   "lines": 35,
   "decompile_ok": true,
@@ -8800,9 +8800,9 @@
   ],
   "data_refs": [],
   "cluster": 6,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428038 slot 5 | contract read 30 Oct; port blocked on global objects"
+  "status": "ported",
+  "engine": "engines/tesoro/core/cursor.cpp::Cursor::update2 + World::walkJimToPointer",
+  "notes": "unread; first seen in vtable 00428038 slot 5 | contract read 30 Oct; port blocked on global objects | click-to-walk ported 4 Nov"
  },
  {
   "addr": "004031a0",
