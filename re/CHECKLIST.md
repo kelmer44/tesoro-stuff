@@ -10,8 +10,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 441 | 98% |
 | understood or later | 410 | 91% |
-| ported or later | 351 | 78% |
-| emu-compared or later | 311 | 69% |
+| ported or later | 353 | 78% |
+| emu-compared or later | 313 | 70% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -523,17 +523,17 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00417180` inferred_C0042a520_Verb4 (vtable) · depth 14 · 34 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a520 slot 24 (kind 13 subtype 9)
 - [x] `00417250` inferred_C0042a440_UseItem (vtable) · depth 14 · 47 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a440 slot 27 (kind 13 subtype 28)
 
-### Cluster 41: 00417360–004178b0 (7/9 ported)
+### Cluster 41: 00417360–004178b0 (9/9 ported)
 
 - [x] `00417360` inferred_C0042a360_UseItem (vtable) · depth 2 · 22 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a360 slot 27 (kind 13 subtype 36)
 - [x] `004174b0` inferred_C0042a210_UseItem (vtable) · depth 2 · 22 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a210 slot 27 (kind 13 subtype 33)
 - [x] `00417530` inferred_C0042a130_UseItem (vtable) · depth 2 · 22 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a130 slot 27 (kind 13 subtype 42)
-- [ ] `00417720` inferred_Obj_MapPlace_Ctor · depth 12 · 63 lines · **understood** — 0xa4 bytes, vtable 0042bf90; builds a temporary Kind00 and copies it field by field into this
+- [x] `00417720` inferred_Obj_MapPlace_Ctor · depth 12 · 63 lines · **emu-compared** → `core/MapPlace::init` — 0xa4 bytes, vtable 0042bf90; builds a temporary Kind00 and copies it field by field into this | mapplace vectors 4 Nov: 300 sessions identical
 - [x] `004175b0` inferred_Obj_NoteObject_Ctor · depth 13 · 10 lines · **emu-compared** → `core/NoteObject::init` — 0xa4 bytes, vtable 0042bf20, extends Kind09 | note vectors 4 Nov: 200 sessions identical
 - [x] `004173e0` inferred_C0042a2f0_UseItem (vtable) · depth 14 · 35 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a2f0 slot 27 (kind 13 subtype 37)
 - [x] `004175f0` inferred_NoteObject_Verb1Verb3 (vtable) · depth 14 · 19 lines · **emu-compared** → `core/NoteObject::verb` — unread; first seen in vtable 0042bf20 slot 21 | note vectors 4 Nov: script find/start, variables pointer, result identical
 - [x] `00417640` inferred_C0042afe8_Slot28 (vtable) · depth 14 · 44 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)
-- [ ] `004178b0` inferred_MapPlace_SetVerbAndClick (vtable) · depth 14 · 37 lines · **understood** — unread; first seen in vtable 0042bf90 slot 14
+- [x] `004178b0` inferred_MapPlace_SetVerbAndClick (vtable) · depth 14 · 37 lines · **emu-compared** → `core/MapPlace::setVerbAndClick` — unread; first seen in vtable 0042bf90 slot 14 | mapplace vectors 4 Nov: lookups, script, level entry, facing, result identical; contract corrected (facing is opposite of SALIDA's)
 
 ### Cluster 42: 00417b30–00417d00 (5/7 ported)
 

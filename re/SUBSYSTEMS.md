@@ -52,7 +52,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Exits: `ExitDoor` (an exit between levels), `ExitHost` (what it asks of the game).
 - Board game: `ConnectFour` (the thinking of the "Conecta" game) and `ConnectFourHost` (what it asks of the game).
 - Items: `InventoryItem` (things Jim carries), `ItemHost` (what it asks of the game).
-- Notes: `NoteObject` (kind 24, with `NoteHost`).
+- Notes and map places: `NoteObject` (kind 24, with `NoteHost`), `MapPlace` (kind 19, with `MapPlaceHost`).
 - Save and load screen: `MenuButton` (kind 22, with `MenuButtonHost`), `SlotLabel` (23, with `SlotLabelHost`).
 - Inventory strip: `InventoryStrip` (kind 11, with `StripHost`).
 - Groups, shadows and wanderers: `ItemGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14, with `DepthZoneHost`), `ClickCatcher` (15), `PathSprite` (16, with `PathSpriteHost`).
@@ -205,7 +205,7 @@ that answers all of them for real, from the game's actual state:
 - **Levels.** The table of the 47 levels in the game's own order (the numbers scripts and objects use). A level is read from the archive the first
   time something asks for it (the original reads them all at start-up; only the load time differs), with its pictures left unloaded until Jim
   enters. Its objects are built by the level reader: the plain ones as before, and now also the **characters (kind 5), exits (6), plain clickable
-  things (9), scripted props (12, 17, 20) and items (13)**, each handed `World` as its host. Kinds still not built: 19 and 21 (see their sections; the other kinds are listed under the level's objects).
+  things (9), scripted props (12, 17, 20) and items (13)**, each handed `World` as its host. Kind still not built: 21 (see its section; the other kinds are listed under the level's objects).
 - **Spoken lines.** The four text files (`OBJETOS`, `ANIMS`, `CONVERS`, `ICONS`) are read from the archive and searched in the game's order; a
   line's voice is its sound file in the archive. Voices play on ScummVM's mixer through the ported sound device.
 - **Jim.** Made on first use from his nine animation files and the line "JIM"; `World` puts him into a level (his first room), answers his walking
@@ -387,8 +387,8 @@ flowchart LR
 
 *Built by the level:* the plain animated object (kind 0), the camera frame (1), the sprite (3), the floor (7), the route (8), the pointer (10) and the menu item (25), as `Object`, `CameraFrame`, `SpriteObject`, `WalkFloor`, `PathObject`, `Cursor`, `MenuItem`. Each draws through the `Display` interface; the object's hit rectangle and its movement feed the collision pass.
 *Built when `World` reads a level:* the characters (5), exits (6), the plain clickable (9), the scripted props (12, 17, 20) and items (13) (see their sections); Jim is made by `World` on first use.
-*Also built by `World`:* the groups (2), shadows (4), strip (11), depth zones (14), click catchers (15), wanderers (16), save menu objects (22, 23) and note objects (24).
-*Not built yet:* kinds 19 and 21, and some of the interface strip's objects.
+*Also built by `World`:* the groups (2), shadows (4), strip (11), depth zones (14), click catchers (15), wanderers (16), save menu objects (22, 23) note objects (24) and map places (19).
+*Not built yet:* kind 21, and some of the interface strip's objects.
 
 ---
 
@@ -685,13 +685,13 @@ a number that depends on which side of the zone's box he was on (above, below, l
 it. It only takes part when its kind number reads 255, which a built one never does, and no shipped level has one, so it is dead code in the original; it is ported anyway.
 **Kind 15** is a region the pointer can see but that does nothing when clicked and shows no text, so it simply stops the click. It does not read the approach point or lines of the other clickable kinds. It was run through the original code and the port together on 200 invented objects: identical (the first run found the port reading data the original ignores, now fixed).
 
-### Map places and note objects (kinds 19 and 24) 🟡 (kind 24 ported and ✅ checked against the original; kind 19 read, not ported)
+### Map places and note objects (kinds 19 and 24) ✅ (both ported and checked against the original; the map level's own hook is not)
 
 **Kind 19** is a place on the map: clicking it takes Jim to the level named in its data, next to that level's `SALIDA` object, and
 returns "moved". One destination (level 15, the sacred island) first checks the canoe object of level 7: while its state byte is
 0 the script `FMAPA` at label `tsagrada` runs instead, so the place cannot be reached yet. Destinations below 7 are
 refused. **Kind 24** is an object whose look and use verbs (verbs 1 and 3) start the script `FNOTALAB` at `mirar`, handing it the
-object's own data byte so the script knows which object it was. **Kind 24 is ported** as `NoteObject` (with `NoteHost`, answered by `World`): the data byte is kept as a whole number the script can also change, and the other verbs are those of any clickable object. It was run through the original code and the port together on 200 invented objects: the object's state, the script looked up and started, the number the script saw and the value it left behind were identical; three of four deliberate mistakes were found (the fourth did not build). Kind 19 is not compared with the original.
+object's own data byte so the script knows which object it was. **Kind 24 is ported** as `NoteObject` (with `NoteHost`, answered by `World`): the data byte is kept as a whole number the script can also change, and the other verbs are those of any clickable object. It was run through the original code and the port together on 200 invented objects: the object's state, the script looked up and started, the number the script saw and the value it left behind were identical; three of four deliberate mistakes were found (the fourth did not build). **Kind 19 is ported** as `MapPlace` (with `MapPlaceHost`, answered by `World`). It is a clickable object without the usual data: only the level, the hover name and the picture are read, and any verb travels. On arrival Jim faces the opposite way to the exit's own facing, the pointer's label is cleared and the exit's arrival routine runs (the earlier note that no facing was given was wrong). It was run through the original code and the port together on 300 invented places (all destinations, the canoe ready or not, any facing): the state, every lookup, the travel, the script and the result were identical; eight deliberate mistakes were all found. Where the original would crash (no canoe, no exit in the level) the port warns.
 
 ### Groups of objects (kind 2) and level hooks 🟡 (kind 2 ported and ✅ checked against the original; the level hooks read, not ported)
 
@@ -729,7 +729,7 @@ constructor, and the kinds with subtypes (5, 6, 12, 13, 17, 20) swap in a class 
 
 ## Still to explore
 
-- The object kinds read but not yet built (19 and 21) and the rest of the interface strip.
+- The object kind read but not yet built (21) and the rest of the interface strip.
 - The board game's screen and clicks, the movies, the inventory page, the skip key and a subtitles option.
 - The shaped (pixel-accurate) part of the collision test, shadows, and the companion pointer.
 - Sound and movies checked end to end, the saved-game list, and porting saving and loading (read, see above).
