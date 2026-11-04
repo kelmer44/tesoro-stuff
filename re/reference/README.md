@@ -33,6 +33,14 @@ Tool: [compare.py](compare.py) (`re/.venv/bin/python re/reference/compare.py ori
 - 4 Nov 2026: the menu items warned "clearing the hover text is not ported yet" on every pointer leave (and their per-frame step was a warning stub);
   fixed the same day, since the original uses the plain base routines for both. Headless runs never reach this.
 
+## Findings from the original's saved game
+- 4 Nov 2026: `ISLA0001.SAV` from the original (a new game at its very start) and a ScummVM save of the engine at the same moment. Read with `fatread.py` (no mounting, no writes);
+  the engine's save is gzip-compressed by ScummVM. Layout up to Jim confirmed. The original saves all 47 levels in order with no count or level numbers (ours: visited levels, with count and numbers).
+  Level 0 is byte for byte identical; level 1 has the same records and differs only in animation frames. Run on the engine's loader (local instrumentation, reverted), the original's records
+  parse for levels 0 to 23, so the per-object state formats are the original's. Details: 0040e000 contract.
+- Recipe: put saves in a folder, name them `tesoro.00N` (the command line target is `tesoro`), and run
+  `scummvm --path=<TESORO> --savepath=<folder> -x N tesoro`; the engine ignores a failed load silently, so a local print of the result is needed.
+
 ## Not yet tried
 Installing or starting the game inside Windows 95 (the disk may already have it), CD audio and the Indeo movies in this setup, the DOSBox-X debugger for
 reading memory, scripted input.

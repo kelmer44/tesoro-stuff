@@ -230,3 +230,12 @@ When a scene looks wrong, dump the pictures the objects hold before any composit
 ## Technique: compare glue routines through a host of primitives (demonstrated 5 November 2026)
 For routines that only call into the rest of the game (the scene routines behind the script `DO` lines), put the port behind a small host interface of primitives named like the original callees (`SceneHost`: enter level, set visible, select bank, fade, ...), compile only the routine file, and compare traces: `re/tools/gen_vectors_scenes.py` runs the original with every callee replaced by a recorder (fake name hash that remembers the string, so objects are known by name; Jim's fields set as the real callee leaves them) and writes one line per run (start state | ordered calls | final fields); `drivers/scenes_driver.cpp` implements the host to log the same tokens. Mutations (inverted flag, swapped order, wrong level, dropped write) were all caught. Limits: what the host does with each call (the world wiring) is not compared; the objects' positions are by formula, the characters are fake names. A read-only check of these routines had missed nothing but one hidden argument (the decompile drops stack arguments of virtual calls: check the disassembly).
 
+
+
+## Comparing a real saved game of the original (4 Nov 2026)
+Technique that worked, with the DOSBox-X reference environment (`re/reference/README.md`):
+1. Play the original to the moment to compare and save; save the engine at the same moment.
+2. Read the original's file from the disk image with `re/reference/fatread.py <img> find "*.SAV"` and `cat` (no mounting; shut Windows down first if the file is recent).
+3. ScummVM saves are gzip: `python3 -c "import gzip,sys; ..."`. Strip the engine's own count and level numbers to line the formats up.
+4. Load the original's file in the engine from the command line (`--savepath`, `-x`, target `tesoro`) to see whether it parses; the engine fails silently, so a local-only print (reverted afterwards) of the load result and of each level's record keys is needed.
+Limits: the two saves differ in time-dependent values (animation frames); the original saves all 47 levels, the engine only visited ones.
