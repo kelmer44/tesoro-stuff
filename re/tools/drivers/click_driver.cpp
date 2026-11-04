@@ -21,6 +21,7 @@ struct Host : Tesoro::MenuHost {
 	void enterLevel(const char *level) override { events.push_back(std::string("enter ") + level); }
 	void startScript(const char *block, const char *label) override { events.push_back(std::string("script ") + block + " " + label); }
 	void startGame() override { events.push_back("unported start"); }
+	void openSavedGames() override { events.push_back("unported thumbnail"); }
 	void notPorted(const char *what) override { events.push_back(strstr(what, "thumbnail") ? "unported thumbnail" : strstr(what, "start") ? "unported start" : std::string("unported ") + what); }
 };
 

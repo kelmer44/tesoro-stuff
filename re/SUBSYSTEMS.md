@@ -23,7 +23,7 @@ Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function
 | Replaced by a ScummVM service (DirectDraw, DirectSound, input and similar) | 3 | |
 | Seen in the running original | 0 | 0% (no reference environment is authorised) |
 
-- **What is left unread** is small and not the story: the memory pool, the display's constructor and its two mask and second-row raster routines, the thumbnail capture, the window and start-up code.
+- **What is left unread** is small and not the story: the memory pool, the display's constructor and its two mask and second-row raster routines, the window and start-up code.
   Most of these are replaced by ScummVM (window, input, sound, memory). The polygon routines are read and ported (see Outlines below).
 - **Every object kind of the level files is now built** by the engine (see the table of kinds): 0 to 17 and 19 to 25. Kind 18 has no case in the original's factory, so a record of that kind builds nothing.
   The engine's `Level` alone still builds only 0, 1, 3, 7, 8, 10 and 25 (the menus load whole with it); `World` supplies the rest.
@@ -457,11 +457,11 @@ three small values nobody has been traced reading yet.
 since it is a hitter target the pointer hovers over it. A click (left, or the alternative, which does the same) acts by number:
 - 0 "Nueva partida": the picture fades to black (4 steps of 100 ms), the player goes into the new-game menu, and the menu script
   `FANMMENU/nuevo` starts (video 1 and a picture, see Scripts); it ends the pass.
-- 1 "Cargar partida": fade, then the saved-game list screen (not read).
+- 1 "Cargar partida": fade, then the pointer opens the interface's saved-game screen the way its menu key does (small picture of the scene, interface slides to the save page).
 - 2, 3, 4 (easy, regular, hard in the new-game menu): easy and hard start the scripts `FANMMENU/facil` and `FANMMENU/dificil`; regular
   fades and runs the routine that starts the game.
 The click, the fade and the level change are ported and checked against the original (click call sequence 18/18, fade 74 frames);
-the saved-game screen is not ported. In the engine, "Nueva partida" fades out, shows the new-game menu and plays its script, and the start button puts Jim in the port and starts the opening script (see The world class); the other actions warn.
+In the engine, "Nueva partida" fades out, shows the new-game menu and plays its script, "Cargar partida" fades out and opens the saved-game screen (the call sequence is checked, what the screen does afterwards is the saved-games section), and the start button puts Jim in the port and starts the opening script (see The world class).
 
 **The main menu** (`PRINCIPAL`) is the smallest level: one room, two animation banks, four objects: the special object (kind 1),
 one kind 3, and two kind 25. All three kinds are ported and the menu level is drawn in the window; the cursor and the click code are wired in the engine (see the frame loop). The new-game menu
@@ -767,7 +767,7 @@ object's own data byte so the script knows which object it was. **Kind 24 is por
 
 **Kind 2** is a named list of other objects of the same level (the strip's `ICONOS` is one): it keeps the names from the level file and, when the level is attached, finds each object and keeps the list (a name that is not found stays as an empty place, so the order always follows the level file). The group was run through the original code and the port together on 300 invented groups, up to 260 names: identical; seven deliberate mistakes were all found. **Levels** have a hook that runs for them: the base one starts the level's music track (a number in the camera-frame object's data) and the map level (`MAPA`) uses it for story switches: when four things are done in the village, the canoe appears on the beach and the volcano's and swamp's characters are switched. Not compared with the original.
 
-### Saved games 🟡 (ported through ScummVM's own save and load, not compared with the original; the save screen's buttons choose, load and save through ScummVM's saves; scrolling the interface out still warns)
+### Saved games 🟡 (ported through ScummVM's own save and load, not compared with the original; the save screen's buttons choose, load and save through ScummVM's saves)
 
 A saved game is one file named `isla` plus a four-digit number. In order it holds: the small picture shown in the list (a
 screenshot taken when the menu opened), the number of the level Jim is in, Jim's own state, then every existing level in table
@@ -810,7 +810,7 @@ Ordered by what blocks the most (the full list of open functions is in `CHECKLIS
 - **Seeing a movie play**: the player is ported and the format is known (see The movies), but nobody has watched one play in the engine yet; the original's wait for completion and its repeated blits of the screen (read, not reproduced) are the part to check.
 - **Shaped collision in play**: the shaped test is ported and checked against the original, but it only matters for the few objects whose pictures carry outlines (see Outlines); nobody has seen it decide a touch in a running game.
 - **The frame loop as a whole**: the engine's frame now follows the original's order (see The frame loop and the mouse), but it has not been run side by side with the original's frame, and nobody has played a whole session with the new order. Since 5 November the engine reads the game's five keys and ends the game when the main list is emptied (as the original's frame does), which is what Escape in the main menu does.
-- **The skip key and a real subtitles option**, the thumbnail capture for the saved-game list, and the kind-18 gap.
+- **The skip key and a real subtitles option**, and the kind-18 gap. The small picture of the scene is taken when the save screen opens but is not yet stored in the save file (the original's file starts with it).
 - **Observing the running original**: everything above is "compared with the original's code", never "seen on screen"; that waits for an authorised reference environment.
 
 Each time we finish one of these, its section above gets filled in and the diagram is updated.

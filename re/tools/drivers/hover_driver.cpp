@@ -81,6 +81,7 @@ struct Host : Tesoro::MenuHost {
 	void fadeOut(int steps, int delay) override { Fade f; screen->fadeOut(steps, delay, f); printf("  host: fade %d x %dms (%d frames shown)\n", steps, delay, f.shown); }
 	void enterLevel(const char *name) override { printf("  host: enter %s\n", name); current = nuevo; current->cameraMoveTo(0, 0, 0, 0); cursor->setSurroundings(mouse, current); }
 	void startScript(const char *b, const char *l) override { printf("  host: script %s/%s (not ported)\n", b, l); }
+	void openSavedGames() override { printf("  host: saved games\n"); }
 	void notPorted(const char *w) override { printf("  host: %s (not ported)\n", w); }
 };
 
