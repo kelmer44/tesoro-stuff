@@ -11910,7 +11910,7 @@
   "cluster": 15,
   "status": "emu-compared",
   "engine": "",
-  "notes": "(A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls"
+  "notes": "(A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls | shaped path ported 4 Nov (Level::shapedContactTime), glue not compared"
  },
  {
   "addr": "00409280",
@@ -11934,7 +11934,7 @@
  {
   "addr": "00409560",
   "ghidra_name": "FUN_00409560",
-  "name": "inferred_Polygon_ContainsPoint",
+  "name": "inferred_Outline_Contains",
   "tier": "game",
   "lines": 142,
   "decompile_ok": true,
@@ -11946,14 +11946,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 15,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/outline.cpp::Outline::contains",
   "notes": "(polygon, x, y): even-odd edge crossing test over the shape's vertex list (count at +0, vertex array pointer at +4, vertices are short pairs); returns bool. Read partially"
  },
  {
   "addr": "00409790",
   "ghidra_name": "FUN_00409790",
-  "name": "inferred_Polygon_Overlaps",
+  "name": "inferred_Outline_Overlaps",
   "tier": "game",
   "lines": 255,
   "decompile_ok": true,
@@ -11965,14 +11965,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 15,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/outline.cpp::Outline::overlaps",
   "notes": "(polygon A, polygon B): edge/vertex overlap test between two shapes; called in both orders by ResolveOverlap. Not read in detail"
  },
  {
   "addr": "00409c10",
   "ghidra_name": "FUN_00409c10",
-  "name": "inferred_Polygon_ClipToRect",
+  "name": "inferred_Outline_ClipColumns",
   "tier": "game",
   "lines": 113,
   "decompile_ok": true,
@@ -11984,8 +11984,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 15,
-  "status": "decompiled",
-  "engine": "",
+  "status": "emu-compared",
+  "engine": "engines/tesoro/core/outline.cpp::Outline::clipColumns",
   "notes": "(polygon, rect x0,y0,x1,y1, out polygon, rect of other object): produces the part of a shape inside a rectangle. Name from argument list only, unverified"
  },
  {

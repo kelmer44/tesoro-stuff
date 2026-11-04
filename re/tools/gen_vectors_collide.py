@@ -21,13 +21,41 @@ src = open(__file__.rsplit("/", 1)[0] + "/gen_vectors_level.py").read()
 exec(src[src.index("rnd = random.Random"):src.index("def make_bank")].replace("20261104", "20261106"))
 exec(src[src.index("def walk"):src.index("def state")])
 
+def hull(pts):
+    pts = sorted(set(pts))
+    if len(pts) < 3: return None
+    def cross(o, a, b): return (a[0]-o[0])*(b[1]-o[1]) - (a[1]-o[1])*(b[0]-o[0])
+    lo = []
+    for p in pts:
+        while len(lo) >= 2 and cross(lo[-2], lo[-1], p) <= 0: lo.pop()
+        lo.append(p)
+    up = []
+    for p in reversed(pts):
+        while len(up) >= 2 and cross(up[-2], up[-1], p) <= 0: up.pop()
+        up.append(p)
+    return lo, up
+
+def make_shape():
+    """A convex outline as the animation files store it: left-to-right chain, then right-to-left chain (maybe closed)."""
+    if rnd.random() < .2: return [(rnd.randint(-20, 20), rnd.randint(-20, 20))]       # a single point
+    while True:
+        r = rnd.choice([6, 20, 60]); h = hull([(rnd.randint(-r, r), rnd.randint(-r, r)) for _ in range(rnd.randint(1, 9))])
+        if h:
+            lo, up = h
+            return lo + up[1:] if rnd.random() < .5 else lo + up[1:-1]
+
 def make_bank2():
     out = bytearray(rb(4))
     nseq = rnd.choice([1, 2, 3])
     out += struct.pack("<HHHHIIIB3s", nseq, rnd.getrandbits(16), 0, rnd.getrandbits(16), rnd.getrandbits(32), rnd.getrandbits(32), rnd.getrandbits(32), 1, b"\0\0\0")
     for _ in range(nseq):
-        extra = rb(rnd.randint(0, 6))
-        out += struct.pack("<IHHHhIIHH", rnd.getrandbits(32), rnd.getrandbits(16), rnd.getrandbits(16), rnd.randint(1, 400), -1, rnd.getrandbits(32), rnd.getrandbits(32), rnd.choice([0, 1]), len(extra)) + extra
+        typ = rnd.choice([0, 1, 2, 4, 4, 4])
+        if typ in (2, 4):
+            pts = make_shape()
+            if typ == 2: extra = struct.pack("<H", len(pts)) + rb(4) + b"".join(struct.pack("<hh", x, y) for x, y in pts)
+            else: extra = struct.pack("<H", len(pts)) + rb(6) + b"".join(struct.pack("<hhH", x, y, rnd.getrandbits(16)) for x, y in pts)
+        else: extra = rb(rnd.randint(0, 6))
+        out += struct.pack("<IHHHhIIHH", rnd.getrandbits(32), rnd.getrandbits(16), rnd.getrandbits(16), rnd.randint(1, 400), -1, rnd.getrandbits(32), rnd.getrandbits(32), typ, len(extra)) + extra
     return bytes(out)
 
 def make_level2(entry):
@@ -54,6 +82,27 @@ def on_touched(emu, other, extra): events.append(f"T{idx(emu.uc.reg_read(UC_X86_
 e.hook_function(H3, on_bounds, 0); e.hook_function(H11, on_hitter, 1, pops=True); e.hook_function(H12, on_touched, 2, pops=True)
 e.write(VT, e.read(0x428000, 14 * 4)); e.write(VT + 12, struct.pack("<I", H3)); e.write(VT + 44, struct.pack("<I", H11)); e.write(VT + 48, struct.pack("<I", H12))
 
+from unicorn import UC_HOOK_MEM_READ, UC_HOOK_CODE, UcError
+from unicorn.x86_const import UC_X86_REG_ESP, UC_X86_REG_EIP
+guard = {"on": False, "ok": [], "arrays": [], "stray": False, "shaped": 0}
+def poly_ranges(a):
+    n, m, ptr = struct.unpack("<HHI", e.read(a, 8)); return [(a, a + 8), (ptr, ptr + 4 * n)], (ptr, ptr + 4 * n)
+def enter(nargs):
+    def h(uc, addr, size, _):
+        esp = uc.reg_read(UC_X86_REG_ESP); ret = e.u32(esp); args = [e.u32(esp + 4 + 4 * k) for k in range(nargs)]
+        guard["ok"] = []; guard["on"] = True; guard["shaped"] += 1
+        for a in args:
+            if HEAP <= a < HEAP + 0x400000:
+                r, arr = poly_ranges(a); guard["ok"] += r; guard["arrays"].append(arr)
+        def leave(uc2, a2, s2, _2): guard["on"] = False
+        hk = uc.hook_add(UC_HOOK_CODE, leave, begin=ret, end=ret)
+    return h
+def on_read(uc, access, addr, size, value, _):
+    if guard["on"] and HEAP <= addr < HEAP + 0x400000 and not any(lo <= addr and addr + size <= hi for lo, hi in guard["ok"]): guard["stray"] = True
+for fn, na in ((0x409560, 1), (0x409790, 2), (0x409c10, 1)): e.uc.hook_add(UC_HOOK_CODE, enter(na), begin=fn, end=fn)
+e.uc.hook_add(UC_HOOK_MEM_READ, on_read)
+class Drop(Exception): pass
+
 def snap(objs):
     s = []
     for a in objs:
@@ -62,7 +111,9 @@ def snap(objs):
     return " ".join(s) + f" | mv {mv} t {e.u32(LV + 0x8c)}"
 
 out = []
-for case in range(300):
+dropped = 0
+for case in range(2500):
+    start = len(out); skip = False
     entry = rnd.randint(0, 40); now = rnd.choice([0, 1000, 123456])
     e.write(HEAP, bytes(max(0, st["heap"] - HEAP)))
     st["data"] = make_level2(entry); st["pos"] = 0; st["heap"] = HEAP; st["now"] = now
@@ -80,6 +131,7 @@ for case in range(300):
             span = rnd.choice([5, 20, 60])
             x1, y1 = rnd.randint(-span, 0), rnd.randint(0, span); x2, y2 = x1 + rnd.randint(1, 2 * span), y1 - rnd.randint(1, 2 * span)
             mx1, my1 = rnd.randint(-span, span), rnd.randint(-span, span); mx2, my2 = mx1 + rnd.randint(-span // 2 - 1, span // 2 + 1), my1 + rnd.randint(-span // 2 - 1, span // 2 + 1)
+            if rnd.random() < .4: mx2, my2 = mx1, my1       # no movement
             px, py = rnd.randint(-span, span), rnd.randint(-span, span); ppx, ppy = rnd.randint(-span, span), rnd.randint(-span, span); sort = rnd.randint(-5, 400)
             if rnd.random() < 0.15: sort = rnd.choice([32767, -32768, -1, 1, 100])
             o = objs[i]
@@ -95,9 +147,12 @@ for case in range(300):
             i = rnd.randrange(n); nx, ny, sc = rnd.randint(-50, 50), rnd.randint(-50, 50), rnd.choice([0, 1])
             e.call(0x401d30, [nx & 0xffffffff, ny & 0xffffffff, sc], conv="thiscall", this=objs[i]); out.append(f"N {i} {nx} {ny} {sc}"); out.append("= " + snap(objs))
         now += rnd.choice([0, 17, 500]); st["now"] = now
-        events.clear(); e.call(0x408890, [], this=LV)
+        events.clear(); guard["stray"] = False; guard["on"] = False
+        try: e.call(0x408890, [], this=LV); crashed = False
+        except UcError: crashed = True
+        if crashed or guard["stray"] or e.uc.reg_read(UC_X86_REG_EIP) != 0x7ffff000: del out[start:]; skip = True; dropped += 1; break
         out.append(f"R {now}"); out.append("E " + (" ".join(events) or "-")); out.append("= " + snap(objs))
-    out.append("#")
+    if not skip: out.append("#")
 os.makedirs("local-media/vectors", exist_ok=True)
 open("local-media/vectors/collide.txt", "w").write("\n".join(out) + "\n")
-print(len(out), "lines")
+print(len(out), "lines;", dropped, "cases dropped (read outside an outline or ran away); outline routine calls:", guard["shaped"])

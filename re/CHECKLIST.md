@@ -9,9 +9,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 |---|---|---|
 | untouched or later | 447 | 100% |
 | decompiled or later | 446 | 99% |
-| understood or later | 426 | 95% |
-| ported or later | 374 | 83% |
-| emu-compared or later | 325 | 72% |
+| understood or later | 429 | 95% |
+| ported or later | 377 | 84% |
+| emu-compared or later | 328 | 73% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -187,13 +187,13 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00408710` inferred_Level_LoadState · depth 8 · 20 lines · **ported** — reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object
 - [x] `00408800` inferred_Level_ReloadDeferredAnims · depth 10 · 18 lines · **ported** → `engines/tesoro/core/level.cpp::Level::reloadDeferredAnims` — rewinds pool arena 2, reloads the deferred animation images of every bank and sets +0x94
 
-### Cluster 15: 00409280–0040c040 (3/7 ported)
+### Cluster 15: 00409280–0040c040 (6/7 ported)
 
 - [x] `00409280` inferred_SweepRects · depth 0 · 124 lines · **emu-compared** → `engines/tesoro/core/collision.cpp::sweepRects` — (rect A, rect B, dx, dy): earliest contact of two moving rectangles as a 16.16 fraction, -1 when they never touch. Name from use in ResolveOverlap, unverified
-- [ ] `00409560` inferred_Polygon_ContainsPoint · depth 0 · 142 lines · **decompiled** — (polygon, x, y): even-odd edge crossing test over the shape's vertex list (count at +0, vertex array pointer at +4, vertices are short pairs); returns bool. Read partially
-- [ ] `00409790` inferred_Polygon_Overlaps · depth 0 · 255 lines · **decompiled** — (polygon A, polygon B): edge/vertex overlap test between two shapes; called in both orders by ResolveOverlap. Not read in detail
-- [ ] `00409c10` inferred_Polygon_ClipToRect · depth 0 · 113 lines · **decompiled** — (polygon, rect x0,y0,x1,y1, out polygon, rect of other object): produces the part of a shape inside a rectangle. Name from argument list only, unverified
-- [x] `00408c50` inferred_Level_ResolveOverlap · depth 1 · 256 lines · **emu-compared** — (A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls
+- [x] `00409560` inferred_Outline_Contains · depth 0 · 142 lines · **emu-compared** → `engines/tesoro/core/outline.cpp::Outline::contains` — (polygon, x, y): even-odd edge crossing test over the shape's vertex list (count at +0, vertex array pointer at +4, vertices are short pairs); returns bool. Read partially
+- [x] `00409790` inferred_Outline_Overlaps · depth 0 · 255 lines · **emu-compared** → `engines/tesoro/core/outline.cpp::Outline::overlaps` — (polygon A, polygon B): edge/vertex overlap test between two shapes; called in both orders by ResolveOverlap. Not read in detail
+- [x] `00409c10` inferred_Outline_ClipColumns · depth 0 · 113 lines · **emu-compared** → `engines/tesoro/core/outline.cpp::Outline::clipColumns` — (polygon, rect x0,y0,x1,y1, out polygon, rect of other object): produces the part of a shape inside a rectangle. Name from argument list only, unverified
+- [x] `00408c50` inferred_Level_ResolveOverlap · depth 1 · 256 lines · **emu-compared** — (A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls | shaped path ported 4 Nov (Level::shapedContactTime), glue not compared
 - [ ] `00409e50` inferred_Level_CreateObject · depth 14 · 1145 lines · **understood** — factory: switch on kind (record +0x18) allocating the right object class (sizes 0x6c, 0x84, 0x78, 0x6c, 0x74, 0xd8 ... kind 5 has a sub-switch on record byte +5); adds objects of kind 1 to level +0x90
 - [x] `0040c040` inferred_C0042a600_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a600 slot 21 (kind 13 subtype 16)
 

@@ -17,16 +17,14 @@ Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function
 | Stage | Functions | Share |
 |---|---|---|
 | Read (decompiled) | 446 | 99% |
-| Understood (contract written) | 426 | 95% |
-| Ported to C++ | 368 | 82% |
-| Run against the original machine code and matched | 325 | 72% |
+| Understood (contract written) | 429 | 95% |
+| Ported to C++ | 377 | 84% |
+| Run against the original machine code and matched | 328 | 73% |
 | Replaced by a ScummVM service (DirectDraw, DirectSound, input and similar) | 3 | |
 | Seen in the running original | 0 | 0% (no reference environment is authorised) |
 
-- **What is left unread** is small and not the story: the three polygon routines (outline contains-a-point, overlap, clip),
-  the memory pool, the display's constructor and its two mask and second-row raster routines, the movie player, the thumbnail capture, the window and start-up code.
-  Most of these are replaced by ScummVM (window, input, sound, memory). The polygon routines are the real gap: they are only decompiled, and what calls them has not been traced
-  (the pixel-accurate collision test is the obvious suspect, not confirmed).
+- **What is left unread** is small and not the story: the memory pool, the display's constructor and its two mask and second-row raster routines, the movie player, the thumbnail capture, the window and start-up code.
+  Most of these are replaced by ScummVM (window, input, sound, memory). The polygon routines are read and ported (see Outlines below).
 - **Every object kind of the level files is now built** by the engine (see the table of kinds): 0 to 17 and 19 to 25. Kind 18 has no case in the original's factory, so a record of that kind builds nothing.
   The engine's `Level` alone still builds only 0, 1, 3, 7, 8, 10 and 25 (the menus load whole with it); `World` supplies the rest.
 - **The scene routines** behind the numbered script blocks (the `DO` lines): the engine has all of them, but only the two board-game routines (types 8 and 14) are
@@ -631,6 +629,8 @@ What a spoken line does once a script asks for it (all read from the original, n
 Ported and checked against the original:
 - **Text** (`TextQueue`, drawn through `ScreenDisplay`): breaks a text into lines, places them (centred or left aligned, kept on screen) and draws the letters of the font (an ordinary animation file: letter *c* is picture *c* - 0x21) over the finished frame. The same lines, positions, colours and pixels as the original on 400 random cases with made-up fonts. A text call also changes the "layer depth" that decides where scaled pictures go for the rest of the frame (the original does; the choice menu uses 5, subtitles 0).
 - **The speaking rules** (`Speaker`): start a line, end it when the voice finishes or the player skips, wait for the player when there is no voice, move the mouth about every tenth of a second, give the line back. Compared with the original on 800 random sessions (calls to the sound, animation and list code are hooks, so what they do inside is not covered).
+**Outlines (pixel-accurate collision, 4 November).** Some animation steps carry an *outline*: a closed shape stored as two chains of points, the first running left to right and the second coming back. When two moving objects' rectangles touch and both have outlines, the original refines the answer: it walks the movement one pixel at a time along its longer side, cuts the other object's outline to the columns the first one covers, and asks whether the two shapes touch (tested both ways round). An object with a single point uses a point-in-shape test instead. The three shape routines (contains a point, cut to columns, touch test) are checked against the original on thousands of random convex shapes (`Outline`); the stepping around them (`Level::shapedContactTime`) is written from the read code but **not compared**, and the engine used to ignore outlines and use the rectangles. Odd details kept as read: with a single-point hitter and no movement there is no touch, with a single-point other and no movement the touch time is 1, and a point test that finds the start outside the shape gives a touch at time 0.
+
 **Sound set-up** (read and checked 4 November, with fake Windows audio): the sound device first opens the CD-audio player, counts the disc's tracks (at most 100)
 and notes each track's length in seconds. **If the disc cannot be read the original refuses to start** ("Error al leer el CD"; the CD player is the only music source, and
 there is no fallback). Then DirectSound is created with a 22 kHz 16-bit stereo main buffer and three one-second 8-bit mono 22 kHz buffers for voices and effects; each failure shows its own Spanish
