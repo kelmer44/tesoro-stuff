@@ -11462,8 +11462,8 @@
   "data_refs": [],
   "cluster": 13,
   "status": "ported",
-  "engine": "engines/tesoro/core/jimwalker.h::Jim::useItem",
-  "notes": "slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27 | ported 31 Oct; the interface object's slot 27 is behind JimWorld::useItemOnInterface (not read)"
+  "engine": "engines/tesoro/core/jimwalker.h::Jim::useItem + world.cpp::World::useItemOnInterface",
+  "notes": "slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27 | ported 31 Oct; the interface object's slot 27 is behind JimWorld::useItemOnInterface (not read) | forwards to ICUBOMAR use(0xff), 5 Nov; item number of ICUBOMAR not verified"
  },
  {
   "addr": "004080e0",
