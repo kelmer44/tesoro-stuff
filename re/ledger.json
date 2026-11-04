@@ -9063,9 +9063,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "ported",
+  "status": "emu-compared",
   "engine": "engines/tesoro/core/mouse.h::Mouse::setTimings",
-  "notes": "+0xc and +0x10 (200 and 20000 are the values given at start)"
+  "notes": "+0xc and +0x10 (200 and 20000 are the values given at start) | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)"
  },
  {
   "addr": "00403700",
@@ -9127,9 +9127,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "ported",
+  "status": "emu-compared",
   "engine": "engines/tesoro/core/keyboard.cpp::Keyboard::Keyboard",
-  "notes": "keyboard: 16-slot arrays, 5 watched keys (Escape Return Space S L), delays 200/20000 | contract 4 Nov, emulated"
+  "notes": "keyboard: 16-slot arrays, 5 watched keys (Escape Return Space S L), delays 200/20000 | contract 4 Nov, emulated | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)"
  },
  {
   "addr": "004038f0",
@@ -9151,9 +9151,9 @@
   ],
   "data_refs": [],
   "cluster": 7,
-  "status": "ported",
+  "status": "emu-compared",
   "engine": "engines/tesoro/core/keyboard.cpp::Keyboard::update + fromHost",
-  "notes": "per-frame keyboard read: GetDeviceState (one Acquire retry), watched keys Escape/Return/Space/S/L to raw 4=down, then 00403700 | emulated against a fake DirectInput 4 Nov"
+  "notes": "per-frame keyboard read: GetDeviceState (one Acquire retry), watched keys Escape/Return/Space/S/L to raw 4=down, then 00403700 | emulated against a fake DirectInput 4 Nov | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)"
  },
  {
   "addr": "00403980",
@@ -9173,9 +9173,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "ported",
+  "status": "emu-compared",
   "engine": "engines/tesoro/core/mouse.cpp::Mouse::Mouse",
-  "notes": "DirectInput mouse, range 640x480, starts at (320,240)"
+  "notes": "DirectInput mouse, range 640x480, starts at (320,240) | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)"
  },
  {
   "addr": "00403a70",
@@ -9192,9 +9192,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "ported",
+  "status": "emu-compared",
   "engine": "engines/tesoro/core/mouse.cpp::Mouse::center",
-  "notes": ""
+  "notes": "C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)"
  },
  {
   "addr": "00403aa0",
@@ -9216,9 +9216,9 @@
   ],
   "data_refs": [],
   "cluster": 8,
-  "status": "ported",
+  "status": "emu-compared",
   "engine": "engines/tesoro/core/mouse.cpp::Mouse::moveTo + update",
-  "notes": "per-frame mouse read: DIMOUSESTATE, adds movement to position, clamps to limits, 3 buttons to raw 4=down then 00403700 | emulated against a fake DirectInput 4 Nov"
+  "notes": "per-frame mouse read: DIMOUSESTATE, adds movement to position, clamps to limits, 3 buttons to raw 4=down then 00403700 | emulated against a fake DirectInput 4 Nov | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)"
  },
  {
   "addr": "00403b60",
@@ -20811,9 +20811,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 27,
-  "status": "ported",
+  "status": "emu-compared",
   "engine": "engines/tesoro/core/cursorlist.h::CursorList",
-  "notes": "pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list"
+  "notes": "pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list | initial state compared (list vectors)"
  },
  {
   "addr": "0040f650",
@@ -20989,9 +20989,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 28,
-  "status": "ported",
+  "status": "emu-compared",
   "engine": "engines/tesoro/core/cursorlist.h::CursorList",
-  "notes": "allocates a linked list with capacity param (100 for the main list 00442104)"
+  "notes": "allocates a linked list with capacity param (100 for the main list 00442104) | initial state compared (list vectors)"
  },
  {
   "addr": "0040f900",
