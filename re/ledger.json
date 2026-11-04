@@ -11910,7 +11910,7 @@
   "cluster": 15,
   "status": "emu-compared",
   "engine": "",
-  "notes": "(A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls | shaped path ported 4 Nov (Level::shapedContactTime), glue not compared"
+  "notes": "(A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls | shaped path compared 4 Nov through the whole pass (3,496 passes)"
  },
  {
   "addr": "00409280",
