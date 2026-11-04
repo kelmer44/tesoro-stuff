@@ -8,10 +8,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 442 | 98% |
-| understood or later | 412 | 92% |
-| ported or later | 361 | 80% |
-| emu-compared or later | 318 | 71% |
+| decompiled or later | 444 | 99% |
+| understood or later | 414 | 92% |
+| ported or later | 363 | 81% |
+| emu-compared or later | 320 | 71% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -390,12 +390,12 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00410420` inferred_Room_Ctor · depth 1 · 26 lines · **emu-compared** → `engines/tesoro/core/room.cpp::Room::init` — 16-byte room record: +0 index, +4 a field from the file record +0x24, +8/+10 shorts, +0xc object list | room vectors 30 Oct
 - [x] `004103d0` inferred_Obj_SetFacingAnim (vtable) · depth 3 · 9 lines · **emu-compared** → `engines/tesoro/core/jimwalker.cpp::Jim` — selects the bank from +0xac and starts animation index (param-1) with AnimPlayer
 
-### Cluster 31: 00410cc0–00411f80 (6/12 ported)
+### Cluster 31: 00410cc0–00411f80 (8/12 ported)
 
 - [x] `00410cc0` inferred_Display_QueueRow_TypeB · depth 0 · 173 lines · **emu-compared** → `engines/tesoro/core/renderqueue.cpp::RenderQueue` — AddSprite helper for image type 3 | name from call sites and a skim; body not yet read
-- [ ] `00410fb0` inferred_Display_Raster_TypeB · depth 0 · 177 lines · **untouched** — rasterises queued type-B rows | name from call sites and a skim; body not yet read
+- [x] `00410fb0` Display_Raster_Solid · depth 0 · 177 lines · **emu-compared** → `core/RenderQueue::queueScaledRows (solid)` — rasterises queued type-B rows | name from call sites and a skim; body not yet read | shadow vectors 5 Nov: scaled solid images identical (426 frames)
 - [x] `004112d0` Display_QueueRow_Mask · depth 0 · 159 lines · **emu-compared** → `core/RenderQueue::queueMaskRows` — AddSprite helper writing the second row buffer (+0x674) | name from call sites and a skim; body not yet read | shadow vectors 5 Nov: mask rows identical (298,080 rows)
-- [ ] `00411580` inferred_Display_Raster_Mask · depth 0 · 164 lines · **untouched** — rasterises the mask rows | name from call sites and a skim; body not yet read
+- [x] `00411580` Display_Raster_Mask · depth 0 · 164 lines · **emu-compared** → `core/RenderQueue::queueScaledRows (shadow)` — rasterises the mask rows | name from call sites and a skim; body not yet read | shadow vectors 5 Nov: scaled shadow images identical (426 frames)
 - [ ] `00411be0` inferred_Display_Dtor · depth 0 · 10 lines · **decompiled** — releases the back surface (+0xc), primary surface (+8) and DirectDraw object (+4, slot 0x4c = RestoreDisplayMode)
 - [ ] `00411c00` inferred_Display_IsReady · depth 0 · 7 lines · **decompiled** — returns whether the primary surface pointer (+8) is set (corrected: it is a check, not DirectDraw setup)
 - [ ] `00411c10` inferred_Display_SetFont · depth 0 · 8 lines · **decompiled** — stores pointer at slot (index*4+0x20)

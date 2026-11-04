@@ -22021,7 +22021,7 @@
  {
   "addr": "00410fb0",
   "ghidra_name": "FUN_00410fb0",
-  "name": "inferred_Display_Raster_TypeB",
+  "name": "Display_Raster_Solid",
   "tier": "game",
   "lines": 177,
   "decompile_ok": true,
@@ -22033,9 +22033,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "untouched",
-  "engine": "",
-  "notes": "rasterises queued type-B rows | name from call sites and a skim; body not yet read"
+  "status": "emu-compared",
+  "engine": "core/RenderQueue::queueScaledRows (solid)",
+  "notes": "rasterises queued type-B rows | name from call sites and a skim; body not yet read | shadow vectors 5 Nov: scaled solid images identical (426 frames)"
  },
  {
   "addr": "004112d0",
@@ -22059,7 +22059,7 @@
  {
   "addr": "00411580",
   "ghidra_name": "FUN_00411580",
-  "name": "inferred_Display_Raster_Mask",
+  "name": "Display_Raster_Mask",
   "tier": "game",
   "lines": 164,
   "decompile_ok": true,
@@ -22071,9 +22071,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 31,
-  "status": "untouched",
-  "engine": "",
-  "notes": "rasterises the mask rows | name from call sites and a skim; body not yet read"
+  "status": "emu-compared",
+  "engine": "core/RenderQueue::queueScaledRows (shadow)",
+  "notes": "rasterises the mask rows | name from call sites and a skim; body not yet read | shadow vectors 5 Nov: scaled shadow images identical (426 frames)"
  },
  {
   "addr": "00411870",

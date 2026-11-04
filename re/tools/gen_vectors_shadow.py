@@ -9,7 +9,7 @@ Lines: T <hex 32768 bytes>      the shade table (once)
        C <hex dat> <entry>      bank file (image 0 = background, others small images of types 1, 2 and 3)
        Z                         reset (0x411f20)
        S <image> <x> <y> <depth> <extra> add a sprite
-       Q <image> <x> <y> <depth> <scaleX> <scaleY> <shear>   scaled sprite (0x4120c0)      L <layer depth>   (display +0x668)
+       Q <image> <x> <y> <depth> <scaleX> <scaleY> <shear> <extra>   scaled sprite (any type) (0x4120c0)      L <layer depth>   (display +0x668)
        K then F <crc of row 0> ... <crc of row 479>   compose and dump
        #                         end of case
 """
@@ -109,13 +109,17 @@ for case in range(300):
                 sx = rnd.choice([0x10000] * 4 + [0x8000, 0xc000, 0x18000, 0x20000, 0x14000, rnd.randint(0x4000, 0x30000)])
                 sy = rnd.choice([0x10000] * 3 + [0x8000, 0xc000, 0x18000, 0x20000, -0x10000, -0x20000, rnd.randint(0x4000, 0x30000)])
                 shear = 0
-                if h2 >= 2 and abs(((h2 - 1) * sy)) >> 16 >= 1 and u16(e.read(bases[k2] + 12, 2), 0) == 1:
+                k2type = u16(e.read(bases[k2] + 12, 2), 0)
+                if h2 >= 2 and abs(((h2 - 1) * sy)) >> 16 >= 1 and not (k2type == 2 and shadows >= wanted):
                     x2 = rnd.choice([rnd.randint(-40, 80), rnd.randint(560, 680), rnd.randint(0, 600)]); y2 = rnd.choice([rnd.randint(-8, 10), rnd.randint(440, 490), rnd.randint(0, 470)])
                     cluster = rnd.random() < 0.6
                     if cluster: x2, y2 = rnd.randint(0, 30) + 300, rnd.randint(100, 110)
                     d2 = rnd.choice([0, 1, 2]) if cluster else rnd.choice([0, 0, 1, 2, 3, 5, 65535])
-                    e.call(0x4120c0, [x2 & 0xffffffff, y2 & 0xffffffff, d2, bases[k2], sx & 0xffffffff, sy & 0xffffffff, shear & 0xffffffff, 0], conv="thiscall", this=DISP)
-                    out.append(f"Q {k2} {x2} {y2} {d2} {sx} {sy} {shear}"); qcount += 1
+                    lo2 = rnd.choice([0, 1, 2, 3, 5, 100]); hi2 = rnd.choice([lo2, lo2 + 2, 5, 65535, 3000])
+                    extra2 = rnd.choice([0, 0, 0, (hi2 << 16) | lo2]) if k2type == 2 else 0
+                    shadows += 1 if k2type == 2 else 0
+                    e.call(0x4120c0, [x2 & 0xffffffff, y2 & 0xffffffff, d2, bases[k2], sx & 0xffffffff, sy & 0xffffffff, shear & 0xffffffff, extra2], conv="thiscall", this=DISP)
+                    out.append(f"Q {k2} {x2} {y2} {d2} {sx} {sy} {shear} {extra2}"); qcount += 1
         # the mask queue as it stands before the compose
         mbase = u32(e.read(DISP + 0x674, 4), 0)
         for yy in range(480):

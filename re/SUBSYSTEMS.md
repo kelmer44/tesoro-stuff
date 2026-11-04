@@ -471,8 +471,7 @@ is composed, are the pieces copied into the picture. Scaled pictures, shadow pic
 What is ported and checked against the original: emptying the lists, adding an ordinary (literal) picture, the span
 cutting (including pictures hanging off any screen edge) and the **compose**, which copies the spans of every row into
 the 640x480 picture, left to right. The new `ScreenDisplay` class owns the queue and the picture. The compose relies on
-the first picture of a frame being a full-screen background, as the game always draws. Not yet: the shadow picture kind
-when it is scaled, scaled solid pictures, and putting the finished picture on the real screen (see the shadows below).
+the first picture of a frame being a full-screen background, as the game always draws. Not yet: shear (never used), and putting the finished picture on the real screen (see the shadows below).
 
 The second kind of picture, solid colour runs (the "type 3" images), is now ported too and checked the same way; the
 difficulty menu (`NUEVO`) renders with it: three wooden-sign lines for easy, regular and hard.
@@ -488,8 +487,7 @@ The game's own quirk is kept: a shadow span stops being a position, so two shado
 original (it faults or draws noise); the port assumes shadows do not overlap on screen. Checked against the original on 456
 composed frames (179 with shadows, random tables, depth windows, edges, scaled pictures under them) and on the mask lists of 165
 more with several shadows: every row identical; 21 of 24 deliberate mistakes found (the others change nothing that is drawn).
-`RenderQueue` (queueing, merging) and `ScreenDisplay` (the table and the copy). Not ported: scaled shadow pictures and scaled solid
-pictures. In the engine the warning about unported shadow pictures is gone from the village, and the board screen never queued
+`RenderQueue` (queueing, merging) and `ScreenDisplay` (the table and the copy). **Scaled solid and scaled shadow pictures** are ported too (5 November 2026): they paint nothing, they only enter their scaled stretches into the row lists (the mask lists for a shadow), so a scaled solid or shadow picture drawn after the rows are laid down, on top of the finished frame, shows nothing, as in the original. Checked against it on 426 composed frames with scaled pictures of all three kinds mixed (every row identical, all deliberate mistakes found). Shear is still ignored (the game never uses it). In the engine the warning about unported shadow pictures is gone from the village, and the board screen never queued
 one, so nothing visibly changed in the two scenes played (no scene played shows the effect).
 
 **First picture (30 October 2026).** `re/tools/drivers/show_driver.cpp` loads a level from the shipped game with the

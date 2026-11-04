@@ -90,8 +90,8 @@ int main(int argc, char **argv) {
 			unsigned k; int x, y; unsigned depth; unsigned extra = 0; in >> k >> x >> y >> depth >> extra;
 			screen->drawImage(x, y, (uint16)depth, player.bank()->image(k), extra);
 		} else if (op == "Q") {
-			unsigned k; int x, y; unsigned depth; int sx, sy, shear; in >> k >> x >> y >> depth >> sx >> sy >> shear;
-			screen->drawImageScaled(x, y, (uint16)depth, player.bank()->image(k), sx, sy, shear, 0);
+			unsigned k; int x, y; unsigned depth; int sx, sy, shear; unsigned extra = 0; in >> k >> x >> y >> depth >> sx >> sy >> shear >> extra;
+			screen->drawImageScaled(x, y, (uint16)depth, player.bank()->image(k), sx, sy, shear, extra);
 		} else if (op == "L") {
 			unsigned layer; in >> layer; screen->setLayerDepth((uint16)layer);
 		} else if (op == "K" || op == "N") {
