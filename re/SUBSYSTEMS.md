@@ -8,7 +8,34 @@ It grows as we recover more of the original. Written for people, not for the deb
 - 🟡 Recovered, but not yet checked or only partly understood
 - ❓ Seen from the outside only, not read yet
 
-Last updated: 31 October 2026 (full review against the codex branch).
+Last updated: 4 November 2026 (full read of this file against the engine branch `codex/object-kinds`, `f4da584e5df`, and the ledger).
+
+## Where the reverse engineering stands (4 November 2026)
+
+Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function list). The game's own code is 447 functions:
+
+| Stage | Functions | Share |
+|---|---|---|
+| Read (decompiled) | 441 | 98% |
+| Understood (contract written) | 410 | 91% |
+| Ported to C++ | 358 | 80% |
+| Run against the original machine code and matched | 316 | 70% |
+| Replaced by a ScummVM service (DirectDraw, DirectSound, input and similar) | 3 | |
+| Seen in the running original | 0 | 0% (no reference environment is authorised) |
+
+- **What is left unread** is small and not the story: DirectInput and DirectSound set-up, the three polygon routines (outline contains-a-point, overlap, clip),
+  the memory pool, the display's constructor and its two mask and second-row raster routines, the movie player, the thumbnail capture, the window and start-up code.
+  Most of these are replaced by ScummVM (window, input, sound, memory). The polygon routines are the real gap: they are only decompiled, and what calls them has not been traced
+  (the pixel-accurate collision test is the obvious suspect, not confirmed).
+- **Every object kind of the level files is now built** by the engine (see the table of kinds): 0 to 17 and 19 to 25. Kind 18 has no case in the original's factory, so a record of that kind builds nothing.
+  The engine's `Level` alone still builds only 0, 1, 3, 7, 8, 10 and 25 (the menus load whole with it); `World` supplies the rest.
+- **The scene routines** behind the numbered script blocks (the `DO` lines): the engine has all of them, but only the two board-game routines (types 8 and 14) are
+  ported *and compared* with the original. The other sixteen were written from reading and are not compared, and their ledger rows still say "understood". That is a gap in the checking, not in the playing.
+- **Still warning when reached:** movies (the intro's two, the one an exit starts when Jim first reaches place 16, the one at the risco), turning a page of the inventory, scrolling the interface out,
+  Jim's use of item 37, the two frame changes of the cabin's walk-area objects, the verb run after a picture reload, and the pixel-accurate collision of two shaped objects.
+  The skip key is not there either (any mouse button skips a line) and the subtitles option is only the on/off button.
+- **Still the honest limit:** "compared" means the original's machine code was run next to the port on invented or real inputs. Nothing has been observed in the real game running, so
+  no part of this map is checked against what the original *shows on screen*, and the voices were never listened to.
 
 ---
 
@@ -20,7 +47,7 @@ flowchart TD
     Archive --> Anim["Animations<br/>pictures + steps ✅"]
     Archive --> Level["Level ✅<br/>banks, rooms, objects, camera"]
     Clock["Game clock ✅"] --> Anim
-    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 7, 8, 10, 25 built by levels;<br/>2, 4, 5, 6, 9, 11 to 17, 20, 22, 23 built through World;<br/>Jim made by World"]
+    Anim --> Objects["Game objects 🟡<br/>kinds 0, 1, 3, 7, 8, 10, 25 built by the level itself;<br/>all the others (2, 4, 5, 6, 9, 11 to 17, 19 to 24) built through World;<br/>Jim made by World"]
     Level --> Objects
     Objects -->|"picture + depth"| Queue["Screen queue ✅<br/>RenderQueue: spans per row"]
     Queue --> Compose["Compose ✅<br/>ScreenDisplay: spans to pixels"]
@@ -31,7 +58,7 @@ flowchart TD
     Collide -->|"touched list"| Cursor
     Cursor -->|"click, hover"| Objects
     Clock --> Random["Random numbers ✅"]
-    Names["Name keys ✅"] -.-> Scripts["Scripts 🟡<br/>read and compiled ✅, stepping ✅, host ⬜"]
+    Names["Name keys ✅"] -.-> Scripts["Scripts 🟡<br/>read and compiled ✅, stepping ✅,<br/>host: World 🟡"]
     Archive --> Scripts
     Scripts --> Objects
 ```
@@ -223,16 +250,16 @@ looking, showing and switching objects, the choice menu (the pointer's picture i
 an entry in the main list; a click or a menu item can start one. The one with a numbered type also has a scene routine behind its `DO` lines: 17 of the 19
 are ported: the opening scene (type 1), the menu's fades (17), the captain's exit (21), the throne-room trips (20, also what a script's "run FANMTRONO"
 does) and all the ones that only move Jim to another level and set the scene there (2 to 7, 9, 10, 12, 15, 16, 18, 19: where he appears, whether he
-is shown, which objects are switched on or off, the fade and pause). The two left warn: types 8 and 14 (the board game "Conecta" in the fisherman's hut). Its thinking is ported and checked: `ConnectFour` (seven columns of
+is shown, which objects are switched on or off, the fade and pause). All 19 are ported now: types 8 and 14 are the board game "Conecta" in the fisherman's hut (see The board game); only these two are compared with the original, the others (sixteen routines in the ledger) come from reading. The game's thinking is ported and checked: `ConnectFour` (seven columns of
 seven, lines of four; scores the last piece's lines, searches the best columns, avoids moves that let the player win at once, picks at random among equals,
-and takes its turn after the player's: win, loss, draw or a move) matches the original on 1,200 random boards. What is not ported is the game's own
-screen and state (the pieces' pictures, the blink of the winning line, the click that drops a piece, the timing). When a script finishes, a character it held for
+and takes its turn after the player's: win, loss, draw or a move) matches the original on 1,200 random boards. The game's own
+screen and state (the pieces' pictures, the blink of the winning line, the click that drops a piece, the timing) are ported too, as `BoardColumn`, `BoardPieces` and `BoardGame`. When a script finishes, a character it held for
 speaking is let go and its held flag cleared (found by running it: the animation otherwise kept being reset). Seen working: the captain's talk
 script plays Jim's and the captain's lines with subtitles and ends with Jim walking out of the despacho into the port.
 - **Starting the game.** "Nueva partida" now fades to the new-game menu and plays its script; the start button puts Jim in the port, shows him and
 starts the opening script, which runs through the ship arriving and Jim walking into the despacho (the screen follows Jim into each level). Seen
 running from the start button's code path; the two movies of the intro are skipped with a warning.
-- **Not there yet (they warn when reached):** the board game's screen, clicks and its two scene routines (types 8 and 14); the movies; turning a page of the inventory; the two frame changes of the
+- **Not there yet (they warn when reached):** the movies; turning a page of the inventory; scrolling the interface out; the two frame changes of the
 cabin's walk-area objects; Jim's use of item 37; the skip key (any mouse button skips a line for now); the voices start and finish on the mixer (checked with a silent audio driver: the captain's talk now ends by its voices, with no skipping), but nobody has listened to them yet; a subtitles option (always on).
 - **Seen working:** the engine reads all 47 levels with these objects, puts Jim in the despacho and draws the room with the captain in his chair, Jim
 standing in front and the items of the room, with no warnings. Not checked against the original (the hosts are the engine's own decisions, not
@@ -256,8 +283,8 @@ the file has one (an object of kind 1). The engine class is `Level`; it is itsel
 Each frame the second pass calls the level to update its cameras: for each room the camera moves towards that room's focus,
 then every visible, active, not-yet-processed object of the room recomputes its hit rectangle and is told where the camera
 is. Checked against the original on synthetic level files (load, attach, moved-list, lookup by name, camera move, room
-camera update, and the collision pass). Kinds 0, 1, 3, 7, 8, 10 and 25 are built; other kinds are skipped with a warning (the classes for 5, 9, 12, 17 and 20 exist but the
-level does not build them yet), so most real levels still load with objects missing (the main menu and the new-game menu load whole).
+camera update, and the collision pass). The plain `Level` builds kinds 0, 1, 3, 7, 8, 10 and 25 and skips the others with a warning, so loaded by itself most real levels have objects missing
+(the main menu and the new-game menu load whole). In the engine the levels of the game are read by `WorldLevel`, which builds every other kind too (see the world class).
 Real level files were loaded and drawn (menus) but only compared through those pictures, not byte by byte with the original.
 
 ```mermaid
@@ -389,11 +416,11 @@ flowchart LR
 *Built by the level:* the plain animated object (kind 0), the camera frame (1), the sprite (3), the floor (7), the route (8), the pointer (10) and the menu item (25), as `Object`, `CameraFrame`, `SpriteObject`, `WalkFloor`, `PathObject`, `Cursor`, `MenuItem`. Each draws through the `Display` interface; the object's hit rectangle and its movement feed the collision pass.
 *Built when `World` reads a level:* the characters (5), exits (6), the plain clickable (9), the scripted props (12, 17, 20) and items (13) (see their sections); Jim is made by `World` on first use.
 *Also built by `World`:* the groups (2), shadows (4), strip (11), depth zones (14), click catchers (15), wanderers (16), save menu objects (22, 23) note objects (24), map places (19) and board columns (21).
-*Not built yet:* some of the interface strip's objects.
+*Not built:* kind 18 only: the original's factory has no case for it, so a record of that kind builds nothing.
 
 ---
 
-## What the levels contain (counted; the ported kinds are marked)
+## What the levels contain (counted; every kind is ported now)
 
 Counted from the shipped game files with `re/tools/drivers/level_kinds_driver.cpp` (the engine's own level loader, read-only).
 Fifty levels in all. Only one object in the whole game is the plain animated kind (kind 0, in the interface strip); the commonest are kinds 3, 9 and 6.
@@ -519,7 +546,7 @@ the window. The pointer is found in the interface level and menu items are hooke
 original's frame as a whole: the engine's own loop calls the passes it needs, and the sound, movies and some menu actions are missing. Not compared
 against the original as a whole.
 
-## Scripts 🟡 (read and compiled ✅, run ✅ with a stand-in world, nothing shown yet)
+## Scripts 🟡 (read and compiled ✅, stepping ✅ checked with a stand-in world; the real world, `World`, answers for them in the engine and is not compared)
 
 The story is told by **scripts**, and they are plain text. Four files in the archive hold them: `ANIMS.DLG` (cut scenes and the
 menu scripts), `CONVERS.DLG` (conversations), `ICONS.DLG` (what happens when an inventory item is used) and `OBJETOS.DLG`
@@ -732,9 +759,13 @@ constructor, and the kinds with subtypes (5, 6, 12, 13, 17, 20) swap in a class 
 
 ## Still to explore
 
-- The rest of the interface strip's objects.
-- The board game's screen and clicks, the movies, the inventory page, the skip key and a subtitles option.
-- The shaped (pixel-accurate) part of the collision test, shadows, and the companion pointer.
-- Sound and movies checked end to end, the saved-game list, and porting saving and loading (read, see above).
+Ordered by what blocks the most (the full list of open functions is in `CHECKLIST.md`):
+- **Check the sixteen scene routines** that were ported from reading against the original code, like the board game's two, and mark their ledger rows.
+- **The inventory page and the interface strip's motion**: turning a page, scrolling the interface out, Jim's use of item 37 (all three warn).
+- **The movies**: the player is read but not ported; the files are on the game disc, not in the archive, and their format is unread.
+- **The shaped (pixel-accurate) part of the collision test**, which probably needs the three polygon routines, shadows, and the companion pointer.
+- **The frame loop as a whole**: the engine runs a reduced frame; the original's frame (keyboard and mouse update, the passes, the sound update) is read but not compared as one.
+- **The skip key and a real subtitles option**, the thumbnail capture for the saved-game list, and the kind-18 gap.
+- **Observing the running original**: everything above is "compared with the original's code", never "seen on screen"; that waits for an authorised reference environment.
 
 Each time we finish one of these, its section above gets filled in and the diagram is updated.
