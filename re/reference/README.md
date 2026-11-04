@@ -11,12 +11,27 @@ Authorized by Gabriel on 4 Nov 2026. Purpose: see the original run, to turn "mat
 - Captures go to [../captures/](../captures/).
 
 ## Status
-- 4 Nov 2026: Windows 95 boots from the clone (the log shows APM and Plug and Play coming up). The game has not been started yet.
-- **Blocked on host permissions:** from Claude's shell, `screencapture` fails ("could not create image from display") and sending keystrokes through
-  System Events is refused (error -1743). DOSBox-X's own screenshot key (Ctrl+F5) writes into `re/captures` when pressed by hand.
-  [windowid.swift](windowid.swift) prints the id of DOSBox-X's window for `screencapture -l` once Screen Recording is granted.
+- 4 Nov 2026: Windows 95 boots from the clone and the game is installed in it (desktop icon "El Tesoro de la Isla Alcachofa", and the
+  launcher from the disc offers play, DirectX 7.0, help, uninstall, quit). First capture: [../captures/first-look.png](../captures/first-look.png).
+- Window captures work with [capture.sh](capture.sh) (`re/reference/capture.sh <name>`), which saves only DOSBox-X's own window.
+  This needed Screen Recording for Claude.app (granted and Claude restarted). **Sending input is not possible** (no Accessibility permission),
+  so clicks and keys come from Gabriel; Claude reads the captures.
+- Windows 95's first boot runs the Add New Hardware wizard for the emulated ports; the config disables them (serial 1-4, parallel 1-3).
 
-- First boot: Windows 95 runs its Add New Hardware wizard (it asked for printer drivers). Cancel it; the parallel and serial ports are disabled in the config so it should stop after a restart.
+## Comparisons (original in DOSBox-X vs engine in ScummVM)
+Tool: [compare.py](compare.py) (`re/.venv/bin/python re/reference/compare.py original.png engine.png`; needs pillow and numpy in `re/.venv`).
+- **Main menu, 4 Nov 2026** ([original](../captures/now1.png), [engine](../captures/engine-main-menu.png), [difference](../captures/engine-main-menu-diff.png)):
+  same sign, chains, colours, text and text positions; after aligning the window contents the difference is edge pixels only (mean 7.3, about 1% of pixels,
+  from the two programs scaling 640x480 differently). Not settled: the pointer. The original shows its crosshair at the centre; in the engine capture it
+  was at the bottom edge, which may only be where the host mouse was.
+- **New-game menu, 4 Nov 2026** ([original](../captures/orig-2.png), [engine](../captures/engine-2.png), [difference](../captures/engine-2-diff.png)): the three
+  modes with their taglines, same texts, same places, same look; difference is edge pixels only (mean 8.1, about 2% of pixels, text outlines scale differently).
+  The fade between the two screens was not captured.
+- Note: ScummVM first shows its "not yet fully supported" warning, which needs a click on "Start anyway".
+
+## Findings from running the engine by hand
+- 4 Nov 2026: the menu items warned "clearing the hover text is not ported yet" on every pointer leave (and their per-frame step was a warning stub);
+  fixed the same day, since the original uses the plain base routines for both. Headless runs never reach this.
 
 ## Not yet tried
 Installing or starting the game inside Windows 95 (the disk may already have it), CD audio and the Indeo movies in this setup, the DOSBox-X debugger for

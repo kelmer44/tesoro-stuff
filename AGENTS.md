@@ -42,8 +42,12 @@ Codex will implement it together; Codex leads the reverse engineering.
   uncommitted changes. `prototype/source` is an immutable reference snapshot.
 - Keep task-file inspection within the named Tesoro project folders. Do not
   inventory personal folders, installed applications or VM configurations.
-  Ask before accessing any additional location. Original-game reference setup
-  is on hold until Gabriel explicitly authorizes its environment and paths.
+  Ask before accessing any additional location. Reference environment
+  (authorized by Gabriel, 4 Nov 2026): DOSBox-X (`/opt/homebrew/bin/dosbox-x`) running a
+  local clone of `~/Desktop/ags/TESORO/Win95.img` (kept in `local-media/reference/`; the
+  original image stays unchanged), with `Tesoro.cue`/`Tesoro.bin` mounted as the disc. Claude
+  may read `Win95.img` and the TESORO folder, launch DOSBox-X, and put captures in
+  `re/captures/`. Setup and findings: [re/reference/README.md](re/reference/README.md).
 - Do not add test classes, test configuration flags or harness hooks to the
   submitted ScummVM engine. Keep verification external; experimental C++
   instrumentation, if needed, stays local and ignored rather than in engine code.
