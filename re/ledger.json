@@ -11609,7 +11609,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 14,
-  "status": "understood",
+  "status": "ported",
   "engine": "",
   "notes": "writes the object keys and flags and calls each object's SaveState (slot 10) via fwrite | name from call sites and a skim; body not yet read"
  },
@@ -11631,7 +11631,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 14,
-  "status": "understood",
+  "status": "ported",
   "engine": "",
   "notes": "reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object"
  },
@@ -14215,7 +14215,7 @@
   "data_refs": [],
   "cluster": 24,
   "status": "ported",
-  "engine": "core/MenuButton::setVerbAndClick",
+  "engine": "core/MenuButton + World slots",
   "notes": "unread; first seen in vtable 0042b950 slot 14"
  },
  {
@@ -24861,9 +24861,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 41,
-  "status": "understood",
-  "engine": "",
-  "notes": "0xa4 bytes, vtable 0042bf20, extends Kind09"
+  "status": "emu-compared",
+  "engine": "core/NoteObject::init",
+  "notes": "0xa4 bytes, vtable 0042bf20, extends Kind09 | note vectors 4 Nov: 200 sessions identical"
  },
  {
   "addr": "004175f0",
@@ -24891,9 +24891,9 @@
   ],
   "data_refs": [],
   "cluster": 41,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 0042bf20 slot 21"
+  "status": "emu-compared",
+  "engine": "core/NoteObject::verb",
+  "notes": "unread; first seen in vtable 0042bf20 slot 21 | note vectors 4 Nov: script find/start, variables pointer, result identical"
  },
  {
   "addr": "00417640",

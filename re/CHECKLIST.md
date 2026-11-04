@@ -10,8 +10,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 441 | 98% |
 | understood or later | 410 | 91% |
-| ported or later | 347 | 77% |
-| emu-compared or later | 309 | 69% |
+| ported or later | 351 | 78% |
+| emu-compared or later | 311 | 69% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -176,15 +176,15 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00407ce0` inferred_Jim_SayLine · depth 11 · 8 lines · **ported** → `engines/tesoro/core/jimwalker.h::Jim::sayScriptLine` — Player_Say with a negative id derived from +0x100 (spoken subtitle line) | already present as sayScriptLine; marked 31 Oct
 - [x] `004080e0` inferred_Level_Load · depth 15 · 142 lines · **emu-compared** — level constructor and .LVL reader: base object ctor 00401bc0 (vtable 00428bf8), reads 0xc header (room count, anim-bank count), allocates lists, loads anim banks with AnimBank_Load, reads each 0x28-byte room record and its 0x20-byte object records, builds objects through Level_CreateObject; Ghidra decompile is garbled by the 0x13xx-byte frame, re-read from asm before porting
 
-### Cluster 14: 00408780–00408890 (3/8 ported)
+### Cluster 14: 00408780–00408890 (5/8 ported)
 
 - [x] `00408780` inferred_Level_FindObjectByKey · depth 1 · 8 lines · **emu-compared** — forwards to the object list at +0x74 with the 64-bit key
 - [ ] `00408840` inferred_Level_PlayMusicCue (vtable) · depth 1 · 14 lines · **understood** — unread; first seen in vtable 00428bf8 slot 13
 - [x] `00408890` inferred_Level_CollisionPass · depth 2 · 200 lines · **emu-compared** — per-frame pass over the level's object list (+0x7c): for each pair of objects with flags 8 (collidable) and 2 (active) in the same room, asks A.slot11(B) then runs ResolveOverlap; afterwards sends queued position notifications (+0x78 list of object,x,y) through object slot 12
 - [ ] `004087a0` inferred_Level_UpdateOrCollide (vtable) · depth 3 · 17 lines · **understood** — level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true
 - [ ] `004087d0` inferred_C00428bf8_Update2 (vtable) · depth 3 · 10 lines · **understood** — unread; first seen in vtable 00428bf8 slot 5
-- [ ] `00408620` inferred_Level_SaveState · depth 8 · 77 lines · **understood** — writes the object keys and flags and calls each object's SaveState (slot 10) via fwrite | name from call sites and a skim; body not yet read
-- [ ] `00408710` inferred_Level_LoadState · depth 8 · 20 lines · **understood** — reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object
+- [x] `00408620` inferred_Level_SaveState · depth 8 · 77 lines · **ported** — writes the object keys and flags and calls each object's SaveState (slot 10) via fwrite | name from call sites and a skim; body not yet read
+- [x] `00408710` inferred_Level_LoadState · depth 8 · 20 lines · **ported** — reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object
 - [x] `00408800` inferred_Level_ReloadDeferredAnims · depth 10 · 18 lines · **ported** → `engines/tesoro/core/level.cpp::Level::reloadDeferredAnims` — rewinds pool arena 2, reloads the deferred animation images of every bank and sets +0x94
 
 ### Cluster 15: 00409280–0040c040 (3/7 ported)
@@ -314,7 +314,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `0040df70` inferred_Obj_MenuButton_Ctor · depth 4 · 12 lines · **emu-compared** → `core/MenuButton+SlotLabel` — 0xa4 bytes, vtable 0042b950, extends MidBase, sort value +0x5e = 1
 - [x] `0040e720` inferred_Obj_ShadowSprite_Ctor · depth 4 · 10 lines · **ported** → `core/ShadowSprite::init` — 0x74 bytes, vtable 0042b9f8, extends Kind03
 - [x] `0040ddc0` inferred_SaveSlotLabel_Draw (vtable) · depth 14 · 73 lines · **emu-compared** → `core/MenuButton+SlotLabel` — unread; first seen in vtable 0042b8e0 slot 6
-- [x] `0040e000` inferred_MenuButton_SetVerbAndClick (vtable) · depth 15 · 142 lines · **ported** → `core/MenuButton::setVerbAndClick` — unread; first seen in vtable 0042b950 slot 14
+- [x] `0040e000` inferred_MenuButton_SetVerbAndClick (vtable) · depth 15 · 142 lines · **ported** → `core/MenuButton + World slots` — unread; first seen in vtable 0042b950 slot 14
 
 ### Cluster 25: 0040f020–0040f020 (10/11 ported)
 
@@ -523,15 +523,15 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00417180` inferred_C0042a520_Verb4 (vtable) · depth 14 · 34 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a520 slot 24 (kind 13 subtype 9)
 - [x] `00417250` inferred_C0042a440_UseItem (vtable) · depth 14 · 47 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a440 slot 27 (kind 13 subtype 28)
 
-### Cluster 41: 00417360–004178b0 (5/9 ported)
+### Cluster 41: 00417360–004178b0 (7/9 ported)
 
 - [x] `00417360` inferred_C0042a360_UseItem (vtable) · depth 2 · 22 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a360 slot 27 (kind 13 subtype 36)
 - [x] `004174b0` inferred_C0042a210_UseItem (vtable) · depth 2 · 22 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a210 slot 27 (kind 13 subtype 33)
 - [x] `00417530` inferred_C0042a130_UseItem (vtable) · depth 2 · 22 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a130 slot 27 (kind 13 subtype 42)
 - [ ] `00417720` inferred_Obj_MapPlace_Ctor · depth 12 · 63 lines · **understood** — 0xa4 bytes, vtable 0042bf90; builds a temporary Kind00 and copies it field by field into this
-- [ ] `004175b0` inferred_Obj_NoteObject_Ctor · depth 13 · 10 lines · **understood** — 0xa4 bytes, vtable 0042bf20, extends Kind09
+- [x] `004175b0` inferred_Obj_NoteObject_Ctor · depth 13 · 10 lines · **emu-compared** → `core/NoteObject::init` — 0xa4 bytes, vtable 0042bf20, extends Kind09 | note vectors 4 Nov: 200 sessions identical
 - [x] `004173e0` inferred_C0042a2f0_UseItem (vtable) · depth 14 · 35 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a2f0 slot 27 (kind 13 subtype 37)
-- [ ] `004175f0` inferred_NoteObject_Verb1Verb3 (vtable) · depth 14 · 19 lines · **understood** — unread; first seen in vtable 0042bf20 slot 21
+- [x] `004175f0` inferred_NoteObject_Verb1Verb3 (vtable) · depth 14 · 19 lines · **emu-compared** → `core/NoteObject::verb` — unread; first seen in vtable 0042bf20 slot 21 | note vectors 4 Nov: script find/start, variables pointer, result identical
 - [x] `00417640` inferred_C0042afe8_Slot28 (vtable) · depth 14 · 44 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)
 - [ ] `004178b0` inferred_MapPlace_SetVerbAndClick (vtable) · depth 14 · 37 lines · **understood** — unread; first seen in vtable 0042bf90 slot 14
 

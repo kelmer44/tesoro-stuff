@@ -52,6 +52,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Exits: `ExitDoor` (an exit between levels), `ExitHost` (what it asks of the game).
 - Board game: `ConnectFour` (the thinking of the "Conecta" game) and `ConnectFourHost` (what it asks of the game).
 - Items: `InventoryItem` (things Jim carries), `ItemHost` (what it asks of the game).
+- Notes: `NoteObject` (kind 24, with `NoteHost`).
 - Save and load screen: `MenuButton` (kind 22, with `MenuButtonHost`), `SlotLabel` (23, with `SlotLabelHost`).
 - Inventory strip: `InventoryStrip` (kind 11, with `StripHost`).
 - Groups, shadows and wanderers: `ItemGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14, with `DepthZoneHost`), `ClickCatcher` (15), `PathSprite` (16, with `PathSpriteHost`).
@@ -204,7 +205,7 @@ that answers all of them for real, from the game's actual state:
 - **Levels.** The table of the 47 levels in the game's own order (the numbers scripts and objects use). A level is read from the archive the first
   time something asks for it (the original reads them all at start-up; only the load time differs), with its pictures left unloaded until Jim
   enters. Its objects are built by the level reader: the plain ones as before, and now also the **characters (kind 5), exits (6), plain clickable
-  things (9), scripted props (12, 17, 20) and items (13)**, each handed `World` as its host. Kinds still not built: 2, 11, 14, 15, 16, 19, 21, 22, 23, 24.
+  things (9), scripted props (12, 17, 20) and items (13)**, each handed `World` as its host. Kinds still not built: 19 and 21 (see their sections; the other kinds are listed under the level's objects).
 - **Spoken lines.** The four text files (`OBJETOS`, `ANIMS`, `CONVERS`, `ICONS`) are read from the archive and searched in the game's order; a
   line's voice is its sound file in the archive. Voices play on ScummVM's mixer through the ported sound device.
 - **Jim.** Made on first use from his nine animation files and the line "JIM"; `World` puts him into a level (his first room), answers his walking
@@ -214,9 +215,8 @@ that answers all of them for real, from the game's actual state:
   pointer on and off while Jim answers.
 - **The main list.** The one list of things that get a turn every frame (speakers waiting for their line to end, clicks waiting for Jim): inserted by
   priority, removed by object.
-- **Changing level.** The steps of the original's scene change (forget the queued pictures, bring the cameras up to date, compose, clear, fade, wait) are
-  there for the exits; the movie that starts when Jim first reaches the risco warns and does nothing.
-**Scripts run.** `World` reads the four script files and answers everything a running script asks: finding objects, characters speaking (through
+- **Changing level.** The steps of the original's scene change (forget the queued pictures, bring the cameras up to date, compose, clear, fade, wait) are there for the exits; the movie that starts when Jim first reaches the risco warns and does nothing.
+- **Scripts run.** `World` reads the four script files and answers everything a running script asks: finding objects, characters speaking (through
 the same speaking rules, with the character's own colour and pose), Jim's script lines, walking Jim (the script is told when he arrives), animations,
 looking, showing and switching objects, the choice menu (the pointer's picture is put aside and restored), sounds and music tracks. A running script is
 an entry in the main list; a click or a menu item can start one. The one with a numbered type also has a scene routine behind its `DO` lines: 17 of the 19
@@ -228,12 +228,12 @@ and takes its turn after the player's: win, loss, draw or a move) matches the or
 screen and state (the pieces' pictures, the blink of the winning line, the click that drops a piece, the timing). When a script finishes, a character it held for
 speaking is let go and its held flag cleared (found by running it: the animation otherwise kept being reset). Seen working: the captain's talk
 script plays Jim's and the captain's lines with subtitles and ends with Jim walking out of the despacho into the port.
-**Starting the game.** "Nueva partida" now fades to the new-game menu and plays its script; the start button puts Jim in the port, shows him and
+- **Starting the game.** "Nueva partida" now fades to the new-game menu and plays its script; the start button puts Jim in the port, shows him and
 starts the opening script, which runs through the ship arriving and Jim walking into the despacho (the screen follows Jim into each level). Seen
 running from the start button's code path; the two movies of the intro are skipped with a warning.
-**Not there yet (they warn when reached):** the board game's screen, clicks and its two scene routines (types 8 and 14); the movies; turning a page of the inventory; the two frame changes of the
+- **Not there yet (they warn when reached):** the board game's screen, clicks and its two scene routines (types 8 and 14); the movies; turning a page of the inventory; the two frame changes of the
 cabin's walk-area objects; Jim's use of item 37; the skip key (any mouse button skips a line for now); the voices start and finish on the mixer (checked with a silent audio driver: the captain's talk now ends by its voices, with no skipping), but nobody has listened to them yet; a subtitles option (always on).
-**Seen working:** the engine reads all 47 levels with these objects, puts Jim in the despacho and draws the room with the captain in his chair, Jim
+- **Seen working:** the engine reads all 47 levels with these objects, puts Jim in the despacho and draws the room with the captain in his chair, Jim
 standing in front and the items of the room, with no warnings. Not checked against the original (the hosts are the engine's own decisions, not
 ported functions).
 
@@ -387,7 +387,8 @@ flowchart LR
 
 *Built by the level:* the plain animated object (kind 0), the camera frame (1), the sprite (3), the floor (7), the route (8), the pointer (10) and the menu item (25), as `Object`, `CameraFrame`, `SpriteObject`, `WalkFloor`, `PathObject`, `Cursor`, `MenuItem`. Each draws through the `Display` interface; the object's hit rectangle and its movement feed the collision pass.
 *Built when `World` reads a level:* the characters (5), exits (6), the plain clickable (9), the scripted props (12, 17, 20) and items (13) (see their sections); Jim is made by `World` on first use.
-*Not built yet:* kinds 2, 11, 14, 15, 16, 19, 21, 22, 23 and 24, and some of the interface strip's objects.
+*Also built by `World`:* the groups (2), shadows (4), strip (11), depth zones (14), click catchers (15), wanderers (16), save menu objects (22, 23) and note objects (24).
+*Not built yet:* kinds 19 and 21, and some of the interface strip's objects.
 
 ---
 
@@ -605,7 +606,7 @@ Checked against the original on 1,500 random sessions covering all 59 subtypes: 
 Kind 13 of the level files are the objects of the inventory page of the interface: `InventoryItem`, on the clickable base. The data's second byte is the item's number and also picks the subtype (13 items have story behaviour, the rest are plain).
 - **Click with a verb.** If the item has a line for that verb Jim says it. Otherwise verb 0 picks the item up; any other verb first asks the item's own handler (looking at the recipe book, opening the pot...), and if that does nothing, picks it up.
 - **Picking up** makes the pointer show the item's picture (its number plus seven) and hides the item on its page (when the page is scrolled to the right); putting it back does the opposite.
-- **An item used on another** looks in this item's list of combinations for the one the pointer carries, then in the carried item's list for this one (each combination names an object of the interface and what Jim says about the pair); the interface then turns a page. If neither has one, the items' own use handlers get a go (some subtypes turn one item into another, switching interface objects on and off, or start a script), and failing that Jim says "No, no tengo ganas.". 
+- **An item used on another** looks in this item's list of combinations for the one the pointer carries, then in the carried item's list for this one (each combination names an object of the interface and what Jim says about the pair); the interface then turns a page. If neither has one, the items' own use handlers get a go (some subtypes turn one item into another, switching interface objects on and off, or start a script), and failing that Jim says "No, no tengo ganas.".
 - **Pending click.** Like the other clickable things, the click waits in the main list until Jim has finished speaking, then runs.
 - **What it asks of the game:** `ItemHost` on top of `PropHost`: the carried item, the pointer's picture, how far the interface is scrolled, turning a page, a frame of another object, and the item counter.
 Checked against the original on 1,400 random sessions over all subtypes: every call, result and state field identical; 41 deliberate bugs caught (two cannot change anything). Not checked: the click and arrival the item shares with other clickable things (never reached by its own data), and what happens when something is used with nothing carried (the original would crash; the port warns).
@@ -684,26 +685,26 @@ a number that depends on which side of the zone's box he was on (above, below, l
 it. It only takes part when its kind number reads 255, which a built one never does, and no shipped level has one, so it is dead code in the original; it is ported anyway.
 **Kind 15** is a region the pointer can see but that does nothing when clicked and shows no text, so it simply stops the click. It does not read the approach point or lines of the other clickable kinds. It was run through the original code and the port together on 200 invented objects: identical (the first run found the port reading data the original ignores, now fixed).
 
-### Map places and note objects (kinds 19 and 24) 🟡 (read, not ported)
+### Map places and note objects (kinds 19 and 24) 🟡 (kind 24 ported and ✅ checked against the original; kind 19 read, not ported)
 
 **Kind 19** is a place on the map: clicking it takes Jim to the level named in its data, next to that level's `SALIDA` object, and
 returns "moved". One destination (level 15, the sacred island) first checks the canoe object of level 7: while its state byte is
 0 the script `FMAPA` at label `tsagrada` runs instead, so the place cannot be reached yet. Destinations below 7 are
 refused. **Kind 24** is an object whose look and use verbs (verbs 1 and 3) start the script `FNOTALAB` at `mirar`, handing it the
-object's own data byte so the script knows which object it was. Not compared with the original.
+object's own data byte so the script knows which object it was. **Kind 24 is ported** as `NoteObject` (with `NoteHost`, answered by `World`): the data byte is kept as a whole number the script can also change, and the other verbs are those of any clickable object. It was run through the original code and the port together on 200 invented objects: the object's state, the script looked up and started, the number the script saw and the value it left behind were identical; three of four deliberate mistakes were found (the fourth did not build). Kind 19 is not compared with the original.
 
 ### Groups of objects (kind 2) and level hooks 🟡 (kind 2 ported and ✅ checked against the original; the level hooks read, not ported)
 
 **Kind 2** is a named list of other objects of the same level (the strip's `ICONOS` is one): it keeps the names from the level file and, when the level is attached, finds each object and keeps the list (a name that is not found stays as an empty place, so the order always follows the level file). The group was run through the original code and the port together on 300 invented groups, up to 260 names: identical; seven deliberate mistakes were all found. **Levels** have a hook that runs for them: the base one starts the level's music track (a number in the camera-frame object's data) and the map level (`MAPA`) uses it for story switches: when four things are done in the village, the canoe appears on the beach and the volcano's and swamp's characters are switched. Not compared with the original.
 
-### Saved games 🟡 (read, not ported)
+### Saved games 🟡 (ported through ScummVM's own save and load, not compared with the original; the save screen's buttons choose, load and save through ScummVM's saves; scrolling the interface out still warns)
 
 A saved game is one file named `isla` plus a four-digit number. In order it holds: the small picture shown in the list (a
 screenshot taken when the menu opened), the number of the level Jim is in, Jim's own state, then every existing level in table
 order (its own state, then one record per object: name, flags, state; Jim himself is left out), and last the interface level's
 objects. The two menu levels are not saved. Loading reads it back in the same order, finds each object again by its name (an object
 that has disappeared makes the rest of that level's records unreadable, because the original does not skip it), puts Jim into the
-saved level at his saved spot and turns him as he was. What each object's own state holds is already read and checked (animation
+saved level at his saved spot and turns him as he was. The engine writes the same order (level number, Jim, visited levels with their objects, the interface) into ScummVM's save files; a level never visited is not saved, and a damaged file is refused instead of read on. The file is the port's own, not the original's. Saving every shipped level's objects and loading them back gives the same result, except in the harbour, where two objects share a name and the original's format cannot tell them apart either. What each object's own state holds is already read and checked (animation
 position, flags and the small block of story bytes); the loader and the level loop are not compared with the original.
 
 ### Save/load menu objects (kinds 22 and 23) 🟡 (the two objects ported and ✅ checked against the original, except what the buttons do with files; saved games themselves not ported)
@@ -713,7 +714,7 @@ previous or next saved game, load, save, new-game fade, scroll the strip away, o
 show a small saved picture of the selected game; a save file is named `isla` plus a four-digit number. Loading restores Jim,
 then every level, then the interface level, and puts Jim back into his level. Kind 23 is the **caption** under the picture: it
 shows "POSICION VACIA" when no game is selected, otherwise the slot number and the save's date. Not compared with the original;
-the exact file layout and a few return values are still open (see the contract of the button click). The objects are `MenuButton` and `SlotLabel` (with `MenuButtonHost` and `SlotLabelHost`, answered by `World`). The subtitles switch, the new-game button (fade and end of the frame) and the hover pictures work and were run through the original code and the port together (1,345 button operations and 818 caption drawings identical, 21 deliberate mistakes found); choosing, loading and saving a game, and scrolling the interface out, warn that they are not ported yet, and the caption always reads "POSICION VACIA" for now.
+the exact file layout and a few return values are still open (see the contract of the button click). The objects are `MenuButton` and `SlotLabel` (with `MenuButtonHost` and `SlotLabelHost`, answered by `World`). The subtitles switch, the new-game button (fade and end of the frame) and the hover pictures work and were run through the original code and the port together (1,345 button operations and 818 caption drawings identical, 21 deliberate mistakes found); choosing, loading and saving go through ScummVM's saves (not compared with the original); scrolling the interface out still warns.
 
 ### The board's column buttons (kind 21) 🟡 (read, not ported)
 
@@ -728,7 +729,7 @@ constructor, and the kinds with subtypes (5, 6, 12, 13, 17, 20) swap in a class 
 
 ## Still to explore
 
-- The object kinds read but not yet built (2, 4, 11, 14, 15, 16, 19, 21 to 24; kind 2's own methods are still unread) and the rest of the interface strip.
+- The object kinds read but not yet built (19 and 21) and the rest of the interface strip.
 - The board game's screen and clicks, the movies, the inventory page, the skip key and a subtitles option.
 - The shaped (pixel-accurate) part of the collision test, shadows, and the companion pointer.
 - Sound and movies checked end to end, the saved-game list, and porting saving and loading (read, see above).
