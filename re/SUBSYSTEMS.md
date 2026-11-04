@@ -238,7 +238,8 @@ that answers all of them for real, from the game's actual state:
   questions from the level's walk area (the floor object and its route), draws his subtitles, and keeps his story bytes (the step the scripts move
   on, the byte beside it, the "has entered" flag).
 - **The pointer and what it carries.** The carried item, the pointer's picture (item number plus seven while carried), the hover label, switching the
-  pointer on and off while Jim answers.
+  pointer on and off while Jim answers. Hover names are shown in white; the label's colour was lost on the way from the object to the label until 5 Nov.
+- **Where Jim is in the menus.** The original puts Jim in the menu level, and several checks ask "is Jim in a menu?" (the strip, the save button). The engine does not put Jim there, so those checks go by the engine's own menu state (`place()`); the strip is off in both menus and on the board level. Any other check ported from "Jim's level is a menu" needs the same care.
 - **The main list.** The one list of things that get a turn every frame (speakers waiting for their line to end, clicks waiting for Jim): inserted by
   priority, removed by object.
 - **Changing level.** The steps of the original's scene change (forget the queued pictures, bring the cameras up to date, compose, clear, fade, wait) are there for the exits; the movie that starts when Jim first reaches place 16 plays through `World::startMovie` (see The movies).
