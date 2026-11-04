@@ -26449,9 +26449,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 46,
-  "status": "understood",
-  "engine": "",
-  "notes": "0xa4 bytes, vtable 0042c070, extends MidBase; builds a phrase key from a base string plus a digit from the record"
+  "status": "emu-compared",
+  "engine": "core/BoardColumn::init",
+  "notes": "0xa4 bytes, vtable 0042c070, extends MidBase; builds a phrase key from a base string plus a digit from the record | boardcol vectors 4 Nov: 300 sessions identical"
  },
  {
   "addr": "00419340",
@@ -26474,9 +26474,9 @@
   ],
   "data_refs": [],
   "cluster": 46,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 0042c070 slot 14"
+  "status": "emu-compared",
+  "engine": "core/BoardColumn::setVerbAndClick",
+  "notes": "unread; first seen in vtable 0042c070 slot 14 | boardcol vectors 4 Nov: busy, full column, drop, order of calls identical"
  },
  {
   "addr": "004193b0",

@@ -10,8 +10,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 441 | 98% |
 | understood or later | 410 | 91% |
-| ported or later | 353 | 78% |
-| emu-compared or later | 313 | 70% |
+| ported or later | 355 | 79% |
+| emu-compared or later | 315 | 70% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -581,11 +581,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00418c30` inferred_C0042b390_Draw (vtable) · depth 4 · 10 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b390 slot 6 (kind 5 subtype 3)
 - [x] `00418cb0` inferred_C0042a750_UseItem (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a750 slot 27 (kind 12 subtype 8)
 
-### Cluster 46: 004191c0–00419ac0 (3/12 ported)
+### Cluster 46: 004191c0–00419ac0 (5/12 ported)
 
 - [x] `004191c0` inferred_Connect4_ChooseMove · depth 2 · 46 lines · **emu-compared** → `engines/tesoro/core/connectfour.cpp::ConnectFour` — picks a column (checks for immediate win/loss first, then best-scoring, using RandomRange to break ties) | name from call sites and a skim; body not yet read
-- [ ] `00419340` inferred_BoardColumn_SetVerbAndClick (vtable) · depth 4 · 23 lines · **understood** — unread; first seen in vtable 0042c070 slot 14
-- [ ] `004192c0` inferred_Obj_BoardColumn_Ctor · depth 12 · 24 lines · **understood** — 0xa4 bytes, vtable 0042c070, extends MidBase; builds a phrase key from a base string plus a digit from the record
+- [x] `00419340` inferred_BoardColumn_SetVerbAndClick (vtable) · depth 4 · 23 lines · **emu-compared** → `core/BoardColumn::setVerbAndClick` — unread; first seen in vtable 0042c070 slot 14 | boardcol vectors 4 Nov: busy, full column, drop, order of calls identical
+- [x] `004192c0` inferred_Obj_BoardColumn_Ctor · depth 12 · 24 lines · **emu-compared** → `core/BoardColumn::init` — 0xa4 bytes, vtable 0042c070, extends MidBase; builds a phrase key from a base string plus a digit from the record | boardcol vectors 4 Nov: 300 sessions identical
 - [ ] `004193b0` inferred_DoFCONECTA_Turn (vtable) · depth 12 · 69 lines · **understood** — unread; first seen in vtable 00428438 slot 28
 - [ ] `004197a0` inferred_DoFANPRESENT (vtable) · depth 12 · 51 lines · **understood** — unread; first seen in vtable 00428a50 slot 28
 - [ ] `004198d0` inferred_DoFANEMBARKE (vtable) · depth 12 · 37 lines · **understood** — unread; first seen in vtable 00428960 slot 28

@@ -52,6 +52,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Exits: `ExitDoor` (an exit between levels), `ExitHost` (what it asks of the game).
 - Board game: `ConnectFour` (the thinking of the "Conecta" game) and `ConnectFourHost` (what it asks of the game).
 - Items: `InventoryItem` (things Jim carries), `ItemHost` (what it asks of the game).
+- Board columns: `BoardColumn` (kind 21, with `BoardColumnHost`).
 - Notes and map places: `NoteObject` (kind 24, with `NoteHost`), `MapPlace` (kind 19, with `MapPlaceHost`).
 - Save and load screen: `MenuButton` (kind 22, with `MenuButtonHost`), `SlotLabel` (23, with `SlotLabelHost`).
 - Inventory strip: `InventoryStrip` (kind 11, with `StripHost`).
@@ -205,7 +206,7 @@ that answers all of them for real, from the game's actual state:
 - **Levels.** The table of the 47 levels in the game's own order (the numbers scripts and objects use). A level is read from the archive the first
   time something asks for it (the original reads them all at start-up; only the load time differs), with its pictures left unloaded until Jim
   enters. Its objects are built by the level reader: the plain ones as before, and now also the **characters (kind 5), exits (6), plain clickable
-  things (9), scripted props (12, 17, 20) and items (13)**, each handed `World` as its host. Kind still not built: 21 (see its section; the other kinds are listed under the level's objects).
+  things (9), scripted props (12, 17, 20) and items (13)**, each handed `World` as its host. Every kind of the level files is built now (see the lists under the level's objects).
 - **Spoken lines.** The four text files (`OBJETOS`, `ANIMS`, `CONVERS`, `ICONS`) are read from the archive and searched in the game's order; a
   line's voice is its sound file in the archive. Voices play on ScummVM's mixer through the ported sound device.
 - **Jim.** Made on first use from his nine animation files and the line "JIM"; `World` puts him into a level (his first room), answers his walking
@@ -387,8 +388,8 @@ flowchart LR
 
 *Built by the level:* the plain animated object (kind 0), the camera frame (1), the sprite (3), the floor (7), the route (8), the pointer (10) and the menu item (25), as `Object`, `CameraFrame`, `SpriteObject`, `WalkFloor`, `PathObject`, `Cursor`, `MenuItem`. Each draws through the `Display` interface; the object's hit rectangle and its movement feed the collision pass.
 *Built when `World` reads a level:* the characters (5), exits (6), the plain clickable (9), the scripted props (12, 17, 20) and items (13) (see their sections); Jim is made by `World` on first use.
-*Also built by `World`:* the groups (2), shadows (4), strip (11), depth zones (14), click catchers (15), wanderers (16), save menu objects (22, 23) note objects (24) and map places (19).
-*Not built yet:* kind 21, and some of the interface strip's objects.
+*Also built by `World`:* the groups (2), shadows (4), strip (11), depth zones (14), click catchers (15), wanderers (16), save menu objects (22, 23) note objects (24), map places (19) and board columns (21).
+*Not built yet:* some of the interface strip's objects.
 
 ---
 
@@ -716,11 +717,11 @@ then every level, then the interface level, and puts Jim back into his level. Ki
 shows "POSICION VACIA" when no game is selected, otherwise the slot number and the save's date. Not compared with the original;
 the exact file layout and a few return values are still open (see the contract of the button click). The objects are `MenuButton` and `SlotLabel` (with `MenuButtonHost` and `SlotLabelHost`, answered by `World`). The subtitles switch, the new-game button (fade and end of the frame) and the hover pictures work and were run through the original code and the port together (1,345 button operations and 818 caption drawings identical, 21 deliberate mistakes found); choosing, loading and saving go through ScummVM's saves (not compared with the original); scrolling the interface out still warns.
 
-### The board's column buttons (kind 21) 🟡 (read, not ported)
+### The board's column buttons (kind 21) 🟡 (the buttons ported and ✅ checked against the original; the game around them not)
 
 Each column of the "Conecta" board is a clickable object named `OBJCOL1`, `OBJCOL2`, and so on. Clicking one does nothing while a
 move is still playing out. Otherwise, if the column is not full (seven pieces), it puts the player's piece on top, remembers the
-column and the time, and starts the board's update. Not compared with the original.
+column and the time, and starts the board's update. **Ported** as `BoardColumn` (with `BoardColumnHost`, answered by `World`, which keeps the board, the busy mark and the time of the move). It was run through the original code and the port together on 300 invented buttons, 207 of them clicked on random boards (busy, full or free): the return value, the busy mark, every board byte, the time stamp and the order of calls were identical; ten of eleven deliberate mistakes were found (the eleventh did not build). Showing the pieces is still missing: `World` only warns when a piece is dropped. Where the original would read outside the board (a column number of 7 or more, never in a shipped level) the port warns.
 
 **The game around it** (read, not ported): a conversation block (CONV33) starts it: Jim moves to the board's level, the pointer is shown, the board is emptied and the story block FCONECTA runs. While that block waits, its own routine plays the turns: 1.5 seconds after the player's piece the machine answers at once (the choosing is the ported `ConnectFour`); when someone wins or the board is full it waits 3 seconds, the four winning pieces blink every 0.2 seconds, then the pointer hides and a result byte is left for the script. Leaving the block puts Jim back in the room. The 49 piece objects (named FICHA) are shown or hidden and given their colour from the board every update.
 
@@ -729,7 +730,7 @@ constructor, and the kinds with subtypes (5, 6, 12, 13, 17, 20) swap in a class 
 
 ## Still to explore
 
-- The object kind read but not yet built (21) and the rest of the interface strip.
+- The rest of the interface strip's objects.
 - The board game's screen and clicks, the movies, the inventory page, the skip key and a subtitles option.
 - The shaped (pixel-accurate) part of the collision test, shadows, and the companion pointer.
 - Sound and movies checked end to end, the saved-game list, and porting saving and loading (read, see above).
