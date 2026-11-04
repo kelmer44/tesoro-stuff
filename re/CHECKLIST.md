@@ -10,7 +10,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 447 | 100% |
 | understood or later | 431 | 96% |
-| ported or later | 402 | 89% |
+| ported or later | 403 | 90% |
 | emu-compared or later | 344 | 76% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
@@ -69,7 +69,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `004025b0` inferred_Cursor_PageInterfaceRight · depth 1 · 49 lines · **emu-compared** → `core/Cursor::pageRight` — shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge | contract read 30 Oct; port blocked on global objects | compared inside Cursor_Update
 - [x] `004028c0` inferred_Interface_PageLeft · depth 1 · 51 lines · **emu-compared** → `core/Cursor::pageLeft` — shifts the interface level camera and its objects by -0x280 (one screen) | contract read 30 Oct; port blocked on global objects | the function is never called; its sequence inlined in Cursor_Update is compared
 - [x] `00402240` inferred_Cursor_Ctor · depth 2 · 42 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::init` — 0x130-byte object, vtable 00428038, base 0040e5a0; creates candidate lists (capacity 0x1e) at +0x6c/+0x70 and a shared list 00442060 | cursor vectors 4 Nov
-- [ ] `00402440` inferred_Cursor_OnAttach (vtable) · depth 2 · 74 lines · **understood** → `engines/tesoro/core/cursor.cpp::Cursor::onAttach` — unread; first seen in vtable 00428038 slot 0
+- [ ] `00402440` inferred_Cursor_OnAttach (vtable) · depth 2 · 74 lines · **understood** → `engines/tesoro/core/cursor.cpp::Cursor::onAttach` — unread; first seen in vtable 00428038 slot 0 | main-list insertion at 0xf done by the engine at start-up, 5 Nov
 - [x] `004026d0` Cursor_OpenMenu · depth 3 · 84 lines · **emu-compared** → `core/Cursor::openMenu + World::captureThumbnail` — renders the scene without the cursor into the display buffer and copies a 213x160 sample (every third pixel of every third row) to +0x128: a save-game thumbnail (hypothesis from the sampling pattern) | compared inside Cursor_Update; the scene sample is Cursor::sampleScene (CRC compared)
 - [x] `00402300` inferred_Obj_Kind10_Ctor · depth 4 · 46 lines · **ported** → `engines/tesoro/core/cursor.cpp::Cursor::initMain` — 0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object
 
@@ -182,7 +182,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00408840` inferred_Level_PicturesReloaded (vtable) · depth 1 · 14 lines · **ported** → `engines/tesoro/world.cpp::WorldLevel::picturesReloaded` — unread; first seen in vtable 00428bf8 slot 13
 - [x] `00408890` inferred_Level_CollisionPass · depth 2 · 200 lines · **emu-compared** — per-frame pass over the level's object list (+0x7c): for each pair of objects with flags 8 (collidable) and 2 (active) in the same room, asks A.slot11(B) then runs ResolveOverlap; afterwards sends queued position notifications (+0x78 list of object,x,y) through object slot 12
 - [x] `004087a0` inferred_Level_UpdateOrCollide (vtable) · depth 3 · 17 lines · **ported** → `engines/tesoro/core/level.cpp::Level::update` — level virtual method: when flag +0x94 is set clears it and calls slot 13 (0x34), else runs the collision pass; returns true
-- [x] `004087d0` inferred_C00428bf8_Update2 (vtable) · depth 3 · 10 lines · **ported** — unread; first seen in vtable 00428bf8 slot 5 | frame wiring in TesoroEngine::runFrame, 4 Nov
+- [x] `004087d0` inferred_C00428bf8_Update2 (vtable) · depth 3 · 10 lines · **ported** → `engines/tesoro/world.cpp::WorldLevel::update2 + tesoro.cpp::TesoroEngine::levelSecondStep` — unread; first seen in vtable 00428bf8 slot 5 | frame wiring in TesoroEngine::runFrame, 4 Nov | frame order and level second step follow the original; read, headless run only, 5 Nov
 - [x] `00408620` inferred_Level_SaveState · depth 8 · 77 lines · **ported** — writes the object keys and flags and calls each object's SaveState (slot 10) via fwrite | name from call sites and a skim; body not yet read
 - [x] `00408710` inferred_Level_LoadState · depth 8 · 20 lines · **ported** — reads object key + flags records until a zero key and calls LoadState (slot 9) on the matching object
 - [x] `00408800` inferred_Level_ReloadDeferredAnims · depth 10 · 18 lines · **ported** → `engines/tesoro/core/level.cpp::Level::reloadDeferredAnims` — rewinds pool arena 2, reloads the deferred animation images of every bank and sets +0x94
@@ -425,7 +425,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00413570` SpeechTable_Load · depth 11 · 121 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (archive offset): reads lines of the OBJETOS.TXT-style table and stores records of 16 bytes; first pass counts lines
 - [x] `00413940` Phrase_Find · depth 11 · 27 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (name) hashes the name with NameHash64 and searches the four text tables 00442110..0044211c; MessageBox "frase no encontrada" if missing
 
-### Cluster 34: 00413a10–00414560 (8/12 ported)
+### Cluster 34: 00413a10–00414560 (9/12 ported)
 
 - [x] `00413a10` inferred_Clock_Now · depth 0 · 19 lines · **emu-compared** → `core/clock.cpp::GameClock::now` — adds elapsed GetTickCount delta when below 500 ms (longer gaps are ignored); returns frozen value while frozen
 - [x] `00413a50` inferred_Clock_Freeze · depth 0 · 18 lines · **emu-compared** → `core/clock.cpp::GameClock::freeze` — updates accumulation then freezes at the current value (called at start of each frame)
@@ -436,7 +436,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00413b00` inferred_RandomRange · depth 0 · 13 lines · **emu-compared** → `core/random.cpp::randomRange` — THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded
 - [ ] `00413b90` inferred_InitSubsystems · depth 6 · 140 lines · **understood** — builds CD, input, sound, video objects; error dialogs
 - [ ] `004144a0` inferred_Shutdown · depth 7 · 45 lines · **understood** — deletes display, sound, mouse, keyboard, archive, memory pools, clock in that order
-- [ ] `00414420` inferred_RunFrame · depth 10 · 21 lines · **understood** — per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end
+- [x] `00414420` inferred_RunFrame · depth 10 · 21 lines · **ported** → `engines/tesoro/tesoro.cpp::TesoroEngine::runFrame` — per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end | frame order and level second step follow the original; read, headless run only, 5 Nov
 - [x] `00414560` inferred_Game_StartIntroSequence · depth 14 · 25 lines · **ported** → `engines/tesoro/world.cpp::World::startGame` — enters the stage level with Jim, shows him, and starts a dialogue entry by key | read against engine 4 Nov; not compared
 - [ ] `00413e60` inferred_InitGameWorld · depth 16 · 252 lines · **understood** — opens archive Tesoro.DAT/Tesoro.TRE, loads TABLA1.TBL, FUENTES.ANM, OBJETOS.TXT/DLG tables, INTERFACE.LVL, CUBIERTA/MAPA/DESPACHO..LVL levels (0x2f slots), PRINCIPAL.LVL, NUEVO.LVL, then starts the first level; SEH frame | creation order read 30 Oct
 
@@ -448,7 +448,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `004146b0` WalkFloor_OnAttach (vtable) · depth 1 · 23 lines · **ported** → `engines/tesoro/core/walkfloor.cpp::WalkFloor::onAttach` — unread; first seen in vtable 0042bc78 slot 0 | ported 31 Oct except the shared-level animation borrow
 - [x] `00414a90` inferred_ItemGroup_OnAttach (vtable) · depth 1 · 92 lines · **emu-compared** → `core/ItemGroup::onAttach` — unread; first seen in vtable 0042bcb0 slot 0
 - [x] `00414d50` inferred_C0042abb0_Slot15 (vtable) · depth 1 · 18 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042abb0 slot 15 (kind 6 subtype 1)
-- [x] `004145f0` inferred_InterfaceLevel_Update2 (vtable) · depth 3 · 8 lines · **ported** — unread; first seen in vtable 0042bc40 slot 5 | frame wiring in TesoroEngine::runFrame, 4 Nov
+- [x] `004145f0` inferred_InterfaceLevel_Update2 (vtable) · depth 3 · 8 lines · **ported** → `engines/tesoro/tesoro.cpp::TesoroEngine::levelSecondStep (interface branch)` — unread; first seen in vtable 0042bc40 slot 5 | frame wiring in TesoroEngine::runFrame, 4 Nov | frame order and level second step follow the original; read, headless run only, 5 Nov
 - [x] `00414620` WalkFloor_Ctor · depth 3 · 19 lines · **ported** → `engines/tesoro/core/walkfloor.cpp::WalkFloor::init` — 0x7c bytes, vtable 0042bc78, extends Kind00 | ported 31 Oct; the kind 7 floor (SUELO)
 - [x] `00414930` inferred_Obj_ItemGroup_Ctor · depth 3 · 81 lines · **emu-compared** → `core/ItemGroup::init` — 0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record
 - [x] `00414c40` inferred_Exit_Activate (vtable) · depth 12 · 27 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — kind 6/other exit-style handler: when Jim is idle, resets display queues, looks up the destination level in the level table 00442130 by index (+0xa0) and name key (+0xa4,+0xa8), and moves Jim there with Jim_EnterLevel

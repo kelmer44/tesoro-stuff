@@ -8554,7 +8554,7 @@
   "cluster": 5,
   "status": "understood",
   "engine": "engines/tesoro/core/cursor.cpp::Cursor::onAttach",
-  "notes": "unread; first seen in vtable 00428038 slot 0"
+  "notes": "unread; first seen in vtable 00428038 slot 0 | main-list insertion at 0xf done by the engine at start-up, 5 Nov"
  },
  {
   "addr": "004025b0",
@@ -11811,8 +11811,8 @@
   "data_refs": [],
   "cluster": 14,
   "status": "ported",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428bf8 slot 5 | frame wiring in TesoroEngine::runFrame, 4 Nov"
+  "engine": "engines/tesoro/world.cpp::WorldLevel::update2 + tesoro.cpp::TesoroEngine::levelSecondStep",
+  "notes": "unread; first seen in vtable 00428bf8 slot 5 | frame wiring in TesoroEngine::runFrame, 4 Nov | frame order and level second step follow the original; read, headless run only, 5 Nov"
  },
  {
   "addr": "00408800",
@@ -22838,9 +22838,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "understood",
-  "engine": "",
-  "notes": "per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end"
+  "status": "ported",
+  "engine": "engines/tesoro/tesoro.cpp::TesoroEngine::runFrame",
+  "notes": "per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end | frame order and level second step follow the original; read, headless run only, 5 Nov"
  },
  {
   "addr": "004144a0",
@@ -22916,8 +22916,8 @@
   "data_refs": [],
   "cluster": 35,
   "status": "ported",
-  "engine": "",
-  "notes": "unread; first seen in vtable 0042bc40 slot 5 | frame wiring in TesoroEngine::runFrame, 4 Nov"
+  "engine": "engines/tesoro/tesoro.cpp::TesoroEngine::levelSecondStep (interface branch)",
+  "notes": "unread; first seen in vtable 0042bc40 slot 5 | frame wiring in TesoroEngine::runFrame, 4 Nov | frame order and level second step follow the original; read, headless run only, 5 Nov"
  },
  {
   "addr": "00414600",
