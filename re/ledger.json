@@ -26383,9 +26383,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 45,
-  "status": "understood",
-  "engine": "",
-  "notes": "toggles a blink flag every 200 ms of game time and updates board objects; hypothesis | name from call sites and a skim; body not yet read"
+  "status": "emu-compared",
+  "engine": "core/BoardPieces::update",
+  "notes": "toggles a blink flag every 200 ms of game time and updates board objects; hypothesis | name from call sites and a skim; body not yet read | pieces vectors 4 Nov: 397 sessions identical"
  },
  {
   "addr": "00419050",

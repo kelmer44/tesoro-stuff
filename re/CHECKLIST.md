@@ -10,8 +10,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 441 | 98% |
 | understood or later | 410 | 91% |
-| ported or later | 355 | 79% |
-| emu-compared or later | 315 | 70% |
+| ported or later | 356 | 79% |
+| emu-compared or later | 316 | 70% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
 
@@ -571,13 +571,13 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00418aa0` inferred_C0042b418_UseItem (vtable) · depth 14 · 44 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b418 slot 27 (kind 5 subtype 4)
 - [x] `00418b80` inferred_C0042abb0_Verb0 (vtable) · depth 14 · 34 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042abb0 slot 20 (kind 6 subtype 1)
 
-### Cluster 45: 00418d20–00419050 (6/7 ported)
+### Cluster 45: 00418d20–00419050 (7/7 ported)
 
 - [x] `00418d20` inferred_Connect4_ScoreMove · depth 0 · 76 lines · **emu-compared** → `engines/tesoro/core/connectfour.cpp::ConnectFour` — scores a move on a 7-column board (columns hold up to 7 pieces, lines of 4): hypothesis for a board mini-game | name from call sites and a skim; body not yet read
 - [x] `00419050` inferred_Connect4_FindBestMoves · depth 1 · 74 lines · **emu-compared** → `engines/tesoro/core/connectfour.cpp::ConnectFour` — tries each non-full column, collects the best-scoring columns | name from call sites and a skim; body not yet read
 - [x] `00418c80` inferred_C0042b390_Slot28 (vtable) · depth 2 · 16 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b390 slot 28 (kind 5 subtype 3)
 - [x] `00418c50` inferred_C0042b390_Slot30 (vtable) · depth 3 · 16 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b390 slot 30 (kind 5 subtype 3)
-- [ ] `00418e90` inferred_BoardGame_UpdatePieces · depth 3 · 97 lines · **understood** — toggles a blink flag every 200 ms of game time and updates board objects; hypothesis | name from call sites and a skim; body not yet read
+- [x] `00418e90` inferred_BoardGame_UpdatePieces · depth 3 · 97 lines · **emu-compared** → `core/BoardPieces::update` — toggles a blink flag every 200 ms of game time and updates board objects; hypothesis | name from call sites and a skim; body not yet read | pieces vectors 4 Nov: 397 sessions identical
 - [x] `00418c30` inferred_C0042b390_Draw (vtable) · depth 4 · 10 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b390 slot 6 (kind 5 subtype 3)
 - [x] `00418cb0` inferred_C0042a750_UseItem (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a750 slot 27 (kind 12 subtype 8)
 
