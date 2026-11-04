@@ -162,3 +162,12 @@ recipe. No special start-at-scene config is needed.
 - Preserve source/binary identity and rebuild the driver after runtime edits.
   Matching isolated routines does not verify actual callers, asset loading,
   game clock integration, rendering, scheduling or complete-game fidelity.
+
+## Faking COM objects (DirectInput) in Unicorn — worked 4 Nov 2026
+`re/tools/check_devices.py` runs the original keyboard/mouse constructors and per-frame reads without Windows: build fake
+`IDirectInput` / `IDirectInputDevice` objects in a mapped arena whose vtable slots are Python stdcall stubs (`Emu.stub_import` on a scratch
+cell, then copy the stub address into the slot), hook the DirectInput import thunk with `Emu.hook_function(..., pops=True)`, hook `operator new`
+(cdecl, zero-filled bump allocator), stub `MessageBoxA` and `GetTickCount`, and call `Emu.set_fs()` for the constructors' SEH frame. The
+stubs log every call, so the check covers COM call order and arguments, failure paths and the acquire-and-retry sequence. The
+reference for the shared state machine is the original `00403700` itself on copied state. Limit: it shows the code's logic, not real DirectInput behaviour.
+Read the interface slot numbers from the DirectX 7 `IDirectInputDeviceA` vtable (Acquire 7, Unacquire 8, GetDeviceState 9, SetDataFormat 11, SetCooperativeLevel 13).

@@ -9025,9 +9025,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
-  "notes": "base-class constructor of the DirectInput devices (stores vtable 0042806c, creates the shared DirectInput object once and the device); message \"DIRECTINPUT: error al crear el objeto\" on failure; reference-counted in 0044207c. Called from Keyboard_Ctor and Mouse ctor"
+  "notes": "base ctor of the DirectInput devices: shared IDirectInput with a use count (00442078/7c), CreateDevice, SetDataFormat, SetCooperativeLevel, message box on each failure | contract 4 Nov, emulated"
  },
  {
   "addr": "004036c0",
@@ -9044,7 +9044,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "device ready check | true when the device pointer (+4) and the DirectInput object exist"
  },
@@ -9063,7 +9063,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "+0xc and +0x10 (200 and 20000 are the values given at start)"
  },
@@ -9105,7 +9105,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "releases the DirectInput device and the shared DirectInput object when the count reaches zero"
  },
@@ -9127,14 +9127,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
-  "notes": "0x38-byte keyboard device, vtable 00428070, 16-byte state buffer (+0x1c), default timings 200 and 20000"
+  "notes": "keyboard: 16-slot arrays, 5 watched keys (Escape Return Space S L), delays 200/20000 | contract 4 Nov, emulated"
  },
  {
   "addr": "004038f0",
   "ghidra_name": "FUN_004038f0",
-  "name": "inferred_C00428070_Slot00",
+  "name": "inferred_Keyboard_Update",
   "tier": "game",
   "lines": 40,
   "decompile_ok": true,
@@ -9151,14 +9151,14 @@
   ],
   "data_refs": [],
   "cluster": 7,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
-  "notes": "unread; first seen in vtable 00428070 slot 0 (non-object class)"
+  "notes": "per-frame keyboard read: GetDeviceState (one Acquire retry), watched keys Escape/Return/Space/S/L to raw 4=down, then 00403700 | emulated against a fake DirectInput 4 Nov"
  },
  {
   "addr": "00403980",
   "ghidra_name": "FUN_00403980",
-  "name": "inferred_MouseCtor",
+  "name": "inferred_Mouse_Ctor",
   "tier": "game",
   "lines": 46,
   "decompile_ok": true,
@@ -9192,14 +9192,14 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": ""
  },
  {
   "addr": "00403aa0",
   "ghidra_name": "FUN_00403aa0",
-  "name": "inferred_C00428074_Slot00",
+  "name": "inferred_Mouse_Update",
   "tier": "game",
   "lines": 57,
   "decompile_ok": true,
@@ -9218,7 +9218,7 @@
   "cluster": 8,
   "status": "understood",
   "engine": "",
-  "notes": "unread; first seen in vtable 00428074 slot 0 (non-object class)"
+  "notes": "per-frame mouse read: DIMOUSESTATE, adds movement to position, clamps to limits, 3 buttons to raw 4=down then 00403700 | emulated against a fake DirectInput 4 Nov"
  },
  {
   "addr": "00403b60",
@@ -26911,7 +26911,7 @@
  {
   "addr": "0041a076",
   "ghidra_name": "DirectInputCreateA",
-  "name": "",
+  "name": "DirectInputCreateA",
   "tier": "import-thunk",
   "lines": 10,
   "decompile_ok": true,
@@ -26923,9 +26923,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": null,
-  "status": "untouched",
+  "status": "replaced",
   "engine": "",
-  "notes": ""
+  "notes": "import thunk; host events instead"
  },
  {
   "addr": "0041b3b0",

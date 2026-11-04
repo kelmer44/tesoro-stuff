@@ -16,14 +16,14 @@ Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function
 
 | Stage | Functions | Share |
 |---|---|---|
-| Read (decompiled) | 441 | 98% |
-| Understood (contract written) | 410 | 91% |
-| Ported to C++ | 358 | 80% |
-| Run against the original machine code and matched | 316 | 70% |
+| Read (decompiled) | 445 | 99% |
+| Understood (contract written) | 422 | 94% |
+| Ported to C++ | 368 | 82% |
+| Run against the original machine code and matched | 325 | 72% |
 | Replaced by a ScummVM service (DirectDraw, DirectSound, input and similar) | 3 | |
 | Seen in the running original | 0 | 0% (no reference environment is authorised) |
 
-- **What is left unread** is small and not the story: DirectInput and DirectSound set-up, the three polygon routines (outline contains-a-point, overlap, clip),
+- **What is left unread** is small and not the story: DirectSound set-up, the three polygon routines (outline contains-a-point, overlap, clip),
   the memory pool, the display's constructor and its two mask and second-row raster routines, the movie player, the thumbnail capture, the window and start-up code.
   Most of these are replaced by ScummVM (window, input, sound, memory). The polygon routines are the real gap: they are only decompiled, and what calls them has not been traced
   (the pixel-accurate collision test is the obvious suspect, not confirmed).
@@ -561,6 +561,18 @@ The **mouse** keeps a position in the 640x480 window (clamped to the edges) and 
 goes through a small state machine: up, pressed this frame, held, held long enough to repeat, released this frame, releasing,
 pressed again while releasing. The game reads these states instead of tracking presses itself. That state machine
 (`InputStates`) is checked against the original's code; the host supplies the position directly instead of movement.
+
+**The input devices** are read and checked (4 November). Keyboard and mouse share one base: it makes the single DirectInput object the first time
+and counts the devices using it, so the last device to go releases it; each device is created, given its data format and its cooperation level
+with Windows, and every failure shows its own Spanish "DIRECTINPUT: error ..." box (the start-up then stops with a general device error).
+The **keyboard** watches only five keys, in this order: Escape, Return, Space, S and L (the engine's five key flags are the same list), with a release
+delay of 200 ms and a repeat delay of 20 seconds. The **mouse** is in exclusive mode, adds up the movement the device reports (one to one, no
+acceleration) and clamps the position to its limits; its three buttons use 300 ms and 500 ms until the main pointer is built, which then sets 200 ms and 20 seconds.
+Once per frame each device is read; if the read fails it asks for the device back once and tries again, and if that fails too it leaves the states as they were.
+One detail to remember when the clicks are tested: the pointer code's "right-click" path (its second button mask) is not the right mouse
+button but the left button **pressed again within the release delay**; the real right button is a separate state byte that the pointer's own
+update and the menu check. Checked against the original's code with a fake DirectInput (every field, every failure box, the retry order, 300 random
+keyboard and mouse frames); not checked: real DirectInput behaviour. In the engine this is `Mouse` plus the five key flags; DirectInput itself has no equivalent.
 
 The engine runs a **reduced frame** inside ScummVM: events become mouse position and buttons, the clock freezes, the pointer, the
 interface level and the current menu level each get their update, the cameras are updated, the screen is composed and copied to

@@ -93,6 +93,23 @@ Confidence per field: `?` guessed · `r` read-only evidence · `w` written+read 
 All confirmed (asm of the ten functions). Nodes are taken from the free list first, then the bump pointer; there is no capacity check.
 
 
+## Input devices (global 00442074 keyboard, 0044206c mouse; shared DirectInput 00442078 with use count 0044207c) — read 4 Nov, checked in Unicorn (re/tools/check_devices.py)
+Base (vtable 0042806c, 0x40 bytes allocated) with keyboard (vtable 00428070) and mouse (vtable 00428074) extending it; each class has one slot: slot 0 = per-frame update returning bool.
+| Offset | What | Conf |
+|---|---|---|
+| +0x00 | vtable | c |
+| +0x04 | IDirectInputDevice pointer (0 when set-up failed) | c |
+| +0x0c / +0x10 | release delay / repeat delay in ms (keyboard 200/20000, mouse 300/500, main cursor sets the mouse to 200/20000) | c |
+| +0x14 | u32 change stamps, one per item | c |
+| +0x18 | item capacity (keyboard 16, mouse 3) | c |
+| +0x1c | state bytes, one per item (see 00403700: 0 up, 8 pressed, 4 held, 0x20 repeating, 1 released, 2 releasing, 0x10 pressed again) | c |
+| keyboard +0x20..+0x24 | DIK codes watched: Escape 01, Return 1C, Space 39, S 1F, L 26 | c |
+| keyboard +0x30 / +0x34 | watched count (5) / copy of the +0x1c pointer | c / w |
+| mouse +0x20 / +0x24 / +0x28 / +0x2c | min x / min y / max x / max y (0, 0, 640, 480; the main cursor narrows them) | c |
+| mouse +0x30 / +0x34 | raw movement dx / dy of the last read | c |
+| mouse +0x38 / +0x3c | pointer x / y (start at 320, 240) | c |
+Mouse state bytes: index 0 left, 1 right, 2 middle (DIMOUSESTATE button order).
+
 ## Global objects (provisional names; creation read in InitGameWorld 00413e60, roles inferred)
 | Address | What | Conf |
 |---|---|---|

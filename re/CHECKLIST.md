@@ -8,8 +8,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 444 | 99% |
-| understood or later | 415 | 92% |
+| decompiled or later | 445 | 99% |
+| understood or later | 422 | 94% |
 | ported or later | 368 | 82% |
 | emu-compared or later | 325 | 72% |
 | original-compared or later | 3 | 0% |
@@ -91,26 +91,26 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 7: 00403500–00403980 (5/12 ported)
 
 - [x] `00403500` inferred_Archive_FindEntry · depth 0 · 59 lines · **emu-compared** → `engines/tesoro/core/archiveindex.cpp::ArchiveIndex::find` — binary search by name in sorted 0x18-byte index records at 00442068; returns data offset (+0x14) or fails
-- [ ] `004036c0` inferred_InputDevice_IsReady · depth 0 · 7 lines · **decompiled** — device ready check | true when the device pointer (+4) and the DirectInput object exist
-- [ ] `004036e0` inferred_InputDevice_SetTimings · depth 0 · 9 lines · **decompiled** — +0xc and +0x10 (200 and 20000 are the values given at start)
+- [ ] `004036c0` inferred_InputDevice_IsReady · depth 0 · 7 lines · **understood** — device ready check | true when the device pointer (+4) and the DirectInput object exist
+- [ ] `004036e0` inferred_InputDevice_SetTimings · depth 0 · 9 lines · **understood** — +0xc and +0x10 (200 and 20000 are the values given at start)
 - [x] `00403700` inferred_InputDevice_UpdateStates · depth 0 · 50 lines · **emu-compared** → `engines/tesoro/core/inputstate.cpp::InputStates` — (new states, count) state machine per key (0,1,2,4,8,0x10,0x20) using GetTickCount and the two timing values (+0xc, +0x10): press, hold, release and repeat
-- [ ] `004037c0` inferred_InputDevice_Dtor · depth 0 · 23 lines · **decompiled** — releases the DirectInput device and the shared DirectInput object when the count reaches zero
-- [ ] `004035b0` inferred_InputDevice_Ctor · depth 1 · 42 lines · **decompiled** — base-class constructor of the DirectInput devices (stores vtable 0042806c, creates the shared DirectInput object once and the device); message "DIRECTINPUT: error al crear el objeto" on failure; reference-counted in 0044207c. Called from Keyboard_Ctor and Mouse ctor
-- [ ] `004038f0` inferred_C00428070_Slot00 (vtable) · depth 1 · 40 lines · **untouched** — unread; first seen in vtable 00428070 slot 0 (non-object class)
+- [ ] `004037c0` inferred_InputDevice_Dtor · depth 0 · 23 lines · **understood** — releases the DirectInput device and the shared DirectInput object when the count reaches zero
+- [ ] `004035b0` inferred_InputDevice_Ctor · depth 1 · 42 lines · **understood** — base ctor of the DirectInput devices: shared IDirectInput with a use count (00442078/7c), CreateDevice, SetDataFormat, SetCooperativeLevel, message box on each failure | contract 4 Nov, emulated
+- [ ] `004038f0` inferred_Keyboard_Update (vtable) · depth 1 · 40 lines · **understood** — per-frame keyboard read: GetDeviceState (one Acquire retry), watched keys Escape/Return/Space/S/L to raw 4=down, then 00403700 | emulated against a fake DirectInput 4 Nov
 - [x] `00403320` inferred_Archive_SeekSavePos · depth 5 · 11 lines · **ported** → `engines/tesoro/core/archive.cpp` — (offset) returns the previous position and seeks to offset
-- [ ] `00403820` inferred_Keyboard_Ctor · depth 5 · 44 lines · **decompiled** — 0x38-byte keyboard device, vtable 00428070, 16-byte state buffer (+0x1c), default timings 200 and 20000
-- [ ] `00403980` inferred_MouseCtor · depth 5 · 46 lines · **understood** — DirectInput mouse, range 640x480, starts at (320,240)
+- [ ] `00403820` inferred_Keyboard_Ctor · depth 5 · 44 lines · **understood** — keyboard: 16-slot arrays, 5 watched keys (Escape Return Space S L), delays 200/20000 | contract 4 Nov, emulated
+- [ ] `00403980` inferred_Mouse_Ctor · depth 5 · 46 lines · **understood** — DirectInput mouse, range 640x480, starts at (320,240)
 - [x] `00403360` inferred_Archive_Close · depth 6 · 10 lines · **ported** → `engines/tesoro/core/archive.cpp`
 - [x] `00403380` inferred_Archive_ReadIndex · depth 8 · 109 lines · **emu-compared** → `engines/tesoro/core/archiveindex.cpp::ArchiveIndex::load` — reads 0x1c-byte index records from the .TRE keeping those with flag 4, copies the uppercased name (0x13 bytes) and offset+4 into 0x18-byte entries, then sorts them by name (selection sort); entry count in +0
 
 ### Cluster 8: 00403a70–004040d0 (3/8 ported)
 
-- [ ] `00403a70` inferred_MouseCenter · depth 0 · 9 lines · **decompiled**
+- [ ] `00403a70` inferred_MouseCenter · depth 0 · 9 lines · **understood**
 - [ ] `00403b60` inferred_CdAudioInit · depth 0 · 52 lines · **decompiled** — MCI open cdaudio; track count at +0x1bc, -1 if failed
 - [x] `00403cb0` inferred_CdAudio_PlayTrack · depth 0 · 51 lines · **ported** → `engines/tesoro/core/sounddevice.cpp::CdAudio` — (track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)
 - [ ] `004040b0` inferred_Sound_IsReady · depth 0 · 7 lines · **decompiled** — returns obj[0]!=0 && obj[1]!=0 | true when the first two fields are set
 - [x] `004040d0` inferred_Sound_FindById · depth 0 · 22 lines · **emu-compared** → `engines/tesoro/core/sounddevice.cpp` — finds the active sound slot whose id (+0x2c) matches
-- [ ] `00403aa0` inferred_C00428074_Slot00 (vtable) · depth 1 · 57 lines · **understood** — unread; first seen in vtable 00428074 slot 0 (non-object class)
+- [ ] `00403aa0` inferred_Mouse_Update (vtable) · depth 1 · 57 lines · **understood** — per-frame mouse read: DIMOUSESTATE, adds movement to position, clamps to limits, 3 buttons to raw 4=down then 00403700 | emulated against a fake DirectInput 4 Nov
 - [x] `00403dc0` inferred_CdAudio_OnNotify · depth 1 · 14 lines · **replaced** — on MM_MCINOTIFY success restarts the saved track (+0x29) | streaming/notify replaced by the ScummVM mixer and the CD manager's loop
 - [ ] `00403e00` inferred_DirectSoundInit · depth 5 · 138 lines · **decompiled** — only creates DirectSound if CD track count >= 0
 
@@ -610,7 +610,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 259 functions (C runtime, SEH helpers, import stubs). They are not ported one by one; mark `replaced` when a ScummVM service covers them or `understood` when the game depends on their behaviour.
 
 - [ ] `0041a070` DirectDrawCreate · import-thunk · **untouched**
-- [ ] `0041a076` DirectInputCreateA · import-thunk · **untouched**
+- [x] `0041a076` DirectInputCreateA · import-thunk · **replaced**
 - [ ] `0041b3b0` Ordinal_1 · import-thunk · **untouched**
 - [x] `0041b3c0` __chkstk · runtime · **replaced**
 - [x] `0041b3f0` inferred_fseek · runtime · **replaced**
