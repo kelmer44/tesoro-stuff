@@ -313,6 +313,18 @@ c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_
     "$ENG/engines/tesoro/core/inventorystrip.cpp" "$ENG/engines/tesoro/core/itemgroup.cpp" "$ENG/engines/tesoro/core/interactive.cpp" "$ENG/engines/tesoro/core/object.cpp" "$ENG/engines/tesoro/core/room.cpp" "$ENG/engines/tesoro/core/animbank.cpp" "$ENG/engines/tesoro/core/animimage.cpp" "$ENG/engines/tesoro/core/animset.cpp" "$ENG/engines/tesoro/core/namekey.cpp" "$ENG/engines/tesoro/core/level.cpp" "$ENG/engines/tesoro/core/outline.cpp" "$ENG/engines/tesoro/core/walkfloor.cpp" "$ENG/engines/tesoro/core/pathobject.cpp" "$ENG/engines/tesoro/core/walkarea.cpp" "$ENG/engines/tesoro/core/cameraframe.cpp" "$ENG/engines/tesoro/core/spriteobject.cpp" "$ENG/engines/tesoro/core/menuitem.cpp" "$ENG/engines/tesoro/core/collision.cpp" "$ENG/engines/tesoro/core/camera.cpp" "$ENG/engines/tesoro/core/cursor.cpp" "$ENG/engines/tesoro/core/hovertext.cpp" "$ENG/engines/tesoro/core/mouse.cpp" "$ENG/engines/tesoro/core/inputstate.cpp" -o local-media/bin/cursorupdate_driver
 local-media/bin/cursorupdate_driver local-media/vectors/cursorupdate.txt
 
+# All real levels: original Level_Load and Level_AttachObjects (Unicorn, real Tesoro.DAT/TRE) vs engine Level (every kind but the camera frame built as the plain object)
+re/.venv/bin/python re/tools/gen_vectors_reallevels.py "${TESORO_DIR:-/Users/gabriel/Desktop/ags/TESORO}" 2>/dev/null
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/reallevel_driver.cpp \
+    $C/level.cpp $C/outline.cpp $C/walkfloor.cpp $C/pathobject.cpp $C/walkarea.cpp $C/cameraframe.cpp $C/menuitem.cpp $C/collision.cpp $C/camera.cpp $C/object.cpp $C/room.cpp $C/animbank.cpp $C/animimage.cpp $C/animset.cpp $C/namekey.cpp $C/cursor.cpp $C/hovertext.cpp $C/spriteobject.cpp $C/mouse.cpp $C/inputstate.cpp -lz -o local-media/bin/reallevel_driver
+local-media/bin/reallevel_driver local-media/vectors/reallevels.txt "${TESORO_DIR:-/Users/gabriel/Desktop/ags/TESORO}"
+
+# Real scenes drawn: original Level_Load, attach, update of the room cameras (every object draws) and compose on the shipped game data (Unicorn, pictures loaded; about 10 minutes) vs engine Level + ScreenDisplay
+re/.venv/bin/python re/tools/gen_vectors_realscenes.py "${TESORO_DIR:-/Users/gabriel/Desktop/ags/TESORO}" 2>/dev/null
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/realscene_driver.cpp \
+    $C/level.cpp $C/outline.cpp $C/walkfloor.cpp $C/pathobject.cpp $C/walkarea.cpp $C/cameraframe.cpp $C/menuitem.cpp $C/collision.cpp $C/camera.cpp $C/object.cpp $C/room.cpp $C/animbank.cpp $C/animimage.cpp $C/animset.cpp $C/namekey.cpp $C/cursor.cpp $C/hovertext.cpp $C/spriteobject.cpp $C/mouse.cpp $C/inputstate.cpp $C/screendisplay.cpp $C/textqueue.cpp $C/renderqueue.cpp -lz -o local-media/bin/realscene_driver
+local-media/bin/realscene_driver local-media/vectors/realscenes.txt "${TESORO_DIR:-/Users/gabriel/Desktop/ags/TESORO}"
+
 # Keyboard and mouse: original constructors and per-frame reads (fake DirectInput) vs engine Keyboard and Mouse
 re/.venv/bin/python re/tools/gen_vectors_devices.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/devices_driver.cpp \
