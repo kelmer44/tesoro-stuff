@@ -11172,7 +11172,7 @@
   "cluster": 12,
   "status": "emu-compared",
   "engine": "engines/tesoro/core/jimwalker.cpp",
-  "notes": "slot 4: per-frame walking step. Position is 24.8 fixed point (+0xe0,+0xe4); the animation's own per-frame offset (+0x28,+0x2a, root motion) scaled by perspective moves Jim; ends when the squared distance reaches zero (arrival), then removes itself from the main list and either calls slot 29 (face) or the target object's slot 13 (RunVerb)"
+  "notes": "slot 4: per-frame walking step. Position is 24.8 fixed point (+0xe0,+0xe4); the animation's own per-frame offset (+0x28,+0x2a, root motion) scaled by perspective moves Jim; ends when the squared distance reaches zero (arrival), then removes itself from the main list and either calls slot 29 (face) or the target object's slot 13 (RunVerb) | overflow of the squared distance fixed 5 Nov (Jim vectors 400/400)"
  },
  {
   "addr": "004079d0",
