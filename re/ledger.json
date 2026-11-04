@@ -9063,8 +9063,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/mouse.h::Mouse::setTimings",
   "notes": "+0xc and +0x10 (200 and 20000 are the values given at start)"
  },
  {
@@ -9127,8 +9127,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/keyboard.cpp::Keyboard::Keyboard",
   "notes": "keyboard: 16-slot arrays, 5 watched keys (Escape Return Space S L), delays 200/20000 | contract 4 Nov, emulated"
  },
  {
@@ -9151,8 +9151,8 @@
   ],
   "data_refs": [],
   "cluster": 7,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/keyboard.cpp::Keyboard::update + fromHost",
   "notes": "per-frame keyboard read: GetDeviceState (one Acquire retry), watched keys Escape/Return/Space/S/L to raw 4=down, then 00403700 | emulated against a fake DirectInput 4 Nov"
  },
  {
@@ -9173,8 +9173,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/mouse.cpp::Mouse::Mouse",
   "notes": "DirectInput mouse, range 640x480, starts at (320,240)"
  },
  {
@@ -9192,8 +9192,8 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/mouse.cpp::Mouse::center",
   "notes": ""
  },
  {
@@ -9216,8 +9216,8 @@
   ],
   "data_refs": [],
   "cluster": 8,
-  "status": "understood",
-  "engine": "",
+  "status": "ported",
+  "engine": "engines/tesoro/core/mouse.cpp::Mouse::moveTo + update",
   "notes": "per-frame mouse read: DIMOUSESTATE, adds movement to position, clamps to limits, 3 buttons to raw 4=down then 00403700 | emulated against a fake DirectInput 4 Nov"
  },
  {

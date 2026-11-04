@@ -73,7 +73,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Lists: `CursorList` (the ordered list with a finger that levels, rooms and passes use).
 - Pictures: `TextQueue` (laid-out text lines, drawn by `ScreenDisplay`), `AnimBank`, `AnimPlayer`, `AnimImage`, `AnimSet` (animations); `Display` (what objects draw to), `ScreenDisplay`, `RenderQueue` (the screen), `FadePresenter` (shows the steps of a fade in the window).
 - World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `WalkFloor` (7), `PathObject` (8), `MenuItem` (25), lists `ObjectList`. Small helpers: `ObjectRecord` (one object description of the level file), `ObjectRect`, `AnimSequence`, `BrightnessTable`. `MenuHost` is what a menu item asks of the game.
-- Input: `InputStates`, `Mouse`, `Cursor` (both pointers), `HoverText`.
+- Input: `InputStates`, `Mouse`, `Keyboard`, `Cursor` (both pointers), `HoverText`.
 - Collisions: `sweepRects`, `Level::collisionPass`.
 - The world: `World` (answers every host for real), `WorldLevel` (a level that builds the clickable kinds).
 - Exits: `ExitDoor` (an exit between levels), `ExitHost` (what it asks of the game).
@@ -572,7 +572,7 @@ Once per frame each device is read; if the read fails it asks for the device bac
 One detail to remember when the clicks are tested: the pointer code's "right-click" path (its second button mask) is not the right mouse
 button but the left button **pressed again within the release delay**; the real right button is a separate state byte that the pointer's own
 update and the menu check. Checked against the original's code with a fake DirectInput (every field, every failure box, the retry order, 300 random
-keyboard and mouse frames); not checked: real DirectInput behaviour. In the engine this is `Mouse` plus the five key flags; DirectInput itself has no equivalent.
+keyboard and mouse frames); not checked: real DirectInput behaviour. In the engine this is `Mouse` and the new `Keyboard` (the five watched keys, same delays; the engine's loop feeds it host key events); DirectInput itself has no equivalent. Not compared as classes: the engine's `Keyboard` and `Mouse` constructors match the values read from the original, which is a review, not a run.
 
 The engine runs a **reduced frame** inside ScummVM: events become mouse position and buttons, the clock freezes, the pointer, the
 interface level and the current menu level each get their update, the cameras are updated, the screen is composed and copied to

@@ -10,7 +10,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 446 | 99% |
 | understood or later | 426 | 95% |
-| ported or later | 368 | 82% |
+| ported or later | 374 | 83% |
 | emu-compared or later | 325 | 72% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
@@ -88,29 +88,29 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00403250` inferred_Archive_Open · depth 10 · 28 lines · **ported** → `engines/tesoro/core/archive.cpp` — thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4
 - [x] `004029f0` inferred_Cursor_Update (vtable) · depth 12 · 156 lines · **emu-compared** → `core/Cursor::update` — vtable slot 4: reads the mouse position and buttons and the keyboard state array, handles the interface strip scrolling (shifts by 0x280 = one screen width), then positions the cursor object and its +0x74 companion at the mouse position plus the interface camera offset, and flags the held item | contract read 30 Oct; port blocked on global objects | cursorupdate vectors 5 Nov: 500 sessions identical (key, pages, menu opening)
 
-### Cluster 7: 00403500–00403980 (5/12 ported)
+### Cluster 7: 00403500–00403980 (9/12 ported)
 
 - [x] `00403500` inferred_Archive_FindEntry · depth 0 · 59 lines · **emu-compared** → `engines/tesoro/core/archiveindex.cpp::ArchiveIndex::find` — binary search by name in sorted 0x18-byte index records at 00442068; returns data offset (+0x14) or fails
 - [ ] `004036c0` inferred_InputDevice_IsReady · depth 0 · 7 lines · **understood** — device ready check | true when the device pointer (+4) and the DirectInput object exist
-- [ ] `004036e0` inferred_InputDevice_SetTimings · depth 0 · 9 lines · **understood** — +0xc and +0x10 (200 and 20000 are the values given at start)
+- [x] `004036e0` inferred_InputDevice_SetTimings · depth 0 · 9 lines · **ported** → `engines/tesoro/core/mouse.h::Mouse::setTimings` — +0xc and +0x10 (200 and 20000 are the values given at start)
 - [x] `00403700` inferred_InputDevice_UpdateStates · depth 0 · 50 lines · **emu-compared** → `engines/tesoro/core/inputstate.cpp::InputStates` — (new states, count) state machine per key (0,1,2,4,8,0x10,0x20) using GetTickCount and the two timing values (+0xc, +0x10): press, hold, release and repeat
 - [ ] `004037c0` inferred_InputDevice_Dtor · depth 0 · 23 lines · **understood** — releases the DirectInput device and the shared DirectInput object when the count reaches zero
 - [ ] `004035b0` inferred_InputDevice_Ctor · depth 1 · 42 lines · **understood** — base ctor of the DirectInput devices: shared IDirectInput with a use count (00442078/7c), CreateDevice, SetDataFormat, SetCooperativeLevel, message box on each failure | contract 4 Nov, emulated
-- [ ] `004038f0` inferred_Keyboard_Update (vtable) · depth 1 · 40 lines · **understood** — per-frame keyboard read: GetDeviceState (one Acquire retry), watched keys Escape/Return/Space/S/L to raw 4=down, then 00403700 | emulated against a fake DirectInput 4 Nov
+- [x] `004038f0` inferred_Keyboard_Update (vtable) · depth 1 · 40 lines · **ported** → `engines/tesoro/core/keyboard.cpp::Keyboard::update + fromHost` — per-frame keyboard read: GetDeviceState (one Acquire retry), watched keys Escape/Return/Space/S/L to raw 4=down, then 00403700 | emulated against a fake DirectInput 4 Nov
 - [x] `00403320` inferred_Archive_SeekSavePos · depth 5 · 11 lines · **ported** → `engines/tesoro/core/archive.cpp` — (offset) returns the previous position and seeks to offset
-- [ ] `00403820` inferred_Keyboard_Ctor · depth 5 · 44 lines · **understood** — keyboard: 16-slot arrays, 5 watched keys (Escape Return Space S L), delays 200/20000 | contract 4 Nov, emulated
-- [ ] `00403980` inferred_Mouse_Ctor · depth 5 · 46 lines · **understood** — DirectInput mouse, range 640x480, starts at (320,240)
+- [x] `00403820` inferred_Keyboard_Ctor · depth 5 · 44 lines · **ported** → `engines/tesoro/core/keyboard.cpp::Keyboard::Keyboard` — keyboard: 16-slot arrays, 5 watched keys (Escape Return Space S L), delays 200/20000 | contract 4 Nov, emulated
+- [x] `00403980` inferred_Mouse_Ctor · depth 5 · 46 lines · **ported** → `engines/tesoro/core/mouse.cpp::Mouse::Mouse` — DirectInput mouse, range 640x480, starts at (320,240)
 - [x] `00403360` inferred_Archive_Close · depth 6 · 10 lines · **ported** → `engines/tesoro/core/archive.cpp`
 - [x] `00403380` inferred_Archive_ReadIndex · depth 8 · 109 lines · **emu-compared** → `engines/tesoro/core/archiveindex.cpp::ArchiveIndex::load` — reads 0x1c-byte index records from the .TRE keeping those with flag 4, copies the uppercased name (0x13 bytes) and offset+4 into 0x18-byte entries, then sorts them by name (selection sort); entry count in +0
 
-### Cluster 8: 00403a70–004040d0 (3/8 ported)
+### Cluster 8: 00403a70–004040d0 (5/8 ported)
 
-- [ ] `00403a70` inferred_MouseCenter · depth 0 · 9 lines · **understood**
+- [x] `00403a70` inferred_MouseCenter · depth 0 · 9 lines · **ported** → `engines/tesoro/core/mouse.cpp::Mouse::center`
 - [ ] `00403b60` inferred_CdAudio_Init · depth 0 · 52 lines · **understood** — opens the MCI CD-audio device, counts tracks (clamped to 100), stores each length in seconds; -1 count when the CD cannot be read | emulated with a fake MCI 4 Nov
 - [x] `00403cb0` inferred_CdAudio_PlayTrack · depth 0 · 51 lines · **ported** → `engines/tesoro/core/sounddevice.cpp::CdAudio` — (track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)
 - [ ] `004040b0` inferred_Sound_IsReady · depth 0 · 7 lines · **understood** — returns obj[0]!=0 && obj[1]!=0 | true when the first two fields are set
 - [x] `004040d0` inferred_Sound_FindById · depth 0 · 22 lines · **emu-compared** → `engines/tesoro/core/sounddevice.cpp` — finds the active sound slot whose id (+0x2c) matches
-- [ ] `00403aa0` inferred_Mouse_Update (vtable) · depth 1 · 57 lines · **understood** — per-frame mouse read: DIMOUSESTATE, adds movement to position, clamps to limits, 3 buttons to raw 4=down then 00403700 | emulated against a fake DirectInput 4 Nov
+- [x] `00403aa0` inferred_Mouse_Update (vtable) · depth 1 · 57 lines · **ported** → `engines/tesoro/core/mouse.cpp::Mouse::moveTo + update` — per-frame mouse read: DIMOUSESTATE, adds movement to position, clamps to limits, 3 buttons to raw 4=down then 00403700 | emulated against a fake DirectInput 4 Nov
 - [x] `00403dc0` inferred_CdAudio_OnNotify · depth 1 · 14 lines · **replaced** — on MM_MCINOTIFY success restarts the saved track (+0x29) | streaming/notify replaced by the ScummVM mixer and the CD manager's loop
 - [ ] `00403e00` inferred_Sound_Ctor · depth 5 · 138 lines · **understood** — sound device set-up: CD object, DirectSound, 22 kHz 16-bit stereo primary buffer, three 1-second 8-bit mono secondary buffers; Spanish error boxes | emulated with a fake DirectSound 4 Nov
 
