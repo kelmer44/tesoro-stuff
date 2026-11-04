@@ -10,7 +10,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 447 | 100% |
 | understood or later | 430 | 96% |
-| ported or later | 382 | 85% |
+| ported or later | 383 | 85% |
 | emu-compared or later | 328 | 73% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
@@ -415,13 +415,13 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `004123e0` inferred_Display_FadeOut · depth 1 · 118 lines · **emu-compared** → `engines/tesoro/core/screendisplay.cpp::ScreenDisplay::fadeOut` — (effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read
 - [x] `00412e10` inferred_Display_Compose · depth 2 · 263 lines · **emu-compared** → `engines/tesoro/core/screendisplay.cpp::ScreenDisplay::compose` — per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read
 
-### Cluster 33: 004137c0–004139e0 (5/7 ported)
+### Cluster 33: 004137c0–004139e0 (6/7 ported)
 
 - [x] `004137c0` SpeechTable_Sort · depth 0 · 67 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — sorts 16-byte table records by their 64-bit key | name from call sites and a skim; body not yet read
 - [x] `004138b0` SpeechTable_Find · depth 0 · 47 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (key lo, key hi) binary search in the sorted table; returns the record or 0
 - [x] `004139c0` inferred_Clock_Ctor · depth 0 · 14 lines · **emu-compared** → `core/clock.cpp::GameClock::GameClock` — game clock: +0 accumulated ms, +4 frozen value, +8 last tick, +0xc frozen, +0xd suspended
 - [ ] `004139e0` inferred_BusyWait · depth 0 · 18 lines · **decompiled** — (ms) spins on GetTickCount until the time has passed
-- [ ] `004132b0` inferred_Movie_Start · depth 11 · 123 lines · **understood** — DirectShow setup via CoCreateInstance, builds path c:\INSTALL\BIN\DATA\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed
+- [x] `004132b0` inferred_Movie_Start · depth 11 · 123 lines · **ported** → `engines/tesoro/world.cpp::World::startMovie` — DirectShow setup via CoCreateInstance, builds path c:\INSTALL\BIN\DATA\%02i.BIN; last call of InitGameWorld. Only the setup was read, what it plays and when is unconfirmed | plays the AVI (Indeo 5) disc movies with Video::AVIDecoder; built, not seen running
 - [x] `00413570` SpeechTable_Load · depth 11 · 121 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (archive offset): reads lines of the OBJETOS.TXT-style table and stores records of 16 bytes; first pass counts lines
 - [x] `00413940` Phrase_Find · depth 11 · 27 lines · **emu-compared** → `engines/tesoro/core/speechtable.cpp` — (name) hashes the name with NameHash64 and searches the four text tables 00442110..0044211c; MessageBox "frase no encontrada" if missing
 
