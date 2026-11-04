@@ -10,7 +10,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 447 | 100% |
 | understood or later | 431 | 96% |
-| ported or later | 386 | 86% |
+| ported or later | 402 | 89% |
 | emu-compared or later | 328 | 73% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
@@ -496,10 +496,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00416030` inferred_C0042aca0_Slot28 (vtable) · depth 14 · 42 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042aca0 slot 28 (kind 6 subtype 3)
 - [x] `00416170` inferred_C00429950_Verb4 (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429950 slot 24 (kind 17 subtype 16)
 
-### Cluster 39: 00416300–004169a0 (10/12 ported)
+### Cluster 39: 00416300–004169a0 (12/12 ported)
 
-- [ ] `00416300` inferred_DoFANCAMAROTE (vtable) · depth 12 · 86 lines · **understood** — unread; first seen in vtable 004289d8 slot 28
-- [ ] `004169a0` inferred_DoFANMOTIN (vtable) · depth 12 · 33 lines · **understood** — unread; first seen in vtable 004288e8 slot 28
+- [x] `00416300` inferred_DoFANCAMAROTE (vtable) · depth 12 · 86 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(2)` — unread; first seen in vtable 004289d8 slot 28 | read against decompile and disassembly 5 Nov; not compared
+- [x] `004169a0` inferred_DoFANMOTIN (vtable) · depth 12 · 33 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(4)` — unread; first seen in vtable 004288e8 slot 28 | read against decompile and disassembly 5 Nov; not compared
 - [x] `00416220` inferred_C00429950_UseItem (vtable) · depth 14 · 23 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429950 slot 27 (kind 17 subtype 16)
 - [x] `00416280` inferred_C00429db0_Verb0 (vtable) · depth 14 · 24 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429db0 slot 20 (kind 17 subtype 6)
 - [x] `00416540` inferred_C0042b5b0_Verb2 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b5b0 slot 23 (kind 5 subtype 7)
@@ -511,11 +511,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00416800` inferred_DeckLevel_PicturesReloaded (vtable) · depth 14 · 43 lines · **ported** → `engines/tesoro/world.cpp::WorldLevel::picturesReloaded + deckEvents` — the deck level (class 0042bbd0) slot 13: base music cue, then step-driven story events (track 8 to 9, FANMOTIN script after step 2, fisherman state 2 to 3) | read 4 Nov; original checked with stubbed callees
 - [x] `00416910` inferred_C0042b6c0_UseItem (vtable) · depth 14 · 31 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b6c0 slot 27 (kind 5 subtype 5)
 
-### Cluster 40: 00416b50–00417250 (6/9 ported)
+### Cluster 40: 00416b50–00417250 (9/9 ported)
 
-- [ ] `00416b50` inferred_DoFCAPITAN (vtable) · depth 2 · 15 lines · **understood** — unread; first seen in vtable 004280f0 slot 28
-- [ ] `00416b80` inferred_DoFANLUCHDICK (vtable) · depth 12 · 45 lines · **understood** — unread; first seen in vtable 00428258 slot 28
-- [ ] `00416c80` inferred_DoFFINAL (vtable) · depth 12 · 71 lines · **understood** — unread; first seen in vtable 004281e0 slot 28
+- [x] `00416b50` inferred_DoFCAPITAN (vtable) · depth 2 · 15 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::runDo(21)` — unread; first seen in vtable 004280f0 slot 28 | read against decompile and disassembly 5 Nov; not compared
+- [x] `00416b80` inferred_DoFANLUCHDICK (vtable) · depth 12 · 45 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(18)` — unread; first seen in vtable 00428258 slot 28 | read against decompile and disassembly 5 Nov; not compared
+- [x] `00416c80` inferred_DoFFINAL (vtable) · depth 12 · 71 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(19)` — unread; first seen in vtable 004281e0 slot 28 | read against decompile and disassembly 5 Nov; not compared
 - [x] `00416a20` inferred_C0042b280_Verb2 (vtable) · depth 14 · 26 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b280 slot 23 (kind 5 subtype 0)
 - [x] `00416ac0` inferred_C0042b280_UseItem (vtable) · depth 14 · 27 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b280 slot 27 (kind 5 subtype 0)
 - [x] `00416e30` inferred_C00428d10_UseItem (vtable) · depth 14 · 35 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00428d10 slot 27 (kind 20 subtype 28)
@@ -535,11 +535,11 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00417640` inferred_C0042afe8_Slot28 (vtable) · depth 14 · 44 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)
 - [x] `004178b0` inferred_MapPlace_SetVerbAndClick (vtable) · depth 14 · 37 lines · **emu-compared** → `core/MapPlace::setVerbAndClick` — unread; first seen in vtable 0042bf90 slot 14 | mapplace vectors 4 Nov: lookups, script, level entry, facing, result identical; contract corrected (facing is opposite of SALIDA's)
 
-### Cluster 42: 00417b30–00417d00 (6/7 ported)
+### Cluster 42: 00417b30–00417d00 (7/7 ported)
 
 - [x] `00417b30` inferred_Obj_RetTrue (vtable) · depth 0 · 7 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — MidBase slot 16: returns 1 (is interactive/enabled default)
 - [x] `004179b0` inferred_MapLevel_StoryUpdate (vtable) · depth 2 · 41 lines · **ported** → `engines/tesoro/world.cpp::WorldLevel::mapEvents` — unread; first seen in vtable 0042bc08 slot 13 | original checked with stubbed lookups 4 Nov
-- [ ] `00417c80` ScriptFANMMENU_Do (vtable) · depth 2 · 10 lines · **understood** — unread; first seen in vtable 004282d0 slot 28
+- [x] `00417c80` ScriptFANMMENU_Do (vtable) · depth 2 · 10 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::runDo(17)` — unread; first seen in vtable 004282d0 slot 28 | read against decompile and disassembly 5 Nov; not compared
 - [x] `00417ad0` inferred_Obj_Kind25_Ctor · depth 4 · 12 lines · **emu-compared** — 0xa4 bytes, vtable 0042c000, extends MidBase
 - [x] `00417ca0` inferred_C004295d0_UseItem (vtable) · depth 13 · 21 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 004295d0 slot 27 (kind 20 subtype 7)
 - [x] `00417d00` inferred_C00429560_UseItem (vtable) · depth 13 · 31 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429560 slot 27 (kind 20 subtype 8)
@@ -581,28 +581,28 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00418c30` inferred_C0042b390_Draw (vtable) · depth 4 · 10 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b390 slot 6 (kind 5 subtype 3)
 - [x] `00418cb0` inferred_C0042a750_UseItem (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a750 slot 27 (kind 12 subtype 8)
 
-### Cluster 46: 004191c0–00419ac0 (7/12 ported)
+### Cluster 46: 004191c0–00419ac0 (12/12 ported)
 
 - [x] `004191c0` inferred_Connect4_ChooseMove · depth 2 · 46 lines · **emu-compared** → `engines/tesoro/core/connectfour.cpp::ConnectFour` — picks a column (checks for immediate win/loss first, then best-scoring, using RandomRange to break ties) | name from call sites and a skim; body not yet read
 - [x] `00419340` inferred_BoardColumn_SetVerbAndClick (vtable) · depth 4 · 23 lines · **emu-compared** → `core/BoardColumn::setVerbAndClick` — unread; first seen in vtable 0042c070 slot 14 | boardcol vectors 4 Nov: busy, full column, drop, order of calls identical
 - [x] `004192c0` inferred_Obj_BoardColumn_Ctor · depth 12 · 24 lines · **emu-compared** → `core/BoardColumn::init` — 0xa4 bytes, vtable 0042c070, extends MidBase; builds a phrase key from a base string plus a digit from the record | boardcol vectors 4 Nov: 300 sessions identical
 - [x] `004193b0` inferred_DoFCONECTA_Turn (vtable) · depth 12 · 69 lines · **ported** → `core/BoardGame::turn + World script routine (type 14)` — unread; first seen in vtable 00428438 slot 28 | boardgame vectors 4 Nov: BoardGame::turn identical (1,226 turns); phase 1 level change is World wiring, not compared
-- [ ] `004197a0` inferred_DoFANPRESENT (vtable) · depth 12 · 51 lines · **understood** — unread; first seen in vtable 00428a50 slot 28
-- [ ] `004198d0` inferred_DoFANEMBARKE (vtable) · depth 12 · 37 lines · **understood** — unread; first seen in vtable 00428960 slot 28
-- [ ] `004199a0` inferred_DoFANMLGISLA (vtable) · depth 12 · 21 lines · **understood** — unread; first seen in vtable 00428870 slot 28
-- [ ] `00419a10` inferred_DoFANPLAYA (vtable) · depth 12 · 31 lines · **understood** — unread; first seen in vtable 004287f8 slot 28
-- [ ] `00419ac0` inferred_DoFEXPLOSION (vtable) · depth 12 · 20 lines · **understood** — unread; first seen in vtable 00428780 slot 28
+- [x] `004197a0` inferred_DoFANPRESENT (vtable) · depth 12 · 51 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::introScene` — unread; first seen in vtable 00428a50 slot 28 | read against decompile and disassembly 5 Nov; not compared
+- [x] `004198d0` inferred_DoFANEMBARKE (vtable) · depth 12 · 37 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(3)` — unread; first seen in vtable 00428960 slot 28 | read against decompile and disassembly 5 Nov; not compared
+- [x] `004199a0` inferred_DoFANMLGISLA (vtable) · depth 12 · 21 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(5)` — unread; first seen in vtable 00428870 slot 28 | read against decompile and disassembly 5 Nov; not compared
+- [x] `00419a10` inferred_DoFANPLAYA (vtable) · depth 12 · 31 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(6)` — unread; first seen in vtable 004287f8 slot 28 | read against decompile and disassembly 5 Nov; not compared
+- [x] `00419ac0` inferred_DoFEXPLOSION (vtable) · depth 12 · 20 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(7)` — unread; first seen in vtable 00428780 slot 28 | read against decompile and disassembly 5 Nov; not compared
 - [x] `00419530` inferred_DoCONV33_StartBoardGame (vtable) · depth 14 · 43 lines · **ported** → `core/BoardGame::start + World script routine (type 8)` — unread; first seen in vtable 00428708 slot 28 | boardgame vectors 4 Nov: BoardGame::start identical (300 sessions); level change, Jim and script start are World wiring, not compared
 - [x] `00419620` inferred_C0042b060_Verb2 (vtable) · depth 14 · 29 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b060 slot 23 (kind 5 subtype 16)
 - [x] `004196c0` inferred_C0042b0e8_Verb2 (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/storycharacter.cpp::StoryCharacter` — unread; first seen in vtable 0042b0e8 slot 23 (kind 5 subtype 15)
 
-### Cluster 47: 00419b30–00419f10 (0/6 ported)
+### Cluster 47: 00419b30–00419f10 (5/6 ported)
 
-- [ ] `00419b30` inferred_DoFSALPANTA (vtable) · depth 12 · 17 lines · **understood** — unread; first seen in vtable 00428690 slot 28
-- [ ] `00419b90` inferred_DoCONV35 (vtable) · depth 12 · 68 lines · **understood** — unread; first seen in vtable 00428528 slot 28
-- [ ] `00419cf0` inferred_DoFIXCUERDA (vtable) · depth 12 · 16 lines · **understood** — unread; first seen in vtable 004283c0 slot 28
-- [ ] `00419d40` inferred_DoFBARCO (vtable) · depth 12 · 16 lines · **understood** — unread; first seen in vtable 00428348 slot 28
-- [ ] `00419d90` inferred_DoCONV31 (vtable) · depth 12 · 74 lines · **understood** — unread; first seen in vtable 00428618 slot 28
+- [x] `00419b30` inferred_DoFSALPANTA (vtable) · depth 12 · 17 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(9)` — unread; first seen in vtable 00428690 slot 28 | read against decompile and disassembly 5 Nov; not compared
+- [x] `00419b90` inferred_DoCONV35 (vtable) · depth 12 · 68 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(12)` — unread; first seen in vtable 00428528 slot 28 | read against decompile and disassembly 5 Nov; not compared
+- [x] `00419cf0` inferred_DoFIXCUERDA (vtable) · depth 12 · 16 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(15)` — unread; first seen in vtable 004283c0 slot 28 | read against decompile and disassembly 5 Nov; not compared
+- [x] `00419d40` inferred_DoFBARCO (vtable) · depth 12 · 16 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(16)` — unread; first seen in vtable 00428348 slot 28 | read against decompile and disassembly 5 Nov; not compared
+- [x] `00419d90` inferred_DoCONV31 (vtable) · depth 12 · 74 lines · **ported** → `engines/tesoro/world.cpp::World::Scripts::stageChange(10)` — unread; first seen in vtable 00428618 slot 28 | read against decompile and disassembly 5 Nov; not compared
 - [ ] `00419f10` inferred_DlgScript_EnterStageLevel (vtable) · depth 12 · 57 lines · **understood** — (0 or 1): moves Jim into a fixed stage level (globals 00442188 / 00442154), repositions the camera and re-resolves the script's actor table there
 
 ## Runtime, CRT and import thunks

@@ -52,3 +52,6 @@ Divergences:
 | `SetRange` vs `play` | no argument checks; sets the first frame counters (+0x2c/+0x2e) to 0 and +0x30 to first; sum only if asked | refuses first >= count, last < first, last >= count, zero-duration cases; sets `frame = first`; resets loop movement | legacy refuses calls the original performs; the original's +0x2c/+0x2e are probably its frame/time cursor (to confirm in the player update) |
 | Clock | int, game clock value | uint32 | none |
 | Counts | none | rejects > 10000 frames or images | none |
+
+## Scene routines (5 Nov 2026)
+Checked the engine's sixteen non-board-game scene routines (script block types 1-7, 9, 10, 12, 15-19, 21 and the menu fades, 17) against the fresh contracts, the decompiles and, where the decompile drops an argument, the disassembly. Agreements: every level slot, position, fade, wait, camera move, object key and animation-bank argument. Divergence found and fixed: type 12 (CONV35) switched ORZOGUEI the wrong way round (original: phase 0 on, phase 1 off; the decompile hides the pushed 0/1). Contracts 00419b90, 00419d90 (hidden argument) and 004198d0 (camera position wording) corrected. Not run against the original machine code.

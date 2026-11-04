@@ -27,8 +27,8 @@ Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function
   Most of these are replaced by ScummVM (window, input, sound, memory). The polygon routines are read and ported (see Outlines below).
 - **Every object kind of the level files is now built** by the engine (see the table of kinds): 0 to 17 and 19 to 25. Kind 18 has no case in the original's factory, so a record of that kind builds nothing.
   The engine's `Level` alone still builds only 0, 1, 3, 7, 8, 10 and 25 (the menus load whole with it); `World` supplies the rest.
-- **The scene routines** behind the numbered script blocks (the `DO` lines): the engine has all of them, but only the two board-game routines (types 8 and 14) are
-  ported *and compared* with the original. The other sixteen were written from reading and are not compared, and their ledger rows still say "understood". That is a gap in the checking, not in the playing.
+- **The scene routines** behind the numbered script blocks (the `DO` lines): the engine has all of them. The two board-game routines (types 8 and 14) are ported *and compared* with the original by emulation.
+  The other sixteen were re-read on 5 Nov line by line against the original code (levels, positions, order of fade / move / hide / camera, object names, animation arguments) and their ledger rows now say "ported", not compared. That read found one real defect, now fixed: in the CONV35 scene (type 12) the harbour guard ORZOGUEI was switched on and off the wrong way round (on at the second line instead of the first).
 - **Still warning when reached:** movies (the intro's two, the one an exit starts when Jim first reaches place 16, the one at the risco), turning a page of the inventory, scrolling the interface out,
   Jim's use of item 37, the two frame changes of the cabin's walk-area objects, the verb run after a picture reload, and the pixel-accurate collision of two shaped objects.
   The skip key is not there either (any mouse button skips a line) and the subtitles option is only the on/off button.
@@ -249,7 +249,7 @@ looking, showing and switching objects, the choice menu (the pointer's picture i
 an entry in the main list; a click or a menu item can start one. The one with a numbered type also has a scene routine behind its `DO` lines: 17 of the 19
 are ported: the opening scene (type 1), the menu's fades (17), the captain's exit (21), the throne-room trips (20, also what a script's "run FANMTRONO"
 does) and all the ones that only move Jim to another level and set the scene there (2 to 7, 9, 10, 12, 15, 16, 18, 19: where he appears, whether he
-is shown, which objects are switched on or off, the fade and pause). All 19 are ported now: types 8 and 14 are the board game "Conecta" in the fisherman's hut (see The board game); only these two are compared with the original, the others (sixteen routines in the ledger) come from reading. The game's thinking is ported and checked: `ConnectFour` (seven columns of
+is shown, which objects are switched on or off, the fade and pause). All 19 are ported now: types 8 and 14 are the board game "Conecta" in the fisherman's hut (see The board game); only these two are compared with the original, the others (sixteen routines in the ledger) were checked by reading the original code only (one defect found and fixed on 5 Nov), not by running it. The game's thinking is ported and checked: `ConnectFour` (seven columns of
 seven, lines of four; scores the last piece's lines, searches the best columns, avoids moves that let the player win at once, picks at random among equals,
 and takes its turn after the player's: win, loss, draw or a move) matches the original on 1,200 random boards. The game's own
 screen and state (the pieces' pictures, the blink of the winning line, the click that drops a piece, the timing) are ported too, as `BoardColumn`, `BoardPieces` and `BoardGame`. When a script finishes, a character it held for
@@ -809,7 +809,7 @@ constructor, and the kinds with subtypes (5, 6, 12, 13, 17, 20) swap in a class 
 ## Still to explore
 
 Ordered by what blocks the most (the full list of open functions is in `CHECKLIST.md`):
-- **Check the sixteen scene routines** that were ported from reading against the original code, like the board game's two, and mark their ledger rows.
+- **Run the sixteen scene routines** against the original code like the board game's two (they are only read-checked so far); the ORZOGUEI defect shows reading can miss hidden arguments.
 - **The inventory page and the interface strip's motion**: turning a page, scrolling the interface out, Jim's use of item 37 (all three warn).
 - **The movies**: the player is read but not ported; the files are on the game disc, not in the archive, and their format is unread.
 - **The shaped (pixel-accurate) part of the collision test**, which probably needs the three polygon routines, shadows, and the companion pointer.

@@ -24254,9 +24254,9 @@
   ],
   "data_refs": [],
   "cluster": 39,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 004289d8 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(2)",
+  "notes": "unread; first seen in vtable 004289d8 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00416540",
@@ -24495,9 +24495,9 @@
   ],
   "data_refs": [],
   "cluster": 39,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 004288e8 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(4)",
+  "notes": "unread; first seen in vtable 004288e8 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00416a20",
@@ -24575,9 +24575,9 @@
   ],
   "data_refs": [],
   "cluster": 40,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 004280f0 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::runDo(21)",
+  "notes": "unread; first seen in vtable 004280f0 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00416b80",
@@ -24602,9 +24602,9 @@
   ],
   "data_refs": [],
   "cluster": 40,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428258 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(18)",
+  "notes": "unread; first seen in vtable 00428258 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00416c80",
@@ -24630,9 +24630,9 @@
   ],
   "data_refs": [],
   "cluster": 40,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 004281e0 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(19)",
+  "notes": "unread; first seen in vtable 004281e0 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00416e30",
@@ -25641,9 +25641,9 @@
   ],
   "data_refs": [],
   "cluster": 42,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 004282d0 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::runDo(17)",
+  "notes": "unread; first seen in vtable 004282d0 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00417ca0",
@@ -26612,9 +26612,9 @@
   ],
   "data_refs": [],
   "cluster": 46,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428a50 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::introScene",
+  "notes": "unread; first seen in vtable 00428a50 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "004198d0",
@@ -26639,9 +26639,9 @@
   ],
   "data_refs": [],
   "cluster": 46,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428960 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(3)",
+  "notes": "unread; first seen in vtable 00428960 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "004199a0",
@@ -26665,9 +26665,9 @@
   ],
   "data_refs": [],
   "cluster": 46,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428870 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(5)",
+  "notes": "unread; first seen in vtable 00428870 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00419a10",
@@ -26694,9 +26694,9 @@
   ],
   "data_refs": [],
   "cluster": 46,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 004287f8 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(6)",
+  "notes": "unread; first seen in vtable 004287f8 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00419ac0",
@@ -26721,9 +26721,9 @@
   ],
   "data_refs": [],
   "cluster": 46,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428780 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(7)",
+  "notes": "unread; first seen in vtable 00428780 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00419b30",
@@ -26747,9 +26747,9 @@
   ],
   "data_refs": [],
   "cluster": 47,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428690 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(9)",
+  "notes": "unread; first seen in vtable 00428690 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00419b90",
@@ -26774,9 +26774,9 @@
   ],
   "data_refs": [],
   "cluster": 47,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428528 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(12)",
+  "notes": "unread; first seen in vtable 00428528 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00419cf0",
@@ -26800,9 +26800,9 @@
   ],
   "data_refs": [],
   "cluster": 47,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 004283c0 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(15)",
+  "notes": "unread; first seen in vtable 004283c0 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00419d40",
@@ -26826,9 +26826,9 @@
   ],
   "data_refs": [],
   "cluster": 47,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428348 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(16)",
+  "notes": "unread; first seen in vtable 00428348 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00419d90",
@@ -26854,9 +26854,9 @@
   ],
   "data_refs": [],
   "cluster": 47,
-  "status": "understood",
-  "engine": "",
-  "notes": "unread; first seen in vtable 00428618 slot 28"
+  "status": "ported",
+  "engine": "engines/tesoro/world.cpp::World::Scripts::stageChange(10)",
+  "notes": "unread; first seen in vtable 00428618 slot 28 | read against decompile and disassembly 5 Nov; not compared"
  },
  {
   "addr": "00419f10",
