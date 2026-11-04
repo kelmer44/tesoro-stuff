@@ -10,7 +10,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 447 | 100% |
 | understood or later | 431 | 96% |
-| ported or later | 404 | 90% |
+| ported or later | 405 | 90% |
 | emu-compared or later | 346 | 77% |
 | original-compared or later | 3 | 0% |
 | replaced by a ScummVM service | 3 | |
@@ -63,13 +63,13 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00401fc0` inferred_Camera_UpdateToward · depth 1 · 57 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::updateToward` — (camera, target) moves the camera toward a target using the game clock; ends in Camera_SetPositionClamped | name from call sites and a skim; body not yet read | camera vectors 1 Nov
 - [x] `004021a0` inferred_Camera_MoveTo · depth 1 · 22 lines · **emu-compared** → `engines/tesoro/core/camera.cpp::moveTo` — duration 0: set position now (00402120); otherwise stores start/target and a start time from the game clock | camera vectors 1 Nov
 
-### Cluster 5: 004023f0–004028c0 (6/7 ported)
+### Cluster 5: 004023f0–004028c0 (7/7 ported)
 
 - [x] `004023f0` inferred_Cursor_SetText · depth 0 · 43 lines · **emu-compared** → `engines/tesoro/core/hovertext.cpp::HoverText::set` — copies a C string into the cursor's hover-text buffer (+0x78), or clears it; optional ushort at +0x118 | hover text vectors 3 Nov
 - [x] `004025b0` inferred_Cursor_PageInterfaceRight · depth 1 · 49 lines · **emu-compared** → `core/Cursor::pageRight` — shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge | contract read 30 Oct; port blocked on global objects | compared inside Cursor_Update
 - [x] `004028c0` inferred_Interface_PageLeft · depth 1 · 51 lines · **emu-compared** → `core/Cursor::pageLeft` — shifts the interface level camera and its objects by -0x280 (one screen) | contract read 30 Oct; port blocked on global objects | the function is never called; its sequence inlined in Cursor_Update is compared
 - [x] `00402240` inferred_Cursor_Ctor · depth 2 · 42 lines · **emu-compared** → `engines/tesoro/core/cursor.cpp::init` — 0x130-byte object, vtable 00428038, base 0040e5a0; creates candidate lists (capacity 0x1e) at +0x6c/+0x70 and a shared list 00442060 | cursor vectors 4 Nov
-- [ ] `00402440` inferred_Cursor_OnAttach (vtable) · depth 2 · 74 lines · **understood** → `engines/tesoro/core/cursor.cpp::Cursor::onAttach` — unread; first seen in vtable 00428038 slot 0 | main-list insertion at 0xf done by the engine at start-up, 5 Nov
+- [x] `00402440` inferred_Cursor_OnAttach (vtable) · depth 2 · 74 lines · **ported** → `engines/tesoro/core/cursor.cpp::Cursor::onAttach + tesoro.cpp (main list) + World::setSlotPicture` — unread; first seen in vtable 00428038 slot 0 | main-list insertion at 0xf done by the engine at start-up, 5 Nov | picture lookup (PLANTILLA1) done in World::setSlotPicture; save scan replaced by ScummVM's list; main list at start-up | all parts done in the engine: hit rects, main list at 0xf, PLANTILLA1 picture, save list via ScummVM; not compared as a whole
 - [x] `004026d0` Cursor_OpenMenu · depth 3 · 84 lines · **emu-compared** → `core/Cursor::openMenu + World::captureThumbnail` — renders the scene without the cursor into the display buffer and copies a 213x160 sample (every third pixel of every third row) to +0x128: a save-game thumbnail (hypothesis from the sampling pattern) | compared inside Cursor_Update; the scene sample is Cursor::sampleScene (CRC compared)
 - [x] `00402300` inferred_Obj_Kind10_Ctor · depth 4 · 46 lines · **ported** → `engines/tesoro/core/cursor.cpp::Cursor::initMain` — 0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object
 

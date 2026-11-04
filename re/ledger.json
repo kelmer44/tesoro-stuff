@@ -8552,9 +8552,9 @@
   ],
   "data_refs": [],
   "cluster": 5,
-  "status": "understood",
-  "engine": "engines/tesoro/core/cursor.cpp::Cursor::onAttach",
-  "notes": "unread; first seen in vtable 00428038 slot 0 | main-list insertion at 0xf done by the engine at start-up, 5 Nov"
+  "status": "ported",
+  "engine": "engines/tesoro/core/cursor.cpp::Cursor::onAttach + tesoro.cpp (main list) + World::setSlotPicture",
+  "notes": "unread; first seen in vtable 00428038 slot 0 | main-list insertion at 0xf done by the engine at start-up, 5 Nov | picture lookup (PLANTILLA1) done in World::setSlotPicture; save scan replaced by ScummVM's list; main list at start-up | all parts done in the engine: hit rects, main list at 0xf, PLANTILLA1 picture, save list via ScummVM; not compared as a whole"
  },
  {
   "addr": "004025b0",

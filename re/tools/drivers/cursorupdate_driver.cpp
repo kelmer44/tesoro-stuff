@@ -107,6 +107,7 @@ struct Host : Tesoro::CursorHost {
 	int32 now() override { return nowMs; }
 	void fadeOut(int a, int b) override { log.push_back("fade_" + std::to_string(a) + "_" + std::to_string(b)); }
 	void clearMainList() override { log.push_back("clearlist"); }
+	void walkJimToPointer(int32, int32) override { log.push_back("walk"); }
 	void enterMainMenu() override { log.push_back("enter_main_1_0_0"); }
 	void jimResumeFacing() override { log.push_back("resume"); }
 	Tesoro::Object *interfaceObject(const char *name) override { return !strcmp(name, "SALVAR") ? salvar : !strcmp(name, "TEXTOS") ? textos : nullptr; }

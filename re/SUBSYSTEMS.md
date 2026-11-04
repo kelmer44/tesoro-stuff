@@ -770,7 +770,7 @@ object's own data byte so the script knows which object it was. **Kind 24 is por
 ### Saved games 🟡 (ported through ScummVM's own save and load, not compared with the original; the save screen's buttons choose, load and save through ScummVM's saves)
 
 A saved game is one file named `isla` plus a four-digit number. In order it holds: the small picture shown in the list (a
-screenshot taken when the menu opened), the number of the level Jim is in, Jim's own state, then every existing level in table
+screenshot taken when the menu opened, 213 x 160 pixels; the engine writes it too since 5 Nov), the number of the level Jim is in, Jim's own state, then every existing level in table
 order (its own state, then one record per object: name, flags, state; Jim himself is left out), and last the interface level's
 objects. The two menu levels are not saved. Loading reads it back in the same order, finds each object again by its name (an object
 that has disappeared makes the rest of that level's records unreadable, because the original does not skip it), puts Jim into the
@@ -810,7 +810,7 @@ Ordered by what blocks the most (the full list of open functions is in `CHECKLIS
 - **Seeing a movie play**: the player is ported and the format is known (see The movies), but nobody has watched one play in the engine yet; the original's wait for completion and its repeated blits of the screen (read, not reproduced) are the part to check.
 - **Shaped collision in play**: the shaped test is ported and checked against the original, but it only matters for the few objects whose pictures carry outlines (see Outlines); nobody has seen it decide a touch in a running game.
 - **The frame loop as a whole**: the engine's frame now follows the original's order (see The frame loop and the mouse), but it has not been run side by side with the original's frame, and nobody has played a whole session with the new order. Since 5 November the engine reads the game's five keys and ends the game when the main list is emptied (as the original's frame does), which is what Escape in the main menu does.
-- **The scene picture in the save file**: it is taken when the save screen opens but not yet stored in the save file (the original's file starts with it).
+- **The save screen's picture, seen on screen**: the scene picture is now stored in every save and drawn into the screen's picture object (PLANTILLA1) when a game is chosen, loaded or saved, and emptied when the screen opens; nobody has looked at it in a running game, and builds before 5 Nov wrote saves without it (those are refused).
 - **Observing the running original**: everything above is "compared with the original's code", never "seen on screen"; that waits for an authorised reference environment.
 
 Each time we finish one of these, its section above gets filled in and the diagram is updated.
