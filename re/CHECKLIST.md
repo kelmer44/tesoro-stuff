@@ -8,8 +8,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | Stage | Count | Share |
 |---|---|---|
 | untouched or later | 447 | 100% |
-| decompiled or later | 445 | 99% |
-| understood or later | 422 | 94% |
+| decompiled or later | 446 | 99% |
+| understood or later | 426 | 95% |
 | ported or later | 368 | 82% |
 | emu-compared or later | 325 | 72% |
 | original-compared or later | 3 | 0% |
@@ -106,19 +106,19 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 8: 00403a70–004040d0 (3/8 ported)
 
 - [ ] `00403a70` inferred_MouseCenter · depth 0 · 9 lines · **understood**
-- [ ] `00403b60` inferred_CdAudioInit · depth 0 · 52 lines · **decompiled** — MCI open cdaudio; track count at +0x1bc, -1 if failed
+- [ ] `00403b60` inferred_CdAudio_Init · depth 0 · 52 lines · **understood** — opens the MCI CD-audio device, counts tracks (clamped to 100), stores each length in seconds; -1 count when the CD cannot be read | emulated with a fake MCI 4 Nov
 - [x] `00403cb0` inferred_CdAudio_PlayTrack · depth 0 · 51 lines · **ported** → `engines/tesoro/core/sounddevice.cpp::CdAudio` — (track, flag) MCI: stop, set time format to tracks, play from the track (to the next track or the end)
-- [ ] `004040b0` inferred_Sound_IsReady · depth 0 · 7 lines · **decompiled** — returns obj[0]!=0 && obj[1]!=0 | true when the first two fields are set
+- [ ] `004040b0` inferred_Sound_IsReady · depth 0 · 7 lines · **understood** — returns obj[0]!=0 && obj[1]!=0 | true when the first two fields are set
 - [x] `004040d0` inferred_Sound_FindById · depth 0 · 22 lines · **emu-compared** → `engines/tesoro/core/sounddevice.cpp` — finds the active sound slot whose id (+0x2c) matches
 - [ ] `00403aa0` inferred_Mouse_Update (vtable) · depth 1 · 57 lines · **understood** — per-frame mouse read: DIMOUSESTATE, adds movement to position, clamps to limits, 3 buttons to raw 4=down then 00403700 | emulated against a fake DirectInput 4 Nov
 - [x] `00403dc0` inferred_CdAudio_OnNotify · depth 1 · 14 lines · **replaced** — on MM_MCINOTIFY success restarts the saved track (+0x29) | streaming/notify replaced by the ScummVM mixer and the CD manager's loop
-- [ ] `00403e00` inferred_DirectSoundInit · depth 5 · 138 lines · **decompiled** — only creates DirectSound if CD track count >= 0
+- [ ] `00403e00` inferred_Sound_Ctor · depth 5 · 138 lines · **understood** — sound device set-up: CD object, DirectSound, 22 kHz 16-bit stereo primary buffer, three 1-second 8-bit mono secondary buffers; Spanish error boxes | emulated with a fake DirectSound 4 Nov
 
 ### Cluster 9: 004043b0–00404630 (5/7 ported)
 
 - [x] `004043b0` inferred_Sound_Stop · depth 0 · 11 lines · **emu-compared** → `engines/tesoro/core/sounddevice.cpp` — stops the slot's buffer (slot 0x48/0x34 calls) and clears its id
 - [ ] `00404630` ScriptBlock_CopyCtor2 · depth 2 · 69 lines · **understood** — copy constructor of a script-block entry (vtable 00428078) | same copy as 004067a0 for types 0x12-0x15
-- [ ] `00404260` inferred_Sound_Dtor · depth 5 · 22 lines · **untouched** —  | name from call sites and a skim; body not yet read
+- [ ] `00404260` inferred_Sound_Dtor · depth 5 · 22 lines · **understood** — shutdown: stops and closes the CD device, frees the CD object, releases the primary buffer only (secondary buffers and DirectSound are never released) | emulated 4 Nov
 - [x] `004042c0` inferred_Sound_LoadWavData · depth 8 · 54 lines · **replaced** — reads the sound data chunk from the archive into the slot | name from call sites and a skim; body not yet read | streaming/notify replaced by the ScummVM mixer and the CD manager's loop
 - [x] `004043e0` inferred_Sound_StreamRefill · depth 8 · 106 lines · **replaced** — refills a streaming DirectSound buffer from the archive; returns whether the sound is still active | name from call sites and a skim; body not yet read | streaming/notify replaced by the ScummVM mixer and the CD manager's loop
 - [x] `00404110` inferred_Sound_PlayWav · depth 9 · 46 lines · **emu-compared** → `engines/tesoro/core/sounddevice.cpp` — (archive offset, ...) reads a RIFF/WAVE header from the archive, fills the next sound slot (DirectSoundBuffer), sets volume and pan, starts playing and returns a new id
@@ -611,7 +611,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 - [ ] `0041a070` DirectDrawCreate · import-thunk · **untouched**
 - [x] `0041a076` DirectInputCreateA · import-thunk · **replaced**
-- [ ] `0041b3b0` Ordinal_1 · import-thunk · **untouched**
+- [x] `0041b3b0` DirectSoundCreate · import-thunk · **replaced**
 - [x] `0041b3c0` __chkstk · runtime · **replaced**
 - [x] `0041b3f0` inferred_fseek · runtime · **replaced**
 - [x] `0041b490` inferred_fgetpos · runtime · **replaced**

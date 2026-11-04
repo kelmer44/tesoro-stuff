@@ -9223,7 +9223,7 @@
  {
   "addr": "00403b60",
   "ghidra_name": "FUN_00403b60",
-  "name": "inferred_CdAudioInit",
+  "name": "inferred_CdAudio_Init",
   "tier": "game",
   "lines": 52,
   "decompile_ok": true,
@@ -9235,9 +9235,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
-  "notes": "MCI open cdaudio; track count at +0x1bc, -1 if failed"
+  "notes": "opens the MCI CD-audio device, counts tracks (clamped to 100), stores each length in seconds; -1 count when the CD cannot be read | emulated with a fake MCI 4 Nov"
  },
  {
   "addr": "00403cb0",
@@ -9285,7 +9285,7 @@
  {
   "addr": "00403e00",
   "ghidra_name": "FUN_00403e00",
-  "name": "inferred_DirectSoundInit",
+  "name": "inferred_Sound_Ctor",
   "tier": "game",
   "lines": 138,
   "decompile_ok": true,
@@ -9301,9 +9301,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
-  "notes": "only creates DirectSound if CD track count >= 0"
+  "notes": "sound device set-up: CD object, DirectSound, 22 kHz 16-bit stereo primary buffer, three 1-second 8-bit mono secondary buffers; Spanish error boxes | emulated with a fake DirectSound 4 Nov"
  },
  {
   "addr": "004040b0",
@@ -9320,7 +9320,7 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "decompiled",
+  "status": "understood",
   "engine": "",
   "notes": "returns obj[0]!=0 && obj[1]!=0 | true when the first two fields are set"
  },
@@ -9408,9 +9408,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 9,
-  "status": "untouched",
+  "status": "understood",
   "engine": "",
-  "notes": " | name from call sites and a skim; body not yet read"
+  "notes": "shutdown: stops and closes the CD device, frees the CD object, releases the primary buffer only (secondary buffers and DirectSound are never released) | emulated 4 Nov"
  },
  {
   "addr": "004042c0",
@@ -26930,7 +26930,7 @@
  {
   "addr": "0041b3b0",
   "ghidra_name": "Ordinal_1",
-  "name": "",
+  "name": "DirectSoundCreate",
   "tier": "import-thunk",
   "lines": 10,
   "decompile_ok": true,
@@ -26942,9 +26942,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": null,
-  "status": "untouched",
+  "status": "replaced",
   "engine": "",
-  "notes": ""
+  "notes": "import thunk (ordinal 1)"
  },
  {
   "addr": "0041b3c0",

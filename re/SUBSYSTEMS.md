@@ -16,14 +16,14 @@ Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function
 
 | Stage | Functions | Share |
 |---|---|---|
-| Read (decompiled) | 445 | 99% |
-| Understood (contract written) | 422 | 94% |
+| Read (decompiled) | 446 | 99% |
+| Understood (contract written) | 426 | 95% |
 | Ported to C++ | 368 | 82% |
 | Run against the original machine code and matched | 325 | 72% |
 | Replaced by a ScummVM service (DirectDraw, DirectSound, input and similar) | 3 | |
 | Seen in the running original | 0 | 0% (no reference environment is authorised) |
 
-- **What is left unread** is small and not the story: DirectSound set-up, the three polygon routines (outline contains-a-point, overlap, clip),
+- **What is left unread** is small and not the story: the three polygon routines (outline contains-a-point, overlap, clip),
   the memory pool, the display's constructor and its two mask and second-row raster routines, the movie player, the thumbnail capture, the window and start-up code.
   Most of these are replaced by ScummVM (window, input, sound, memory). The polygon routines are the real gap: they are only decompiled, and what calls them has not been traced
   (the pixel-accurate collision test is the obvious suspect, not confirmed).
@@ -631,6 +631,12 @@ What a spoken line does once a script asks for it (all read from the original, n
 Ported and checked against the original:
 - **Text** (`TextQueue`, drawn through `ScreenDisplay`): breaks a text into lines, places them (centred or left aligned, kept on screen) and draws the letters of the font (an ordinary animation file: letter *c* is picture *c* - 0x21) over the finished frame. The same lines, positions, colours and pixels as the original on 400 random cases with made-up fonts. A text call also changes the "layer depth" that decides where scaled pictures go for the rest of the frame (the original does; the choice menu uses 5, subtitles 0).
 - **The speaking rules** (`Speaker`): start a line, end it when the voice finishes or the player skips, wait for the player when there is no voice, move the mouth about every tenth of a second, give the line back. Compared with the original on 800 random sessions (calls to the sound, animation and list code are hooks, so what they do inside is not covered).
+**Sound set-up** (read and checked 4 November, with fake Windows audio): the sound device first opens the CD-audio player, counts the disc's tracks (at most 100)
+and notes each track's length in seconds. **If the disc cannot be read the original refuses to start** ("Error al leer el CD"; the CD player is the only music source, and
+there is no fallback). Then DirectSound is created with a 22 kHz 16-bit stereo main buffer and three one-second 8-bit mono 22 kHz buffers for voices and effects; each failure shows its own Spanish
+"DIRECTSOUND: error ..." box, and a single failed voice buffer is tolerated (the device still starts). On shutdown the original stops the music, frees the CD object and releases only the main buffer; it never
+releases the three voice buffers or DirectSound itself (the program ends right after). ScummVM's mixer and audio-CD manager stand in for all of it; the track count and lengths are not used by the engine.
+
 Also ported: **the sound device** (`SoundDevice`: three voice records, the 44-byte WAV check, ids, the active list that is tidied once a frame; compared with the original on 800 sessions, with the mixer standing in for DirectSound) and the **music** (`CdAudio`: one track at a time, looping). `MixerVoiceBackend` and `ScummCdBackend` connect them to ScummVM. Not checked: how long a voice lasts exactly (the mixer decides), and which CD track number means which file.
 Also ported: **the choice menu** (`ChoiceMenu`: lays the choices out and bottom-aligns them, tracks the one under the mouse, answers a click; 9,152 runs identical to the original with its own text layout).
 The real `SpeakerHost`/`ScriptHost` now live in `World`. Still to do: moving Jim's own subtitle onto the same placement code as the characters'.

@@ -171,3 +171,5 @@ cell, then copy the stub address into the slot), hook the DirectInput import thu
 stubs log every call, so the check covers COM call order and arguments, failure paths and the acquire-and-retry sequence. The
 reference for the shared state machine is the original `00403700` itself on copied state. Limit: it shows the code's logic, not real DirectInput behaviour.
 Read the interface slot numbers from the DirectX 7 `IDirectInputDeviceA` vtable (Acquire 7, Unacquire 8, GetDeviceState 9, SetDataFormat 11, SetCooperativeLevel 13).
+
+Same method for MCI and DirectSound (`re/tools/check_sound_init.py`, 4 Nov): stub `mciSendStringA`/`mciSendCommandA` (IAT 0x444390/0x444394) with a status-by-item model, hook the DSOUND ordinal-1 thunk (`DirectSoundCreate`), and give `IDirectSound` (CreateSoundBuffer 3, SetCooperativeLevel 6, Release 2) and `IDirectSoundBuffer` (SetFormat 14) Python vtables that log the raw description and format bytes. Mutating a format field in the expected bytes is caught.

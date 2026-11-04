@@ -160,6 +160,7 @@ Entry (24 bytes): +0 op, then by op (see contract 00404810): 1 say [+4 phrase, +
 
 ## Sound device (global 00442080) and records — read from 0x404110, 0x4042c0, 0x4043e0, 0x403cb0
 Device: +8 array of record pointers, +0x14 last id, +0x18 active count, +0x1c CD audio object (+0x14 MCI device, +0x24 time-format handle, +0x28/+0x29 flag/track, +0x1bc track count). Record: +0 DirectSound buffer, +4 file position of the data, +8 stream offset, +0xc data size, +0x24 u16 tag, +0x26 byte half toggle, +0x27 byte active, +0x2c id, +0x30 end position (-1 while streaming), +0x20 archive file. WAVs: 44-byte header, PCM, mono, 22050 Hz, 8 bit (all 2,346 shipped).
+Set-up layout read 4 Nov (00403e00, 00403b60): device +0 primary buffer, +4 IDirectSound, +8/+0xc/+0x10 the three records (record +0 buffer, +0x2c cleared; 0x34 bytes), +0x14 last id, +0x18 active count, +0x1c CD object. CD object (0x1c0 bytes): +0 MCI status block (+4 result, +8 item, +0xc track), +0x10 open block (+0x14 device id, +0x18 type 0x204), +0x24 hwnd, +0x28/+0x29 flag/track, +0x2c track lengths in seconds (u32 × up to 100), +0x1bc track count (-1 unusable). [c]
 
 
 ## Jim, walking fields (read from 0x4070c0, 0x407600, 0x407790) — extends the Speaker table above
