@@ -9827,7 +9827,7 @@
   "cluster": 10,
   "status": "emu-compared",
   "engine": "engines/tesoro/core/scriptrunner.cpp::ScriptRunner::start",
-  "notes": "(event, key lo, key hi, variables, level): resolves actors in the level, selects the entry point matching the event key, hides the cursor, inserts the script into the main list at priority 0x1e and runs it; returns 3"
+  "notes": "(event, key lo, key hi, variables, level): resolves actors in the level, selects the entry point matching the event key, hides the cursor, inserts the script into the main list at priority 0x1e and runs it; returns 3 | 5 Nov: scripts insert in front of equal priorities"
  },
  {
   "addr": "004060b0",
@@ -11463,7 +11463,7 @@
   "cluster": 13,
   "status": "ported",
   "engine": "engines/tesoro/core/jimwalker.h::Jim::useItem + world.cpp::World::useItemOnInterface",
-  "notes": "slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27 | ported 31 Oct; the interface object's slot 27 is behind JimWorld::useItemOnInterface (not read) | forwards to ICUBOMAR use(0xff), 5 Nov; item number of ICUBOMAR not verified"
+  "notes": "slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27 | ported 31 Oct; the interface object's slot 27 is behind JimWorld::useItemOnInterface (not read) | forwards to ICUBOMAR use(0xff), 5 Nov; item number of ICUBOMAR not verified | 5 Nov: Jim made clickable (interactive base slots) so this is reachable"
  },
  {
   "addr": "004080e0",
@@ -23006,7 +23006,7 @@
   "cluster": 35,
   "status": "ported",
   "engine": "engines/tesoro/core/walkfloor.cpp::WalkFloor::onAttach",
-  "notes": "unread; first seen in vtable 0042bc78 slot 0 | ported 31 Oct except the shared-level animation borrow"
+  "notes": "unread; first seen in vtable 0042bc78 slot 0 | ported 31 Oct except the shared-level animation borrow | 5 Nov: shared-floor borrow ported (level 42's SUELO); level index now set before attach"
  },
  {
   "addr": "00414740",
