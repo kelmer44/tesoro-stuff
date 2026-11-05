@@ -77,9 +77,9 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 
 ## Part 4: Act 3, verification (15:00 to 20:00)
 
-### 14. Capstone and Unicorn
-**On screen:** Two boxes. Capstone: bytes → instructions. Unicorn: run the original bytes without the game.
-**Say:** Unit tests for a binary you have no source for. Load one function at its original address, set up the stack by hand, run it, read the result.
+### 14. Run the original bytes (Unicorn)
+**On screen:** Three steps (map the bytes, build the stack, run and read eax) beside a short code snippet.
+**Say:** Unit tests for a binary you have no source for. Load one function at its original address, set up the stack by hand, run it, read the result. Optional aside: Capstone, a disassembler library, is its scriptable companion (Ghidra is for humans, Capstone for scripts).
 
 ### 15. DEMO 3: faithful vs plausible
 **On screen:** Terminal. `faithful`: 305/305 pass. `plausible --happy-path-only`: passes. `plausible`: fails with `a=[1, 5, 9, 20] lo=8 hi=2: emulator=20 hypothesis=8`.

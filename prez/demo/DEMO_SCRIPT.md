@@ -70,9 +70,9 @@ turned into compares and masks. The structure you wrote is gone.
 5. Repeat on `_O2.obj` to show the decompiler recovering a loop from SSE code (messier, still useful).
 6. Then switch to the real `TESORO.EXE` project and show the function list. The scale problem.
 
-## Act 3: verification with Capstone and Unicorn (about 4 min)
+## Act 3: verification with Unicorn (about 4 min)
 
-**1. Capstone** is a disassembler library: the programmatic version of step 4 above.
+**1. (Optional aside) Capstone** is a disassembler library: the scriptable version of step 4 above. Skip it if short on time; the slide does not mention it.
 
 ```bash
 $PY -I verify.py build/sum_clamped_O0.bin --disasm 8

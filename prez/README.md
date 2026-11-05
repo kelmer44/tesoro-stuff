@@ -15,7 +15,7 @@ Talk for engineers, 30 minutes, built around the Tesoro project.
 | 2:00 | What reverse engineering is and why people do it |
 | 5:00 | Act 1: by hand. Compile, hex editor, opcodes (demo) |
 | 12:00 | Act 2: Ghidra. Same function, then the scale problem (demo) |
-| 16:00 | Act 3: verification with Capstone and Unicorn (demo) |
+| 16:00 | Act 3: verification with Unicorn (demo) |
 | 20:00 | Act 4: AI agents with the Ghidra MCP in a systematic loop |
 | 26:00 | Lessons, including the restart |
 | 29:00 | Close, replacing the joke prompt with the real one |
@@ -30,3 +30,9 @@ cd prez/demo
 
 Needs clang (32-bit x86 target, no linker) and the `re/.venv` environment (Unicorn, Capstone).
 The demo uses an original function written for the talk, not game code.
+
+## Deck
+
+- `tesoro_talk.pptx`: the 24-slide deck, with speaker notes. Slide content and notes are in [SLIDES.md](SLIDES.md).
+- Rebuild with `cd deck && npm install && NODE_PATH=$PWD/node_modules node build_deck.js` (needs the pptx skill's `apply_theme.js`; set `PPTX_SKILL_DIR` if its path differs).
+- Placeholders to replace by hand: slide 2 (ScummVM screenshot), optionally slide 11 (Ghidra screenshot).
