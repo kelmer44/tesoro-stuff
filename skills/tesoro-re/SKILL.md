@@ -250,3 +250,6 @@ Limits: blocks whose characters are in different levels cannot be placed (15 lab
 
 ## Scripts against the data (5 Nov 2026)
 `re/tools/check_script_data.py` (needs `local-media/vectors/reallevels.txt` from `gen_vectors_reallevels.py`) computes name keys with the original's own hash and checks every `sendmessage '<OBJECT>'`, `run '<BLOCK>' <label>` and `play avi N` of the shipped scripts against the shipped levels and disc. Result: one dangling object name in 370 references (a typo in `FIPLATO`).
+
+## What playing found that the comparisons could not (5 Nov 2026)
+The whole game was played to the end in the engine. The bugs it exposed (Jim moving during conversations, an error loading a game, the inventory strip in the main menu, some items not observable, the save/load menu staying open after a load, Jim not selectable, Jim's walking) were all in the wiring between ported pieces (`World` hosts, menu state), not in a ported function. The function-level and real-data comparisons found a different class (save bytes, integer overflow, input conditions, undefined behaviour). Both are needed; neither replaces the other.
