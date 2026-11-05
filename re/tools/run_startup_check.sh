@@ -325,6 +325,12 @@ c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_
     $C/level.cpp $C/outline.cpp $C/walkfloor.cpp $C/pathobject.cpp $C/walkarea.cpp $C/cameraframe.cpp $C/menuitem.cpp $C/collision.cpp $C/camera.cpp $C/object.cpp $C/room.cpp $C/animbank.cpp $C/animimage.cpp $C/animset.cpp $C/namekey.cpp $C/cursor.cpp $C/hovertext.cpp $C/spriteobject.cpp $C/mouse.cpp $C/inputstate.cpp $C/screendisplay.cpp $C/textqueue.cpp $C/renderqueue.cpp -lz -o local-media/bin/realscene_driver
 local-media/bin/realscene_driver local-media/vectors/realscenes.txt "${TESORO_DIR:-/Users/gabriel/Desktop/ags/TESORO}"
 
+# Every animation bank of the real levels (sequences, points, scales, header, image positions): original Level_Load (Unicorn, real Tesoro.DAT/TRE) vs engine
+re/.venv/bin/python re/tools/gen_vectors_realbanks.py "${TESORO_DIR:-/Users/gabriel/Desktop/ags/TESORO}" 2>/dev/null
+c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/realbank_driver.cpp \
+    $C/level.cpp $C/outline.cpp $C/walkfloor.cpp $C/pathobject.cpp $C/walkarea.cpp $C/cameraframe.cpp $C/menuitem.cpp $C/collision.cpp $C/camera.cpp $C/object.cpp $C/room.cpp $C/animbank.cpp $C/animimage.cpp $C/animset.cpp $C/namekey.cpp $C/cursor.cpp $C/hovertext.cpp $C/spriteobject.cpp $C/mouse.cpp $C/inputstate.cpp -lz -o local-media/bin/realbank_driver
+local-media/bin/realbank_driver local-media/vectors/realbanks.txt "${TESORO_DIR:-/Users/gabriel/Desktop/ags/TESORO}"
+
 # Keyboard and mouse: original constructors and per-frame reads (fake DirectInput) vs engine Keyboard and Mouse
 re/.venv/bin/python re/tools/gen_vectors_devices.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/devices_driver.cpp \
