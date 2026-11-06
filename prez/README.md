@@ -4,6 +4,7 @@ Talk for engineers, 30 minutes, built around the Tesoro project.
 
 ## Contents
 
+- [DEMOS_EXPLAINED.md](DEMOS_EXPLAINED.md): the three demos explained in simple language, with a glossary.
 - [demo/](demo/): self-contained live-demo materials (a C function, build script,
   Capstone/Unicorn verifier) and [demo/DEMO_SCRIPT.md](demo/DEMO_SCRIPT.md), the step-by-step script.
 
@@ -26,6 +27,9 @@ Talk for engineers, 30 minutes, built around the Tesoro project.
 cd prez/demo
 ./build.sh
 ../../re/.venv/bin/python -I verify.py build/sum_clamped_O2.bin --hypothesis faithful
+./run_native.sh                                       # same C, run natively
+../../re/.venv/bin/python run.py build/sum_clamped_O0.bin   # exact bytes, live
+./patch_demo.sh                                       # patch one byte, then run again
 ```
 
 Needs clang (32-bit x86 target, no linker) and the `re/.venv` environment (Unicorn, Capstone).

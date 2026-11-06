@@ -42,6 +42,7 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 
 ### 7. DEMO 1: bytes and opcodes
 **On screen:** Live: `sum_clamped.c` (10 lines), then the hex editor on the compiled bytes. Highlight `55 89 e5` (prologue), `3b 45 0c` (cmp), `7d 40` (jge), `c3` (ret).
+**Live:** run the C natively, run the exact bytes in the emulator on audience-chosen inputs, then patch one byte (`83 c0 01` to `83 c0 02`) in the hex editor and watch 55 become 25.
 **Say:** Decode two or three by hand using the table in the demo script. "This is real, and it is miserable."
 **Cut if short:** drop the jump-offset arithmetic.
 

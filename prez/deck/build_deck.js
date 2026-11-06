@@ -228,7 +228,7 @@ function arrow(s, x, y, w, h, opts) {
   // 7 DEMO 1
   {
     const s = begin("Act 1: by hand", "LIGHT", "Bytes and opcodes",
-      "Decode two or three bytes by hand using the table in the demo script. This is real, and it is miserable. If short on time, drop the jump-offset arithmetic (0x28 + 0x40 = 0x68).");
+      "Run the C natively, then run the exact bytes in the emulator with audience-chosen inputs. Decode two or three bytes by hand using the table in the demo script. Then patch byte 0x62 (83 c0 01 to 83 c0 02) in the hex editor and rerun: 55 becomes 25. This is real, and it is miserable. If short on time, drop the jump-offset arithmetic (0x28 + 0x40 = 0x68).");
     chip(s, "LIVE DEMO 1");
     code(s, 0.5, 1.35, 4.5, 3.6, [
       "int sum_clamped(const int *a, int n,",

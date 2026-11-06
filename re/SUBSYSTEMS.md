@@ -11,6 +11,7 @@ It grows as we recover more of the original. Written for people, not for the deb
 None of this is yet "seen on the original's screen" except two menu screens and a saved game's file (4 Nov): ✅ means matches the original's *code*, not what the original shows.
 
 Last updated: 4 November 2026 (headings and counts audited against the engine branch `codex/object-kinds` and the ledger).
+On 6 November the port-only host interfaces were removed on the branch `codex/remove-hosts` (see "Which classes copy the original"). The per-cluster sections below still use the old host names, as written when each cluster was ported; read `XHost` there as `World`.
 
 ## Where the reverse engineering stands (4 November 2026)
 
@@ -29,7 +30,7 @@ Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function
   Most of these are replaced by ScummVM (window, input, sound, memory). The polygon routines are read and ported (see Outlines below).
 - **Every object kind of the level files is now built** by the engine (see the table of kinds): 0 to 17 and 19 to 25. Kind 18 has no case in the original's factory, so a record of that kind builds nothing, and no shipped level has one (counted over all levels, 5 Nov).
   The engine's `Level` alone still builds only 0, 1, 3, 7, 8, 10 and 25 (the menus load whole with it); `World` supplies the rest.
-- **The scene routines** behind the numbered script blocks (the `DO` lines): the engine has all of them. The two board-game routines (types 8 and 14) and the other seventeen are ported *and compared* with the original by emulation (5 Nov: 400 runs of the original routines from random starts; the port made the same calls in the same order and left the same state). Reading them first found one real defect, now fixed: in the CONV35 scene (type 12) the harbour guard ORZOGUEI was switched on and off the wrong way round. They live in their own class, `SceneRoutines`, which asks the game through `SceneHost` (answered by `World`).
+- **The scene routines** behind the numbered script blocks (the `DO` lines): the engine has all of them. The two board-game routines (types 8 and 14) and the other seventeen are ported *and compared* with the original by emulation (5 Nov: 400 runs of the original routines from random starts; the port made the same calls in the same order and left the same state). Reading them first found one real defect, now fixed: in the CONV35 scene (type 12) the harbour guard ORZOGUEI was switched on and off the wrong way round. They live in their own class, `SceneRoutines`, which asks the game through `SceneAdapter` (the block's view of `World`).
 - **Nothing known still warns when reached:** turning an inventory page, scrolling the interface out, the pixel-accurate collision and the step after a picture reload are all ported (see Outlines and the picture-reload step).
   The subtitles option is the original's own on/off switch (one byte of Jim's progress, kept in saves since 5 Nov). Skipping a line follows the original: Escape or the right button, when it goes up (the left button does not skip); since 5 Nov, read from the original's speaker step, not run against it with real input.
 - **Played to the end (5 Nov):** Gabriel finished the game in the engine under ScummVM and found it fine apart from a handful of bugs, all fixed (by their commit titles: Jim moving during conversations, an error when loading a game, the inventory strip showing in the main menu, certain items that could not be looked at, the save/load menu staying open after a load, Jim not selectable by the pointer, and fixes to Jim's walking). Every one of them is in the engine's own wiring (the `World` host, the menus, the pointer), none in a function the checks against the original cover: the comparisons found their own, different bugs (the save bytes, the walk overflow, the skip key), and playing found these. A complete playthrough is evidence that the story can be finished, not that every scene looks and behaves like the original's.
@@ -81,32 +82,32 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Files and time: `Archive`, `ArchiveIndex`, `GameClock`, name keys, random numbers.
 - Lists: `CursorList` (the ordered list with a finger that levels, rooms and passes use).
 - Pictures: `TextQueue` (laid-out text lines, drawn by `ScreenDisplay`), `AnimBank`, `AnimPlayer`, `AnimImage`, `AnimSet` (animations); `Display` (what objects draw to), `ScreenDisplay`, `RenderQueue` (the screen), `FadePresenter` (shows the steps of a fade in the window).
-- World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `WalkFloor` (7), `PathObject` (8), `MenuItem` (25), lists `ObjectList`. Small helpers: `ObjectRecord` (one object description of the level file), `ObjectRect`, `AnimSequence`, `BrightnessTable`. `MenuHost` is what a menu item asks of the game.
+- World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `WalkFloor` (7), `PathObject` (8), `MenuItem` (25), lists `ObjectList`. Small helpers: `ObjectRecord` (one object description of the level file), `ObjectRect`, `AnimSequence`, `BrightnessTable`. a menu item asks the engine directly.
 - Input: `InputStates`, `Mouse`, `Keyboard`, `Cursor` (both pointers), `HoverText`.
 - Collisions: `sweepRects`, `Level::collisionPass`.
 - The world: `World` (answers every host for real), `WorldLevel` (a level that builds the clickable kinds).
-- Exits: `ExitDoor` (an exit between levels), `ExitHost` (what it asks of the game).
-- Board game: `ConnectFour` (the thinking of the "Conecta" game) and `ConnectFourHost` (what it asks of the game).
-- Items: `InventoryItem` (things Jim carries), `ItemHost` (what it asks of the game).
-- Board columns and pieces: `BoardColumn` (kind 21, with `BoardColumnHost`), `BoardPieces` (shows the 49 piece objects and blinks the winning four), `BoardGame` (the board, whose turn it is and the game's start and turn loop; `BoardGameHost`).
-- Notes and map places: `NoteObject` (kind 24, with `NoteHost`), `MapPlace` (kind 19, with `MapPlaceHost`).
-- The pointer's frame step: `Cursor` with `CursorHost` (Escape, the interface pages, the menu opening); keys: `InputStates` in the engine.
-- Save and load screen: `MenuButton` (kind 22, with `MenuButtonHost`), `SlotLabel` (23, with `SlotLabelHost`).
-- Inventory strip: `InventoryStrip` (kind 11, with `StripHost`).
-- Groups, shadows and wanderers: `ItemGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14, with `DepthZoneHost`), `ClickCatcher` (15), `PathSprite` (16, with `PathSpriteHost`).
-- Props: `ScriptedProp` (story props of kinds 12, 17 and 20), `PropHost` (what it asks of the game).
-- Characters: `Character` (a clickable, speaking person of a level), `CharacterHost` (what it asks of the game, on top of `InteractiveHost`).
-- Walking: `Jim` (the player's object), `JimWorld` (what he asks of the game), `WalkArea` (shape, scale and route), `InteractiveObject` (clickable base) and `InteractiveHost` (what it asks of the game), `JimWalker` (Jim's walk), `WalkTarget` (told on arrival), `Walker` and `JimWalkerHost` (what they ask of the game).
-- Sound: `SoundDevice` (voices), `CdAudio` (music), `VoiceBackend` and `CdBackend` (what they play through; `MixerVoiceBackend`, `ScummCdBackend`).
-- Menu: `ChoiceMenu` (one frame of the list of choices) and `ChoiceMenuHost` (pointer, label, mouse).
-- Speaking: `Speaker` (the speaking rules of a character) and `SpeakerHost` (what it asks of the game).
-- Spoken lines: `SpeechTables`, `SpeechTable` (the four `*.TXT` files), `WavLookup`; `StdioText` (the reader both text formats use).
-- Scene routines: `SceneRoutines` (the native routines behind the `DO` lines of the numbered blocks) and `SceneHost` (what they ask of the game).
-- Scripts: `ScriptRunner` (runs blocks), `ScriptRun` (what one running block remembers), `ScriptHost` (what a running script asks of the game), `ScriptLibrary` (all blocks), `ScriptBlock` (one script: characters, commands, labels), `ScriptEntry` (one command), `ScriptLookup` (what a script asks the rest of the game while it is read).
+- Exits: `ExitDoor` (an exit between levels).
+- Board game: `ConnectFour` (the thinking of the "Conecta" game).
+- Items: `InventoryItem` (things Jim carries).
+- Board columns and pieces: `BoardColumn` (kind 21), `BoardPieces` (shows the 49 piece objects and blinks the winning four), `BoardGame` (the board, whose turn it is and the game's start and turn loop).
+- Notes and map places: `NoteObject` (kind 24), `MapPlace` (kind 19).
+- The pointer's frame step: `Cursor` (Escape, the interface pages, the menu opening); keys: `InputStates` in the engine.
+- Save and load screen: `MenuButton` (kind 22), `SlotLabel` (23).
+- Inventory strip: `InventoryStrip` (kind 11).
+- Groups, shadows and wanderers: `ItemGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14), `ClickCatcher` (15), `PathSprite` (16).
+- Props: `ScriptedProp` (story props of kinds 12, 17 and 20).
+- Characters: `Character` (a clickable, speaking person of a level).
+- Walking: `Jim` (the player's object), `WalkArea` (shape, scale and route), `InteractiveObject` (clickable base), `JimWalker` (Jim's walk, asks `Jim` directly), `WalkTarget` (told on arrival).
+- Sound: `SoundDevice` (voices, plays on the ScummVM mixer), `CdAudio` (music, through ScummVM's audio CD support), `Voices` (the two together, owned by `World`).
+- Menu: `ChoiceMenu` (one frame of the list of choices; asks `Scripts` for pointer, label and mouse).
+- Speaking: `Speaker` (the speaking rules of a character) and `SpeakerHost` (what it asks of its owner, `Jim` or a character: the one interface left that two classes really implement).
+- Spoken lines: `SpeechTables`, `SpeechTable` (the four `*.TXT` files); `StdioText` (the reader both text formats use).
+- Scene routines: `SceneRoutines` (the native routines behind the `DO` lines of the numbered blocks) and `SceneAdapter` (their view of the game for the block that is running).
+- Scripts: `ScriptRunner` (runs blocks), `ScriptRun` (what one running block remembers), `Scripts` (the compiled blocks, the runner and everything a running block asks of the game; lives in `scripts.h`), `ScriptLibrary` (all blocks), `ScriptBlock` (one script: characters, commands, labels), `ScriptEntry` (one command).
 
 **Which classes copy the original and which are only seams of the port.** The original is mostly plain functions on global tables.
 - Mirror an original structure: `ScriptBlock`/`ScriptLibrary` (the script objects and their table), `ScriptEntry` (the 24-byte command), `SpeechTable`/`SpeechTables` (the four tables and their search).
-- Port-only, no original counterpart: `JimWorld`, `ChoiceMenuHost`, `VoiceBackend`, `CdBackend`, `JimWalkerHost`, `SpeakerHost`, `ScriptHost` (the original calls the objects directly), `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), `ScriptLookup` and `WavLookup` (let the readers ask for phrase numbers, levels and voice files without depending on the rest of the engine), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
+- Port-only, no original counterpart: `SpeakerHost` (the original calls the objects directly), `SceneAdapter`, `Voices`, `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
 - Only behaviour was compared with the original; the class layout was never meant to match.
 
 ---
@@ -280,10 +281,11 @@ standing in front and the items of the room, with no warnings. Not checked again
 ported functions).
 
 ### What "host" means here
-A class never reaches into the rest of the game by itself. It calls a *host*: a small list of questions and orders ("is Jim speaking?", "put Jim
-in that level", "find this object", "start this script"). In the checks against the original, a stand-in host logged every call so the port's calls
-could be compared one by one. `World` is the real host. The interfaces: `InteractiveHost` (clickable things), `CharacterHost`, `PropHost`,
-`ItemHost`, `ExitHost`, and `JimWorld` (Jim); they share one base so one `World` answers them all.
+Objects reach the rest of the game through `World` ("is Jim speaking?", "put Jim in that level", "find this object", "start this script"), which they
+are handed when they are built. Since 6 Nov the port-only interfaces that stood between them and `World` (the `*Host` classes, `JimWorld`, the sound
+backends, `ScriptHost` and the other script-side ones) are gone: objects call `World`, the scripts call `Scripts`, the walker calls `Jim`. The comparison
+drivers in `re/tools/drivers` (which plugged stand-in hosts into those interfaces) no longer build against the engine branch `codex/remove-hosts`;
+they remain valid against `codex/object-kinds`.
 
 ## Levels ✅ (loading, bookkeeping, the collision pass including shaped collisions; the plain `Level` builds only some kinds, `World` the rest)
 
@@ -617,7 +619,7 @@ looks whether the wait is over:
   after that choice. A script can only have one menu open: the lists are shared by every script.
 - `run` starts another block at once; the first one keeps going next to it.
 While any script runs the mouse pointer is switched off; when a script ends it is switched back on and every character the
-script took over is handed back. The runner never touches the world itself. It asks a `ScriptHost` (find an object by name,
+script took over is handed back. The runner never touches the world itself. It asks `Scripts` (find an object by name,
 say a line, play an animation, walk, show a menu, play a video, sound or CD track, call the block's own `DO` routine).
 The check swaps a recording stand-in for the real world and compares, on 977 random sessions over every shipped block, the
 order of those requests and their values with what the original's code asked for. So the *stepping* is checked against the
@@ -656,7 +658,7 @@ releases the three voice buffers or DirectSound itself (the program ends right a
 
 Also ported: **the sound device** (`SoundDevice`: three voice records, the 44-byte WAV check, ids, the active list that is tidied once a frame; compared with the original on 800 sessions, with the mixer standing in for DirectSound) and the **music** (`CdAudio`: one track at a time, looping). `MixerVoiceBackend` and `ScummCdBackend` connect them to ScummVM. Not checked: how long a voice lasts exactly (the mixer decides), and which CD track number means which file.
 Also ported: **the choice menu** (`ChoiceMenu`: lays the choices out and bottom-aligns them, tracks the one under the mouse, answers a click; 9,152 runs identical to the original with its own text layout).
-The real `SpeakerHost`/`ScriptHost` now live in `World`. Still to do: moving Jim's own subtitle onto the same placement code as the characters'.
+`Scripts` (formerly `ScriptHost`) now lives in `scripts.h`. Still to do: moving Jim's own subtitle onto the same placement code as the characters'.
 
 ### Interactive objects (things you click) ✅ (the base compared on 500 sessions; the kinds on top are in the sections below)
 Most clickable things in a level share one base, `InteractiveObject`. It is a scene object (`Object`) that also takes the pointer and acts as the place Jim walks to.

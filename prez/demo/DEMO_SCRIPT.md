@@ -16,6 +16,19 @@ PY=../../re/.venv/bin/python
 cat sum_clamped.c
 ```
 
+**1b. Run it live.** First the C source, natively on your Mac, then the exact 32-bit x86 bytes in the emulator.
+Ask the audience for an array, a `lo` and a `hi`, and type them in.
+
+```bash
+./run_native.sh
+$PY run.py build/sum_clamped_O0.bin
+$PY run.py build/sum_clamped_O2.bin --array=-50,5,50 --lo=-10 --hi=10
+```
+
+Expected: `55`, `55`, then `5` (that is -10 + 5 + 10). The `-O0` and `-O2` bytes are very different but give the
+same answers; the instruction counts in brackets show how different.
+Note: the Mac can't run the 32-bit Windows bytes itself, so the emulator is the "CPU" (more in DEMOS_EXPLAINED.md).
+
 **2. Compile to 32-bit x86** (same CPU family as the 1990s game). `build.sh` already did it.
 The flat file is only the machine code, 112 bytes at `-O0`.
 
@@ -57,6 +70,17 @@ objdump -d --x86-asm-syntax=intel build/sum_clamped_O2.obj | head -60
 112 bytes became 303. The loop was vectorised with SSE (`pcmpgtd`, `paddd`), the branches
 turned into compares and masks. The structure you wrote is gone.
 **Takeaway: all the information is there, but names, types and structure are lost.**
+
+**6. Edit the program live (patch a byte).** This is the moment the hex editor earns its place.
+
+- Copy the file: `cp build/sum_clamped_O0.bin build/sum_clamped_patched.bin`
+- Open `build/sum_clamped_patched.bin` in the hex editor and go to offset `0x62`. You will see `83 c0 01`
+  (`add eax, 1`, which is the `i++` of the loop). Change the `01` to `02` and save.
+- Run it: `$PY run.py build/sum_clamped_patched.bin` and compare with the original `55`.
+
+Expected: **25**, not 55. The loop now counts `i += 2`, so it only adds elements 1, 3, 5, 7 and 9.
+You changed the behaviour of a compiled program by editing one byte, with no source code.
+Scripted fallback if the hex editor misbehaves: `./patch_demo.sh`, then run the same command.
 
 ## Act 2: Ghidra (about 4 min)
 
