@@ -119,7 +119,9 @@ def vname(p):
         if p == FB[k] + 1: return f"o{k}+1"
     if 0x100000 <= p < 0x200000: return f"tmp{e.read(p, 1)[0]}"
     return "?"
-def start_script(emu, lo, hi, vars_, level): log.append(f"start {lo} {hi} {vname(vars_)}"); return 3
+def start_script(emu, lo, hi, vars_, level):
+    where = "jim" if level == e.u32(JIMO + 0x40) else "own" if level == e.u32(OBJ + 0x40) else "other"      # which level the script is started in
+    log.append(f"start {lo} {hi} {vname(vars_)} {where}"); return 3
 e.hook_function(0x405fd0, start_script, 4, pops=True)
 def rnd2(emu, lo, hi): world["rcalls"] += 1; v = lo + (world["rcalls"] * 5) % (hi - lo + 1); log.append(f"random {lo} {hi}"); return v
 e.hook_function(0x413ac0, rnd2, 2, pops=True)

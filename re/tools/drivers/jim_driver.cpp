@@ -94,6 +94,7 @@ struct World : JimWorld {
 	uint32 progressBytes() override { return prog; }
 	void setProgressBytes(uint32 v) override { prog = v; }
 	void insertInMainList(Object *, int p) override { log.push_back(fmt("insert %d", p)); }
+	void insertInMainListFront(Object *, int p) override { log.push_back(fmt("insertfront %d", p)); }
 	void removeFromMainList(Object *) override { log.push_back("remove"); }
 	Common::SeekableReadStream &archiveStream() override { return stream; }
 	bool is555() override { return false; }

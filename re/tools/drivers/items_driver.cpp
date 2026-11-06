@@ -129,7 +129,7 @@ struct World : ItemHost {
 		return v < 8 ? static_cast<Object *>(&pool[v]) : v == 8 ? static_cast<Object *>(&heldProbe) : self;
 	}
 	Object *findObject(int level, const char *name) override { return findObjectByKey(level, nameKey64(name)); }
-	int startScript(InteractiveObject &who, const char *block, const char *label, byte *vars) override {
+	int startIn(InteractiveObject &who, const char *block, const char *label, byte *vars, const char *where) {
 		const uint64 b = nameKey64(block), l = nameKey64(label);
 		log.push_back("findscript " + std::to_string((uint32)b) + " " + std::to_string((uint32)(b >> 32)));
 		std::string v = !vars ? "none" : (!who.stateBlob().empty() && vars == who.stateBlob().data()) ? "own" : "tmp" + std::to_string(*vars);
@@ -137,10 +137,11 @@ struct World : ItemHost {
 			if (vars && vars == pool[q].stateBlob().data()) v = "o" + std::to_string(q);
 			if (vars && vars == pool[q].stateBlob().data() + 1) v = "o" + std::to_string(q) + "+1";
 		}
-		log.push_back("start " + std::to_string((uint32)l) + " " + std::to_string((uint32)(l >> 32)) + " " + v);
+		log.push_back("start " + std::to_string((uint32)l) + " " + std::to_string((uint32)(l >> 32)) + " " + v + " " + where);
 		return 3;
 	}
-	int startScriptInJimLevel(const char *block, const char *label, byte *vars) override { return startScript(*static_cast<InteractiveObject *>(self), block, label, vars); }
+	int startScript(InteractiveObject &who, const char *block, const char *label, byte *vars) override { return startIn(who, block, label, vars, "own"); }
+	int startScriptInJimLevel(const char *block, const char *label, byte *vars) override { return startIn(*static_cast<InteractiveObject *>(self), block, label, vars, "jim"); }
 	Level *levelAt(int index) override { return reinterpret_cast<Level *>((uintptr_t)(0x1000 + index)); }
 	Level *jimLevel() override { return levelAt(jlevel); }
 	byte jimStep() override { return (byte)jstep; }

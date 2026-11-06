@@ -47,7 +47,7 @@ def slot(vt, offset, f, nargs):
     e.write(vt + offset, struct.pack("<I", a)); e.hook_function(a, f, nargs, pops=True)
 slot(TVT, 0x34, lambda emu: (log.append("arrived"), world["ret"])[1], 0)
 e.hook_function(0x40fb20, lambda emu, o: log.append("remove"), 1, pops=True)
-e.hook_function(0x40fa10, lambda emu, o, p: log.append(f"insert {p}"), 2, pops=True)
+e.hook_function(0x40fa10, lambda emu, o, p: log.append(f"insertfront {p}"), 2, pops=True)
 e.hook_function(0x40f900, lambda emu, o, p: log.append(f"insert {p}"), 2, pops=True)
 e.hook_function(0x414740, lambda emu, x, y: (log.append(f"scale {i32(x)} {i32(y)}"), world["scale"])[1], 2, pops=True)
 e.hook_function(0x401d30, lambda emu, x, y, c: e.write(ecx() + 0x54, struct.pack("<ii", i32(x), i32(y))), 3, pops=True)    # not logged: the port moves the object itself, and the previous position is in the state

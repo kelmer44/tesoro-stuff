@@ -42,6 +42,7 @@ struct World : JimWalkerHost {
 	int32 scaleAt(int32 x, int32 y) override { log.push_back(fmt("scale %d %d", x, y)); return scale; }
 	bool findPath(int32 dx, int32 dy, WalkTarget *t) override { log.push_back(fmt("findpath %d %d %s", dx, dy, t == &target ? "tgt" : t ? "?" : "none")); return fp; }
 	void insertInMainList(int p) override { log.push_back(fmt("insert %d", p)); }
+	void insertInMainListFront(int p) override { log.push_back(fmt("insertfront %d", p)); }
 	void removeFromMainList() override { log.push_back("remove"); }
 	bool startWalkAnimation(int facing) override {
 		const int bank = 2 + facing;

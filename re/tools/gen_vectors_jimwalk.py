@@ -28,7 +28,7 @@ def slot(vt, offset, f, nargs):
 e.write(VT + 0x8, struct.pack("<I", 0x407770)); e.write(VT + 0x74, struct.pack("<I", 0x407a80))
 slot(TVT, 0x34, lambda emu: (log.append("arrived"), world["ret"])[1], 0)
 e.hook_function(0x40fb20, lambda emu, o: log.append("remove"), 1, pops=True)
-e.hook_function(0x40fa10, lambda emu, o, p: log.append(f"insert {p}"), 2, pops=True)
+e.hook_function(0x40fa10, lambda emu, o, p: log.append(f"insertfront {p}"), 2, pops=True)
 def setrange(emu, first, last, loop, s):
     log.append(f"range {first & 0xffff} {i32(last)} {loop & 0xff} {s & 0xff}")
     fl = e.u32(ecx() + 0x18); e.write(ecx() + 0x18, struct.pack("<I", (fl & ~6) | 4 | 1))
