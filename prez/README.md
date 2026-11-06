@@ -6,7 +6,7 @@ Talk for engineers, 30 minutes, built around the Tesoro project.
 
 - [DEMOS_EXPLAINED.md](DEMOS_EXPLAINED.md): the three demos explained in simple language, with a glossary.
 - [demo/](demo/): self-contained live-demo materials (a C function, build script,
-  Capstone/Unicorn verifier) and [demo/DEMO_SCRIPT.md](demo/DEMO_SCRIPT.md), the step-by-step script.
+  Unicorn verifier, ImHex pattern `sum_clamped_O0.hexpat`) and [demo/DEMO_SCRIPT.md](demo/DEMO_SCRIPT.md), the step-by-step script.
 
 ## Outline
 

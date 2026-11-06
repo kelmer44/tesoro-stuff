@@ -327,7 +327,7 @@ function arrow(s, x, y, w, h, opts) {
   // 11 DEMO 2
   {
     const s = begin("Act 2: Ghidra", "LIGHT", "The same function in Ghidra",
-      "Ghidra gives control flow, cross-references and a C-like view. Naming is still on you. Watch renames propagate through callers. Optionally swap this slide's right-hand panel for a real screenshot of the decompiler.");
+      "Import the raw bytes with no symbols, create the function by hand with D then F, and say: in a real EXE Ghidra does that step itself. Ghidra gives control flow, cross-references and a C-like view. Naming is still on you. Watch renames propagate through callers. Optionally swap this slide's right-hand panel for a real screenshot of the decompiler.");
     chip(s, "LIVE DEMO 2");
     text(s, "Ghidra's default names", { x: 0.5, y: 1.35, w: 4.3, h: 0.35, fontSize: 16, bold: true, color: C.accent5 });
     code(s, 0.5, 1.8, 4.0, 2.6, ["param_1", "param_2", "param_3", "param_4", "local_10", "local_c"], 16, "BeforeNames");
@@ -347,7 +347,7 @@ function arrow(s, x, y, w, h, opts) {
   // 12 Scale
   {
     const s = begin("Act 2: Ghidra", "LIGHT", "The scale problem",
-      "Doing this by hand is weeks of tedium per subsystem. One person is the bottleneck. These counts come from re/ledger.json; refresh before the talk.");
+      "Switch to the real TESORO.EXE project: function list, a short function with its callers, call graph, strings and imports, all found by Ghidra itself. Caveat: Ghidra finds functions by following calls, so code reached only through function-pointer tables is invisible; its count went from 622 to 784 after 161 were defined with a script (re/PLAN.md). Doing the rest by hand is weeks of tedium per subsystem. One person is the bottleneck. These counts come from re/ledger.json; refresh before the talk.");
     card(s, 0.5, 1.4, 4.2, 3.2, "TotalCard");
     text(s, "706", { x: 0.5, y: 1.55, w: 4.2, h: 1.6, fontSize: 88, bold: true, color: C.text2, align: "center" });
     text(s, "functions in TESORO.EXE", { x: 0.5, y: 3.2, w: 4.2, h: 0.5, fontSize: 20, align: "center" });

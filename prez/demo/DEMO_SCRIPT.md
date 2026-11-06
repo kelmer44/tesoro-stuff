@@ -49,6 +49,13 @@ xxd -g1 build/sum_clamped_O0.bin
 | 0x26 | `7d 40` | `jge +0x40` (loop exit) |
 | 0x6f | `c3` | `ret` |
 
+**ImHex:** open `build/sum_clamped_O0.bin`, then open the Pattern Editor and load `sum_clamped_O0.hexpat`
+(paste it or use File > Import > Pattern File) and press Run. Each instruction gets a colour and a hover comment:
+blue stack frame, green loads, teal stores, orange compare, red jumps, purple arithmetic, gold return.
+Optional: View > Disassembler (architecture x86, mode 32-bit, base address 0) shows the decoded text beside the bytes.
+The pattern only decodes the opcodes the `-O0` build uses; on the `-O2` file the unknown bytes show in grey.
+Edit a copy for the patch step, since ImHex writes changes into the file you opened.
+
 Talking points:
 - Opcode `8b` is "mov reg, r/m"; the next byte says which registers and addressing.
 - `7d 40`: the jump is a relative offset, `0x28 + 0x40 = 0x68`.
@@ -59,6 +66,9 @@ Talking points:
 ```bash
 objdump -d --x86-asm-syntax=intel build/sum_clamped_O0.obj
 ```
+
+`objdump` reads the `.obj`, which has labels you would not have in real life. The same decoding from the raw bytes
+only (no labels, no file format) is `$PY -I verify.py build/sum_clamped_O0.bin --disasm`.
 
 **5. Compiler reveal.** Same source at `-O2`:
 
@@ -84,15 +94,46 @@ Scripted fallback if the hex editor misbehaves: `./patch_demo.sh`, then run the 
 
 ## Act 2: Ghidra (about 4 min)
 
-1. New project, then File > Import File, choose `build/sum_clamped_O0.obj`
-   (Ghidra reads the COFF object; language x86:LE:32 is picked automatically). Auto-analyze.
-2. Open `_sum_clamped` in the Listing and the Decompiler side by side.
-3. Show: recovered loop and `if/else`, parameter types guessed as `int`/`int *`, locals named
-   `local_c`.
-4. Rename live: `param_1` to `values`, `param_2` to `count`, `local_10` to `total`, and set the
-   prototype. Watch the decompiler output become readable.
-5. Repeat on `_O2.obj` to show the decompiler recovering a loop from SSE code (messier, still useful).
-6. Then switch to the real `TESORO.EXE` project and show the function list. The scale problem.
+Two parts. Part A uses the raw bytes of the demo function, so you see what Ghidra does *for* you.
+Part B uses the real `TESORO.EXE`, where Ghidra finds the functions itself, so you see its real potential.
+
+### Part A: the tiny function as raw bytes (about 2 min)
+
+Import the **raw bytes**, not the `.obj`. The object file carries the function's name and boundaries, which you would
+never have in a real situation. The raw `.bin` is closer: Ghidra knows nothing except the bytes.
+
+1. New project, then File > Import File, choose `build/sum_clamped_O0.bin`.
+   Format: **Raw Binary**. Language: click `...` and pick **x86, little endian, 32-bit, default**
+   (compiler spec "Visual Studio" is the natural match for Windows). Leave the base address at 0 so offsets match the table in `DEMOS_EXPLAINED.md`.
+2. Open it in the CodeBrowser. You see bytes, not code, and no function: a raw file has no entry point or calls to follow.
+3. Click the first byte (`00000000`) and press `D` to disassemble, then `F` to create a function there.
+   Ghidra names it `FUN_00000000`. The decompiler panel now shows C-like code.
+   Say it out loud: "In a real EXE, Ghidra does this step by itself. Here I did it by hand so you can see what it saves."
+4. Show: recovered loop and `if/else`, parameter types guessed as `int`/`int *`, locals named like `local_c`.
+5. Rename live: `FUN_00000000` to `sum_clamped`, `param_1` to `values`, `param_2` to `count`, `param_3` to `lo`,
+   `param_4` to `hi`, and the accumulator to `total` (`L` renames a name). Watch the decompiler output become readable.
+6. Optional: repeat with `build/sum_clamped_O2.bin` to show the decompiler recovering a loop from SSE code (messier, still useful).
+
+### Part B: the real TESORO.EXE (about 2 min)
+
+Switch to the project that already has `TESORO.EXE` loaded and analysed. Now Ghidra has an entry point, imports and call
+targets to follow, so it finds functions on its own. Show, in this order:
+
+1. **The function list** (Symbol Tree > Functions, or Window > Functions): hundreds of `FUN_xxxxxxxx` entries that nobody created by hand.
+2. **A short function with callers.** Pick it in advance (for example `00401a50`, 12 lines, which the ledger calls
+   `inferred_AnimPlayer_Pause`). Open it in the decompiler, then press `Ctrl+Shift+F` or right-click > References > Show References to ... to list its callers.
+   The caller/callee links come for free.
+3. **Window > Function Call Graph** on the same function, to show the structure at a glance.
+4. **Window > Defined Strings** and the **Imports** entry in the Symbol Tree: text the game uses, and the Windows services it asks for.
+5. **The honest caveat.** Ghidra finds functions by following calls. Code that is only reached through function-pointer tables
+   (for example virtual methods) is invisible to it. In this project Ghidra's count went from **622 to 784** after
+   161 such functions were defined with a script (`re/PLAN.md`). The tool does most of the work, not all of it.
+6. Land the scale problem: 706 functions in the ledger, 447 of them game code.
+
+Before the talk: decide whether you are comfortable showing decompiled game code on screen, and pre-select the function so you are not scrolling live.
+The raw-bytes import and the exact keystrokes have not been rehearsed on this machine; do both once.
+Fallback for Part A: `build/sum_clamped_O0.obj` imports with the name `_sum_clamped` and the function already found,
+which is faster but not realistic. Say so if you use it.
 
 ## Act 3: verification with Unicorn (about 4 min)
 

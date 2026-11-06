@@ -80,17 +80,29 @@ chose the right file.
 
 ### What an "opcode" is
 The CPU reads bytes one after another. The first byte of each instruction (the **opcode**) tells it what to do, and
-the bytes after it say what to do it *with*. For example:
+the bytes after it say what to do it *with*. For example, `8b 45 14` means "load into `eax` the number stored
+at `ebp+0x14`": `8b` is "load", `45` says "into `eax`, from `ebp` plus a small offset", and `14` is that offset.
 
-| Bytes | Instruction | Plain meaning |
-|---|---|---|
-| `55` | `push ebp` | Save a note on the stack (the start of nearly every function) |
-| `89 e5` | `mov ebp, esp` | Remember where this function's workspace starts |
-| `83 ec 0c` | `sub esp, 0xc` | Reserve 12 bytes of workspace for the function's variables |
-| `8b 45 14` | `mov eax, [ebp+0x14]` | Load the 4th argument into the register `eax` |
-| `3b 45 0c` | `cmp eax, [ebp+0xc]` | Compare two numbers (this is `i < n`) |
-| `7d 40` | `jge +0x40` | If the comparison said "greater or equal", skip ahead 0x40 bytes (this ends the loop) |
-| `c3` | `ret` | Finished, go back to whoever called me |
+### A few instructions from the `-O0` function
+Nine of the 39 instructions in `build/sum_clamped_O0.bin` (112 bytes), enough to get the idea:
+
+| Offset | Bytes | Instruction | Plain meaning |
+|---|---|---|---|
+| `0x00` | `55` | `push ebp` | Save the caller's bookmark (start of every function) |
+| `0x01` | `89 e5` | `mov ebp, esp` | Set my own bookmark into the stack |
+| `0x03` | `83 ec 0c` | `sub esp, 0xc` | Reserve 12 bytes for 3 local variables |
+| `0x12` | `c7 45 fc 00 00 00 00` | `mov [ebp-4], 0` | `total = 0` |
+| `0x23` | `3b 45 0c` | `cmp eax, [ebp+0xc]` | Compare `i` with `n` |
+| `0x26` | `7d 40` | `jge 0x68` | If `i >= n`, jump to the end |
+| `0x2e` | `8b 04 88` | `mov eax, [eax+ecx*4]` | Read `a[i]` (each int is 4 bytes) |
+| `0x66` | `eb b8` | `jmp 0x20` | Jump back to the loop test |
+| `0x6f` | `c3` | `ret` | Go back to the caller |
+
+How to read it:
+- **Offsets** are where each instruction starts in the file. Jumps point at these offsets (`jge 0x68` means "continue at offset 0x68").
+- **`[ebp+...]` is an argument, `[ebp-...]` is a local variable** (see the diagram below): `ebp+8` is `a`, `+0xc` is `n`, `+0x10` is `lo`,
+  `+0x14` is `hi`; `ebp-4` is `total`, `ebp-8` is `i`, `ebp-0xc` is `v`.
+- The `jmp 0x20` at `0x66` is what turns the code into a loop: it goes back to the comparison at `0x23`.
 
 ### Some words you will need
 - **Register:** one of a few super-fast storage slots inside the CPU. `eax` is the one that usually holds the
@@ -182,18 +194,44 @@ Ghidra is a free tool from the NSA (released publicly) that does three things fo
 3. **Decompiles:** shows a guess of the original C, so you read `for` loops and `if` statements instead of jumps.
 
 ### What you do in the demo
-1. Create a project and **import** `build/sum_clamped_O0.obj`. Ghidra recognises the format and the CPU
-   (32-bit x86). Say yes to "analyze".
-2. Open the function `_sum_clamped`. You will see two panels side by side: the **listing** (instructions) and the
-   **decompiler** (C-like code).
-3. Notice what the decompiler gives you for free: the loop, the `if / else`, and a rough idea of the types.
-4. Notice what it does *not* give you: meaningful names. Variables are called things like `param_1`, `param_2`,
-   `local_10` ("the first argument", "a local at offset 0x10").
-5. **Rename** them: `param_1` becomes `values`, `param_2` becomes `count`, `param_3` becomes `lo`,
-   `param_4` becomes `hi`, and the accumulator becomes `total`. In Ghidra, click a name and press `L` to rename it.
+
+You import the **raw bytes** (`build/sum_clamped_O0.bin`), not the `.obj` file. That is on purpose. An object file
+carries the function's name and where it starts and ends. In a real situation you would not have any of that: a shipped
+program has no label for a function you have not identified yet. The raw file is the honest starting point, where Ghidra
+knows only the bytes.
+
+1. Create a project and **import** the `.bin`. Ghidra cannot tell what kind of file it is, so you choose:
+   format **Raw Binary**, language **x86, little endian, 32-bit**. Keep the base address at 0, so the offsets match the table above.
+2. Open it. At first you see only bytes. Ghidra has not found a function, because a raw file has no entry point or call targets to follow.
+3. Click the first byte and press `D` (disassemble), then `F` (create function). Ghidra names it `FUN_00000000`
+   and shows two panels side by side: the **listing** (instructions) and the **decompiler** (C-like code).
+   In a real EXE this step mostly happens automatically; here you do it by hand to see what Ghidra is doing for you.
+4. Notice what the decompiler gives you for free: the loop, the `if / else`, and a rough idea of the types.
+5. Notice what it does *not* give you: meaningful names. The function is `FUN_00000000` and the variables are called things like
+   `param_1`, `param_2` and `local_c` ("the first argument", "a local at some offset").
+6. **Rename** them: the function becomes `sum_clamped`, `param_1` becomes `values`, `param_2` becomes `count`,
+   `param_3` becomes `lo`, `param_4` becomes `hi`, and the accumulator becomes `total`. In Ghidra, click a name and press `L` to rename it.
    The decompiler output updates everywhere at once.
-6. Optionally open the `-O2` file to show Ghidra coping with the SIMD version (messier, but still useful).
-7. Switch to the real game project and show the list of functions.
+7. Optionally open the `-O2` file to show Ghidra coping with the SIMD version (messier, but still useful).
+8. Then switch to the real game project (Part B below).
+
+### Part B: the same tool on the real game
+
+The raw-bytes part deliberately takes away what Ghidra normally provides. To show its real potential, the demo then
+switches to the project with `TESORO.EXE` loaded. A real program has an **entry point**, a table of **imports** (the
+Windows services it uses) and thousands of calls between functions, so Ghidra can follow them and find the functions by itself.
+What you show, and what each shows the audience:
+
+| Show | What it demonstrates |
+|---|---|
+| The function list | Hundreds of functions found without anyone creating them |
+| A short function and its references | Who calls whom, for free |
+| The call graph | The structure at a glance |
+| Defined strings and imports | The text the game uses, and the Windows services it asks for |
+
+**The honest caveat.** Ghidra finds a function by following a call to it. Code that is only reached through a table of
+function pointers (virtual methods are the common case) is never called directly, so Ghidra misses it. In this project the function
+count went from **622 to 784** after 161 of those were defined with a script (`re/PLAN.md`). Ghidra does most of the work, not all of it.
 
 ### Why this demo is in the talk
 It shows what a good tool buys you and, just as important, what it cannot buy you. Ghidra recovers *structure*.
@@ -201,8 +239,8 @@ It cannot recover *meaning*: `param_2` is a number, but only a person (or an age
 can decide it is "how many items". That gap is exactly where the AI part of the talk fits.
 
 ### The scale problem (the last step)
-Showing the real game's function list makes the point: this demo took minutes for one function with 12 lines. The
-game has hundreds of functions, many much longer. One person naming everything by hand is the bottleneck.
+The tiny function took minutes with 12 lines. The game has 706 functions in the ledger (447 of them game code), many much longer.
+One person naming everything by hand is the bottleneck.
 
 ### Honest limits of Ghidra's output
 - It is a **guess**. It may pick the wrong type (an `int` that is really a pointer) or get signed versus unsigned wrong.
@@ -210,8 +248,8 @@ game has hundreds of functions, many much longer. One person naming everything b
 - So how do you know a reading is right? That question leads straight into Demo 3.
 
 ### Practical note
-The import step with the `.obj` file has not been rehearsed on this machine yet. Do it once before the talk, and take a
-screenshot as a backup in case something is slow on the day.
+The raw-binary import has not been rehearsed on this machine yet, so the exact dialog and the `D` then `F` steps are unverified. Do it once before the talk, and take a
+screenshot as a backup in case something is slow on the day. If it gives trouble, the `.obj` file imports with the name and function already found; it is quicker but less realistic, so say so if you use it.
 
 ---
 

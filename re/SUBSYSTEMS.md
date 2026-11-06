@@ -79,7 +79,7 @@ moves the cursor, the collision pass tells the cursor what is under it, and the 
 The clock decides *when* things happen. Boxes with a question mark are the parts we have not opened yet.
 
 **Engine classes by area** (so each name can be found in the diagrams below):
-- Files and time: `Archive`, `ArchiveIndex`, `GameClock`, name keys, random numbers.
+- Files and time: `Archive`, `ArchiveIndex`, `GameClock`, name keys. Random numbers come from ScummVM's `RandomSource` in the engine (since 6 Nov on `codex/remove-hosts`; the original derived them from the millisecond tick).
 - Lists: `CursorList` (the ordered list with a finger that levels, rooms and passes use).
 - Pictures: `TextQueue` (laid-out text lines, drawn by `ScreenDisplay`), `AnimBank`, `AnimPlayer`, `AnimImage`, `AnimSet` (animations); `Display` (what objects draw to), `ScreenDisplay`, `RenderQueue` (the screen), `FadePresenter` (shows the steps of a fade in the window).
 - World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `WalkFloor` (7), `PathObject` (8), `MenuItem` (25), lists `ObjectList`. Small helpers: `ObjectRecord` (one object description of the level file), `ObjectRect`, `AnimSequence`, `BrightnessTable`. a menu item asks the engine directly.

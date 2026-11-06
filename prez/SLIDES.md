@@ -64,11 +64,13 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 
 ### 11. DEMO 2: the same function in Ghidra
 **On screen:** Listing and decompiler side by side. Rename `param_1` to `values`, `param_2` to `count`, `local_10` to `total`.
+**Live:** import the raw bytes (no symbols), create the function by hand with `D` then `F`, rename. Say: "in a real EXE Ghidra does that step itself."
 **Say:** Ghidra gives control flow, cross-references and a C-like view. Naming is still on you. Watch renames propagate.
 
 ### 12. The scale problem
 **On screen:** The real `TESORO.EXE` function list. Number: **706 functions** in the ledger, 447 of them game code.
-**Say:** Doing this by hand is weeks of tedium per subsystem. One person is the bottleneck.
+**Live:** in the real project show the function list, a short function with its callers, the call graph, strings and imports. All found by Ghidra itself.
+**Say:** Ghidra finds functions by following calls. Code reached only through function-pointer tables is invisible to it: 622 became 784 after 161 were defined with a script. Doing the rest by hand is weeks of tedium; one person is the bottleneck.
 
 ### 13. The decompiler is a hypothesis
 **On screen:** "Decompiler output ≠ truth." Three bullets: wrong types, wrong signedness, wrong calling convention.
