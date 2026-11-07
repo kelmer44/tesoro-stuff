@@ -11,7 +11,7 @@ It grows as we recover more of the original. Written for people, not for the deb
 None of this is yet "seen on the original's screen" except two menu screens and a saved game's file (4 Nov): ✅ means matches the original's *code*, not what the original shows.
 
 Last updated: 4 November 2026 (headings and counts audited against the engine branch `codex/object-kinds` and the ledger).
-On 6 November the port-only host interfaces were removed on the branch `codex/remove-hosts` (see "Which classes copy the original"), together with every member function and field that nothing in the engine used (about 60 accessors that only the comparison drivers called, five fields that were written but never read, and the `core/random.*` files: random numbers now come from ScummVM's `RandomSource`). The option "Enable cut content" was added there too. `ScreenDisplay` and the abstract `Display` base behind it were merged into one class, `Display` (`core/display.*`). The animation step type `AnimSequence` was renamed `AnimStep` in the same branch (`AnimBank::sequence(i)` is now `step(i)`, `sequenceCount()` is `stepCount()`); the older sections below still say "sequence" for the same thing. The per-cluster sections below still use the old host names, as written when each cluster was ported; read `XHost` there as `World`.
+On 6 November the port-only host interfaces were removed on the branch `codex/remove-hosts` (see "Which classes copy the original"), together with every member function and field that nothing in the engine used (about 60 accessors that only the comparison drivers called, five fields that were written but never read, and the `core/random.*` files: random numbers now come from ScummVM's `RandomSource`). The option "Enable cut content" was added there too. The shear parameter of the scaled-image drawing (never used by the game, and a memory-corrupting bug in the original) was removed on `codex/remove-hosts`. `ScreenDisplay` and the abstract `Display` base behind it were merged into one class, `Display` (`core/display.*`). The animation step type `AnimSequence` was renamed `AnimStep` in the same branch (`AnimBank::sequence(i)` is now `step(i)`, `sequenceCount()` is `stepCount()`); the older sections below still say "sequence" for the same thing. The per-cluster sections below still use the old host names, as written when each cluster was ported; read `XHost` there as `World`.
 
 ## Where the reverse engineering stands (4 November 2026)
 
@@ -496,7 +496,7 @@ is composed, are the pieces copied into the picture. Scaled pictures, shadow pic
 What is ported and checked against the original: emptying the lists, adding an ordinary (literal) picture, the span
 cutting (including pictures hanging off any screen edge) and the **compose**, which copies the spans of every row into
 the 640x480 picture, left to right. The new `Display` class owns the queue and the picture. The compose relies on
-the first picture of a frame being a full-screen background, as the game always draws. Not yet: shear (never used), and putting the finished picture on the real screen (see the shadows below).
+the first picture of a frame being a full-screen background, as the game always draws. Not yet: putting the finished picture on the real screen (see the shadows below).
 
 The second kind of picture, solid colour runs (the "type 3" images), is now ported too and checked the same way; the
 difficulty menu (`NUEVO`) renders with it: three wooden-sign lines for easy, regular and hard.
