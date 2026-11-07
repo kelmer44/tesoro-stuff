@@ -11,7 +11,7 @@ It grows as we recover more of the original. Written for people, not for the deb
 None of this is yet "seen on the original's screen" except two menu screens and a saved game's file (4 Nov): ✅ means matches the original's *code*, not what the original shows.
 
 Last updated: 4 November 2026 (headings and counts audited against the engine branch `codex/object-kinds` and the ledger).
-On 6 November the port-only host interfaces were removed on the branch `codex/remove-hosts` (see "Which classes copy the original"). The per-cluster sections below still use the old host names, as written when each cluster was ported; read `XHost` there as `World`.
+On 6 November the port-only host interfaces were removed on the branch `codex/remove-hosts` (see "Which classes copy the original"), together with every member function and field that nothing in the engine used (about 60 accessors that only the comparison drivers called, five fields that were written but never read, and the `core/random.*` files: random numbers now come from ScummVM's `RandomSource`). The option "Enable cut content" was added there too. `ScreenDisplay` and the abstract `Display` base behind it were merged into one class, `Display` (`core/display.*`). The animation step type `AnimSequence` was renamed `AnimStep` in the same branch (`AnimBank::sequence(i)` is now `step(i)`, `sequenceCount()` is `stepCount()`); the older sections below still say "sequence" for the same thing. The per-cluster sections below still use the old host names, as written when each cluster was ported; read `XHost` there as `World`.
 
 ## Where the reverse engineering stands (4 November 2026)
 
@@ -60,7 +60,7 @@ flowchart TD
     Anim --> Objects["Game objects ✅<br/>kinds 0, 1, 3, 7, 8, 10, 25 built by the level itself;<br/>all the others (2, 4, 5, 6, 9, 11 to 17, 19 to 24) built through World;<br/>Jim made by World"]
     Level --> Objects
     Objects -->|"picture + depth"| Queue["Screen queue ✅<br/>RenderQueue: spans per row"]
-    Queue --> Compose["Compose ✅<br/>ScreenDisplay: spans to pixels"]
+    Queue --> Compose["Compose ✅<br/>Display: spans to pixels"]
     Compose --> Window["The window (ScummVM)"]
     Mouse["Mouse ✅<br/>position + button states"] --> Cursor["Cursor 🟡<br/>main pointer + companion"]
     Cursor --> Collide["Collision pass ✅<br/>who touches whom"]
@@ -81,8 +81,8 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 **Engine classes by area** (so each name can be found in the diagrams below):
 - Files and time: `Archive`, `ArchiveIndex`, `GameClock`, name keys. Random numbers come from ScummVM's `RandomSource` in the engine (since 6 Nov on `codex/remove-hosts`; the original derived them from the millisecond tick).
 - Lists: `CursorList` (the ordered list with a finger that levels, rooms and passes use).
-- Pictures: `TextQueue` (laid-out text lines, drawn by `ScreenDisplay`), `AnimBank`, `AnimPlayer`, `AnimImage`, `AnimSet` (animations); `Display` (what objects draw to), `ScreenDisplay`, `RenderQueue` (the screen), `FadePresenter` (shows the steps of a fade in the window).
-- World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `WalkFloor` (7), `PathObject` (8), `MenuItem` (25), lists `ObjectList`. Small helpers: `ObjectRecord` (one object description of the level file), `ObjectRect`, `AnimSequence`, `BrightnessTable`. a menu item asks the engine directly.
+- Pictures: `TextQueue` (laid-out text lines, drawn by `Display`), `AnimBank`, `AnimPlayer`, `AnimImage`, `AnimSet` (animations); `Display` (the screen: what objects draw to), `RenderQueue`, `FadePresenter` (shows the steps of a fade in the window).
+- World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `WalkFloor` (7), `PathObject` (8), `MenuItem` (25), lists `ObjectList`. Small helpers: `ObjectRecord` (one object description of the level file), `ObjectRect`, `AnimStep`, `BrightnessTable`. a menu item asks the engine directly.
 - Input: `InputStates`, `Mouse`, `Keyboard`, `Cursor` (both pointers), `HoverText`.
 - Collisions: `sweepRects`, `Level::collisionPass`.
 - The world: `World` (answers every host for real), `WorldLevel` (a level that builds the clickable kinds).
@@ -438,7 +438,7 @@ flowchart LR
     Tick --> Rect["New hit rectangle<br/>and area moved through"]
 ```
 
-*Built by the level:* the plain animated object (kind 0), the camera frame (1), the sprite (3), the floor (7), the route (8), the pointer (10) and the menu item (25), as `Object`, `CameraFrame`, `SpriteObject`, `WalkFloor`, `PathObject`, `Cursor`, `MenuItem`. Each draws through the `Display` interface; the object's hit rectangle and its movement feed the collision pass.
+*Built by the level:* the plain animated object (kind 0), the camera frame (1), the sprite (3), the floor (7), the route (8), the pointer (10) and the menu item (25), as `Object`, `CameraFrame`, `SpriteObject`, `WalkFloor`, `PathObject`, `Cursor`, `MenuItem`. Each draws through `Display`; the object's hit rectangle and its movement feed the collision pass.
 *Built when `World` reads a level:* the characters (5), exits (6), the plain clickable (9), the scripted props (12, 17, 20) and items (13) (see their sections); Jim is made by `World` on first use.
 *Also built by `World`:* the groups (2), shadows (4), strip (11), depth zones (14), click catchers (15), wanderers (16), save menu objects (22, 23) note objects (24), map places (19) and board columns (21).
 *Not built:* kind 18 only: the original's factory has no case for it, so a record of that kind builds nothing; no shipped level contains one.
@@ -464,7 +464,7 @@ Fifty levels in all. Only one object in the whole game is the plain animated kin
 **Kind 3 is ported and built ✅ (checked against the original's code).** It is an animated picture: it starts one run of animation
 frames chosen by two bytes in the level file (hold one frame, hidden or shown, or play on to the next gap, optionally looping),
 puts itself into its room's list when the level attaches its objects, ticks its animation every frame, and each frame asks
-the screen (the `Display` interface) to draw its current frame at a position worked out from the camera.
+the screen (`Display`) to draw its current frame at a position worked out from the camera.
 
 **Kind 1 is ported ✅ (checked against the original).** The "special object" is really a camera frame: each level has
 one, and when the level attaches its objects the frame sets the area the camera may show (its first frame's rectangle) and
@@ -495,7 +495,7 @@ is composed, are the pieces copied into the picture. Scaled pictures, shadow pic
 
 What is ported and checked against the original: emptying the lists, adding an ordinary (literal) picture, the span
 cutting (including pictures hanging off any screen edge) and the **compose**, which copies the spans of every row into
-the 640x480 picture, left to right. The new `ScreenDisplay` class owns the queue and the picture. The compose relies on
+the 640x480 picture, left to right. The new `Display` class owns the queue and the picture. The compose relies on
 the first picture of a frame being a full-screen background, as the game always draws. Not yet: shear (never used), and putting the finished picture on the real screen (see the shadows below).
 
 The second kind of picture, solid colour runs (the "type 3" images), is now ported too and checked the same way; the
@@ -512,7 +512,7 @@ The game's own quirk is kept: a shadow span stops being a position, so two shado
 original (it faults or draws noise); the port assumes shadows do not overlap on screen. Checked against the original on 456
 composed frames (179 with shadows, random tables, depth windows, edges, scaled pictures under them) and on the mask lists of 165
 more with several shadows: every row identical; 21 of 24 deliberate mistakes found (the others change nothing that is drawn).
-`RenderQueue` (queueing, merging) and `ScreenDisplay` (the table and the copy). **Scaled solid and scaled shadow pictures** are ported too (5 November 2026): they paint nothing, they only enter their scaled stretches into the row lists (the mask lists for a shadow), so a scaled solid or shadow picture drawn after the rows are laid down, on top of the finished frame, shows nothing, as in the original. Checked against it on 426 composed frames with scaled pictures of all three kinds mixed (every row identical, all deliberate mistakes found). Shear is still ignored (the game never uses it). In the engine the warning about unported shadow pictures is gone from the village, and the board screen never queued
+`RenderQueue` (queueing, merging) and `Display` (the table and the copy). **Scaled solid and scaled shadow pictures** are ported too (5 November 2026): they paint nothing, they only enter their scaled stretches into the row lists (the mask lists for a shadow), so a scaled solid or shadow picture drawn after the rows are laid down, on top of the finished frame, shows nothing, as in the original. Checked against it on 426 composed frames with scaled pictures of all three kinds mixed (every row identical, all deliberate mistakes found). Shear is still ignored (the game never uses it). In the engine the warning about unported shadow pictures is gone from the village, and the board screen never queued
 one, so nothing visibly changed in the two scenes played (no scene played shows the effect).
 
 **First picture (30 October 2026).** `re/tools/drivers/show_driver.cpp` loads a level from the shipped game with the
@@ -559,7 +559,7 @@ test), a very long touch list.
 ## The fade and entering a level 🟡 (the fade ✅ compared frame by frame; entering a level compared only as an order of steps with a stand-in world)
 
 Leaving a menu fades the last picture to black: four steps, each rewriting every pixel with its red, green and blue scaled down
-(192/256, 128/256, 64/256, 0) and holding it for 100 ms; the game stands still while it runs. This is `ScreenDisplay::fadeOut`, checked
+(192/256, 128/256, 64/256, 0) and holding it for 100 ms; the game stands still while it runs. This is `Display::fadeOut`, checked
 against the original frame by frame. Entering a level is, in the original, Jim being moved into it: out of the old level's lists and
 the main list, into the new one's, the camera put on him and set to follow him, the level's pictures reloaded, then Jim placed. `Jim::enterLevel` is ported (see Jim and walking) and is how the game's levels are entered; the engine's own `enterLevel` is used for the two menus only, where it makes the level current and puts its camera on the origin (which is where the menus' camera
 belongs, since their scroll range is a single point).
@@ -638,7 +638,7 @@ What a spoken line does once a script asks for it (read from the original; porte
 - **The choice menu.** Every frame the menu draws the choices as white text, left aligned at the margin, from the bottom up (the block is pushed down so that it ends near the bottom edge), draws the pointer, and turns the choice under the mouse yellow; a left click returns that choice. Jim then says the chosen line, and the script goes on after it.
 - **Other things scripts start.** `play sound` plays a voice file from the archive the same way; `play cd` plays a CD audio track; `play avi` plays a movie from the game disc (`INSTALL\BIN\DATA<number>.BIN`, not in the archive; plain AVI files with Indeo 5 video) until it ends or a key is pressed; `run 'FANMTRONO'` is a scene change to the throne room (label `ir`: Jim hidden) or the village (any other label).
 Ported and checked against the original:
-- **Text** (`TextQueue`, drawn through `ScreenDisplay`): breaks a text into lines, places them (centred or left aligned, kept on screen) and draws the letters of the font (an ordinary animation file: letter *c* is picture *c* - 0x21) over the finished frame. The same lines, positions, colours and pixels as the original on 400 random cases with made-up fonts. A text call also changes the "layer depth" that decides where scaled pictures go for the rest of the frame (the original does; the choice menu uses 5, subtitles 0).
+- **Text** (`TextQueue`, drawn through `Display`): breaks a text into lines, places them (centred or left aligned, kept on screen) and draws the letters of the font (an ordinary animation file: letter *c* is picture *c* - 0x21) over the finished frame. The same lines, positions, colours and pixels as the original on 400 random cases with made-up fonts. A text call also changes the "layer depth" that decides where scaled pictures go for the rest of the frame (the original does; the choice menu uses 5, subtitles 0).
 - **The speaking rules** (`Speaker`): start a line, end it when the voice finishes or the player skips, wait for the player when there is no voice, move the mouth about every tenth of a second, give the line back. Compared with the original on 800 random sessions (calls to the sound, animation and list code are hooks, so what they do inside is not covered).
 **Outlines (pixel-accurate collision, 4 November).** Some animation steps carry an *outline*: a closed shape stored as two chains of points, the first running left to right and the second coming back. When two moving objects' rectangles touch and both have outlines, the original refines the answer: it walks the movement one pixel at a time along its longer side, cuts the other object's outline to the columns the first one covers, and asks whether the two shapes touch (tested both ways round). An object with a single point uses a point-in-shape test instead. The three shape routines (contains a point, cut to columns, touch test) are checked against the original on thousands of random convex shapes (`Outline`); the stepping around them (`Level::shapedContactTime`) is also checked, through the whole collision pass against the original (3,496 passes with convex outlines, single points and no movement, identical). The levels' own animation banks hold 104 outlines: 31 single points and 73 shapes of 2 to 13 points, 25 of them not convex; each is stored as one chain left to right and one back, which is what the routines assume. The comparison with the original uses these shipped shapes and random non-convex ones: the three routines match on 7,084 cases and the whole collision pass on 3,616 touch-order and 8,936 state checks. Four shipped shapes in the tavern start at their rightmost point; when two such shapes meet, the original's touch test reads the word next to the shape's point list, which depends on memory addresses, so those cases cannot be compared and the engine treats such reads as 0. Not covered: the outlines of Jim's and other characters' animation files, which are not in the level files. The engine used to ignore outlines and use the rectangles. Odd details kept as read: with a single-point hitter and no movement there is no touch, with a single-point other and no movement the touch time is 1, and a point test that finds the start outside the shape gives a touch at time 0.
 
@@ -765,6 +765,8 @@ along the path, resizing and arriving were run through the original code and the
 files (over 200,000 frames, every random choice replayed): the results are identical, and eleven deliberate mistakes in the port were all
 found. Not checked: drawing it, an anchor missing from the level, and paths the original itself would misread. With a real frame time
 (40 ms or more) the wanderer sets off now and then, not on a regular schedule, which is how the original behaves too.
+
+**Correction (6 Nov 2026): in the real game the original's wanderers never set off.** The waiting test divides the stored time by 1000 instead of the elapsed time, so it can only pass while the game clock is below about 45 ms. The three tavern wanderers (`PERSONA1` to `PERSONA3`, following the path object `CAMINOS`, waits 15 to 40) are therefore never seen, in the original or in the port (the author saw none in DOSBox either). The pictures are complete walk cycles (8 to 10 frames each), and no script mentions them. They are meant to pass behind the window and the door (their depth lies between the room and the view outside). On `codex/remove-hosts` the new option "Enable cut content" (config key `cut_content`, on by default) measures the wait in whole seconds, which makes them walk; with it off the original's test is kept. The meaning of the units is a guess (seconds), not recovered. ✅ for the arithmetic (simulated), ❓ for what the authors intended.
 
 ### Depth zones and click catchers (kinds 14 and 15) 🟡 (kind 15 ported and ✅ checked against the original; kind 14 ported, in no shipped level)
 

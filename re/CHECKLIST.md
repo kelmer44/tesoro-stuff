@@ -10,10 +10,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | untouched or later | 447 | 100% |
 | decompiled or later | 447 | 100% |
 | understood or later | 431 | 96% |
-| ported or later | 405 | 90% |
+| ported or later | 404 | 90% |
 | emu-compared or later | 354 | 79% |
-| original-compared or later | 3 | 0% |
-| replaced by a ScummVM service | 3 | |
+| original-compared or later | 5 | 1% |
+| replaced by a ScummVM service | 5 | |
 
 ## Game code by cluster
 
@@ -88,7 +88,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00403250` inferred_Archive_Open · depth 10 · 28 lines · **ported** → `engines/tesoro/core/archive.cpp` — thiscall(dat_path, tre_path): reads index from the .TRE (00403380), keeps the .DAT handle at +4
 - [x] `004029f0` inferred_Cursor_Update (vtable) · depth 12 · 156 lines · **emu-compared** → `core/Cursor::update` — vtable slot 4: reads the mouse position and buttons and the keyboard state array, handles the interface strip scrolling (shifts by 0x280 = one screen width), then positions the cursor object and its +0x74 companion at the mouse position plus the interface camera offset, and flags the held item | contract read 30 Oct; port blocked on global objects | cursorupdate vectors 5 Nov: 500 sessions identical (key, pages, menu opening)
 
-### Cluster 7: 00403500–00403980 (9/12 ported)
+### Cluster 7: 00403500–00403980 (8/12 ported)
 
 - [x] `00403500` inferred_Archive_FindEntry · depth 0 · 59 lines · **emu-compared** → `engines/tesoro/core/archiveindex.cpp::ArchiveIndex::find` — binary search by name in sorted 0x18-byte index records at 00442068; returns data offset (+0x14) or fails
 - [ ] `004036c0` inferred_InputDevice_IsReady · depth 0 · 7 lines · **understood** — device ready check | true when the device pointer (+4) and the DirectInput object exist
@@ -97,7 +97,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `004037c0` inferred_InputDevice_Dtor · depth 0 · 23 lines · **understood** — releases the DirectInput device and the shared DirectInput object when the count reaches zero
 - [ ] `004035b0` inferred_InputDevice_Ctor · depth 1 · 42 lines · **understood** — base ctor of the DirectInput devices: shared IDirectInput with a use count (00442078/7c), CreateDevice, SetDataFormat, SetCooperativeLevel, message box on each failure | contract 4 Nov, emulated
 - [x] `004038f0` inferred_Keyboard_Update (vtable) · depth 1 · 40 lines · **emu-compared** → `engines/tesoro/core/keyboard.cpp::Keyboard::update + fromHost` — per-frame keyboard read: GetDeviceState (one Acquire retry), watched keys Escape/Return/Space/S/L to raw 4=down, then 00403700 | emulated against a fake DirectInput 4 Nov | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)
-- [x] `00403320` inferred_Archive_SeekSavePos · depth 5 · 11 lines · **ported** → `engines/tesoro/core/archive.cpp` — (offset) returns the previous position and seeks to offset
+- [ ] `00403320` inferred_Archive_SeekSavePos · depth 5 · 11 lines · **understood** → `(not ported)` — (offset) returns the previous position and seeks to offset | 6 Nov: the port Archive::seekSavePos had no caller and was removed on codex/remove-hosts
 - [x] `00403820` inferred_Keyboard_Ctor · depth 5 · 44 lines · **emu-compared** → `engines/tesoro/core/keyboard.cpp::Keyboard::Keyboard` — keyboard: 16-slot arrays, 5 watched keys (Escape Return Space S L), delays 200/20000 | contract 4 Nov, emulated | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)
 - [x] `00403980` inferred_Mouse_Ctor · depth 5 · 46 lines · **emu-compared** → `engines/tesoro/core/mouse.cpp::Mouse::Mouse` — DirectInput mouse, range 640x480, starts at (320,240) | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)
 - [x] `00403360` inferred_Archive_Close · depth 6 · 10 lines · **ported** → `engines/tesoro/core/archive.cpp`
@@ -403,7 +403,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00411f20` inferred_Display_ResetRenderQueue · depth 0 · 30 lines · **emu-compared** → `engines/tesoro/core/renderqueue.cpp::RenderQueue::reset` — clears two arrays of 0x1e0 entries (stride 500 and 200 dwords) and counters
 - [ ] `00411870` inferred_Display_Ctor · depth 1 · 127 lines · **decompiled** — 0x13a4-byte display constructor performing the whole DirectDraw setup: DirectDrawCreate, cooperative level, display mode, primary and back surfaces; each failure shows a DIRECTDRAW message box and returns the half-built object. Flag +0x67c selects 5-5-5 pixel handling
 - [x] `00411f80` inferred_Display_AddSprite · depth 1 · 57 lines · **emu-compared** — (x, y, sort value, image, flag): clips a 640x480 sprite and queues it in the render rows (per-scanline lists) by image type (1 or 3 get extra passes)
-- [x] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **ported** → `World::loadSpeech (TABLA1.TBL into ScreenDisplay::setShadeTable)` — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set | 5-6-5 table kept as it is; the 5-5-5 conversion is not needed
+- [x] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **ported** → `World::loadSpeech (TABLA1.TBL into Display::setShadeTable)` — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set | 5-6-5 table kept as it is; the 5-5-5 conversion is not needed
 
 ### Cluster 32: 004120c0–00412e10 (6/7 ported)
 
@@ -412,8 +412,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [ ] `00412bb0` inferred_Display_ClearAndReset · depth 0 · 34 lines · **understood** — clears surfaces via DirectDraw (slot 0x80/4 and 0x1c Blt) and resets the render queue
 - [x] `00412c50` inferred_Display_Compose_Overlay · depth 0 · 99 lines · **emu-compared** → `engines/tesoro/core/textqueue.cpp` — later stage of Display_Compose | name from call sites and a skim; body not yet read
 - [x] `00412120` inferred_Display_RasterRow · depth 1 · 101 lines · **emu-compared** — rasterises one scanline using the three type rasterisers | name from call sites and a skim; body not yet read
-- [x] `004123e0` inferred_Display_FadeOut · depth 1 · 118 lines · **emu-compared** → `engines/tesoro/core/screendisplay.cpp::ScreenDisplay::fadeOut` — (effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read
-- [x] `00412e10` inferred_Display_Compose · depth 2 · 263 lines · **emu-compared** → `engines/tesoro/core/screendisplay.cpp::ScreenDisplay::compose` — per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read
+- [x] `004123e0` inferred_Display_FadeOut · depth 1 · 118 lines · **emu-compared** → `engines/tesoro/core/display.cpp::Display::fadeOut` — (effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read
+- [x] `00412e10` inferred_Display_Compose · depth 2 · 263 lines · **emu-compared** → `engines/tesoro/core/display.cpp::Display::compose` — per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read
 
 ### Cluster 33: 004137c0–004139e0 (6/7 ported)
 
@@ -432,8 +432,8 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00413a80` inferred_Clock_Suspend · depth 0 · 8 lines · **emu-compared** → `core/clock.h::GameClock::suspend` — window deactivated: stop accumulating
 - [x] `00413a90` inferred_Clock_Resume · depth 0 · 12 lines · **emu-compared** → `core/clock.cpp::GameClock::resume` — window activated: re-stamp last tick, resume
 - [x] `00413ab0` inferred_Clock_Unfreeze · depth 0 · 8 lines · **emu-compared** → `core/clock.h::GameClock::unfreeze` — clears frozen flag (end of frame)
-- [x] `00413ac0` inferred_RandomRangeAlt · depth 0 · 11 lines · **emu-compared** → `core/random.cpp::randomRangeAlt` — second time-driven random function: fraction = (t&0x78) | ((t>>7)&7) | ((t&7)<<7), scaled like RandomRange
-- [x] `00413b00` inferred_RandomRange · depth 0 · 13 lines · **emu-compared** → `core/random.cpp::randomRange` — THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded
+- [x] `00413ac0` inferred_RandomRangeAlt · depth 0 · 11 lines · **replaced** → `engines/tesoro/tesoro.h::TesoroEngine::randomBetween (ScummVM Common::RandomSource)` — second time-driven random function: fraction = (t&0x78) | ((t>>7)&7) | ((t&7)<<7), scaled like RandomRange | 6 Nov: replaced by ScummVM's RandomSource on codex/remove-hosts; core/random.cpp is deleted
+- [x] `00413b00` inferred_RandomRange · depth 0 · 13 lines · **replaced** → `engines/tesoro/tesoro.h::TesoroEngine::randomBetween (ScummVM Common::RandomSource)` — THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded | 6 Nov: on codex/remove-hosts the time-driven function is replaced by ScummVM's RandomSource; the port in core/random.cpp is deleted
 - [ ] `00413b90` inferred_InitSubsystems · depth 6 · 140 lines · **understood** — builds CD, input, sound, video objects; error dialogs
 - [ ] `004144a0` inferred_Shutdown · depth 7 · 45 lines · **understood** — deletes display, sound, mouse, keyboard, archive, memory pools, clock in that order
 - [x] `00414420` inferred_RunFrame · depth 10 · 21 lines · **ported** → `engines/tesoro/tesoro.cpp::TesoroEngine::runFrame` — per-frame step: keyboard and mouse vtable[0] update, clock freeze, sound update, rewind pool 3, reset render queue, object-list pass A (and pass B unless A returned 3), clock unfreeze; returns false when loop should end | frame order and level second step follow the original; read, headless run only, 5 Nov

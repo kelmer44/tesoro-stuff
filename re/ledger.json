@@ -8937,9 +8937,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "ported",
-  "engine": "engines/tesoro/core/archive.cpp",
-  "notes": "(offset) returns the previous position and seeks to offset"
+  "status": "understood",
+  "engine": "(not ported)",
+  "notes": "(offset) returns the previous position and seeks to offset | 6 Nov: the port Archive::seekSavePos had no caller and was removed on codex/remove-hosts"
  },
  {
   "addr": "00403360",
@@ -22173,7 +22173,7 @@
   "data_refs": [],
   "cluster": 31,
   "status": "ported",
-  "engine": "World::loadSpeech (TABLA1.TBL into ScreenDisplay::setShadeTable)",
+  "engine": "World::loadSpeech (TABLA1.TBL into Display::setShadeTable)",
   "notes": "reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set | 5-6-5 table kept as it is; the 5-5-5 conversion is not needed"
  },
  {
@@ -22324,7 +22324,7 @@
   "data_refs": [],
   "cluster": 32,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/screendisplay.cpp::ScreenDisplay::fadeOut",
+  "engine": "engines/tesoro/core/display.cpp::Display::fadeOut",
   "notes": "(effect, speed) starts a screen transition (called with (4, 100) after level changes); uses GetTickCount | name from call sites and a skim; body not yet read"
  },
  {
@@ -22407,7 +22407,7 @@
   "data_refs": [],
   "cluster": 32,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/screendisplay.cpp::ScreenDisplay::compose",
+  "engine": "engines/tesoro/core/display.cpp::Display::compose",
   "notes": "per-frame composition: runs raster stages and presents (flip) the frame | name from call sites and a skim; body not yet read"
  },
  {
@@ -22708,9 +22708,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "emu-compared",
-  "engine": "core/random.cpp::randomRangeAlt",
-  "notes": "second time-driven random function: fraction = (t&0x78) | ((t>>7)&7) | ((t&7)<<7), scaled like RandomRange"
+  "status": "replaced",
+  "engine": "engines/tesoro/tesoro.h::TesoroEngine::randomBetween (ScummVM Common::RandomSource)",
+  "notes": "second time-driven random function: fraction = (t&0x78) | ((t>>7)&7) | ((t&7)<<7), scaled like RandomRange | 6 Nov: replaced by ScummVM's RandomSource on codex/remove-hosts; core/random.cpp is deleted"
  },
  {
   "addr": "00413b00",
@@ -22731,9 +22731,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 34,
-  "status": "emu-compared",
-  "engine": "core/random.cpp::randomRange",
-  "notes": "THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded"
+  "status": "replaced",
+  "engine": "engines/tesoro/tesoro.h::TesoroEngine::randomBetween (ScummVM Common::RandomSource)",
+  "notes": "THE game random generator: builds a pseudo-random fraction from bit-shuffled GetTickCount() low bits, scales by (max-min+1) >> 10, adds min. Time-based, not seeded | 6 Nov: on codex/remove-hosts the time-driven function is replaced by ScummVM's RandomSource; the port in core/random.cpp is deleted"
  },
  {
   "addr": "00413b90",
