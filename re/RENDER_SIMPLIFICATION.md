@@ -40,6 +40,19 @@ What would go away: `core/renderqueue.*` (about 650 lines of `.cpp`, plus the he
 - **The 125-span row limit** (50 for mask rows). The port warns "row is full" and drops the span; the original wrote past the row. Painting has
   no such limit, so that case cannot match the original in either design. Normal scenes should not reach it.
 
+## What the shading really is (checked on 8 Nov 2026)
+
+- `TABLA1.TBL` is 32 pages of 1024 bytes. A page maps a colour reduced to 3 bits per channel (512 inputs) to a 16-bit colour.
+- Only two distinct pages exist: pages 0 and 1 are identical, and pages 2 to 31 are identical to each other (a very dark tone).
+- Page 0 is an exact 50% darkening of the centre of each input bin. Against an exact halving of the original 16-bit colour it is off by
+  2.5% of full scale on average and 3.2% at worst (the 3-bit reduction posterises slightly; page 0 has 512 distinct output colours).
+- The game has one shadow image: `CUADRADO` in `INTERFACE.LVL`, 640 by 100 pixels, 100 rows with one full-width run each, every run at
+  shade level 0. So the game's only use of shading is a uniform 50% black band behind the inventory strip.
+- Painting version: when the band's turn comes in depth order, darken the pixels of its runs that are already in the frame, then paint the
+  nearer items over it. Halving every channel of a 16-bit colour is `(c >> 1) & 0x7BEF`. For frames identical to the original, use the
+  table for that one operation instead: `table[page 0][index(pixel)]`. Either way `mergeMask`, `shade`, the mask rows and the shadow spans
+  are not needed.
+
 ## How to test it (outside the engine)
 
 `AGENTS.md` forbids test hooks in the submitted engine, so the comparison must be external:
