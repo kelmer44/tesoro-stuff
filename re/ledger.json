@@ -20928,7 +20928,7 @@
   "data_refs": [],
   "cluster": 27,
   "status": "ported",
-  "engine": "engines/tesoro/core/object.cpp::removeFromList",
+  "engine": "engines/tesoro/core/objectlist.h::removeFromList",
   "notes": "removes the node holding the pointer | 8 Nov: CursorList removed on codex/array-lists; array version not emu-compared"
  },
  {
@@ -20990,7 +20990,7 @@
   "data_refs": [],
   "cluster": 28,
   "status": "replaced",
-  "engine": "engines/tesoro/core/object.h::MainList",
+  "engine": "engines/tesoro/core/objectlist.h::MainList",
   "notes": "allocates a linked list with capacity param (100 for the main list 00442104) | initial state compared (list vectors) | 8 Nov: CursorList removed on codex/array-lists; array of (object, priority), no capacity"
  },
  {
@@ -21019,7 +21019,7 @@
   "data_refs": [],
   "cluster": 28,
   "status": "ported",
-  "engine": "engines/tesoro/core/object.cpp::MainList::insert",
+  "engine": "engines/tesoro/core/objectlist.h::MainList::insert",
   "notes": "12-byte nodes (object, priority): inserts before the first node with a higher priority; main list uses priorities 0x13 (interface level), 100 (top object) | 8 Nov: CursorList removed on codex/array-lists; array version not emu-compared"
  },
  {
@@ -21039,7 +21039,7 @@
   "data_refs": [],
   "cluster": 28,
   "status": "ported",
-  "engine": "engines/tesoro/core/object.cpp::MainList::insert",
+  "engine": "engines/tesoro/core/objectlist.h::MainList::insert",
   "notes": "like InsertByPriority but inserts before nodes of equal priority | 8 Nov: CursorList removed on codex/array-lists; array version not emu-compared (beforeEqual)"
  },
  {
@@ -21069,7 +21069,7 @@
   "data_refs": [],
   "cluster": 28,
   "status": "ported",
-  "engine": "engines/tesoro/core/object.cpp::MainList::remove",
+  "engine": "engines/tesoro/core/objectlist.h::MainList::remove",
   "notes": "removes the node holding the given object from the main list | 8 Nov: CursorList removed on codex/array-lists; array version not emu-compared"
  },
  {
@@ -21149,7 +21149,7 @@
   "data_refs": [],
   "cluster": 29,
   "status": "ported",
-  "engine": "engines/tesoro/core/object.cpp::MainList::clear",
+  "engine": "engines/tesoro/core/objectlist.h::MainList::clear",
   "notes": "empties a 3-field-node list (priority lists) | 8 Nov: CursorList removed on codex/array-lists; array version not emu-compared, bumps edits()"
  },
  {
