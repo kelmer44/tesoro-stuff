@@ -80,7 +80,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 
 **Engine classes by area** (so each name can be found in the diagrams below):
 - Files and time: `Archive`, `ArchiveIndex`, `GameClock`, name keys. Random numbers come from ScummVM's `RandomSource` in the engine (since 6 Nov on `codex/remove-hosts`; the original derived them from the millisecond tick).
-- Lists: `CursorList` (the ordered list with a finger that levels, rooms and passes use).
+- Lists: plain `Common::Array` (`ObjectList`) for levels, rooms and the pointer, and `MainList` (objects in priority order, with an edit counter so a pass can tell its turn changed the list).
 - Pictures: `TextQueue` (laid-out text lines, drawn by `Display`), `AnimBank`, `AnimPlayer`, `AnimImage`, `AnimSet` (animations); `Display` (the screen: what objects draw to), `RenderQueue`.
 - World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `WalkFloor` (7), `PathObject` (8), `MenuItem` (25), lists `ObjectList`. Small helpers: `ObjectRecord` (one object description of the level file), `ObjectRect`, `AnimStep`, `BrightnessTable`. a menu item asks the engine directly.
 - Input: `InputStates`, `Mouse`, `Keyboard`, `Cursor` (both pointers), `HoverText`.

@@ -11,9 +11,9 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | decompiled or later | 447 | 100% |
 | understood or later | 431 | 96% |
 | ported or later | 404 | 90% |
-| emu-compared or later | 354 | 79% |
-| original-compared or later | 5 | 1% |
-| replaced by a ScummVM service | 5 | |
+| emu-compared or later | 347 | 77% |
+| original-compared or later | 12 | 2% |
+| replaced by a ScummVM service | 12 | |
 
 ## Game code by cluster
 
@@ -342,10 +342,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 27: 0040f670–0040f780 (10/11 ported)
 
-- [x] `0040f670` inferred_List_RewindIterator · depth 0 · 12 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — resets a list's iterator (current = head, first flag = 1)
-- [x] `0040f680` inferred_ObjectList_FindByKey · depth 0 · 55 lines · **ported** → `engines/tesoro/core/cursorlist.h::CursorList` — (key lo, key hi) finds an object in the list by its 64-bit name key at object +0x44; returns 0 when absent
-- [x] `0040f780` inferred_List_Remove · depth 0 · 49 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — removes the node holding the pointer
-- [x] `0040f590` inferred_List_Ctor · depth 1 · 37 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list | initial state compared (list vectors)
+- [x] `0040f670` inferred_List_RewindIterator · depth 0 · 12 lines · **replaced** → `Common::Array (no list class)` — resets a list's iterator (current = head, first flag = 1) | 8 Nov: CursorList removed on codex/array-lists; index loops replace the iterator
+- [x] `0040f680` inferred_ObjectList_FindByKey · depth 0 · 55 lines · **ported** → `engines/tesoro/core/level.cpp::Level::findObject` — (key lo, key hi) finds an object in the list by its 64-bit name key at object +0x44; returns 0 when absent | 8 Nov: CursorList removed on codex/array-lists
+- [x] `0040f780` inferred_List_Remove · depth 0 · 49 lines · **ported** → `engines/tesoro/core/object.cpp::removeFromList` — removes the node holding the pointer | 8 Nov: CursorList removed on codex/array-lists; array version not emu-compared
+- [x] `0040f590` inferred_List_Ctor · depth 1 · 37 lines · **replaced** → `Common::Array (no list class)` — pooled doubly-linked list header (0x1c bytes) with node storage of capacity*8+0x18 bytes, or a copy of another list | initial state compared (list vectors) | 8 Nov: CursorList removed on codex/array-lists; Array default ctor/copy
 - [ ] `0040f650` inferred_Pool_AllocAlignedZero_Global · depth 1 · 8 lines · **decompiled** — wrapper on the global pool
 - [x] `0040f710` inferred_ObjectList_ForEachAttach · depth 2 · 39 lines · **ported** → `engines/tesoro/core/object.cpp::attachAll` — iterates list and calls 00401bf0(node object, arg)
 - [x] `0040f280` inferred_Obj_Verb1_Default (vtable) · depth 12 · 25 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — slot 21 of Kind09-based classes: same pattern with phrase key +0x74 and a default phrase when unset
@@ -356,20 +356,20 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 28: 0040f800–0040fbb0 (7/7 ported)
 
-- [x] `0040f800` inferred_List_PushBack · depth 0 · 40 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — iterates to the last node and links a new node holding the pointer
-- [x] `0040f870` inferred_List_Clear · depth 0 · 14 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — empties a 2-field-node list
-- [x] `0040f900` inferred_ObjectList_InsertByPriority · depth 0 · 82 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — 12-byte nodes (object, priority): inserts before the first node with a higher priority; main list uses priorities 0x13 (interface level), 100 (top object)
-- [x] `0040fa10` inferred_ObjectList_InsertByPriorityFront · depth 0 · 82 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — like InsertByPriority but inserts before nodes of equal priority
-- [x] `0040fb20` inferred_ObjectList_RemoveByObject · depth 0 · 58 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — removes the node holding the given object from the main list
-- [x] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — allocates a linked list with capacity param (100 for the main list 00442104) | initial state compared (list vectors)
+- [x] `0040f800` inferred_List_PushBack · depth 0 · 40 lines · **replaced** → `Common::Array::push_back` — iterates to the last node and links a new node holding the pointer | 8 Nov: CursorList removed on codex/array-lists
+- [x] `0040f870` inferred_List_Clear · depth 0 · 14 lines · **replaced** → `Common::Array::clear` — empties a 2-field-node list | 8 Nov: CursorList removed on codex/array-lists
+- [x] `0040f900` inferred_ObjectList_InsertByPriority · depth 0 · 82 lines · **ported** → `engines/tesoro/core/object.cpp::MainList::insert` — 12-byte nodes (object, priority): inserts before the first node with a higher priority; main list uses priorities 0x13 (interface level), 100 (top object) | 8 Nov: CursorList removed on codex/array-lists; array version not emu-compared
+- [x] `0040fa10` inferred_ObjectList_InsertByPriorityFront · depth 0 · 82 lines · **ported** → `engines/tesoro/core/object.cpp::MainList::insert` — like InsertByPriority but inserts before nodes of equal priority | 8 Nov: CursorList removed on codex/array-lists; array version not emu-compared (beforeEqual)
+- [x] `0040fb20` inferred_ObjectList_RemoveByObject · depth 0 · 58 lines · **ported** → `engines/tesoro/core/object.cpp::MainList::remove` — removes the node holding the given object from the main list | 8 Nov: CursorList removed on codex/array-lists; array version not emu-compared
+- [x] `0040f890` inferred_ObjectList_Ctor · depth 1 · 23 lines · **replaced** → `engines/tesoro/core/object.h::MainList` — allocates a linked list with capacity param (100 for the main list 00442104) | initial state compared (list vectors) | 8 Nov: CursorList removed on codex/array-lists; array of (object, priority), no capacity
 - [x] `0040fbb0` inferred_ObjectList_AttachAll · depth 2 · 38 lines · **ported** → `engines/tesoro/core/object.cpp::attachAll` — walks the list calling Object_AttachToLevel on each object
 
 ### Cluster 29: 0040fc20–00410330 (11/12 ported)
 
-- [x] `0040fc20` inferred_ObjectList_PassA · depth 0 · 83 lines · **emu-compared** → `engines/tesoro/core/object.cpp::runUpdatePass` — walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1 | pass vectors 31 Oct
-- [x] `0040fd20` inferred_ObjectList_PassB · depth 0 · 83 lines · **emu-compared** → `engines/tesoro/core/object.cpp::runUpdate2Pass` — same walk calling vtable slot 5 | pass vectors 31 Oct
-- [x] `0040fe20` inferred_ObjectList_Clear · depth 0 · 14 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — empties a 3-field-node list (priority lists)
-- [x] `0040fe40` inferred_ObjectList_StartIteration · depth 0 · 31 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — iterator reset helper; its result decides loop continuation
+- [x] `0040fc20` inferred_ObjectList_PassA · depth 0 · 83 lines · **ported** → `engines/tesoro/core/object.cpp::runUpdatePass` — walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1 | pass vectors 31 Oct | 8 Nov: CursorList removed on codex/array-lists; restarts on MainList::edits() instead of the cursor id, not emu-compared
+- [x] `0040fd20` inferred_ObjectList_PassB · depth 0 · 83 lines · **ported** → `engines/tesoro/core/object.cpp::runUpdate2Pass` — same walk calling vtable slot 5 | pass vectors 31 Oct | 8 Nov: CursorList removed on codex/array-lists; restarts on MainList::edits() instead of the cursor id, not emu-compared
+- [x] `0040fe20` inferred_ObjectList_Clear · depth 0 · 14 lines · **ported** → `engines/tesoro/core/object.cpp::MainList::clear` — empties a 3-field-node list (priority lists) | 8 Nov: CursorList removed on codex/array-lists; array version not emu-compared, bumps edits()
+- [x] `0040fe40` inferred_ObjectList_StartIteration · depth 0 · 31 lines · **replaced** → `Common::Array (no list class)` — iterator reset helper; its result decides loop continuation | 8 Nov: CursorList removed on codex/array-lists; index loops replace the iterator
 - [ ] `0040fea0` inferred_Obj_Kind05Base_Ctor · depth 2 · 9 lines · **decompiled** — MidBase default ctor then vtable 0042bb48
 - [x] `0040ffa0` inferred_Obj_DrawSubtitle · depth 2 · 27 lines · **emu-compared** → `engines/tesoro/core/character.cpp::Character::drawSubtitle` — draws the current phrase text twice (shadow style) at the speaker's position with Display_DrawText, keeping the camera in view
 - [x] `00410060` inferred_C0042b060_Slot31 (vtable) · depth 2 · 34 lines · **emu-compared** → `engines/tesoro/core/speaker.cpp` — unread; first seen in vtable 0042b060 slot 31 (kind 5 subtype 16)
@@ -461,7 +461,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00414f10` inferred_WalkArea_FindPath · depth 0 · 73 lines · **emu-compared** → `engines/tesoro/core/walkarea.cpp` — (x, y, target) picks the nearest waypoint of the walk area to the destination and prepares a route; returns whether a route exists | (x, y, target) finds the polyline vertex nearest the destination (+0xa4) and the vertex nearest Jim (+0xa0), stores the destination (+0xa8,+0xac) and target (+0xb0), then sends Jim to his nearest vertex; always returns true when the polyline has vertices. No search algorithm: movement is along the vertex list
 - [x] `00415120` inferred_DepthZone_IsHitter (vtable) · depth 0 · 7 lines · **ported** → `core/DepthZone::isHitter` — unread; first seen in vtable 0042bdd0 slot 11
 - [x] `00415130` inferred_DepthZone_OnTouched (vtable) · depth 0 · 43 lines · **ported** → `core/DepthZone::onTouched` — unread; first seen in vtable 0042bdd0 slot 12
-- [x] `00415200` inferred_List_InsertAfterCursor · depth 0 · 23 lines · **emu-compared** → `engines/tesoro/core/cursorlist.h::CursorList` — allocates a node and links it at the list head
+- [x] `00415200` inferred_List_InsertAfterCursor · depth 0 · 23 lines · **replaced** → `Common::Array::insert_at` — allocates a node and links it at the list head | 8 Nov: CursorList removed on codex/array-lists; Room::insertSorted uses insert_at
 - [ ] `00415230` inferred_TopObject_Ctor · depth 1 · 9 lines · **understood** — base object with vtable 0042be08, inserted with priority 100 (frontmost)
 - [x] `00415290` inferred_InventoryStrip_OnAttach (vtable) · depth 1 · 27 lines · **emu-compared** → `core/InventoryStrip::onAttach` — unread; first seen in vtable 0042be40 slot 0
 - [x] `004150d0` inferred_Obj_DepthZone_Ctor · depth 3 · 17 lines · **ported** → `core/DepthZone::init` — 0x74 bytes, vtable 0042bdd0, extends Kind00; inserts itself in its room list
