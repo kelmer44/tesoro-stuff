@@ -32,8 +32,9 @@ What would go away: `core/renderqueue.*` (about 650 lines of `.cpp`, plus the he
 - **The two-phase compose.** Scaled images deeper than the layer depth are painted before the queued rows, the rest after, on top. The layer
   depth is set by the text call (to its tag), so this is not a pure depth order. A painter's version has to reproduce the same rule.
 - **Shadows.** Each shadow only darkens a range of depths. Painting needs "darken what is already there if its depth is in this range", which
-  needs a depth value for each pixel. The shipped data has exactly one shadow image (type 2) and no shadow object (kind 4), so this may never
-  matter in practice (not checked image by image).
+  needs a depth value for each pixel. The shipped data has exactly one shadow image (type 2) and no shadow object (kind 4), but that one image is
+  used: `CUADRADO` in `INTERFACE.LVL` is a 640 by 100 shadow band that the inventory strip plays when it rises and lowers. So shadows do
+  matter, at least for the strip (found on 7 Nov 2026 from the data and the strip code; not seen on screen).
 - **Scaled images in the game** are, as far as the three call sites show, the pointer, Jim and the tavern walkers, all ordinary literal
   pictures. Scaled solid and shadow images are supported by the code but I do not know of any in the shipped data.
 - **The 125-span row limit** (50 for mask rows). The port warns "row is full" and drops the span; the original wrote past the row. Painting has
