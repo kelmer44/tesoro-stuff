@@ -9063,9 +9063,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "emu-compared",
-  "engine": "engines/tesoro/core/mouse.h::Mouse::setTimings",
-  "notes": "+0xc and +0x10 (200 and 20000 are the values given at start) | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)"
+  "status": "replaced",
+  "engine": "engines/tesoro/tesoro.cpp (engine events) + core/pointerstate.h",
+  "notes": "+0xc and +0x10 (200 and 20000 are the values given at start) | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks) | 11 Nov: Mouse, Keyboard, InputStates replaced by PointerState + engine events (codex/array-lists)"
  },
  {
   "addr": "00403700",
@@ -9083,9 +9083,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "emu-compared",
-  "engine": "engines/tesoro/core/inputstate.cpp::InputStates",
-  "notes": "(new states, count) state machine per key (0,1,2,4,8,0x10,0x20) using GetTickCount and the two timing values (+0xc, +0x10): press, hold, release and repeat"
+  "status": "replaced",
+  "engine": "engines/tesoro/tesoro.cpp (engine events) + core/pointerstate.h",
+  "notes": "(new states, count) state machine per key (0,1,2,4,8,0x10,0x20) using GetTickCount and the two timing values (+0xc, +0x10): press, hold, release and repeat | 11 Nov: Mouse, Keyboard, InputStates replaced by PointerState + engine events (codex/array-lists)"
  },
  {
   "addr": "004037c0",
@@ -9127,9 +9127,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "emu-compared",
-  "engine": "engines/tesoro/core/keyboard.cpp::Keyboard::Keyboard",
-  "notes": "keyboard: 16-slot arrays, 5 watched keys (Escape Return Space S L), delays 200/20000 | contract 4 Nov, emulated | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)"
+  "status": "replaced",
+  "engine": "engines/tesoro/tesoro.cpp (engine events) + core/pointerstate.h",
+  "notes": "keyboard: 16-slot arrays, 5 watched keys (Escape Return Space S L), delays 200/20000 | contract 4 Nov, emulated | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks) | 11 Nov: Mouse, Keyboard, InputStates replaced by PointerState + engine events (codex/array-lists)"
  },
  {
   "addr": "004038f0",
@@ -9151,9 +9151,9 @@
   ],
   "data_refs": [],
   "cluster": 7,
-  "status": "emu-compared",
-  "engine": "engines/tesoro/core/keyboard.cpp::Keyboard::update + fromHost",
-  "notes": "per-frame keyboard read: GetDeviceState (one Acquire retry), watched keys Escape/Return/Space/S/L to raw 4=down, then 00403700 | emulated against a fake DirectInput 4 Nov | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)"
+  "status": "replaced",
+  "engine": "engines/tesoro/tesoro.cpp::handleEvent",
+  "notes": "per-frame keyboard read: GetDeviceState (one Acquire retry), watched keys Escape/Return/Space/S/L to raw 4=down, then 00403700 | emulated against a fake DirectInput 4 Nov | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks) | 11 Nov: Mouse, Keyboard, InputStates replaced by PointerState + engine events (codex/array-lists); only Escape is read"
  },
  {
   "addr": "00403980",
@@ -9173,9 +9173,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 7,
-  "status": "emu-compared",
-  "engine": "engines/tesoro/core/mouse.cpp::Mouse::Mouse",
-  "notes": "DirectInput mouse, range 640x480, starts at (320,240) | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)"
+  "status": "replaced",
+  "engine": "engines/tesoro/tesoro.cpp (engine events) + core/pointerstate.h",
+  "notes": "DirectInput mouse, range 640x480, starts at (320,240) | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks) | 11 Nov: Mouse, Keyboard, InputStates replaced by PointerState + engine events (codex/array-lists)"
  },
  {
   "addr": "00403a70",
@@ -9192,9 +9192,9 @@
   "tables": [],
   "data_refs": [],
   "cluster": 8,
-  "status": "emu-compared",
-  "engine": "engines/tesoro/core/mouse.cpp::Mouse::center",
-  "notes": "C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)"
+  "status": "replaced",
+  "engine": "engines/tesoro/tesoro.cpp (engine events) + core/pointerstate.h",
+  "notes": "C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks) | 11 Nov: Mouse, Keyboard, InputStates replaced by PointerState + engine events (codex/array-lists)"
  },
  {
   "addr": "00403aa0",
@@ -9216,9 +9216,9 @@
   ],
   "data_refs": [],
   "cluster": 8,
-  "status": "emu-compared",
-  "engine": "engines/tesoro/core/mouse.cpp::Mouse::moveTo + update",
-  "notes": "per-frame mouse read: DIMOUSESTATE, adds movement to position, clamps to limits, 3 buttons to raw 4=down then 00403700 | emulated against a fake DirectInput 4 Nov | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks)"
+  "status": "replaced",
+  "engine": "engines/tesoro/tesoro.cpp::setButton",
+  "notes": "per-frame mouse read: DIMOUSESTATE, adds movement to position, clamps to limits, 3 buttons to raw 4=down then 00403700 | emulated against a fake DirectInput 4 Nov | C++ Keyboard/Mouse vs original (devices vectors 5 Nov, 5,367 checks) | 11 Nov: Mouse, Keyboard, InputStates replaced by PointerState + engine events (codex/array-lists); edges from events, 300 ms repress window kept"
  },
  {
   "addr": "00403b60",
