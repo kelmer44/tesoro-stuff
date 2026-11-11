@@ -62,7 +62,7 @@ flowchart TD
     Objects -->|"picture + depth"| Queue["Screen queue ✅<br/>RenderQueue: spans per row"]
     Queue --> Compose["Compose ✅<br/>Display: spans to pixels"]
     Compose --> Window["The window (ScummVM)"]
-    Mouse["PointerState ✅<br/>position + button edges"] --> Cursor["Cursor 🟡<br/>main pointer + companion"]
+    Mouse["PointerState ✅<br/>position + button events"] --> Cursor["Cursor 🟡<br/>main pointer + companion"]
     Cursor --> Collide["Collision pass ✅<br/>who touches whom"]
     Objects --> Collide
     Collide -->|"touched list"| Cursor
@@ -83,7 +83,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Lists: plain `Common::Array` (`ObjectList`) for levels, rooms and the pointer, and `MainList` (objects in priority order, with an edit counter so a pass can tell its turn changed the list).
 - Pictures: `TextQueue` (laid-out text lines, drawn by `Display`), `AnimBank`, `AnimPlayer`, `AnimImage`, `AnimSet` (animations); `Display` (the screen: what objects draw to), `RenderQueue`.
 - World: `Level`, `Room`, `Camera`, `Object` and its kinds `CameraFrame` (1), `SpriteObject` (3), `WalkFloor` (7), `PathObject` (8), `MenuItem` (25), lists `ObjectList`. Small helpers: `ObjectRecord` (one object description of the level file), `ObjectRect`, `AnimStep`, `BrightnessTable`. a menu item asks the engine directly.
-- Input: `PointerState` (the pointer position and button edges; the engine fills it from ScummVM events, Escape is a flag in the engine), `Cursor` (both pointers), `HoverText`.
+- Input: `PointerState` (the pointer position and button events; the engine fills it from ScummVM events, Escape is a flag in the engine), `Cursor` (both pointers), `HoverText`.
 - Collisions: `sweepRects`, `Level::collisionPass`.
 - The world: `World` (answers every host for real), `WorldLevel` (a level that builds the clickable kinds).
 - Exits: `ExitDoor` (an exit between levels).
@@ -91,7 +91,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Items: `InventoryItem` (things Jim carries).
 - Board columns and pieces: `BoardColumn` (kind 21), `BoardPieces` (shows the 49 piece objects and blinks the winning four), `BoardGame` (the board, whose turn it is and the game's start and turn loop).
 - Notes and map places: `NoteObject` (kind 24), `MapPlace` (kind 19).
-- The pointer's frame step: `Cursor` (Escape, the interface pages, the menu opening); keys: Escape's edges in the engine.
+- The pointer's frame step: `Cursor` (Escape, the interface pages, the menu opening); keys: Escape's events in the engine.
 - Save and load screen: `MenuButton` (kind 22), `SlotLabel` (23).
 - Inventory strip: `InventoryStrip` (kind 11).
 - Groups, shadows and wanderers: `ItemGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14), `ClickCatcher` (15), `PathSprite` (16).
