@@ -228,7 +228,7 @@ runs twice in a pass. If an object's turn adds or removes objects (a dialogue st
 walk notices that the list changed and starts again from the top, skipping everything already done. One detail
 matters: an object added right behind the one being run does not count as a change, so it waits for the next pass.
 A turn that returns 2 or 3 ends the pass at once with that number; otherwise the pass returns 1. The engine
-functions are `runUpdatePass` and `runUpdate2Pass`. Checked against the original with random lists whose objects
+functions are `MainList::runUpdate` and `runUpdate2`. Checked against the original with random lists whose objects
 add and remove other objects during their turn. What 2 and 3 mean to each caller is not read yet.
 
 ## The world: levels, Jim and the main list 🟡 (the engine's own wiring; the functions it calls are compared one by one, the wiring as a whole is not)

@@ -20908,8 +20908,8 @@
   "data_refs": [],
   "cluster": 27,
   "status": "ported",
-  "engine": "engines/tesoro/core/object.cpp::attachAll",
-  "notes": "iterates list and calls 00401bf0(node object, arg)"
+  "engine": "engines/tesoro/core/level.cpp::Level::attachObjects",
+  "notes": "iterates list and calls 00401bf0(node object, arg) | 9 Nov: moved out of Object (free functions became methods)"
  },
  {
   "addr": "0040f780",
@@ -21090,8 +21090,8 @@
   "data_refs": [],
   "cluster": 28,
   "status": "ported",
-  "engine": "engines/tesoro/core/object.cpp::attachAll",
-  "notes": "walks the list calling Object_AttachToLevel on each object"
+  "engine": "engines/tesoro/core/level.cpp::Level::attachObjects",
+  "notes": "walks the list calling Object_AttachToLevel on each object | 9 Nov: moved out of Object (free functions became methods)"
  },
  {
   "addr": "0040fc20",
@@ -21109,8 +21109,8 @@
   "data_refs": [],
   "cluster": 29,
   "status": "ported",
-  "engine": "engines/tesoro/core/object.cpp::runUpdatePass",
-  "notes": "walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1 | pass vectors 31 Oct | 8 Nov: CursorList removed on codex/array-lists; restarts on MainList::edits() instead of the cursor id, not emu-compared"
+  "engine": "engines/tesoro/core/objectlist.cpp::MainList::runUpdate",
+  "notes": "walks active objects (flag +0x68 bit 1), marks 0x200, calls object vtable slot 4; returns 2 or 3 immediately if an object returns that, else 1 | pass vectors 31 Oct | 8 Nov: CursorList removed on codex/array-lists; restarts on MainList::edits() instead of the cursor id, not emu-compared | 9 Nov: moved out of Object (free functions became methods)"
  },
  {
   "addr": "0040fd20",
@@ -21128,8 +21128,8 @@
   "data_refs": [],
   "cluster": 29,
   "status": "ported",
-  "engine": "engines/tesoro/core/object.cpp::runUpdate2Pass",
-  "notes": "same walk calling vtable slot 5 | pass vectors 31 Oct | 8 Nov: CursorList removed on codex/array-lists; restarts on MainList::edits() instead of the cursor id, not emu-compared"
+  "engine": "engines/tesoro/core/objectlist.cpp::MainList::runUpdate2",
+  "notes": "same walk calling vtable slot 5 | pass vectors 31 Oct | 8 Nov: CursorList removed on codex/array-lists; restarts on MainList::edits() instead of the cursor id, not emu-compared | 9 Nov: moved out of Object (free functions became methods)"
  },
  {
   "addr": "0040fe20",
