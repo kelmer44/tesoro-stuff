@@ -10484,7 +10484,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
+  "engine": "engines/tesoro/core/jim.cpp::Jim",
   "notes": "0x114-byte object, vtable 00428b70, base chain Kind05-family ctor 0040fea0 -> 0040ec90. Loads 9 animation files (JIMHABDER, JIMQUIETO, JIMARRIBA, JIMABAJO, JIMIZQUIERDA, JIMDERECHA, JIMHABAR ... .ANM) into bank array +0x34, name key from string at 0042d2a4, start position (0x15e,0x14), sort value 0x23, scale +0xfc = 0x100, speech/idle fields, calls SetFacing(3)"
  },
  {
@@ -10508,7 +10508,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
+  "engine": "engines/tesoro/core/jim.cpp::Jim",
   "notes": "slot 10: writes the same fields | save bytes compared 5 Nov (Jim vectors op G)"
  },
  {
@@ -10533,7 +10533,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "ported",
-  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
+  "engine": "engines/tesoro/core/jim.cpp::Jim",
   "notes": "slot 9: stops walking, reads position (8 bytes at +0x4c), facing +0x10c, bank index +0x32, +0x110, flags +0x68"
  },
  {
@@ -10559,7 +10559,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jimwalker.cpp",
+  "engine": "engines/tesoro/core/jim.cpp",
   "notes": "slot 32: (x, y, target object, flag) starts a walk: records target +0x104/+0x108, converts position to fixed point, chooses facing 1..4 from the dominant axis, selects the matching walking animation (table +0xd8); the function always ends by calling the target object's slot 13 (RunVerb), including at walk start, purpose not yet understood"
  },
  {
@@ -10583,7 +10583,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
+  "engine": "engines/tesoro/core/jim.cpp::Jim",
   "notes": "slot 3: base UpdateBounds then multiplies the four rect values by the perspective scale (+0xfc, 0x100 = 1.0) >> 8"
  },
  {
@@ -11171,7 +11171,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jimwalker.cpp",
+  "engine": "engines/tesoro/core/jim.cpp",
   "notes": "slot 4: per-frame walking step. Position is 24.8 fixed point (+0xe0,+0xe4); the animation's own per-frame offset (+0x28,+0x2a, root motion) scaled by perspective moves Jim; ends when the squared distance reaches zero (arrival), then removes itself from the main list and either calls slot 29 (face) or the target object's slot 13 (RunVerb) | overflow of the squared distance fixed 5 Nov (Jim vectors 400/400)"
  },
  {
@@ -11193,7 +11193,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "ported",
-  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
+  "engine": "engines/tesoro/core/jim.cpp::Jim",
   "notes": "slot 11: returns (+0x5c == 7) | fixed 4 Nov: other kind == 7, was a Jim field in the port"
  },
  {
@@ -11218,7 +11218,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jimwalker.cpp",
+  "engine": "engines/tesoro/core/jim.cpp",
   "notes": "slot 12: called when a walk segment ends: updates previous position, unless the walk-area path search (WalkArea_FindPath) produces a further waypoint, calls slot 29 (face) and the target object's slot 13"
  },
  {
@@ -11242,7 +11242,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jimwalker.cpp",
+  "engine": "engines/tesoro/core/jim.cpp",
   "notes": "slot 29: clears walking flag, stores direction +0x10c (1..4) and starts the matching animation"
  },
  {
@@ -11262,7 +11262,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "ported",
-  "engine": "engines/tesoro/core/jimwalker.h::Jim::resumeFacing",
+  "engine": "engines/tesoro/core/jim.h::Jim::resumeFacing",
   "notes": "if walking (+0xd5) applies the stored facing again via slot 29 | ported 31 Oct, from reading"
  },
  {
@@ -11341,7 +11341,7 @@
   "data_refs": [],
   "cluster": 13,
   "status": "ported",
-  "engine": "engines/tesoro/core/jimwalker.cpp::Jim::enterLevel",
+  "engine": "engines/tesoro/core/jim.cpp::Jim::enterLevel",
   "notes": "(level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14 | ported 31 Oct; call order and effects checked with enterlevel_driver (stub world), not against the original code"
  },
  {
@@ -11362,7 +11362,7 @@
   "data_refs": [],
   "cluster": 13,
   "status": "ported",
-  "engine": "engines/tesoro/core/jimwalker.h::Jim::sayScriptLine",
+  "engine": "engines/tesoro/core/jim.h::Jim::sayScriptLine",
   "notes": "Player_Say with a negative id derived from +0x100 (spoken subtitle line) | already present as sayScriptLine; marked 31 Oct"
  },
  {
@@ -11413,7 +11413,7 @@
   "data_refs": [],
   "cluster": 13,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
+  "engine": "engines/tesoro/core/jim.cpp::Jim",
   "notes": "slot 31: draws the speaking-mouth animation; while talking picks a random frame (RandomRange) at most every 100 ms of game time, else rests on frame 1"
  },
  {
@@ -11437,7 +11437,7 @@
   "data_refs": [],
   "cluster": 13,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
+  "engine": "engines/tesoro/core/jim.cpp::Jim",
   "notes": "slot 30: direction 3,4,2,1 -> idle animation index 0,1,2,3 via 00410130, then recomputes speech anchor point +0xa4"
  },
  {
@@ -11462,7 +11462,7 @@
   "data_refs": [],
   "cluster": 13,
   "status": "ported",
-  "engine": "engines/tesoro/core/jimwalker.h::Jim::useItem + world.cpp::World::useItemOnInterface",
+  "engine": "engines/tesoro/core/jim.h::Jim::useItem + world.cpp::World::useItemOnInterface",
   "notes": "slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27 | ported 31 Oct; the interface object's slot 27 is behind JimWorld::useItemOnInterface (not read) | forwards to ICUBOMAR use(0xff), 5 Nov; item number of ICUBOMAR not verified | 5 Nov: Jim made clickable (interactive base slots) so this is reachable"
  },
  {
@@ -21411,7 +21411,7 @@
   "data_refs": [],
   "cluster": 29,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
+  "engine": "engines/tesoro/core/jim.cpp::Jim",
   "notes": "(direction index) recomputes speech anchor and selects the bank listed in +0xb0.."
  },
  {
@@ -21717,7 +21717,7 @@
   "data_refs": [],
   "cluster": 30,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jimwalker.cpp::Jim",
+  "engine": "engines/tesoro/core/jim.cpp::Jim",
   "notes": "selects the bank from +0xac and starts animation index (param-1) with AnimPlayer"
  },
  {
