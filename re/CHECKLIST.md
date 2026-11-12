@@ -11,7 +11,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 | decompiled or later | 447 | 100% |
 | understood or later | 431 | 96% |
 | ported or later | 404 | 90% |
-| emu-compared or later | 347 | 77% |
+| emu-compared or later | 346 | 77% |
 | original-compared or later | 19 | 4% |
 | replaced by a ScummVM service | 19 | |
 
@@ -189,10 +189,10 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 15: 00409280–0040c040 (6/7 ported)
 
-- [x] `00409280` inferred_SweepRects · depth 0 · 124 lines · **emu-compared** → `engines/tesoro/core/collision.cpp::sweepRects` — (rect A, rect B, dx, dy): earliest contact of two moving rectangles as a 16.16 fraction, -1 when they never touch. Name from use in ResolveOverlap, unverified
-- [x] `00409560` inferred_Outline_Contains · depth 0 · 142 lines · **emu-compared** → `engines/tesoro/core/outline.cpp::Outline::contains` — (polygon, x, y): even-odd edge crossing test over the shape's vertex list (count at +0, vertex array pointer at +4, vertices are short pairs); returns bool. Read partially
-- [x] `00409790` inferred_Outline_Overlaps · depth 0 · 255 lines · **emu-compared** → `engines/tesoro/core/outline.cpp::Outline::overlaps` — (polygon A, polygon B): edge/vertex overlap test between two shapes; called in both orders by ResolveOverlap. Not read in detail
-- [x] `00409c10` inferred_Outline_ClipColumns · depth 0 · 113 lines · **emu-compared** → `engines/tesoro/core/outline.cpp::Outline::clipColumns` — (polygon, rect x0,y0,x1,y1, out polygon, rect of other object): produces the part of a shape inside a rectangle. Name from argument list only, unverified
+- [x] `00409280` inferred_SweepRects · depth 0 · 124 lines · **ported** → `engines/tesoro/core/collision.cpp::sweepRects` — (rect A, rect B, dx, dy): earliest contact of two moving rectangles as a 16.16 fraction, -1 when they never touch. Name from use in ResolveOverlap, unverified | 9 Nov: simplified rewrite, 16M random pairs identical to the original (re/tools/sweeprects_compare.cpp); no longer emu-compared, uses no wrap.h
+- [x] `00409560` inferred_Outline_Contains · depth 0 · 142 lines · **emu-compared** → `engines/tesoro/core/collision.cpp::Outline::contains` — (polygon, x, y): even-odd edge crossing test over the shape's vertex list (count at +0, vertex array pointer at +4, vertices are short pairs); returns bool. Read partially | 9 Nov: Outline moved into collision.cpp
+- [x] `00409790` inferred_Outline_Overlaps · depth 0 · 255 lines · **emu-compared** → `engines/tesoro/core/collision.cpp::Outline::overlaps` — (polygon A, polygon B): edge/vertex overlap test between two shapes; called in both orders by ResolveOverlap. Not read in detail | 9 Nov: Outline moved into collision.cpp
+- [x] `00409c10` inferred_Outline_ClipColumns · depth 0 · 113 lines · **emu-compared** → `engines/tesoro/core/collision.cpp::Outline::clipColumns` — (polygon, rect x0,y0,x1,y1, out polygon, rect of other object): produces the part of a shape inside a rectangle. Name from argument list only, unverified | 9 Nov: Outline moved into collision.cpp
 - [x] `00408c50` inferred_Level_ResolveOverlap · depth 1 · 256 lines · **emu-compared** — (A, B) swept test of A's collision shape against B's using segment tests (00409280, 00409c10) and polygon tests (00409560, 00409790); chooses the contact position. Contains no virtual calls | shaped path compared 4 Nov through the whole pass (3,496 passes)
 - [ ] `00409e50` inferred_Level_CreateObject · depth 14 · 1145 lines · **understood** — factory: switch on kind (record +0x18) allocating the right object class (sizes 0x6c, 0x84, 0x78, 0x6c, 0x74, 0xd8 ... kind 5 has a sub-switch on record byte +5); adds objects of kind 1 to level +0x90
 - [x] `0040c040` inferred_C0042a600_Verb1 (vtable) · depth 14 · 19 lines · **emu-compared** → `engines/tesoro/core/inventoryitem.cpp::InventoryItem` — unread; first seen in vtable 0042a600 slot 21 (kind 13 subtype 16)
