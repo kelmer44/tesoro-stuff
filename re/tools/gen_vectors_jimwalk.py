@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Vectors for Jim's walking: runs the ORIGINAL walk order (0x407600), per frame update (0x407790), collision callback (0x4079e0) and set facing
 (0x407a80) in Unicorn on a fake Jim. What they call is a hook that logs (main list, animation advance and range, the standing frame, the scale of
-the walk area, the position move, the route round the corners, the speaker update, the arrival call of the target); the world (movement the
+the walk area, the position move, the route round the waypoints, the speaker update, the arrival call of the target); the world (movement the
 animation gives, scale, answers of the hooks, whether a walk area exists) is set per step and recorded so that the port can be driven by the
 same answers. The animation state is modelled as the current bank and which banks play.
 Usage: gen_vectors_jimwalk.py (from the repository root). Output: local-media/vectors/jimwalk.txt (ignored), read by drivers/jimwalk_driver.cpp.

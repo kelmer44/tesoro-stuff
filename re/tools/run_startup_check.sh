@@ -173,7 +173,7 @@ c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_
     "$ENG/engines/tesoro/core/speaker.cpp" -o local-media/bin/speaker_driver
 local-media/bin/speaker_driver local-media/vectors/speaker.txt
 
-# Walk area: original ScaleAt 0x414740 / FindPath 0x414f10 / NextWaypoint 0x414e80 vs engine WalkArea (random polylines, corner and tie cases)
+# Walk area: original ScaleAt 0x414740 / FindPath 0x414f10 / NextWaypoint 0x414e80 vs engine WalkArea (random polylines, waypoint and tie cases)
 re/.venv/bin/python re/tools/gen_vectors_walkarea.py
 c++ -std=c++11 -O1 -fno-operator-names -fno-rtti -DHAVE_CONFIG_H -DMACOSX -DSDL_BACKEND -DPOSIX -I"$ENG" -I"$ENG/engines" -I/opt/homebrew/include re/tools/drivers/walkarea_driver.cpp \
     "$ENG/engines/tesoro/core/walkarea.cpp" -o local-media/bin/walkarea_driver
