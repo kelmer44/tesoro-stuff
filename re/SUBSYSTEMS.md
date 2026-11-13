@@ -715,22 +715,23 @@ Jim is a character like the others (he speaks through the same `Speaker` rules) 
 - **Obstacles.** A straight walk that touches the walk area's edge is turned into a route along the area's waypoints: first to the waypoint nearest him, then waypoint by waypoint, then to the real destination. The route is not a search, just "nearest waypoint to nearest waypoint".
 - **Arriving.** On arrival he stands facing the last direction, leaves the update list, and if somebody was waiting (a clickable object, or the next waypoint) it is told, which is what makes a click run the verb.
 
-**A walk from click to arrival** (the floor-edge step is 6e, not ported in the scratch engine yet):
+**A walk from click to arrival** (the whole sequence ran in the scratch engine on 13 Nov 2026, in the tavern, headless: a click inside the floor stays straight; one whose straight line leaves the floor edge is rerouted once along the waypoints; compared with the original's code only through the pieces, not seen in the original):
 
 1. **The click.** A click on bare ground with the walking pointer asks `World` to walk Jim to that point: a walk order with no target and `direct` false, which allows one reroute later.
 2. **The straight walk.** Jim moves in a straight line towards the point.
 3. **The floor edge.** There is no obstacle object. Jim's walking banks have a single point as their hit shape and the floor is collidable, so the collision pass tells Jim (`onTouched`) when that point crosses the floor's outline. An obstacle such as the tavern table is a notch cut into that outline.
 4. **One reroute.** The floor names a route object, and Jim asks that route's `WalkArea` for a route to the original destination:
-   - If no waypoint is nearer the destination than Jim is, there is no route and the straight walk carries on.
+   - If no waypoint is nearer the destination than Jim is, there is no route: he stops where he touched the edge and the target, if any, is told as if he had arrived.
    - Otherwise he walks to the waypoint nearest him, then waypoint by waypoint to the one nearest the destination, then to the real destination.
    - Each of these walks is `direct`, which switches the floor-edge check off for the rest of the trip, so he is never rerouted twice.
+   A direct walk (or one with no route) that touches the floor edge simply stops: Jim stands where he is and the order is dropped. So a click outside the floor ends at the edge, not at the click.
 5. **Arrival.** The original target (or the next waypoint) is told, and Jim stands facing the last direction. If the target was already a waypoint, he stops there and turns to stand.
 
 ```mermaid
 flowchart LR
     A["Click on bare ground"] --> B["Straight walk"]
     B -->|"point crosses the floor edge"| C{"Waypoint nearer<br/>the destination?"}
-    C -->|no| B
+    C -->|no| G["Stop at the edge,<br/>tell the target"]
     C -->|yes| D["Walk to nearest waypoint,<br/>then waypoint to waypoint<br/>(direct walks)"]
     D --> E["Walk to the real destination<br/>(direct)"]
     B -->|"reaches the point"| F["Arrive: tell the target, stand"]
