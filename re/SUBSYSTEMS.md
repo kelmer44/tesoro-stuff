@@ -98,7 +98,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Props: `ScriptedProp` (story props of kinds 12, 17 and 20).
 - Characters: `Character` (a clickable, speaking person of a level).
 - Walking: `Jim` (the player's object), `WalkArea` (shape, scale and route), `InteractiveObject` (clickable base), (Jim's walk is part of `Jim`: until 12 Nov 2026 it was a separate `JimWalker` class that only reached back into `Jim`, and the two were merged), `WalkTarget` (told on arrival).
-- Sound: `SoundDevice` (voices, plays on the ScummVM mixer), `CdAudio` (music, through ScummVM's audio CD support), `Voices` (the two together, owned by `World`).
+- Sound: `SoundDevice` (voices, plays on the ScummVM mixer), `CdAudio` (music, through ScummVM's audio CD support); `World` owns both.
 - Menu: `ChoiceMenu` (one frame of the list of choices; asks `Scripts` for pointer, label and mouse).
 - Speaking: `Speaker` (the speaking rules of a character) and `SpeakerHost` (what it asks of its owner, `Jim` or a character: the one interface left that two classes really implement).
 - Spoken lines: `SpeechTables`, `SpeechTable` (the four `*.TXT` files); `StdioText` (the reader both text formats use).
@@ -107,7 +107,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 
 **Which classes copy the original and which are only seams of the port.** The original is mostly plain functions on global tables.
 - Mirror an original structure: `ScriptBlock`/`ScriptLibrary` (the script objects and their table), `ScriptEntry` (the 24-byte command), `SpeechTable`/`SpeechTables` (the four tables and their search).
-- Port-only, no original counterpart: `SpeakerHost` (the original calls the objects directly), `SceneAdapter`, `Voices`, `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
+- Port-only, no original counterpart: `SpeakerHost` (the original calls the objects directly), `SceneAdapter`, `StdioText` (the original calls the C library directly; this repeats its reading rules on a memory buffer), and the `ScriptOp`/`ScriptMessage` names for numbers the original uses bare.
 - Only behaviour was compared with the original; the class layout was never meant to match.
 
 ---
