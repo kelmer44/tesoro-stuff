@@ -403,7 +403,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00411f20` inferred_Display_ResetRenderQueue · depth 0 · 30 lines · **emu-compared** → `engines/tesoro/core/renderqueue.cpp::RenderQueue::reset` — clears two arrays of 0x1e0 entries (stride 500 and 200 dwords) and counters
 - [ ] `00411870` inferred_Display_Ctor · depth 1 · 127 lines · **decompiled** — 0x13a4-byte display constructor performing the whole DirectDraw setup: DirectDrawCreate, cooperative level, display mode, primary and back surfaces; each failure shows a DIRECTDRAW message box and returns the half-built object. Flag +0x67c selects 5-5-5 pixel handling
 - [x] `00411f80` inferred_Display_AddSprite · depth 1 · 57 lines · **emu-compared** — (x, y, sort value, image, flag): clips a 640x480 sprite and queues it in the render rows (per-scanline lists) by image type (1 or 3 get extra passes)
-- [x] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **ported** → `World::loadSpeech (TABLA1.TBL into Display::setShadeTable)` — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set | 5-6-5 table kept as it is; the 5-5-5 conversion is not needed
+- [x] `00411c20` inferred_Display_LoadColourTable · depth 8 · 22 lines · **ported** → `World::loadGameData (TABLA1.TBL into Display::setShadeTable)` — reads 0x8000 bytes (TABLA1.TBL) into display table +0x66c, converts to 5-5-5 when flag +0x67c set | 5-6-5 table kept as it is; the 5-5-5 conversion is not needed | renamed from loadSpeech on 17 Nov 2026
 
 ### Cluster 32: 004120c0–00412e10 (6/7 ported)
 
