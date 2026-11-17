@@ -190,7 +190,7 @@ int main(int argc, char **argv) {
 				sscanf(a, "%d %d %u %d %d %d %d %d %d %d %d %d", &nowv, &world.skip, &voices, &world.subs, &world.base, &world.scale, &world.fp, &world.ret, &world.has, &world.ohas, &cam._scaledX, &cam._scaledY);
 				world.time = nowv; world.voices = voices; target.ret = world.ret;
 			}
-			else if (kind == 'Y') { int k; sscanf(a, "%d", &k); jim.sayScriptLine(world.lines[k]); }
+			else if (kind == 'Y') { int k; sscanf(a, "%d", &k); jim.sayNarrationLine(world.lines[k]); }
 			else if (kind == 'A') { int k; sscanf(a, "%d", &k); jim.sayAnswer(world.lines[k]); }
 			else if (kind == 'U') got = fmt("%u", (uint32)jim.update());
 			else if (kind == 'W') { int x, y, t, d; sscanf(a, "%d %d %d %d", &x, &y, &t, &d); got = fmt("%u", (uint32)jim.walkTo(x, y, t ? &target : nullptr, d != 0)); }

@@ -11362,8 +11362,8 @@
   "data_refs": [],
   "cluster": 13,
   "status": "ported",
-  "engine": "engines/tesoro/core/jim.h::Jim::sayScriptLine",
-  "notes": "Player_Say with a negative id derived from +0x100 (spoken subtitle line) | already present as sayScriptLine; marked 31 Oct"
+  "engine": "engines/tesoro/core/jim.h::Jim::sayNarrationLine",
+  "notes": "Player_Say with a negative id derived from +0x100 (spoken subtitle line) | already present as sayScriptLine; marked 31 Oct | renamed from sayScriptLine on 16 Nov 2026: Jim's narration, mouth shut, subtitle centred"
  },
  {
   "addr": "00407d00",

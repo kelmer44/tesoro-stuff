@@ -19,7 +19,7 @@ static std::string fmt(const char *f, ...) {
 	char buf[256]; va_list ap; va_start(ap, f); vsnprintf(buf, sizeof buf, f, ap); va_end(ap); return buf;
 }
 
-struct World : SpeakerHost {
+struct World : SpeakingObject {
 	Speaker *self = nullptr;
 	int objectUpdate() override { return self->update(); }
 	std::vector<std::string> log;
