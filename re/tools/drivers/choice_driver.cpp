@@ -1,4 +1,4 @@
-// Compares the engine's ChoiceMenu (with TextQueue underneath) with the original Dialogue_ChoiceMenu and text layout (see re/tools/gen_vectors_choice.py):
+// Compares the engine's DialogueChoiceMenu (with TextQueue underneath) with the original Dialogue_ChoiceMenu and text layout (see re/tools/gen_vectors_choice.py):
 // every run must return the same choice, make the same pointer and label calls and leave the same text lines in the same places.
 // Build/run: re/tools/run_startup_check.sh
 #define FORBIDDEN_SYMBOL_ALLOW_ALL
@@ -101,7 +101,7 @@ int main(int argc, char **argv) {
 			in >> host.mx >> host.my; int b; in >> b; host.button = b != 0;
 			host.log.clear(); wantLines.clear(); wantLog.clear();
 			std::vector<const SpeechTable::Line *> ptrs; for (auto &l : lines) ptrs.push_back(&l);
-			got = ChoiceMenu::run(host, *screen, ptrs.data(), ptrs.size());
+			got = DialogueChoiceMenu::run(host, *screen, ptrs.data(), ptrs.size());
 			pending = true;
 		} else if (op == "r") {
 			in >> wantResult;

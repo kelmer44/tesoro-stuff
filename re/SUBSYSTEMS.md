@@ -99,7 +99,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Characters: `Character` (a clickable, speaking person of a level).
 - Walking: `Jim` (the player's object), `WalkArea` (shape, scale and route), `InteractiveObject` (clickable base), (Jim's walk is part of `Jim`: until 12 Nov 2026 it was a separate `JimWalker` class that only reached back into `Jim`, and the two were merged), `WalkTarget` (told on arrival).
 - Sound: `SoundDevice` (voices, plays on the ScummVM mixer), `CdAudio` (music, through ScummVM's audio CD support); `World` owns both.
-- Menu: `ChoiceMenu` (one frame of the list of choices; asks `Scripts` for pointer, label and mouse).
+- Menu: `DialogueChoiceMenu` (one frame of the list of choices; asks `Scripts` for pointer, label and mouse).
 - Speaking: `Speaker` (the speaking rules of a character) and `SpeakingObject` (what it asks of its owner, `Jim` or a character: the one interface left that two classes really implement).
 - Spoken lines: `SpeechTables`, `SpeechTable` (the four `*.TXT` files); `StdioText` (the reader both text formats use).
 - Scene routines: `SceneRoutines` (the native routines behind the `DO` lines of the numbered blocks) and `SceneAdapter` (their view of the game for the block that is running).
@@ -628,7 +628,7 @@ Found while reading: the thing the original calls "Jim's input" is the **main cu
 outside a menu is skipped, not run.
 
 What the **check** does not cover: the real hosts. `World` now answers them for real (see The world class), so lines are shown and said and
-characters walk, but that part is the engine's own decision, not compared with the original. The `DO` routines are all ported and compared (see above), and the choice menu is ported (`ChoiceMenu`, compared on its own).
+characters walk, but that part is the engine's own decision, not compared with the original. The `DO` routines are all ported and compared (see above), and the choice menu is ported (`DialogueChoiceMenu`, compared on its own).
 
 ### Speaking, sound and the choice menu 🟡 (text, speaking rules, sound device, music and choice menu ✅ compared with the original's code; the voices and the music were never heard)
 What a spoken line does once a script asks for it (read from the original; ported and compared as listed further down):
@@ -657,7 +657,7 @@ there is no fallback). Then DirectSound is created with a 22 kHz 16-bit stereo m
 releases the three voice buffers or DirectSound itself (the program ends right after). ScummVM's mixer and audio-CD manager stand in for all of it; the track count and lengths are not used by the engine.
 
 Also ported: **the sound device** (`SoundDevice`: three voice records, the 44-byte WAV check, ids, the active list that is tidied once a frame; compared with the original on 800 sessions, with the mixer standing in for DirectSound) and the **music** (`CdAudio`: one track at a time, looping). `MixerVoiceBackend` and `ScummCdBackend` connect them to ScummVM. Not checked: how long a voice lasts exactly (the mixer decides), and which CD track number means which file.
-Also ported: **the choice menu** (`ChoiceMenu`: lays the choices out and bottom-aligns them, tracks the one under the mouse, answers a click; 9,152 runs identical to the original with its own text layout).
+Also ported: **the choice menu** (`DialogueChoiceMenu`: lays the choices out and bottom-aligns them, tracks the one under the mouse, answers a click; 9,152 runs identical to the original with its own text layout).
 `Scripts` (formerly `ScriptHost`) now lives in `scripts.h`. Still to do: moving Jim's own subtitle onto the same placement code as the characters'.
 
 ### Interactive objects (things you click) ✅ (the base compared on 500 sessions; the kinds on top are in the sections below)

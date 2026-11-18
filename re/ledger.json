@@ -11385,8 +11385,8 @@
   "data_refs": [],
   "cluster": 13,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/scriptrunner.cpp::ChoiceMenu::run",
-  "notes": "lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled"
+  "engine": "engines/tesoro/core/scriptrunner.cpp::DialogueChoiceMenu::run",
+  "notes": "lays out N option text lines from the phrase records, picks the one the mouse y falls in, a left click removes the entry from the main list; decompile is partly garbled | class renamed from ChoiceMenu on 17 Nov 2026"
  },
  {
   "addr": "00407f30",
