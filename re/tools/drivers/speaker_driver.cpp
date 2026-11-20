@@ -40,7 +40,7 @@ struct World : SpeakingObject {
 	void removeFromMainList() override { log.push_back("remove"); }
 	void pauseAnimation() override { log.push_back("pause"); }
 	void stashAnimation() override { log.push_back("stash"); }
-	void setPose(uint32 p) override { log.push_back(fmt("pose %u", p)); }
+	void prepareToSpeak(uint32 p) override { log.push_back(fmt("pose %u", p)); }
 	void queueFrame() override { log.push_back("queue"); }
 	void setFrameRange(uint16 first, int32 last) override { log.push_back(fmt("range %u %d 0 0", first, last)); }
 	uint32 frameCount() override { return count; }

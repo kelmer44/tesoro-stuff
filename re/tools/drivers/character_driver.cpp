@@ -219,7 +219,7 @@ int main(int argc, char **argv) {
 			else if (ot[0] == "X") obj->clearSpeech();
 			else if (ot[0] == "T") obj->speaker().talkAnimate(num(ot[1]));
 			else if (ot[0] == "F") obj->face((int)num(ot[1]));
-			else if (ot[0] == "Q") obj->setPose((uint32)num(ot[1]));
+			else if (ot[0] == "Q") obj->prepareToSpeak((uint32)num(ot[1]));
 			else if (ot[0] == "W") obj->startWalk();
 			else if (ot[0] == "B") obj->updateBounds(world.time);
 			// state: flags pending answered facing ax ay verb hover v0..v6 shown heldBit held player(10) then the character's own fields
