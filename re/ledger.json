@@ -22710,7 +22710,7 @@
   "cluster": 34,
   "status": "replaced",
   "engine": "engines/tesoro/tesoro.h::TesoroEngine::randomBetween (ScummVM Common::RandomSource)",
-  "notes": "second time-driven random function: fraction = (t&0x78) | ((t>>7)&7) | ((t&7)<<7), scaled like RandomRange | 6 Nov: replaced by ScummVM's RandomSource on codex/remove-hosts; core/random.cpp is deleted"
+  "notes": "second time-driven random function: fraction = (t&0x78) | ((t>>7)&7) | ((t&7)<<7), scaled like RandomRange | 6 Nov: replaced by ScummVM's RandomSource on codex/remove-hosts; core/random.cpp is deleted | the port has one random function: callers of this one use World::randomNumber too (randomAlt merged into it on 20 Nov 2026)"
  },
  {
   "addr": "00413b00",
