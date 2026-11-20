@@ -95,7 +95,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Save and load screen: `MenuButton` (kind 22), `SlotLabel` (23).
 - Inventory strip: `InventoryStrip` (kind 11).
 - Groups, shadows and wanderers: `ItemGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14), `ClickCatcher` (15), `PathSprite` (16).
-- Props: `ScriptedProp` (story props of kinds 12, 17 and 20).
+- Props: `StoryProp` (story props of kinds 12, 17 and 20).
 - Characters: `Character` (a clickable, speaking person of a level).
 - Walking: `Jim` (the player's object), `WalkArea` (shape, scale and route), `InteractiveObject` (clickable base), (Jim's walk is part of `Jim`: until 12 Nov 2026 it was a separate `JimWalker` class that only reached back into `Jim`, and the two were merged), `WalkTarget` (told on arrival).
 - Sound: `SoundDevice` (voices, plays on the ScummVM mixer), `CdAudio` (music, through ScummVM's audio CD support); `World` owns both.
@@ -248,7 +248,7 @@ that answers all of them for real, from the game's actual state:
 - **Levels.** The table of the 47 levels in the game's own order (the numbers scripts and objects use). A level is read from the archive the first
   time something asks for it (the original reads them all at start-up; only the load time differs), with its pictures left unloaded until Jim
   enters. Its objects are built by the level reader: the plain ones as before, and now also the **characters (kind 5), exits (6), plain clickable
-  things (9), scripted props (12, 17, 20) and items (13)**, each handed `World` as its host. Every kind of the level files is built now (see the lists under the level's objects).
+  things (9), story props (12, 17, 20) and items (13)**, each handed `World` as its host. Every kind of the level files is built now (see the lists under the level's objects).
 - **Spoken lines.** The four text files (`OBJETOS`, `ANIMS`, `CONVERS`, `ICONS`) are read from the archive and searched in the game's order; a
   line's voice is its sound file in the archive. Voices play on ScummVM's mixer through the ported sound device.
 - **Jim.** Made on first use from his nine animation files and the line "JIM"; `World` puts him into a level (his first room), answers his walking
@@ -440,7 +440,7 @@ flowchart LR
 ```
 
 *Built by the level:* the plain animated object (kind 0), the camera frame (1), the sprite (3), the floor (7), the route (8), the pointer (10) and the menu item (25), as `Object`, `CameraFrame`, `SpriteObject`, `WalkFloor`, `PathObject`, `Cursor`, `MenuItem`. Each draws through `Display`; the object's hit rectangle and its movement feed the collision pass.
-*Built when `World` reads a level:* the characters (5), exits (6), the plain clickable (9), the scripted props (12, 17, 20) and items (13) (see their sections); Jim is made by `World` on first use.
+*Built when `World` reads a level:* the characters (5), exits (6), the plain clickable (9), the story props (12, 17, 20) and items (13) (see their sections); Jim is made by `World` on first use.
 *Also built by `World`:* the groups (2), shadows (4), strip (11), depth zones (14), click catchers (15), wanderers (16), save menu objects (22, 23) note objects (24), map places (19) and board columns (21).
 *Not built:* kind 18 only: the original's factory has no case for it, so a record of that kind builds nothing; no shipped level contains one.
 
@@ -669,7 +669,7 @@ Most clickable things in a level share one base, `InteractiveObject`. It is a sc
 - **Hover label.** The label shows the object's hover-name line if the level gives one, otherwise its own name spelled from its key.
 - **What it asks of the game** is one interface, `InteractiveHost` (Jim, the pointer, the main list, the carried item, the phrases). The characters, props, items and exits that override verbs are ported on top of it (see their sections).
 Checked against the original on 500 random sessions (constructor, click, update, arrival, hover and the answers; every call to the rest of the game identical). One thing found: the click and the arrival both put the carried item back before asking the object to use it, so an item's own reply table is only reached when something calls the use directly.
-- **Kind 9 is the base itself**: the level factory builds it with no state and no overrides, and only stores the subtype byte (the second data byte) in the object. So the plain clickable props are already ported. The kinds that override verbs on top of the same base are 12, 17 and 20 (scripted props, ported, see below), 13 (items you carry, ported, see below), 6 (exits and doors, ported, see below) and the kind 5 characters (`Character`, ported, see below).
+- **Kind 9 is the base itself**: the level factory builds it with no state and no overrides, and only stores the subtype byte (the second data byte) in the object. So the plain clickable props are already ported. The kinds that override verbs on top of the same base are 12, 17 and 20 (story props, ported, see below), 13 (items you carry, ported, see below), 6 (exits and doors, ported, see below) and the kind 5 characters (`Character`, ported, see below).
 
 ### Characters (the people of a level) ✅ (the base kind and the story subtypes compared with the original's code; the scripts they start are the Scripts section's)
 A person of a level is a clickable object (`InteractiveObject`) that also speaks (`Speaker`): `Character`. What the original does when it builds one:
@@ -682,8 +682,8 @@ A person of a level is a clickable object (`InteractiveObject`) that also speaks
 - **What it asks of the game:** `CharacterHost` gains `findObject` (an object by name in one of the game's levels) and `startScript`.
 Checked against the original on 600 random sessions (the original builds the object from synthetic animation files with tags, then say, update, draw, face, pose, click, arrival and hover all run for real; every call to the rest of the game, every result and every field identical; 27 of 29 deliberate bugs caught, the other two have no visible effect because a character's animation movement is cleared every frame). Subtitle placement is checked too (692 text calls identical). The story subtypes are checked on 600 more sessions (28,095 calls, every state byte of the character and of the objects it reads); the scripts they start are not run, only that the right ones start with the right state.
 
-### Scripted props (the things of the story) ✅ (compared on 1,500 sessions; the scripts they start are the Scripts section's)
-Three kinds of the level files (12, 17 and 20; 12, 17 and 30 subtypes) are clickable props whose verbs run the game's story scripts: `ScriptedProp`, on the same clickable base. Each subtype replaces a few of the verbs (look, talk, pick up, the other verbs) and the use of items; everything it does not replace is the base's stock answer.
+### Story props (the things of the story) ✅ (compared on 1,500 sessions; the scripts they start are the Scripts section's)
+Three kinds of the level files (12, 17 and 20; 12, 17 and 30 subtypes) are clickable props whose verbs run the game's story scripts: `StoryProp`, on the same clickable base. Each subtype replaces a few of the verbs (look, talk, pick up, the other verbs) and the use of items; everything it does not replace is the base's stock answer.
 - **Set the state, start a script.** Most replacements first set one or two bytes of the prop's own saved state from the world (is an item of the inventory on screen, a byte of another object in some level, Jim's story step, a random number, which level Jim is in), then start a script block (named like `FLIBRO`) at a label (`mirar`, `coger`, `hablar` or a name of the story), giving it the prop's state, another object's state, a one-byte temporary, or nothing.
 - **Picking up** shows the item in the interface (it is an object of the interface level that is switched on) and hides the prop. A few props instead switch some other object off, or move the story step on, or run another object's verb (the beach exit).
 - **Items.** The item numbers the subtypes react to are fixed per subtype; any other item gets the base's reply, except where the original does nothing at all (a few props ignore unknown items entirely).
