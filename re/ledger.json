@@ -16441,8 +16441,8 @@
   "data_refs": [],
   "cluster": 26,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/menuitem.cpp::MenuItem::rightClick",
-  "notes": "MidBase slot 15: calls slot 14 with its argument"
+  "engine": "engines/tesoro/core/menuitem.cpp::MenuItem::doubleClick",
+  "notes": "MidBase slot 15: calls slot 14 with its argument | renamed from rightClick on 20 Nov 2026: the pointer calls it on a double click of the main button"
  },
  {
   "addr": "0040f050",
@@ -24146,7 +24146,7 @@
   "cluster": 38,
   "status": "emu-compared",
   "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
-  "notes": "unread; first seen in vtable 0042aca0 slot 28 (kind 6 subtype 3) | world side of the frame changes (showLevelFrames) ported 5 Nov from reading; not in the driver"
+  "notes": "unread; first seen in vtable 0042aca0 slot 28 (kind 6 subtype 3) | world side of the frame changes (showLevelFrames) ported 5 Nov from reading; not in the driver | 20 Nov 2026: World::showLevelFrames is now World::setWalkAreaFrames(level, WalkPart, first, last) and showFrame is playFrames"
  },
  {
   "addr": "00416170",

@@ -332,7 +332,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 
 ### Cluster 26: 0040f040–0040f270 (7/7 ported)
 
-- [x] `0040f040` inferred_Obj_Slot15_ForwardToSlot14 (vtable) · depth 0 · 9 lines · **emu-compared** → `engines/tesoro/core/menuitem.cpp::MenuItem::rightClick` — MidBase slot 15: calls slot 14 with its argument
+- [x] `0040f040` inferred_Obj_Slot15_ForwardToSlot14 (vtable) · depth 0 · 9 lines · **emu-compared** → `engines/tesoro/core/menuitem.cpp::MenuItem::doubleClick` — MidBase slot 15: calls slot 14 with its argument | renamed from rightClick on 20 Nov 2026: the pointer calls it on a double click of the main button
 - [x] `0040f1a0` inferred_Obj_OnClick (vtable) · depth 0 · 18 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 19: interrupts the player if busy, copies the clicked verb for the player object itself, sets the player's target to the object's approach point (+0x94,+0x98) via player slot 32 (walk), then player slot 4
 - [x] `0040f270` inferred_Obj_Slot27_Stub (vtable) · depth 0 · 7 lines · **emu-compared** — MidBase slot 27 default (ret 4, returns 0)
 - [x] `0040f050` inferred_Obj_ShowHoverText (vtable) · depth 1 · 15 lines · **emu-compared** → `engines/tesoro/core/interactive.cpp` — MidBase slot 17: puts the object's phrase text (+0x6c record, then the 64-bit name key) into the cursor's hover text via Cursor_SetText
@@ -493,7 +493,7 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 - [x] `00415e90` inferred_C0042a050_Verb1 (vtable) · depth 14 · 24 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a050 slot 21 (kind 17 subtype 0)
 - [x] `00415f10` inferred_C0042a050_Verb3 (vtable) · depth 14 · 24 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 0042a050 slot 22 (kind 17 subtype 0)
 - [x] `00415f90` inferred_C0042aca0_Verb0 (vtable) · depth 14 · 32 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042aca0 slot 20 (kind 6 subtype 3)
-- [x] `00416030` inferred_C0042aca0_Slot28 (vtable) · depth 14 · 42 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042aca0 slot 28 (kind 6 subtype 3) | world side of the frame changes (showLevelFrames) ported 5 Nov from reading; not in the driver
+- [x] `00416030` inferred_C0042aca0_Slot28 (vtable) · depth 14 · 42 lines · **emu-compared** → `engines/tesoro/core/exitdoor.cpp::ExitDoor` — unread; first seen in vtable 0042aca0 slot 28 (kind 6 subtype 3) | world side of the frame changes (showLevelFrames) ported 5 Nov from reading; not in the driver | 20 Nov 2026: World::showLevelFrames is now World::setWalkAreaFrames(level, WalkPart, first, last) and showFrame is playFrames
 - [x] `00416170` inferred_C00429950_Verb4 (vtable) · depth 14 · 30 lines · **emu-compared** → `engines/tesoro/core/scriptedprop.cpp::ScriptedProp` — unread; first seen in vtable 00429950 slot 24 (kind 17 subtype 16)
 
 ### Cluster 39: 00416300–004169a0 (12/12 ported)
