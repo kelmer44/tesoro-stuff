@@ -31,13 +31,13 @@ Counted from `re/ledger.json` (the generated `CHECKLIST.md` has the per-function
 - **Every object kind of the level files is now built** by the engine (see the table of kinds): 0 to 17 and 19 to 25. Kind 18 has no case in the original's factory, so a record of that kind builds nothing, and no shipped level has one (counted over all levels, 5 Nov).
   The engine's `Level` alone still builds only 0, 1, 3, 7, 8, 10 and 25 (the menus load whole with it); `World` supplies the rest.
 - **The scene routines** behind the numbered script blocks (the `DO` lines): the engine has all of them. The two board-game routines (types 8 and 14) and the other seventeen are ported *and compared* with the original by emulation (5 Nov: 400 runs of the original routines from random starts; the port made the same calls in the same order and left the same state). Reading them first found one real defect, now fixed: in the CONV35 scene (type 12) the harbour guard ORZOGUEI was switched on and off the wrong way round. They live in their own class, `SceneRoutines`, which asks the game through `SceneAdapter` (the block's view of `World`).
-- **Nothing known still warns when reached:** turning an inventory page, scrolling the interface out, the pixel-accurate collision and the step after a picture reload are all ported (see Outlines and the picture-reload step).
+- **Nothing known still warns when reached:** opening and closing the inventory, closing the saved-game screen, the pixel-accurate collision and the step after a picture reload are all ported (see Outlines and the picture-reload step).
   The subtitles option is the original's own on/off switch (one byte of Jim's progress, kept in saves since 5 Nov). Skipping a line follows the original: Escape or the right button, when it goes up (the left button does not skip); since 5 Nov, read from the original's speaker step, not run against it with real input.
-- **Played to the end (5 Nov):** Gabriel finished the game in the engine under ScummVM and found it fine apart from a handful of bugs, all fixed (by their commit titles: Jim moving during conversations, an error when loading a game, the inventory strip showing in the main menu, certain items that could not be looked at, the save/load menu staying open after a load, Jim not selectable by the pointer, and fixes to Jim's walking). Every one of them is in the engine's own wiring (the `World` host, the menus, the pointer), none in a function the checks against the original cover: the comparisons found their own, different bugs (the save bytes, the walk overflow, the skip key), and playing found these. A complete playthrough is evidence that the story can be finished, not that every scene looks and behaves like the original's.
+- **Played to the end (5 Nov):** Gabriel finished the game in the engine under ScummVM and found it fine apart from a handful of bugs, all fixed (by their commit titles: Jim moving during conversations, an error when loading a game, the action strip showing in the main menu, certain items that could not be looked at, the save/load menu staying open after a load, Jim not selectable by the pointer, and fixes to Jim's walking). Every one of them is in the engine's own wiring (the `World` host, the menus, the pointer), none in a function the checks against the original cover: the comparisons found their own, different bugs (the save bytes, the walk overflow, the skip key), and playing found these. A complete playthrough is evidence that the story can be finished, not that every scene looks and behaves like the original's.
 - **The playthrough fixes checked against the original (5 Nov):** each fix Gabriel made while playing was compared with what the original's code does.
   - *Script order (new scripts go in front of equal priorities):* **matches**: the original starts scripts with the "in front" insert at priority 0x1e.
   - *Item scripts start in Jim's level:* **matches**: the original's nine item verb handlers pass Jim's level. The comparison could not see this (it ignored the level); it now records it.
-  - *The inventory strip is unavailable in the menus and on the board:* **matches**: the original tests Jim's level against the board and the two menus; the engine, which does not put Jim in the menus, tests its own place.
+  - *The action strip is unavailable in the menus and on the board:* **matches**: the original tests Jim's level against the board and the two menus; the engine, which does not put Jim in the menus, tests its own place.
   - *Loading from the save screen slides the interface out:* **matches**: the original's load ends with that very call, right after turning Jim to his saved facing.
   - *Load no longer puts the level in the main list twice:* **matches**: Jim's entry into the level does the insert in the original, and the old menu level leaves the list.
   - *Hover names are white:* **matches**: the original calls the label with the colour 0xffff, and clearing leaves the colour alone.
@@ -93,8 +93,8 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - Notes and map places: `NoteObject` (kind 24), `MapPlace` (kind 19).
 - The pointer's frame step: `Cursor` (Escape, the interface pages, the menu opening); keys: Escape's events in the engine.
 - Save and load screen: `MenuButton` (kind 22), `SlotLabel` (23).
-- Inventory strip: `InventoryStrip` (kind 11).
-- Groups, shadows and wanderers: `ItemGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14), `ClickCatcher` (15), `PathSprite` (16).
+- Action strip (the verbs): `ActionStrip` (kind 11).
+- Groups, shadows and wanderers: `ObjectGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14), `ClickCatcher` (15), `PathSprite` (16).
 - Props: `StoryProp` (story props of kinds 12, 17 and 20).
 - Characters: `Character` (a clickable, speaking person of a level).
 - Walking: `Jim` (the player's object), `WalkArea` (shape, scale and route), `InteractiveObject` (clickable base), (Jim's walk is part of `Jim`: until 12 Nov 2026 it was a separate `JimWalker` class that only reached back into `Jim`, and the two were merged), `WalkTarget` (told on arrival).
@@ -256,7 +256,7 @@ that answers all of them for real, from the game's actual state:
   on, the byte beside it, the "has entered" flag).
 - **The pointer and what it carries.** The carried item, the pointer's picture (item number plus seven while carried), the hover label, switching the
   pointer on and off while Jim answers. Hover names are shown in white; the label's colour was lost on the way from the object to the label until 5 Nov.
-- **Where Jim is in the menus.** The original puts Jim in the menu level, and several checks ask "is Jim in a menu?" (the strip, the save button). The engine does not put Jim there, so those checks go by the engine's own menu state (`place()`); the strip is off in both menus and on the board level. Any other check ported from "Jim's level is a menu" needs the same care.
+- **Where Jim is in the menus.** The original puts Jim in the menu level, and several checks ask "is Jim in a menu?" (the action strip, the save button). The engine does not put Jim there, so those checks go by the engine's own menu state (`place()`); the action strip is off in both menus and on the board level. Any other check ported from "Jim's level is a menu" needs the same care.
 - **Where the game can be saved.** The original's save button is on only in levels 0 to 22 (not on the board game); the lab maze (23 to 43) and the closing scenes cannot be saved. ScummVM's own save, load and autosave follow that rule in the engine (loading stays open in the menus). The original's own menu still lets you load from inside the lab; ScummVM's load shortcut does not (a deliberate stricter choice, 5 Nov).
 - **The main list.** The one list of things that get a turn every frame (speakers waiting for their line to end, clicks waiting for Jim): inserted by
   priority, removed by object.
@@ -384,13 +384,13 @@ main pointer's animation frame for its hit rectangle, so hovering works in the l
 a pointer over "Nueva partida" or "Cargar partida" touches that item and starts hovering, and off the items it touches nothing.
 
 **The pointer's frame step ✅ (5 November 2026; compared with the original).** The interface is a strip of screens that slides sideways:
-page 0 is the strip of carried things at the top, a page beyond the right edge holds the item pictures, and the save screen
+page 0 is the action strip at the top, a page beyond the right edge is the inventory (the parchment, which covers much of the screen), and the saved-game screen
 waits to the left. **Escape** (the first of the five keys the game's keyboard watches: Escape, Return, Space, S, L) and the
 right mouse button turn the pages: in the main menu Escape fades out and empties the main list, which ends the game; in the
 new-game menu it goes back to the main menu; in the game it opens the save screen (not on the board game's level): the pointer
 lets go of what it carries, the save button is switched on in the first 23 levels, the subtitle switch shows its setting, a small
 picture of the scene (every third pixel of every third row, 213x160, taken without the pointer) is kept, and the interface slides to the
-save screen. Escape again slides it back; the right button on page 0 slides the strip out. The class is `Cursor` with `CursorHost`
+save screen. Escape again slides it back (and fades out); the right button on page 0 shows the inventory, and the right button again closes it. The class is `Cursor` with `CursorHost`
 (answered by `World`, with the keys kept by the engine). Compared with the original code on 500 sessions (every page, key state,
 right-button value and place; the pointer's and the companion's places, the strip, its square and pictures, the held item, the
 label, the sample's checksum): identical; all but one of 51 deliberate mistakes found (the other changes nothing). Since then the
@@ -692,7 +692,7 @@ Three kinds of the level files (12, 17 and 20; 12, 17 and 30 subtypes) are click
 Checked against the original on 1,500 random sessions covering all 59 subtypes: every call to the rest of the game, every result and every state byte of the prop, Jim and the objects it reads identical; 38 deliberate bugs caught (three have no visible effect). Not checked: how much a lookup that finds nothing matters (the original would crash; the port warns). The scripts they start are run by `ScriptRunner`; the items (13) and doors (6) have their own sections.
 
 ### Items you carry (the inventory) ✅ (compared on 1,400 sessions; the interface page and the pointer around them are in the pointer section)
-Kind 13 of the level files are the objects of the inventory page of the interface: `InventoryItem`, on the clickable base. The data's second byte is the item's number and also picks the subtype (13 items have story behaviour, the rest are plain).
+Kind 13 of the level files are the objects of the inventory (the parchment) of the interface: `InventoryItem`, on the clickable base. The data's second byte is the item's number and also picks the subtype (13 items have story behaviour, the rest are plain).
 - **Click with a verb.** If the item has a line for that verb Jim says it. Otherwise verb 0 picks the item up; any other verb first asks the item's own handler (looking at the recipe book, opening the pot...), and if that does nothing, picks it up.
 - **Picking up** makes the pointer show the item's picture (its number plus seven) and hides the item on its page (when the page is scrolled to the right); putting it back does the opposite.
 - **An item used on another** looks in this item's list of combinations for the one the pointer carries, then in the carried item's list for this one (each combination names an object of the interface and what Jim says about the pair); the interface then turns a page. If neither has one, the items' own use handlers get a go (some subtypes turn one item into another, switching interface objects on and off, or start a script), and failing that Jim says "No, no tengo ganas.".
@@ -796,13 +796,13 @@ choosing one of the anchor's paths at random. The distance it has moved is read 
 changes along the path from a table of scales. One oddity of the original: the wait is compared with the clock minus a thousandth of
 the start time, which looks like a slip and leaves only a short moment each time in which it can set off.
 
-### The inventory strip (kind 11) 🟡 (ported and ✅ checked against the original; the stand-alone constructor and the drawing are not)
+### The action strip (kind 11) 🟡 (ported and ✅ checked against the original; the stand-alone constructor and the drawing are not)
 
-The strip of carried things at the top of the screen is one object of the interface level (kind 11) together with four
-named neighbours: `ICONOS` (the row of item pictures), `CUADRADO` (the highlight square), `CURSOR` and `TEXTOICONOS` (where the item's
+The action strip at the top of the screen (the verbs) is one object of the interface level (kind 11) together with four
+named neighbours: `ICONOS` (the row of verb pictures), `CUADRADO` (the highlight square), `CURSOR` and `TEXTOICONOS` (where the item's
 name goes). While the pointer is away the pictures sit above the screen. When the pointer comes over the strip they slide down by 85
-pixels (not on the board game's screen and two other levels); the item whose picture is within 35 pixels of the pointer's
-position lights up and the one left behind is dimmed. Moving away sends them back up. Clicking an item makes the pointer take its
+pixels (not on the board game's screen and two other levels); the verb whose picture is within 35 pixels of the pointer's
+position lights up and the one left behind is dimmed. Moving away sends them back up. Clicking a verb makes the pointer take its
 picture (and puts back what the pointer carried before). Kind 4 occurs in none of the shipped levels; kind 16 only in the tavern (three of them). The wanderer's waiting, setting off, walking
 along the path, resizing and arriving were run through the original code and the port together on 200 invented pairs of animation
 files (over 200,000 frames, every random choice replayed): the results are identical, and eleven deliberate mistakes in the port were all
@@ -843,7 +843,7 @@ position, flags and the small block of story bytes); the loader and the level lo
 ### Save/load menu objects (kinds 22 and 23) ✅ (the two objects compared with the original's code; what the buttons do with files goes through ScummVM's saves, see Saved games)
 
 Two kinds of the interface level make up the save/load screen. Kind 22 is a **button**; its first data byte says what it does:
-previous or next saved game, load, save, new-game fade, scroll the strip away, or the subtitles on/off switch. The slot buttons
+previous or next saved game, load, save, new-game fade, close the saved-game screen, or the subtitles on/off switch. The slot buttons
 show a small saved picture of the selected game; a save file is named `isla` plus a four-digit number. Loading restores Jim,
 then every level, then the interface level, and puts Jim back into his level. Kind 23 is the **caption** under the picture: it
 shows "POSICION VACIA" when no game is selected, otherwise the slot number and the save's date. The file layout is now confirmed against a real save (see Saved games); a few return values of the button click are still open (see its contract). The objects are `MenuButton` and `SlotLabel` (with `MenuButtonHost` and `SlotLabelHost`, answered by `World`). The subtitles switch, the new-game button (fade and end of the frame) and the hover pictures work and were run through the original code and the port together (1,345 button operations and 818 caption drawings identical, 21 deliberate mistakes found); choosing, loading and saving go through ScummVM's saves (not compared with the original); scrolling the interface out is ported (the pointer section).

@@ -8576,7 +8576,7 @@
   "data_refs": [],
   "cluster": 5,
   "status": "emu-compared",
-  "engine": "core/Cursor::inventoryPageRight",
+  "engine": "core/Cursor::showInventory",
   "notes": "shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge | contract read 30 Oct; port blocked on global objects | compared inside Cursor_Update"
  },
  {
@@ -8604,7 +8604,7 @@
   "data_refs": [],
   "cluster": 5,
   "status": "emu-compared",
-  "engine": "core/Cursor::openMenu + World::captureThumbnail",
+  "engine": "core/Cursor::openSaveLoadMenu + World::captureThumbnail",
   "notes": "renders the scene without the cursor into the display buffer and copies a 213x160 sample (every third pixel of every third row) to +0x128: a save-game thumbnail (hypothesis from the sampling pattern) | compared inside Cursor_Update; the scene sample is Cursor::sampleScene (CRC compared)"
  },
  {
@@ -8627,7 +8627,7 @@
   "data_refs": [],
   "cluster": 5,
   "status": "emu-compared",
-  "engine": "core/Cursor::inventoryPageLeft",
+  "engine": "core/Cursor::hideInventory",
   "notes": "shifts the interface level camera and its objects by -0x280 (one screen) | contract read 30 Oct; port blocked on global objects | the function is never called; its sequence inlined in Cursor_Update is compared"
  },
  {
@@ -8650,7 +8650,7 @@
   "data_refs": [],
   "cluster": 6,
   "status": "emu-compared",
-  "engine": "core/Cursor::inventoryScrollOut",
+  "engine": "core/Cursor::closeSaveLoadMenu",
   "notes": "moves the interface camera +0x285 and runs the display effect (4, 100) | contract read 30 Oct; port blocked on global objects | the function is never called; its sequence inlined in Cursor_Update is compared"
  },
  {
@@ -23047,7 +23047,7 @@
   "data_refs": [],
   "cluster": 35,
   "status": "emu-compared",
-  "engine": "core/ItemGroup::init",
+  "engine": "core/ObjectGroup::init",
   "notes": "0x78 bytes, vtable 0042bcb0, extends Kind00; builds a list of up to N children resolved by name key from the record"
  },
  {
@@ -23073,7 +23073,7 @@
   "data_refs": [],
   "cluster": 35,
   "status": "emu-compared",
-  "engine": "core/ItemGroup::onAttach",
+  "engine": "core/ObjectGroup::onAttach",
   "notes": "unread; first seen in vtable 0042bcb0 slot 0"
  },
  {
@@ -23444,7 +23444,7 @@
   "data_refs": [],
   "cluster": 36,
   "status": "ported",
-  "engine": "core/InventoryStrip::init",
+  "engine": "core/ActionStrip::init",
   "notes": "0xbc bytes, vtable 0042be40, extends MidBase"
  },
  {
@@ -23470,7 +23470,7 @@
   "data_refs": [],
   "cluster": 36,
   "status": "emu-compared",
-  "engine": "core/InventoryStrip::onAttach",
+  "engine": "core/ActionStrip::onAttach",
   "notes": "unread; first seen in vtable 0042be40 slot 0"
  },
  {
@@ -23495,7 +23495,7 @@
   "data_refs": [],
   "cluster": 36,
   "status": "emu-compared",
-  "engine": "core/InventoryStrip::acceptsPointer",
+  "engine": "core/ActionStrip::acceptsPointer",
   "notes": "unread; first seen in vtable 0042be40 slot 16"
  },
  {
@@ -23519,7 +23519,7 @@
   "data_refs": [],
   "cluster": 36,
   "status": "emu-compared",
-  "engine": "core/InventoryStrip::setVerbAndClick",
+  "engine": "core/ActionStrip::setVerbAndClick",
   "notes": "unread; first seen in vtable 0042be40 slot 14"
  },
  {
@@ -23543,7 +23543,7 @@
   "data_refs": [],
   "cluster": 37,
   "status": "emu-compared",
-  "engine": "core/InventoryStrip::showHoverText",
+  "engine": "core/ActionStrip::showHoverText",
   "notes": "unread; first seen in vtable 0042be40 slot 17"
  },
  {
@@ -23567,7 +23567,7 @@
   "data_refs": [],
   "cluster": 37,
   "status": "emu-compared",
-  "engine": "core/InventoryStrip::clearHoverText",
+  "engine": "core/ActionStrip::clearHoverText",
   "notes": "unread; first seen in vtable 0042be40 slot 18"
  },
  {
