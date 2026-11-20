@@ -8576,7 +8576,7 @@
   "data_refs": [],
   "cluster": 5,
   "status": "emu-compared",
-  "engine": "core/Cursor::pageRight",
+  "engine": "core/Cursor::inventoryPageRight",
   "notes": "shifts the interface level's camera and its objects by +0x280 (one screen) when the pointer reaches the right edge | contract read 30 Oct; port blocked on global objects | compared inside Cursor_Update"
  },
  {
@@ -8627,7 +8627,7 @@
   "data_refs": [],
   "cluster": 5,
   "status": "emu-compared",
-  "engine": "core/Cursor::pageLeft",
+  "engine": "core/Cursor::inventoryPageLeft",
   "notes": "shifts the interface level camera and its objects by -0x280 (one screen) | contract read 30 Oct; port blocked on global objects | the function is never called; its sequence inlined in Cursor_Update is compared"
  },
  {
