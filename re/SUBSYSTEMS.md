@@ -384,7 +384,7 @@ main pointer's animation frame for its hit rectangle, so hovering works in the l
 a pointer over "Nueva partida" or "Cargar partida" touches that item and starts hovering, and off the items it touches nothing.
 
 **The pointer's frame step ✅ (5 November 2026; compared with the original).** The interface is a strip of screens that slides sideways:
-page 0 is the strip of carried things at the bottom, a page beyond the right edge holds the item pictures, and the save screen
+page 0 is the strip of carried things at the top, a page beyond the right edge holds the item pictures, and the save screen
 waits to the left. **Escape** (the first of the five keys the game's keyboard watches: Escape, Return, Space, S, L) and the
 right mouse button turn the pages: in the main menu Escape fades out and empties the main list, which ends the game; in the
 new-game menu it goes back to the main menu; in the game it opens the save screen (not on the board game's level): the pointer
@@ -798,11 +798,11 @@ the start time, which looks like a slip and leaves only a short moment each time
 
 ### The inventory strip (kind 11) 🟡 (ported and ✅ checked against the original; the stand-alone constructor and the drawing are not)
 
-The strip of carried things at the bottom of the screen is one object of the interface level (kind 11) together with four
+The strip of carried things at the top of the screen is one object of the interface level (kind 11) together with four
 named neighbours: `ICONOS` (the row of item pictures), `CUADRADO` (the highlight square), `CURSOR` and `TEXTOICONOS` (where the item's
-name goes). While the pointer is away the pictures sit below the screen. When the pointer comes over the strip they rise by 85
+name goes). While the pointer is away the pictures sit above the screen. When the pointer comes over the strip they slide down by 85
 pixels (not on the board game's screen and two other levels); the item whose picture is within 35 pixels of the pointer's
-position lights up and the one left behind is dimmed. Moving away lowers them again. Clicking an item makes the pointer take its
+position lights up and the one left behind is dimmed. Moving away sends them back up. Clicking an item makes the pointer take its
 picture (and puts back what the pointer carried before). Kind 4 occurs in none of the shipped levels; kind 16 only in the tavern (three of them). The wanderer's waiting, setting off, walking
 along the path, resizing and arriving were run through the original code and the port together on 200 invented pairs of animation
 files (over 200,000 frames, every random choice replayed): the results are identical, and eleven deliberate mistakes in the port were all

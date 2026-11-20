@@ -8650,7 +8650,7 @@
   "data_refs": [],
   "cluster": 6,
   "status": "emu-compared",
-  "engine": "core/Cursor::scrollOut",
+  "engine": "core/Cursor::inventoryScrollOut",
   "notes": "moves the interface camera +0x285 and runs the display effect (4, 100) | contract read 30 Oct; port blocked on global objects | the function is never called; its sequence inlined in Cursor_Update is compared"
  },
  {
