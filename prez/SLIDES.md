@@ -41,18 +41,18 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 ## Part 2: Act 1, by hand (5:00 to 11:00)
 
 ### 7. DEMO 1: bytes and opcodes
-**On screen:** Live: `sum_clamped.c` (10 lines), then the hex editor on the compiled bytes. Highlight `55 89 e5` (prologue), `3b 45 0c` (cmp), `7d 40` (jge), `c3` (ret).
-**Live:** run the C natively, run the exact bytes in the emulator on audience-chosen inputs, then patch one byte (`83 c0 01` to `83 c0 02`) in the hex editor and watch 55 become 25.
+**On screen:** Live: type `sum_to` (5 lines), compile it, then open the bytes in ImHex. Highlight `55 89 e5` (start), `3b 45 08` (cmp), `7f 14` (jg), `c3` (ret).
+**Live:** run the C natively (55), run the exact bytes in the emulator on an audience-chosen `n`, then patch one byte in the hex editor: `7f` to `7d` at `0x1d` (55 becomes 45) or `01` to `02` at `0x2d` (55 becomes 25).
 **Say:** Decode two or three by hand using the table in the demo script. "This is real, and it is miserable."
-**Cut if short:** drop the jump-offset arithmetic.
+**Cut if short:** drop the jump-offset arithmetic (`0x1f + 0x14 = 0x33`).
 
 ### 8. Let tools decode: disassembly
 **On screen:** `objdump` output next to the hex, same bytes.
 **Say:** A disassembler only translates bytes to mnemonics. It adds no meaning.
 
 ### 9. The compiler reveal
-**On screen:** Side by side: `-O0` = 112 bytes, `-O2` = 303 bytes (vectorised with SSE). Same source.
-**Say:** "Your ten lines of loop became SIMD." Structure you wrote is gone. Optimisers are why reverse engineering is not just reading.
+**On screen:** Side by side: `-O0` = 59 bytes (20 instructions), `-O2` = 28 bytes (12 instructions, no loop). Same source.
+**Say:** "The compiler replaced my loop with a formula." For `n = 1000`, 10,013 instructions versus 10, same answer. The structure you wrote is gone. Point out the `test`/`jle` guard at the top of the `-O2` code; it returns in Act 3. Optimisers are why reverse engineering is not just reading.
 
 ### 10. What is lost
 **On screen:** Table. Lost: names, types, structs, comments, loop shapes. Kept: behaviour.
@@ -63,7 +63,7 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 ## Part 3: Act 2, Ghidra (11:00 to 15:00)
 
 ### 11. DEMO 2: the same function in Ghidra
-**On screen:** Listing and decompiler side by side. Rename `param_1` to `values`, `param_2` to `count`, `local_10` to `total`.
+**On screen:** Listing and decompiler side by side. Rename `FUN_00000000` to `sum_to`, `param_1` to `n`, and the two locals to `total` and `i`.
 **Live:** import the raw bytes (no symbols), create the function by hand with `D` then `F`, rename. Say: "in a real EXE Ghidra does that step itself."
 **Say:** Ghidra gives control flow, cross-references and a C-like view. Naming is still on you. Watch renames propagate.
 
@@ -84,9 +84,9 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 **On screen:** Three steps (map the bytes, build the stack, run and read eax) beside a short code snippet.
 **Say:** Unit tests for a binary you have no source for. Load one function at its original address, set up the stack by hand, run it, read the result. Optional aside: Capstone, a disassembler library, is its scriptable companion (Ghidra is for humans, Capstone for scripts).
 
-### 15. DEMO 3: faithful vs plausible
-**On screen:** Terminal. `faithful`: 305/305 pass. `plausible --happy-path-only`: passes. `plausible`: fails with `a=[1, 5, 9, 20] lo=8 hi=2: emulator=20 hypothesis=8`.
-**Say:** `min(max(v, lo), hi)` looks equivalent and isn't, when `lo > hi`. This is what a confident AI explanation looks like.
+### 15. DEMO 3: a plausible claim, tested
+**On screen:** Terminal, claims typed live. `sum(range(1, n+1))`: 133/133 match. `n*(n+1)//2 --happy-path-only`: 103/103 match. `n*(n+1)//2`: 104/133, `MISMATCH n=-2: emulator=0 hypothesis=1`.
+**Say:** The formula looks like what the optimised code does and isn't, when `n` is negative. The code had the guard all along. This is what a confident AI explanation looks like.
 
 ### 16. The oracle, and its limits
 **On screen:** Two columns. Strengths: executes the real bytes, deterministic, scales to many inputs. Limits: only tests the inputs you choose, OS and hardware calls need stubs, it is evidence not proof.
@@ -164,5 +164,5 @@ If you run long, cut in this order: slide 8, the jump arithmetic in slide 7, sli
 
 - Screen recording of one real agent run through the loop (slide 18), in case a live run is slow.
 - Screenshots of the ledger, a contract and `STRUCTS.md` (slide 19).
-- Ghidra screenshots of `sum_clamped` before and after renaming (slide 11).
+- Ghidra screenshots of `sum_to` before and after renaming (slide 11).
 - Game screenshot or clip from ScummVM (slide 2); check that it shows something that really runs today.

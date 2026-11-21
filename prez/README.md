@@ -5,8 +5,7 @@ Talk for engineers, 30 minutes, built around the Tesoro project.
 ## Contents
 
 - [DEMOS_EXPLAINED.md](DEMOS_EXPLAINED.md): the three demos explained in simple language, with a glossary.
-- [demo/](demo/): self-contained live-demo materials (a C function, build script,
-  Unicorn verifier, ImHex pattern `sum_clamped_O0.hexpat`) and [demo/DEMO_SCRIPT.md](demo/DEMO_SCRIPT.md), the step-by-step script.
+- [demo/](demo/): live-demo helpers (build wrapper, emulator runner, test loop, ImHex pattern `sum_to_O0.hexpat`, a backup copy of the function) and [demo/DEMO_SCRIPT.md](demo/DEMO_SCRIPT.md), the step-by-step script. The C function is typed live.
 
 ## Outline
 
@@ -25,11 +24,13 @@ Talk for engineers, 30 minutes, built around the Tesoro project.
 
 ```bash
 cd prez/demo
-./build.sh
-../../re/.venv/bin/python -I verify.py build/sum_clamped_O2.bin --hypothesis faithful
-./run_native.sh                                       # same C, run natively
-../../re/.venv/bin/python run.py build/sum_clamped_O0.bin   # exact bytes, live
-./patch_demo.sh                                       # patch one byte, then run again
+mkdir -p live                                    # type live/sum_to.c here (backup: fallback/sum_to.c)
+./build.sh live/sum_to.c
+./run_native.sh live/sum_to.c 10                 # same C, run natively
+PY=../../re/.venv/bin/python
+$PY run.py build/sum_to_O0.bin 10                # exact bytes, in the emulator
+./patch_demo.sh jge                              # scripted byte patch (or do it in ImHex)
+$PY -I verify.py build/sum_to_O2.bin --expr "n*(n+1)//2"
 ```
 
 Needs clang (32-bit x86 target, no linker) and the `re/.venv` environment (Unicorn, Capstone).

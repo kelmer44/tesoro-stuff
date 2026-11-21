@@ -94,7 +94,7 @@ The clock decides *when* things happen. Boxes with a question mark are the parts
 - The pointer's frame step: `Cursor` (Escape, the interface pages, the menu opening); keys: Escape's events in the engine.
 - Save and load screen: `MenuButton` (kind 22), `SlotLabel` (23).
 - Action strip (the verbs): `ActionStrip` (kind 11).
-- Groups, shadows and wanderers: `ObjectGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14), `ClickCatcher` (15), `PathSprite` (16).
+- Groups, shadows and wanderers: `ObjectGroup` (kind 2), `ShadowSprite` (4), `DepthZone` (14), `ClickCatcher` (15), `WanderingSprite` (16).
 - Props: `StoryProp` (story props of kinds 12, 17 and 20).
 - Characters: `Character` (a clickable, speaking person of a level).
 - Walking: `Jim` (the player's object), `WalkArea` (shape, scale and route), `InteractiveObject` (clickable base), (Jim's walk is part of `Jim`: until 12 Nov 2026 it was a separate `JimWalker` class that only reached back into `Jim`, and the two were merged), `WalkTarget` (told on arrival).

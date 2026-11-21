@@ -14,7 +14,7 @@
 #include "tesoro/core/clickcatcher.h"
 #include "tesoro/core/itemgroup.h"
 #include "tesoro/core/level.h"
-#include "tesoro/core/pathsprite.h"
+#include "tesoro/core/wanderingsprite.h"
 #include "tesoro/core/shadowsprite.h"
 
 static int g_warnings = 0;
@@ -35,7 +35,7 @@ private:
 	FILE *_f; bool _eos; long _size;
 };
 
-struct RandomHost : Tesoro::PathSpriteHost {
+struct RandomHost : Tesoro::WanderingSpriteHost {
 	uint32 tick = 12345;
 	uint32 next() { tick = tick * 1103515245u + 12345u; return tick >> 8; }
 	uint32 randomNumber(uint32 lo, uint32 hi) override { return lo + next() % (hi - lo + 1); }
@@ -72,7 +72,7 @@ protected:
 		if (r.kind == 2) { auto *o = new Tesoro::ItemGroup(); o->init(r, room.sortOffset(), banks()); return o; }
 		if (r.kind == 4) { auto *o = new Tesoro::ShadowSprite(); o->init(r, room.sortOffset(), banks(), 0); return o; }
 		if (r.kind == 15) { auto *o = new Tesoro::ClickCatcher(); o->init(r, room.sortOffset(), banks(), 0, g_stub); return o; }
-		if (r.kind == 16) { auto *o = new Tesoro::PathSprite(); o->init(r, room.sortOffset(), banks(), 0, g_random); return o; }
+		if (r.kind == 16) { auto *o = new Tesoro::WanderingSprite(); o->init(r, room.sortOffset(), banks(), 0, g_random); return o; }
 		return Tesoro::Level::createObject(r, room);
 	}
 };
@@ -106,7 +106,7 @@ int main(int argc, char **argv) {
 				printf("%-12s kind 15: sort %d flags %x\n", nm.c_str(), obj->sortValue(), obj->flags());
 				++built;
 			} else if (obj->kindId() == 16) {
-				auto *p = static_cast<Tesoro::PathSprite *>(obj);
+				auto *p = static_cast<Tesoro::WanderingSprite *>(obj);
 				int starts = 0, was = 0; int32 maxOff = 0;
 				for (int32 t = 0; t < 600000; t += 40) {
 					p->updateAnimation(t);

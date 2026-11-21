@@ -124,7 +124,7 @@ function arrow(s, x, y, w, h, opts) {
       "One line on what you do at work, then: this is a side project that taught me a lot.");
     text(s, "Reverse engineering by hand, with Ghidra, and with AI agents", { x: 0.5, y: 1.6, w: 8, h: 0.9, fontSize: 22, color: C.accent1 });
     text(s, "Gabriel", { x: 0.5, y: 2.7, w: 6, h: 0.4, fontSize: 16, color: C.background2 });
-    const bytes = ["55", "89", "E5", "83", "EC", "0C", "8B", "45", "14", "3B", "45", "0C", "7D", "40", "C3"];
+    const bytes = ["55", "89", "E5", "83", "EC", "08", "8B", "45", "08", "C7", "45", "FC", "00", "00", "00"];
     bytes.forEach((b, i) => {
       s.addText(b, {
         x: 0.5 + i * 0.6, y: 4.3, w: 0.5, h: 0.5, shape: pres.shapes.ROUNDED_RECTANGLE, rectRadius: 0.06,
@@ -228,34 +228,31 @@ function arrow(s, x, y, w, h, opts) {
   // 7 DEMO 1
   {
     const s = begin("Act 1: by hand", "LIGHT", "Bytes and opcodes",
-      "Run the C natively, then run the exact bytes in the emulator with audience-chosen inputs. Decode two or three bytes by hand using the table in the demo script. Then patch byte 0x62 (83 c0 01 to 83 c0 02) in the hex editor and rerun: 55 becomes 25. This is real, and it is miserable. If short on time, drop the jump-offset arithmetic (0x28 + 0x40 = 0x68).");
+      "Type the function live (5 lines) into live/sum_to.c and compile it with ./build.sh. Run it natively (55), then run the exact bytes in the emulator with an audience-chosen n. Open the .bin in ImHex and decode a few bytes by hand using the table in the demo script. Then patch the copy: byte 0x1d (7f to 7d) turns i <= n into i < n, so the answer for 10 becomes 45; byte 0x2d (01 to 02) makes i++ into i += 2, so it becomes 25. This is real, and it is miserable. If short on time, drop the jump-offset arithmetic (0x1f + 0x14 = 0x33). The code panel on the slide is a reference for the audience; the real thing is typed on screen.");
     chip(s, "LIVE DEMO 1");
-    code(s, 0.5, 1.35, 4.5, 3.6, [
-      "int sum_clamped(const int *a, int n,",
-      "                int lo, int hi)",
+    code(s, 0.5, 1.35, 4.5, 2.4, [
+      "int sum_to(int n)",
       "{",
       "  int total = 0;",
-      "  for (int i = 0; i < n; i++) {",
-      "    int v = a[i];",
-      "    if (v < lo) v = lo;",
-      "    else if (v > hi) v = hi;",
-      "    total += v;",
-      "  }",
+      "  for (int i = 1; i <= n; i++)",
+      "    total += i;",
       "  return total;",
       "}",
-    ], 12, "SourceCode");
+    ], 15, "SourceCode");
+    text(s, "Typed live, then compiled for 32-bit x86", { x: 0.5, y: 3.9, w: 4.5, h: 0.35, fontSize: 14, color: C.accent5 });
+    text(s, "59 bytes at -O0, 20 instructions", { x: 0.5, y: 4.3, w: 4.5, h: 0.4, fontSize: 18, bold: true, color: C.text2 });
     const hdr = (t) => ({ text: t, options: { bold: true, color: C.background1, fill: { color: C.text2 }, fontSize: 13 } });
     const cell = (t, mono) => ({ text: t, options: { fontSize: 13, color: C.text1, fontFace: mono ? MONO : undefined } });
     s.addTable([
       [hdr("Offset"), hdr("Bytes"), hdr("Meaning")],
-      [cell("0x00", 1), cell("55", 1), cell("push ebp (prologue)")],
-      [cell("0x01", 1), cell("89 e5", 1), cell("mov ebp, esp")],
-      [cell("0x03", 1), cell("83 ec 0c", 1), cell("sub esp, 0xc")],
-      [cell("0x23", 1), cell("3b 45 0c", 1), cell("cmp eax, [ebp+0xc]")],
-      [cell("0x26", 1), cell("7d 40", 1), cell("jge +0x40 (exit loop)")],
-      [cell("0x6f", 1), cell("c3", 1), cell("ret")],
+      [cell("0x00", 1), cell("55", 1), cell("push ebp (start)")],
+      [cell("0x03", 1), cell("83 ec 08", 1), cell("sub esp, 8")],
+      [cell("0x1a", 1), cell("3b 45 08", 1), cell("cmp eax, [ebp+8]")],
+      [cell("0x1d", 1), cell("7f 14", 1), cell("jg +0x14 (exit loop)")],
+      [cell("0x31", 1), cell("eb e4", 1), cell("jmp back to the test")],
+      [cell("0x3a", 1), cell("c3", 1), cell("ret")],
     ], { x: 5.3, y: 1.35, w: 4.2, colW: [0.8, 1.1, 2.3], rowH: 0.46, border: { type: "solid", pt: 0.5, color: "D5DDD2" }, fill: { color: C.background2 }, valign: "middle", margin: [0, 0.08, 0, 0.08] });
-    text(s, "Compiled for 32-bit x86, 112 bytes at -O0", { x: 5.3, y: 4.7, w: 4.2, h: 0.3, fontSize: 12, color: C.accent5 });
+    text(s, "Patch one byte, run it again: 55 becomes 45 or 25", { x: 5.3, y: 4.7, w: 4.2, h: 0.3, fontSize: 12, color: C.accent5 });
   }
 
   // 8 Let tools decode
@@ -263,22 +260,22 @@ function arrow(s, x, y, w, h, opts) {
     const s = begin("Act 1: by hand", "LIGHT", "Let a tool do the decoding",
       "A disassembler only translates bytes to mnemonics. It adds no meaning. Same bytes on both sides.");
     code(s, 0.5, 1.4, 4.7, 2.0, [
-      [{ text: "00000000: ", color: "8FA39A" }, { text: "55 89 e5 83 ec 0c 8b 45", color: HEX.gold }],
-      [{ text: "00000008: ", color: "8FA39A" }, { text: "14 8b 45 10 8b 45 0c 8b", color: HEX.gold }],
-      [{ text: "00000010: ", color: "8FA39A" }, { text: "45 08 c7 45 fc 00 00 00", color: HEX.gold }],
-      [{ text: "00000018: ", color: "8FA39A" }, { text: "00 c7 45 f8 00 00 00 00", color: HEX.gold }],
+      [{ text: "00000000: ", color: "8FA39A" }, { text: "55 89 e5 83 ec 08 8b 45", color: HEX.gold }],
+      [{ text: "00000008: ", color: "8FA39A" }, { text: "08 c7 45 fc 00 00 00 00", color: HEX.gold }],
+      [{ text: "00000010: ", color: "8FA39A" }, { text: "c7 45 f8 01 00 00 00 8b", color: HEX.gold }],
+      [{ text: "00000018: ", color: "8FA39A" }, { text: "45 f8 3b 45 08 7f 14 8b", color: HEX.gold }],
     ], 13, "HexDump");
     text(s, "xxd: just the bytes", { x: 0.5, y: 3.5, w: 4.7, h: 0.35, fontSize: 14, color: C.accent5 });
     code(s, 5.5, 1.4, 4.0, 2.9, [
       "push ebp",
       "mov  ebp, esp",
-      "sub  esp, 0xc",
-      "mov  eax, [ebp+0x14]",
-      "mov  eax, [ebp+0x10]",
-      "mov  eax, [ebp+0xc]",
+      "sub  esp, 0x8",
       "mov  eax, [ebp+0x8]",
       "mov  [ebp-0x4], 0x0",
-      "mov  [ebp-0x8], 0x0",
+      "mov  [ebp-0x8], 0x1",
+      "mov  eax, [ebp-0x8]",
+      "cmp  eax, [ebp+0x8]",
+      "jg   0x33",
     ], 13, "Disassembly");
     text(s, "objdump: the same bytes as instructions", { x: 5.5, y: 4.4, w: 4.0, h: 0.35, fontSize: 14, color: C.accent5 });
     s.addShape(pres.shapes.LINE, { x: 5.25, y: 2.4, w: 0.2, h: 0, line: { color: C.accent1, width: 3, endArrowType: "triangle" } });
@@ -287,16 +284,16 @@ function arrow(s, x, y, w, h, opts) {
   // 9 Compiler reveal
   {
     const s = begin("Act 1: by hand", "LIGHT", "The compiler reveal",
-      "Same ten lines of C. At -O2 the loop became SIMD. Optimisers are why reverse engineering is not just reading.");
+      "Same five lines of C. At -O2 the loop is gone: the compiler worked out the sum is a formula (multiply, halve, add) and replaced the loop with it. For n = 1000 the unoptimised code runs 10,013 instructions and the optimised code runs 10, with the same answer. Keep in mind the test and jump at the top of the -O2 code: it returns 0 for n <= 0. That comes back in Act 3. Optimisers are why reverse engineering is not just reading.");
     card(s, 0.5, 1.4, 4.2, 2.6, "O0Card");
-    text(s, "112", { x: 0.5, y: 1.55, w: 4.2, h: 1.4, fontSize: 80, bold: true, color: C.text2, align: "center" });
+    text(s, "59", { x: 0.5, y: 1.55, w: 4.2, h: 1.4, fontSize: 80, bold: true, color: C.text2, align: "center" });
     text(s, "bytes at -O0", { x: 0.5, y: 2.9, w: 4.2, h: 0.4, fontSize: 20, align: "center" });
-    text(s, "one instruction per step you wrote", { x: 0.5, y: 3.4, w: 4.2, h: 0.4, fontSize: 14, color: C.accent5, align: "center" });
+    text(s, "20 instructions, the loop you wrote", { x: 0.5, y: 3.4, w: 4.2, h: 0.4, fontSize: 14, color: C.accent5, align: "center" });
     card(s, 5.3, 1.4, 4.2, 2.6, "O2Card");
-    text(s, "303", { x: 5.3, y: 1.55, w: 4.2, h: 1.4, fontSize: 80, bold: true, color: C.accent3, align: "center" });
+    text(s, "28", { x: 5.3, y: 1.55, w: 4.2, h: 1.4, fontSize: 80, bold: true, color: C.accent3, align: "center" });
     text(s, "bytes at -O2", { x: 5.3, y: 2.9, w: 4.2, h: 0.4, fontSize: 20, align: "center" });
-    text(s, "loop vectorised with SSE (pcmpgtd, paddd)", { x: 5.3, y: 3.4, w: 4.2, h: 0.4, fontSize: 14, color: C.accent5, align: "center" });
-    text(s, "Same source, same behaviour. The structure you wrote is gone.", { x: 0.5, y: 4.3, w: 9, h: 0.5, fontSize: 20, bold: true, color: C.text2, align: "center" });
+    text(s, "12 instructions, no loop at all", { x: 5.3, y: 3.4, w: 4.2, h: 0.4, fontSize: 14, color: C.accent5, align: "center" });
+    text(s, "Same answer. For n = 1000: 10,013 instructions versus 10.", { x: 0.5, y: 4.3, w: 9, h: 0.5, fontSize: 20, bold: true, color: C.text2, align: "center" });
   }
 
   // 10 What is lost
@@ -327,17 +324,15 @@ function arrow(s, x, y, w, h, opts) {
   // 11 DEMO 2
   {
     const s = begin("Act 2: Ghidra", "LIGHT", "The same function in Ghidra",
-      "Import the raw bytes with no symbols, create the function by hand with D then F, and say: in a real EXE Ghidra does that step itself. Ghidra gives control flow, cross-references and a C-like view. Naming is still on you. Watch renames propagate through callers. Optionally swap this slide's right-hand panel for a real screenshot of the decompiler.");
+      "Import the raw bytes of your own function with no symbols, create the function by hand with D then F, and say: in a real EXE Ghidra does that step itself. Ghidra gives control flow, cross-references and a C-like view. Naming is still on you. Watch renames propagate through callers. The default names on this slide are from memory of how Ghidra labels things; swap the panels for a real screenshot of the decompiler once you have rehearsed it.");
     chip(s, "LIVE DEMO 2");
     text(s, "Ghidra's default names", { x: 0.5, y: 1.35, w: 4.3, h: 0.35, fontSize: 16, bold: true, color: C.accent5 });
-    code(s, 0.5, 1.8, 4.0, 2.6, ["param_1", "param_2", "param_3", "param_4", "local_10", "local_c"], 16, "BeforeNames");
+    code(s, 0.5, 1.8, 4.0, 2.6, ["FUN_00000000", "param_1", "local_8", "local_c"], 16, "BeforeNames");
     arrow(s, 4.65, 3.1, 0.7, 0, { line: { color: C.accent1, width: 3, endArrowType: "triangle" } });
     text(s, "After you rename", { x: 5.5, y: 1.35, w: 4.0, h: 0.35, fontSize: 16, bold: true, color: C.text2 });
     code(s, 5.5, 1.8, 4.0, 2.6, [
-      [{ text: "values", color: HEX.gold }],
-      [{ text: "count", color: HEX.gold }],
-      [{ text: "lo", color: HEX.gold }],
-      [{ text: "hi", color: HEX.gold }],
+      [{ text: "sum_to", color: HEX.gold }],
+      [{ text: "n", color: HEX.gold }],
       [{ text: "total", color: HEX.gold }],
       [{ text: "i", color: HEX.gold }],
     ], 16, "AfterNames");
@@ -386,7 +381,7 @@ function arrow(s, x, y, w, h, opts) {
       "Unicorn is a CPU emulator: unit tests for a binary you have no source for. Load one function at its original address, build the stack by hand, run it, read the result. (Optional aside: Capstone, a disassembler library, is its scriptable companion. Ghidra is for humans, Capstone for scripts.)");
     const steps = [
       ["Map the bytes", "Load the function at its original address"],
-      ["Build the stack", "Arguments right to left, then a return address"],
+      ["Build the stack", "The argument n, then a return address"],
       ["Run and read", "Execute until return, read the result from eax"],
     ];
     steps.forEach((st, i) => {
@@ -412,23 +407,22 @@ function arrow(s, x, y, w, h, opts) {
 
   // 15 DEMO 3
   {
-    const s = begin("Act 3: verification", "LIGHT", "Faithful versus plausible",
-      "min(max(v, lo), hi) looks equivalent and is not when lo > hi. This is what a confident AI explanation looks like.");
+    const s = begin("Act 3: verification", "LIGHT", "A plausible claim, tested",
+      "Type the claims live. First sum(range(1, n+1)) mirrors the loop and matches everywhere. Then the clever one, n*(n+1)//2: it looks like what the optimised code does, passes every non-negative input, and fails on negative n (n=-2: the real code returns 0, the formula says 1). The optimised code had the guard (test and jle at the top) all along. This is what a confident AI explanation looks like.");
     chip(s, "LIVE DEMO 3");
     const G = "7FD18B", R = "FF8A75", D = "8FA39A";
     code(s, 0.5, 1.35, 9.0, 3.0, [
-      [{ text: "$ verify.py sum_clamped_O2.bin --hypothesis faithful", color: D }],
-      [{ text: "305/305 cases match", color: G }],
+      [{ text: "$ verify.py sum_to_O2.bin --expr \"sum(range(1, n+1))\"", color: D }],
+      [{ text: "133/133 inputs match", color: G }],
       "",
-      [{ text: "$ verify.py ... --hypothesis plausible --happy-path-only", color: D }],
-      [{ text: "154/154 cases match", color: G }, { text: "    (false confidence)", color: HEX.gold }],
+      [{ text: "$ verify.py ... --expr \"n*(n+1)//2\" --happy-path-only", color: D }],
+      [{ text: "103/103 inputs match", color: G }, { text: "    (false confidence)", color: HEX.gold }],
       "",
-      [{ text: "$ verify.py ... --hypothesis plausible", color: D }],
-      [{ text: "162/305 cases match", color: R }],
-      [{ text: "MISMATCH a=[1, 5, 9, 20] lo=8 hi=2:", color: R }],
-      [{ text: "  emulator=20 hypothesis=8", color: R }],
+      [{ text: "$ verify.py ... --expr \"n*(n+1)//2\"", color: D }],
+      [{ text: "104/133 inputs match", color: R }],
+      [{ text: "MISMATCH n=-2: emulator=0 hypothesis=1", color: R }],
     ], 14, "Terminal");
-    text(s, "Happy-path tests pass. Edge cases expose it.", { x: 0.5, y: 4.55, w: 9, h: 0.4, fontSize: 20, bold: true, color: C.text2 });
+    text(s, "Happy-path tests pass. Negative inputs expose it.", { x: 0.5, y: 4.55, w: 9, h: 0.4, fontSize: 20, bold: true, color: C.text2 });
   }
 
   // 16 Oracle and limits

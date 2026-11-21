@@ -111,7 +111,7 @@ struct Host : Tesoro::CursorHost {
 	void enterMainMenu() override { log.push_back("enter_main_1_0_0"); }
 	void jimResumeFacing() override { log.push_back("resume"); }
 	Tesoro::Object *interfaceObject(const char *name) override { return !strcmp(name, "SALVAR") ? salvar : !strcmp(name, "TEXTOS") ? textos : nullptr; }
-	int menuPage() override { return page; }
+	int subtitleFrame() override { return page; }
 	void captureThumbnail() override {
 		log.push_back("capture_" + std::to_string(iface->camera()._y) + "_" + std::to_string(cursor->_y));
 		std::vector<uint16> frame(640 * 480); uint32 v = seed;

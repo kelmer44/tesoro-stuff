@@ -1,10 +1,12 @@
-/* Runs the same C source natively on this machine, for comparison. */
+/* Runs the live-typed sum_to natively on this machine, for comparison. */
 #include <stdio.h>
-#include "sum_clamped.c"
+#include <stdlib.h>
 
-int main(void)
+int sum_to(int n);
+
+int main(int argc, char **argv)
 {
-    int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    printf("native: sum_clamped(1..10, lo=0, hi=100) = %d\n", sum_clamped(a, 10, 0, 100));
+    int n = argc > 1 ? atoi(argv[1]) : 10;
+    printf("native: sum_to(%d) = %d\n", n, sum_to(n));
     return 0;
 }

@@ -115,6 +115,10 @@ agent starts each session cold, the ledger tells it what is done, what is truste
 Ghidra is the interactive tool for humans. Capstone is a library you call from scripts. The talk focuses on
 Unicorn because it does the verifying; Capstone is only a scriptable companion.
 
+### Is the demo code prewritten?
+The function under test is typed live, and so are the compile step, the byte edits, the Ghidra renames and the hypothesis that is checked.
+The helpers are prewritten: a wrapper around the long compiler command, the emulator runner, and the loop over test inputs. I say so on stage.
+
 ### Why did the demo compile for 32-bit x86?
 The game is a 32-bit Windows program for that CPU family, so the demo uses the same architecture. That keeps the
 bytes, calling convention and tools the same as in the real project.
@@ -159,7 +163,7 @@ That is a different problem. You would first unpack or defeat the protection, an
 agent helps less until you have clean code. This project didn't need that.
 
 ### What about when the compiler optimises heavily?
-Optimisation changes the structure (slide 9: 112 bytes became 303 with the loop vectorised), which makes
+Optimisation changes the structure (slide 9: 59 bytes became 28 and the loop was replaced by a formula), which makes
 decompiler output harder to read. The behaviour is the same, which is why testing behaviour in an emulator is
 more reliable than trusting a reading.
 
@@ -186,5 +190,5 @@ evidence from day one.
 | Restart date | 28 Oct 2026 |
 | Status ladder | untouched, decompiled, understood, ported, emu-compared, original-compared |
 | Reference environment | DOSBox-X running a clone of the original Windows 95 image |
-| Demo function | `sum_clamped`, 112 bytes at `-O0`, 303 bytes at `-O2` |
-| Demo result | faithful 305/305; plausible fails on `lo > hi`, e.g. `a=[1, 5, 9, 20] lo=8 hi=2: emulator=20, hypothesis=8` |
+| Demo function | `sum_to`, typed live: 59 bytes at `-O0`, 28 bytes at `-O2` |
+| Demo result | loop-shaped claim 133/133; `n*(n+1)//2` fails on negative `n`, e.g. `n=-2: emulator=0, hypothesis=1` |

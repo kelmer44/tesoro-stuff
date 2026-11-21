@@ -1,5 +1,5 @@
 #pragma author prez demo
-#pragma description Colours the x86-32 instructions of build/sum_clamped_O0.bin by kind
+#pragma description Colours the x86-32 instructions of build/sum_to_O0.bin by kind
 #pragma endian little
 
 import std.mem;
@@ -11,7 +11,6 @@ struct FrameAdj { u8 opcode; u8 modrm; s8 amount; } [[color("4C9AFF"), comment("
 
 // Green: load from memory into a register.
 struct Load { u8 opcode; u8 modrm; s8 disp; } [[color("5FD068"), comment("load register from [ebp+disp]")]];
-struct LoadIndexed { u8 opcode; u8 modrm; u8 sib; } [[color("5FD068"), comment("load a[i]: [eax + 4*ecx]")]];
 
 // Teal: store a register or constant into a local variable.
 struct Store { u8 opcode; u8 modrm; s8 disp; } [[color("2EC4B6"), comment("store register into [ebp+disp]")]];
@@ -46,12 +45,10 @@ struct Insn {
         ArithMem arithMem;
     else if (b0 == 0x3B)
         Compare compare;
-    else if (b0 == 0x7D || b0 == 0x7E || b0 == 0xEB)
+    else if (b0 == 0x7D || b0 == 0x7E || b0 == 0x7F || b0 == 0xEB)
         Jump jump;
     else if (b0 == 0xC7)
         StoreImm storeImm;
-    else if (b0 == 0x8B && b1 == 0x04)
-        LoadIndexed loadIndexed;
     else if (b0 == 0x8B)
         Load load;
     else if (b0 == 0x89)

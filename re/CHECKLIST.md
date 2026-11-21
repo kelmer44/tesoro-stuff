@@ -319,15 +319,15 @@ Generated from `ledger.json` by `tools/make_checklist.py`. Update with `tools/ma
 ### Cluster 25: 0040f020–0040f020 (10/11 ported)
 
 - [x] `0040f020` inferred_Obj_SetVerbAndClick (vtable) · depth 0 · 10 lines · **emu-compared** → `engines/tesoro/kinds/interactive.cpp` — MidBase slot 14: stores verb +0x9c then calls slot 19 (OnClick)
-- [x] `0040ebd0` inferred_PathSprite_OnAttach (vtable) · depth 1 · 14 lines · **emu-compared** → `core/PathSprite::onAttach` — unread; first seen in vtable 0042ba30 slot 0
-- [x] `0040ec00` inferred_PathSprite_Draw (vtable) · depth 1 · 24 lines · **ported** → `core/PathSprite::draw` — unread; first seen in vtable 0042ba30 slot 6
+- [x] `0040ebd0` inferred_WanderingSprite_OnAttach (vtable) · depth 1 · 14 lines · **emu-compared** → `core/WanderingSprite::onAttach` — unread; first seen in vtable 0042ba30 slot 0
+- [x] `0040ec00` inferred_WanderingSprite_Draw (vtable) · depth 1 · 24 lines · **ported** → `core/WanderingSprite::draw` — unread; first seen in vtable 0042ba30 slot 6
 - [ ] `0040ec90` inferred_Obj_MidBase_DefaultCtor · depth 1 · 9 lines · **decompiled** — base object ctor with vtable 0042ba68 only
 - [x] `0040e760` inferred_ShadowSprite_Draw (vtable) · depth 2 · 22 lines · **ported** → `core/ShadowSprite::draw` — unread; first seen in vtable 0042b9f8 slot 6
 - [x] `0040efa0` inferred_MidBase_Draw (vtable) · depth 2 · 24 lines · **emu-compared** — MidBase slot 6: converts world position to screen (camera at argument, +0x140/+0xf0 centre) and queues the current frame's image through Display_AddSprite with the object's sort value (+0x5e)
-- [x] `0040e890` inferred_PathSprite_AnimTick (vtable) · depth 3 · 103 lines · **emu-compared** → `core/PathSprite::updateAnimation` — unread; first seen in vtable 0042ba30 slot 2
+- [x] `0040e890` inferred_WanderingSprite_AnimTick (vtable) · depth 3 · 103 lines · **emu-compared** → `core/WanderingSprite::updateAnimation` — unread; first seen in vtable 0042ba30 slot 2
 - [x] `0040ecb0` inferred_Obj_MidBase_Ctor · depth 3 · 14 lines · **emu-compared** → `engines/tesoro/kinds/inventoryitem.cpp::InventoryItem` — Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25
 - [x] `0040ee70` inferred_Obj_Interactive_Update (vtable) · depth 3 · 52 lines · **emu-compared** → `engines/tesoro/kinds/interactive.cpp` — MidBase slot 4: when a click is pending (+0x8c), clears it, removes the object from the main list, runs the verb handler for the current verb (index +0x9c, slots 20-26), clears the cursor's target (+0x12c), resets the cursor animation and calls slot 27 with verb-7. Pending flag is cleared at the end
-- [x] `0040e7e0` inferred_Obj_PathSprite_Ctor · depth 4 · 25 lines · **emu-compared** → `core/PathSprite::init` — 0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)
+- [x] `0040e7e0` inferred_Obj_WanderingSprite_Ctor · depth 4 · 25 lines · **emu-compared** → `core/WanderingSprite::init` — 0xa0 bytes, vtable 0042ba30, extends Kind03; stores a time stamp from the game clock and a random value from RandomRange(+0x6c,+0x70)
 - [x] `0040ed10` inferred_Obj_Kind09_Ctor · depth 12 · 61 lines · **emu-compared** → `engines/tesoro/kinds/interactive.cpp` — 0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits
 
 ### Cluster 26: 0040f040–0040f270 (7/7 ported)

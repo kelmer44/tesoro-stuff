@@ -13,7 +13,7 @@
 #include "common/stream.h"
 #define private public
 #define protected public
-#include "tesoro/core/pathsprite.h"
+#include "tesoro/core/wanderingsprite.h"
 #undef private
 #undef protected
 
@@ -58,7 +58,7 @@ struct Tally {
 };
 
 // Hands back the recorded results of the random functions and checks the arguments.
-struct Replay : Tesoro::PathSpriteHost {
+struct Replay : Tesoro::WanderingSpriteHost {
 	std::vector<std::string> expected; size_t next = 0; bool argsOk = true; int calls = 0;
 	void load(const std::string &tokens) {
 		expected.clear(); next = 0; argsOk = true; calls = 0;
@@ -85,7 +85,7 @@ static std::string withoutMovement(const std::string &s) {
 	return out;
 }
 
-static std::string stateOf(Tesoro::PathSprite &p) {
+static std::string stateOf(Tesoro::WanderingSprite &p) {
 	const Tesoro::AnimPlayer &pl = p.animation().current();
 	char b[400];
 	snprintf(b, sizeof b, "%d %d %d %d %d %d %d %d %d / %d %d %u %u %d %u %u %u", p._x, p._y, p._stamp, p._wait, p._travelling ? 1 : 0, (int32)p._path,
@@ -101,7 +101,7 @@ int main(int argc, char **argv) {
 	Tesoro::AnimPlayer anchorPlayer, spritePlayer;
 	std::string adat, sdat; VecStream *as = nullptr, *ss = nullptr;
 	Tesoro::Object anchor;
-	Tesoro::PathSprite *sprite = nullptr;
+	Tesoro::WanderingSprite *sprite = nullptr;
 	Replay host; int caseNo = 0; Tally tally;
 	while (fgets(buf, sizeof buf, f)) {
 		std::istringstream in(buf); std::string op; in >> op;
@@ -125,7 +125,7 @@ int main(int argc, char **argv) {
 			Common::Array<Tesoro::AnimPlayer> abanks; abanks.push_back(anchorPlayer);
 			Tesoro::ObjectRecord arec; arec.banks.push_back(0);
 			anchor = Tesoro::Object(); anchor.initAnimated(arec, 0, abanks, 0); anchor.setPosition(ax, ay);
-			delete sprite; sprite = new Tesoro::PathSprite();
+			delete sprite; sprite = new Tesoro::WanderingSprite();
 			host.load(rnd);
 			sprite->init(rec, (int16)ro, banks, now0, host);
 			sprite->_anchor = &anchor;
