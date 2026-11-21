@@ -8474,7 +8474,7 @@
   "data_refs": [],
   "cluster": 5,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/cursor.cpp::init",
+  "engine": "engines/tesoro/kinds/cursor.cpp::init",
   "notes": "0x130-byte object, vtable 00428038, base 0040e5a0; creates candidate lists (capacity 0x1e) at +0x6c/+0x70 and a shared list 00442060 | cursor vectors 4 Nov"
  },
  {
@@ -8501,7 +8501,7 @@
   "data_refs": [],
   "cluster": 5,
   "status": "ported",
-  "engine": "engines/tesoro/core/cursor.cpp::Cursor::initMain",
+  "engine": "engines/tesoro/kinds/cursor.cpp::Cursor::initMain",
   "notes": "0x130 bytes, vtable 00428038, extends Kind03; creates two 30-element lists, sets the mouse object bounds (DAT_0044206c +0x20 = -320 ...), so probably the pointer/cursor object"
  },
  {
@@ -8553,7 +8553,7 @@
   "data_refs": [],
   "cluster": 5,
   "status": "ported",
-  "engine": "engines/tesoro/core/cursor.cpp::Cursor::onAttach + tesoro.cpp (main list) + World::setSlotPicture",
+  "engine": "engines/tesoro/kinds/cursor.cpp::Cursor::onAttach + tesoro.cpp (main list) + World::setSlotPicture",
   "notes": "unread; first seen in vtable 00428038 slot 0 | main-list insertion at 0xf done by the engine at start-up, 5 Nov | picture lookup (PLANTILLA1) done in World::setSlotPicture; save scan replaced by ScummVM's list; main list at start-up | all parts done in the engine: hit rects, main list at 0xf, PLANTILLA1 picture, save list via ScummVM; not compared as a whole"
  },
  {
@@ -8706,7 +8706,7 @@
   "data_refs": [],
   "cluster": 6,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/cursor.cpp::Cursor::draw",
+  "engine": "engines/tesoro/kinds/cursor.cpp::Cursor::draw",
   "notes": "unread; first seen in vtable 00428038 slot 6"
  },
  {
@@ -8728,7 +8728,7 @@
   "data_refs": [],
   "cluster": 6,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/cursor.cpp::isHitter",
+  "engine": "engines/tesoro/kinds/cursor.cpp::isHitter",
   "notes": "vtable slot 11 (ret 4): IsHitter(other): returns flag bit 10 (0x400) of this, ignoring the argument. Base default returns false. Level_CollisionPass asks A.slot11(B) then B.slot11(A) to decide which object is the hitter | cursor vectors 4 Nov"
  },
  {
@@ -8752,7 +8752,7 @@
   "data_refs": [],
   "cluster": 6,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/cursor.cpp::onTouched",
+  "engine": "engines/tesoro/kinds/cursor.cpp::onTouched",
   "notes": "vtable slot 12 (ret 8: two stack arguments, the decompiler shows one): OnTouched(other, extra). Cursor override appends the touched object (first argument) to candidate list +0x70 and returns 1. Called by Level_CollisionPass flush | cursor vectors 4 Nov"
  },
  {
@@ -8776,7 +8776,7 @@
   "data_refs": [],
   "cluster": 6,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/cursor.cpp::processCandidates",
+  "engine": "engines/tesoro/kinds/cursor.cpp::processCandidates",
   "notes": "per frame: for each registered candidate, with left button (mouse buttons byte & 8) calls candidate slot 14 with the cursor's current animation index (the verb), with right button (& 0x10) slot 15, otherwise slot 17 (show hover text); candidates that stopped being under the pointer get slot 18 (clear text) and are dropped | cursor vectors 4 Nov"
  },
  {
@@ -8801,7 +8801,7 @@
   "data_refs": [],
   "cluster": 6,
   "status": "ported",
-  "engine": "engines/tesoro/core/cursor.cpp::Cursor::update2 + World::walkJimToPointer",
+  "engine": "engines/tesoro/kinds/cursor.cpp::Cursor::update2 + World::walkJimToPointer",
   "notes": "unread; first seen in vtable 00428038 slot 5 | contract read 30 Oct; port blocked on global objects | click-to-walk ported 4 Nov"
  },
  {
@@ -8825,7 +8825,7 @@
   "data_refs": [],
   "cluster": 6,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/cursor.cpp::setActive",
+  "engine": "engines/tesoro/kinds/cursor.cpp::setActive",
   "notes": "unread; first seen in vtable 00428038 slot 8 | cursor vectors 4 Nov"
  },
  {
@@ -10223,7 +10223,7 @@
   "data_refs": [],
   "cluster": 11,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "0xac bytes, extends MidBase; 14 per-subtype vtables selected by record byte 1; increments global instance counter 004420f8; phrase key lookup"
  },
  {
@@ -10299,7 +10299,7 @@
   "data_refs": [],
   "cluster": 11,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "slot 4 of kind 13: same pending-click dispatch as Interactive_Update, with an extra item-use path when no verb handler applies (calls the hovered object's slot 27)"
  },
  {
@@ -10379,7 +10379,7 @@
   "data_refs": [],
   "cluster": 11,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 00428b00 slot 14"
  },
  {
@@ -10455,7 +10455,7 @@
   "data_refs": [],
   "cluster": 11,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "kind 13 method (flag): when set, makes this object the carried item (cursor +0x12c) and switches the cursor animation to item id + 7; when cleared, drops it. Verb indices 7 and above are therefore carried inventory items"
  },
  {
@@ -10484,7 +10484,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jim.cpp::Jim",
+  "engine": "engines/tesoro/kinds/jim.cpp::Jim",
   "notes": "0x114-byte object, vtable 00428b70, base chain Kind05-family ctor 0040fea0 -> 0040ec90. Loads 9 animation files (JIMHABDER, JIMQUIETO, JIMARRIBA, JIMABAJO, JIMIZQUIERDA, JIMDERECHA, JIMHABAR ... .ANM) into bank array +0x34, name key from string at 0042d2a4, start position (0x15e,0x14), sort value 0x23, scale +0xfc = 0x100, speech/idle fields, calls SetFacing(3)"
  },
  {
@@ -10508,7 +10508,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jim.cpp::Jim",
+  "engine": "engines/tesoro/kinds/jim.cpp::Jim",
   "notes": "slot 10: writes the same fields | save bytes compared 5 Nov (Jim vectors op G)"
  },
  {
@@ -10533,7 +10533,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "ported",
-  "engine": "engines/tesoro/core/jim.cpp::Jim",
+  "engine": "engines/tesoro/kinds/jim.cpp::Jim",
   "notes": "slot 9: stops walking, reads position (8 bytes at +0x4c), facing +0x10c, bank index +0x32, +0x110, flags +0x68"
  },
  {
@@ -10559,7 +10559,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jim.cpp",
+  "engine": "engines/tesoro/kinds/jim.cpp",
   "notes": "slot 32: (x, y, target object, flag) starts a walk: records target +0x104/+0x108, converts position to fixed point, chooses facing 1..4 from the dominant axis, selects the matching walking animation (table +0xd8); the function always ends by calling the target object's slot 13 (RunVerb), including at walk start, purpose not yet understood"
  },
  {
@@ -10583,7 +10583,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jim.cpp::Jim",
+  "engine": "engines/tesoro/kinds/jim.cpp::Jim",
   "notes": "slot 3: base UpdateBounds then multiplies the four rect values by the perspective scale (+0xfc, 0x100 = 1.0) >> 8"
  },
  {
@@ -11171,7 +11171,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jim.cpp",
+  "engine": "engines/tesoro/kinds/jim.cpp",
   "notes": "slot 4: per-frame walking step. Position is 24.8 fixed point (+0xe0,+0xe4); the animation's own per-frame offset (+0x28,+0x2a, root motion) scaled by perspective moves Jim; ends when the squared distance reaches zero (arrival), then removes itself from the main list and either calls slot 29 (face) or the target object's slot 13 (RunVerb) | overflow of the squared distance fixed 5 Nov (Jim vectors 400/400)"
  },
  {
@@ -11193,7 +11193,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "ported",
-  "engine": "engines/tesoro/core/jim.cpp::Jim",
+  "engine": "engines/tesoro/kinds/jim.cpp::Jim",
   "notes": "slot 11: returns (+0x5c == 7) | fixed 4 Nov: other kind == 7, was a Jim field in the port"
  },
  {
@@ -11218,7 +11218,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jim.cpp",
+  "engine": "engines/tesoro/kinds/jim.cpp",
   "notes": "slot 12: called when a walk segment ends: updates previous position, unless the walk-area path search (WalkArea_FindPath) produces a further waypoint, calls slot 29 (face) and the target object's slot 13"
  },
  {
@@ -11242,7 +11242,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jim.cpp",
+  "engine": "engines/tesoro/kinds/jim.cpp",
   "notes": "slot 29: clears walking flag, stores direction +0x10c (1..4) and starts the matching animation"
  },
  {
@@ -11262,7 +11262,7 @@
   "data_refs": [],
   "cluster": 12,
   "status": "ported",
-  "engine": "engines/tesoro/core/jim.h::Jim::resumeFacing",
+  "engine": "engines/tesoro/kinds/jim.h::Jim::resumeFacing",
   "notes": "if walking (+0xd5) applies the stored facing again via slot 29 | ported 31 Oct, from reading"
  },
  {
@@ -11341,7 +11341,7 @@
   "data_refs": [],
   "cluster": 13,
   "status": "ported",
-  "engine": "engines/tesoro/core/jim.cpp::Jim::enterLevel",
+  "engine": "engines/tesoro/kinds/jim.cpp::Jim::enterLevel",
   "notes": "(level, room, x, y) on the player: leaves the old level (removes from its lists and the main list), joins the new level, sets camera and position, inserts into the main list at priority 0x14 | ported 31 Oct; call order and effects checked with enterlevel_driver (stub world), not against the original code"
  },
  {
@@ -11362,7 +11362,7 @@
   "data_refs": [],
   "cluster": 13,
   "status": "ported",
-  "engine": "engines/tesoro/core/jim.h::Jim::sayNarrationLine",
+  "engine": "engines/tesoro/kinds/jim.h::Jim::sayNarrationLine",
   "notes": "Player_Say with a negative id derived from +0x100 (spoken subtitle line) | already present as sayScriptLine; marked 31 Oct | renamed from sayScriptLine on 16 Nov 2026: Jim's narration, mouth shut, subtitle centred"
  },
  {
@@ -11413,7 +11413,7 @@
   "data_refs": [],
   "cluster": 13,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jim.cpp::Jim",
+  "engine": "engines/tesoro/kinds/jim.cpp::Jim",
   "notes": "slot 31: draws the speaking-mouth animation; while talking picks a random frame (RandomRange) at most every 100 ms of game time, else rests on frame 1"
  },
  {
@@ -11437,7 +11437,7 @@
   "data_refs": [],
   "cluster": 13,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jim.cpp::Jim",
+  "engine": "engines/tesoro/kinds/jim.cpp::Jim",
   "notes": "slot 30: direction 3,4,2,1 -> idle animation index 0,1,2,3 via 00410130, then recomputes speech anchor point +0xa4"
  },
  {
@@ -11462,7 +11462,7 @@
   "data_refs": [],
   "cluster": 13,
   "status": "ported",
-  "engine": "engines/tesoro/core/jim.h::Jim::useItem + world.cpp::World::useItemOnInterface",
+  "engine": "engines/tesoro/kinds/jim.h::Jim::useItem + world.cpp::World::useItemOnInterface",
   "notes": "slot 27: forwards to a level-interface object (name key 0042d2a8) slot 27 | ported 31 Oct; the interface object's slot 27 is behind JimWorld::useItemOnInterface (not read) | forwards to ICUBOMAR use(0xff), 5 Nov; item number of ICUBOMAR not verified | 5 Nov: Jim made clickable (interactive base slots) so this is reachable"
  },
  {
@@ -12055,7 +12055,7 @@
   "data_refs": [],
   "cluster": 15,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a600 slot 21 (kind 13 subtype 16)"
  },
  {
@@ -12081,7 +12081,7 @@
   "data_refs": [],
   "cluster": 16,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a590 slot 24 (kind 13 subtype 10)"
  },
  {
@@ -12103,7 +12103,7 @@
   "data_refs": [],
   "cluster": 16,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a4b0 slot 24 (kind 13 subtype 15)"
  },
  {
@@ -12129,7 +12129,7 @@
   "data_refs": [],
   "cluster": 16,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a440 slot 21 (kind 13 subtype 28)"
  },
  {
@@ -12157,7 +12157,7 @@
   "data_refs": [],
   "cluster": 16,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a3d0 slot 21 (kind 13 subtype 19)"
  },
  {
@@ -12179,7 +12179,7 @@
   "data_refs": [],
   "cluster": 16,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a3d0 slot 24 (kind 13 subtype 19)"
  },
  {
@@ -12205,7 +12205,7 @@
   "data_refs": [],
   "cluster": 16,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a280 slot 21 (kind 13 subtype 44)"
  },
  {
@@ -12232,7 +12232,7 @@
   "data_refs": [],
   "cluster": 16,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a1a0 slot 24 (kind 13 subtype 29)"
  },
  {
@@ -12259,7 +12259,7 @@
   "data_refs": [],
   "cluster": 16,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a6e0 slot 22 (kind 12 subtype 10)"
  },
  {
@@ -12285,7 +12285,7 @@
   "data_refs": [],
   "cluster": 16,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a910 slot 21 (kind 12 subtype 5)"
  },
  {
@@ -12313,7 +12313,7 @@
   "data_refs": [],
   "cluster": 16,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a910 slot 22 (kind 12 subtype 5)"
  },
  {
@@ -12339,7 +12339,7 @@
   "data_refs": [],
   "cluster": 16,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a910 slot 24 (kind 12 subtype 5)"
  },
  {
@@ -12366,7 +12366,7 @@
   "data_refs": [],
   "cluster": 16,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042aa60 slot 21 (kind 12 subtype 2)"
  },
  {
@@ -12393,7 +12393,7 @@
   "data_refs": [],
   "cluster": 17,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042ab40 slot 22 (kind 12 subtype 0)"
  },
  {
@@ -12420,7 +12420,7 @@
   "data_refs": [],
   "cluster": 17,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042ab40 slot 26 (kind 12 subtype 0)"
  },
  {
@@ -12447,7 +12447,7 @@
   "data_refs": [],
   "cluster": 17,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a9f0 slot 24 (kind 12 subtype 3)"
  },
  {
@@ -12473,7 +12473,7 @@
   "data_refs": [],
   "cluster": 17,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a980 slot 21 (kind 12 subtype 4)"
  },
  {
@@ -12499,7 +12499,7 @@
   "data_refs": [],
   "cluster": 17,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042aad0 slot 21 (kind 12 subtype 1)"
  },
  {
@@ -12526,7 +12526,7 @@
   "data_refs": [],
   "cluster": 17,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a8a0 slot 22 (kind 12 subtype 6)"
  },
  {
@@ -12553,7 +12553,7 @@
   "data_refs": [],
   "cluster": 17,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a670 slot 20 (kind 12 subtype 11)"
  },
  {
@@ -12577,7 +12577,7 @@
   "data_refs": [],
   "cluster": 18,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042aef8 slot 20 (kind 6 subtype 8)"
  },
  {
@@ -12601,7 +12601,7 @@
   "data_refs": [],
   "cluster": 18,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042aef8 slot 24 (kind 6 subtype 8)"
  },
  {
@@ -12625,7 +12625,7 @@
   "data_refs": [],
   "cluster": 18,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042aef8 slot 15 (kind 6 subtype 8)"
  },
  {
@@ -12651,7 +12651,7 @@
   "data_refs": [],
   "cluster": 18,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b390 slot 23 (kind 5 subtype 3)"
  },
  {
@@ -12677,7 +12677,7 @@
   "data_refs": [],
   "cluster": 18,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a830 slot 21 (kind 12 subtype 7)"
  },
  {
@@ -12703,7 +12703,7 @@
   "data_refs": [],
   "cluster": 18,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a830 slot 23 (kind 12 subtype 7)"
  },
  {
@@ -12728,7 +12728,7 @@
   "data_refs": [],
   "cluster": 18,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a7c0 slot 22 (kind 12 subtype 9)"
  },
  {
@@ -12754,7 +12754,7 @@
   "data_refs": [],
   "cluster": 18,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a750 slot 21 (kind 12 subtype 8)"
  },
  {
@@ -12780,7 +12780,7 @@
   "data_refs": [],
   "cluster": 18,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a750 slot 23 (kind 12 subtype 8)"
  },
  {
@@ -12806,7 +12806,7 @@
   "data_refs": [],
   "cluster": 19,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429fe0 slot 21 (kind 17 subtype 1)"
  },
  {
@@ -12833,7 +12833,7 @@
   "data_refs": [],
   "cluster": 19,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429f70 slot 21 (kind 17 subtype 2)"
  },
  {
@@ -12859,7 +12859,7 @@
   "data_refs": [],
   "cluster": 19,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429d40 slot 22 (kind 17 subtype 13)"
  },
  {
@@ -12885,7 +12885,7 @@
   "data_refs": [],
   "cluster": 19,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429f00 slot 22 (kind 17 subtype 3)"
  },
  {
@@ -12912,7 +12912,7 @@
   "data_refs": [],
   "cluster": 19,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429e90 slot 21 (kind 17 subtype 4)"
  },
  {
@@ -12938,7 +12938,7 @@
   "data_refs": [],
   "cluster": 19,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429e20 slot 21 (kind 17 subtype 5)"
  },
  {
@@ -12964,7 +12964,7 @@
   "data_refs": [],
   "cluster": 19,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b6c0 slot 23 (kind 5 subtype 5)"
  },
  {
@@ -12991,7 +12991,7 @@
   "data_refs": [],
   "cluster": 19,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b638 slot 23 (kind 5 subtype 6)"
  },
  {
@@ -13016,7 +13016,7 @@
   "data_refs": [],
   "cluster": 20,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429a30 slot 22 (kind 17 subtype 14)"
  },
  {
@@ -13042,7 +13042,7 @@
   "data_refs": [],
   "cluster": 20,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429b80 slot 22 (kind 17 subtype 10)"
  },
  {
@@ -13068,7 +13068,7 @@
   "data_refs": [],
   "cluster": 20,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429b10 slot 23 (kind 17 subtype 11)"
  },
  {
@@ -13094,7 +13094,7 @@
   "data_refs": [],
   "cluster": 20,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429aa0 slot 22 (kind 17 subtype 12)"
  },
  {
@@ -13121,7 +13121,7 @@
   "data_refs": [],
   "cluster": 20,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429cd0 slot 22 (kind 17 subtype 7)"
  },
  {
@@ -13146,7 +13146,7 @@
   "data_refs": [],
   "cluster": 20,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 004299c0 slot 22 (kind 17 subtype 15)"
  },
  {
@@ -13172,7 +13172,7 @@
   "data_refs": [],
   "cluster": 20,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429c60 slot 21 (kind 17 subtype 8)"
  },
  {
@@ -13198,7 +13198,7 @@
   "data_refs": [],
   "cluster": 20,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429c60 slot 22 (kind 17 subtype 8)"
  },
  {
@@ -13225,7 +13225,7 @@
   "data_refs": [],
   "cluster": 20,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429bf0 slot 22 (kind 17 subtype 9)"
  },
  {
@@ -13253,7 +13253,7 @@
   "data_refs": [],
   "cluster": 20,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042ad18 slot 20 (kind 6 subtype 4)"
  },
  {
@@ -13278,7 +13278,7 @@
   "data_refs": [],
   "cluster": 21,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00428c30 slot 20 (kind 20 subtype 30)"
  },
  {
@@ -13304,7 +13304,7 @@
   "data_refs": [],
   "cluster": 21,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 004298e0 slot 23 (kind 20 subtype 0)"
  },
  {
@@ -13331,7 +13331,7 @@
   "data_refs": [],
   "cluster": 21,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429090 slot 20 (kind 20 subtype 20)"
  },
  {
@@ -13356,7 +13356,7 @@
   "data_refs": [],
   "cluster": 21,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00428d80 slot 22 (kind 20 subtype 27)"
  },
  {
@@ -13382,7 +13382,7 @@
   "data_refs": [],
   "cluster": 21,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b170 slot 21 (kind 5 subtype 14)"
  },
  {
@@ -13409,7 +13409,7 @@
   "data_refs": [],
   "cluster": 21,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b170 slot 23 (kind 5 subtype 14)"
  },
  {
@@ -13436,7 +13436,7 @@
   "data_refs": [],
   "cluster": 21,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429720 slot 21 (kind 20 subtype 4)"
  },
  {
@@ -13462,7 +13462,7 @@
   "data_refs": [],
   "cluster": 21,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429790 slot 21 (kind 20 subtype 3)"
  },
  {
@@ -13489,7 +13489,7 @@
   "data_refs": [],
   "cluster": 21,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429790 slot 20 (kind 20 subtype 3)"
  },
  {
@@ -13516,7 +13516,7 @@
   "data_refs": [],
   "cluster": 21,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 004296b0 slot 20 (kind 20 subtype 5)"
  },
  {
@@ -13541,7 +13541,7 @@
   "data_refs": [],
   "cluster": 22,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429640 slot 22 (kind 20 subtype 6)"
  },
  {
@@ -13567,7 +13567,7 @@
   "data_refs": [],
   "cluster": 22,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 004294f0 slot 23 (kind 20 subtype 9)"
  },
  {
@@ -13593,7 +13593,7 @@
   "data_refs": [],
   "cluster": 22,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 004294f0 slot 22 (kind 20 subtype 9)"
  },
  {
@@ -13619,7 +13619,7 @@
   "data_refs": [],
   "cluster": 22,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429330 slot 21 (kind 20 subtype 13)"
  },
  {
@@ -13645,7 +13645,7 @@
   "data_refs": [],
   "cluster": 22,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 004293a0 slot 21 (kind 20 subtype 12)"
  },
  {
@@ -13672,7 +13672,7 @@
   "data_refs": [],
   "cluster": 22,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 004293a0 slot 22 (kind 20 subtype 12)"
  },
  {
@@ -13697,7 +13697,7 @@
   "data_refs": [],
   "cluster": 22,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429480 slot 22 (kind 20 subtype 10)"
  },
  {
@@ -13723,7 +13723,7 @@
   "data_refs": [],
   "cluster": 22,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00428ca0 slot 21 (kind 20 subtype 29)"
  },
  {
@@ -13749,7 +13749,7 @@
   "data_refs": [],
   "cluster": 22,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00428f40 slot 21 (kind 20 subtype 24)"
  },
  {
@@ -13774,7 +13774,7 @@
   "data_refs": [],
   "cluster": 22,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00428ed0 slot 22 (kind 20 subtype 23)"
  },
  {
@@ -13800,7 +13800,7 @@
   "data_refs": [],
   "cluster": 22,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429170 slot 22 (kind 20 subtype 18)"
  },
  {
@@ -13827,7 +13827,7 @@
   "data_refs": [],
   "cluster": 22,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00428e60 slot 21 (kind 20 subtype 25)"
  },
  {
@@ -13853,7 +13853,7 @@
   "data_refs": [],
   "cluster": 23,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00428df0 slot 21 (kind 20 subtype 26)"
  },
  {
@@ -13880,7 +13880,7 @@
   "data_refs": [],
   "cluster": 23,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00428fb0 slot 22 (kind 20 subtype 22)"
  },
  {
@@ -13906,7 +13906,7 @@
   "data_refs": [],
   "cluster": 23,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042ae80 slot 20 (kind 6 subtype 7)"
  },
  {
@@ -14316,7 +14316,7 @@
   "data_refs": [],
   "cluster": 24,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/cursor.cpp::init",
+  "engine": "engines/tesoro/kinds/cursor.cpp::init",
   "notes": "base object ctor with vtable 0042b9c0 | cursor vectors 4 Nov"
  },
  {
@@ -14597,7 +14597,7 @@
   "data_refs": [],
   "cluster": 25,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "Kind00 plus vtable 0042ba68 and +0x68 bits from the current animation; base of kinds 8, 11, 13, 15, 21, 22, 23, 25"
  },
  {
@@ -14623,7 +14623,7 @@
   "data_refs": [],
   "cluster": 25,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "0xa0 bytes. Constructor also used for kinds 12, 17 and 20 with 12/17/30 per-subtype vtables selected by record byte 1, and as base of kinds 5, 6, 24. Home position +0x94/+0x98, text key looked up with PhraseLookup, sets +0x68 flag bits"
  },
  {
@@ -14970,7 +14970,7 @@
   "data_refs": [],
   "cluster": 25,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "MidBase slot 4: when a click is pending (+0x8c), clears it, removes the object from the main list, runs the verb handler for the current verb (index +0x9c, slots 20-26), clears the cursor's target (+0x12c), resets the cursor animation and calls slot 27 with verb-7. Pending flag is cleared at the end"
  },
  {
@@ -15931,7 +15931,7 @@
   "data_refs": [],
   "cluster": 25,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "MidBase slot 14: stores verb +0x9c then calls slot 19 (OnClick)"
  },
  {
@@ -16441,7 +16441,7 @@
   "data_refs": [],
   "cluster": 26,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/menuitem.cpp::MenuItem::doubleClick",
+  "engine": "engines/tesoro/kinds/menuitem.cpp::MenuItem::doubleClick",
   "notes": "MidBase slot 15: calls slot 14 with its argument | renamed from rightClick on 20 Nov 2026: the pointer calls it on a double click of the main button"
  },
  {
@@ -16982,7 +16982,7 @@
   "data_refs": [],
   "cluster": 26,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "MidBase slot 17: puts the object's phrase text (+0x6c record, then the 64-bit name key) into the cursor's hover text via Cursor_SetText"
  },
  {
@@ -17530,7 +17530,7 @@
   "data_refs": [],
   "cluster": 26,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "MidBase slot 18: Cursor_SetText(null)"
  },
  {
@@ -17998,7 +17998,7 @@
   "data_refs": [],
   "cluster": 26,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "MidBase slot 13: tells the player object (global 004420fc) to select verb +0x90, then dispatches the verb handler like Interactive_Update"
  },
  {
@@ -18556,7 +18556,7 @@
   "data_refs": [],
   "cluster": 26,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "MidBase slot 19: interrupts the player if busy, copies the clicked verb for the player object itself, sets the player's target to the object's approach point (+0x94,+0x98) via player slot 32 (walk), then player slot 4"
  },
  {
@@ -19045,7 +19045,7 @@
   "data_refs": [],
   "cluster": 26,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "MidBase slot 20: marks click pending (+0x8c, +0x8d), says phrase key +0x70 if set via GameState_Say, sets cursor busy, inserts object into the main list at priority 5"
  },
  {
@@ -19505,7 +19505,7 @@
   "data_refs": [],
   "cluster": 27,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "slot 21 of Kind09-based classes: same pattern with phrase key +0x74 and a default phrase when unset"
  },
  {
@@ -19795,7 +19795,7 @@
   "data_refs": [],
   "cluster": 27,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "slot 22: phrase key +0x7c"
  },
  {
@@ -20109,7 +20109,7 @@
   "data_refs": [],
   "cluster": 27,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "slot 23: phrase key +0x78"
  },
  {
@@ -20479,7 +20479,7 @@
   "data_refs": [],
   "cluster": 27,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "slot 24: phrase key +0x80"
  },
  {
@@ -20789,7 +20789,7 @@
   "data_refs": [],
   "cluster": 27,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/interactive.cpp",
+  "engine": "engines/tesoro/kinds/interactive.cpp",
   "notes": "slot 27: handles using an inventory item on the object: looks the item up in the object's item table (+0xa0 pairs of name keys, +0xa4 responses) else says a default phrase (ICON01T058 or MODELO2)"
  },
  {
@@ -21211,7 +21211,7 @@
   "data_refs": [],
   "cluster": 29,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/character.cpp::Character::init",
+  "engine": "engines/tesoro/kinds/character.cpp::Character::init",
   "notes": "0xd8 bytes, extends Kind09; 17 per-subtype vtables chosen by record byte 5; scans anim banks for names starting with two 3-char tags | character harness 600 sessions, 30 Oct+1: gen_vectors_character.py"
  },
  {
@@ -21233,7 +21233,7 @@
   "data_refs": [],
   "cluster": 29,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/character.cpp::Character::drawSubtitle",
+  "engine": "engines/tesoro/kinds/character.cpp::Character::drawSubtitle",
   "notes": "draws the current phrase text twice (shadow style) at the speaker's position with Display_DrawText, keeping the camera in view"
  },
  {
@@ -21411,7 +21411,7 @@
   "data_refs": [],
   "cluster": 29,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jim.cpp::Jim",
+  "engine": "engines/tesoro/kinds/jim.cpp::Jim",
   "notes": "(direction index) recomputes speech anchor and selects the bank listed in +0xb0.."
  },
  {
@@ -21717,7 +21717,7 @@
   "data_refs": [],
   "cluster": 30,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/jim.cpp::Jim",
+  "engine": "engines/tesoro/kinds/jim.cpp::Jim",
   "notes": "selects the bank from +0xac and starts animation index (param-1) with AnimPlayer"
  },
  {
@@ -21803,7 +21803,7 @@
   "data_refs": [],
   "cluster": 30,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/character.h::Character::startWalk",
+  "engine": "engines/tesoro/kinds/character.h::Character::startWalk",
   "notes": "unread; first seen in vtable 0042b060 slot 32 (kind 5 subtype 16)"
  },
  {
@@ -22980,7 +22980,7 @@
   "data_refs": [],
   "cluster": 35,
   "status": "ported",
-  "engine": "engines/tesoro/core/walkfloor.cpp::WalkFloor::init",
+  "engine": "engines/tesoro/kinds/walkfloor.cpp::WalkFloor::init",
   "notes": "0x7c bytes, vtable 0042bc78, extends Kind00 | ported 31 Oct; the kind 7 floor (SUELO)"
  },
  {
@@ -23005,7 +23005,7 @@
   "data_refs": [],
   "cluster": 35,
   "status": "ported",
-  "engine": "engines/tesoro/core/walkfloor.cpp::WalkFloor::onAttach",
+  "engine": "engines/tesoro/kinds/walkfloor.cpp::WalkFloor::onAttach",
   "notes": "unread; first seen in vtable 0042bc78 slot 0 | ported 31 Oct except the shared-level animation borrow | 5 Nov: shared-floor borrow ported (level 42's SUELO); level index now set before attach"
  },
  {
@@ -23095,7 +23095,7 @@
   "data_refs": [],
   "cluster": 35,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "0xb0 bytes, vtable 0042bce8, extends Kind09; 10 per-subtype vtables chosen by record byte 1"
  },
  {
@@ -23140,7 +23140,7 @@
   "data_refs": [],
   "cluster": 35,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "kind 6/other exit-style handler: when Jim is idle, resets display queues, looks up the destination level in the level table 00442130 by index (+0xa0) and name key (+0xa4,+0xa8), and moves Jim there with Jim_EnterLevel"
  },
  {
@@ -23202,7 +23202,7 @@
   "data_refs": [],
   "cluster": 35,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042abb0 slot 15 (kind 6 subtype 1)"
  },
  {
@@ -23254,7 +23254,7 @@
   "data_refs": [],
   "cluster": 35,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042abb0 slot 28 (kind 6 subtype 1)"
  },
  {
@@ -23276,7 +23276,7 @@
   "data_refs": [],
   "cluster": 36,
   "status": "ported",
-  "engine": "engines/tesoro/core/pathobject.cpp::PathObject::init",
+  "engine": "engines/tesoro/kinds/pathobject.cpp::PathObject::init",
   "notes": "0xb4 bytes, vtable 0042bd60, extends Obj_MidBase | kind 8, 0xb4 bytes, vtable 0042bd60 (only slot 13 overridden), extends MidBase; starts the single-frame animation whose frame record holds the vertex list. Rename of inferred_Obj_Kind08_Ctor | ported 31 Oct; shipped levels load and link, not emu-compared"
  },
  {
@@ -23620,7 +23620,7 @@
   "data_refs": [],
   "cluster": 37,
   "status": "ported",
-  "engine": "engines/tesoro/core/spriteobject.cpp::SpriteObject::onAttach",
+  "engine": "engines/tesoro/kinds/spriteobject.cpp::SpriteObject::onAttach",
   "notes": "unread; first seen in vtable 0042b9c0 slot 0"
  },
  {
@@ -23978,7 +23978,7 @@
   "data_refs": [],
   "cluster": 38,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042af70 slot 20 (kind 6 subtype 9)"
  },
  {
@@ -24007,7 +24007,7 @@
   "data_refs": [],
   "cluster": 38,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429410 slot 27 (kind 20 subtype 11)"
  },
  {
@@ -24034,7 +24034,7 @@
   "data_refs": [],
   "cluster": 38,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429100 slot 27 (kind 20 subtype 19)"
  },
  {
@@ -24061,7 +24061,7 @@
   "data_refs": [],
   "cluster": 38,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a050 slot 21 (kind 17 subtype 0)"
  },
  {
@@ -24088,7 +24088,7 @@
   "data_refs": [],
   "cluster": 38,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a050 slot 22 (kind 17 subtype 0)"
  },
  {
@@ -24116,7 +24116,7 @@
   "data_refs": [],
   "cluster": 38,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042aca0 slot 20 (kind 6 subtype 3)"
  },
  {
@@ -24145,7 +24145,7 @@
   "data_refs": [],
   "cluster": 38,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042aca0 slot 28 (kind 6 subtype 3) | world side of the frame changes (showLevelFrames) ported 5 Nov from reading; not in the driver | 20 Nov 2026: World::showLevelFrames is now World::setWalkAreaFrames(level, WalkPart, first, last) and showFrame is playFrames"
  },
  {
@@ -24171,7 +24171,7 @@
   "data_refs": [],
   "cluster": 38,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429950 slot 24 (kind 17 subtype 16)"
  },
  {
@@ -24198,7 +24198,7 @@
   "data_refs": [],
   "cluster": 39,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429950 slot 27 (kind 17 subtype 16)"
  },
  {
@@ -24225,7 +24225,7 @@
   "data_refs": [],
   "cluster": 39,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429db0 slot 20 (kind 17 subtype 6)"
  },
  {
@@ -24281,7 +24281,7 @@
   "data_refs": [],
   "cluster": 39,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b5b0 slot 23 (kind 5 subtype 7)"
  },
  {
@@ -24309,7 +24309,7 @@
   "data_refs": [],
   "cluster": 39,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b5b0 slot 27 (kind 5 subtype 7)"
  },
  {
@@ -24336,7 +24336,7 @@
   "data_refs": [],
   "cluster": 39,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b528 slot 27 (kind 5 subtype 8)"
  },
  {
@@ -24362,7 +24362,7 @@
   "data_refs": [],
   "cluster": 39,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b528 slot 23 (kind 5 subtype 8)"
  },
  {
@@ -24388,7 +24388,7 @@
   "data_refs": [],
   "cluster": 39,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b528 slot 21 (kind 5 subtype 8)"
  },
  {
@@ -24415,7 +24415,7 @@
   "data_refs": [],
   "cluster": 39,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429b10 slot 27 (kind 17 subtype 11)"
  },
  {
@@ -24471,7 +24471,7 @@
   "data_refs": [],
   "cluster": 39,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b6c0 slot 27 (kind 5 subtype 5)"
  },
  {
@@ -24523,7 +24523,7 @@
   "data_refs": [],
   "cluster": 40,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b280 slot 23 (kind 5 subtype 0)"
  },
  {
@@ -24551,7 +24551,7 @@
   "data_refs": [],
   "cluster": 40,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b280 slot 27 (kind 5 subtype 0)"
  },
  {
@@ -24657,7 +24657,7 @@
   "data_refs": [],
   "cluster": 40,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00428d10 slot 27 (kind 20 subtype 28)"
  },
  {
@@ -24684,7 +24684,7 @@
   "data_refs": [],
   "cluster": 40,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a600 slot 27 (kind 13 subtype 16)"
  },
  {
@@ -24711,7 +24711,7 @@
   "data_refs": [],
   "cluster": 40,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a520 slot 24 (kind 13 subtype 9)"
  },
  {
@@ -24739,7 +24739,7 @@
   "data_refs": [],
   "cluster": 40,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a440 slot 27 (kind 13 subtype 28)"
  },
  {
@@ -24764,7 +24764,7 @@
   "data_refs": [],
   "cluster": 41,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a360 slot 27 (kind 13 subtype 36)"
  },
  {
@@ -24791,7 +24791,7 @@
   "data_refs": [],
   "cluster": 41,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a2f0 slot 27 (kind 13 subtype 37)"
  },
  {
@@ -24816,7 +24816,7 @@
   "data_refs": [],
   "cluster": 41,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a210 slot 27 (kind 13 subtype 33)"
  },
  {
@@ -24841,7 +24841,7 @@
   "data_refs": [],
   "cluster": 41,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/inventoryitem.cpp::InventoryItem",
+  "engine": "engines/tesoro/kinds/inventoryitem.cpp::InventoryItem",
   "notes": "unread; first seen in vtable 0042a130 slot 27 (kind 13 subtype 42)"
  },
  {
@@ -24918,7 +24918,7 @@
   "data_refs": [],
   "cluster": 41,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042afe8 slot 28 (kind 6 subtype 10)"
  },
  {
@@ -25588,7 +25588,7 @@
   "data_refs": [],
   "cluster": 42,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "MidBase slot 16: returns 1 (is interactive/enabled default)"
  },
  {
@@ -25618,7 +25618,7 @@
   "data_refs": [],
   "cluster": 42,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/menuitem.cpp::MenuItem::setVerbAndClick",
+  "engine": "engines/tesoro/kinds/menuitem.cpp::MenuItem::setVerbAndClick",
   "notes": "unread; first seen in vtable 0042c000 slot 14"
  },
  {
@@ -25668,7 +25668,7 @@
   "data_refs": [],
   "cluster": 42,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 004295d0 slot 27 (kind 20 subtype 7)"
  },
  {
@@ -25694,7 +25694,7 @@
   "data_refs": [],
   "cluster": 42,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429560 slot 27 (kind 20 subtype 8)"
  },
  {
@@ -25718,7 +25718,7 @@
   "data_refs": [],
   "cluster": 43,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042ae08 slot 20 (kind 6 subtype 6)"
  },
  {
@@ -25746,7 +25746,7 @@
   "data_refs": [],
   "cluster": 43,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 004298e0 slot 27 (kind 20 subtype 0)"
  },
  {
@@ -25774,7 +25774,7 @@
   "data_refs": [],
   "cluster": 43,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429800 slot 27 (kind 20 subtype 2)"
  },
  {
@@ -25801,7 +25801,7 @@
   "data_refs": [],
   "cluster": 43,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042ad90 slot 20 (kind 6 subtype 5)"
  },
  {
@@ -25827,7 +25827,7 @@
   "data_refs": [],
   "cluster": 43,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429870 slot 27 (kind 20 subtype 1)"
  },
  {
@@ -25853,7 +25853,7 @@
   "data_refs": [],
   "cluster": 43,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 004292c0 slot 27 (kind 20 subtype 16)"
  },
  {
@@ -25881,7 +25881,7 @@
   "data_refs": [],
   "cluster": 43,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b170 slot 27 (kind 5 subtype 14)"
  },
  {
@@ -25908,7 +25908,7 @@
   "data_refs": [],
   "cluster": 43,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b1f8 slot 27 (kind 5 subtype 13)"
  },
  {
@@ -25936,7 +25936,7 @@
   "data_refs": [],
   "cluster": 43,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429250 slot 27 (kind 20 subtype 14)"
  },
  {
@@ -25963,7 +25963,7 @@
   "data_refs": [],
   "cluster": 43,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b1f8 slot 23 (kind 5 subtype 13)"
  },
  {
@@ -25990,7 +25990,7 @@
   "data_refs": [],
   "cluster": 43,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b1f8 slot 21 (kind 5 subtype 13)"
  },
  {
@@ -26017,7 +26017,7 @@
   "data_refs": [],
   "cluster": 43,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042ac28 slot 20 (kind 6 subtype 2)"
  },
  {
@@ -26044,7 +26044,7 @@
   "data_refs": [],
   "cluster": 44,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b4a0 slot 23 (kind 5 subtype 1)"
  },
  {
@@ -26072,7 +26072,7 @@
   "data_refs": [],
   "cluster": 44,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b4a0 slot 27 (kind 5 subtype 1)"
  },
  {
@@ -26099,7 +26099,7 @@
   "data_refs": [],
   "cluster": 44,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 00429020 slot 27 (kind 20 subtype 21)"
  },
  {
@@ -26126,7 +26126,7 @@
   "data_refs": [],
   "cluster": 44,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b308 slot 23 (kind 5 subtype 2)"
  },
  {
@@ -26153,7 +26153,7 @@
   "data_refs": [],
   "cluster": 44,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b308 slot 27 (kind 5 subtype 2)"
  },
  {
@@ -26180,7 +26180,7 @@
   "data_refs": [],
   "cluster": 44,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b418 slot 23 (kind 5 subtype 4)"
  },
  {
@@ -26206,7 +26206,7 @@
   "data_refs": [],
   "cluster": 44,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b418 slot 27 (kind 5 subtype 4)"
  },
  {
@@ -26234,7 +26234,7 @@
   "data_refs": [],
   "cluster": 44,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/exitdoor.cpp::ExitDoor",
+  "engine": "engines/tesoro/kinds/exitdoor.cpp::ExitDoor",
   "notes": "unread; first seen in vtable 0042abb0 slot 20 (kind 6 subtype 1)"
  },
  {
@@ -26258,7 +26258,7 @@
   "data_refs": [],
   "cluster": 45,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b390 slot 6 (kind 5 subtype 3)"
  },
  {
@@ -26285,7 +26285,7 @@
   "data_refs": [],
   "cluster": 45,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b390 slot 30 (kind 5 subtype 3)"
  },
  {
@@ -26312,7 +26312,7 @@
   "data_refs": [],
   "cluster": 45,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b390 slot 28 (kind 5 subtype 3)"
  },
  {
@@ -26338,7 +26338,7 @@
   "data_refs": [],
   "cluster": 45,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storyprop.cpp::StoryProp",
+  "engine": "engines/tesoro/kinds/storyprop.cpp::StoryProp",
   "notes": "unread; first seen in vtable 0042a750 slot 27 (kind 12 subtype 8)"
  },
  {
@@ -26557,7 +26557,7 @@
   "data_refs": [],
   "cluster": 46,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b060 slot 23 (kind 5 subtype 16)"
  },
  {
@@ -26584,7 +26584,7 @@
   "data_refs": [],
   "cluster": 46,
   "status": "emu-compared",
-  "engine": "engines/tesoro/core/storycharacter.cpp::StoryCharacter",
+  "engine": "engines/tesoro/kinds/storycharacter.cpp::StoryCharacter",
   "notes": "unread; first seen in vtable 0042b0e8 slot 23 (kind 5 subtype 15)"
  },
  {
