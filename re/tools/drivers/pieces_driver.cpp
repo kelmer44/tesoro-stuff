@@ -13,7 +13,7 @@
 #include "common/stream.h"
 #define private public
 #define protected public
-#include "tesoro/core/boardpieces.h"
+#include "tesoro/core/boardgame.h"
 #include "tesoro/core/room.h"
 #include "tesoro/core/namekey.h"
 #undef private
@@ -91,10 +91,10 @@ int main(int argc, char **argv) {
 				objects.push_back(o); list.pushBack(o);
 			}
 			if (stale >= 0) list._value = objects[stale];
-			Tesoro::ConnectFour game; std::string b = unhex(boardHex); memcpy(game.raw(), b.data(), 57);
+			Tesoro::BoardGame pieces; Tesoro::ConnectFour &game = pieces.board; std::string b = unhex(boardHex); memcpy(game.raw(), b.data(), 57);
 			for (int i = 0; i < 8; ++i) game._line[i] = win[i];
-			Tesoro::BoardPieces pieces; pieces.state = (byte)state; pieces.blink = (byte)blink; pieces.blinkStamp = stamp;
-			pieces.update(game, list, now);
+			pieces.state = (byte)state; pieces.blink = (byte)blink; pieces.blinkStamp = stamp;
+			pieces.showOn(list, now);
 			std::string got = std::to_string((int)pieces.blink) + " " + std::to_string(pieces.blinkStamp);
 			for (size_t i = 0; i < objects.size(); ++i) {
 				Tesoro::Object *o = objects[i];

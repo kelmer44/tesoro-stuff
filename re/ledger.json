@@ -26384,7 +26384,7 @@
   "data_refs": [],
   "cluster": 45,
   "status": "emu-compared",
-  "engine": "core/BoardPieces::update",
+  "engine": "core/ConnectFourMatch::showOn",
   "notes": "toggles a blink flag every 200 ms of game time and updates board objects; hypothesis | name from call sites and a skim; body not yet read | pieces vectors 4 Nov: 397 sessions identical"
  },
  {
@@ -26502,8 +26502,8 @@
   "data_refs": [],
   "cluster": 46,
   "status": "ported",
-  "engine": "core/BoardGame::turn + World script routine (type 14)",
-  "notes": "unread; first seen in vtable 00428438 slot 28 | boardgame vectors 4 Nov: BoardGame::turn identical (1,226 turns); phase 1 level change is World wiring, not compared"
+  "engine": "core/ConnectFourMatch::turn + World script routine (type 14)",
+  "notes": "unread; first seen in vtable 00428438 slot 28 | boardgame vectors 4 Nov: ConnectFourMatch::turn identical (1,226 turns); phase 1 level change is World wiring, not compared"
  },
  {
   "addr": "00419530",
@@ -26530,8 +26530,8 @@
   "data_refs": [],
   "cluster": 46,
   "status": "ported",
-  "engine": "core/BoardGame::start + World script routine (type 8)",
-  "notes": "unread; first seen in vtable 00428708 slot 28 | boardgame vectors 4 Nov: BoardGame::start identical (300 sessions); level change, Jim and script start are World wiring, not compared"
+  "engine": "core/ConnectFourMatch::start + World script routine (type 8)",
+  "notes": "unread; first seen in vtable 00428708 slot 28 | boardgame vectors 4 Nov: ConnectFourMatch::start identical (300 sessions); level change, Jim and script start are World wiring, not compared"
  },
  {
   "addr": "00419620",
