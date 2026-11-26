@@ -6,6 +6,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import ensure_venv  # noqa: E402,F401
 from capstone import CS_ARCH_X86, CS_MODE_32, Cs  # noqa: E402
 from emu import Runner, s32  # noqa: E402
 
@@ -38,7 +39,7 @@ def main():
         disassemble(code)
         return 0
     if not args.expr:
-        ap.error("--expr is required (or use --disasm)")
+        ap.error('--expr is required (or use --disasm). Example: --expr "sum(range(1, n+1))" (the variable is called n)')
 
     hyp = make_hypothesis(args.expr)
     runner = Runner(code)

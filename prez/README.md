@@ -25,15 +25,18 @@ Talk for engineers, 30 minutes, built around the Tesoro project.
 ```bash
 cd prez/demo
 mkdir -p live                                    # type live/sum_to.c here (backup: fallback/sum_to.c)
-./build.sh live/sum_to.c
-./run_native.sh live/sum_to.c 10                 # same C, run natively
+./build_native.sh live/sum_to.c                  # the C compiled for this Mac
+./build/native_demo 10                           # run it natively
+./build.sh live/sum_to.c                         # the same C again, for x86-win32
+file build/native_demo build/sum_to_O0.bin       # arm64 executable vs raw data
 PY=../../re/.venv/bin/python
 $PY run.py build/sum_to_O0.bin 10                # exact bytes, in the emulator
 ./patch_demo.sh jge                              # scripted byte patch (or do it in ImHex)
 $PY -I verify.py build/sum_to_O2.bin --expr "n*(n+1)//2"
 ```
 
-Needs clang (32-bit x86 target, no linker) and the `re/.venv` environment (Unicorn, Capstone).
+Needs clang (32-bit x86 target, no linker) and the `re/.venv` environment (Unicorn, Capstone). `run.py` and `verify.py`
+switch to that environment by themselves, so `./run.py build/sum_to_O0.bin 10` also works with the system Python.
 The demo uses an original function written for the talk, not game code.
 
 ## Deck

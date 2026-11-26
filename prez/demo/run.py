@@ -5,6 +5,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import ensure_venv  # noqa: E402,F401
 from emu import Runner  # noqa: E402
 
 def main():

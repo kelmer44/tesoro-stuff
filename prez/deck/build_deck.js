@@ -228,7 +228,7 @@ function arrow(s, x, y, w, h, opts) {
   // 7 DEMO 1
   {
     const s = begin("Act 1: by hand", "LIGHT", "Bytes and opcodes",
-      "Type the function live (5 lines) into live/sum_to.c and compile it with ./build.sh. Run it natively (55), then run the exact bytes in the emulator with an audience-chosen n. Open the .bin in ImHex and decode a few bytes by hand using the table in the demo script. Then patch the copy: byte 0x1d (7f to 7d) turns i <= n into i < n, so the answer for 10 becomes 45; byte 0x2d (01 to 02) makes i++ into i += 2, so it becomes 25. This is real, and it is miserable. If short on time, drop the jump-offset arithmetic (0x1f + 0x14 = 0x33). The code panel on the slide is a reference for the audience; the real thing is typed on screen.");
+      "Type the function live (5 lines) into live/sum_to.c. Compile it for the Mac with ./build_native.sh and run ./build/native_demo 10 to get 55, a known answer. Then say why the next build is different: the game is 32-bit x86 Windows, so I compile the same C again for x86-win32 with ./build.sh. This Mac is arm64, so these are completely different bytes and the Mac cannot run them; file shows the difference (arm64 executable versus plain data). If asked why Python makes the .bin: it just cuts the code bytes out of the object file, as bare as a dump from a real program (objdump -h shows .text is 59 bytes). Show the bytes with xxd -g1, then explain why hex: one byte is exactly two hex digits (4 bits each), binary is unreadable and decimal does not line up with bits. Open the .bin in ImHex, which can colour and label bytes and edit them in place. Decode a few bytes by hand with the one-byte opcode map (80386 Programmer's Reference, Appendix A): high four bits pick the row, low four bits the column. Run the exact bytes in the emulator with an audience-chosen n. Then patch the copy: byte 0x1d (7f to 7d) turns i <= n into i < n, so the answer for 10 becomes 45; byte 0x2d (01 to 02) makes i++ into i += 2, so it becomes 25. This is real, and it is miserable. If short on time, drop the jump-offset arithmetic (0x1f + 0x14 = 0x33). The code panel on the slide is a reference for the audience; the real thing is typed on screen.");
     chip(s, "LIVE DEMO 1");
     code(s, 0.5, 1.35, 4.5, 2.4, [
       "int sum_to(int n)",
@@ -239,7 +239,7 @@ function arrow(s, x, y, w, h, opts) {
       "  return total;",
       "}",
     ], 15, "SourceCode");
-    text(s, "Typed live, then compiled for 32-bit x86", { x: 0.5, y: 3.9, w: 4.5, h: 0.35, fontSize: 14, color: C.accent5 });
+    text(s, "Mac build first, then 32-bit x86", { x: 0.5, y: 3.9, w: 4.5, h: 0.35, fontSize: 14, color: C.accent5 });
     text(s, "59 bytes at -O0, 20 instructions", { x: 0.5, y: 4.3, w: 4.5, h: 0.4, fontSize: 18, bold: true, color: C.text2 });
     const hdr = (t) => ({ text: t, options: { bold: true, color: C.background1, fill: { color: C.text2 }, fontSize: 13 } });
     const cell = (t, mono) => ({ text: t, options: { fontSize: 13, color: C.text1, fontFace: mono ? MONO : undefined } });
@@ -265,7 +265,7 @@ function arrow(s, x, y, w, h, opts) {
       [{ text: "00000010: ", color: "8FA39A" }, { text: "c7 45 f8 01 00 00 00 8b", color: HEX.gold }],
       [{ text: "00000018: ", color: "8FA39A" }, { text: "45 f8 3b 45 08 7f 14 8b", color: HEX.gold }],
     ], 13, "HexDump");
-    text(s, "xxd: just the bytes", { x: 0.5, y: 3.5, w: 4.7, h: 0.35, fontSize: 14, color: C.accent5 });
+    text(s, "xxd -g1 -c8: just the bytes", { x: 0.5, y: 3.5, w: 4.7, h: 0.35, fontSize: 14, color: C.accent5 });
     code(s, 5.5, 1.4, 4.0, 2.9, [
       "push ebp",
       "mov  ebp, esp",
@@ -284,7 +284,7 @@ function arrow(s, x, y, w, h, opts) {
   // 9 Compiler reveal
   {
     const s = begin("Act 1: by hand", "LIGHT", "The compiler reveal",
-      "Same five lines of C. At -O2 the loop is gone: the compiler worked out the sum is a formula (multiply, halve, add) and replaced the loop with it. For n = 1000 the unoptimised code runs 10,013 instructions and the optimised code runs 10, with the same answer. Keep in mind the test and jump at the top of the -O2 code: it returns 0 for n <= 0. That comes back in Act 3. Optimisers are why reverse engineering is not just reading.");
+      "Same five lines of C. At -O2 the loop is gone: the compiler worked out the sum is a formula (multiply, halve, add) and replaced the loop with it. The formula is n(n+1)/2: for n = 10 that is 55. For n = 1000 the unoptimised code runs 10,013 instructions and the optimised code runs 10, with the same answer. Keep in mind the test and jump at the top of the -O2 code: it returns 0 for n <= 0. That comes back in Act 3. Optimisers are why reverse engineering is not just reading.");
     card(s, 0.5, 1.4, 4.2, 2.6, "O0Card");
     text(s, "59", { x: 0.5, y: 1.55, w: 4.2, h: 1.4, fontSize: 80, bold: true, color: C.text2, align: "center" });
     text(s, "bytes at -O0", { x: 0.5, y: 2.9, w: 4.2, h: 0.4, fontSize: 20, align: "center" });
@@ -293,6 +293,7 @@ function arrow(s, x, y, w, h, opts) {
     text(s, "28", { x: 5.3, y: 1.55, w: 4.2, h: 1.4, fontSize: 80, bold: true, color: C.accent3, align: "center" });
     text(s, "bytes at -O2", { x: 5.3, y: 2.9, w: 4.2, h: 0.4, fontSize: 20, align: "center" });
     text(s, "12 instructions, no loop at all", { x: 5.3, y: 3.4, w: 4.2, h: 0.4, fontSize: 14, color: C.accent5, align: "center" });
+    text(s, "n(n+1)/2", { x: 5.3, y: 3.7, w: 4.2, h: 0.3, fontSize: 13, bold: true, color: C.accent3, align: "center", fontFace: MONO });
     text(s, "Same answer. For n = 1000: 10,013 instructions versus 10.", { x: 0.5, y: 4.3, w: 9, h: 0.5, fontSize: 20, bold: true, color: C.text2, align: "center" });
   }
 
@@ -324,7 +325,7 @@ function arrow(s, x, y, w, h, opts) {
   // 11 DEMO 2
   {
     const s = begin("Act 2: Ghidra", "LIGHT", "The same function in Ghidra",
-      "Import the raw bytes of your own function with no symbols, create the function by hand with D then F, and say: in a real EXE Ghidra does that step itself. Ghidra gives control flow, cross-references and a C-like view. Naming is still on you. Watch renames propagate through callers. The default names on this slide are from memory of how Ghidra labels things; swap the panels for a real screenshot of the decompiler once you have rehearsed it.");
+      "Import the raw bytes of your own function with no symbols, create the function by hand with D then F, and say: in a real EXE Ghidra does that step itself. Also say you only choose the CPU and find the function by hand because a raw file has no header; a real EXE tells Ghidra the CPU and the entry point. Ghidra gives control flow, cross-references and a C-like view. Naming is still on you. Watch renames propagate through callers. The default names on this slide are from memory of how Ghidra labels things; swap the panels for a real screenshot of the decompiler once you have rehearsed it.");
     chip(s, "LIVE DEMO 2");
     text(s, "Ghidra's default names", { x: 0.5, y: 1.35, w: 4.3, h: 0.35, fontSize: 16, bold: true, color: C.accent5 });
     code(s, 0.5, 1.8, 4.0, 2.6, ["FUN_00000000", "param_1", "local_8", "local_c"], 16, "BeforeNames");
@@ -342,7 +343,7 @@ function arrow(s, x, y, w, h, opts) {
   // 12 Scale
   {
     const s = begin("Act 2: Ghidra", "LIGHT", "The scale problem",
-      "Switch to the real TESORO.EXE project: function list, a short function with its callers, call graph, strings and imports, all found by Ghidra itself. Caveat: Ghidra finds functions by following calls, so code reached only through function-pointer tables is invisible; its count went from 622 to 784 after 161 were defined with a script (re/PLAN.md). Doing the rest by hand is weeks of tedium per subsystem. One person is the bottleneck. These counts come from re/ledger.json; refresh before the talk.");
+      "Switch to the real TESORO.EXE project: function list, a short function with its callers, call graph, strings and imports, all found by Ghidra itself. Caveat: Ghidra finds functions by following calls, so code reached only through function-pointer tables is invisible. A table of function pointers is a list of function addresses stored as data that the program looks up and calls, like verbs[choice](); there is no call to the function by name, so Ghidra does not see it. C++ virtual methods are the same thing built in (a hidden vtable per class). Its count went from 622 to 784 after 161 were defined with a script (re/PLAN.md). Doing the rest by hand is weeks of tedium per subsystem. One person is the bottleneck. These counts come from re/ledger.json; refresh before the talk.");
     card(s, 0.5, 1.4, 4.2, 3.2, "TotalCard");
     text(s, "706", { x: 0.5, y: 1.55, w: 4.2, h: 1.6, fontSize: 88, bold: true, color: C.text2, align: "center" });
     text(s, "functions in TESORO.EXE", { x: 0.5, y: 3.2, w: 4.2, h: 0.5, fontSize: 20, align: "center" });
@@ -408,7 +409,7 @@ function arrow(s, x, y, w, h, opts) {
   // 15 DEMO 3
   {
     const s = begin("Act 3: verification", "LIGHT", "A plausible claim, tested",
-      "Type the claims live. First sum(range(1, n+1)) mirrors the loop and matches everywhere. Then the clever one, n*(n+1)//2: it looks like what the optimised code does, passes every non-negative input, and fails on negative n (n=-2: the real code returns 0, the formula says 1). The optimised code had the guard (test and jle at the top) all along. This is what a confident AI explanation looks like.");
+      "Type the claims live. First sum(range(1, n+1)) mirrors the loop and matches everywhere. Then the clever one, n*(n+1)//2: it looks like what the optimised code does, passes every non-negative input, and fails on negative n (n=-2: the real code returns 0, the formula says 1). The optimised code had the guard (test and jle at the top) all along. Finish live by typing the corrected claim, n*(n+1)//2 if n > 0 else 0, which matches 133/133 (this step is not on the slide): the compiler wrote an if n <= 0 return 0 guard and then the formula. This is what a confident AI explanation looks like.");
     chip(s, "LIVE DEMO 3");
     const G = "7FD18B", R = "FF8A75", D = "8FA39A";
     code(s, 0.5, 1.35, 9.0, 3.0, [

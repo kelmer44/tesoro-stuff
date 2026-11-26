@@ -65,9 +65,10 @@ The build script and the extractor are prewritten helpers. The function itself i
 ## Demo 1: Bytes and opcodes (by hand)
 
 ### What you do
-1. Type the function and compile it.
-2. Run the C natively on your Mac to get a known answer (`55`).
-3. Open the `.bin` file in a hex editor (ImHex). The audience sees only numbers like `55 89 e5 83 ec 08`.
+1. Type the function.
+2. Compile it for your Mac and run it to get a known answer (`55`). Then compile the same C again for x86-win32, the
+   kind of code the game contains. These are different bytes, and the Mac cannot run them. `file` shows the difference.
+3. Dump the `.bin` file in the terminal with `xxd -g1`, then open it in a hex editor (ImHex). The audience sees only numbers like `55 89 e5 83 ec 08`.
 4. Decode a few of them with a table, then show that `objdump` does the same thing automatically.
 5. Run the exact bytes in an emulator, show the `-O2` version, and finally patch a byte and watch the answer change.
 
@@ -75,6 +76,11 @@ The build script and the extractor are prewritten helpers. The function itself i
 Every file is just bytes. A hex editor shows each byte as two hex digits (`00` to `ff`). A byte is a number from 0 to 255,
 so `55` in hex is 85 in everyday numbers. Nothing in the file says "this part is code". You know because you
 chose the right file.
+
+**Why hex and not binary or decimal?** One byte is 8 bits, which is exactly two hex digits (each digit is 4 bits), so every
+byte is two characters and converts to bits in your head. Binary needs 8 characters per byte and is unreadable. Decimal does not line
+up with bits: `7f` shows at a glance that the top bit is clear, while 127 does not. The patterns show up in hex too: `50` to `57`
+are all `push`, and `55` is `push ebp` (`50` + register number 5).
 
 ### What an "opcode" is
 The CPU reads bytes one after another. The first byte of each instruction (the **opcode**) tells it what to do, and
@@ -132,6 +138,80 @@ The instruction sits at offset `0x1d` and is 2 bytes long, so it ends at `0x1f`.
 line that loads `total` to return it. That is the loop exit. The jump back, `eb e4`, works the same way: `e4` is -28,
 and `0x33 - 28 = 0x17`, the start of the loop test.
 
+### The whole function, line by line
+All 20 instructions of `build/sum_to_O0.bin`, in the order you would narrate them, with the C line each one comes from
+(the same offsets and wording as the labels in `demo/sum_to_O0.hexpat`). Reminder: `ebp+8` is `n`, `ebp-4` is `total`,
+`ebp-8` is `i`, and `eax` is the CPU's working hand.
+
+Two groups are boilerplate that nearly every function has: the **prologue** at the start and the **epilogue** at the end
+(blocks 1 and 6 below). They have no C line of their own; the compiler adds them to set up and tear down the function's
+workspace. Everything in between is the function's real work.
+
+**1. Prologue: set up the function's workspace** (no C line; every function starts like this)
+
+| Offset | Bytes | Instruction | What it does |
+|---|---|---|---|
+| `0x00` | `55` | `push ebp` | Save the caller's bookmark so it can be restored at the end |
+| `0x01` | `89 e5` | `mov ebp, esp` | Make `ebp` point at this function's own bookmark position |
+| `0x03` | `83 ec 08` | `sub esp, 8` | Reserve 8 bytes of stack for the two local variables |
+
+The first real instruction comes right after it, and is not part of the prologue:
+
+| Offset | Bytes | Instruction | What it does |
+|---|---|---|---|
+| `0x06` | `8b 45 08` | `mov eax, [ebp+8]` | Load `n` into `eax`. Nothing uses it (it is overwritten at `0x17`): an artefact of no optimisation |
+
+**2. Setup: `int total = 0;` and `int i = 1;`**
+
+| Offset | Bytes | Instruction | What it does |
+|---|---|---|---|
+| `0x09` | `c7 45 fc 00 00 00 00` | `mov [ebp-4], 0` | `total = 0` |
+| `0x10` | `c7 45 f8 01 00 00 00` | `mov [ebp-8], 1` | `i = 1` |
+
+**3. The loop test: `i <= n`** (this is where the jump back lands)
+
+| Offset | Bytes | Instruction | What it does |
+|---|---|---|---|
+| `0x17` | `8b 45 f8` | `mov eax, [ebp-8]` | Load `i` |
+| `0x1a` | `3b 45 08` | `cmp eax, [ebp+8]` | Compare `i` with `n` (sets flags, changes nothing else) |
+| `0x1d` | `7f 14` | `jg 0x33` | If `i > n`, the loop is over: jump to the exit at `0x33` |
+
+**4. The loop body: `total += i;`**
+
+| Offset | Bytes | Instruction | What it does |
+|---|---|---|---|
+| `0x1f` | `8b 45 f8` | `mov eax, [ebp-8]` | Load `i` |
+| `0x22` | `03 45 fc` | `add eax, [ebp-4]` | Add `total` to it |
+| `0x25` | `89 45 fc` | `mov [ebp-4], eax` | Store the sum back into `total` |
+
+**5. The step and the loop back: `i++`**
+
+| Offset | Bytes | Instruction | What it does |
+|---|---|---|---|
+| `0x28` | `8b 45 f8` | `mov eax, [ebp-8]` | Load `i` |
+| `0x2b` | `83 c0 01` | `add eax, 1` | Add 1 |
+| `0x2e` | `89 45 f8` | `mov [ebp-8], eax` | Store it back into `i` |
+| `0x31` | `eb e4` | `jmp 0x17` | Go back to the loop test |
+
+**6. Exit: `return total;`, then the epilogue**
+
+| Offset | Bytes | Instruction | What it does |
+|---|---|---|---|
+| `0x33` | `8b 45 fc` | `mov eax, [ebp-4]` | Put `total` in `eax`, where the caller expects the return value (this is `return total;`, not epilogue) |
+
+The epilogue undoes the prologue, in reverse order:
+
+| Offset | Bytes | Instruction | What it does |
+|---|---|---|---|
+| `0x36` | `83 c4 08` | `add esp, 8` | Release the two local variables |
+| `0x39` | `5d` | `pop ebp` | Restore the caller's bookmark |
+| `0x3a` | `c3` | `ret` | Go back to the caller |
+
+Why it works as a loop: the test at `0x17` is reached first by falling through from the setup, and every later time by the
+`jmp` at `0x31`. The only way out is the `jg` at `0x1d`. One pass is the test (3 instructions), the body (3) and the step (4),
+so 10 instructions. That is why `n = 10` takes 113 instructions in the emulator: 6 to get started (entry and setup), 10 passes of 10,
+a final test of 3 that exits, and 4 at the exit.
+
 ### A small oddity you might be asked about
 Right after the function start there is a `mov eax, [ebp+8]` that loads `n` and then ignores it (offset `0x06`). That is an
 artefact of "no optimisation": the compiler does the literal thing, even when it is useless. It is a nice
@@ -139,7 +219,7 @@ example of why compiler output is not the same as how a person would write assem
 
 ### Running it live (so the demo is not just reading)
 
-**Run the source natively** with `./run_native.sh live/sum_to.c 10`. This compiles the same C for your own Mac and prints
+**Run the source natively**: build it with `./build_native.sh live/sum_to.c`, then run `./build/native_demo 10`. The build compiles the same C for your own Mac and the run prints
 `55`. It proves the function works and gives you a known answer to compare against.
 
 **Run the exact bytes** with `run.py`. The 32-bit Windows bytes cannot run directly on a Mac (your Mac has an arm64 CPU and runs macOS),
@@ -149,13 +229,24 @@ so the emulator from Demo 3 acts as the CPU. You can ask the audience for any `n
 python run.py build/sum_to_O0.bin 1000      ->  500500   [10013 instructions]
 ```
 
+The number in brackets is how many instructions the emulator **executed** during this one call (counted as it ran). It is not
+the 20 instructions in the file: a loop runs the same instructions again and again. For `n = 1000` that is 6 to get started,
+1000 passes of 10, a final test of 3 and an exit of 4, which makes 10,013. A bigger `n` means more passes and a bigger count.
+At `-O2` it stays at 10 for any positive `n`, because the loop is gone. That is the compiler reveal below.
+
 **Why not make an EXE?** A function alone is not a program (no `main`, no startup code), and a Mac cannot launch a 32-bit
 Windows EXE anyway; that would need Wine or a Windows machine. Emulating only the CPU is simpler and is what the real project does.
 
 ### The compiler reveal (`-O2`)
-Same C code, but now the file is 28 bytes, less than half. The loop is gone. The compiler recognised that adding 1 to `n` has a
-known formula and replaced the whole loop with a few arithmetic instructions: multiply, halve, add. Run it for `n = 1000`
-and it needs **10 instructions instead of 10,013**, with the same answer.
+Same C code, but now the file is 28 bytes, less than half. The loop is gone. The compiler recognised that adding up
+1 + 2 + ... + n has a known formula and replaced the whole loop with a few arithmetic instructions: multiply, halve, add.
+Run it for `n = 1000` and it needs **10 instructions instead of 10,013**, with the same answer.
+
+**The formula.** In the talk, say the compiler replaced the loop with `n(n+1)/2` (for `n = 10`: 10 × 11 / 2 = 55).
+
+Speaker-only caveat, in case someone reads the code: the exact arrangement the compiler uses is `(n-1)(n-2)/2 + 2n - 1`, which is
+algebraically equal to `n(n+1)/2` for `n > 0`. In the code that is `lea n-1`, `lea n-2`, `mul`, `shld` (halve), `lea` (add `2n`) and `dec`.
+"Multiply, halve, add" is still an accurate description.
 
 It kept one thing: a check at the top (`test ecx, ecx` then `jle`) that returns 0 when `n` is zero or negative. A loop from
 1 to a negative number never runs, so the answer must be 0, and the compiler preserved that. Remember it for Demo 3.
@@ -199,7 +290,9 @@ knows only the bytes.
 
 1. Create a project and **import** the `.bin`. Ghidra cannot tell what kind of file it is, so you choose:
    format **Raw Binary**, language **x86, little endian, 32-bit**. Keep the base address at 0, so the offsets match the table above.
+   (In a real program you would not have to choose: an EXE carries a header that says which CPU it is for, so Ghidra picks the language itself.)
 2. Open it. At first you see only bytes. Ghidra has not found a function, because a raw file has no entry point or call targets to follow.
+   (Again, a real EXE is different: its header gives Ghidra the entry point, and from there it follows calls and finds functions on its own.)
 3. Click the first byte and press `D` (disassemble), then `F` (create function). Ghidra names it `FUN_00000000`
    and shows two panels side by side: the **listing** (instructions) and the **decompiler** (C-like code).
    In a real EXE this step mostly happens automatically; here you do it by hand to see what Ghidra is doing for you.
@@ -228,6 +321,41 @@ What you show, and what each shows the audience:
 **The honest caveat.** Ghidra finds a function by following a call to it. Code that is only reached through a table of
 function pointers (virtual methods are the common case) is never called directly, so Ghidra misses it. In this project the function
 count went from **622 to 784** after 161 of those were defined with a script (`re/PLAN.md`). Ghidra does most of the work, not all of it.
+
+**What that means, with an example.** A *table of function pointers* is a list of function addresses stored as data, which the
+program looks up and calls:
+
+```c
+void do_open(void) { puts("open"); }
+void do_look(void) { puts("look"); }
+void do_take(void) { puts("take"); }
+
+void (*verbs[])(void) = { do_open, do_look, do_take };   // the table: 3 addresses
+
+void run(int choice) {
+    verbs[choice]();          // call whichever one the player picked
+}
+```
+
+In the compiled code, `run` has one instruction, roughly `call [verbs + choice*4]`: "call whatever address is in that slot".
+No instruction says `call do_open` directly, so Ghidra never learns that `do_open` is a function.
+
+A **virtual method** (C++) is the same idea, built in by the compiler. Each class with virtual methods gets a hidden table of
+function pointers, a *vtable*, and every object starts with a hidden pointer to its class's vtable:
+
+```cpp
+struct Shape  { virtual void draw() = 0; };
+struct Circle : Shape { void draw() override { /* draw a circle */ } };
+struct Square : Shape { void draw() override { /* draw a square */ } };
+
+void render(Shape *s) {
+    s->draw();      // circle or square? Decided when the program runs
+}
+```
+
+`s->draw()` compiles to "load the object's vtable pointer, then call whatever is in slot 0". `Circle::draw` and `Square::draw` are
+only reached that way, so Ghidra misses them. A point-and-click adventure fits this pattern well: each kind of game object has
+its own handlers for "look at", "use" and "talk", and the engine calls them through a table without knowing which object it has.
 
 ### Why this demo is in the talk
 It shows what a good tool buys you and, just as important, what it cannot buy you. Ghidra recovers *structure*.
@@ -310,6 +438,7 @@ And the `-O2` code had the clue all along: the `test` / `jle` at the top returns
 | `verify.py build/sum_to_O2.bin --expr "sum(range(1, n+1))"` | `133/133 inputs match` | "My loop-shaped claim holds, even for the optimised code." |
 | `... --expr "n*(n+1)//2" --happy-path-only` | `103/103 inputs match` | "A reasonable-looking claim passes... if I only test the easy cases." |
 | `... --expr "n*(n+1)//2"` | `104/133` plus `MISMATCH n=-2: emulator=0 hypothesis=1` | "Add the awkward case and it fails, and I can see exactly which input broke it." |
+| `... --expr "n*(n+1)//2 if n > 0 else 0"` | `133/133 inputs match` | "The compiler wrote an `if n <= 0 return 0` guard and then the formula. Now the claim says what the code really does." |
 
 ### Why this demo is in the talk
 - It makes "decompiler output is a hypothesis" concrete.

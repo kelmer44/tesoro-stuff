@@ -41,8 +41,8 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 ## Part 2: Act 1, by hand (5:00 to 11:00)
 
 ### 7. DEMO 1: bytes and opcodes
-**On screen:** Live: type `sum_to` (5 lines), compile it, then open the bytes in ImHex. Highlight `55 89 e5` (start), `3b 45 08` (cmp), `7f 14` (jg), `c3` (ret).
-**Live:** run the C natively (55), run the exact bytes in the emulator on an audience-chosen `n`, then patch one byte in the hex editor: `7f` to `7d` at `0x1d` (55 becomes 45) or `01` to `02` at `0x2d` (55 becomes 25).
+**On screen:** Live: type `sum_to` (5 lines), compile and run it on the Mac, say why the next build targets x86-win32, compile that, show the bytes with `xxd -g1`, then open them in ImHex. Highlight `55 89 e5` (start), `3b 45 08` (cmp), `7f 14` (jg), `c3` (ret).
+**Live:** (the Mac build already gave 55) run the exact bytes in the emulator on an audience-chosen `n`, then patch one byte in the hex editor: `7f` to `7d` at `0x1d` (55 becomes 45) or `01` to `02` at `0x2d` (55 becomes 25).
 **Say:** Decode two or three by hand using the table in the demo script. "This is real, and it is miserable."
 **Cut if short:** drop the jump-offset arithmetic (`0x1f + 0x14 = 0x33`).
 
@@ -52,6 +52,7 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 
 ### 9. The compiler reveal
 **On screen:** Side by side: `-O0` = 59 bytes (20 instructions), `-O2` = 28 bytes (12 instructions, no loop). Same source.
+**Also on screen:** the formula under the `-O2` card: `n(n+1)/2` (for `n = 10`: 55). Simplified on purpose; the real arrangement is slightly different but equal for `n > 0`.
 **Say:** "The compiler replaced my loop with a formula." For `n = 1000`, 10,013 instructions versus 10, same answer. The structure you wrote is gone. Point out the `test`/`jle` guard at the top of the `-O2` code; it returns in Act 3. Optimisers are why reverse engineering is not just reading.
 
 ### 10. What is lost
@@ -64,13 +65,13 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 
 ### 11. DEMO 2: the same function in Ghidra
 **On screen:** Listing and decompiler side by side. Rename `FUN_00000000` to `sum_to`, `param_1` to `n`, and the two locals to `total` and `i`.
-**Live:** import the raw bytes (no symbols), create the function by hand with `D` then `F`, rename. Say: "in a real EXE Ghidra does that step itself."
+**Live:** import the raw bytes (no symbols), create the function by hand with `D` then `F`, rename. Say: "in a real EXE Ghidra does that step itself." Also say that in a real program you would not pick the CPU or the entry point either: the EXE's header gives Ghidra both.
 **Say:** Ghidra gives control flow, cross-references and a C-like view. Naming is still on you. Watch renames propagate.
 
 ### 12. The scale problem
 **On screen:** The real `TESORO.EXE` function list. Number: **706 functions** in the ledger, 447 of them game code.
 **Live:** in the real project show the function list, a short function with its callers, the call graph, strings and imports. All found by Ghidra itself.
-**Say:** Ghidra finds functions by following calls. Code reached only through function-pointer tables is invisible to it: 622 became 784 after 161 were defined with a script. Doing the rest by hand is weeks of tedium; one person is the bottleneck.
+**Say:** Ghidra finds functions by following calls. Code reached only through function-pointer tables is invisible to it (a table of function addresses the program looks up and calls, like `verbs[choice]()`; C++ virtual methods are the same thing built in): 622 became 784 after 161 were defined with a script. Doing the rest by hand is weeks of tedium; one person is the bottleneck.
 
 ### 13. The decompiler is a hypothesis
 **On screen:** "Decompiler output ≠ truth." Three bullets: wrong types, wrong signedness, wrong calling convention.
@@ -86,6 +87,7 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 
 ### 15. DEMO 3: a plausible claim, tested
 **On screen:** Terminal, claims typed live. `sum(range(1, n+1))`: 133/133 match. `n*(n+1)//2 --happy-path-only`: 103/103 match. `n*(n+1)//2`: 104/133, `MISMATCH n=-2: emulator=0 hypothesis=1`.
+**Live (last step, not on the slide):** `n*(n+1)//2 if n > 0 else 0` gives 133/133. The compiler wrote a guard (`if n <= 0 return 0`) and then the formula.
 **Say:** The formula looks like what the optimised code does and isn't, when `n` is negative. The code had the guard all along. This is what a confident AI explanation looks like.
 
 ### 16. The oracle, and its limits
