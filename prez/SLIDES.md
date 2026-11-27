@@ -9,19 +9,19 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 ## Part 0: Hook (0:00 to 2:30)
 
 ### 1. Title
-**On screen:** "Reading a program with no source: reverse engineering by hand, with Ghidra, and with AI agents". Your name and team.
+**On screen:** "From 55 89 E5 to a playable game", subtitle "Reverse engineering a 1990s adventure game, by hand, with Ghidra and with AI agents". Gabriel Sanmartín, Lead Android Engineer.
 **Say:** One line on what you do at work, then "this is a side project that taught me a lot".
 
 ### 2. The goal
-**On screen:** Screenshot or 10-second clip of *El Tesoro de Isla Alcachofa* running in ScummVM. Caption: `TESORO.EXE` + the disc. No source. No docs.
+**On screen:** Screenshot (or a 10-second clip) of *El Tesoro de Isla Alcachofa* running in ScummVM. Caption: `TESORO.EXE` + the disc. No source. No docs.
 **Say:** A 1990s adventure game. I want it to run in ScummVM, faithfully. All I have is the executable.
 
 ### 3. The obvious approach
-**On screen:** Fake chat box: *"Hello Claude, implement this game in one shot, no errors."* Then a big red cross, "Narrator: it did not work."
+**On screen:** A real screenshot of the Claude app prompt box: *"Hey Claude implement implement this game, one-shot no errors lol"* (`deck/assets/real_prompt.png`). Then, on click, a big red cross and the subtitle "Spoiler: it didn't work" (an Appear animation is built into the file; if your viewer drops it, add it by hand).
 **Say:** Pause a beat. Don't explain the joke.
 
 ### 4. Why that fails
-**On screen:** Three lines. (1) The model can't see the binary, so it guesses. (2) Nothing is checked, so mistakes compound. (3) No process, so no idea what's done.
+**On screen:** Three lines. (1) The context fills up fast: too much to hold at once, so shortcuts and gaps filled with hallucinations. (2) Nothing is checked, so mistakes compound: errors pile up and get worse with every step. (3) No process, so no idea what's done.
 **Say:** Close with "so what does a reliable process look like?" That is the talk.
 
 ---
@@ -41,21 +41,25 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 ## Part 2: Act 1, by hand (5:00 to 11:00)
 
 ### 7. DEMO 1: bytes and opcodes
+**Cue to terminal + ImHex**
 **On screen:** Live: type `sum_to` (5 lines), compile and run it on the Mac, say why the next build targets x86-win32, compile that, show the bytes with `xxd -g1`, then open them in ImHex. Highlight `55 89 e5` (start), `3b 45 08` (cmp), `7f 14` (jg), `c3` (ret).
 **Live:** (the Mac build already gave 55) run the exact bytes in the emulator on an audience-chosen `n`, then patch one byte in the hex editor: `7f` to `7d` at `0x1d` (55 becomes 45) or `01` to `02` at `0x2d` (55 becomes 25).
 **Say:** Decode two or three by hand using the table in the demo script. "This is real, and it is miserable."
 **Cut if short:** drop the jump-offset arithmetic (`0x1f + 0x14 = 0x33`).
 
 ### 8. Let tools decode: disassembly
+**Cue to slides**
 **On screen:** `objdump` output next to the hex, same bytes.
-**Say:** A disassembler only translates bytes to mnemonics. It adds no meaning.
+**Say:** A disassembler only translates bytes to mnemonics. It adds no meaning. In the 90s this was the toolkit: the Intel manual, on paper, plus a disassembler.
 
 ### 9. The compiler reveal
+**Cue to terminal + ImHex**
 **On screen:** Side by side: `-O0` = 59 bytes (20 instructions), `-O2` = 28 bytes (12 instructions, no loop). Same source.
 **Also on screen:** the formula under the `-O2` card: `n(n+1)/2` (for `n = 10`: 55). Simplified on purpose; the real arrangement is slightly different but equal for `n > 0`.
 **Say:** "The compiler replaced my loop with a formula." For `n = 1000`, 10,013 instructions versus 10, same answer. The structure you wrote is gone. Point out the `test`/`jle` guard at the top of the `-O2` code; it returns in Act 3. Optimisers are why reverse engineering is not just reading.
 
 ### 10. What is lost
+**Cue to slides**
 **On screen:** Table. Lost: names, types, structs, comments, loop shapes. Kept: behaviour.
 **Say:** The whole job is recovering meaning from behaviour.
 
@@ -64,11 +68,13 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 ## Part 3: Act 2, Ghidra (11:00 to 15:00)
 
 ### 11. DEMO 2: the same function in Ghidra
+**Cue to Ghidra**
 **On screen:** Listing and decompiler side by side. Rename `FUN_00000000` to `sum_to`, `param_1` to `n`, and the two locals to `total` and `i`.
 **Live:** import the raw bytes (no symbols), create the function by hand with `D` then `F`, rename. Say: "in a real EXE Ghidra does that step itself." Also say that in a real program you would not pick the CPU or the entry point either: the EXE's header gives Ghidra both.
 **Say:** Ghidra gives control flow, cross-references and a C-like view. Naming is still on you. Watch renames propagate.
 
 ### 12. The scale problem
+**Cue to slides**
 **On screen:** The real `TESORO.EXE` function list. Number: **706 functions** in the ledger, 447 of them game code.
 **Live:** in the real project show the function list, a short function with its callers, the call graph, strings and imports. All found by Ghidra itself.
 **Say:** Ghidra finds functions by following calls. Code reached only through function-pointer tables is invisible to it (a table of function addresses the program looks up and calls, like `verbs[choice]()`; C++ virtual methods are the same thing built in): 622 became 784 after 161 were defined with a script. Doing the rest by hand is weeks of tedium; one person is the bottleneck.
@@ -86,11 +92,13 @@ Project numbers are from `re/ledger.json` and `re/SUBSYSTEMS.md` as of 5 Nov 202
 **Say:** Unit tests for a binary you have no source for. Load one function at its original address, set up the stack by hand, run it, read the result. Optional aside: Capstone, a disassembler library, is its scriptable companion (Ghidra is for humans, Capstone for scripts).
 
 ### 15. DEMO 3: a plausible claim, tested
+**Cue to terminal**
 **On screen:** Terminal, claims typed live. `sum(range(1, n+1))`: 133/133 match. `n*(n+1)//2 --happy-path-only`: 103/103 match. `n*(n+1)//2`: 104/133, `MISMATCH n=-2: emulator=0 hypothesis=1`.
 **Live (last step, not on the slide):** `n*(n+1)//2 if n > 0 else 0` gives 133/133. The compiler wrote a guard (`if n <= 0 return 0`) and then the formula.
 **Say:** The formula looks like what the optimised code does and isn't, when `n` is negative. The code had the guard all along. This is what a confident AI explanation looks like.
 
 ### 16. The oracle, and its limits
+**Cue to slides**
 **On screen:** Two columns. Strengths: executes the real bytes, deterministic, scales to many inputs. Limits: only tests the inputs you choose, OS and hardware calls need stubs, it is evidence not proof.
 **Say:** A hypothesis is only as good as the inputs you tested it with. Pick edge cases deliberately.
 
@@ -143,7 +151,7 @@ flowchart LR
 **Say:** Real example: reading the scene routines found a real bug in my own port, a harbour guard switched on and off the wrong way round. Found by comparing against the original, not by asking the model.
 
 ### 24. The real prompt
-**On screen:** Strike out the joke prompt from slide 3. Replace with: *"Decompile the next function in the ledger, write its contract, and verify it against the emulator."* Then "Questions?" and your contact or repo.
+**On screen:** Strike out the text version of the joke prompt ("Hello Claude, implement this game in one shot, no errors.", which is worded differently from the real screenshot on slide 3). Replace with: *"Decompile the next function in the ledger, write its contract, and verify it against the emulator."* Then "Questions?" and your contact or repo.
 **Say:** AI doesn't replace understanding. It makes a systematic method affordable.
 
 ---
@@ -167,4 +175,6 @@ If you run long, cut in this order: slide 8, the jump arithmetic in slide 7, sli
 - Screen recording of one real agent run through the loop (slide 18), in case a live run is slow.
 - Screenshots of the ledger, a contract and `STRUCTS.md` (slide 19).
 - Ghidra screenshots of `sum_to` before and after renaming (slide 11).
-- Game screenshot or clip from ScummVM (slide 2); check that it shows something that really runs today.
+- Slide 2 now shows a game screenshot (`deck/assets/game_screenshot.png`). Check that it is from ScummVM and shows something that really runs today, or swap the file; a short clip would need to be added in the presenting app.
+- Optional: a larger or retina screenshot of the slide 3 prompt, to replace `deck/assets/real_prompt.png`.
+- Done: title and subtitle (slide 1), name and role (slide 1), the real prompt with on-click reveal (slide 3).

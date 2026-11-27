@@ -9,10 +9,12 @@ the demo in [demo/](demo/DEMO_SCRIPT.md). Items marked **[fill in]** are persona
 ## About the approach
 
 ### Why not just ask the AI to rewrite the game in one go?
-It can't see the binary, so it would guess game behaviour from general knowledge. Guesses look
-plausible and are often wrong in exactly the details that matter (timing, edge cases, ordering). There is also
-no way to check a one-shot result. The process fixes both: the agent reads the real decompilation, and an
-emulator checks its work against the original machine code. Slide 3 is the joke version of this.
+Even with the binary in front of it, a game this big is too much to hold in one context. As the context fills
+up, the model takes shortcuts and fills gaps with plausible guesses (hallucinations), often wrong in exactly the
+details that matter (timing, edge cases, ordering). There is also no way to check a one-shot result, so mistakes
+compound: errors pile up and get worse with every step. The process fixes this: the agent works on one small
+function at a time from the real decompilation, an emulator checks each result against the original machine code,
+and the ledger records the state outside the model's context. Slide 3 is the joke version of this.
 
 ### Could a future, better model do it in one shot?
 A better model would make fewer mistakes, but the verification problem remains: you still need evidence

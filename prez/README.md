@@ -5,13 +5,13 @@ Talk for engineers, 30 minutes, built around the Tesoro project.
 ## Contents
 
 - [DEMOS_EXPLAINED.md](DEMOS_EXPLAINED.md): the three demos explained in simple language, with a glossary.
-- [demo/](demo/): live-demo helpers (build wrapper, emulator runner, test loop, ImHex pattern `sum_to_O0.hexpat`, a backup copy of the function) and [demo/DEMO_SCRIPT.md](demo/DEMO_SCRIPT.md), the step-by-step script. The C function is typed live.
+- [demo/](demo/): live-demo helpers (build wrappers for x86-win32 and for this Mac, emulator runner, test loop, ImHex pattern `sum_to_O0.hexpat`, a backup copy of the function) and [demo/DEMO_SCRIPT.md](demo/DEMO_SCRIPT.md), the step-by-step script. The C function is typed live.
 
 ## Outline
 
 | Time | Section |
 |---|---|
-| 0:00 | Hook: the game and `TESORO.EXE`, joke slide "implement this game in one shot, no errors" (crossed out), and why it fails |
+| 0:00 | Hook: the game and `TESORO.EXE`, the real "implement this game in one shot" prompt with an on-click reveal that it did not work, and why it fails |
 | 2:00 | What reverse engineering is and why people do it |
 | 5:00 | Act 1: by hand. Compile, hex editor, opcodes (demo) |
 | 12:00 | Act 2: Ghidra. Same function, then the scale problem (demo) |
@@ -41,6 +41,8 @@ The demo uses an original function written for the talk, not game code.
 
 ## Deck
 
-- `tesoro_talk.pptx`: the 24-slide deck, with speaker notes. Slide content and notes are in [SLIDES.md](SLIDES.md).
+- `tesoro_talk.pptx`: the 24-slide deck, with speaker notes. Slide 3 has an on-click animation (X and subtitle appear), added by `build_deck.js` after the build. Slide content and notes are in [SLIDES.md](SLIDES.md).
 - Rebuild with `cd deck && npm install && NODE_PATH=$PWD/node_modules node build_deck.js` (needs the pptx skill's `apply_theme.js`; set `PPTX_SKILL_DIR` if its path differs).
-- Placeholders to replace by hand: slide 2 (ScummVM screenshot), optionally slide 11 (Ghidra screenshot).
+- Slide 2 uses `deck/assets/game_screenshot.png` (4:3; replace the file to change it). Optional placeholder: slide 11 (Ghidra screenshot). Slide 3 uses `deck/assets/real_prompt.png`; replace that file (same aspect ratio) with a sharper screenshot if you have one.
+- Check the layout without PowerPoint: `soffice --headless --convert-to pdf tesoro_talk.pptx`, then `pdftoppm -r 80 -png tesoro_talk.pdf s` (LibreOffice, `brew install --cask libreoffice`). The PDF shows each slide in its final animation state.
+- Hand edits in Keynote, Google Slides or PowerPoint are overwritten by a rebuild from `build_deck.js`. Pick one source of truth.

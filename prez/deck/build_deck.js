@@ -33,7 +33,7 @@ const THEME = {
 const pres = new pptxgen();
 pres.layout = "LAYOUT_16x9"; // 10 x 5.625 in
 pres.theme = { headFontFace: THEME.headFontFace, bodyFontFace: THEME.bodyFontFace };
-pres.title = "Reading a program with no source";
+pres.title = "From 55 89 E5 to a playable game";
 const C = pres.SchemeColor;
 
 pres.defineSlideMaster({
@@ -97,6 +97,42 @@ function arrow(s, x, y, w, h, opts) {
   s.addShape(pres.shapes.LINE, Object.assign({ x, y, w, h, line: { color: C.accent5, width: 2, endArrowType: "triangle" } }, opts));
 }
 
+
+// Slide 3: on one click, the X circle and the subtitle appear together (pptxgenjs has no animation support).
+async function addSlide3Animation(file) {
+  const JSZip = require("jszip");
+  const fs = require("fs");
+  const zip = await JSZip.loadAsync(fs.readFileSync(file));
+  const name = "ppt/slides/slide3.xml";
+  let xml = await zip.file(name).async("string");
+  const idOf = (n) => {
+    const m = xml.match(new RegExp('<p:cNvPr id="(\\d+)" name="' + n + '"'));
+    if (!m) throw new Error("slide 3 shape not found: " + n);
+    return m[1];
+  };
+  const x = idOf("CrossCircle"), y = idOf("SpoilerText");
+  const appear = (id, spid, node) =>
+    `<p:par><p:cTn id="${id}" presetID="1" presetClass="entr" presetSubtype="0" fill="hold" grpId="0" nodeType="${node}">` +
+    `<p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst><p:set><p:cBhvr>` +
+    `<p:cTn id="${id + 1}" dur="1" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst></p:cTn>` +
+    `<p:tgtEl><p:spTgt spid="${spid}"/></p:tgtEl><p:attrNameLst><p:attrName>style.visibility</p:attrName></p:attrNameLst></p:cBhvr>` +
+    `<p:to><p:strVal val="visible"/></p:to></p:set></p:childTnLst></p:cTn></p:par>`;
+  const timing = '<p:timing><p:tnLst><p:par><p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot"><p:childTnLst>' +
+    '<p:seq concurrent="1" nextAc="seek"><p:cTn id="2" dur="indefinite" nodeType="mainSeq"><p:childTnLst>' +
+    '<p:par><p:cTn id="3" fill="hold"><p:stCondLst><p:cond delay="indefinite"/></p:stCondLst><p:childTnLst>' +
+    '<p:par><p:cTn id="4" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst>' +
+    appear(5, x, "clickEffect") + appear(7, y, "withEffect") +
+    '</p:childTnLst></p:cTn></p:par></p:childTnLst></p:cTn></p:par></p:childTnLst></p:cTn>' +
+    '<p:prevCondLst><p:cond evt="onPrev" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:prevCondLst>' +
+    '<p:nextCondLst><p:cond evt="onNext" delay="0"><p:tgtEl><p:sldTgt/></p:tgtEl></p:cond></p:nextCondLst></p:seq>' +
+    '</p:childTnLst></p:cTn></p:par></p:tnLst>' +
+    `<p:bldLst><p:bldP spid="${x}" grpId="0" animBg="1"/><p:bldP spid="${y}" grpId="0"/></p:bldLst></p:timing>`;
+  if (xml.includes("<p:timing")) throw new Error("slide 3 already has timing");
+  xml = xml.replace("</p:sld>", timing + "</p:sld>");
+  zip.file(name, xml);
+  fs.writeFileSync(file, await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));
+}
+
 (async () => {
   const icons = {
     plug: await icon(fa.FaPlug, HEX.white),
@@ -120,10 +156,11 @@ function arrow(s, x, y, w, h, opts) {
 
   // 1 Title
   {
-    const s = begin("Hook", "DARK", "Reading a program with no source",
+    const s = begin("Hook", "DARK", "From 55 89 E5 to a playable game",
       "One line on what you do at work, then: this is a side project that taught me a lot.");
-    text(s, "Reverse engineering by hand, with Ghidra, and with AI agents", { x: 0.5, y: 1.6, w: 8, h: 0.9, fontSize: 22, color: C.accent1 });
-    text(s, "Gabriel", { x: 0.5, y: 2.7, w: 6, h: 0.4, fontSize: 16, color: C.background2 });
+    text(s, "Reverse engineering a 1990s adventure game, by hand, with Ghidra and with AI agents", { x: 0.5, y: 1.6, w: 8, h: 0.9, fontSize: 22, color: C.accent1 });
+    text(s, "Gabriel Sanmartín", { x: 0.5, y: 2.7, w: 6, h: 0.4, fontSize: 18, bold: true, color: C.background2 });
+    text(s, "Lead Android Engineer", { x: 0.5, y: 3.1, w: 6, h: 0.4, fontSize: 14, color: C.background2 });
     const bytes = ["55", "89", "E5", "83", "EC", "08", "8B", "45", "08", "C7", "45", "FC", "00", "00", "00"];
     bytes.forEach((b, i) => {
       s.addText(b, {
@@ -138,8 +175,8 @@ function arrow(s, x, y, w, h, opts) {
   {
     const s = begin("Hook", "LIGHT", "The goal",
       "A 1990s adventure game. I want it to run in ScummVM, faithfully. All I have is the executable and the disc.");
-    s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 0.5, y: 1.4, w: 5.0, h: 3.5, rectRadius: 0.1, fill: { color: C.text1 }, objectName: "ScreenshotPlaceholder" });
-    text(s, "Screenshot or clip:\nEl Tesoro de Isla Alcachofa\nrunning in ScummVM", { x: 0.7, y: 2.7, w: 4.6, h: 1.0, fontSize: 18, color: C.background2, align: "center" });
+    s.addImage({ path: path.join(__dirname, "assets", "game_screenshot.png"), x: 0.5, y: 1.4, w: 3.5 * 4 / 3, h: 3.5,
+      altText: "El Tesoro de Isla Alcachofa: a tavern scene with pirates, a parrot and a barrel" });
     card(s, 5.8, 1.4, 3.7, 1.6, "HaveCard");
     text(s, "Have", { x: 6.0, y: 1.5, w: 3.3, h: 0.35, fontSize: 18, bold: true, color: C.text2 });
     text(s, "TESORO.EXE and the game disc", { x: 6.0, y: 1.95, w: 3.3, h: 0.9, fontSize: 16 });
@@ -151,14 +188,12 @@ function arrow(s, x, y, w, h, opts) {
   // 3 The obvious approach (joke)
   {
     const s = begin("Hook", "DARK", "The obvious approach",
-      "Pause a beat. Don't explain the joke.");
-    s.addText("Hello Claude, implement this game in one shot, no errors.", {
-      x: 0.8, y: 1.7, w: 7.0, h: 1.2, shape: pres.shapes.ROUNDED_RECTANGLE, rectRadius: 0.2,
-      fill: { color: C.text2 }, color: C.background1, fontSize: 24, margin: 0.25, valign: "middle", isTextBox: true, objectName: "ChatBubble",
-    });
-    s.addShape(pres.shapes.OVAL, { x: 7.9, y: 1.6, w: 1.4, h: 1.4, fill: { color: C.accent3 }, line: { color: C.accent3, width: 0 }, objectName: "CrossCircle" });
-    text(s, "X", { x: 7.9, y: 1.6, w: 1.4, h: 1.4, fontSize: 60, bold: true, color: C.background1, align: "center", valign: "middle" });
-    text(s, "Narrator: it did not work.", { x: 0.8, y: 3.7, w: 8.4, h: 0.6, fontSize: 26, italic: true, color: C.accent1 });
+      "Pause a beat on the prompt alone. On click, the X and the subtitle appear together (the animation is built into the file; if your viewer drops it, set Appear on the X circle and the subtitle, On Click). Don't explain the joke.");
+    s.addImage({ path: path.join(__dirname, "assets", "real_prompt.png"), x: 0.8, y: 1.81, w: 6.9, h: 6.9 * 65 / 457,
+      altText: "A real prompt typed in the Claude app: Hey Claude implement implement this game, one-shot no errors lol" });
+    s.addText("X", { x: 7.9, y: 1.6, w: 1.4, h: 1.4, shape: pres.shapes.OVAL, fill: { color: C.accent3 }, line: { color: C.accent3, width: 0 },
+      fontSize: 60, bold: true, color: C.background1, align: "center", valign: "middle", margin: 0, isTextBox: true, objectName: "CrossCircle" });
+    text(s, "Spoiler: it didn't work", { x: 0.8, y: 3.7, w: 8.4, h: 0.6, fontSize: 26, italic: true, color: C.accent1, objectName: "SpoilerText" });
   }
 
   // 4 Why that fails
@@ -166,8 +201,8 @@ function arrow(s, x, y, w, h, opts) {
     const s = begin("Hook", "LIGHT", "Why that fails",
       "Close with: so what does a reliable process look like? That is the talk.");
     const rows = [
-      ["The model can't see the binary", "So it guesses, and plausible guesses about game behaviour are often wrong."],
-      ["Nothing is checked", "Mistakes compound silently."],
+      ["The context fills up fast", "Too much to hold at once: shortcuts, and gaps filled with hallucinations."],
+      ["Nothing is checked", "Mistakes compound: errors pile up and get worse with every step."],
       ["No process", "No way to know what is done or what is trusted."],
     ];
     rows.forEach((r, i) => {
@@ -228,7 +263,7 @@ function arrow(s, x, y, w, h, opts) {
   // 7 DEMO 1
   {
     const s = begin("Act 1: by hand", "LIGHT", "Bytes and opcodes",
-      "Type the function live (5 lines) into live/sum_to.c. Compile it for the Mac with ./build_native.sh and run ./build/native_demo 10 to get 55, a known answer. Then say why the next build is different: the game is 32-bit x86 Windows, so I compile the same C again for x86-win32 with ./build.sh. This Mac is arm64, so these are completely different bytes and the Mac cannot run them; file shows the difference (arm64 executable versus plain data). If asked why Python makes the .bin: it just cuts the code bytes out of the object file, as bare as a dump from a real program (objdump -h shows .text is 59 bytes). Show the bytes with xxd -g1, then explain why hex: one byte is exactly two hex digits (4 bits each), binary is unreadable and decimal does not line up with bits. Open the .bin in ImHex, which can colour and label bytes and edit them in place. Decode a few bytes by hand with the one-byte opcode map (80386 Programmer's Reference, Appendix A): high four bits pick the row, low four bits the column. Run the exact bytes in the emulator with an audience-chosen n. Then patch the copy: byte 0x1d (7f to 7d) turns i <= n into i < n, so the answer for 10 becomes 45; byte 0x2d (01 to 02) makes i++ into i += 2, so it becomes 25. This is real, and it is miserable. If short on time, drop the jump-offset arithmetic (0x1f + 0x14 = 0x33). The code panel on the slide is a reference for the audience; the real thing is typed on screen.");
+      "CUE: switch to the terminal and ImHex (demo script, Act 1 steps 1 to 3); back to slides at slide 8. Type the function live (5 lines) into live/sum_to.c. Compile it for the Mac with ./build_native.sh and run ./build/native_demo 10 to get 55, a known answer. Then say why the next build is different: the game is 32-bit x86 Windows, so I compile the same C again for x86-win32 with ./build.sh. This Mac is arm64, so these are completely different bytes and the Mac cannot run them; file shows the difference (arm64 executable versus plain data). If asked why Python makes the .bin: it just cuts the code bytes out of the object file, as bare as a dump from a real program (objdump -h shows .text is 59 bytes). Show the bytes with xxd -g1, then explain why hex: one byte is exactly two hex digits (4 bits each), binary is unreadable and decimal does not line up with bits. Open the .bin in ImHex, which can colour and label bytes and edit them in place. Decode a few bytes by hand with the one-byte opcode map (80386 Programmer's Reference, Appendix A): high four bits pick the row, low four bits the column. Then show your own simplified, searchable version of the table: gsanmartin.com/opcodes.html#one. Run the exact bytes in the emulator with an audience-chosen n. Then patch the copy: byte 0x1d (7f to 7d) turns i <= n into i < n, so the answer for 10 becomes 45; byte 0x2d (01 to 02) makes i++ into i += 2, so it becomes 25. This is real, and it is miserable. If short on time, drop the jump-offset arithmetic (0x1f + 0x14 = 0x33). The code panel on the slide is a reference for the audience; the real thing is typed on screen.");
     chip(s, "LIVE DEMO 1");
     code(s, 0.5, 1.35, 4.5, 2.4, [
       "int sum_to(int n)",
@@ -258,7 +293,7 @@ function arrow(s, x, y, w, h, opts) {
   // 8 Let tools decode
   {
     const s = begin("Act 1: by hand", "LIGHT", "Let a tool do the decoding",
-      "A disassembler only translates bytes to mnemonics. It adds no meaning. Same bytes on both sides.");
+      "CUE: stay on this slide; it shows the objdump step. A disassembler only translates bytes to mnemonics. It adds no meaning. In the 90s this was the toolkit: the Intel manual, on paper, plus a disassembler. Same bytes on both sides.");
     code(s, 0.5, 1.4, 4.7, 2.0, [
       [{ text: "00000000: ", color: "8FA39A" }, { text: "55 89 e5 83 ec 08 8b 45", color: HEX.gold }],
       [{ text: "00000008: ", color: "8FA39A" }, { text: "08 c7 45 fc 00 00 00 00", color: HEX.gold }],
@@ -284,7 +319,7 @@ function arrow(s, x, y, w, h, opts) {
   // 9 Compiler reveal
   {
     const s = begin("Act 1: by hand", "LIGHT", "The compiler reveal",
-      "Same five lines of C. At -O2 the loop is gone: the compiler worked out the sum is a formula (multiply, halve, add) and replaced the loop with it. The formula is n(n+1)/2: for n = 10 that is 55. For n = 1000 the unoptimised code runs 10,013 instructions and the optimised code runs 10, with the same answer. Keep in mind the test and jump at the top of the -O2 code: it returns 0 for n <= 0. That comes back in Act 3. Optimisers are why reverse engineering is not just reading.");
+      "CUE: switch to the terminal and ImHex (Act 1 steps 5 to 7: emulator, -O2 reveal, patch a byte); back to slides at slide 10. Same five lines of C. At -O2 the loop is gone: the compiler worked out the sum is a formula (multiply, halve, add) and replaced the loop with it. The formula is n(n+1)/2: for n = 10 that is 55. For n = 1000 the unoptimised code runs 10,013 instructions and the optimised code runs 10, with the same answer. Keep in mind the test and jump at the top of the -O2 code: it returns 0 for n <= 0. That comes back in Act 3. Optimisers are why reverse engineering is not just reading.");
     card(s, 0.5, 1.4, 4.2, 2.6, "O0Card");
     text(s, "59", { x: 0.5, y: 1.55, w: 4.2, h: 1.4, fontSize: 80, bold: true, color: C.text2, align: "center" });
     text(s, "bytes at -O0", { x: 0.5, y: 2.9, w: 4.2, h: 0.4, fontSize: 20, align: "center" });
@@ -325,7 +360,7 @@ function arrow(s, x, y, w, h, opts) {
   // 11 DEMO 2
   {
     const s = begin("Act 2: Ghidra", "LIGHT", "The same function in Ghidra",
-      "Import the raw bytes of your own function with no symbols, create the function by hand with D then F, and say: in a real EXE Ghidra does that step itself. Also say you only choose the CPU and find the function by hand because a raw file has no header; a real EXE tells Ghidra the CPU and the entry point. Ghidra gives control flow, cross-references and a C-like view. Naming is still on you. Watch renames propagate through callers. The default names on this slide are from memory of how Ghidra labels things; swap the panels for a real screenshot of the decompiler once you have rehearsed it.");
+      "CUE: switch to Ghidra (Part A, then the TESORO.EXE project for Part B); back to slides at slide 12. Import the raw bytes of your own function with no symbols, create the function by hand with D then F, and say: in a real EXE Ghidra does that step itself. Also say you only choose the CPU and find the function by hand because a raw file has no header; a real EXE tells Ghidra the CPU and the entry point. Ghidra gives control flow, cross-references and a C-like view. Naming is still on you. Watch renames propagate through callers. The default names on this slide are from memory of how Ghidra labels things; swap the panels for a real screenshot of the decompiler once you have rehearsed it.");
     chip(s, "LIVE DEMO 2");
     text(s, "Ghidra's default names", { x: 0.5, y: 1.35, w: 4.3, h: 0.35, fontSize: 16, bold: true, color: C.accent5 });
     code(s, 0.5, 1.8, 4.0, 2.6, ["FUN_00000000", "param_1", "local_8", "local_c"], 16, "BeforeNames");
@@ -409,7 +444,7 @@ function arrow(s, x, y, w, h, opts) {
   // 15 DEMO 3
   {
     const s = begin("Act 3: verification", "LIGHT", "A plausible claim, tested",
-      "Type the claims live. First sum(range(1, n+1)) mirrors the loop and matches everywhere. Then the clever one, n*(n+1)//2: it looks like what the optimised code does, passes every non-negative input, and fails on negative n (n=-2: the real code returns 0, the formula says 1). The optimised code had the guard (test and jle at the top) all along. Finish live by typing the corrected claim, n*(n+1)//2 if n > 0 else 0, which matches 133/133 (this step is not on the slide): the compiler wrote an if n <= 0 return 0 guard and then the formula. This is what a confident AI explanation looks like.");
+      "CUE: switch to the terminal (Act 3 steps 1 to 4); back to slides at slide 16. Type the claims live. First sum(range(1, n+1)) mirrors the loop and matches everywhere. Then the clever one, n*(n+1)//2: it looks like what the optimised code does, passes every non-negative input, and fails on negative n (n=-2: the real code returns 0, the formula says 1). The optimised code had the guard (test and jle at the top) all along. Finish live by typing the corrected claim, n*(n+1)//2 if n > 0 else 0, which matches 133/133 (this step is not on the slide): the compiler wrote an if n <= 0 return 0 guard and then the formula. This is what a confident AI explanation looks like.");
     chip(s, "LIVE DEMO 3");
     const G = "7FD18B", R = "FF8A75", D = "8FA39A";
     code(s, 0.5, 1.35, 9.0, 3.0, [
@@ -605,5 +640,6 @@ function arrow(s, x, y, w, h, opts) {
 
   await pres.writeFile({ fileName: OUT });
   await applyTheme(OUT, THEME);
+  await addSlide3Animation(OUT);
   console.log("wrote", OUT);
 })();

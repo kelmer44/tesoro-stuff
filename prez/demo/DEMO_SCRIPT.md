@@ -6,11 +6,23 @@ One running example, `sum_to`, goes through Acts 1 to 3. Nothing here uses origi
 
 | Live (you do it on screen) | Prewritten tools (say so out loud) |
 |---|---|
-| Typing the C function (5 lines) | `build.sh`: wraps the long clang command |
+| Typing the C function (5 lines) | `build.sh` and `build_native.sh`: wrap the long clang commands (x86-win32 and this Mac) |
 | Compiling and running it | `extract_text.py`: cuts the code out of the object file |
 | Reading and editing the bytes in ImHex | `emu.py` and `run.py`: run the bytes in an emulator |
 | Importing and renaming in Ghidra | `verify.py`: loops over test inputs |
-| Typing the hypothesis to test (one Python line) | `sum_to_O0.hexpat`: ImHex colouring |
+| Typing the hypothesis to test (one Python line) | `sum_to_O0.hexpat`: ImHex colouring and per-instruction comments |
+
+## Cue map: when to switch between the slides and the demo
+
+| On slide | Do | Return to slides at |
+|---|---|---|
+| 7 "Bytes and opcodes" | **SWITCH to the terminal and ImHex.** Act 1 steps 1 to 3: type the function, run it on the Mac, build for x86-win32, `xxd`, ImHex, decode by hand | **BACK to slide 8** |
+| 8 "Let a tool do the decoding" | Stay on the slide: it already shows step 4 (the `objdump` output). Run `objdump` live only if you want | go to slide 9 |
+| 9 "The compiler reveal" | **SWITCH to the terminal and ImHex.** Act 1 steps 5 to 7: run the bytes in the emulator, the `-O2` reveal, patch a byte | **BACK to slide 10** |
+| 11 "The same function in Ghidra" | **SWITCH to Ghidra.** Act 2 Part A (raw bytes, new project), then open the `TESORO.EXE` project for Part B | **BACK to slide 12** (it shows the 706 / 447 numbers for Part B step 6) |
+| 15 "A plausible claim, tested" | **SWITCH to the terminal.** Act 3 steps 1 to 4: show `emu.py`, then type the claims | **BACK to slide 16** |
+
+Slides 10, 12 to 14 and 16 onward are slides only. Slide 14 introduces the emulator before Act 3 begins.
 
 ## Before the talk
 
@@ -24,9 +36,11 @@ PY=../../re/.venv/bin/python
 - Rehearse the typing once; it is 5 lines. If a typo derails you: `cp fallback/sum_to.c live/sum_to.c`.
 - **Type the function exactly as below.** The patch offsets (`0x1d`, `0x2d`) assume this exact code. `patch_demo.sh` checks the byte first and says so if your code compiled differently.
 - ImHex open and the pattern file `sum_to_O0.hexpat` ready to paste. Ghidra open with a new empty project, and the `TESORO.EXE` project one click away.
-- Rehearse the Ghidra raw-binary import and the ImHex pattern once. Neither has been tried yet.
+- Rehearse the Ghidra raw-binary import and the ImHex pattern again (both have been tried once; the pattern was reworked afterwards so its hover comments show, and it now marks the prologue and epilogue). In Ghidra pick x86, default, 32, little, compiler Visual Studio. `run.py` and `verify.py` find the `re/.venv` Python by themselves.
 
 ## Act 1: by hand (about 6 min)
+
+**SWITCH (slide 7): terminal and ImHex.** Steps 1 to 3 below, then **BACK to slide 8.**
 
 **1. Type the function live** (1 min) into `live/sum_to.c`:
 
@@ -85,7 +99,7 @@ every byte is two characters and you can convert to bits in your head. Binary is
 decimal does not line up with bits (`55` hex is 85, and `7f` is 127, but `7f` shows "the top bit is clear" and 127 does not).
 The patterns also show up in hex: `50` to `57` are all `push`, and `55` is `push ebp` (`50` + register number 5).
 Open the Pattern Editor, paste `sum_to_O0.hexpat`, press Run (the pattern has one item per instruction, with its exact text as the comment, so it only fits this exact build): every instruction gets a colour and a hover comment
-(blue stack frame, green loads, teal stores, orange compare, red jumps, purple arithmetic, gold return).
+(light blue prologue, indigo epilogue, green loads, teal stores, orange compare, red jumps, purple arithmetic).
 Decode a few by hand with the audience, using the one-byte opcode map as the reference (have it open in a browser tab):
 [80386 Programmer's Reference, Appendix A](https://pdos.csail.mit.edu/6.828/2011/readings/i386/appa.htm)
 (screenshot it beforehand as a fallback). How to read it: the high four bits of the opcode pick the row, the low four bits
@@ -94,6 +108,8 @@ the column, so `55` is row 5, column 5. Cells to find (checked in the page):
 `c7` (row C, `MOV Ev,Iv`). Not checked yet, look them up before the talk: `83` (needs the "Immediate Grp1" table), `3b`, `03`, `eb`, `c3`, `5d`.
 The second byte after `89`/`8b` is a ModRM byte (2+3+3 bits: mode, register, memory operand), described in the Intel manual
 (Vol. 2, Chapter 2). Current references: Intel's manual and [ref.x86asm.net](http://ref.x86asm.net/coder32.html).
+After the authoritative source, show your own simplified, searchable version of the same table, which is easier to use live:
+[https://gsanmartin.com/opcodes.html#one](https://gsanmartin.com/opcodes.html#one) (search a byte such as `8B`; its Key tab has the ModR/M decoder).
 
 | Offset | Bytes | Meaning |
 |---|---|---|
@@ -113,7 +129,7 @@ Talking points:
 - The only argument `n` lives at `ebp+8`; locals live below `ebp` (`total` at `ebp-4`, `i` at `ebp-8`).
 - Optional: View > Disassembler in ImHex (x86, 32-bit, base address 0) shows the decoded text beside the bytes.
 
-**4. Let a tool decode it** (this is what the CPU manual lookup becomes):
+**4. Let a tool decode it** (this is what the CPU manual lookup becomes). Say: "In the 90s this was the toolkit: the Intel manual, on paper, plus a disassembler." Slide 8 shows this output, so you can stay on the slide, or run it live:
 
 ```bash
 objdump -d --x86-asm-syntax=intel build/sum_to_O0.obj
@@ -121,6 +137,8 @@ objdump -d --x86-asm-syntax=intel build/sum_to_O0.obj
 
 `objdump` reads the `.obj`, which has labels you would not have in real life. The same decoding from the raw bytes only
 (no labels, no file format) is `$PY -I verify.py build/sum_to_O0.bin --disasm`.
+
+**SWITCH (slide 9): terminal and ImHex.** Steps 5 to 7 below, then **BACK to slide 10.**
 
 **5. Run the exact bytes.** The Mac cannot run 32-bit Windows bytes itself, so a small emulator stands in for the CPU (more in Act 3):
 
@@ -166,6 +184,8 @@ Scripted fallback if the hex editor misbehaves: `./patch_demo.sh jge` or `./patc
 
 ## Act 2: Ghidra (about 4 min)
 
+**SWITCH (slide 11): Ghidra.** Part A, then Part B, then **BACK to slide 12** to land the numbers.
+
 Two parts. Part A uses the raw bytes of your function, so you see what Ghidra does *for* you.
 Part B uses the real `TESORO.EXE`, where Ghidra finds the functions itself, so you see its real potential.
 
@@ -209,6 +229,8 @@ Fallback for Part A: `build/sum_to_O0.obj` imports with the name `_sum_to` and t
 which is faster but not realistic. Say so if you use it.
 
 ## Act 3: verification with Unicorn (about 4 min)
+
+**SWITCH (slide 15): terminal.** Steps 1 to 4 below, then **BACK to slide 16.**
 
 **1. Show the emulator.** Unicorn is a CPU emulator. Open `emu.py` on screen and show `Runner.call` (about 12 lines):
 it puts the function's bytes in memory, builds a stack by hand (arguments right to left, then a return address), and runs.
